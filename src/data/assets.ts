@@ -1,15 +1,17 @@
 // Asset URLs — pulled from the live yanabiyagroup.com site so the website
 // works out of the box. To use your own copies, drop matching files into
-// /public/images/ and replace the URLs below with /images/<filename>.
+// /public/images/ and replace the URLs below with BASE + 'images/<filename>'.
+
+const BASE = import.meta.env.BASE_URL
 
 export const assets = {
   // Logo & branding
-  logo: '/images/logo.png',
+  logo: `${BASE}images/logo.png`,
   brandMark: 'https://yanabiyagroup.com/img/yanabiya-group-1.png',
 
   // Hero / about background imagery (tech-globe + office)
   heroGlobe: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80',
-  office: '/images/about-office.jpg',                // <- save the YG office photo here
+  office: `${BASE}images/about-office.jpg`,
   resources: 'https://yanabiyagroup.com/img/Skilled-Resources.png',
 
   // Leadership
