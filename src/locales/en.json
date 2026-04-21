@@ -1,0 +1,139 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "businesses": "Businesses",
+    "solutions": "Solutions",
+    "partnerships": "Partnerships",
+    "global": "Global Presence",
+    "csr": "Stewardship",
+    "network": "Network",
+    "leadership": "Our Leadership",
+    "strategy": "Foresight",
+    "insights": "Insights",
+    "careers": "Careers",
+    "contact": "Contact"
+  },
+  "topbar": { "operating": "Operating across 4 countries", "downloadPdf": "Download PDF", "tagline": "Connecting Opportunities. Building Global Businesses." },
+  "hero": {
+    "welcome": "Welcome to Yanabiya Group",
+    "tagline": "Connecting Opportunities. Building Global Businesses.",
+    "desc1": "A trust-led organisation dedicated to excellence and sustainable, consistent long-term growth across diversified global businesses.",
+    "desc2": "We operate across multiple industries, building strategic partnerships and exploring new opportunities to create long-term value.",
+    "desc3": "Our focus is on innovation, global expansion, and responsible business development.",
+    "cta1": "Explore Businesses",
+    "cta2": "Partner With Us",
+    "stats": { "countries": "Countries", "industries": "Industries", "experience": "Experience", "clients": "Clients" }
+  },
+  "about": {
+    "eyebrow": "About Us",
+    "title": "A versatile group, headquartered in Muscat, working across four continents.",
+    "lead": "Yanabiya Gulf International Business & Trade delivers internet services, software solutions, IT consulting, trade and business automation across the Gulf, Asia, Europe and North America.",
+    "missionLabel": "Mission",
+    "missionTitle": "Why we exist",
+    "mission": "To deliver top-class internet services and optimal software solutions at reasonable prices, complemented by consulting and business process outsourcing — built on three pillars: People, Process, and Clients.",
+    "visionLabel": "Vision",
+    "visionTitle": "Where we're going",
+    "vision": "To become a leading global performer in providing quality web and software development solutions, leveraging professional talent from agency, corporate, and private sectors to help clients accelerate growth.",
+    "valuesTitle": "Our Core Values"
+  },
+  "businesses": {
+    "eyebrow": "Our Businesses",
+    "title": "Six divisions powering enterprises and trade across continents.",
+    "sub": "From enterprise software to international trade — built end-to-end."
+  },
+  "solutions": {
+    "eyebrow": "Solutions",
+    "title": "Engineered to solve real business problems.",
+    "sub": "A modern technology stack delivered by experienced engineers — from custom software to cloud, security and analytics."
+  },
+  "partnerships": {
+    "eyebrow": "Partnerships",
+    "title": "Powered by the world's leading technology providers.",
+    "sub": "We partner with global technology leaders to deliver enterprise-grade solutions across cloud, software, hardware and security."
+  },
+  "global": {
+    "eyebrow": "Global Presence",
+    "title": "Operating across four countries with nine entities.",
+    "sub": "Our Yanabiya Group company currently operates in four countries, and we plan to gradually expand by entering more markets in the future. In each country, we are continuously upgrading and expanding our business categories day by day.",
+    "entities": "Entities",
+    "headquarters": "Headquarters",
+    "europe": "European Operations",
+    "southAsia": "South Asia Operations",
+    "northAmerica": "North America Operations"
+  },
+  "csr": {
+    "eyebrow": "Impact & CSR",
+    "title": "Giving back to the communities we serve.",
+    "sub": "Yanabiya Group is committed to structured charitable donations and welfare programmes — focused on transparency and lasting impact.",
+    "items": {
+      "welfare": { "t": "Community Welfare", "d": "Humanitarian aid programmes across the regions we operate in." },
+      "education": { "t": "Education", "d": "Scholarships and skill-development initiatives for under-served communities." },
+      "health": { "t": "Healthcare Access", "d": "Supporting clinics, mobile camps, and emergency relief." },
+      "empower": { "t": "Economic Empowerment", "d": "Vocational training and small-business support to enable livelihoods." }
+    }
+  },
+  "network": {
+    "eyebrow": "Network",
+    "title": "A trusted network spanning four countries and dozens of industries.",
+    "sub": "Active memberships with chambers of commerce, trade bodies and industry associations across Oman, UK, Bangladesh and the USA.",
+    "memberships": "Memberships & Affiliations",
+    "stats": { "clients": "Active Clients", "entities": "Group Entities", "countries": "Countries", "track": "Track Record" }
+  },
+  "leadership": {
+    "eyebrow": "Leadership",
+    "title": "Guided by experience. Driven by integrity.",
+    "sub": "Our leadership combines decades of enterprise expertise with deep regional knowledge across the Gulf, South Asia, the UK and the USA.",
+    "core": "Core Team",
+    "chairman": "Founder & Chairman",
+    "viceChairman": "Vice Chairman",
+    "chairmanMsg": "Yanabiya Group represents the Stamp of Quality & Professionalism. Our success comes from upholding core values rather than taking shortcuts. We deliver what we promise and place customer satisfaction above all — supported by a dedicated after-sales division ensuring service excellence.",
+    "viceChairmanMsg": "Our website introduces our vision, mission, infrastructure, expertise, and future plans. We invite prospective clients and partners to explore our divisions and connect with us."
+  },
+  "strategy": {
+    "eyebrow": "Strategy & Innovation",
+    "title": "Where strategy meets execution.",
+    "sub": "Our innovation roadmap is built on four pillars that align technology, talent and process with measurable client outcomes.",
+    "focus": "Innovation Focus Areas",
+    "pillars": {
+      "digital": { "t": "Digital Transformation", "d": "Helping enterprises modernise legacy systems and adopt cloud-first architectures." },
+      "talent": { "t": "Talent-Driven Growth", "d": "Cultivating multidisciplinary teams across four countries." },
+      "process": { "t": "Process Excellence", "d": "Balancing speed, quality and cost in every engagement." },
+      "customer": { "t": "Customer-Centric Innovation", "d": "Solutions designed around client problems, not generic templates." }
+    }
+  },
+  "insights": {
+    "eyebrow": "Insights",
+    "title": "Thinking from the Yanabiya team.",
+    "sub": "Articles, case studies and thought leadership covering digital transformation, trade, security and cloud adoption.",
+    "readMore": "Read more"
+  },
+  "careers": {
+    "eyebrow": "Careers",
+    "title": "Build your career with a global group.",
+    "sub": "Join a team that values craftsmanship, ownership, and continuous learning.",
+    "rolesTitle": "Roles We Hire For",
+    "open": "Open",
+    "sendCv": "Send your CV and a short note about what you'd like to work on."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's start the conversation.",
+    "sub": "Reach our headquarters in Muscat or any of our offices across the UK, Bangladesh and the USA.",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Hours",
+    "languages": "Languages",
+    "send": "Send a message",
+    "name": "Full name",
+    "emailField": "Email address",
+    "company": "Company (optional)",
+    "phoneField": "Phone (optional)",
+    "subject": "Subject",
+    "message": "Tell us about your project or enquiry…",
+    "submit": "Send message",
+    "thanks": "Thanks — your message has been received."
+  },
+  "footer": { "rights": "All rights reserved.", "stamp": "The Stamp of Quality & Professionalism" }
+}

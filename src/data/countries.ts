@@ -1,0 +1,45 @@
+export const countries = [
+  {
+    code: 'OM',
+    flag: '🇴🇲',
+    name: 'Sultanate of Oman',
+    role: 'Headquarters',
+    address: 'Al-Khuwair, Muscat — P.O. Box 1432, P.C. 133',
+    entities: [
+      'Yanabiya Muscat United Trade',
+      'Yanabiya Muscat for Comprehensive Projects',
+      'Yanabiya Muscat Integrated LLC',
+      'Yanabiya Al Khairat United Trade LLC',
+      'Yanabiya Muscat World Business',
+      'Yanabiya Muscat Al Mumyazat',
+      'Yanabiya Al Rustaq Contracting',
+    ],
+  },
+  {
+    code: 'GB',
+    flag: '🇬🇧',
+    name: 'United Kingdom',
+    role: 'European Operations',
+    address: 'London, United Kingdom',
+    description:
+      'Currently, we operate in the United Kingdom under Yanabiya Gulf International UK Ltd., managing our regional business activities and services across the UK market.',
+    licenceName: 'Yanabiya Gulf International UK Ltd',
+    entities: ['Yanabiya Gulf International UK Ltd'],
+  },
+  {
+    code: 'BD',
+    flag: '🇧🇩',
+    name: 'Bangladesh',
+    role: 'South Asia Operations',
+    address: 'Dhaka, Bangladesh',
+    entities: ['Yanabiya Gulf International BD Ltd'],
+  },
+  {
+    code: 'US',
+    flag: '🇺🇸',
+    name: 'United States of America',
+    role: 'North America Operations',
+    address: 'USA',
+    entities: ['Operations and partnerships extending across the USA'],
+  },
+]
