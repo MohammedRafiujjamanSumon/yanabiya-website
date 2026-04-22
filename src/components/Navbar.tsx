@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
+import { Menu, X, ChevronDown, ArrowRight, Award, Handshake, Users } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { sections } from '../data/contact'
 import { assets } from '../data/assets'
 import { useScrollHeader } from '../hooks/useScrollHeader'
 
+type NavItem = { id: string; label: string; desc?: string; icon?: LucideIcon }
 type NavGroup = {
   label: string
   id?: string
   parentSection?: string
-  items?: { id: string; label: string; desc?: string }[]
+  items?: NavItem[]
 }
 
 /**
@@ -36,9 +38,9 @@ export default function Navbar() {
       label: 'Trusted Network',
       parentSection: 'partnerships',
       items: [
-        { id: 'sponsors', label: 'Our Sponsors', desc: 'Organisations sponsoring our growth' },
-        { id: 'partners', label: 'Our Partners', desc: 'Technology & business partners' },
-        { id: 'clients',  label: 'Our Clients',  desc: 'Valued clients we proudly serve' },
+        { id: 'sponsors', label: 'Our Sponsors', icon: Award },
+        { id: 'partners', label: 'Our Partners', icon: Handshake },
+        { id: 'clients',  label: 'Our Clients',  icon: Users },
       ],
     },
     {
@@ -138,36 +140,76 @@ export default function Navbar() {
                   />
                 </button>
 
-                {isOpen && (
-                  <div
-                    className="absolute top-full left-0 mt-2 w-[22rem] rounded-2xl bg-white
-                               shadow-2xl shadow-slate-900/10 ring-1 ring-slate-200/80 p-2 z-50"
-                    onMouseEnter={() => hoverOpen(g.label)}
-                    onMouseLeave={hoverClose}
-                  >
-                    {g.items.map((item) => (
-                      <a
-                        key={item.id}
-                        href={`#${item.id}`}
-                        onClick={() => setOpenMenu(null)}
-                        className="block rounded-xl px-4 py-3 hover:bg-slate-50 transition group/item"
-                      >
-                        <div className={`text-[15px] font-semibold ${
-                          active === item.id
-                            ? 'text-brand-accent'
-                            : 'text-slate-900 group-hover/item:text-slate-950'
-                        }`}>
-                          {item.label}
-                        </div>
-                        {item.desc && (
-                          <div className="text-[13px] text-slate-500 mt-1 leading-snug">
-                            {item.desc}
-                          </div>
-                        )}
-                      </a>
-                    ))}
-                  </div>
-                )}
+                {isOpen && (() => {
+                  const compact = g.items.every((i) => !i.desc)
+                  return (
+                    <div
+                      className={`absolute top-full left-0 mt-2 rounded-2xl bg-white
+                                  shadow-2xl shadow-slate-900/10 ring-1 ring-slate-200/80 p-2 z-50
+                                  ${compact ? 'w-60' : 'w-[22rem]'}`}
+                      onMouseEnter={() => hoverOpen(g.label)}
+                      onMouseLeave={hoverClose}
+                    >
+                      {g.items.map((item) => {
+                        const isActive = active === item.id
+                        const Icon = item.icon
+                        if (compact) {
+                          return (
+                            <a
+                              key={item.id}
+                              href={`#${item.id}`}
+                              onClick={() => setOpenMenu(null)}
+                              className={`flex items-center gap-3 rounded-xl px-3 py-2.5
+                                          transition-all duration-200 group/item
+                                          ${isActive
+                                            ? 'bg-brand-accent/10 text-brand-accent'
+                                            : 'text-slate-800 hover:bg-slate-50 hover:text-slate-950'}`}
+                            >
+                              {Icon && (
+                                <span className={`w-9 h-9 rounded-lg grid place-items-center
+                                                  transition-all duration-200
+                                                  ${isActive
+                                                    ? 'bg-brand-accent text-white'
+                                                    : 'bg-slate-100 text-slate-500 group-hover/item:bg-brand-accent group-hover/item:text-white group-hover/item:scale-105'}`}>
+                                  <Icon size={18} strokeWidth={2} />
+                                </span>
+                              )}
+                              <span className="text-[15px] font-semibold">{item.label}</span>
+                              <ArrowRight
+                                size={14}
+                                className="ms-auto text-slate-300 opacity-0 -translate-x-1
+                                           transition-all duration-200
+                                           group-hover/item:opacity-100 group-hover/item:translate-x-0
+                                           group-hover/item:text-brand-accent"
+                              />
+                            </a>
+                          )
+                        }
+                        return (
+                          <a
+                            key={item.id}
+                            href={`#${item.id}`}
+                            onClick={() => setOpenMenu(null)}
+                            className="block rounded-xl px-4 py-3 hover:bg-slate-50 transition group/item"
+                          >
+                            <div className={`text-[15px] font-semibold ${
+                              isActive
+                                ? 'text-brand-accent'
+                                : 'text-slate-900 group-hover/item:text-slate-950'
+                            }`}>
+                              {item.label}
+                            </div>
+                            {item.desc && (
+                              <div className="text-[13px] text-slate-500 mt-1 leading-snug">
+                                {item.desc}
+                              </div>
+                            )}
+                          </a>
+                        )
+                      })}
+                    </div>
+                  )
+                })()}
               </div>
             )
           })}
