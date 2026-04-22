@@ -103,16 +103,32 @@ export default function Businesses() {
                 <button
                   key={b.slug}
                   onClick={() => setActive(b)}
-                  className="group relative card-panel overflow-hidden !bg-white hover:-translate-y-1 transition text-center py-10"
+                  className="group relative rounded-2xl overflow-hidden shadow-lg
+                             h-80 hover:-translate-y-1 transition-transform text-left
+                             focus:outline-none focus:ring-2 focus:ring-brand-accent"
                 >
-                  <div className="relative flex flex-col items-center">
-                    <div className="w-16 h-16 rounded-full bg-blue-100 text-blue-600 grid place-items-center mb-4 ring-4 ring-blue-50 shadow-sm">
-                      <b.icon size={28} />
-                    </div>
-                    <h3 className="text-slate-900 mb-6 text-xl">{b.title}</h3>
-                    <span className="inline-flex items-center gap-2 rounded-full border border-blue-600
-                                     px-5 py-2 text-sm font-medium text-blue-600
-                                     transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                  <img
+                    src={b.image}
+                    alt={b.title}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover
+                               transition-transform duration-500 group-hover:scale-105"
+                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
+                  <div className="absolute top-4 right-4 w-11 h-11 rounded-full
+                                  bg-white/90 text-blue-600 grid place-items-center shadow
+                                  ring-2 ring-white/70">
+                    <b.icon size={20} />
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 p-5 flex flex-col items-start gap-3">
+                    <h3 className="text-white text-lg md:text-xl font-semibold leading-tight drop-shadow">
+                      {b.title}
+                    </h3>
+                    <span className="inline-flex items-center gap-2 rounded-full
+                                     px-4 py-1.5 text-xs font-semibold uppercase tracking-wider
+                                     bg-white/95 text-blue-700
+                                     transition-colors group-hover:bg-brand-accent group-hover:text-white">
                       Read More
                       <span aria-hidden>→</span>
                     </span>

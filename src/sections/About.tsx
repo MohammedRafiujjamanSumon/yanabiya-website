@@ -5,12 +5,14 @@ import { assets } from '../data/assets'
 
 type PillarKey = 'mission' | 'vision' | 'goals'
 
-const pillars: { key: PillarKey; title: string; teaser: string; body: string[] }[] = [
+const pillars: { key: PillarKey; title: string; teaser: string; image: string; body: string[] }[] = [
   {
     key: 'mission',
     title: 'Mission',
     teaser:
       'Build and scale diversified ventures that combine innovation, technology, and strategic thinking — delivering reliable solutions that help organizations grow.',
+    image:
+      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
     body: [
       "Yanabiya Group is committed to building and scaling diversified business ventures that combine innovation, technology, and strategic thinking. Our mission is to deliver high-quality internet services, software solutions, IT consulting, global trade, and business automation that help organizations grow efficiently.",
       "We transform ideas into practical solutions by exploring new opportunities and adopting future-ready technologies. Through our diversified operations, we create scalable systems that improve productivity, enhance digital transformation, and support long-term business success across industries.",
@@ -23,6 +25,8 @@ const pillars: { key: PillarKey; title: string; teaser: string; body: string[] }
     title: 'Vision',
     teaser:
       'Become a trusted global business ecosystem recognized for innovation, diversified growth, and sustainable impact across markets.',
+    image:
+      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
     body: [
       "Yanabiya Group envisions becoming a trusted global business ecosystem recognized for innovation, diversified growth, and sustainable impact. We aim to build and expand ventures that shape the future of technology, digital services, global trade, and strategic consulting across markets.",
       "Our vision is to create a strong network of businesses that deliver meaningful solutions across industries. By embracing innovation and emerging technologies, we strive to stay ahead of change and lead transformation in how businesses operate and grow.",
@@ -35,6 +39,8 @@ const pillars: { key: PillarKey; title: string; teaser: string; body: string[] }
     title: 'Goals',
     teaser:
       "Build a strong, diversified ecosystem delivering innovative, reliable, and scalable solutions across technology, trade, consulting, and automation.",
+    image:
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
     body: [
       "Yanabiya Group's primary goal is to build a strong, diversified business ecosystem that delivers innovative, reliable, and scalable solutions across industries including technology, digital services, global trade, IT consulting, and business automation.",
       "We continuously develop new ventures and expand existing services by identifying emerging opportunities and transforming ideas into impactful businesses. Our focus is long-term value through sustainable growth and operational excellence.",
@@ -127,27 +133,37 @@ export default function About() {
         {/* Mission · Vision · Goals — collapsed cards with Learn More */}
         <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-5 mt-12">
           {pillars.map((p) => (
-            <div key={p.key} className="card-panel flex flex-col items-center justify-center text-center py-10">
-              <h3 className="group inline-block relative font-serif uppercase tracking-[0.18em]
-                             text-lg md:text-xl font-bold text-brand-accentDark cursor-default
-                             after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-2
-                             after:h-[2px] after:bg-brand-accent after:rounded-full
-                             after:scale-x-0 after:origin-center after:transition-transform after:duration-300
-                             hover:after:scale-x-100 focus:after:scale-x-100 active:after:scale-x-100">
-                {p.title}
-              </h3>
-              <button
-                type="button"
-                onClick={() => setOpenPillar(p.key)}
-                className="mt-8 inline-flex items-center gap-2 rounded-full border border-brand-accent
-                           px-5 py-2 text-sm font-medium text-brand-accentDark
-                           transition-colors hover:bg-brand-accent hover:text-white
-                           focus:outline-none focus:ring-2 focus:ring-brand-accent/50"
-              >
-                Read More
-                <span aria-hidden>→</span>
-              </button>
-            </div>
+            <button
+              key={p.key}
+              type="button"
+              onClick={() => setOpenPillar(p.key)}
+              className="group relative rounded-2xl overflow-hidden shadow-lg
+                         h-80 hover:-translate-y-1 transition-transform text-left
+                         focus:outline-none focus:ring-2 focus:ring-brand-accent"
+            >
+              <img
+                src={p.image}
+                alt={p.title}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover
+                           transition-transform duration-500 group-hover:scale-105"
+                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
+              <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col items-start gap-3">
+                <h3 className="font-serif uppercase tracking-[0.18em] text-white
+                               text-lg md:text-xl font-bold drop-shadow">
+                  {p.title}
+                </h3>
+                <span className="inline-flex items-center gap-2 rounded-full
+                                 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider
+                                 bg-white/95 text-brand-accentDark
+                                 transition-colors group-hover:bg-brand-accent group-hover:text-white">
+                  Read More
+                  <span aria-hidden>→</span>
+                </span>
+              </div>
+            </button>
           ))}
         </div>
 

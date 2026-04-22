@@ -4,6 +4,7 @@ export const countries = [
     flag: '🇴🇲',
     name: 'Sultanate of Oman',
     role: 'Headquarters',
+    heroImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80',
     address:
       'Office-41, 4th Floor, Building-846, Way-4011, Complex-240, Al Gubrah, Bushar, Muscat, Sultanate of Oman · P.O. Box 1432, PC-133, Al Khuwair, Muscat',
     parentCompany: 'Yanabiya Gulf International Business & Trade SPC',
@@ -53,6 +54,7 @@ export const countries = [
     flag: '🇬🇧',
     name: 'United Kingdom',
     role: 'European Operations',
+    heroImage: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80',
     address: '167-169 Great Portland Street, 5th Floor, London, W1W 5PF',
     description:
       'Currently, we operate in the United Kingdom under Yanabiya Gulf International UK Ltd., managing our regional business activities and services across the UK market.',
@@ -64,6 +66,7 @@ export const countries = [
     flag: '🇧🇩',
     name: 'Bangladesh',
     role: 'South Asia Operations',
+    heroImage: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=800&q=80',
     address:
       'Office # 211, Plot # 322/B, Block # Kanchkura, Uttarkhan, Dhaka-1230, Bangladesh',
     entities: ['Yanabiya Gulf International BD Trade'],
@@ -73,6 +76,7 @@ export const countries = [
     flag: '🇺🇸',
     name: 'United States of America',
     role: 'North America Operations',
+    heroImage: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80',
     address: '5900 Balcones Drive # 18651, Austin, TX 78731, USA',
     entities: ['Yanabiya Gulf International US LLC'],
   },
