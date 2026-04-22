@@ -89,16 +89,8 @@ export default function About() {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="flex justify-center mb-4">
-              <img
-                src={assets.logo}
-                alt="Yanabiya Group"
-                className="h-16 md:h-20 w-auto object-contain drop-shadow-md"
-                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-              />
-            </div>
             <h2 className="font-serif text-lg md:text-xl text-slate-900 leading-tight text-center">
-              Who We Are 🌐
+              Who We Are
             </h2>
             <div className="mt-5 space-y-4 text-slate-600 leading-relaxed text-justify">
               <p>

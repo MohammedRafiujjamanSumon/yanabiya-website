@@ -68,21 +68,17 @@ export default function Partnerships() {
 
   return (
     <Section id="partnerships" className="bg-stone-50">
-      <div className="container-x text-center max-w-3xl mx-auto mb-12">
+      <div className="container-x text-center mx-auto mb-12">
         <H2 className="text-center">Trusted Network</H2>
-        <p className="mt-5 text-slate-600">
-          Connecting Opportunities Worldwide to Build Strong, Scalable Global Businesses.
-        </p>
-
-        <div className="mt-6 inline-flex flex-col items-center gap-3 rounded-2xl
-                        bg-white px-6 py-5 shadow-md ring-1 ring-slate-200">
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-slate-600">
+          <span>Connecting Opportunities Worldwide to Build Strong, Scalable Global Businesses.</span>
           <button
             type="button"
             onClick={() => setReadMoreOpen(true)}
             className="inline-flex items-center gap-2 rounded-full
-                       bg-brand-accent px-6 py-2.5 text-sm font-semibold text-white
+                       bg-brand-accent px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white
                        shadow-sm transition-all hover:bg-brand-accentDark
-                       hover:shadow-md hover:-translate-y-0.5
+                       hover:shadow-md
                        focus:outline-none focus:ring-2 focus:ring-brand-accent/50"
           >
             Read More

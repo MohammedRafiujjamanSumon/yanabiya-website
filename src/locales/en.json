@@ -75,8 +75,9 @@
   },
   "network": {
     "eyebrow": "Network",
-    "title": "A trusted network spanning four countries and dozens of industries.",
-    "sub": "Active memberships with chambers of commerce, trade bodies and industry associations across Oman, UK, Bangladesh and the USA.",
+    "title": "Trusted Network",
+    "sub": "Connecting Opportunities Worldwide to Build Strong, Scalable Global Businesses.",
+    "readMore": "Read More",
     "memberships": "Memberships & Affiliations",
     "stats": { "clients": "Active Clients", "entities": "Group Entities", "countries": "Countries", "track": "Track Record" }
   },
