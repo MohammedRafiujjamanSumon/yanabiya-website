@@ -25,8 +25,8 @@ export default function Hero() {
   return (
     <section id="home" className="relative scroll-mt-24">
 
-      {/* ─────────── Welcome banner — dark navy, sits right under the navbar ─────────── */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 animate-gradient border-y border-brand-accent/30">
+      {/* ─────────── Welcome banner — brand green, sits right under the navbar ─────────── */}
+      <div className="relative overflow-hidden bg-gradient-to-r from-brand-ink via-brand-deep to-brand-ink animate-gradient border-y border-brand-accent/30">
         {/* decorative grid */}
         <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
         {/* soft lime accent halo for that green-on-navy glow — pulses */}

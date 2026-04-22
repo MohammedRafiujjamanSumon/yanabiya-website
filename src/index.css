@@ -68,6 +68,8 @@
       linear-gradient(90deg, rgba(158,199,58,0.08) 1px, transparent 1px);
     background-size: 56px 56px;
   }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
 @keyframes marquee {

@@ -1,34 +1,49 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Menu, X, ArrowRight, Search, Phone, Mail } from 'lucide-react'
-import { sections, contact } from '../data/contact'
+import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
+import { sections } from '../data/contact'
 import { assets } from '../data/assets'
-import LanguageSwitcher from './LanguageSwitcher'
 import { useScrollHeader } from '../hooks/useScrollHeader'
 
+type NavGroup = {
+  label: string
+  id?: string
+  items?: { id: string; label: string; desc?: string }[]
+}
+
 /**
- * Sustainability Magazine-style navbar:
- *  ┌───────────────┬────────────────────────────────────────────┐
- *  │               │  utility row  (phone · mail · lang · CTA)  │
- *  │     LOGO      │  ─── thin accent divider ───              │
- *  │               │  MAIN NAV ROW (uppercase links)           │
- *  └───────────────┴────────────────────────────────────────────┘
- *  - On scroll DOWN  → utility row slides up out of view
- *  - On scroll UP    → utility row reappears
- *  - At very top     → both rows visible, full-height
- *  - Mobile          → logo + hamburger + Contact CTA only
+ * n8n.io-style light navbar:
+ *  - White background, dark text, subtle bottom border
+ *  - Logo far left; nav items left-aligned immediately after
+ *  - Hover-open dropdowns with title + description rows
  */
 export default function Navbar() {
   const { t } = useTranslation()
-  const { scrolled, hidden } = useScrollHeader(8, 80)
+  const { scrolled } = useScrollHeader(8, 80)
   const [open, setOpen] = useState(false)
+  const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [active, setActive] = useState('home')
+  const closeTimer = useRef<number | undefined>(undefined)
 
-  // THREE balanced rows of 4 each (Contact stays as the utility-row CTA).
-  const navItems = sections.slice(0, 12)            // Home … Careers
-  const navRowA = navItems.slice(0, 4)              // Home, About, Businesses, Solutions
-  const navRowB = navItems.slice(4, 8)              // Partnerships, Global, Stewardship, Network
-  const navRowC = navItems.slice(8, 12)             // Leadership, Foresight, Insights, Careers
+  const navGroups: NavGroup[] = [
+    { label: t('nav.home'),         id: 'home'         },
+    { label: t('nav.about'),        id: 'about'        },
+    { label: t('nav.businesses'),   id: 'businesses'   },
+    { label: t('nav.global'),       id: 'global'       },
+    { label: t('nav.solutions'),    id: 'solutions'    },
+    { label: t('nav.partnerships'), id: 'partnerships' },
+    {
+      label: 'Community',
+      items: [
+        { id: 'careers',    label: t('nav.careers'),    desc: 'Join the Yanabiya team' },
+        { id: 'csr',        label: t('nav.csr'),        desc: 'Community & sustainability initiatives' },
+        { id: 'network',    label: t('nav.network'),    desc: 'Global delivery & partner network' },
+        { id: 'leadership', label: t('nav.leadership'), desc: 'Meet our leadership team' },
+        { id: 'strategy',   label: t('nav.strategy'),   desc: 'Our long-term vision' },
+        { id: 'insights',   label: t('nav.insights'),   desc: 'Articles & perspectives' },
+      ],
+    },
+  ]
 
   useEffect(() => {
     const onScroll = () => {
@@ -42,109 +57,126 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const linkCls = (id: string) =>
-    `relative uppercase tracking-[0.18em] text-[10pt] font-semibold py-1
-     transition-colors hover:text-brand-accent focus:text-brand-accent active:text-brand-accent
-     after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-1
-     after:h-[2px] after:bg-brand-accent after:rounded-full
-     after:scale-x-0 after:origin-center after:transition-transform after:duration-300
-     hover:after:scale-x-100 focus:after:scale-x-100 active:after:scale-x-100 ${
-      active === id ? 'text-brand-accent after:scale-x-100' : 'text-white'
+  const hoverOpen = (label: string) => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current)
+    setOpenMenu(label)
+  }
+  const hoverClose = () => {
+    closeTimer.current = window.setTimeout(() => setOpenMenu(null), 120)
+  }
+
+  const baseLinkCls = (isActive: boolean) =>
+    `relative text-[15px] font-medium whitespace-nowrap py-2
+     transition-colors duration-200
+     hover:text-white focus:text-white ${
+      isActive ? 'text-brand-accent' : 'text-white/80'
     }`
 
   return (
-    <header className={`sticky top-0 z-40 bg-brand-ink transition-shadow ${
-      scrolled ? 'shadow-xl shadow-black/30' : ''
-    }`}>
-      <div className="container-x flex items-stretch justify-between">
+    <header className="sticky top-0 z-40 bg-brand-deep pt-3 pb-3 px-3 lg:px-6">
+      <div
+        className={`container-x mx-auto flex items-center gap-8 h-14 lg:h-16 px-4 lg:px-6
+                    rounded-full bg-black/90 backdrop-blur-md
+                    border border-white/10 transition-shadow duration-200 ${
+          scrolled ? 'shadow-xl shadow-black/30'
+                   : 'shadow-lg shadow-black/20'
+        }`}
+      >
 
-        {/* LEFT — LOGO only */}
-        <a href="#home" className="flex items-center py-3 group shrink-0">
+        {/* LEFT — LOGO */}
+        <a href="#home" className="flex items-center shrink-0 group">
           <img
             src={assets.logo}
             alt="Yanabiya Group"
-            className="h-14 lg:h-16 w-auto object-contain bg-white rounded p-1.5 group-hover:opacity-90 transition"
+            className="h-9 lg:h-10 w-auto object-contain group-hover:opacity-90 transition"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
         </a>
 
-        {/* RIGHT — stacked rows on desktop */}
-        <div className="hidden lg:flex flex-col items-end justify-center min-w-0">
-
-          {/* Utility row (collapses on scroll-down) */}
-          <div
-            className={`flex items-center gap-6 text-[11px] text-white/85
-                        overflow-hidden transition-all duration-300 ease-out
-                        ${hidden ? 'max-h-0 opacity-0 -translate-y-2'
-                                 : 'max-h-12 opacity-100 translate-y-0 mb-2'}`}
-          >
-            <button className="flex items-center gap-1 hover:text-brand-accent transition">
-              <Search size={12} /> Find
-            </button>
-            <a href={`tel:${contact.mobile.replace(/\s/g, '')}`}
-               className="flex items-center gap-1.5 hover:text-brand-accent transition">
-              <Phone size={12} /> {contact.mobile}
-            </a>
-            <a href={`mailto:${contact.emails[0]}`}
-               className="flex items-center gap-1.5 hover:text-brand-accent transition">
-              <Mail size={12} /> {contact.emails[0]}
-            </a>
-            <span className="opacity-30">|</span>
-            <LanguageSwitcher />
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-sm
-                         bg-brand-accent text-brand-ink uppercase tracking-[0.18em] text-[10px] font-bold
-                         hover:bg-white transition"
-            >
-              {t('nav.contact')} <ArrowRight size={12} className="ltr-flip" />
-            </a>
-          </div>
-
-          {/* Thin accent divider — only when row 1 is visible */}
-          <div className={`w-full h-px bg-brand-accent/60 transition-opacity duration-300
-                           ${hidden ? 'opacity-0' : 'opacity-100'}`} />
-
-          {/* Row 2 — main nav, part A */}
-          <nav className="flex items-center gap-7 pt-3">
-            {navRowA.map((l) => (
-              <a key={l.id} href={`#${l.id}`} className={linkCls(l.id)}>
-                {t(l.tKey)}
-              </a>
-            ))}
-          </nav>
-
-          {/* Rows B & C — collapse together with utility on scroll-down,
-              so only Row A stays visible while scrolling. */}
-          <div className={`overflow-hidden transition-all duration-300 ease-out
-                           ${hidden ? 'max-h-0 opacity-0 -translate-y-2'
-                                    : 'max-h-40 opacity-100 translate-y-0'}`}>
-            <nav className="flex items-center gap-7 pt-2">
-              {navRowB.map((l) => (
-                <a key={l.id} href={`#${l.id}`} className={linkCls(l.id)}>
-                  {t(l.tKey)}
+        {/* NAV — pushed right, then CTA on far right */}
+        <nav className="hidden lg:flex ms-auto items-center gap-6 xl:gap-7 min-w-0">
+          {navGroups.map((g) => {
+            if (!g.items) {
+              const isActive = !!g.id && active === g.id
+              return (
+                <a key={g.label} href={`#${g.id}`} className={baseLinkCls(isActive)}>
+                  {g.label}
                 </a>
-              ))}
-            </nav>
-            <nav className="flex items-center gap-7 pt-2 pb-3">
-              {navRowC.map((l) => (
-                <a key={l.id} href={`#${l.id}`} className={linkCls(l.id)}>
-                  {t(l.tKey)}
-                </a>
-              ))}
-              <a href="#insights" className={linkCls('articles')}>Articles</a>
-            </nav>
-          </div>
-        </div>
+              )
+            }
+            const isOpen = openMenu === g.label
+            const groupActive = g.items.some((i) => i.id === active)
+            return (
+              <div
+                key={g.label}
+                className="relative"
+                onMouseEnter={() => hoverOpen(g.label)}
+                onMouseLeave={hoverClose}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenMenu(isOpen ? null : g.label)}
+                  className={`${baseLinkCls(groupActive)} inline-flex items-center gap-1`}
+                  aria-haspopup="true"
+                  aria-expanded={isOpen}
+                >
+                  {g.label}
+                  <ChevronDown
+                    size={14}
+                    className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
 
-        {/* MOBILE controls — hamburger + CTA */}
-        <div className="flex lg:hidden items-center gap-2">
-          <a href="#contact"
-             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm
-                        bg-brand-accent text-brand-ink uppercase tracking-[0.15em] text-[10px] font-bold">
-            {t('nav.contact')}
-          </a>
+                {isOpen && (
+                  <div
+                    className="absolute top-full left-0 mt-2 w-[22rem] rounded-2xl bg-white
+                               shadow-2xl shadow-slate-900/10 ring-1 ring-slate-200/80 p-2 z-50"
+                    onMouseEnter={() => hoverOpen(g.label)}
+                    onMouseLeave={hoverClose}
+                  >
+                    {g.items.map((item) => (
+                      <a
+                        key={item.id}
+                        href={`#${item.id}`}
+                        onClick={() => setOpenMenu(null)}
+                        className="block rounded-xl px-4 py-3 hover:bg-slate-50 transition group/item"
+                      >
+                        <div className={`text-[15px] font-semibold ${
+                          active === item.id
+                            ? 'text-brand-accent'
+                            : 'text-slate-900 group-hover/item:text-slate-950'
+                        }`}>
+                          {item.label}
+                        </div>
+                        {item.desc && (
+                          <div className="text-[13px] text-slate-500 mt-1 leading-snug">
+                            {item.desc}
+                          </div>
+                        )}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </nav>
+
+        {/* RIGHT — Get In Touch CTA (desktop) */}
+        <a
+          href="#contact"
+          className="hidden lg:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full
+                     bg-brand-accent text-brand-ink text-sm font-semibold
+                     hover:bg-brand-accentDark hover:text-white transition-all
+                     shadow-sm hover:shadow-md hover:-translate-y-0.5 shrink-0"
+        >
+          Get In Touch <ArrowRight size={14} className="ltr-flip" />
+        </a>
+
+        {/* MOBILE — hamburger only */}
+        <div className="flex lg:hidden items-center ms-auto">
           <button
+            type="button"
             className="text-white p-1"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
@@ -156,39 +188,20 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       {open && (
-        <div className="lg:hidden border-t border-white/10 bg-brand-ink">
-          {/* Mobile utility row */}
-          <div className="container-x py-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] text-white/85 border-b border-white/10">
-            <a href={`tel:${contact.mobile.replace(/\s/g, '')}`} className="flex items-center gap-1.5">
-              <Phone size={12} /> {contact.mobile}
-            </a>
-            <a href={`mailto:${contact.emails[0]}`} className="flex items-center gap-1.5">
-              <Mail size={12} /> {contact.emails[0]}
-            </a>
-            <div className="ms-auto"><LanguageSwitcher /></div>
-          </div>
-
-          {/* Mobile main links */}
+        <div className="lg:hidden border-t border-slate-200 bg-white">
           <div className="container-x py-2 flex flex-col">
-            {sections.map((l) => (
+            {sections.filter((s) => s.id !== 'contact').map((l) => (
               <a
                 key={l.id}
                 href={`#${l.id}`}
                 onClick={() => setOpen(false)}
-                className={`py-3 uppercase tracking-[0.18em] text-[12px] font-semibold border-b border-white/10 transition ${
-                  active === l.id ? 'text-brand-accent' : 'text-white'
+                className={`py-3 text-[15px] font-medium border-b border-slate-100 transition ${
+                  active === l.id ? 'text-brand-accent' : 'text-slate-900'
                 }`}
               >
                 {t(l.tKey)}
               </a>
             ))}
-            <a
-              href="#contact"
-              onClick={() => setOpen(false)}
-              className="mt-3 mb-2 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-sm bg-brand-accent text-brand-ink uppercase tracking-[0.18em] text-[12px] font-bold"
-            >
-              {t('nav.contact')} <ArrowRight size={14} />
-            </a>
           </div>
         </div>
       )}

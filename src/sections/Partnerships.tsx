@@ -1,11 +1,49 @@
 import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow, H2 } from '../components/Section'
-import { partners } from '../data/partners'
+import { partners, valuableClients, memberships } from '../data/partners'
 
-// Continuous marquee strip — visually distinct from card grids elsewhere.
+type Item = { name: string; logo: string }
+
+function LogoMarquee({
+  items,
+  direction = 'left',
+  durationSec = 50,
+}: {
+  items: Item[]
+  direction?: 'left' | 'right'
+  durationSec?: number
+}) {
+  const loop = [...items, ...items]
+  const animClass = direction === 'left' ? 'animate-marquee' : 'animate-marquee-reverse'
+  return (
+    <div className="group relative overflow-hidden">
+      <div
+        className={`flex ${animClass} marquee-pause gap-6 w-max py-2`}
+        style={{ animationDuration: `${durationSec}s` }}
+      >
+        {loop.map((p, i) => (
+          <div
+            key={`${p.name}-${i}`}
+            className="bg-white rounded-xl p-5 h-24 w-44 grid place-items-center shrink-0 shadow-lg hover:shadow-xl hover:-translate-y-1 transition"
+          >
+            <img
+              src={p.logo}
+              alt={p.name}
+              loading="lazy"
+              className="max-h-14 max-w-full object-contain"
+              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="absolute inset-y-0 start-0 w-32 bg-gradient-to-r from-stone-50 to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 end-0 w-32 bg-gradient-to-l from-stone-50 to-transparent pointer-events-none" />
+    </div>
+  )
+}
+
 export default function Partnerships() {
   const { t } = useTranslation()
-  const loop = [...partners, ...partners]
   return (
     <Section id="partnerships" className="bg-stone-50">
       <div className="container-x text-center max-w-3xl mx-auto mb-12">
@@ -14,25 +52,28 @@ export default function Partnerships() {
         <p className="mt-5 text-slate-600">{t('partnerships.sub')}</p>
       </div>
 
-      <div className="relative overflow-hidden">
-        <div className="flex animate-marquee gap-6 w-max">
-          {loop.map((p, i) => (
-            <div key={`${p.name}-${i}`} className="bg-white rounded-xl p-5 h-24 w-44 grid place-items-center shrink-0 shadow-lg">
-              <img src={p.logo} alt={p.name} className="max-h-14 object-contain" />
-            </div>
-          ))}
-        </div>
-        <div className="absolute inset-y-0 start-0 w-32 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-        <div className="absolute inset-y-0 end-0 w-32 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+      {/* Technology Partners */}
+      <div className="mb-12">
+        <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
+          Our Partners
+        </h3>
+        <LogoMarquee items={partners} direction="left" durationSec={55} />
       </div>
 
-      <div className="container-x mt-14 grid md:grid-cols-3 gap-4 text-center">
-        {['Cloud', 'Software', 'Hardware'].map((k) => (
-          <div key={k} className="card-panel">
-            <div className="font-serif text-2xl text-brand-accent">{k}</div>
-            <div className="text-sm text-slate-500 mt-1">Enterprise-grade partnerships</div>
-          </div>
-        ))}
+      {/* Valuable Clients */}
+      <div className="mb-12">
+        <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
+          Our Valuable Clients
+        </h3>
+        <LogoMarquee items={valuableClients} direction="right" durationSec={75} />
+      </div>
+
+      {/* Memberships / Sponsors */}
+      <div className="mb-4">
+        <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
+          Memberships & Sponsors
+        </h3>
+        <LogoMarquee items={memberships} direction="left" durationSec={45} />
       </div>
     </Section>
   )
