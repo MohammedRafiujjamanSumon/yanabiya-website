@@ -74,7 +74,17 @@
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-marquee { animation: marquee 90s linear infinite; }
+
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.animate-marquee-reverse { animation: marquee-reverse 75s linear infinite; }
+
+.marquee-pause:hover,
+.marquee-pause:focus-within,
+.marquee-pause:active { animation-play-state: paused; }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
