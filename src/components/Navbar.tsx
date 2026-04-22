@@ -6,7 +6,7 @@ import { sections } from '../data/contact'
 import { assets } from '../data/assets'
 import { useScrollHeader } from '../hooks/useScrollHeader'
 
-type NavItem = { id: string; label: string; desc?: string; icon?: LucideIcon }
+type NavItem = { id: string; label: string; desc?: string; icon?: LucideIcon; href?: string }
 type NavGroup = {
   label: string
   id?: string
@@ -54,10 +54,10 @@ export default function Navbar() {
     {
       label: 'Community',
       items: [
-        { id: 'careers',  label: t('nav.careers')  },
-        { id: 'csr',      label: t('nav.csr')      },
-        { id: 'strategy', label: t('nav.strategy') },
-        { id: 'insights', label: t('nav.insights') },
+        { id: 'insights',          label: 'Blog' },
+        { id: 'sustainable-growth', label: 'Sustainable Growth', href: '#csr' },
+        { id: 'community-care',    label: 'Community Care',     href: '#csr' },
+        { id: 'careers',           label: t('nav.careers') },
       ],
     },
   ]
@@ -152,7 +152,8 @@ export default function Navbar() {
                     <div
                       className={`absolute top-full left-0 mt-2 rounded-2xl bg-white
                                   shadow-2xl shadow-slate-900/10 ring-1 ring-slate-200/80 p-2 z-50
-                                  ${compact ? 'w-60' : 'w-[22rem]'}`}
+                                  flex flex-col gap-1.5
+                                  ${compact ? 'w-max min-w-[14rem]' : 'w-[22rem]'}`}
                       onMouseEnter={() => hoverOpen(g.label)}
                       onMouseLeave={hoverClose}
                     >
@@ -163,30 +164,31 @@ export default function Navbar() {
                           return (
                             <a
                               key={item.id}
-                              href={`#${item.id}`}
+                              href={item.href ?? `#${item.id}`}
                               onClick={() => setOpenMenu(null)}
-                              className={`flex items-center gap-3 rounded-xl px-3 py-2.5
-                                          transition-all duration-200 group/item
+                              className={`flex items-center gap-3 rounded-xl px-4 py-2.5
+                                          whitespace-nowrap
+                                          ring-1 transition-all duration-200 group/item
                                           ${isActive
-                                            ? 'bg-brand-accent/10 text-brand-accent'
-                                            : 'text-slate-800 hover:bg-slate-50 hover:text-slate-950'}`}
+                                            ? 'bg-brand-accent text-white ring-brand-accent shadow-md'
+                                            : 'ring-slate-200 text-slate-800 hover:bg-brand-accent hover:text-white hover:ring-brand-accent hover:shadow-md'}`}
                             >
                               {Icon && (
-                                <span className={`w-9 h-9 rounded-lg grid place-items-center
+                                <span className={`w-8 h-8 rounded-lg grid place-items-center
                                                   transition-all duration-200
                                                   ${isActive
-                                                    ? 'bg-brand-accent text-white'
-                                                    : 'bg-slate-100 text-slate-500 group-hover/item:bg-brand-accent group-hover/item:text-white group-hover/item:scale-105'}`}>
-                                  <Icon size={18} strokeWidth={2} />
+                                                    ? 'bg-white/20 text-white'
+                                                    : 'bg-slate-100 text-slate-500 group-hover/item:bg-white/20 group-hover/item:text-white'}`}>
+                                  <Icon size={16} strokeWidth={2} />
                                 </span>
                               )}
                               <span className="text-[15px] font-semibold">{item.label}</span>
                               <ArrowRight
                                 size={14}
-                                className="ms-auto text-slate-300 opacity-0 -translate-x-1
-                                           transition-all duration-200
-                                           group-hover/item:opacity-100 group-hover/item:translate-x-0
-                                           group-hover/item:text-brand-accent"
+                                className={`ms-auto transition-all duration-200
+                                            ${isActive
+                                              ? 'text-white opacity-100'
+                                              : 'text-slate-300 opacity-0 -translate-x-1 group-hover/item:opacity-100 group-hover/item:translate-x-0 group-hover/item:text-white'}`}
                               />
                             </a>
                           )
