@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Menu, X, ChevronDown, ArrowRight, Award, Handshake, Users } from 'lucide-react'
+import { Menu, X, ChevronDown, ArrowRight, Award, Handshake, Users, Briefcase, GraduationCap } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { sections } from '../data/contact'
 import { assets } from '../data/assets'
@@ -44,14 +44,20 @@ export default function Navbar() {
       ],
     },
     {
+      label: 'Leadership',
+      parentSection: 'leadership',
+      items: [
+        { id: 'management',    label: 'Our Management',           icon: Briefcase },
+        { id: 'professionals', label: 'High Skilled Professionals', icon: GraduationCap },
+      ],
+    },
+    {
       label: 'Community',
       items: [
-        { id: 'careers',    label: t('nav.careers'),    desc: 'Join the Yanabiya team' },
-        { id: 'csr',        label: t('nav.csr'),        desc: 'Community & sustainability initiatives' },
-        { id: 'network',    label: t('nav.network'),    desc: 'Global delivery & partner network' },
-        { id: 'leadership', label: t('nav.leadership'), desc: 'Meet our leadership team' },
-        { id: 'strategy',   label: t('nav.strategy'),   desc: 'Our long-term vision' },
-        { id: 'insights',   label: t('nav.insights'),   desc: 'Articles & perspectives' },
+        { id: 'careers',  label: t('nav.careers'),  desc: 'Join the Yanabiya team' },
+        { id: 'csr',      label: t('nav.csr'),      desc: 'Community & sustainability initiatives' },
+        { id: 'strategy', label: t('nav.strategy'), desc: 'Our long-term vision' },
+        { id: 'insights', label: t('nav.insights'), desc: 'Articles & perspectives' },
       ],
     },
   ]
