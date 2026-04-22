@@ -1,5 +1,13 @@
+import { useEffect, useState } from 'react'
 import Section, { H2 } from '../components/Section'
 import { partners, valuableClients, memberships } from '../data/partners'
+
+const aboutNetworkParagraphs = [
+  "We collaborate with a diverse global ecosystem of technology leaders, strategic partners, sponsors, and valued clients who share our commitment to innovation, excellence, and sustainable growth. These relationships are founded on trust, transparency, and consistent performance, forming the core strength of everything we build and deliver.",
+  "Together, we enable organizations to achieve enterprise-level efficiency, scale with confidence, and stay resilient in an increasingly fast-moving digital economy. Through close collaboration and continuous innovation, we transform ideas into impactful, future-ready solutions that create long-term value.",
+  "Every partnership we establish reflects our dedication to quality, reliability, and measurable outcomes. We work hand in hand with our ecosystem to ensure alignment with global standards, industry best practices, and evolving business needs.",
+  "At the heart of our approach is a simple yet powerful belief: lasting success is achieved together through trust, innovation, and shared ambition.",
+]
 
 type Item = { name: string; logo: string }
 
@@ -42,6 +50,22 @@ function LogoMarquee({
 }
 
 export default function Partnerships() {
+  const [readMoreOpen, setReadMoreOpen] = useState(false)
+
+  useEffect(() => {
+    if (!readMoreOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setReadMoreOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+    }
+  }, [readMoreOpen])
+
   return (
     <Section id="partnerships" className="bg-stone-50">
       <div className="container-x text-center max-w-3xl mx-auto mb-12">
@@ -49,7 +73,60 @@ export default function Partnerships() {
         <p className="mt-5 text-slate-600">
           Connecting Opportunities Worldwide to Build Strong, Scalable Global Businesses.
         </p>
+
+        <div className="mt-6 inline-flex flex-col items-center gap-3 rounded-2xl
+                        bg-white px-6 py-5 shadow-md ring-1 ring-slate-200">
+          <button
+            type="button"
+            onClick={() => setReadMoreOpen(true)}
+            className="inline-flex items-center gap-2 rounded-full
+                       bg-brand-accent px-6 py-2.5 text-sm font-semibold text-white
+                       shadow-sm transition-all hover:bg-brand-accentDark
+                       hover:shadow-md hover:-translate-y-0.5
+                       focus:outline-none focus:ring-2 focus:ring-brand-accent/50"
+          >
+            Read More
+            <span aria-hidden>→</span>
+          </button>
+        </div>
       </div>
+
+      {readMoreOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="About our Trusted Network"
+          onClick={() => setReadMoreOpen(false)}
+          className="fixed inset-0 z-[100] flex items-center justify-center
+                     bg-slate-900/60 backdrop-blur-sm p-4"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto
+                       bg-white rounded-2xl shadow-2xl p-8 md:p-10"
+          >
+            <button
+              type="button"
+              onClick={() => setReadMoreOpen(false)}
+              aria-label="Close"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full
+                         flex items-center justify-center text-slate-500
+                         hover:bg-slate-100 hover:text-slate-900 transition-colors"
+            >
+              <span className="text-xl leading-none">×</span>
+            </button>
+            <h3 className="font-serif text-2xl md:text-3xl text-slate-900 text-center">
+              Trusted Network
+            </h3>
+            <div className="mt-2 mx-auto w-16 h-[2px] bg-brand-accent rounded-full" />
+            <div className="mt-6 space-y-4 text-slate-600 leading-relaxed text-justify">
+              {aboutNetworkParagraphs.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Technology Partners */}
       <div id="partners" className="mb-12 scroll-mt-28">
