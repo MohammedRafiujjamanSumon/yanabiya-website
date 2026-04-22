@@ -127,33 +127,26 @@ export default function About() {
         {/* Mission · Vision · Goals — collapsed cards with Learn More */}
         <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-5 mt-12">
           {pillars.map((p) => (
-            <div key={p.key} className="card-panel flex flex-col">
-              <div className="text-center mb-4">
-                <h3 className="group inline-block relative font-serif uppercase tracking-[0.18em]
-                               text-lg md:text-xl font-bold text-brand-accentDark cursor-default
-                               after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-2
-                               after:h-[2px] after:bg-brand-accent after:rounded-full
-                               after:scale-x-0 after:origin-center after:transition-transform after:duration-300
-                               hover:after:scale-x-100 focus:after:scale-x-100 active:after:scale-x-100">
-                  {p.title}
-                </h3>
-              </div>
-              <p className="text-sm text-slate-600 text-justify leading-relaxed flex-1">
-                {p.teaser}
-              </p>
-              <div className="mt-5 flex justify-center">
-                <button
-                  type="button"
-                  onClick={() => setOpenPillar(p.key)}
-                  className="inline-flex items-center gap-2 rounded-full border border-brand-accent
-                             px-5 py-2 text-sm font-medium text-brand-accentDark
-                             transition-colors hover:bg-brand-accent hover:text-white
-                             focus:outline-none focus:ring-2 focus:ring-brand-accent/50"
-                >
-                  Learn More
-                  <span aria-hidden>→</span>
-                </button>
-              </div>
+            <div key={p.key} className="card-panel flex flex-col items-center justify-center text-center py-10">
+              <h3 className="group inline-block relative font-serif uppercase tracking-[0.18em]
+                             text-lg md:text-xl font-bold text-brand-accentDark cursor-default
+                             after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-2
+                             after:h-[2px] after:bg-brand-accent after:rounded-full
+                             after:scale-x-0 after:origin-center after:transition-transform after:duration-300
+                             hover:after:scale-x-100 focus:after:scale-x-100 active:after:scale-x-100">
+                {p.title}
+              </h3>
+              <button
+                type="button"
+                onClick={() => setOpenPillar(p.key)}
+                className="mt-8 inline-flex items-center gap-2 rounded-full border border-brand-accent
+                           px-5 py-2 text-sm font-medium text-brand-accentDark
+                           transition-colors hover:bg-brand-accent hover:text-white
+                           focus:outline-none focus:ring-2 focus:ring-brand-accent/50"
+              >
+                Read More
+                <span aria-hidden>→</span>
+              </button>
             </div>
           ))}
         </div>
