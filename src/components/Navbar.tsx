@@ -8,6 +8,7 @@ import { useScrollHeader } from '../hooks/useScrollHeader'
 type NavGroup = {
   label: string
   id?: string
+  parentSection?: string
   items?: { id: string; label: string; desc?: string }[]
 }
 
@@ -31,7 +32,15 @@ export default function Navbar() {
     { label: t('nav.businesses'),   id: 'businesses'   },
     { label: t('nav.global'),       id: 'global'       },
     { label: t('nav.solutions'),    id: 'solutions'    },
-    { label: t('nav.partnerships'), id: 'partnerships' },
+    {
+      label: 'Trusted Network',
+      parentSection: 'partnerships',
+      items: [
+        { id: 'sponsors', label: 'Our Sponsors', desc: 'Organisations sponsoring our growth' },
+        { id: 'partners', label: 'Our Partners', desc: 'Technology & business partners' },
+        { id: 'clients',  label: 'Our Clients',  desc: 'Valued clients we proudly serve' },
+      ],
+    },
     {
       label: 'Community',
       items: [
@@ -105,7 +114,9 @@ export default function Navbar() {
               )
             }
             const isOpen = openMenu === g.label
-            const groupActive = g.items.some((i) => i.id === active)
+            const groupActive =
+              (g.parentSection !== undefined && active === g.parentSection) ||
+              g.items.some((i) => i.id === active)
             return (
               <div
                 key={g.label}

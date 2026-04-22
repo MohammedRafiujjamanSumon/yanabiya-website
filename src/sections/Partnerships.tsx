@@ -53,7 +53,7 @@ export default function Partnerships() {
       </div>
 
       {/* Technology Partners */}
-      <div className="mb-12">
+      <div id="partners" className="mb-12 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
           Our Partners
         </h3>
@@ -61,17 +61,17 @@ export default function Partnerships() {
       </div>
 
       {/* Valuable Clients */}
-      <div className="mb-12">
+      <div id="clients" className="mb-12 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
-          Our Valuable Clients
+          Our Clients
         </h3>
         <LogoMarquee items={valuableClients} direction="right" durationSec={75} />
       </div>
 
       {/* Memberships / Sponsors */}
-      <div className="mb-4">
+      <div id="sponsors" className="mb-4 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
-          Memberships & Sponsors
+          Our Sponsors
         </h3>
         <LogoMarquee items={memberships} direction="left" durationSec={45} />
       </div>
