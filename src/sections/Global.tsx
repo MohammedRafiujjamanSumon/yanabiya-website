@@ -48,21 +48,18 @@ export default function Global() {
                     key={c.code}
                     type="button"
                     onClick={() => setActive(c)}
-                    className="group relative card-panel overflow-hidden !bg-white hover:-translate-y-1 transition text-center"
+                    className="group relative card-panel overflow-hidden !bg-white hover:-translate-y-1 transition text-center py-10"
                   >
                     <div className="relative flex flex-col items-center">
-                      <div className={`w-14 h-14 rounded-full ${color.bg} grid place-items-center mb-3 ring-4 ${color.ring} shadow-sm text-2xl leading-none`}>
+                      <div className={`w-14 h-14 rounded-full ${color.bg} grid place-items-center mb-4 ring-4 ${color.ring} shadow-sm text-2xl leading-none`}>
                         {c.flag}
                       </div>
-                      <h3 className="text-slate-900 mb-1 text-base font-semibold">{c.name}</h3>
-                      <div className={`text-[11px] ${color.text} uppercase tracking-widest font-semibold mb-2`}>
-                        {roleLabelMap[c.code]}
-                      </div>
-                      <p className="text-xs text-slate-500 leading-relaxed whitespace-nowrap">
-                        {(c as typeof c & { parentCompany?: string }).parentCompany ?? c.entities[0]}
-                      </p>
-                      <span className={`mt-3 inline-flex items-center gap-1 text-[11px] ${color.text} uppercase tracking-widest font-semibold group-hover:gap-2 transition-all`}>
-                        Learn more →
+                      <h3 className="text-slate-900 mb-6 text-base font-semibold">{c.name}</h3>
+                      <span className={`inline-flex items-center gap-2 rounded-full border ${color.text} border-current
+                                       px-5 py-2 text-sm font-medium
+                                       transition-colors group-hover:bg-current`}>
+                        <span className="group-hover:text-white">Read More</span>
+                        <span aria-hidden className="group-hover:text-white">→</span>
                       </span>
                     </div>
                   </button>
