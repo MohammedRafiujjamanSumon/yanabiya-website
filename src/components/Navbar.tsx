@@ -54,10 +54,10 @@ export default function Navbar() {
     {
       label: 'Community',
       items: [
-        { id: 'insights',          label: 'Blog' },
-        { id: 'sustainable-growth', label: 'Sustainable Growth', href: '#csr' },
-        { id: 'community-care',    label: 'Community Care',     href: '#csr' },
-        { id: 'careers',           label: t('nav.careers') },
+        { id: 'insights',           label: 'Blog' },
+        { id: 'sustainable-growth', label: 'Sustainable Growth', href: '#sustainable-growth' },
+        { id: 'community-care',     label: 'Community Care',     href: '#community-care' },
+        { id: 'careers',            label: t('nav.careers') },
       ],
     },
   ]
@@ -150,8 +150,8 @@ export default function Navbar() {
                   const compact = g.items.every((i) => !i.desc)
                   return (
                     <div
-                      className={`absolute top-full left-0 mt-2 rounded-2xl bg-white
-                                  shadow-2xl shadow-slate-900/10 ring-1 ring-slate-200/80 p-2 z-50
+                      className={`absolute top-full left-0 mt-2 rounded-2xl bg-black/95 backdrop-blur-md
+                                  shadow-2xl shadow-black/40 ring-1 ring-white/10 p-2 z-50
                                   flex flex-col gap-1.5
                                   ${compact ? 'w-max min-w-[14rem]' : 'w-[22rem]'}`}
                       onMouseEnter={() => hoverOpen(g.label)}
@@ -167,18 +167,17 @@ export default function Navbar() {
                               href={item.href ?? `#${item.id}`}
                               onClick={() => setOpenMenu(null)}
                               className={`flex items-center gap-3 rounded-xl px-4 py-2.5
-                                          whitespace-nowrap
-                                          ring-1 transition-all duration-200 group/item
+                                          whitespace-nowrap transition-all duration-200 group/item
                                           ${isActive
-                                            ? 'bg-brand-accent text-white ring-brand-accent shadow-md'
-                                            : 'ring-slate-200 text-slate-800 hover:bg-brand-accent hover:text-white hover:ring-brand-accent hover:shadow-md'}`}
+                                            ? 'bg-brand-accent/15 text-brand-accent'
+                                            : 'text-white hover:bg-brand-accent/15 hover:text-brand-accent active:text-brand-accent focus:text-brand-accent'}`}
                             >
                               {Icon && (
                                 <span className={`w-8 h-8 rounded-lg grid place-items-center
                                                   transition-all duration-200
                                                   ${isActive
-                                                    ? 'bg-white/20 text-white'
-                                                    : 'bg-slate-100 text-slate-500 group-hover/item:bg-white/20 group-hover/item:text-white'}`}>
+                                                    ? 'bg-brand-accent/20 text-brand-accent'
+                                                    : 'bg-white/5 text-white/70 group-hover/item:bg-brand-accent/20 group-hover/item:text-brand-accent'}`}>
                                   <Icon size={16} strokeWidth={2} />
                                 </span>
                               )}
@@ -187,8 +186,8 @@ export default function Navbar() {
                                 size={14}
                                 className={`ms-auto transition-all duration-200
                                             ${isActive
-                                              ? 'text-white opacity-100'
-                                              : 'text-slate-300 opacity-0 -translate-x-1 group-hover/item:opacity-100 group-hover/item:translate-x-0 group-hover/item:text-white'}`}
+                                              ? 'text-brand-accent opacity-100'
+                                              : 'text-white/30 opacity-0 -translate-x-1 group-hover/item:opacity-100 group-hover/item:translate-x-0 group-hover/item:text-brand-accent'}`}
                               />
                             </a>
                           )
@@ -198,17 +197,17 @@ export default function Navbar() {
                             key={item.id}
                             href={`#${item.id}`}
                             onClick={() => setOpenMenu(null)}
-                            className="block rounded-xl px-4 py-3 hover:bg-slate-50 transition group/item"
+                            className="block rounded-xl px-4 py-3 hover:bg-brand-accent/10 transition group/item"
                           >
                             <div className={`text-[15px] font-semibold ${
                               isActive
                                 ? 'text-brand-accent'
-                                : 'text-slate-900 group-hover/item:text-slate-950'
+                                : 'text-white group-hover/item:text-brand-accent'
                             }`}>
                               {item.label}
                             </div>
                             {item.desc && (
-                              <div className="text-[13px] text-slate-500 mt-1 leading-snug">
+                              <div className="text-[13px] text-white/60 mt-1 leading-snug group-hover/item:text-white/80">
                                 {item.desc}
                               </div>
                             )}

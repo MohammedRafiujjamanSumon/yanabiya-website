@@ -14,7 +14,10 @@ export default function Leadership() {
           <p className="mt-5 text-slate-600">{t('leadership.sub')}</p>
         </div>
 
-        <div id="management" className="grid lg:grid-cols-12 gap-6 mb-14 scroll-mt-28">
+        <h3 id="management" className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6 scroll-mt-28">
+          Our Management
+        </h3>
+        <div className="grid lg:grid-cols-12 gap-6 mb-14">
           <div className="lg:col-span-7 card-panel relative overflow-hidden">
             <Quote className="absolute -top-2 -end-2 text-brand-accent/10" size={140} />
             <div className="relative flex flex-col md:flex-row gap-6 items-start">
@@ -41,8 +44,8 @@ export default function Leadership() {
           </div>
         </div>
 
-        <h3 id="professionals" className="font-serif text-2xl text-slate-900 mb-6 scroll-mt-28">
-          {t('leadership.core')}
+        <h3 id="professionals" className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6 scroll-mt-28">
+          High Skilled Professionals
         </h3>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
           {team.map((m) => (

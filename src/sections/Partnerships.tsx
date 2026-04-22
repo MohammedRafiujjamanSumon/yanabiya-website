@@ -1,5 +1,4 @@
-import { useTranslation } from 'react-i18next'
-import Section, { Eyebrow, H2 } from '../components/Section'
+import Section, { H2 } from '../components/Section'
 import { partners, valuableClients, memberships } from '../data/partners'
 
 type Item = { name: string; logo: string }
@@ -43,13 +42,13 @@ function LogoMarquee({
 }
 
 export default function Partnerships() {
-  const { t } = useTranslation()
   return (
     <Section id="partnerships" className="bg-stone-50">
       <div className="container-x text-center max-w-3xl mx-auto mb-12">
-        <Eyebrow>{t('partnerships.eyebrow')}</Eyebrow>
-        <H2 className="text-center">{t('partnerships.title')}</H2>
-        <p className="mt-5 text-slate-600">{t('partnerships.sub')}</p>
+        <H2 className="text-center">Trusted Network</H2>
+        <p className="mt-5 text-slate-600">
+          Connecting Opportunities Worldwide to Build Strong, Scalable Global Businesses.
+        </p>
       </div>
 
       {/* Technology Partners */}
