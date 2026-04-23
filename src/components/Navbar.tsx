@@ -138,8 +138,8 @@ export default function Navbar() {
         }`}
       >
 
-        {/* LEFT (mobile) / RIGHT (desktop) — LOGO */}
-        <Link to="/#home" className="order-1 lg:order-2 lg:ms-auto flex items-center shrink-0 group">
+        {/* LEFT — LOGO */}
+        <Link to="/#home" className="flex items-center shrink-0 group">
           <img
             src={assets.logo}
             alt="Yanabiya Group"
@@ -148,8 +148,8 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* NAV + CTA — left on desktop */}
-        <div className="hidden lg:flex order-1 items-center gap-4 xl:gap-5">
+        {/* NAV + CTA — clustered on the right */}
+        <div className="hidden lg:flex ms-auto items-center gap-4 xl:gap-5">
         <nav className="flex items-center gap-3 xl:gap-4 min-w-0">
           {navGroups.map((g) => {
             if (!g.items && !g.subGroups) {
@@ -373,7 +373,7 @@ export default function Navbar() {
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className="flex lg:hidden order-2 items-center ms-auto gap-1 text-white">
+        <div className="flex lg:hidden items-center ms-auto gap-1 text-white">
           <LanguageSwitcher />
           <button
             type="button"
