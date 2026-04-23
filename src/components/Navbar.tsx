@@ -132,6 +132,21 @@ export default function Navbar() {
           {navGroups.map((g) => {
             if (!g.items && !g.subGroups) {
               const isActive = !!g.id && active === g.id
+              if (g.id === 'home') {
+                return (
+                  <Link
+                    key={g.label}
+                    to="/"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      window.scrollTo({ top: 0, behavior: 'smooth' })
+                    }}
+                    className={baseLinkCls(isActive)}
+                  >
+                    {g.label}
+                  </Link>
+                )
+              }
               return (
                 <Link key={g.label} to={`/#${g.id}`} className={baseLinkCls(isActive)}>
                   {g.label}
@@ -350,6 +365,24 @@ export default function Navbar() {
             {navGroups.map((g) => {
               if (!g.items && !g.subGroups) {
                 const isActive = !!g.id && active === g.id
+                if (g.id === 'home') {
+                  return (
+                    <Link
+                      key={g.label}
+                      to="/"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setOpen(false)
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                      }}
+                      className={`py-3 px-2 text-[15px] font-medium transition ${
+                        isActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
+                      }`}
+                    >
+                      {g.label}
+                    </Link>
+                  )
+                }
                 return (
                   <Link
                     key={g.label}
