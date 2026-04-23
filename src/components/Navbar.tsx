@@ -117,8 +117,8 @@ export default function Navbar() {
   const baseLinkCls = (isActive: boolean) =>
     `relative text-[15px] font-medium whitespace-nowrap py-1.5 px-4 rounded-full
      transition-colors duration-200
-     hover:bg-brand-ink hover:text-brand-accent ${
-      isActive ? 'text-brand-accent underline underline-offset-4 decoration-brand-accent/70' : 'text-white'
+     hover:bg-white hover:text-brand-deep ${
+      isActive ? 'text-white underline underline-offset-4 decoration-white/70' : 'text-white'
     }`
 
   return (
@@ -143,7 +143,7 @@ export default function Navbar() {
         </Link>
 
         {/* NAV + CTA — clustered on the right */}
-        <div className="hidden lg:flex ms-auto items-center gap-6 xl:gap-8">
+        <div className="hidden lg:flex ms-auto ps-12 xl:ps-16 items-center gap-6 xl:gap-8">
         <nav className="flex items-center gap-5 xl:gap-6 min-w-0">
           {navGroups.map((g) => {
             if (!g.items && !g.subGroups) {
