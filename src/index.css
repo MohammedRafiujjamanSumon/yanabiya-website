@@ -25,7 +25,9 @@
 }
 
 @layer components {
-  .container-x { @apply max-w-7xl mx-auto px-6 lg:px-10; }
+  .container-x { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-10; }
+  /* Content / text-column width — keeps long-form copy at an A4-style 800-1000px reading width */
+  .prose-x { @apply max-w-4xl mx-auto; }
   .btn-primary {
     @apply relative inline-flex items-center gap-2 bg-brand-accent text-white font-semibold
            px-6 py-3 rounded-md overflow-hidden isolate

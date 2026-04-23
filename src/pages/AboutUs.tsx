@@ -45,7 +45,7 @@ export default function AboutUs() {
             </div>
           </div>
 
-          <div className="mt-4">
+          <div className="mt-4 max-w-4xl mx-auto">
             <h1 className="font-serif text-2xl md:text-3xl text-brand-accentDark font-bold leading-tight text-center">
               <span className="inline-block relative pb-1
                                after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[3px]
