@@ -123,51 +123,49 @@ export default function Solutions() {
           We deliver end-to-end digital and enterprise solutions designed to help organizations,
           partners, and communities grow together in a connected global ecosystem.
         </p>
+      </div>
 
-        {/* Solution pillar cards — left-to-right scrolling marquee */}
-        <div className="group relative overflow-hidden mt-10">
-          <div
-            className="flex animate-marquee marquee-pause gap-4 w-max py-2"
-            style={{ animationDuration: '45s' }}
-          >
-            {[...solutions, ...solutions].map((s, i) => (
-              <button
-                key={`${s.key}-${i}`}
-                type="button"
-                onClick={() => setOpenKey(s.key)}
-                className="group/card relative rounded-xl overflow-hidden shadow-md
-                           h-44 w-64 shrink-0 hover:-translate-y-1 transition-transform text-left
-                           focus:outline-none focus:ring-2 focus:ring-brand-accent"
-              >
+      {/* Solution cards — small round images with hover Read More slide-up */}
+      <div className="group relative w-screen overflow-hidden mt-8">
+        <div
+          className="flex animate-marquee marquee-pause gap-6 w-max py-3 px-6"
+          style={{ animationDuration: '45s' }}
+        >
+          {[...solutions, ...solutions].map((s, i) => (
+            <button
+              key={`${s.key}-${i}`}
+              type="button"
+              onClick={() => setOpenKey(s.key)}
+              className="group/card shrink-0 w-44 flex flex-col items-center text-center
+                         focus:outline-none"
+            >
+              <div className="relative w-28 h-28 rounded-full overflow-hidden shadow-md ring-4 ring-white
+                              group-hover/card:ring-brand-accent group-focus/card:ring-brand-accent transition-all
+                              group-hover/card:-translate-y-1 group-hover/card:shadow-lg">
                 <img
                   src={s.image}
                   alt={s.title}
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover
-                             transition-transform duration-500 group-hover/card:scale-105"
+                             transition-transform duration-500 group-hover/card:scale-110"
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
-                <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col items-start gap-2">
-                  <h3 className="font-serif uppercase tracking-[0.12em] text-white
-                                 text-sm md:text-base font-bold drop-shadow leading-snug">
-                    {s.title}
-                  </h3>
-                  <span className="inline-flex items-center gap-1.5 rounded-full
-                                   px-3 py-1 text-[11px] font-semibold uppercase tracking-wider
-                                   bg-white/95 text-brand-accentDark
-                                   transition-colors group-hover/card:bg-brand-accent group-hover/card:text-white">
-                    Read More
-                    <span aria-hidden>→</span>
-                  </span>
-                </div>
-              </button>
-            ))}
-          </div>
-          <div className="absolute inset-y-0 start-0 w-24 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-          <div className="absolute inset-y-0 end-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              </div>
+              <h3 className="mt-3 font-serif text-[12px] font-semibold text-slate-800 leading-snug px-1
+                             group-hover/card:text-brand-accentDark transition-colors truncate w-full">
+                {s.title}
+              </h3>
+              <span className="mt-1 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-accentDark
+                               opacity-0 -translate-y-1 group-hover/card:opacity-100 group-hover/card:translate-y-0
+                               transition-all duration-200">
+                Read More <span aria-hidden>↑</span>
+              </span>
+            </button>
+          ))}
         </div>
-
+        <div className="absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+        <div className="absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
       </div>
 
       {/* Modal overlay for expanded solution content */}

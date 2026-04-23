@@ -178,9 +178,14 @@ function CategoryMarquee({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>
               <h3 className="mt-3 font-serif text-[12px] font-semibold text-slate-800 leading-snug px-1
-                             group-hover/card:text-brand-accentDark transition-colors line-clamp-2">
+                             group-hover/card:text-brand-accentDark transition-colors truncate w-full">
                 {item.title}
               </h3>
+              <span className="mt-1 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-accentDark
+                               opacity-0 -translate-y-1 group-hover/card:opacity-100 group-hover/card:translate-y-0
+                               transition-all duration-200">
+                Read More <span aria-hidden>↑</span>
+              </span>
             </button>
           ))}
         </div>
