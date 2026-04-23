@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Target, Eye, Award } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -57,27 +57,9 @@ const pillars: {
 ]
 
 export default function AboutUs() {
-  const [openKey, setOpenKey] = useState<PillarKey | null>(null)
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
-
-  useEffect(() => {
-    if (!openKey) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpenKey(null)
-    }
-    document.addEventListener('keydown', onKey)
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = prev
-    }
-  }, [openKey])
-
-  const active = pillars.find((p) => p.key === openKey) ?? null
 
   return (
     <>
@@ -138,104 +120,43 @@ export default function AboutUs() {
             </div>
           </div>
 
-          {/* Mission · Vision · Goals — moving marquee, same pattern as Our Solutions */}
-          <div className="mt-12">
-            <h2 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight text-center">
-              Our Mission, Vision & Goals
-            </h2>
-            <p className="mt-3 max-w-3xl mx-auto text-slate-600 leading-relaxed text-justify [text-align-last:center]">
-              The principles that guide every venture we build, every partnership we forge, and
-              every market we enter.
-            </p>
-
-            <div className="group relative overflow-hidden mt-6">
-              <div
-                className="flex animate-marquee marquee-pause gap-4 w-max py-2"
-                style={{ animationDuration: '40s' }}
-              >
-                {[...pillars, ...pillars].map((p, i) => (
-                  <button
-                    key={`${p.key}-${i}`}
-                    type="button"
-                    onClick={() => setOpenKey(p.key)}
-                    className="group/card relative rounded-xl overflow-hidden shadow-md
-                               h-44 w-64 shrink-0 hover:-translate-y-1 transition-transform text-left
-                               focus:outline-none focus:ring-2 focus:ring-brand-accent"
-                  >
+          {/* Mission · Vision · Goals — separated, each its own block */}
+          {pillars.map((p, idx) => (
+            <div key={p.key} className="mt-12">
+              <h2 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight">
+                Our {p.title}
+              </h2>
+              <div className="grid lg:grid-cols-12 gap-6 items-start mt-4">
+                <div className={`lg:col-span-5 ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
+                  <div className="relative rounded-xl overflow-hidden shadow-md h-48 lg:h-56">
                     <img
                       src={p.image}
                       alt={p.title}
                       loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover
-                                 transition-transform duration-500 group-hover/card:scale-105"
+                      className="absolute inset-0 w-full h-full object-cover"
                       onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
-                    <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col items-start gap-2">
-                      <h3 className="font-serif uppercase tracking-[0.14em] text-white
-                                     text-sm md:text-base font-bold drop-shadow leading-snug">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute bottom-3 left-3 flex items-center gap-2">
+                      <div className="w-9 h-9 rounded-lg bg-brand-accent text-white grid place-items-center">
+                        <p.icon size={18} />
+                      </div>
+                      <span className="font-serif uppercase tracking-[0.14em] text-white text-sm font-bold drop-shadow">
                         {p.title}
-                      </h3>
-                      <span className="inline-flex items-center gap-1.5 rounded-full
-                                       px-3 py-1 text-[11px] font-semibold uppercase tracking-wider
-                                       bg-white/95 text-brand-accentDark
-                                       transition-colors group-hover/card:bg-brand-accent group-hover/card:text-white">
-                        Read More
-                        <span aria-hidden>→</span>
                       </span>
                     </div>
-                  </button>
-                ))}
+                  </div>
+                </div>
+                <div className={`lg:col-span-7 ${idx % 2 === 1 ? 'lg:order-1' : ''} space-y-3 text-slate-600 leading-relaxed text-justify`}>
+                  {p.body.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
               </div>
-              <div className="absolute inset-y-0 start-0 w-24 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-              <div className="absolute inset-y-0 end-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none" />
             </div>
-          </div>
+          ))}
         </div>
 
-        {/* Modal popup for the active pillar */}
-        {active && (
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label={active.title}
-            onClick={() => setOpenKey(null)}
-            className="fixed inset-0 z-[100] flex items-center justify-center
-                       bg-slate-900/60 backdrop-blur-sm p-4"
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto
-                         bg-white rounded-2xl shadow-2xl p-8 md:p-10"
-            >
-              <button
-                type="button"
-                onClick={() => setOpenKey(null)}
-                aria-label="Close"
-                className="absolute top-4 right-4 w-9 h-9 rounded-full
-                           flex items-center justify-center text-slate-500
-                           hover:bg-slate-100 hover:text-slate-900 transition-colors"
-              >
-                <span className="text-xl leading-none">×</span>
-              </button>
-              <div className="flex flex-col items-center">
-                <div className="w-14 h-14 rounded-xl bg-brand-accent/10 text-brand-accent grid place-items-center mb-4">
-                  <active.icon size={26} />
-                </div>
-                <h3 className="font-serif uppercase tracking-[0.14em] text-xl md:text-2xl
-                               font-bold text-brand-accentDark text-center">
-                  {active.title}
-                </h3>
-                <div className="mt-2 mx-auto w-16 h-[2px] bg-brand-accent rounded-full" />
-              </div>
-              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed text-justify">
-                {active.body.map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </Section>
 
       {/* Full Our Solutions section moved here from the home page */}
