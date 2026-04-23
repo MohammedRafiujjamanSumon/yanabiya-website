@@ -6,7 +6,7 @@ import { contact } from '../data/contact'
 export default function TopBar() {
   const { t } = useTranslation()
   return (
-    <div className="bg-brand-accentDark text-xs text-white">
+    <div className="bg-brand-deep text-xs text-white">
       {/* Row — phone + email left, tagline middle, Download PDF + Contact Us right */}
       <div className="container-x grid grid-cols-1 md:grid-cols-3 md:items-center gap-1.5 md:gap-4 py-2">
         <div className="flex items-center justify-center md:justify-start gap-4">
