@@ -308,43 +308,6 @@ export default function AboutUs() {
             </div>
           </div>
 
-          {/* Branches / business divisions marquee */}
-          <div className="mt-10">
-            <h2 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight text-center">
-              Our Branches
-            </h2>
-            <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-relaxed text-sm text-center">
-              The diversified business units operating under the Yanabiya Group ecosystem.
-            </p>
-            <div className="group relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-5">
-              <div
-                className="flex animate-marquee-reverse marquee-pause gap-3 w-max py-2"
-                style={{ animationDuration: '32s' }}
-              >
-                {Array.from({ length: 2 }).flatMap(() => [
-                  { icon: '💻', name: 'IT & Software' },
-                  { icon: '🌐', name: 'Export & Import' },
-                  { icon: '👔', name: 'Clothing & Accessories' },
-                  { icon: '🤝', name: 'Agents & Brokerage' },
-                  { icon: '🏢', name: 'Office Management' },
-                  { icon: '👥', name: 'Manpower' },
-                ]).map((b, i) => (
-                  <div
-                    key={`${b.name}-${i}`}
-                    className="flex items-center gap-2 shrink-0 rounded-full bg-brand-accent/10 border border-brand-accent/30 px-4 py-2"
-                  >
-                    <span className="text-base leading-none">{b.icon}</span>
-                    <span className="text-sm font-semibold text-brand-accentDark whitespace-nowrap">
-                      {b.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className="absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-              <div className="absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
-            </div>
-          </div>
-
           {categories.map((c, idx) => (
             <CategoryMarquee
               key={c.key}
