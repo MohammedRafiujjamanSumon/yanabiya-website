@@ -41,18 +41,19 @@ export default function About() {
           </div>
         </div>
 
-        <div className="mt-4">
-          <h2 className="font-serif text-2xl md:text-3xl text-brand-accentDark font-bold leading-tight text-center">
-            <span className="inline-block relative pb-1
-                             after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[3px]
-                             after:bg-brand-accent after:rounded-full
-                             after:scale-x-0 after:origin-center after:transition-transform after:duration-300
-                             hover:after:scale-x-100 focus:after:scale-x-100">
-              Who We Are
-            </span>
-          </h2>
+        <div className="mt-4 grid lg:grid-cols-12">
+          <div className="lg:col-span-8">
+            <h2 className="font-serif text-2xl md:text-3xl text-brand-accentDark font-bold leading-tight">
+              <span className="inline-block relative pb-1
+                               after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[3px]
+                               after:bg-brand-accent after:rounded-full
+                               after:scale-x-0 after:origin-center after:transition-transform after:duration-300
+                               hover:after:scale-x-100 focus:after:scale-x-100">
+                Who We Are
+              </span>
+            </h2>
 
-          <div className="mt-3 space-y-3 text-slate-600 leading-relaxed text-justify">
+            <div className="mt-3 space-y-3 text-slate-600 leading-relaxed text-justify">
             <p>
               Yanabiya Group is a diversified global enterprise operating as a unified business
               platform across multiple international markets. Originating from Al Khuwair, Muscat,
@@ -80,18 +81,19 @@ export default function About() {
               approach enables us to support both enterprises and individuals through structured,
               reliable, and scalable solutions.
             </p>
-          </div>
+            </div>
 
-          <div className="mt-5 flex justify-center">
-            <Link
-              to="/about-us"
-              className="inline-flex items-center gap-2 rounded-full
-                         bg-brand-accent px-5 py-2 text-xs font-semibold uppercase tracking-wider
-                         text-white shadow-sm hover:bg-brand-accentDark hover:shadow-md transition-all"
-            >
-              Read More
-              <ArrowRight size={12} className="ltr-flip" />
-            </Link>
+            <div className="mt-5">
+              <Link
+                to="/about-us"
+                className="inline-flex items-center gap-2 rounded-full
+                           bg-brand-accent px-5 py-2 text-xs font-semibold uppercase tracking-wider
+                           text-white shadow-sm hover:bg-brand-accentDark hover:shadow-md transition-all"
+              >
+                Read More
+                <ArrowRight size={12} className="ltr-flip" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
