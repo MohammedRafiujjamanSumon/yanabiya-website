@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Target, Eye, Award, Workflow, Handshake, Users, ShieldCheck } from 'lucide-react'
+import { ArrowLeft, Target, Eye, Award } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
+import Solutions from '../sections/Solutions'
 
 const pillars = [
   {
@@ -21,20 +22,13 @@ const pillars = [
   },
 ]
 
-const solutions = [
-  { title: 'How We Deliver Our Services',         icon: Workflow,    body: 'A structured, transparent, and results-driven approach that ensures quality at every stage — from requirements to long-term support.' },
-  { title: 'Partnership & Collaboration',         icon: Handshake,   body: 'Long-term partnerships built on trust, shared vision, and mutual growth — combining expertise, resources, and innovation.' },
-  { title: 'Sponsorship Engagement',              icon: Award,       body: 'Meaningful sponsorships aligned with innovation, education, and sustainable development — creating visibility, value, and impact.' },
-  { title: 'Community Support & Development',     icon: Users,       body: 'Empowering communities through digital access, knowledge sharing, and sustainable initiatives that bridge technology and people.' },
-  { title: 'Quality & Service Assurance',         icon: ShieldCheck, body: 'Structured quality assurance ensures reliability, security, and performance across every service we deliver.' },
-]
-
 export default function AboutUs() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
 
   return (
+    <>
     <Section id="about-us">
       <div className="container-x max-w-5xl relative">
         <Eyebrow>About Us</Eyebrow>
@@ -117,43 +111,23 @@ export default function AboutUs() {
           </div>
         </div>
 
-        {/* Our Solutions */}
-        <div className="mt-12">
-          <h2 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight">
-            Our Solutions
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-            {solutions.map((s) => (
-              <div
-                key={s.title}
-                className="rounded-xl bg-white border border-slate-200 shadow-sm p-5"
-              >
-                <div className="w-11 h-11 rounded-lg bg-brand-accent/10 text-brand-accentDark grid place-items-center mb-3">
-                  <s.icon size={22} />
-                </div>
-                <h3 className="font-serif uppercase tracking-[0.14em] text-sm font-bold text-brand-accentDark leading-snug">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600 leading-relaxed text-justify">
-                  {s.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-10">
-          <Link
-            to="/#about"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full
-                       border border-slate-200 text-slate-700 text-sm font-semibold
-                       hover:border-brand-accent hover:text-brand-accent transition-colors"
-          >
-            <ArrowLeft size={14} />
-            Back to About
-          </Link>
-        </div>
       </div>
     </Section>
+
+    {/* Full Our Solutions section moved here from the home page */}
+    <Solutions />
+
+    <div className="container-x max-w-5xl pb-12">
+      <Link
+        to="/#about"
+        className="inline-flex items-center gap-2 px-5 py-2 rounded-full
+                   border border-slate-200 text-slate-700 text-sm font-semibold
+                   hover:border-brand-accent hover:text-brand-accent transition-colors"
+      >
+        <ArrowLeft size={14} />
+        Back to About
+      </Link>
+    </div>
+  </>
   )
 }

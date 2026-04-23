@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom'
 import Hero from '../sections/Hero'
 import About from '../sections/About'
 import Businesses from '../sections/Businesses'
-import Solutions from '../sections/Solutions'
 import Partnerships from '../sections/Partnerships'
 import Global from '../sections/Global'
 import Leadership from '../sections/Leadership'
@@ -29,7 +28,6 @@ export default function Home() {
       <Partnerships />
       <Community />
       <Leadership />
-      <Solutions />
       <Contact />
     </>
   )
