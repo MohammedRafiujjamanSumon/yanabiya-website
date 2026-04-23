@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { sections } from '../data/contact'
@@ -31,12 +31,28 @@ type NavGroup = {
 export default function Navbar() {
   const { t } = useTranslation()
   const { scrolled } = useScrollHeader(8, 80)
+  const navigate = useNavigate()
+  const location = useLocation()
   const [open, setOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [mobileOpenGroup, setMobileOpenGroup] = useState<string | null>(null)
   const [mobileOpenSubGroup, setMobileOpenSubGroup] = useState<string | null>(null)
   const [active, setActive] = useState('home')
   const closeTimer = useRef<number | undefined>(undefined)
+
+  const scrollToHash = (id: string) => {
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+  const handleHashClick = (e: React.MouseEvent, id: string) => {
+    e.preventDefault()
+    if (location.pathname === '/') {
+      scrollToHash(id)
+    } else {
+      navigate('/')
+      window.setTimeout(() => scrollToHash(id), 80)
+    }
+  }
 
   const navGroups: NavGroup[] = [
     { label: t('nav.home'),         id: 'home'         },
@@ -148,7 +164,12 @@ export default function Navbar() {
                 )
               }
               return (
-                <Link key={g.label} to={`/#${g.id}`} className={baseLinkCls(isActive)}>
+                <Link
+                  key={g.label}
+                  to={`/#${g.id}`}
+                  onClick={(e) => handleHashClick(e, g.id!)}
+                  className={baseLinkCls(isActive)}
+                >
                   {g.label}
                 </Link>
               )
@@ -173,6 +194,7 @@ export default function Navbar() {
                 {g.parentSection !== undefined ? (
                   <Link
                     to={`/#${g.parentSection}`}
+                    onClick={(e) => handleHashClick(e, g.parentSection!)}
                     className={`${baseLinkCls(groupActive)} inline-flex items-center gap-1`}
                   >
                     {g.label}
@@ -210,7 +232,7 @@ export default function Navbar() {
                         {sg.parentSection ? (
                           <Link
                             to={`/#${sg.parentSection}`}
-                            onClick={() => setOpenMenu(null)}
+                            onClick={(e) => { setOpenMenu(null); handleHashClick(e, sg.parentSection!) }}
                             className="px-3 pt-1 pb-2 text-[11px] font-semibold uppercase tracking-wider
                                        text-slate-400 hover:text-brand-accentDark transition"
                           >
@@ -387,7 +409,7 @@ export default function Navbar() {
                   <Link
                     key={g.label}
                     to={`/#${g.id}`}
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => { setOpen(false); handleHashClick(e, g.id!) }}
                     className={`py-3 px-2 text-[15px] font-medium transition ${
                       isActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
                     }`}
@@ -411,7 +433,7 @@ export default function Navbar() {
                     {g.parentSection !== undefined ? (
                       <Link
                         to={`/#${g.parentSection}`}
-                        onClick={() => setOpen(false)}
+                        onClick={(e) => { setOpen(false); handleHashClick(e, g.parentSection!) }}
                         className={`flex-1 py-3 px-2 text-[15px] font-medium transition ${
                           groupActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
                         }`}
@@ -455,7 +477,7 @@ export default function Navbar() {
                               {sg.parentSection ? (
                                 <Link
                                   to={`/#${sg.parentSection}`}
-                                  onClick={() => { setOpen(false); setMobileOpenGroup(null); setMobileOpenSubGroup(null) }}
+                                  onClick={(e) => { setOpen(false); setMobileOpenGroup(null); setMobileOpenSubGroup(null); handleHashClick(e, sg.parentSection!) }}
                                   className={`flex-1 py-2.5 px-3 text-[14px] font-semibold transition ${
                                     subActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
                                   }`}
