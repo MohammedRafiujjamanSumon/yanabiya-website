@@ -60,7 +60,7 @@
   .eyebrow {
     @apply text-brand-accentDark text-xs font-semibold tracking-[0.25em] uppercase;
   }
-  .section-pad { @apply py-16 md:py-24; }
+  .section-pad { @apply pt-6 pb-16 md:pt-8 md:pb-24; }
   .section-tint { @apply bg-brand-50; }
   .grid-bg {
     background-image:
