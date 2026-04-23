@@ -101,31 +101,44 @@ export default function About() {
             </h2>
             <div className="mt-5 space-y-4 text-slate-600 leading-relaxed text-justify">
               <p>
-                Yanabiya Group is a diversified global business group focused on building and
-                scaling innovative ventures across multiple industries. We operate across
-                technology, digital services, global trade, and strategic consulting, delivering
-                integrated solutions that support businesses and communities.
+                Yanabiya Group is a diversified global enterprise focused on building, scaling, and
+                operating high-impact ventures across multiple industries. With a strategic presence
+                across key international markets, we deliver integrated solutions spanning technology,
+                digital services, global trade, and strategic advisory.
               </p>
               <p>
-                We are driven by innovation and continuously explore new ideas to develop
-                future-ready services. Our portfolio spans internet and connectivity solutions,
-                software and web development, IT consulting, business automation, and international
-                trade. By combining these capabilities, we create efficient, scalable, and
-                sustainable business models.
+                At our core, we are not just a service provider — we are a business builder. We
+                identify opportunities, develop ideas into structured ventures, and scale them into
+                sustainable operations. Our approach is centered on creating long-term value rather
+                than short-term outcomes. Each initiative we take is carefully planned, executed, and
+                continuously improved to ensure consistent performance and growth.
               </p>
               {showMore && (
                 <>
                   <p>
-                    Yanabiya Group follows a collaborative and forward-thinking approach. We work with
-                    partners across different markets, bringing together professional expertise from
-                    corporate, agency, and entrepreneurial environments. This allows us to adapt
-                    quickly, identify opportunities, and deliver value-driven solutions.
+                    Our global perspective allows us to understand different markets, cultures, and
+                    business environments. By operating across regions, we are able to connect
+                    opportunities, bridge gaps, and bring international standards into every project we
+                    undertake. This enables us to support businesses not only locally but also in
+                    expanding beyond their existing boundaries.
                   </p>
                   <p>
-                    Beyond business growth, we are committed to sustainability and community support.
-                    We believe strong businesses should create positive impact. Our ambition is to
-                    build a trusted brand that connects innovation, diversified business excellence,
-                    and long-term value creation.
+                    We believe in building an ecosystem rather than isolated services. Every part of
+                    Yanabiya Group is designed to complement the other — technology supports trade,
+                    consulting strengthens operations, and digital services enhance scalability. This
+                    interconnected structure allows us to deliver complete solutions instead of
+                    fragmented services.
+                  </p>
+                  <p>
+                    Our team and partners come from diverse professional backgrounds, including
+                    corporate, agency, and entrepreneurial environments. This diversity gives us the
+                    flexibility to think strategically, act practically, and adapt quickly in a
+                    fast-changing business world.
+                  </p>
+                  <p>
+                    Above all, Yanabiya Group is driven by a clear purpose: to create impactful
+                    businesses, empower partners, and contribute to a more connected and efficient
+                    global economy.
                   </p>
                 </>
               )}
