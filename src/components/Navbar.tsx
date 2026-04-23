@@ -109,8 +109,8 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 bg-brand-deep pt-3 pb-3 px-3 lg:px-6">
       <div
         className={`container-x mx-auto flex items-center gap-8 h-14 lg:h-16 px-4 lg:px-6
-                    rounded-full bg-emerald-200
-                    border border-emerald-300 transition-shadow duration-200 ${
+                    rounded-full bg-lime-200
+                    border border-lime-300 transition-shadow duration-200 ${
           scrolled ? 'shadow-md shadow-slate-900/10'
                    : 'shadow-sm shadow-slate-900/5'
         }`}
