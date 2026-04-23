@@ -226,6 +226,35 @@ export default function AboutUs() {
         <div className="container-x max-w-5xl relative">
           <Eyebrow>About Us</Eyebrow>
 
+          {/* Country flags marquee — moves between About Us heading and Who We Are */}
+          <div className="mt-4">
+            <div className="group relative w-screen left-1/2 -translate-x-1/2 overflow-hidden">
+              <div
+                className="flex animate-marquee marquee-pause gap-3 w-max py-2"
+                style={{ animationDuration: '28s' }}
+              >
+                {Array.from({ length: 3 }).flatMap(() => [
+                  { flag: '🇴🇲', city: 'Muscat',  country: 'Oman' },
+                  { flag: '🇬🇧', city: 'London',  country: 'United Kingdom' },
+                  { flag: '🇺🇸', city: 'Austin',  country: 'USA' },
+                  { flag: '🇧🇩', city: 'Dhaka',   country: 'Bangladesh' },
+                ]).map((c, i) => (
+                  <div
+                    key={`${c.city}-${i}`}
+                    className="flex items-center gap-2 shrink-0 rounded-full bg-white border border-slate-200 px-4 py-2 shadow-sm"
+                  >
+                    <span className="text-lg leading-none">{c.flag}</span>
+                    <span className="text-sm font-medium text-slate-700 whitespace-nowrap">
+                      {c.city}, {c.country}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+              <div className="absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+            </div>
+          </div>
+
           <div className="mt-6">
             <h1 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight">
               Who We Are
@@ -276,41 +305,6 @@ export default function AboutUs() {
                 opportunities, and develop a strong global business ecosystem that supports
                 innovation, collaboration, and economic progress.
               </p>
-            </div>
-          </div>
-
-          {/* Country flags marquee — global presence */}
-          <div className="mt-12">
-            <h2 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight text-center">
-              Our Global Presence
-            </h2>
-            <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-relaxed text-sm text-center">
-              Operating across four key international markets.
-            </p>
-            <div className="group relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-5">
-              <div
-                className="flex animate-marquee marquee-pause gap-3 w-max py-2"
-                style={{ animationDuration: '28s' }}
-              >
-                {Array.from({ length: 3 }).flatMap(() => [
-                  { flag: '🇴🇲', city: 'Muscat',  country: 'Oman' },
-                  { flag: '🇬🇧', city: 'London',  country: 'United Kingdom' },
-                  { flag: '🇺🇸', city: 'Austin',  country: 'USA' },
-                  { flag: '🇧🇩', city: 'Dhaka',   country: 'Bangladesh' },
-                ]).map((c, i) => (
-                  <div
-                    key={`${c.city}-${i}`}
-                    className="flex items-center gap-2 shrink-0 rounded-full bg-white border border-slate-200 px-4 py-2 shadow-sm"
-                  >
-                    <span className="text-lg leading-none">{c.flag}</span>
-                    <span className="text-sm font-medium text-slate-700 whitespace-nowrap">
-                      {c.city}, {c.country}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className="absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-              <div className="absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
             </div>
           </div>
 
