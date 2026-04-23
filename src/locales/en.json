@@ -2,7 +2,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "businesses": "Businesses",
+    "businesses": "Our Service",
     "solutions": "Solutions",
     "partnerships": "Partnerships",
     "global": "Global Presence",
@@ -38,7 +38,7 @@
     "valuesTitle": "Our Core Values"
   },
   "businesses": {
-    "eyebrow": "Our Businesses",
+    "eyebrow": "Our Service",
     "title": "Six divisions powering enterprises and trade across continents.",
     "sub": "From enterprise software to international trade — built end-to-end."
   },

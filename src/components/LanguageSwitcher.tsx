@@ -11,11 +11,10 @@ export default function LanguageSwitcher() {
     <div className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-2 text-current hover:text-brand-accent text-xs"
+        aria-label="Change language"
+        className="flex items-center justify-center w-7 h-7 rounded-full text-current hover:text-brand-accent hover:bg-white/10 transition"
       >
-        <Globe size={12} />
-        <span>{current.flag}</span>
-        <span className="hidden sm:inline">{current.native}</span>
+        <Globe size={14} />
       </button>
       {open && (
         <>

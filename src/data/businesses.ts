@@ -1,6 +1,6 @@
 import {
   Code2, Ship, Shirt, Handshake, Briefcase, Users,
-  ShieldCheck, Factory, BarChart3, Palette, Cloud, Globe,
+  ShieldCheck, Factory, BarChart3, Palette, Cloud, Globe, Bot,
 } from 'lucide-react'
 
 export interface SubService {
@@ -167,6 +167,24 @@ export const businesses: Business[] = [
           'Headless CMS integrations',
           'SEO, performance & Core Web Vitals tuning',
           'Ongoing web maintenance & hosting support',
+        ],
+      },
+      {
+        slug: 'ai-agent-service',
+        icon: Bot,
+        title: 'AI Agent Service',
+        body: 'Custom AI agents, prompt-based assistants, and intelligent automation built on modern LLMs and MCP integrations.',
+        image:
+          'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
+        features: [
+          'Custom AI agents for business workflows',
+          'Prompt engineering & RAG pipelines',
+          'LLM integration (Claude, GPT, Gemini, open-source)',
+          'MCP-based tool & system integrations',
+          'Voice & chat conversational assistants',
+          'AI-powered document processing & summarization',
+          'Intelligent task automation & decision support',
+          'Agent monitoring, evaluation & continuous tuning',
         ],
       },
     ],

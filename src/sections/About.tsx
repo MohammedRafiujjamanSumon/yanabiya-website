@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { assets } from '../data/assets'
 
@@ -68,7 +69,11 @@ export default function About() {
     }
   }, [openPillar])
 
-  const active = pillars.find((p) => p.key === openPillar) ?? null
+  const activeIndex = openPillar ? pillars.findIndex((p) => p.key === openPillar) : -1
+  const active = activeIndex >= 0 ? pillars[activeIndex] : null
+  const prevPillar = activeIndex > 0 ? pillars[activeIndex - 1] : null
+  const nextPillar =
+    activeIndex >= 0 && activeIndex < pillars.length - 1 ? pillars[activeIndex + 1] : null
 
   return (
     <Section id="about">
@@ -168,33 +173,66 @@ export default function About() {
           aria-modal="true"
           aria-label={active.title}
           onClick={() => setOpenPillar(null)}
-          className="fixed inset-0 z-[100] flex items-center justify-center
-                     bg-slate-900/60 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-30 flex items-center justify-center
+                     bg-slate-900/25 p-4"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto
-                       bg-white rounded-2xl shadow-2xl p-8 md:p-10"
+            className="relative w-full max-w-xl max-h-[78vh] overflow-y-auto
+                       bg-white rounded-2xl shadow-2xl p-6 md:p-7"
           >
             <button
               type="button"
               onClick={() => setOpenPillar(null)}
               aria-label="Close"
-              className="absolute top-4 right-4 w-9 h-9 rounded-full
+              className="absolute top-3 right-3 w-8 h-8 rounded-full
                          flex items-center justify-center text-slate-500
                          hover:bg-slate-100 hover:text-slate-900 transition-colors"
             >
-              <span className="text-xl leading-none">×</span>
+              <span className="text-lg leading-none">×</span>
             </button>
-            <h3 className="font-serif uppercase tracking-[0.18em] text-xl md:text-2xl
+            <h3 className="font-serif uppercase tracking-[0.18em] text-lg md:text-xl
                            font-bold text-brand-accentDark text-center">
               {active.title}
             </h3>
-            <div className="mt-2 mx-auto w-16 h-[2px] bg-brand-accent rounded-full" />
-            <div className="mt-6 space-y-4 text-slate-600 leading-relaxed text-justify">
+            <div className="mt-2 mx-auto w-14 h-[2px] bg-brand-accent rounded-full" />
+            <div className="mt-5 space-y-3 text-sm md:text-[15px] text-slate-600 leading-relaxed text-justify">
               {active.body.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
+            </div>
+
+            <div className="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between gap-3">
+              {prevPillar ? (
+                <button
+                  type="button"
+                  onClick={() => setOpenPillar(prevPillar.key)}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full
+                             border border-slate-200 text-slate-600 text-xs font-semibold
+                             hover:border-brand-accent hover:text-brand-accent transition-colors"
+                >
+                  <ArrowLeft size={12} />
+                  <span className="uppercase tracking-[0.14em]">Previous:</span>
+                  <span className="font-bold normal-case tracking-normal">{prevPillar.title}</span>
+                </button>
+              ) : (
+                <span />
+              )}
+              {nextPillar ? (
+                <button
+                  type="button"
+                  onClick={() => setOpenPillar(nextPillar.key)}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full
+                             bg-brand-accent text-white text-xs font-semibold
+                             hover:bg-brand-accentDark transition-colors ml-auto"
+                >
+                  <span className="uppercase tracking-[0.14em]">Next:</span>
+                  <span className="font-bold normal-case tracking-normal">{nextPillar.title}</span>
+                  <ArrowRight size={12} />
+                </button>
+              ) : (
+                <span />
+              )}
             </div>
           </div>
         </div>

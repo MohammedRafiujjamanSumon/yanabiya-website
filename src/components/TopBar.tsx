@@ -6,7 +6,7 @@ import LanguageSwitcher from './LanguageSwitcher'
 export default function TopBar() {
   const { t } = useTranslation()
   return (
-    <div className="hidden md:block bg-brand-ink border-b border-brand-accent/30 text-xs">
+    <div className="hidden md:block bg-black border-b border-brand-accent/30 text-xs">
       <div className="container-x flex items-center justify-between py-2 text-slate-200">
         <div className="flex items-center gap-3">
           <span>🇬🇧 🇴🇲 🇧🇩 🇺🇸</span>

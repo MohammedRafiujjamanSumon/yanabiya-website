@@ -25,8 +25,8 @@ export default function Hero() {
   return (
     <section id="home" className="relative scroll-mt-24">
 
-      {/* ─────────── Welcome banner — brand green, sits right under the navbar ─────────── */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-brand-ink via-brand-deep to-brand-ink animate-gradient border-y border-brand-accent/30">
+      {/* ─────────── Welcome banner — desktop only; on mobile the tagline moves into the navbar ─────────── */}
+      <div className="hidden md:block relative overflow-hidden bg-black border-y border-brand-accent/30">
         {/* decorative grid */}
         <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
         {/* soft lime accent halo for that green-on-navy glow — pulses */}
@@ -72,27 +72,27 @@ export default function Hero() {
         <div className="absolute bottom-5 left-1/2 translate-x-[160px] text-white/70 text-[10px] animate-sparkle pointer-events-none"
              style={{ animationDelay: '3.6s' }}>✧</div>
 
-        <div className="relative container-x text-center py-1.5 md:py-2">
+        <div className="relative container-x text-center py-1">
           {/* tagline pill with glow ring */}
           <div className="inline-block relative fade-up">
             <span className="absolute inset-0 rounded-full animate-ring pointer-events-none" />
-            <p className="relative italic whitespace-nowrap text-[9px] sm:text-[10px] md:text-xs text-brand-accent tracking-wide
-                          px-3 py-0.5 rounded-full border border-brand-accent/40 bg-brand-accent/5">
+            <p className="relative italic whitespace-nowrap text-[8px] sm:text-[9px] md:text-[10px] text-brand-accent tracking-wide
+                          px-2.5 py-0.5 rounded-full border border-brand-accent/40 bg-brand-accent/5">
               {t('topbar.tagline')}
             </p>
           </div>
 
-          <h1 className="font-serif font-bold whitespace-nowrap text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight mt-1.5 drop-shadow-lg fade-up shimmer-text"
+          <h1 className="font-serif font-bold whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-tight mt-1 drop-shadow-lg fade-up shimmer-text"
               style={{ animationDelay: '120ms' }}>
             {t('hero.welcome')}
           </h1>
 
           {/* divider with rotating star accent */}
-          <div className="flex items-center justify-center gap-2 mt-1.5 fade-up"
+          <div className="flex items-center justify-center gap-2 mt-1 fade-up"
                style={{ animationDelay: '180ms' }}>
-            <div className="w-10 h-0.5 bg-gradient-to-r from-transparent to-brand-accent rounded-full animate-divider" />
-            <span className="text-brand-accent text-xs inline-block animate-spin-slow">✦</span>
-            <div className="w-10 h-0.5 bg-gradient-to-l from-transparent to-brand-accent rounded-full animate-divider" />
+            <div className="w-8 h-0.5 bg-gradient-to-r from-transparent to-brand-accent rounded-full animate-divider" />
+            <span className="text-brand-accent text-[10px] inline-block animate-spin-slow">✦</span>
+            <div className="w-8 h-0.5 bg-gradient-to-l from-transparent to-brand-accent rounded-full animate-divider" />
           </div>
         </div>
       </div>

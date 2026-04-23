@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import Section, { H2, Eyebrow } from '../components/Section'
+import Section, { H2 } from '../components/Section'
 import { team } from '../data/leadership'
 
 export default function Professionals() {
@@ -11,7 +11,6 @@ export default function Professionals() {
     <Section id="professionals-page" className="bg-stone-50">
       <div className="container-x">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <Eyebrow>Leadership</Eyebrow>
           <H2 className="text-center">High Skilled Professionals</H2>
           <p className="mt-5 text-slate-600">
             The specialist team driving delivery, engineering, and strategy across Yanabiya Group.

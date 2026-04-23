@@ -92,6 +92,15 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 bg-brand-deep pt-3 pb-3 px-3 lg:px-6">
+      {/* Mobile-only compact welcome strip inside the navbar */}
+      <div className="md:hidden text-center pb-2">
+        <p className="italic text-[10px] text-brand-accent tracking-wide">
+          {t('topbar.tagline')}
+        </p>
+        <h1 className="font-serif font-bold text-sm text-white leading-tight mt-0.5">
+          {t('hero.welcome')}
+        </h1>
+      </div>
       <div
         className={`container-x mx-auto flex items-center gap-8 h-14 lg:h-16 px-4 lg:px-6
                     rounded-full bg-black/90 backdrop-blur-md
@@ -137,8 +146,6 @@ export default function Navbar() {
                   <Link
                     to={`/#${g.parentSection}`}
                     className={`${baseLinkCls(groupActive)} inline-flex items-center gap-1`}
-                    aria-haspopup="true"
-                    aria-expanded={isOpen ? 'true' : 'false'}
                   >
                     {g.label}
                     <ChevronDown

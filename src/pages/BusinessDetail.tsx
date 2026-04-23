@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { CheckCircle2, Send, ArrowRight } from 'lucide-react'
+import { Link, useParams } from 'react-router-dom'
+import { CheckCircle2, Send, ArrowRight, ArrowLeft } from 'lucide-react'
 import Section from '../components/Section'
 import { businesses, type SubService } from '../data/businesses'
 
@@ -25,54 +25,109 @@ export default function BusinessDetail() {
     )
   }
 
+  const hasSubServices = !!business.subServices && business.subServices.length > 0
+  const currentIndex = businesses.findIndex((b) => b.slug === business.slug)
+  const prevBusiness = currentIndex > 0 ? businesses[currentIndex - 1] : null
+  const nextBusiness =
+    currentIndex < businesses.length - 1 ? businesses[currentIndex + 1] : null
+
   return (
     <Section id="business-detail" className="bg-brand-ink">
       <div className="container-x">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-6 border-b border-white/10">
+          <Link
+            to="/#businesses"
+            className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-[0.18em]
+                       text-slate-300 hover:text-brand-accent transition-colors"
+          >
+            <ArrowLeft size={14} />
+            Back to Service List
+          </Link>
+          <div className="flex items-center gap-2 text-[11px] md:text-xs text-slate-400 ml-auto">
+            {prevBusiness && (
+              <Link
+                to={`/business/${prevBusiness.slug}`}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full
+                           border border-white/15 text-slate-200 hover:border-brand-accent/60 hover:text-brand-accent
+                           transition-colors"
+                title={prevBusiness.title}
+              >
+                <ArrowLeft size={12} />
+                <span className="hidden sm:inline">Previous:</span>
+                <span className="font-semibold normal-case tracking-normal">
+                  {prevBusiness.title}
+                </span>
+              </Link>
+            )}
+            {nextBusiness && (
+              <Link
+                to={`/business/${nextBusiness.slug}`}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full
+                           bg-brand-accent text-brand-ink font-semibold uppercase tracking-[0.14em]
+                           hover:bg-white transition-colors"
+                title={nextBusiness.title}
+              >
+                <span className="hidden sm:inline">Next:</span>
+                <span className="font-bold normal-case tracking-normal">
+                  {nextBusiness.title}
+                </span>
+                <ArrowRight size={14} />
+              </Link>
+            )}
+          </div>
+        </div>
+
         <div className="fade-up">
           <div className="max-w-5xl mx-auto text-center">
-            <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-12 border-2 border-brand-accent/30 shadow-2xl bg-brand-deep">
-              <video
-                key={business.slug}
-                className="absolute inset-0 w-full h-full object-cover"
-                src={business.videoUrl ?? DEFAULT_VIDEO}
-                poster={business.image}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/60 via-transparent to-transparent pointer-events-none" />
-            </div>
-
-            <div className="flex flex-col items-center gap-5">
-              <div className="w-20 h-20 rounded-full bg-blue-100 text-blue-600 grid place-items-center ring-4 ring-white/10 shadow-lg">
-                <business.icon size={36} />
+            {!hasSubServices && (
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-12 border-2 border-brand-accent/30 shadow-2xl bg-brand-deep">
+                <video
+                  key={business.slug}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  src={business.videoUrl ?? DEFAULT_VIDEO}
+                  poster={business.image}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/60 via-transparent to-transparent pointer-events-none" />
               </div>
-              <h2 className="font-serif text-3xl md:text-4xl text-white leading-tight">
-                {business.title}
-              </h2>
-              <div className="w-16 h-0.5 bg-brand-accent rounded-full" />
-              <p className="text-slate-200 leading-relaxed text-center max-w-2xl mx-auto">
-                {business.details}
-              </p>
-            </div>
+            )}
 
-            <div className="mt-12">
-              <h3 className="text-brand-accent uppercase tracking-[0.22em] text-xs font-bold mb-5">
-                What We Offer
-              </h3>
-              <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5 text-left max-w-2xl mx-auto">
-                {business.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-slate-200">
-                    <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {!hasSubServices && (
+              <div className="flex flex-col items-center gap-5">
+                <div className="w-20 h-20 rounded-full bg-blue-100 text-blue-600 grid place-items-center ring-4 ring-white/10 shadow-lg">
+                  <business.icon size={36} />
+                </div>
+                <h2 className="font-serif text-3xl md:text-4xl text-white leading-tight">
+                  {business.title}
+                </h2>
+                <div className="w-16 h-0.5 bg-brand-accent rounded-full" />
+                <p className="text-slate-200 leading-relaxed text-center max-w-2xl mx-auto">
+                  {business.details}
+                </p>
+              </div>
+            )}
 
-            {business.footer && (
+            {!hasSubServices && (
+              <div className="mt-12">
+                <h3 className="text-brand-accent uppercase tracking-[0.22em] text-xs font-bold mb-5">
+                  What We Offer
+                </h3>
+                <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5 text-left max-w-2xl mx-auto">
+                  {business.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm text-slate-200">
+                      <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {!hasSubServices && business.footer && (
               <div className="mt-10 overflow-hidden">
                 <p
                   className="text-slate-200 italic whitespace-nowrap text-center"
@@ -83,8 +138,8 @@ export default function BusinessDetail() {
               </div>
             )}
 
-            {business.subServices && business.subServices.length > 0 && (
-              <SubServicesSection subServices={business.subServices} />
+            {hasSubServices && (
+              <SubServicesSection subServices={business.subServices!} />
             )}
 
             <ServiceForm sectorTitle={business.title} features={business.features} />
@@ -97,60 +152,69 @@ export default function BusinessDetail() {
 
 function SubServicesSection({ subServices }: { subServices: SubService[] }) {
   const [active, setActive] = useState<SubService | null>(null)
+  const [flippedSlug, setFlippedSlug] = useState<string | null>(null)
 
   return (
-    <div className="mt-20 text-left">
+    <div className="text-left">
       <div className="text-center mb-10">
-        <h3 className="text-brand-accent uppercase tracking-[0.22em] text-xs font-bold mb-3">
-          Our Core Services
-        </h3>
         <h2 className="font-serif text-3xl md:text-4xl text-white leading-tight">
-          Explore Our IT & Software Offerings
+          Explore Our IT &amp; Development Service
         </h2>
         <div className="w-16 h-0.5 bg-brand-accent rounded-full mx-auto mt-4" />
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {subServices.map((s) => (
-          <button
-            key={s.slug}
-            type="button"
-            onClick={() => setActive(s)}
-            className="group relative rounded-2xl overflow-hidden shadow-lg h-72
-                       hover:-translate-y-1 transition-transform text-left
-                       focus:outline-none focus:ring-2 focus:ring-brand-accent block"
-          >
-            <img
-              src={s.image}
-              alt={s.title}
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover
-                         transition-transform duration-500 group-hover:scale-105"
-              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" />
-            <div className="absolute top-4 right-4 w-11 h-11 rounded-full
-                            bg-white/90 text-blue-600 grid place-items-center shadow
-                            ring-2 ring-white/70">
-              <s.icon size={20} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
+        {subServices.map((s) => {
+          const isFlipped = flippedSlug === s.slug
+          return (
+            <div key={s.slug}>
+              <div
+                className={`flip-card h-52 ${isFlipped ? 'is-flipped' : ''}`}
+                onTouchStart={(e) => {
+                  e.stopPropagation()
+                  setFlippedSlug((prev) => (prev === s.slug ? null : s.slug))
+                }}
+              >
+                <div className="flip-card-inner shadow-xl">
+                  <div className="flip-card-face">
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/85" />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 gap-3">
+                      <div className="w-11 h-11 rounded-full bg-white/95 text-blue-600 grid place-items-center ring-2 ring-white/40 shadow-lg">
+                        <s.icon size={20} />
+                      </div>
+                      <h3 className="text-white text-base font-semibold leading-tight drop-shadow">
+                        {s.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setActive(s)
+                    }}
+                    className="flip-card-face flip-card-back bg-gradient-to-br from-emerald-500 via-emerald-600 to-green-700 flex items-center justify-center text-center cursor-pointer"
+                  >
+                    <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full
+                                     bg-white/95 text-emerald-700 text-xs font-bold uppercase tracking-[0.18em]
+                                     shadow-lg">
+                      Read More
+                      <ArrowRight size={12} />
+                    </span>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="absolute inset-x-0 bottom-0 p-5 flex flex-col items-start gap-3">
-              <h3 className="text-white text-lg font-semibold leading-tight drop-shadow">
-                {s.title}
-              </h3>
-              <p className="text-slate-200 text-xs leading-relaxed line-clamp-2">
-                {s.body}
-              </p>
-              <span className="inline-flex items-center gap-2 rounded-full
-                               px-4 py-1.5 text-xs font-semibold uppercase tracking-wider
-                               bg-white/95 text-blue-700
-                               transition-colors group-hover:bg-brand-accent group-hover:text-white">
-                Read More
-                <ArrowRight size={12} />
-              </span>
-            </div>
-          </button>
-        ))}
+          )
+        })}
       </div>
 
       {active && <SubServiceModal sub={active} onClose={() => setActive(null)} />}

@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
 import { businesses } from '../data/businesses'
 
 export default function Businesses() {
+  const { t } = useTranslation()
   return (
     <Section id="businesses" className="bg-brand-ink">
       <div className="container-x">
-        <Eyebrow tone="light">Our Businesses</Eyebrow>
+        <Eyebrow tone="light">{t('businesses.eyebrow')}</Eyebrow>
         <p className="text-slate-300 leading-relaxed text-justify [text-align-last:center] max-w-3xl mx-auto mb-10">
           Strategic divisions powering integrated enterprise solutions, global trade, and
           workforce ecosystems across key international markets.
