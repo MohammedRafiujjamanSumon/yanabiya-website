@@ -139,28 +139,30 @@ export default function Solutions() {
               className="group/card shrink-0 w-44 flex flex-col items-center text-center
                          focus:outline-none"
             >
-              <div className="relative w-28 h-28 rounded-full overflow-hidden shadow-md ring-4 ring-white
-                              group-hover/card:ring-brand-accent group-focus/card:ring-brand-accent transition-all
-                              group-hover/card:-translate-y-1 group-hover/card:shadow-lg">
-                <img
-                  src={s.image}
-                  alt={s.title}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover
-                             transition-transform duration-500 group-hover/card:scale-110"
-                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              <div className="flip-round w-28 h-28 shadow-md rounded-full
+                              ring-4 ring-white group-hover/card:ring-brand-accent transition-all">
+                <div className="flip-round-inner">
+                  <div className="flip-round-face">
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  </div>
+                  <div className="flip-round-face flip-round-back bg-brand-accent text-white grid place-items-center px-2">
+                    <span className="text-[11px] font-bold uppercase tracking-wider">
+                      Read More →
+                    </span>
+                  </div>
+                </div>
               </div>
               <h3 className="mt-3 font-serif text-[12px] font-semibold text-slate-800 leading-snug px-1
                              group-hover/card:text-brand-accentDark transition-colors truncate w-full">
                 {s.title}
               </h3>
-              <span className="mt-1 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-accentDark
-                               opacity-0 -translate-y-1 group-hover/card:opacity-100 group-hover/card:translate-y-0
-                               transition-all duration-200">
-                Read More <span aria-hidden>↑</span>
-              </span>
             </button>
           ))}
         </div>
