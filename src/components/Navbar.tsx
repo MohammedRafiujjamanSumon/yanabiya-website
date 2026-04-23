@@ -116,9 +116,9 @@ export default function Navbar() {
     }`
 
   return (
-    <header className="sticky top-0 z-40 bg-brand-deep pt-3 pb-3 px-3 lg:px-6">
+    <header className="sticky top-0 z-40 bg-brand-deep pt-3 pb-3 px-4 lg:px-8">
       <div
-        className={`mx-auto flex items-center gap-6 h-20 lg:h-24 px-5 lg:px-10 w-full lg:w-[96%] max-w-[1800px]
+        className={`mx-auto flex items-center gap-6 h-20 lg:h-24 px-5 lg:px-10 w-full max-w-[1700px]
                     rounded-full bg-lime-700
                     border border-lime-700 transition-shadow duration-200 ${
           scrolled ? 'shadow-md shadow-slate-900/10'
