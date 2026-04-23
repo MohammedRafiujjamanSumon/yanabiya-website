@@ -119,14 +119,14 @@ export default function Solutions() {
       <div className="container-x">
         <Eyebrow>Our Solutions</Eyebrow>
 
-        <p className="mt-4 max-w-3xl mx-auto text-slate-600 leading-relaxed text-justify [text-align-last:center]">
+        <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-relaxed text-sm text-justify [text-align-last:center]">
           We deliver end-to-end digital and enterprise solutions designed to help organizations,
           partners, and communities grow together in a connected global ecosystem.
         </p>
       </div>
 
       {/* Solution cards — small round images with hover Read More slide-up */}
-      <div className="group relative w-screen overflow-hidden mt-8">
+      <div className="group relative w-screen overflow-hidden mt-3">
         <div
           className="flex animate-marquee marquee-pause gap-6 w-max py-3 px-6"
           style={{ animationDuration: '45s' }}

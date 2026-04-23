@@ -143,15 +143,15 @@ function CategoryMarquee({
 }) {
   const animClass = direction === 'left' ? 'animate-marquee' : 'animate-marquee-reverse'
   return (
-    <div className="mt-12">
-      <h2 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight text-center">
+    <div className="mt-6">
+      <h2 className="font-serif text-2xl md:text-3xl text-brand-accentDark font-bold leading-tight text-center">
         {category.label}
       </h2>
-      <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-relaxed text-sm text-justify [text-align-last:center]">
+      <p className="mt-1 max-w-3xl mx-auto text-slate-600 leading-relaxed text-sm text-justify [text-align-last:center]">
         {category.intro}
       </p>
 
-      <div className="group relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-5">
+      <div className="group relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-3">
         <div
           className={`flex ${animClass} marquee-pause gap-4 w-max py-2`}
           style={{ animationDuration: `${duration}s` }}
@@ -228,10 +228,10 @@ export default function AboutUs() {
           <Eyebrow>About Us</Eyebrow>
 
           {/* Country flags marquee — moves between About Us heading and Who We Are */}
-          <div className="mt-4">
+          <div className="mt-2">
             <div className="group relative w-screen left-1/2 -translate-x-1/2 overflow-hidden">
               <div
-                className="flex animate-marquee marquee-pause gap-3 w-max py-2"
+                className="flex animate-marquee marquee-pause gap-3 w-max py-1"
                 style={{ animationDuration: '28s' }}
               >
                 {Array.from({ length: 3 }).flatMap(() => [
@@ -256,12 +256,12 @@ export default function AboutUs() {
             </div>
           </div>
 
-          <div className="mt-6">
-            <h1 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight">
+          <div className="mt-4">
+            <h1 className="font-serif text-2xl md:text-3xl text-brand-accentDark font-bold leading-tight">
               Who We Are
             </h1>
 
-            <div className="mt-5 space-y-4 text-slate-600 leading-relaxed text-justify">
+            <div className="mt-3 space-y-3 text-slate-600 leading-relaxed text-justify">
               <p>
                 Yanabiya Group is a diversified global enterprise operating as a unified business
                 platform across multiple international markets. Originating from Al Khuwair, Muscat,
