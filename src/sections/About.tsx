@@ -86,7 +86,7 @@ export default function About() {
         {/* TOP — Who We Are LEFT · Picture RIGHT */}
         <div className="grid lg:grid-cols-12 gap-8 items-start mt-2">
           <div className="lg:col-span-8 lg:order-1">
-            <h2 className="font-serif text-lg md:text-xl text-slate-900 leading-tight text-center">
+            <h2 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight text-center">
               Who We Are
             </h2>
             <div className="mt-5 space-y-4 text-slate-600 leading-relaxed text-justify">
