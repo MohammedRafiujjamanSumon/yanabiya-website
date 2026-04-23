@@ -161,30 +161,26 @@ function CategoryMarquee({
               key={`${item.id}-${i}`}
               type="button"
               onClick={() => onOpen(item.id)}
-              className="group/card relative shrink-0 w-72 h-44 rounded-xl overflow-hidden shadow-md
-                         hover:-translate-y-1 transition-transform text-left
-                         focus:outline-none focus:ring-2 focus:ring-brand-accent"
+              className="group/card shrink-0 w-44 flex flex-col items-center text-center
+                         focus:outline-none"
             >
-              <img
-                src={item.image}
-                alt={item.title}
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover
-                           transition-transform duration-500 group-hover/card:scale-105"
-                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
-              <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col items-start gap-2">
-                <h3 className="font-serif text-white text-sm md:text-[15px] font-bold drop-shadow leading-snug">
-                  {item.title}
-                </h3>
-                <span className="inline-flex items-center gap-1.5 rounded-full
-                                 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider
-                                 bg-white/95 text-brand-accentDark
-                                 transition-colors group-hover/card:bg-brand-accent group-hover/card:text-white">
-                  Read More <span aria-hidden>→</span>
-                </span>
+              <div className="relative w-28 h-28 rounded-full overflow-hidden shadow-md ring-4 ring-white
+                              group-hover/card:ring-brand-accent group-focus/card:ring-brand-accent transition-all
+                              group-hover/card:-translate-y-1 group-hover/card:shadow-lg">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover
+                             transition-transform duration-500 group-hover/card:scale-110"
+                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>
+              <h3 className="mt-3 font-serif text-[12px] font-semibold text-slate-800 leading-snug px-1
+                             group-hover/card:text-brand-accentDark transition-colors line-clamp-2">
+                {item.title}
+              </h3>
             </button>
           ))}
         </div>
