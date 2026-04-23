@@ -26,7 +26,7 @@ export default function Hero() {
     <section id="home" className="relative scroll-mt-24">
 
       {/* ─────────── Video block ─────────── */}
-      <div className="relative w-full h-[calc(72svh+1in)] min-h-[556px] overflow-hidden">
+      <div className="relative w-full h-[72svh] min-h-[460px] overflow-hidden">
         {/* Full-bleed background video */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <iframe
