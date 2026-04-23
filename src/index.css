@@ -70,6 +70,7 @@
   }
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .text-justify-center { text-align: justify; text-align-last: center; }
 }
 
 @keyframes marquee {

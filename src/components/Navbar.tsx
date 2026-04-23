@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { sections } from '../data/contact'
@@ -38,26 +39,26 @@ export default function Navbar() {
       label: 'Trusted Network',
       parentSection: 'partnerships',
       items: [
-        { id: 'sponsors', label: 'Our Sponsors' },
-        { id: 'partners', label: 'Our Partners' },
-        { id: 'clients',  label: 'Our Clients'  },
+        { id: 'sponsors', label: 'Our Membership'   },
+        { id: 'partners', label: 'Our Partners'     },
+        { id: 'clients',  label: 'Valuable Clients' },
       ],
     },
     {
       label: 'Leadership',
       parentSection: 'leadership',
       items: [
-        { id: 'management',    label: 'Our Management' },
-        { id: 'professionals', label: 'High Skilled Professionals' },
+        { id: 'management',    label: 'Our Management',             href: '/leadership/management'    },
+        { id: 'professionals', label: 'High Skilled Professionals', href: '/leadership/professionals' },
       ],
     },
     {
       label: 'Community',
       items: [
-        { id: 'insights',           label: 'Blog' },
-        { id: 'sustainable-growth', label: 'Sustainable Growth', href: '#sustainable-growth' },
-        { id: 'community-care',     label: 'Community Care',     href: '#community-care' },
-        { id: 'careers',            label: t('nav.careers') },
+        { id: 'blog',               label: 'Blog',               href: '/community/blog'               },
+        { id: 'sustainable-growth', label: 'Sustainable Growth', href: '/community/sustainable-growth' },
+        { id: 'community-care',     label: 'Community Care',     href: '/community/community-care'     },
+        { id: 'careers',            label: t('nav.careers'),     href: '/community/careers'            },
       ],
     },
   ]
@@ -101,14 +102,14 @@ export default function Navbar() {
       >
 
         {/* LEFT — LOGO */}
-        <a href="#home" className="flex items-center shrink-0 group">
+        <Link to="/#home" className="flex items-center shrink-0 group">
           <img
             src={assets.logo}
             alt="Yanabiya Group"
             className="h-9 lg:h-10 w-auto object-contain group-hover:opacity-90 transition"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
-        </a>
+        </Link>
 
         {/* NAV — pushed right, then CTA on far right */}
         <nav className="hidden lg:flex ms-auto items-center gap-6 xl:gap-7 min-w-0">
@@ -116,9 +117,9 @@ export default function Navbar() {
             if (!g.items) {
               const isActive = !!g.id && active === g.id
               return (
-                <a key={g.label} href={`#${g.id}`} className={baseLinkCls(isActive)}>
+                <Link key={g.label} to={`/#${g.id}`} className={baseLinkCls(isActive)}>
                   {g.label}
-                </a>
+                </Link>
               )
             }
             const isOpen = openMenu === g.label
@@ -132,19 +133,34 @@ export default function Navbar() {
                 onMouseEnter={() => hoverOpen(g.label)}
                 onMouseLeave={hoverClose}
               >
-                <button
-                  type="button"
-                  onClick={() => setOpenMenu(isOpen ? null : g.label)}
-                  className={`${baseLinkCls(groupActive)} inline-flex items-center gap-1`}
-                  aria-haspopup="true"
-                  aria-expanded={isOpen}
-                >
-                  {g.label}
-                  <ChevronDown
-                    size={14}
-                    className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-                  />
-                </button>
+                {g.parentSection !== undefined ? (
+                  <Link
+                    to={`/#${g.parentSection}`}
+                    className={`${baseLinkCls(groupActive)} inline-flex items-center gap-1`}
+                    aria-haspopup="true"
+                    aria-expanded={isOpen ? 'true' : 'false'}
+                  >
+                    {g.label}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                    />
+                  </Link>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setOpenMenu(isOpen ? null : g.label)}
+                    className={`${baseLinkCls(groupActive)} inline-flex items-center gap-1`}
+                    aria-haspopup="true"
+                    aria-expanded={isOpen ? 'true' : 'false'}
+                  >
+                    {g.label}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                )}
 
                 {isOpen && (() => {
                   const compact = g.items.every((i) => !i.desc)
@@ -161,17 +177,16 @@ export default function Navbar() {
                         const isActive = active === item.id
                         const Icon = item.icon
                         if (compact) {
-                          return (
-                            <a
-                              key={item.id}
-                              href={item.href ?? `#${item.id}`}
-                              onClick={() => setOpenMenu(null)}
-                              className={`flex items-center gap-3 rounded-xl px-4 py-2.5
+                          const rawTarget = item.href ?? `#${item.id}`
+                          const isRoute = rawTarget.startsWith('/')
+                          const target = isRoute ? rawTarget : `/${rawTarget}`
+                          const compactCls = `flex items-center gap-3 rounded-xl px-4 py-2.5
                                           whitespace-nowrap transition-all duration-200 group/item
                                           ${isActive
                                             ? 'bg-brand-accent/15 text-brand-accent'
-                                            : 'text-white hover:bg-brand-accent/15 hover:text-brand-accent active:text-brand-accent focus:text-brand-accent'}`}
-                            >
+                                            : 'text-white hover:bg-brand-accent/15 hover:text-brand-accent active:text-brand-accent focus:text-brand-accent'}`
+                          const compactInner = (
+                            <>
                               {Icon && (
                                 <span className={`w-8 h-8 rounded-lg grid place-items-center
                                                   transition-all duration-200
@@ -189,13 +204,23 @@ export default function Navbar() {
                                               ? 'text-brand-accent opacity-100'
                                               : 'text-white/30 opacity-0 -translate-x-1 group-hover/item:opacity-100 group-hover/item:translate-x-0 group-hover/item:text-brand-accent'}`}
                               />
-                            </a>
+                            </>
+                          )
+                          return (
+                            <Link
+                              key={item.id}
+                              to={target}
+                              onClick={() => setOpenMenu(null)}
+                              className={compactCls}
+                            >
+                              {compactInner}
+                            </Link>
                           )
                         }
                         return (
-                          <a
+                          <Link
                             key={item.id}
-                            href={`#${item.id}`}
+                            to={`/#${item.id}`}
                             onClick={() => setOpenMenu(null)}
                             className="block rounded-xl px-4 py-3 hover:bg-brand-accent/10 transition group/item"
                           >
@@ -211,7 +236,7 @@ export default function Navbar() {
                                 {item.desc}
                               </div>
                             )}
-                          </a>
+                          </Link>
                         )
                       })}
                     </div>
@@ -223,15 +248,15 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — Get In Touch CTA (desktop) */}
-        <a
-          href="#contact"
+        <Link
+          to="/#contact"
           className="hidden lg:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full
                      bg-brand-accent text-brand-ink text-sm font-semibold
                      hover:bg-brand-accentDark hover:text-white transition-all
                      shadow-sm hover:shadow-md hover:-translate-y-0.5 shrink-0"
         >
           Get In Touch <ArrowRight size={14} className="ltr-flip" />
-        </a>
+        </Link>
 
         {/* MOBILE — hamburger only */}
         <div className="flex lg:hidden items-center ms-auto">
@@ -251,16 +276,16 @@ export default function Navbar() {
         <div className="lg:hidden border-t border-slate-200 bg-white">
           <div className="container-x py-2 flex flex-col">
             {sections.filter((s) => s.id !== 'contact').map((l) => (
-              <a
+              <Link
                 key={l.id}
-                href={`#${l.id}`}
+                to={`/#${l.id}`}
                 onClick={() => setOpen(false)}
                 className={`py-3 text-[15px] font-medium border-b border-slate-100 transition ${
                   active === l.id ? 'text-brand-accent' : 'text-slate-900'
                 }`}
               >
                 {t(l.tKey)}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft, CheckCircle2, Send } from 'lucide-react'
+import { useParams } from 'react-router-dom'
+import { CheckCircle2, Send } from 'lucide-react'
 import Section from '../components/Section'
 import { businesses } from '../data/businesses'
 
@@ -20,12 +20,6 @@ export default function BusinessDetail() {
       <Section id="business-not-found" className="bg-brand-ink">
         <div className="container-x text-center text-slate-200 py-20">
           <h2 className="font-serif text-3xl text-white mb-4">Sector not found</h2>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-brand-accent hover:text-white text-sm uppercase tracking-[0.18em] font-semibold"
-          >
-            <ArrowLeft size={16} /> Back to home
-          </Link>
         </div>
       </Section>
     )
@@ -35,13 +29,6 @@ export default function BusinessDetail() {
     <Section id="business-detail" className="bg-brand-ink">
       <div className="container-x">
         <div className="fade-up">
-          <Link
-            to="/#businesses"
-            className="inline-flex items-center gap-2 text-brand-accent hover:text-white mb-6 text-sm uppercase tracking-[0.18em] font-semibold"
-          >
-            <ArrowLeft size={16} /> Back to all sectors
-          </Link>
-
           <div className="max-w-5xl mx-auto text-center">
             <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-12 border-2 border-brand-accent/30 shadow-2xl bg-brand-deep">
               <video

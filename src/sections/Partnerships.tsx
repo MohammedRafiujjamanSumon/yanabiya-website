@@ -20,7 +20,10 @@ function LogoMarquee({
   direction?: 'left' | 'right'
   durationSec?: number
 }) {
-  const loop = [...items, ...items]
+  const minTiles = 10
+  const repeats = Math.max(1, Math.ceil(minTiles / Math.max(items.length, 1)))
+  const half = Array(repeats).fill(items).flat()
+  const loop = [...half, ...half]
   const animClass = direction === 'left' ? 'animate-marquee' : 'animate-marquee-reverse'
   return (
     <div className="group relative overflow-hidden">
@@ -135,15 +138,15 @@ export default function Partnerships() {
       {/* Valuable Clients */}
       <div id="clients" className="mb-12 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
-          Our Clients
+          Valuable Clients
         </h3>
         <LogoMarquee items={valuableClients} direction="right" durationSec={75} />
       </div>
 
-      {/* Memberships / Sponsors */}
+      {/* Our Membership */}
       <div id="sponsors" className="mb-4 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
-          Our Sponsors
+          Our Membership
         </h3>
         <LogoMarquee items={memberships} direction="left" durationSec={45} />
       </div>

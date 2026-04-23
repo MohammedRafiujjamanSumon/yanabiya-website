@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, MapPin, CheckCircle2 } from 'lucide-react'
+import { MapPin, CheckCircle2 } from 'lucide-react'
 import Section from '../components/Section'
 import { countries } from '../data/countries'
 import { assets } from '../data/assets'
@@ -38,12 +38,6 @@ export default function CountryDetail() {
       <Section id="country-not-found" className="bg-brand-ink">
         <div className="container-x text-center text-slate-200 py-20">
           <h2 className="font-serif text-3xl text-white mb-4">Country not found</h2>
-          <Link
-            to="/#global"
-            className="inline-flex items-center gap-2 text-brand-accent hover:text-white text-sm uppercase tracking-[0.18em] font-semibold"
-          >
-            <ArrowLeft size={16} /> Back to all countries
-          </Link>
         </div>
       </Section>
     )
@@ -56,13 +50,6 @@ export default function CountryDetail() {
     <Section id="country-detail" className="bg-brand-ink">
       <div className="container-x">
         <div className="fade-up">
-          <Link
-            to="/#global"
-            className="inline-flex items-center gap-2 text-brand-accent hover:text-white mb-6 text-sm uppercase tracking-[0.18em] font-semibold"
-          >
-            <ArrowLeft size={16} /> Back to all countries
-          </Link>
-
           <div className="max-w-5xl mx-auto text-center">
             <div className="flex flex-col items-center gap-5">
               <div className={`w-24 h-24 rounded-full ${color.bg} grid place-items-center ring-4 ring-white/10 shadow-lg text-5xl leading-none`}>

@@ -15,7 +15,8 @@ export const assets = {
   resources: 'https://yanabiyagroup.com/img/Skilled-Resources.png',
 
   // Leadership
-  chairman: 'https://yanabiyagroup.com/img/slider/m1.png',
+  chairman: `${BASE}images/chairman.jpg`,
+  viceChairman: `${BASE}images/vice-chairman.jpg`,
   team: {
     saleheen: 'https://yanabiyagroup.com/img/slider/4.png',
     zakirul: 'https://yanabiyagroup.com/img/slider/7.png',
