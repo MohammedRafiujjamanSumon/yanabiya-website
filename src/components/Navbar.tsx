@@ -79,23 +79,11 @@ export default function Navbar() {
       ],
     },
     {
-      label: 'More',
-      subGroups: [
-        {
-          label: 'Leadership',
-          parentSection: 'leadership',
-          items: [
-            { id: 'management',    label: 'Our Management',             href: '/leadership/management'    },
-            { id: 'professionals', label: 'High Skilled Professionals', href: '/leadership/professionals' },
-          ],
-        },
-        {
-          label: 'Solutions',
-          parentSection: 'solutions',
-          items: [
-            { id: 'solutions', label: 'Our Solutions' },
-          ],
-        },
+      label: 'Leadership',
+      parentSection: 'leadership',
+      items: [
+        { id: 'management',    label: 'Our Management',             href: '/leadership/management'    },
+        { id: 'professionals', label: 'High Skilled Professionals', href: '/leadership/professionals' },
       ],
     },
   ]
