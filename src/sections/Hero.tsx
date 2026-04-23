@@ -23,10 +23,10 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative scroll-mt-24 px-4 md:px-6 lg:px-10 pt-4 pb-2">
+    <section id="home" className="relative scroll-mt-24">
 
-      {/* ─────────── Video card ─────────── */}
-      <div className="relative w-full h-[72svh] min-h-[460px] overflow-hidden rounded-3xl shadow-2xl shadow-slate-900/20 ring-1 ring-black/10 mx-auto max-w-[1600px]">
+      {/* ─────────── Video block (full-bleed) ─────────── */}
+      <div className="relative w-full h-[72svh] min-h-[460px] overflow-hidden">
         {/* Full-bleed background video */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <iframe

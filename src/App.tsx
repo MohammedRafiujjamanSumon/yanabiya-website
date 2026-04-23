@@ -17,8 +17,10 @@ import AboutUs from './pages/AboutUs'
 export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
-      <TopBar />
-      <Navbar />
+      <div className="sticky top-0 z-40">
+        <TopBar />
+        <Navbar />
+      </div>
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
