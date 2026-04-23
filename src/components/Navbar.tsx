@@ -56,10 +56,15 @@ export default function Navbar() {
 
   const navGroups: NavGroup[] = [
     { label: t('nav.home'),         id: 'home'         },
-    { label: t('nav.about'),        id: 'about'        },
+    {
+      label: t('nav.about'),
+      parentSection: 'about',
+      items: [
+        { id: 'solutions', label: t('nav.solutions') },
+      ],
+    },
     { label: t('nav.businesses'),   id: 'businesses'   },
     { label: t('nav.global'),       id: 'global'       },
-    { label: t('nav.solutions'),    id: 'solutions'    },
     {
       label: 'Trusted Network',
       parentSection: 'partnerships',
