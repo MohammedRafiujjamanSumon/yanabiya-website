@@ -101,8 +101,8 @@ export default function Navbar() {
   const baseLinkCls = (isActive: boolean) =>
     `relative text-[15px] font-medium whitespace-nowrap py-1.5 px-3 rounded-full
      transition-colors duration-200
-     hover:bg-white hover:text-brand-ink focus:bg-white focus:text-brand-ink ${
-      isActive ? 'bg-white text-brand-ink' : 'text-white'
+     hover:bg-white hover:text-brand-ink ${
+      isActive ? 'text-white underline underline-offset-4 decoration-white/70' : 'text-white'
     }`
 
   return (
