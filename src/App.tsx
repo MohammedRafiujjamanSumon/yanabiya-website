@@ -1,7 +1,8 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import TopBar from './components/TopBar'
 import Footer from './components/Footer'
+import PageWatermark from './components/PageWatermark'
 
 import Home from './pages/Home'
 import BusinessDetail from './pages/BusinessDetail'
@@ -15,11 +16,14 @@ import CareersPage from './pages/CareersPage'
 import AboutUs from './pages/AboutUs'
 
 export default function App() {
+  const { pathname } = useLocation()
+  const isHome = pathname === '/' || pathname === ''
   return (
     <div className="min-h-screen flex flex-col">
+      {!isHome && <PageWatermark />}
       <TopBar />
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 relative">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/business/:slug" element={<BusinessDetail />} />

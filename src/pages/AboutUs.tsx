@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Target, Eye, Award, Workflow, Handshake, Users, ShieldCheck } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
-import { assets } from '../data/assets'
 
 const pillars = [
   {
@@ -36,19 +35,7 @@ export default function AboutUs() {
   }, [])
 
   return (
-    <Section id="about-us" className="relative overflow-hidden">
-      {/* Watermark — Yanabiya logo behind all content */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
-      >
-        <img
-          src={assets.logo}
-          alt=""
-          className="w-[80%] max-w-[900px] opacity-[0.06] object-contain"
-        />
-      </div>
-
+    <Section id="about-us">
       <div className="container-x max-w-5xl relative">
         <Eyebrow>About Us</Eyebrow>
 
