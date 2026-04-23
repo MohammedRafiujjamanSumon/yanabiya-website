@@ -3,6 +3,15 @@ import {
   ShieldCheck, Factory, BarChart3, Palette, Cloud, Globe, Bot,
 } from 'lucide-react'
 
+export type CountryCode = 'OM' | 'GB' | 'BD' | 'US'
+
+export interface CountryPresence {
+  code: CountryCode
+  /** Short (3–14 words) role-specific summary of what this country contributes
+   *  to this business / sub-service. Shown under the country name on cards. */
+  note: string
+}
+
 export interface SubService {
   slug: string
   icon: typeof Code2
@@ -10,6 +19,7 @@ export interface SubService {
   body: string
   image: string
   features: string[]
+  countries?: CountryPresence[]
 }
 
 export interface Business {
@@ -25,6 +35,7 @@ export interface Business {
    *  detail page. Pexels CDN URLs are used by default. */
   videoUrl?: string
   subServices?: SubService[]
+  countries?: CountryPresence[]
 }
 
 export const businesses: Business[] = [
@@ -56,6 +67,12 @@ export const businesses: Business[] = [
       'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
     videoUrl:
       'https://videos.pexels.com/video-files/8084618/8084618-uhd_2560_1440_25fps.mp4',
+    countries: [
+      { code: 'OM', note: 'Delivery hub & regional client engagements across the Gulf.' },
+      { code: 'GB', note: 'Enterprise architecture & client-facing teams for EMEA.' },
+      { code: 'BD', note: 'Engineering centre — development, QA and 24×7 support.' },
+      { code: 'US', note: 'North-America partnerships & cloud/AI advisory.' },
+    ],
     subServices: [
       {
         slug: 'custom-software-development',
@@ -71,6 +88,12 @@ export const businesses: Business[] = [
           'SaaS product engineering',
           'API design & third-party integrations',
           'Long-term maintenance & support',
+        ],
+        countries: [
+          { code: 'OM', note: 'Discovery & delivery for Gulf enterprises.' },
+          { code: 'GB', note: 'Solution architecture & stakeholder workshops.' },
+          { code: 'BD', note: 'Full-stack engineering & long-term maintenance.' },
+          { code: 'US', note: 'Product strategy & US-market SaaS engagements.' },
         ],
       },
       {
@@ -88,6 +111,12 @@ export const businesses: Business[] = [
           'Compliance consulting (ISO 27001, GDPR, PCI-DSS)',
           'Security awareness training',
         ],
+        countries: [
+          { code: 'OM', note: 'On-site assessments & regulator-aligned audits.' },
+          { code: 'GB', note: 'GDPR/ISO 27001 compliance advisory.' },
+          { code: 'BD', note: 'SOC operations, monitoring & incident response.' },
+          { code: 'US', note: 'Red-team & penetration-testing engagements.' },
+        ],
       },
       {
         slug: 'industries-services',
@@ -103,6 +132,12 @@ export const businesses: Business[] = [
           'Healthcare & hospital management tools',
           'Fintech & digital banking solutions',
           'Government & public-sector digitalization',
+        ],
+        countries: [
+          { code: 'OM', note: 'Public-sector & logistics digitalization.' },
+          { code: 'GB', note: 'Fintech & retail platform consulting.' },
+          { code: 'BD', note: 'Manufacturing & healthcare engineering.' },
+          { code: 'US', note: 'Industry partnerships & product pilots.' },
         ],
       },
       {
@@ -120,6 +155,12 @@ export const businesses: Business[] = [
           'Big-data engineering on cloud platforms',
           'KPI frameworks & reporting automation',
         ],
+        countries: [
+          { code: 'OM', note: 'Executive dashboards for Gulf enterprises.' },
+          { code: 'GB', note: 'Analytics strategy & KPI frameworks.' },
+          { code: 'BD', note: 'Data engineering & ML model development.' },
+          { code: 'US', note: 'Predictive-analytics consulting.' },
+        ],
       },
       {
         slug: 'ui-ux-designing',
@@ -135,6 +176,12 @@ export const businesses: Business[] = [
           'Design systems & component libraries',
           'Accessibility (WCAG) & usability testing',
           'Brand-aligned visual design',
+        ],
+        countries: [
+          { code: 'OM', note: 'Bilingual (AR/EN) design for regional brands.' },
+          { code: 'GB', note: 'Design strategy & brand workshops.' },
+          { code: 'BD', note: 'Product design studio & prototyping.' },
+          { code: 'US', note: 'UX research & usability testing.' },
         ],
       },
       {
@@ -152,6 +199,12 @@ export const businesses: Business[] = [
           'DevOps, CI/CD & infrastructure-as-code',
           'Cost optimization & 24×7 managed cloud ops',
         ],
+        countries: [
+          { code: 'OM', note: 'Cloud migrations for government & enterprise.' },
+          { code: 'GB', note: 'Well-architected reviews & cost optimisation.' },
+          { code: 'BD', note: '24×7 managed cloud operations.' },
+          { code: 'US', note: 'Serverless & container-platform consulting.' },
+        ],
       },
       {
         slug: 'web-design-development',
@@ -167,6 +220,12 @@ export const businesses: Business[] = [
           'Headless CMS integrations',
           'SEO, performance & Core Web Vitals tuning',
           'Ongoing web maintenance & hosting support',
+        ],
+        countries: [
+          { code: 'OM', note: 'Corporate sites in Arabic/English.' },
+          { code: 'GB', note: 'E-commerce & headless CMS builds.' },
+          { code: 'BD', note: 'Full-stack web engineering & maintenance.' },
+          { code: 'US', note: 'Performance, SEO & Core Web Vitals tuning.' },
         ],
       },
       {
@@ -185,6 +244,12 @@ export const businesses: Business[] = [
           'AI-powered document processing & summarization',
           'Intelligent task automation & decision support',
           'Agent monitoring, evaluation & continuous tuning',
+        ],
+        countries: [
+          { code: 'OM', note: 'AI adoption & regulator-aware deployments.' },
+          { code: 'GB', note: 'AI strategy & enterprise RAG pipelines.' },
+          { code: 'BD', note: 'Agent engineering, evaluation & tuning.' },
+          { code: 'US', note: 'Frontier-model integrations & MCP tooling.' },
         ],
       },
     ],
@@ -217,6 +282,12 @@ export const businesses: Business[] = [
       'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80',
     videoUrl:
       'https://videos.pexels.com/video-files/32746861/13960848_2560_1440_60fps.mp4',
+    countries: [
+      { code: 'OM', note: 'Regional hub — customs clearance & Gulf trade routes.' },
+      { code: 'GB', note: 'EU/UK import coordination & compliance.' },
+      { code: 'BD', note: 'Sourcing, consolidation & export documentation.' },
+      { code: 'US', note: 'North-America distribution & last-mile delivery.' },
+    ],
   },
   {
     slug: 'clothing',
@@ -247,6 +318,12 @@ export const businesses: Business[] = [
       'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80',
     videoUrl:
       'https://videos.pexels.com/video-files/35469631/15027063_2560_1440_30fps.mp4',
+    countries: [
+      { code: 'OM', note: 'Regional distribution & GCC retail partnerships.' },
+      { code: 'GB', note: 'Brand partnerships & UK/EU retail buyers.' },
+      { code: 'BD', note: 'Manufacturing hub — production, QA & compliance.' },
+      { code: 'US', note: 'Wholesale & private-label brand distribution.' },
+    ],
   },
   {
     slug: 'agents-brokerage',
@@ -278,6 +355,12 @@ export const businesses: Business[] = [
       'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80',
     videoUrl:
       'https://videos.pexels.com/video-files/8426053/8426053-uhd_2560_1440_25fps.mp4',
+    countries: [
+      { code: 'OM', note: 'Commercial agency representation across the Gulf.' },
+      { code: 'GB', note: 'EU/UK market-entry advisory & partner sourcing.' },
+      { code: 'BD', note: 'Supplier representation & buyer matchmaking.' },
+      { code: 'US', note: 'Cross-border deal structuring & closing support.' },
+    ],
   },
   {
     slug: 'office-management',
@@ -309,6 +392,12 @@ export const businesses: Business[] = [
       'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
     videoUrl:
       'https://videos.pexels.com/video-files/35454651/15020850_1080_1920_60fps.mp4',
+    countries: [
+      { code: 'OM', note: 'Serviced offices, PRO & visa services in Muscat.' },
+      { code: 'GB', note: 'Virtual office & EU-facing administration.' },
+      { code: 'BD', note: 'Back-office, bookkeeping & document processing.' },
+      { code: 'US', note: 'Registered agent & corporate administration support.' },
+    ],
   },
   {
     slug: 'manpower',
@@ -339,5 +428,11 @@ export const businesses: Business[] = [
       'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80',
     videoUrl:
       'https://videos.pexels.com/video-files/32801087/13982978_2560_1440_30fps.mp4',
+    countries: [
+      { code: 'OM', note: 'Employer hiring & overseas deployment coordination.' },
+      { code: 'GB', note: 'Student placements, UK visa & settlement guidance.' },
+      { code: 'BD', note: 'Source market — recruitment, training & mobilisation.' },
+      { code: 'US', note: 'Work-visa advisory & professional placements.' },
+    ],
   },
 ]

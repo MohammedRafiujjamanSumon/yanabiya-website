@@ -25,79 +25,7 @@ export default function Hero() {
   return (
     <section id="home" className="relative scroll-mt-24">
 
-      {/* ─────────── Welcome banner — visible on all sizes; scales down gracefully on mobile ─────────── */}
-      <div className="relative overflow-hidden bg-black border-y border-brand-accent/30">
-        {/* decorative grid */}
-        <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
-        {/* soft lime accent halo for that green-on-navy glow — pulses */}
-        <div className="absolute -top-20 left-1/2 w-[480px] h-[220px] bg-brand-accent/30 rounded-full blur-3xl pointer-events-none animate-halo" />
-
-        {/* spotlight sweep across whole banner */}
-        <div className="absolute inset-y-0 -inset-x-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none animate-spotlight" />
-
-        {/* slow scanline */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-accent/60 to-transparent animate-scanline" />
-        </div>
-
-        {/* floating decorative orbs */}
-        <div className="absolute top-6 left-[8%] w-3 h-3 rounded-full bg-brand-accent/70 blur-sm animate-float pointer-events-none"
-             style={{ animationDelay: '0s' }} />
-        <div className="absolute bottom-8 left-[20%] w-2 h-2 rounded-full bg-white/60 blur-sm animate-float pointer-events-none"
-             style={{ animationDelay: '1.5s' }} />
-        <div className="absolute top-10 right-[12%] w-2.5 h-2.5 rounded-full bg-brand-accent/60 blur-sm animate-float pointer-events-none"
-             style={{ animationDelay: '0.8s' }} />
-        <div className="absolute bottom-6 right-[22%] w-1.5 h-1.5 rounded-full bg-white/70 blur-sm animate-float pointer-events-none"
-             style={{ animationDelay: '2.2s' }} />
-
-        {/* drifting upward particles */}
-        <div className="absolute bottom-0 left-[15%] w-1 h-1 rounded-full bg-brand-accent pointer-events-none animate-drift"
-             style={{ animationDelay: '0s' }} />
-        <div className="absolute bottom-0 left-[35%] w-1.5 h-1.5 rounded-full bg-white/80 pointer-events-none animate-drift"
-             style={{ animationDelay: '2.5s' }} />
-        <div className="absolute bottom-0 left-[55%] w-1 h-1 rounded-full bg-brand-accent/80 pointer-events-none animate-drift"
-             style={{ animationDelay: '4s' }} />
-        <div className="absolute bottom-0 left-[75%] w-1.5 h-1.5 rounded-full bg-brand-accent/70 pointer-events-none animate-drift"
-             style={{ animationDelay: '1.2s' }} />
-        <div className="absolute bottom-0 left-[88%] w-1 h-1 rounded-full bg-white/70 pointer-events-none animate-drift"
-             style={{ animationDelay: '5.5s' }} />
-
-        {/* corner sparkles */}
-        <div className="absolute top-4 left-1/2 -translate-x-[140px] text-brand-accent text-xs animate-sparkle pointer-events-none"
-             style={{ animationDelay: '0.5s' }}>✦</div>
-        <div className="absolute top-4 left-1/2 translate-x-[120px] text-brand-accent text-xs animate-sparkle pointer-events-none"
-             style={{ animationDelay: '1.8s' }}>✦</div>
-        <div className="absolute bottom-5 left-1/2 -translate-x-[180px] text-white/70 text-[10px] animate-sparkle pointer-events-none"
-             style={{ animationDelay: '2.4s' }}>✧</div>
-        <div className="absolute bottom-5 left-1/2 translate-x-[160px] text-white/70 text-[10px] animate-sparkle pointer-events-none"
-             style={{ animationDelay: '3.6s' }}>✧</div>
-
-        <div className="relative container-x text-center py-1">
-          {/* tagline pill with glow ring */}
-          <div className="inline-block relative fade-up">
-            <span className="absolute inset-0 rounded-full animate-ring pointer-events-none" />
-            <p className="relative italic whitespace-nowrap text-[8px] sm:text-[9px] md:text-[10px] text-brand-accent tracking-wide
-                          px-2.5 py-0.5 rounded-full border border-brand-accent/40 bg-brand-accent/5">
-              {t('topbar.tagline')}
-            </p>
-          </div>
-
-          <h1 className="font-serif font-bold whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-tight mt-1 drop-shadow-lg fade-up shimmer-text"
-              style={{ animationDelay: '120ms' }}>
-            {t('hero.welcome')}
-          </h1>
-
-          {/* divider with rotating star accent */}
-          <div className="flex items-center justify-center gap-2 mt-1 fade-up"
-               style={{ animationDelay: '180ms' }}>
-            <div className="w-8 h-0.5 bg-gradient-to-r from-transparent to-brand-accent rounded-full animate-divider" />
-            <span className="text-brand-accent text-[10px] inline-block animate-spin-slow">✦</span>
-            <div className="w-8 h-0.5 bg-gradient-to-l from-transparent to-brand-accent rounded-full animate-divider" />
-          </div>
-        </div>
-      </div>
-
-      {/* ─────────── Video block — sits under the welcome banner ─────────── */}
+      {/* ─────────── Video block ─────────── */}
       <div className="relative w-full h-[72svh] min-h-[460px] overflow-hidden">
         {/* Full-bleed background video */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -119,6 +47,11 @@ export default function Hero() {
 
         {/* Video-overlay content: description + CTAs */}
         <div className="relative h-full container-x flex flex-col items-center justify-center text-center">
+          <h1 className="font-serif text-white drop-shadow-lg fade-up
+                         text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight mb-4 md:mb-5"
+              style={{ animationDelay: '120ms' }}>
+            {t('hero.welcome')}
+          </h1>
           <p className="text-white/95 text-base md:text-lg leading-relaxed mx-auto max-w-2xl drop-shadow-lg fade-up"
              style={{ animationDelay: '240ms' }}>
             {t('hero.desc1')}

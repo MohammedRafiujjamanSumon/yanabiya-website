@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Globe, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { languages } from '../i18n'
 
 export default function LanguageSwitcher() {
@@ -12,9 +12,9 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Change language"
-        className="flex items-center justify-center w-7 h-7 rounded-full text-current hover:text-brand-accent hover:bg-white/10 transition"
+        className="flex items-center justify-center w-10 h-10 rounded-full text-[18px] leading-none hover:bg-slate-100 transition"
       >
-        <Globe size={14} />
+        <span>{current.flag}</span>
       </button>
       {open && (
         <>
