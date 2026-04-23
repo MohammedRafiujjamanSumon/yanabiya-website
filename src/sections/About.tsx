@@ -81,9 +81,9 @@ export default function About() {
         {/* Section header — About Us */}
         <Eyebrow>{t('about.eyebrow')}</Eyebrow>
 
-        {/* TOP — Who We Are (full width) */}
-        <div className="mt-2">
-          <div>
+        {/* TOP — Who We Are (left side) */}
+        <div className="mt-2 grid lg:grid-cols-12">
+          <div className="lg:col-span-8">
             <h2 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight text-center">
               Who We Are
             </h2>
