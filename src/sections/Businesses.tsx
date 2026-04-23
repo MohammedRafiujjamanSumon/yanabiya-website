@@ -20,7 +20,7 @@ export default function Businesses() {
               key={b.slug}
               to={`/business/${b.slug}`}
               className="group relative rounded-2xl overflow-hidden shadow-lg
-                         h-80 hover:-translate-y-1 transition-transform text-left
+                         h-56 hover:-translate-y-1 transition-transform text-left
                          focus:outline-none focus:ring-2 focus:ring-brand-accent block"
             >
               <img

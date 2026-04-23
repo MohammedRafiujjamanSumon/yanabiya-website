@@ -8,7 +8,7 @@ interface Props {
 
 export default function Section({ id, className = '', children }: Props) {
   return (
-    <section id={id} className={`scroll-mt-24 section-pad min-h-screen ${className}`}>
+    <section id={id} className={`scroll-mt-24 section-pad ${className}`}>
       {children}
     </section>
   )

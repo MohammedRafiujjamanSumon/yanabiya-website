@@ -136,7 +136,7 @@ export default function Solutions() {
                 type="button"
                 onClick={() => setOpenKey(s.key)}
                 className="group/card relative rounded-xl overflow-hidden shadow-md
-                           h-56 w-72 shrink-0 hover:-translate-y-1 transition-transform text-left
+                           h-44 w-64 shrink-0 hover:-translate-y-1 transition-transform text-left
                            focus:outline-none focus:ring-2 focus:ring-brand-accent"
               >
                 <img
