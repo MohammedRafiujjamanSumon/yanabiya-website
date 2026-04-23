@@ -124,41 +124,48 @@ export default function Solutions() {
           partners, and communities grow together in a connected global ecosystem.
         </p>
 
-        {/* Solution pillar cards — compact: image + title + Read More */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mt-10">
-          {solutions.map((s) => (
-            <button
-              key={s.key}
-              type="button"
-              onClick={() => setOpenKey(s.key)}
-              className="group relative rounded-xl overflow-hidden shadow-md
-                         h-56 hover:-translate-y-1 transition-transform text-left
-                         focus:outline-none focus:ring-2 focus:ring-brand-accent"
-            >
-              <img
-                src={s.image}
-                alt={s.title}
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover
-                           transition-transform duration-500 group-hover:scale-105"
-                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
-              <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col items-start gap-2">
-                <h3 className="font-serif uppercase tracking-[0.12em] text-white
-                               text-sm md:text-base font-bold drop-shadow leading-snug">
-                  {s.title}
-                </h3>
-                <span className="inline-flex items-center gap-1.5 rounded-full
-                                 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider
-                                 bg-white/95 text-brand-accentDark
-                                 transition-colors group-hover:bg-brand-accent group-hover:text-white">
-                  Read More
-                  <span aria-hidden>→</span>
-                </span>
-              </div>
-            </button>
-          ))}
+        {/* Solution pillar cards — left-to-right scrolling marquee */}
+        <div className="group relative overflow-hidden mt-10">
+          <div
+            className="flex animate-marquee marquee-pause gap-4 w-max py-2"
+            style={{ animationDuration: '45s' }}
+          >
+            {[...solutions, ...solutions].map((s, i) => (
+              <button
+                key={`${s.key}-${i}`}
+                type="button"
+                onClick={() => setOpenKey(s.key)}
+                className="group/card relative rounded-xl overflow-hidden shadow-md
+                           h-56 w-72 shrink-0 hover:-translate-y-1 transition-transform text-left
+                           focus:outline-none focus:ring-2 focus:ring-brand-accent"
+              >
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover
+                             transition-transform duration-500 group-hover/card:scale-105"
+                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
+                <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col items-start gap-2">
+                  <h3 className="font-serif uppercase tracking-[0.12em] text-white
+                                 text-sm md:text-base font-bold drop-shadow leading-snug">
+                    {s.title}
+                  </h3>
+                  <span className="inline-flex items-center gap-1.5 rounded-full
+                                   px-3 py-1 text-[11px] font-semibold uppercase tracking-wider
+                                   bg-white/95 text-brand-accentDark
+                                   transition-colors group-hover/card:bg-brand-accent group-hover/card:text-white">
+                    Read More
+                    <span aria-hidden>→</span>
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+          <div className="absolute inset-y-0 start-0 w-24 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 end-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none" />
         </div>
 
       </div>

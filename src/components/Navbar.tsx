@@ -108,7 +108,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-brand-deep pt-3 pb-3 px-3 lg:px-6">
       <div
-        className={`container-x mx-auto flex items-center gap-8 h-14 lg:h-16 px-4 lg:px-6
+        className={`container-x mx-auto flex items-center gap-8 h-16 lg:h-20 px-4 lg:px-6
                     rounded-full bg-lime-700
                     border border-lime-700 transition-shadow duration-200 ${
           scrolled ? 'shadow-md shadow-slate-900/10'
@@ -121,7 +121,7 @@ export default function Navbar() {
           <img
             src={assets.logo}
             alt="Yanabiya Group"
-            className="h-9 lg:h-10 w-auto object-contain group-hover:opacity-90 transition"
+            className="h-12 lg:h-14 w-auto object-contain group-hover:opacity-90 transition"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
         </Link>
