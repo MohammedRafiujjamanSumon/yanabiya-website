@@ -143,15 +143,15 @@ function CategoryMarquee({
 }) {
   const animClass = direction === 'left' ? 'animate-marquee' : 'animate-marquee-reverse'
   return (
-    <div className="mt-10">
-      <h2 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight">
+    <div className="mt-12">
+      <h2 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight text-center">
         {category.label}
       </h2>
-      <p className="mt-2 max-w-3xl text-slate-600 leading-relaxed text-sm">
+      <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-relaxed text-sm text-justify [text-align-last:center]">
         {category.intro}
       </p>
 
-      <div className="group relative overflow-hidden mt-5">
+      <div className="group relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-5">
         <div
           className={`flex ${animClass} marquee-pause gap-4 w-max py-2`}
           style={{ animationDuration: `${duration}s` }}
@@ -276,6 +276,78 @@ export default function AboutUs() {
                 opportunities, and develop a strong global business ecosystem that supports
                 innovation, collaboration, and economic progress.
               </p>
+            </div>
+          </div>
+
+          {/* Country flags marquee — global presence */}
+          <div className="mt-12">
+            <h2 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight text-center">
+              Our Global Presence
+            </h2>
+            <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-relaxed text-sm text-center">
+              Operating across four key international markets.
+            </p>
+            <div className="group relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-5">
+              <div
+                className="flex animate-marquee marquee-pause gap-3 w-max py-2"
+                style={{ animationDuration: '28s' }}
+              >
+                {Array.from({ length: 3 }).flatMap(() => [
+                  { flag: '🇴🇲', city: 'Muscat',  country: 'Oman' },
+                  { flag: '🇬🇧', city: 'London',  country: 'United Kingdom' },
+                  { flag: '🇺🇸', city: 'Austin',  country: 'USA' },
+                  { flag: '🇧🇩', city: 'Dhaka',   country: 'Bangladesh' },
+                ]).map((c, i) => (
+                  <div
+                    key={`${c.city}-${i}`}
+                    className="flex items-center gap-2 shrink-0 rounded-full bg-white border border-slate-200 px-4 py-2 shadow-sm"
+                  >
+                    <span className="text-lg leading-none">{c.flag}</span>
+                    <span className="text-sm font-medium text-slate-700 whitespace-nowrap">
+                      {c.city}, {c.country}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+              <div className="absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+            </div>
+          </div>
+
+          {/* Branches / business divisions marquee */}
+          <div className="mt-10">
+            <h2 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight text-center">
+              Our Branches
+            </h2>
+            <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-relaxed text-sm text-center">
+              The diversified business units operating under the Yanabiya Group ecosystem.
+            </p>
+            <div className="group relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-5">
+              <div
+                className="flex animate-marquee-reverse marquee-pause gap-3 w-max py-2"
+                style={{ animationDuration: '32s' }}
+              >
+                {Array.from({ length: 2 }).flatMap(() => [
+                  { icon: '💻', name: 'IT & Software' },
+                  { icon: '🌐', name: 'Export & Import' },
+                  { icon: '👔', name: 'Clothing & Accessories' },
+                  { icon: '🤝', name: 'Agents & Brokerage' },
+                  { icon: '🏢', name: 'Office Management' },
+                  { icon: '👥', name: 'Manpower' },
+                ]).map((b, i) => (
+                  <div
+                    key={`${b.name}-${i}`}
+                    className="flex items-center gap-2 shrink-0 rounded-full bg-brand-accent/10 border border-brand-accent/30 px-4 py-2"
+                  >
+                    <span className="text-base leading-none">{b.icon}</span>
+                    <span className="text-sm font-semibold text-brand-accentDark whitespace-nowrap">
+                      {b.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+              <div className="absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
             </div>
           </div>
 
