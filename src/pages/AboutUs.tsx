@@ -279,11 +279,14 @@ function CategoryMarquee({
   category,
   onOpen,
   duration,
+  direction,
 }: {
   category: Category
   onOpen: (id: string) => void
   duration: number
+  direction: 'left' | 'right'
 }) {
+  const animClass = direction === 'left' ? 'animate-marquee' : 'animate-marquee-reverse'
   return (
     <div className="mt-10">
       <h2 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight">
@@ -295,38 +298,31 @@ function CategoryMarquee({
 
       <div className="group relative overflow-hidden mt-5">
         <div
-          className="flex animate-marquee marquee-pause gap-4 w-max py-2"
+          className={`flex ${animClass} marquee-pause gap-4 w-max py-2`}
           style={{ animationDuration: `${duration}s` }}
         >
-          {[...category.items, ...category.items].map((item, i) => {
-            const Icon = item.icon
-            return (
+          {[...category.items, ...category.items].map((item, i) => (
+            <div
+              key={`${item.id}-${i}`}
+              className="shrink-0 w-64 h-32 rounded-xl bg-white border border-slate-200 shadow-sm
+                         flex flex-col items-center justify-center text-center p-4
+                         hover:-translate-y-1 hover:shadow-md transition-all"
+            >
+              <h3 className="font-serif font-bold text-sm md:text-[15px] text-slate-900 leading-snug">
+                {item.title}
+              </h3>
               <button
-                key={`${item.id}-${i}`}
                 type="button"
                 onClick={() => onOpen(item.id)}
-                className="group/card relative shrink-0 w-72 h-48 rounded-xl
-                           bg-white border border-slate-200 shadow-sm
-                           hover:-translate-y-1 hover:shadow-md transition-all
-                           text-left p-5 flex flex-col
-                           focus:outline-none focus:ring-2 focus:ring-brand-accent"
+                className="mt-3 inline-flex items-center gap-1.5 rounded-full
+                           bg-brand-accent text-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider
+                           hover:bg-brand-accentDark transition-colors
+                           focus:outline-none focus:ring-2 focus:ring-brand-accent/50"
               >
-                <div className="w-10 h-10 rounded-lg bg-brand-accent/10 text-brand-accentDark grid place-items-center mb-2">
-                  <Icon size={20} />
-                </div>
-                <h3 className="font-serif font-bold text-sm md:text-[15px] text-slate-900 leading-snug">
-                  {item.title}
-                </h3>
-                <p className="mt-1 text-xs text-slate-500 leading-relaxed line-clamp-3">
-                  {item.body}
-                </p>
-                <span className="mt-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-brand-accentDark
-                                 group-hover/card:text-brand-accent transition-colors">
-                  Read More <span aria-hidden>→</span>
-                </span>
+                Read More <span aria-hidden>→</span>
               </button>
-            )
-          })}
+            </div>
+          ))}
         </div>
         <div className="absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
         <div className="absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
@@ -425,6 +421,7 @@ export default function AboutUs() {
               category={c}
               onOpen={setOpenId}
               duration={45 + idx * 5}
+              direction={idx % 2 === 0 ? 'left' : 'right'}
             />
           ))}
         </div>
