@@ -101,16 +101,16 @@ export default function Navbar() {
   const baseLinkCls = (isActive: boolean) =>
     `relative text-[15px] font-medium whitespace-nowrap py-2
      transition-colors duration-200
-     hover:text-brand-accent focus:text-brand-accent ${
-      isActive ? 'text-brand-accent' : 'text-white'
+     hover:text-brand-accentDark focus:text-brand-accentDark ${
+      isActive ? 'text-brand-accentDark' : 'text-brand-ink'
     }`
 
   return (
-    <header className="sticky top-0 z-40 bg-brand-accent pt-3 pb-3 px-3 lg:px-6">
+    <header className="sticky top-0 z-40 bg-blue-600 pt-3 pb-3 px-3 lg:px-6">
       <div
         className={`container-x mx-auto flex items-center gap-8 h-14 lg:h-16 px-4 lg:px-6
-                    rounded-full bg-blue-600
-                    border border-blue-700 transition-shadow duration-200 ${
+                    rounded-full bg-brand-100
+                    border border-brand-200 transition-shadow duration-200 ${
           scrolled ? 'shadow-md shadow-slate-900/10'
                    : 'shadow-sm shadow-slate-900/5'
         }`}
@@ -324,17 +324,17 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — Language switcher (desktop) */}
-        <div className="shrink-0 text-white">
+        <div className="shrink-0 text-brand-ink">
           <LanguageSwitcher />
         </div>
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className="flex lg:hidden items-center ms-auto gap-1 text-white">
+        <div className="flex lg:hidden items-center ms-auto gap-1 text-brand-ink">
           <LanguageSwitcher />
           <button
             type="button"
-            className="text-white p-1"
+            className="text-brand-ink p-1"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
           >
