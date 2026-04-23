@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { ArrowRight, Handshake, ChevronDown, Volume2, VolumeX } from 'lucide-react'
+import { ArrowRight, Handshake, Volume2, VolumeX } from 'lucide-react'
 import { useRef, useState } from 'react'
 
 // YouTube embed used as full-bleed background.
@@ -81,12 +81,6 @@ export default function Hero() {
           <span className="hidden sm:inline">{muted ? 'Unmute' : 'Mute'}</span>
         </button>
 
-        {/* Scroll indicator */}
-        <a href="#about"
-           className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 hover:text-brand-accent transition flex flex-col items-center gap-1 z-10">
-          <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-          <ChevronDown size={20} className="animate-bounce" />
-        </a>
       </div>
     </section>
   )
