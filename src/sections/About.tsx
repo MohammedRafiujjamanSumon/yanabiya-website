@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
-import { assets } from '../data/assets'
 
 type PillarKey = 'mission' | 'vision' | 'goals'
 
@@ -82,9 +81,9 @@ export default function About() {
         {/* Section header — About Us */}
         <Eyebrow>{t('about.eyebrow')}</Eyebrow>
 
-        {/* TOP — Who We Are LEFT · Picture RIGHT */}
-        <div className="grid lg:grid-cols-12 gap-8 items-start mt-2">
-          <div className="lg:col-span-8 lg:order-1">
+        {/* TOP — Who We Are (full width) */}
+        <div className="mt-2">
+          <div>
             <h2 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight text-center">
               Who We Are
             </h2>
@@ -167,16 +166,6 @@ export default function About() {
                 innovation, collaboration, and economic progress.
               </p>
             </div>
-          </div>
-
-          <div className="lg:col-span-4 lg:order-2 relative max-w-[220px] mx-auto lg:mx-0 w-full">
-            <div className="absolute -top-3 -end-3 w-20 h-20 border-2 border-brand-accent rounded-md -z-0" />
-            <img
-              src={assets.office}
-              alt="Yanabiya Gulf office"
-              className="relative rounded-2xl w-full object-cover aspect-[4/5] shadow-2xl bg-slate-50"
-              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-            />
           </div>
         </div>
 
