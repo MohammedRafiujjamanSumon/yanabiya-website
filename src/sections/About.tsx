@@ -84,12 +84,8 @@ export default function About() {
         {/* TOP — Who We Are (left side) */}
         <div className="mt-2 grid lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <h2 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight text-center">
-              Who We Are
-            </h2>
-
-            {/* Country marquee — small cards with flag + city moving across */}
-            <div className="group relative overflow-hidden mt-4">
+            {/* Country marquee — small cards with flag + city moving across (above heading) */}
+            <div className="group relative overflow-hidden">
               <div
                 className="flex animate-marquee marquee-pause gap-3 w-max"
                 style={{ animationDuration: '30s' }}
@@ -120,7 +116,11 @@ export default function About() {
               <div className="absolute inset-y-0 end-0 w-12 bg-gradient-to-l from-white to-transparent pointer-events-none" />
             </div>
 
-            <div className="mt-5 space-y-4 text-slate-600 leading-relaxed text-justify">
+            <h2 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight mt-5">
+              Who We Are
+            </h2>
+
+            <div className="mt-4 space-y-4 text-slate-600 leading-relaxed text-justify">
               <p>
                 Yanabiya Group is a diversified global enterprise operating as a unified business
                 platform across multiple international markets. Originating from Al Khuwair, Muscat,
@@ -148,24 +148,17 @@ export default function About() {
                 approach enables us to support both enterprises and individuals through structured,
                 reliable, and scalable solutions.
               </p>
-              <p>
-                We also provide strategic advisory and automation-focused consulting to help
-                organizations improve efficiency, modernize operations, and adopt technology-driven
-                workflows. Our focus is always on practical impact, measurable results, and
-                sustainable performance improvement.
-              </p>
-              <p>
-                Yanabiya Group is committed to maintaining global standards of quality,
-                transparency, and professionalism across all operations. We believe in building
-                strong, long-term relationships by delivering consistent value and treating every
-                partner with trust and accountability.
-              </p>
-              <p>
-                With a growing international footprint, our mission is to connect markets, create
-                opportunities, and develop a strong global business ecosystem that supports
-                innovation, collaboration, and economic progress.
-              </p>
             </div>
+
+            <Link
+              to="/about-us"
+              className="mt-5 inline-flex items-center gap-2 rounded-full
+                         bg-brand-accent px-5 py-2 text-xs font-semibold uppercase tracking-wider
+                         text-white shadow-sm hover:bg-brand-accentDark hover:shadow-md transition-all"
+            >
+              Read More
+              <ArrowRight size={12} className="ltr-flip" />
+            </Link>
           </div>
         </div>
 
