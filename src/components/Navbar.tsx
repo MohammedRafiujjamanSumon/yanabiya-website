@@ -115,16 +115,16 @@ export default function Navbar() {
   }
 
   const baseLinkCls = (isActive: boolean) =>
-    `relative text-[15px] font-medium whitespace-nowrap py-1.5 px-3 rounded-full
+    `relative text-[15px] font-medium whitespace-nowrap py-1.5 px-4 rounded-full
      transition-colors duration-200
-     hover:bg-white hover:text-brand-ink ${
-      isActive ? 'text-white underline underline-offset-4 decoration-white/70' : 'text-white'
+     hover:bg-brand-ink hover:text-brand-accent ${
+      isActive ? 'text-brand-accent underline underline-offset-4 decoration-brand-accent/70' : 'text-white'
     }`
 
   return (
     <header className="sticky top-0 z-40 bg-brand-deep pt-3 pb-3 px-3 lg:px-6">
       <div
-        className={`container-x mx-auto flex items-center gap-8 h-14 lg:h-16 px-4 lg:px-6
+        className={`container-x mx-auto flex items-center gap-8 h-16 lg:h-20 px-5 lg:px-8
                     rounded-full bg-lime-700
                     border border-lime-700 transition-shadow duration-200 ${
           scrolled ? 'shadow-md shadow-slate-900/10'
@@ -137,7 +137,7 @@ export default function Navbar() {
           <img
             src={assets.logo}
             alt="Yanabiya Group"
-            className="h-12 lg:h-14 w-auto object-contain group-hover:opacity-90 transition"
+            className="h-14 lg:h-16 w-auto object-contain group-hover:opacity-90 transition"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
         </Link>
