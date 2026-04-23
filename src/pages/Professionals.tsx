@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import Section, { Eyebrow, H2 } from '../components/Section'
+import Section, { H2, Eyebrow } from '../components/Section'
 import { team } from '../data/leadership'
 
 export default function Professionals() {

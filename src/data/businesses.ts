@@ -1,6 +1,16 @@
 import {
   Code2, Ship, Shirt, Handshake, Briefcase, Users,
+  ShieldCheck, Factory, BarChart3, Palette, Cloud, Globe,
 } from 'lucide-react'
+
+export interface SubService {
+  slug: string
+  icon: typeof Code2
+  title: string
+  body: string
+  image: string
+  features: string[]
+}
 
 export interface Business {
   slug: string
@@ -14,6 +24,7 @@ export interface Business {
   /** Direct MP4 URL that autoplays (muted, looped) on the sector's
    *  detail page. Pexels CDN URLs are used by default. */
   videoUrl?: string
+  subServices?: SubService[]
 }
 
 export const businesses: Business[] = [
@@ -45,6 +56,120 @@ export const businesses: Business[] = [
       'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
     videoUrl:
       'https://videos.pexels.com/video-files/8084618/8084618-uhd_2560_1440_25fps.mp4',
+    subServices: [
+      {
+        slug: 'custom-software-development',
+        icon: Code2,
+        title: 'Custom Software Development',
+        body: 'Bespoke software engineered around your exact workflows — from internal tools and ERPs to customer-facing SaaS products.',
+        image:
+          'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80',
+        features: [
+          'Requirements analysis & solution architecture',
+          'Custom web & desktop application development',
+          'ERP, CRM & workflow automation systems',
+          'SaaS product engineering',
+          'API design & third-party integrations',
+          'Long-term maintenance & support',
+        ],
+      },
+      {
+        slug: 'cyber-security',
+        icon: ShieldCheck,
+        title: 'Cyber Security & Ethical Hacking',
+        body: 'End-to-end security assessments, penetration testing, and system hardening to protect your business from evolving threats.',
+        image:
+          'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
+        features: [
+          'Vulnerability assessments & penetration testing',
+          'Network & application security audits',
+          'Security operations & incident response',
+          'Ethical hacking & red-team engagements',
+          'Compliance consulting (ISO 27001, GDPR, PCI-DSS)',
+          'Security awareness training',
+        ],
+      },
+      {
+        slug: 'industries-services',
+        icon: Factory,
+        title: 'Industries Services',
+        body: 'Industry-specific digital solutions for manufacturing, retail, logistics, healthcare, finance, and the public sector.',
+        image:
+          'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+        features: [
+          'Manufacturing & industrial automation software',
+          'Retail & e-commerce platforms',
+          'Logistics & supply-chain systems',
+          'Healthcare & hospital management tools',
+          'Fintech & digital banking solutions',
+          'Government & public-sector digitalization',
+        ],
+      },
+      {
+        slug: 'data-analytics',
+        icon: BarChart3,
+        title: 'Data Analytics',
+        body: 'Turn raw data into business intelligence with modern data platforms, dashboards, and predictive analytics.',
+        image:
+          'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+        features: [
+          'Data warehousing & ETL pipelines',
+          'Business intelligence dashboards (Power BI, Tableau, Looker)',
+          'Predictive analytics & machine-learning models',
+          'Real-time data streaming & monitoring',
+          'Big-data engineering on cloud platforms',
+          'KPI frameworks & reporting automation',
+        ],
+      },
+      {
+        slug: 'ui-ux-designing',
+        icon: Palette,
+        title: 'UI/UX Designing',
+        body: 'Research-driven interface design that blends clarity, accessibility, and brand identity into delightful digital experiences.',
+        image:
+          'https://images.unsplash.com/photo-1561070791-2526d30994b8?auto=format&fit=crop&w=800&q=80',
+        features: [
+          'User research & journey mapping',
+          'Wireframing & interactive prototyping',
+          'Responsive web & mobile app design',
+          'Design systems & component libraries',
+          'Accessibility (WCAG) & usability testing',
+          'Brand-aligned visual design',
+        ],
+      },
+      {
+        slug: 'aws-services',
+        icon: Cloud,
+        title: 'AWS Services',
+        body: 'Certified AWS architecture, migration, and managed cloud operations built for scale, resilience, and cost efficiency.',
+        image:
+          'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+        features: [
+          'Cloud architecture & well-architected reviews',
+          'Lift-and-shift & re-platform migrations',
+          'Serverless (Lambda, API Gateway, DynamoDB) builds',
+          'Container orchestration (ECS, EKS, Fargate)',
+          'DevOps, CI/CD & infrastructure-as-code',
+          'Cost optimization & 24×7 managed cloud ops',
+        ],
+      },
+      {
+        slug: 'web-design-development',
+        icon: Globe,
+        title: 'Web Design & Development',
+        body: 'High-performance corporate websites, e-commerce platforms, and web applications built with modern frameworks.',
+        image:
+          'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80',
+        features: [
+          'Corporate websites & landing pages',
+          'E-commerce stores (Shopify, WooCommerce, custom)',
+          'Progressive web apps (PWAs)',
+          'Headless CMS integrations',
+          'SEO, performance & Core Web Vitals tuning',
+          'Ongoing web maintenance & hosting support',
+        ],
+      },
+    ],
   },
   {
     slug: 'export-import',

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { CheckCircle2, Send } from 'lucide-react'
+import { CheckCircle2, Send, ArrowRight } from 'lucide-react'
 import Section from '../components/Section'
-import { businesses } from '../data/businesses'
+import { businesses, type SubService } from '../data/businesses'
 
 const DEFAULT_VIDEO =
   'https://videos.pexels.com/video-files/8084618/8084618-uhd_2560_1440_25fps.mp4'
@@ -83,11 +83,137 @@ export default function BusinessDetail() {
               </div>
             )}
 
+            {business.subServices && business.subServices.length > 0 && (
+              <SubServicesSection subServices={business.subServices} />
+            )}
+
             <ServiceForm sectorTitle={business.title} features={business.features} />
           </div>
         </div>
       </div>
     </Section>
+  )
+}
+
+function SubServicesSection({ subServices }: { subServices: SubService[] }) {
+  const [active, setActive] = useState<SubService | null>(null)
+
+  return (
+    <div className="mt-20 text-left">
+      <div className="text-center mb-10">
+        <h3 className="text-brand-accent uppercase tracking-[0.22em] text-xs font-bold mb-3">
+          Our Core Services
+        </h3>
+        <h2 className="font-serif text-3xl md:text-4xl text-white leading-tight">
+          Explore Our IT & Software Offerings
+        </h2>
+        <div className="w-16 h-0.5 bg-brand-accent rounded-full mx-auto mt-4" />
+      </div>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {subServices.map((s) => (
+          <button
+            key={s.slug}
+            type="button"
+            onClick={() => setActive(s)}
+            className="group relative rounded-2xl overflow-hidden shadow-lg h-72
+                       hover:-translate-y-1 transition-transform text-left
+                       focus:outline-none focus:ring-2 focus:ring-brand-accent block"
+          >
+            <img
+              src={s.image}
+              alt={s.title}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover
+                         transition-transform duration-500 group-hover:scale-105"
+              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" />
+            <div className="absolute top-4 right-4 w-11 h-11 rounded-full
+                            bg-white/90 text-blue-600 grid place-items-center shadow
+                            ring-2 ring-white/70">
+              <s.icon size={20} />
+            </div>
+            <div className="absolute inset-x-0 bottom-0 p-5 flex flex-col items-start gap-3">
+              <h3 className="text-white text-lg font-semibold leading-tight drop-shadow">
+                {s.title}
+              </h3>
+              <p className="text-slate-200 text-xs leading-relaxed line-clamp-2">
+                {s.body}
+              </p>
+              <span className="inline-flex items-center gap-2 rounded-full
+                               px-4 py-1.5 text-xs font-semibold uppercase tracking-wider
+                               bg-white/95 text-blue-700
+                               transition-colors group-hover:bg-brand-accent group-hover:text-white">
+                Read More
+                <ArrowRight size={12} />
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {active && <SubServiceModal sub={active} onClose={() => setActive(null)} />}
+    </div>
+  )
+}
+
+function SubServiceModal({ sub, onClose }: { sub: SubService; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <div
+        className="relative bg-brand-ink border border-brand-accent/30 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white grid place-items-center text-xl"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
+          <img src={sub.image} alt={sub.title} className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-ink via-brand-ink/60 to-transparent" />
+          <div className="absolute bottom-4 left-5 right-5 flex items-center gap-3">
+            <div className="w-12 h-12 rounded-full bg-blue-100 text-blue-600 grid place-items-center ring-2 ring-white/20 shrink-0">
+              <sub.icon size={22} />
+            </div>
+            <h3 className="font-serif text-2xl md:text-3xl text-white leading-tight">
+              {sub.title}
+            </h3>
+          </div>
+        </div>
+        <div className="p-6 md:p-8">
+          <p className="text-slate-200 leading-relaxed mb-6">{sub.body}</p>
+          <h4 className="text-brand-accent uppercase tracking-[0.22em] text-xs font-bold mb-4">
+            What We Offer
+          </h4>
+          <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+            {sub.features.map((f) => (
+              <li key={f} className="flex items-start gap-2 text-sm text-slate-200">
+                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" />
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
   )
 }
 
