@@ -89,46 +89,85 @@ export default function About() {
             <h2 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight text-center">
               Who We Are
             </h2>
+
+            {/* Country marquee — small cards with flag + city moving across */}
+            <div className="group relative overflow-hidden mt-4">
+              <div
+                className="flex animate-marquee marquee-pause gap-3 w-max"
+                style={{ animationDuration: '30s' }}
+              >
+                {[
+                  { flag: '🇴🇲', city: 'Muscat',  country: 'Oman' },
+                  { flag: '🇬🇧', city: 'London',  country: 'United Kingdom' },
+                  { flag: '🇺🇸', city: 'Austin',  country: 'USA' },
+                  { flag: '🇧🇩', city: 'Dhaka',   country: 'Bangladesh' },
+                ].concat([
+                  { flag: '🇴🇲', city: 'Muscat',  country: 'Oman' },
+                  { flag: '🇬🇧', city: 'London',  country: 'United Kingdom' },
+                  { flag: '🇺🇸', city: 'Austin',  country: 'USA' },
+                  { flag: '🇧🇩', city: 'Dhaka',   country: 'Bangladesh' },
+                ]).map((c, i) => (
+                  <div
+                    key={`${c.city}-${i}`}
+                    className="flex items-center gap-2 shrink-0 rounded-full bg-white border border-slate-200 px-3 py-1.5 shadow-sm"
+                  >
+                    <span className="text-base leading-none">{c.flag}</span>
+                    <span className="text-xs font-medium text-slate-700 whitespace-nowrap">
+                      {c.city}, {c.country}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="absolute inset-y-0 start-0 w-12 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+              <div className="absolute inset-y-0 end-0 w-12 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+            </div>
+
             <div className="mt-5 space-y-4 text-slate-600 leading-relaxed text-justify">
               <p>
-                Yanabiya Group is a diversified global enterprise focused on building, scaling, and
-                operating high-impact ventures across multiple industries. With a strategic presence
-                across key international markets, we deliver integrated solutions spanning technology,
-                digital services, global trade, and strategic advisory.
+                Yanabiya Group is a diversified global enterprise operating as a unified business
+                platform across multiple international markets. Originating from Al Khuwair, Muscat,
+                Oman, we have expanded our presence into the United Kingdom, United States, and
+                Bangladesh, building a connected global structure that supports scalable and
+                sustainable growth.
               </p>
               <p>
-                At our core, we are not just a service provider — we are a business builder. We
-                identify opportunities, develop ideas into structured ventures, and scale them into
-                sustainable operations. Our approach is centered on creating long-term value rather
-                than short-term outcomes. Each initiative we take is carefully planned, executed, and
-                continuously improved to ensure consistent performance and growth.
+                We operate not as a single-sector company, but as a multi-business global platform
+                where different ventures are integrated under one ecosystem. Our platform enables us
+                to build, manage, and scale multiple businesses simultaneously, ensuring operational
+                synergy, efficiency, and long-term value creation.
               </p>
               {showMore && (
                 <>
                   <p>
-                    Our global perspective allows us to understand different markets, cultures, and
-                    business environments. By operating across regions, we are able to connect
-                    opportunities, bridge gaps, and bring international standards into every project we
-                    undertake. This enables us to support businesses not only locally but also in
-                    expanding beyond their existing boundaries.
+                    Across our global network, we are involved in several core business operations
+                    including technology-driven solutions, international trade facilitation, digital
+                    services, infrastructure support, manpower deployment, and business management
+                    services. Each operation functions independently where required, yet remains
+                    strategically connected under the same unified group vision.
                   </p>
                   <p>
-                    We believe in building an ecosystem rather than isolated services. Every part of
-                    Yanabiya Group is designed to complement the other — technology supports trade,
-                    consulting strengthens operations, and digital services enhance scalability. This
-                    interconnected structure allows us to deliver complete solutions instead of
-                    fragmented services.
+                    Our strength lies in this integrated model — where innovation, execution, and
+                    operational capability come together. We design systems that allow businesses to
+                    grow faster, operate smarter, and expand beyond geographical boundaries. This
+                    approach enables us to support both enterprises and individuals through structured,
+                    reliable, and scalable solutions.
                   </p>
                   <p>
-                    Our team and partners come from diverse professional backgrounds, including
-                    corporate, agency, and entrepreneurial environments. This diversity gives us the
-                    flexibility to think strategically, act practically, and adapt quickly in a
-                    fast-changing business world.
+                    We also provide strategic advisory and automation-focused consulting to help
+                    organizations improve efficiency, modernize operations, and adopt technology-driven
+                    workflows. Our focus is always on practical impact, measurable results, and
+                    sustainable performance improvement.
                   </p>
                   <p>
-                    Above all, Yanabiya Group is driven by a clear purpose: to create impactful
-                    businesses, empower partners, and contribute to a more connected and efficient
-                    global economy.
+                    Yanabiya Group is committed to maintaining global standards of quality,
+                    transparency, and professionalism across all operations. We believe in building
+                    strong, long-term relationships by delivering consistent value and treating every
+                    partner with trust and accountability.
+                  </p>
+                  <p>
+                    With a growing international footprint, our mission is to connect markets, create
+                    opportunities, and develop a strong global business ecosystem that supports
+                    innovation, collaboration, and economic progress.
                   </p>
                 </>
               )}
