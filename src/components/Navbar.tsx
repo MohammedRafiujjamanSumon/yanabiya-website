@@ -56,15 +56,9 @@ export default function Navbar() {
 
   const navGroups: NavGroup[] = [
     { label: t('nav.home'),         id: 'home'         },
-    {
-      label: t('nav.about'),
-      parentSection: 'about',
-      items: [
-        { id: 'solutions', label: t('nav.solutions') },
-      ],
-    },
-    { label: t('nav.businesses'),   id: 'businesses'   },
+    { label: t('nav.about'),        id: 'about'        },
     { label: t('nav.global'),       id: 'global'       },
+    { label: t('nav.businesses'),   id: 'businesses'   },
     {
       label: 'Trusted Network',
       parentSection: 'partnerships',
@@ -72,6 +66,16 @@ export default function Navbar() {
         { id: 'sponsors', label: 'Our Membership'   },
         { id: 'partners', label: 'Our Partners'     },
         { id: 'clients',  label: 'Valuable Clients' },
+      ],
+    },
+    {
+      label: 'Community',
+      parentSection: 'community',
+      items: [
+        { id: 'blog',               label: 'Blog',               href: '/community/blog'               },
+        { id: 'sustainable-growth', label: 'Sustainable Growth', href: '/community/sustainable-growth' },
+        { id: 'community-care',     label: 'Community Care',     href: '/community/community-care'     },
+        { id: 'careers',            label: t('nav.careers'),     href: '/community/careers'            },
       ],
     },
     {
@@ -86,13 +90,10 @@ export default function Navbar() {
           ],
         },
         {
-          label: 'Community',
-          parentSection: 'community',
+          label: 'Solutions',
+          parentSection: 'solutions',
           items: [
-            { id: 'blog',               label: 'Blog',               href: '/community/blog'               },
-            { id: 'sustainable-growth', label: 'Sustainable Growth', href: '/community/sustainable-growth' },
-            { id: 'community-care',     label: 'Community Care',     href: '/community/community-care'     },
-            { id: 'careers',            label: t('nav.careers'),     href: '/community/careers'            },
+            { id: 'solutions', label: 'Our Solutions' },
           ],
         },
       ],
@@ -120,7 +121,7 @@ export default function Navbar() {
   }
 
   const baseLinkCls = (isActive: boolean) =>
-    `relative text-[15px] font-medium whitespace-nowrap py-1.5 px-4 rounded-full
+    `relative text-base font-medium whitespace-nowrap py-1.5 px-4 rounded-full
      transition-colors duration-200
      hover:bg-white hover:text-brand-deep ${
       isActive ? 'text-white underline underline-offset-4 decoration-white/70' : 'text-white'
@@ -129,7 +130,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-brand-deep pt-3 pb-3 px-3 lg:px-6">
       <div
-        className={`container-x mx-auto flex items-center gap-8 h-16 lg:h-20 px-5 lg:px-8
+        className={`mx-auto flex items-center gap-6 h-20 lg:h-24 px-5 lg:px-8 w-full lg:w-[80%] max-w-[1500px]
                     rounded-full bg-lime-700
                     border border-lime-700 transition-shadow duration-200 ${
           scrolled ? 'shadow-md shadow-slate-900/10'
@@ -137,18 +138,18 @@ export default function Navbar() {
         }`}
       >
 
-        {/* LEFT — LOGO */}
-        <Link to="/#home" className="flex items-center shrink-0 group">
+        {/* LEFT (mobile) / RIGHT (desktop) — LOGO */}
+        <Link to="/#home" className="order-1 lg:order-2 lg:ms-auto flex items-center shrink-0 group">
           <img
             src={assets.logo}
             alt="Yanabiya Group"
-            className="h-14 lg:h-16 w-auto object-contain group-hover:opacity-90 transition"
+            className="h-16 lg:h-20 w-auto object-contain group-hover:opacity-90 transition"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
         </Link>
 
-        {/* NAV + CTA — clustered on the right */}
-        <div className="hidden lg:flex ms-auto ps-20 xl:ps-32 items-center gap-4 xl:gap-5">
+        {/* NAV + CTA — left on desktop */}
+        <div className="hidden lg:flex order-1 items-center gap-4 xl:gap-5">
         <nav className="flex items-center gap-3 xl:gap-4 min-w-0">
           {navGroups.map((g) => {
             if (!g.items && !g.subGroups) {
@@ -372,7 +373,7 @@ export default function Navbar() {
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className="flex lg:hidden items-center ms-auto gap-1 text-white">
+        <div className="flex lg:hidden order-2 items-center ms-auto gap-1 text-white">
           <LanguageSwitcher />
           <button
             type="button"

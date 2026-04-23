@@ -6,7 +6,7 @@ import { contact } from '../data/contact'
 export default function TopBar() {
   const { t } = useTranslation()
   return (
-    <div className="bg-brand-deep text-sm text-white">
+    <div className="bg-brand-deep text-xs text-white">
       {/* Row — phone + email left, tagline middle, Download PDF + Contact Us right */}
       <div className="container-x grid grid-cols-1 md:grid-cols-3 md:items-center gap-1.5 md:gap-4 py-2">
         <div className="flex items-center justify-center md:justify-start gap-2 whitespace-nowrap">
@@ -26,7 +26,9 @@ export default function TopBar() {
           </a>
         </div>
         <div className="text-center tracking-wide text-white/90 font-medium whitespace-nowrap">
-          {t('topbar.tagline')}
+          <span className="inline-flex items-center px-3 py-1 rounded-full hover:bg-white hover:text-brand-deep transition cursor-default">
+            {t('topbar.tagline')}
+          </span>
         </div>
         <div className="flex items-center justify-center md:justify-end gap-2 whitespace-nowrap">
           <a

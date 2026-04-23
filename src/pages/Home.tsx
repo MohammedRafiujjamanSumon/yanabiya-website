@@ -24,12 +24,12 @@ export default function Home() {
     <>
       <Hero />
       <About />
-      <Businesses />
       <Global />
-      <Solutions />
+      <Businesses />
       <Partnerships />
-      <Leadership />
       <Community />
+      <Leadership />
+      <Solutions />
       <Contact />
     </>
   )
