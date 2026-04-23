@@ -128,7 +128,7 @@ export default function Navbar() {
 
         {/* NAV + CTA — clustered on the right */}
         <div className="hidden lg:flex ms-auto items-center gap-6 xl:gap-8">
-        <nav className="flex items-center gap-0 min-w-0">
+        <nav className="flex items-center gap-5 xl:gap-6 min-w-0">
           {navGroups.map((g) => {
             if (!g.items && !g.subGroups) {
               const isActive = !!g.id && active === g.id
