@@ -43,17 +43,17 @@ export default function BusinessDetail() {
             <ArrowLeft size={14} />
             Back to Service List
           </Link>
-          <div className="flex items-center gap-2 text-[11px] md:text-xs text-slate-400 ml-auto">
+          <div className="flex flex-wrap items-center gap-2 text-[11px] md:text-xs text-slate-400 ml-auto">
             {prevBusiness && (
               <Link
                 to={`/business/${prevBusiness.slug}`}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full
+                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full
                            border border-white/15 text-slate-200 hover:border-brand-accent/60 hover:text-brand-accent
                            transition-colors"
                 title={prevBusiness.title}
               >
                 <ArrowLeft size={12} />
-                <span className="hidden sm:inline">Previous:</span>
+                <span>Previous:</span>
                 <span className="font-semibold normal-case tracking-normal">
                   {prevBusiness.title}
                 </span>
@@ -62,12 +62,12 @@ export default function BusinessDetail() {
             {nextBusiness && (
               <Link
                 to={`/business/${nextBusiness.slug}`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full
+                className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full
                            bg-brand-accent text-brand-ink font-semibold uppercase tracking-[0.14em]
                            hover:bg-white transition-colors"
                 title={nextBusiness.title}
               >
-                <span className="hidden sm:inline">Next:</span>
+                <span>Next:</span>
                 <span className="font-bold normal-case tracking-normal">
                   {nextBusiness.title}
                 </span>
@@ -163,13 +163,13 @@ function SubServicesSection({ subServices }: { subServices: SubService[] }) {
         <div className="w-16 h-0.5 bg-brand-accent rounded-full mx-auto mt-4" />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-7">
         {subServices.map((s) => {
           const isFlipped = flippedSlug === s.slug
           return (
             <div key={s.slug}>
               <div
-                className={`flip-card h-52 ${isFlipped ? 'is-flipped' : ''}`}
+                className={`flip-card h-44 sm:h-48 lg:h-52 ${isFlipped ? 'is-flipped' : ''}`}
                 onTouchStart={(e) => {
                   e.stopPropagation()
                   setFlippedSlug((prev) => (prev === s.slug ? null : s.slug))
@@ -185,11 +185,11 @@ function SubServicesSection({ subServices }: { subServices: SubService[] }) {
                       onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/85" />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 gap-3">
-                      <div className="w-11 h-11 rounded-full bg-white/95 text-blue-600 grid place-items-center ring-2 ring-white/40 shadow-lg">
-                        <s.icon size={20} />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-3 sm:p-4 gap-2 sm:gap-3">
+                      <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 text-blue-600 grid place-items-center ring-2 ring-white/40 shadow-lg">
+                        <s.icon size={18} />
                       </div>
-                      <h3 className="text-white text-base font-semibold leading-tight drop-shadow">
+                      <h3 className="text-white text-sm sm:text-base font-semibold leading-tight drop-shadow">
                         {s.title}
                       </h3>
                     </div>

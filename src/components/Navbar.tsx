@@ -26,6 +26,7 @@ export default function Navbar() {
   const { scrolled } = useScrollHeader(8, 80)
   const [open, setOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
+  const [mobileOpenGroup, setMobileOpenGroup] = useState<string | null>(null)
   const [active, setActive] = useState('home')
   const closeTimer = useRef<number | undefined>(undefined)
 
@@ -54,6 +55,7 @@ export default function Navbar() {
     },
     {
       label: 'Community',
+      parentSection: 'community',
       items: [
         { id: 'blog',               label: 'Blog',               href: '/community/blog'               },
         { id: 'sustainable-growth', label: 'Sustainable Growth', href: '/community/sustainable-growth' },
@@ -92,15 +94,6 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 bg-brand-deep pt-3 pb-3 px-3 lg:px-6">
-      {/* Mobile-only compact welcome strip inside the navbar */}
-      <div className="md:hidden text-center pb-2">
-        <p className="italic text-[10px] text-brand-accent tracking-wide">
-          {t('topbar.tagline')}
-        </p>
-        <h1 className="font-serif font-bold text-sm text-white leading-tight mt-0.5">
-          {t('hero.welcome')}
-        </h1>
-      </div>
       <div
         className={`container-x mx-auto flex items-center gap-8 h-14 lg:h-16 px-4 lg:px-6
                     rounded-full bg-black/90 backdrop-blur-md
@@ -278,22 +271,108 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — mirrors desktop nav: all groups + dropdown items as accordions */}
       {open && (
-        <div className="lg:hidden border-t border-slate-200 bg-white">
-          <div className="container-x py-2 flex flex-col">
-            {sections.filter((s) => s.id !== 'contact').map((l) => (
+        <div className="lg:hidden mt-3 rounded-2xl bg-black/95 backdrop-blur-md ring-1 ring-white/10 shadow-2xl shadow-black/40 overflow-hidden">
+          <div className="px-3 py-2 flex flex-col divide-y divide-white/5">
+            {navGroups.map((g) => {
+              if (!g.items) {
+                const isActive = !!g.id && active === g.id
+                return (
+                  <Link
+                    key={g.label}
+                    to={`/#${g.id}`}
+                    onClick={() => setOpen(false)}
+                    className={`py-3 px-2 text-[15px] font-medium transition ${
+                      isActive ? 'text-brand-accent' : 'text-white hover:text-brand-accent'
+                    }`}
+                  >
+                    {g.label}
+                  </Link>
+                )
+              }
+              const isOpenGroup = mobileOpenGroup === g.label
+              const groupActive =
+                (g.parentSection !== undefined && active === g.parentSection) ||
+                g.items.some((i) => i.id === active)
+              return (
+                <div key={g.label} className="py-1">
+                  <div className="flex items-stretch">
+                    {g.parentSection !== undefined ? (
+                      <Link
+                        to={`/#${g.parentSection}`}
+                        onClick={() => setOpen(false)}
+                        className={`flex-1 py-3 px-2 text-[15px] font-medium transition ${
+                          groupActive ? 'text-brand-accent' : 'text-white hover:text-brand-accent'
+                        }`}
+                      >
+                        {g.label}
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setMobileOpenGroup(isOpenGroup ? null : g.label)}
+                        className={`flex-1 py-3 px-2 text-left text-[15px] font-medium transition ${
+                          groupActive ? 'text-brand-accent' : 'text-white hover:text-brand-accent'
+                        }`}
+                      >
+                        {g.label}
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setMobileOpenGroup(isOpenGroup ? null : g.label)}
+                      aria-label={`Toggle ${g.label} submenu`}
+                      aria-expanded={isOpenGroup}
+                      className="px-3 text-white/70 hover:text-brand-accent transition"
+                    >
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform duration-200 ${isOpenGroup ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                  </div>
+                  {isOpenGroup && (
+                    <div className="pb-2 pl-3 flex flex-col gap-0.5">
+                      {g.items.map((item) => {
+                        const rawTarget = item.href ?? `#${item.id}`
+                        const isRoute = rawTarget.startsWith('/')
+                        const target = isRoute ? rawTarget : `/${rawTarget}`
+                        const isActive = active === item.id
+                        return (
+                          <Link
+                            key={item.id}
+                            to={target}
+                            onClick={() => { setOpen(false); setMobileOpenGroup(null) }}
+                            className={`flex items-center gap-2 py-2.5 px-3 rounded-lg text-[14px] transition ${
+                              isActive
+                                ? 'bg-brand-accent/15 text-brand-accent'
+                                : 'text-white/85 hover:bg-brand-accent/10 hover:text-brand-accent'
+                            }`}
+                          >
+                            <ArrowRight size={12} className="ltr-flip opacity-60" />
+                            {item.label}
+                          </Link>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+
+            {/* Get In Touch CTA inside mobile drawer */}
+            <div className="pt-3 pb-2">
               <Link
-                key={l.id}
-                to={`/#${l.id}`}
+                to="/#contact"
                 onClick={() => setOpen(false)}
-                className={`py-3 text-[15px] font-medium border-b border-slate-100 transition ${
-                  active === l.id ? 'text-brand-accent' : 'text-slate-900'
-                }`}
+                className="flex items-center justify-center gap-2 px-5 py-3 rounded-full
+                           bg-brand-accent text-brand-ink text-sm font-semibold
+                           hover:bg-brand-accentDark hover:text-white transition-all shadow-sm"
               >
-                {t(l.tKey)}
+                Get In Touch <ArrowRight size={14} className="ltr-flip" />
               </Link>
-            ))}
+            </div>
           </div>
         </div>
       )}

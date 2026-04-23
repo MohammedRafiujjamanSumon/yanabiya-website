@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { assets } from '../data/assets'
@@ -54,6 +55,7 @@ const pillars: { key: PillarKey; title: string; teaser: string; image: string; b
 export default function About() {
   const { t } = useTranslation()
   const [openPillar, setOpenPillar] = useState<PillarKey | null>(null)
+  const [showMore, setShowMore] = useState(false)
 
   useEffect(() => {
     if (!openPillar) return
@@ -83,8 +85,8 @@ export default function About() {
 
         {/* TOP — Picture LEFT · Who We Are RIGHT (text aligned to picture top) */}
         <div className="grid lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-5 relative">
-            <div className="absolute -top-4 -start-4 w-32 h-32 border-2 border-brand-accent rounded-md -z-0" />
+          <div className="lg:col-span-4 relative max-w-xs mx-auto lg:mx-0 w-full">
+            <div className="absolute -top-3 -start-3 w-24 h-24 border-2 border-brand-accent rounded-md -z-0" />
             <img
               src={assets.office}
               alt="Yanabiya Gulf office"
@@ -93,7 +95,7 @@ export default function About() {
             />
           </div>
 
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-8">
             <h2 className="font-serif text-lg md:text-xl text-slate-900 leading-tight text-center">
               Who We Are
             </h2>
@@ -111,31 +113,50 @@ export default function About() {
                 trade. By combining these capabilities, we create efficient, scalable, and
                 sustainable business models.
               </p>
-              <p>
-                Yanabiya Group follows a collaborative and forward-thinking approach. We work with
-                partners across different markets, bringing together professional expertise from
-                corporate, agency, and entrepreneurial environments. This allows us to adapt
-                quickly, identify opportunities, and deliver value-driven solutions.
-              </p>
-              <p>
-                Beyond business growth, we are committed to sustainability and community support.
-                We believe strong businesses should create positive impact. Our ambition is to
-                build a trusted brand that connects innovation, diversified business excellence,
-                and long-term value creation.
-              </p>
+              {showMore && (
+                <>
+                  <p>
+                    Yanabiya Group follows a collaborative and forward-thinking approach. We work with
+                    partners across different markets, bringing together professional expertise from
+                    corporate, agency, and entrepreneurial environments. This allows us to adapt
+                    quickly, identify opportunities, and deliver value-driven solutions.
+                  </p>
+                  <p>
+                    Beyond business growth, we are committed to sustainability and community support.
+                    We believe strong businesses should create positive impact. Our ambition is to
+                    build a trusted brand that connects innovation, diversified business excellence,
+                    and long-term value creation.
+                  </p>
+                </>
+              )}
             </div>
+            <button
+              type="button"
+              onClick={() => setShowMore((v) => !v)}
+              className="mt-4 inline-flex items-center gap-2 rounded-full
+                         bg-brand-accent px-4 py-2 text-xs font-semibold uppercase tracking-wider
+                         text-white shadow-sm hover:bg-brand-accentDark hover:shadow-md transition-all
+                         focus:outline-none focus:ring-2 focus:ring-brand-accent/50"
+              aria-expanded={showMore ? 'true' : 'false'}
+            >
+              {showMore ? 'Show Less' : 'Read More'}
+              <ArrowRight
+                size={12}
+                className={`ltr-flip transition-transform duration-200 ${showMore ? 'rotate-90' : ''}`}
+              />
+            </button>
           </div>
         </div>
 
-        {/* Mission · Vision · Goals — collapsed cards with Learn More */}
-        <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-5 mt-12">
+        {/* Mission · Vision · Goals — compact cards */}
+        <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-4 mt-10">
           {pillars.map((p) => (
             <button
               key={p.key}
               type="button"
               onClick={() => setOpenPillar(p.key)}
-              className="group relative rounded-2xl overflow-hidden shadow-lg
-                         h-80 hover:-translate-y-1 transition-transform text-left
+              className="group relative rounded-xl overflow-hidden shadow-md
+                         h-44 hover:-translate-y-0.5 transition-transform text-left
                          focus:outline-none focus:ring-2 focus:ring-brand-accent"
             >
               <img
@@ -147,13 +168,13 @@ export default function About() {
                 onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
-              <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col items-start gap-3">
-                <h3 className="font-serif uppercase tracking-[0.18em] text-white
-                               text-lg md:text-xl font-bold drop-shadow">
+              <div className="absolute inset-x-0 bottom-0 p-3.5 flex flex-col items-start gap-2">
+                <h3 className="font-serif uppercase tracking-[0.16em] text-white
+                               text-sm md:text-base font-bold drop-shadow">
                   {p.title}
                 </h3>
-                <span className="inline-flex items-center gap-2 rounded-full
-                                 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider
+                <span className="inline-flex items-center gap-1.5 rounded-full
+                                 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider
                                  bg-white/95 text-brand-accentDark
                                  transition-colors group-hover:bg-brand-accent group-hover:text-white">
                   Read More
@@ -178,41 +199,40 @@ export default function About() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-xl max-h-[78vh] overflow-y-auto
-                       bg-white rounded-2xl shadow-2xl p-6 md:p-7"
+            className="relative w-full max-w-md max-h-[68vh] overflow-y-auto
+                       bg-white rounded-xl shadow-2xl p-4 md:p-5"
           >
             <button
               type="button"
               onClick={() => setOpenPillar(null)}
               aria-label="Close"
-              className="absolute top-3 right-3 w-8 h-8 rounded-full
+              className="absolute top-2 right-2 w-7 h-7 rounded-full
                          flex items-center justify-center text-slate-500
                          hover:bg-slate-100 hover:text-slate-900 transition-colors"
             >
-              <span className="text-lg leading-none">×</span>
+              <span className="text-base leading-none">×</span>
             </button>
-            <h3 className="font-serif uppercase tracking-[0.18em] text-lg md:text-xl
+            <h3 className="font-serif uppercase tracking-[0.16em] text-base md:text-lg
                            font-bold text-brand-accentDark text-center">
               {active.title}
             </h3>
-            <div className="mt-2 mx-auto w-14 h-[2px] bg-brand-accent rounded-full" />
-            <div className="mt-5 space-y-3 text-sm md:text-[15px] text-slate-600 leading-relaxed text-justify">
+            <div className="mt-1.5 mx-auto w-10 h-[2px] bg-brand-accent rounded-full" />
+            <div className="mt-3 space-y-2.5 text-[12.5px] md:text-[13px] text-slate-600 leading-relaxed text-justify">
               {active.body.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
             </div>
 
-            <div className="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between gap-3">
+            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
               {prevPillar ? (
                 <button
                   type="button"
                   onClick={() => setOpenPillar(prevPillar.key)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full
-                             border border-slate-200 text-slate-600 text-xs font-semibold
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full
+                             border border-slate-200 text-slate-600 text-[10.5px] font-semibold
                              hover:border-brand-accent hover:text-brand-accent transition-colors"
                 >
-                  <ArrowLeft size={12} />
-                  <span className="uppercase tracking-[0.14em]">Previous:</span>
+                  <ArrowLeft size={11} />
                   <span className="font-bold normal-case tracking-normal">{prevPillar.title}</span>
                 </button>
               ) : (
@@ -222,13 +242,12 @@ export default function About() {
                 <button
                   type="button"
                   onClick={() => setOpenPillar(nextPillar.key)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full
-                             bg-brand-accent text-white text-xs font-semibold
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full
+                             bg-brand-accent text-white text-[10.5px] font-semibold
                              hover:bg-brand-accentDark transition-colors ml-auto"
                 >
-                  <span className="uppercase tracking-[0.14em]">Next:</span>
                   <span className="font-bold normal-case tracking-normal">{nextPillar.title}</span>
-                  <ArrowRight size={12} />
+                  <ArrowRight size={11} />
                 </button>
               ) : (
                 <span />

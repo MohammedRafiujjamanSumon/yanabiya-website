@@ -25,8 +25,8 @@ export default function Hero() {
   return (
     <section id="home" className="relative scroll-mt-24">
 
-      {/* ─────────── Welcome banner — desktop only; on mobile the tagline moves into the navbar ─────────── */}
-      <div className="hidden md:block relative overflow-hidden bg-black border-y border-brand-accent/30">
+      {/* ─────────── Welcome banner — visible on all sizes; scales down gracefully on mobile ─────────── */}
+      <div className="relative overflow-hidden bg-black border-y border-brand-accent/30">
         {/* decorative grid */}
         <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
         {/* soft lime accent halo for that green-on-navy glow — pulses */}

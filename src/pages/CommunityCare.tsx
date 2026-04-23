@@ -1,18 +1,46 @@
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Heart, BookOpen, Stethoscope, Sprout } from 'lucide-react'
 import Section, { Eyebrow, H2 } from '../components/Section'
+import { countries } from '../data/countries'
 
-const items = [
-  { icon: Heart,       k: 'welfare' },
-  { icon: BookOpen,    k: 'education' },
-  { icon: Stethoscope, k: 'health' },
-  { icon: Sprout,      k: 'empower' },
+const pillars = [
+  { icon: Heart,       title: 'Welfare',     desc: 'Structured charitable drives supporting families in need with dignity and transparency.' },
+  { icon: BookOpen,    title: 'Education',   desc: 'Scholarships, school programmes and learning resources for underserved communities.' },
+  { icon: Stethoscope, title: 'Health',      desc: 'Free health camps, medical support and awareness programmes across regions.' },
+  { icon: Sprout,      title: 'Empowerment', desc: 'Skills training and livelihood programmes that build long-term independence.' },
+]
+
+const countryPrograms: Record<string, string[]> = {
+  OM: [
+    'Annual welfare drive for low-income households across Muscat',
+    'Education scholarships for Omani students pursuing tertiary degrees',
+    'Community health camps in partnership with local clinics',
+  ],
+  GB: [
+    'Volunteer hours with UK charity partners and food banks',
+    'Academic engagement with London universities',
+    'Diversity and inclusion mentorship programmes',
+  ],
+  BD: [
+    'Rural education support across Uttarkhan and nearby communities',
+    'Medical camps and subsidised healthcare outreach',
+    'Women-led livelihood programmes and vocational training',
+  ],
+  US: [
+    'STEM scholarships for first-generation students in Texas',
+    'Community technology workshops for small business owners',
+    'Disaster relief contributions through certified US charities',
+  ],
+}
+
+const stats = [
+  { v: '500+', l: 'Beneficiaries' },
+  { v: '4',    l: 'Countries' },
+  { v: '15Y',  l: 'Track record' },
+  { v: '25+',  l: 'Programmes' },
 ]
 
 export default function CommunityCare() {
-  const { t } = useTranslation()
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
@@ -24,16 +52,13 @@ export default function CommunityCare() {
           <Eyebrow>Community</Eyebrow>
           <H2 className="text-center">Community Care</H2>
           <p className="mt-5 text-slate-600 leading-relaxed">
-            Structured charitable donations and welfare programmes focused on transparency, dignity, and lasting impact.
+            Structured charitable donations and welfare programmes focused on transparency,
+            dignity and lasting impact — delivered across every country where we operate.
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-12">
-          {[
-            { v: '500+', l: 'Beneficiaries' },
-            { v: '4',    l: 'Countries' },
-            { v: '15Y',  l: 'Track record' },
-          ].map((s) => (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">
+          {stats.map((s) => (
             <div key={s.l} className="card-panel text-center">
               <div className="font-serif text-2xl text-brand-accent">{s.v}</div>
               <div className="text-[10px] tracking-widest text-slate-500 uppercase mt-1">{s.l}</div>
@@ -41,16 +66,53 @@ export default function CommunityCare() {
           ))}
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {items.map((it) => (
-            <div key={it.k} className="card-panel">
-              <div className="w-12 h-12 rounded-lg bg-brand-accent/10 text-brand-accent grid place-items-center mb-4">
-                <it.icon size={22} />
+        <div className="mb-16">
+          <div className="text-center mb-8">
+            <div className="text-xs uppercase tracking-widest text-brand-accent mb-2">Our Commitment</div>
+            <h3 className="font-serif text-3xl text-slate-900">Four Pillars of Community Care</h3>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {pillars.map((p) => (
+              <div key={p.title} className="card-panel">
+                <div className="w-12 h-12 rounded-lg bg-brand-accent/10 text-brand-accent grid place-items-center mb-4">
+                  <p.icon size={22} />
+                </div>
+                <h4 className="text-slate-900 text-lg mb-1">{p.title}</h4>
+                <p className="text-sm text-slate-600 leading-relaxed">{p.desc}</p>
               </div>
-              <h4 className="text-slate-900 text-lg mb-1">{t(`csr.items.${it.k}.t`)}</h4>
-              <p className="text-sm text-slate-600 leading-relaxed">{t(`csr.items.${it.k}.d`)}</p>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div className="text-center mb-8">
+            <div className="text-xs uppercase tracking-widest text-brand-accent mb-2">Around the world</div>
+            <h3 className="font-serif text-3xl text-slate-900">Programmes Across Our Regions</h3>
+            <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
+              Local teams deliver tailored programmes in every country where Yanabiya Group operates.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {countries.map((c) => (
+              <div key={c.code} className="card-panel">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="text-4xl" aria-hidden>{c.flag}</div>
+                  <div>
+                    <h4 className="text-slate-900 text-lg font-semibold">{c.name}</h4>
+                    <div className="text-xs uppercase tracking-widest text-brand-accent mt-1">{c.role}</div>
+                  </div>
+                </div>
+                <ul className="space-y-2 text-sm text-slate-600">
+                  {(countryPrograms[c.code] ?? []).map((program, i) => (
+                    <li key={i} className="flex gap-2">
+                      <span className="text-brand-accent shrink-0">•</span>
+                      <span>{program}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </Section>

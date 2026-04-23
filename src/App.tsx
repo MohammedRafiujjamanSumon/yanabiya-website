@@ -13,6 +13,7 @@ import Blog from './pages/Blog'
 import SustainableGrowth from './pages/SustainableGrowth'
 import CommunityCare from './pages/CommunityCare'
 import CareersPage from './pages/CareersPage'
+import AboutUs from './pages/AboutUs'
 
 export default function App() {
   const isPreviewIframe =
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/community/sustainable-growth" element={<SustainableGrowth />} />
           <Route path="/community/community-care" element={<CommunityCare />} />
           <Route path="/community/careers" element={<CareersPage />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
