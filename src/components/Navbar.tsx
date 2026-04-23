@@ -116,9 +116,10 @@ export default function Navbar() {
     }`
 
   return (
-    <header className="sticky top-0 z-40 bg-brand-deep pt-1.5 pb-1.5 px-4 lg:px-8">
+    <header className="sticky top-0 z-40 bg-brand-deep pt-1.5 pb-1.5">
+      <div className="container-x">
       <div
-        className={`mx-auto flex items-center gap-4 h-14 lg:h-14 ps-2 pe-5 lg:pe-8 w-full max-w-[1700px]
+        className={`flex items-center gap-4 h-14 lg:h-14 ps-2 pe-5 lg:pe-8
                     rounded-full bg-lime-700
                     border border-lime-700 transition-shadow duration-200 ${
           scrolled ? 'shadow-md shadow-slate-900/10'
@@ -372,6 +373,7 @@ export default function Navbar() {
             {open ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
+      </div>
       </div>
 
       {/* Mobile drawer — mirrors desktop nav: all groups + dropdown items as accordions */}

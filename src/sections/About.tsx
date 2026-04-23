@@ -8,7 +8,7 @@ export default function About() {
 
   return (
     <Section id="about">
-      <div className="container-x max-w-5xl">
+      <div className="container-x">
         {/* Section header — About Us */}
         <Eyebrow>{t('about.eyebrow')}</Eyebrow>
 

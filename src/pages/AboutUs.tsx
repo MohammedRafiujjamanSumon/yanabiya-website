@@ -13,7 +13,7 @@ export default function AboutUs() {
   return (
     <>
       <Section id="about-us">
-        <div className="container-x max-w-5xl relative">
+        <div className="container-x relative">
           <Eyebrow>About Us</Eyebrow>
 
           {/* Country flags marquee — silently scrolls between eyebrow and Who We Are */}
@@ -111,7 +111,7 @@ export default function AboutUs() {
       {/* Full Our Solutions section moved here from the home page */}
       <Solutions />
 
-      <div className="container-x max-w-5xl pb-12">
+      <div className="container-x pb-12">
         <Link
           to="/#about"
           className="inline-flex items-center gap-2 px-5 py-2 rounded-full
