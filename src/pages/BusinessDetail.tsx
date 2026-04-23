@@ -139,7 +139,10 @@ export default function BusinessDetail() {
             )}
 
             {hasSubServices && (
-              <SubServicesSection subServices={business.subServices!} />
+              <SubServicesSection
+                subServices={business.subServices!}
+                heading={business.subServicesHeading ?? 'Explore Our IT & Development Service'}
+              />
             )}
 
             <ServiceForm sectorTitle={business.title} features={business.features} />
@@ -150,7 +153,7 @@ export default function BusinessDetail() {
   )
 }
 
-function SubServicesSection({ subServices }: { subServices: SubService[] }) {
+function SubServicesSection({ subServices, heading }: { subServices: SubService[]; heading: string }) {
   const [active, setActive] = useState<SubService | null>(null)
   const [flippedSlug, setFlippedSlug] = useState<string | null>(null)
 
@@ -158,7 +161,7 @@ function SubServicesSection({ subServices }: { subServices: SubService[] }) {
     <div className="text-left">
       <div className="text-center mb-10">
         <h2 className="font-serif text-3xl md:text-4xl text-white leading-tight">
-          Explore Our IT &amp; Development Service
+          {heading}
         </h2>
         <div className="w-16 h-0.5 bg-brand-accent rounded-full mx-auto mt-4" />
       </div>
@@ -296,6 +299,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
         </p>
         {!open && (
           <button
+            type="button"
             onClick={() => setOpen(true)}
             className="inline-flex items-center gap-2 mt-5 px-6 py-3 rounded-sm bg-brand-accent text-brand-ink uppercase tracking-[0.18em] text-[11px] font-bold hover:bg-white transition"
           >
@@ -339,7 +343,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
               <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">
                 Our Service <span className="opacity-60 normal-case">({sectorTitle})</span>
               </label>
-              <select defaultValue="" className={inputCls} required>
+              <select title="Our Service" defaultValue="" className={inputCls} required>
                 <option value="" disabled className="bg-brand-ink">Select a service</option>
                 {features.map((f) => (
                   <option key={f} value={f} className="bg-brand-ink">
@@ -350,7 +354,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
             </div>
             <div>
               <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">Customer Type</label>
-              <select className={inputCls} defaultValue="">
+              <select title="Customer Type" className={inputCls} defaultValue="">
                 <option value="" disabled className="bg-brand-ink">Select one</option>
                 <option className="bg-brand-ink">Individual</option>
                 <option className="bg-brand-ink">SME / Startup</option>
