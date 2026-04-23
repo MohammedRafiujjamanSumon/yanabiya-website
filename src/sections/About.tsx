@@ -55,7 +55,6 @@ const pillars: { key: PillarKey; title: string; teaser: string; image: string; b
 export default function About() {
   const { t } = useTranslation()
   const [openPillar, setOpenPillar] = useState<PillarKey | null>(null)
-  const [showMore, setShowMore] = useState(false)
 
   useEffect(() => {
     if (!openPillar) return
@@ -136,57 +135,38 @@ export default function About() {
                 to build, manage, and scale multiple businesses simultaneously, ensuring operational
                 synergy, efficiency, and long-term value creation.
               </p>
-              {showMore && (
-                <>
-                  <p>
-                    Across our global network, we are involved in several core business operations
-                    including technology-driven solutions, international trade facilitation, digital
-                    services, infrastructure support, manpower deployment, and business management
-                    services. Each operation functions independently where required, yet remains
-                    strategically connected under the same unified group vision.
-                  </p>
-                  <p>
-                    Our strength lies in this integrated model — where innovation, execution, and
-                    operational capability come together. We design systems that allow businesses to
-                    grow faster, operate smarter, and expand beyond geographical boundaries. This
-                    approach enables us to support both enterprises and individuals through structured,
-                    reliable, and scalable solutions.
-                  </p>
-                  <p>
-                    We also provide strategic advisory and automation-focused consulting to help
-                    organizations improve efficiency, modernize operations, and adopt technology-driven
-                    workflows. Our focus is always on practical impact, measurable results, and
-                    sustainable performance improvement.
-                  </p>
-                  <p>
-                    Yanabiya Group is committed to maintaining global standards of quality,
-                    transparency, and professionalism across all operations. We believe in building
-                    strong, long-term relationships by delivering consistent value and treating every
-                    partner with trust and accountability.
-                  </p>
-                  <p>
-                    With a growing international footprint, our mission is to connect markets, create
-                    opportunities, and develop a strong global business ecosystem that supports
-                    innovation, collaboration, and economic progress.
-                  </p>
-                </>
-              )}
+              <p>
+                Across our global network, we are involved in several core business operations
+                including technology-driven solutions, international trade facilitation, digital
+                services, infrastructure support, manpower deployment, and business management
+                services. Each operation functions independently where required, yet remains
+                strategically connected under the same unified group vision.
+              </p>
+              <p>
+                Our strength lies in this integrated model — where innovation, execution, and
+                operational capability come together. We design systems that allow businesses to
+                grow faster, operate smarter, and expand beyond geographical boundaries. This
+                approach enables us to support both enterprises and individuals through structured,
+                reliable, and scalable solutions.
+              </p>
+              <p>
+                We also provide strategic advisory and automation-focused consulting to help
+                organizations improve efficiency, modernize operations, and adopt technology-driven
+                workflows. Our focus is always on practical impact, measurable results, and
+                sustainable performance improvement.
+              </p>
+              <p>
+                Yanabiya Group is committed to maintaining global standards of quality,
+                transparency, and professionalism across all operations. We believe in building
+                strong, long-term relationships by delivering consistent value and treating every
+                partner with trust and accountability.
+              </p>
+              <p>
+                With a growing international footprint, our mission is to connect markets, create
+                opportunities, and develop a strong global business ecosystem that supports
+                innovation, collaboration, and economic progress.
+              </p>
             </div>
-            <button
-              type="button"
-              onClick={() => setShowMore((v) => !v)}
-              className="mt-4 inline-flex items-center gap-2 rounded-full
-                         bg-brand-accent px-4 py-2 text-xs font-semibold uppercase tracking-wider
-                         text-white shadow-sm hover:bg-brand-accentDark hover:shadow-md transition-all
-                         focus:outline-none focus:ring-2 focus:ring-brand-accent/50"
-              aria-expanded={showMore ? 'true' : 'false'}
-            >
-              {showMore ? 'Show Less' : 'Read More'}
-              <ArrowRight
-                size={12}
-                className={`ltr-flip transition-transform duration-200 ${showMore ? 'rotate-90' : ''}`}
-              />
-            </button>
           </div>
 
           <div className="lg:col-span-4 lg:order-2 relative max-w-[220px] mx-auto lg:mx-0 w-full">
