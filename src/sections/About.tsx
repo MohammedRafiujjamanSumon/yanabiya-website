@@ -84,9 +84,9 @@ export default function About() {
         <Eyebrow>{t('about.eyebrow')}</Eyebrow>
 
         {/* TOP — Picture LEFT · Who We Are RIGHT (text aligned to picture top) */}
-        <div className="grid lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-4 relative max-w-xs mx-auto lg:mx-0 w-full">
-            <div className="absolute -top-3 -start-3 w-24 h-24 border-2 border-brand-accent rounded-md -z-0" />
+        <div className="grid lg:grid-cols-12 gap-8 items-start mt-2">
+          <div className="lg:col-span-4 relative max-w-[220px] mx-auto lg:mx-0 w-full">
+            <div className="absolute -top-3 -start-3 w-20 h-20 border-2 border-brand-accent rounded-md -z-0" />
             <img
               src={assets.office}
               alt="Yanabiya Gulf office"
@@ -149,14 +149,14 @@ export default function About() {
         </div>
 
         {/* Mission · Vision · Goals — compact cards */}
-        <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-4 mt-10">
+        <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-4 mt-6">
           {pillars.map((p) => (
             <button
               key={p.key}
               type="button"
               onClick={() => setOpenPillar(p.key)}
               className="group relative rounded-xl overflow-hidden shadow-md
-                         h-44 hover:-translate-y-0.5 transition-transform text-left
+                         h-32 hover:-translate-y-0.5 transition-transform text-left
                          focus:outline-none focus:ring-2 focus:ring-brand-accent"
             >
               <img

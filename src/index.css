@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  html { scroll-behavior: smooth; scroll-padding-top: 9rem; scroll-snap-type: y mandatory; }
+  html { scroll-behavior: smooth; scroll-padding-top: 9rem; }
   body {
     background: #ffffff;
     color: #1f2937;
