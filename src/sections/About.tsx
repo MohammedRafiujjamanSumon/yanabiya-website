@@ -83,19 +83,9 @@ export default function About() {
         {/* Section header — About Us */}
         <Eyebrow>{t('about.eyebrow')}</Eyebrow>
 
-        {/* TOP — Picture LEFT · Who We Are RIGHT (text aligned to picture top) */}
+        {/* TOP — Who We Are LEFT · Picture RIGHT */}
         <div className="grid lg:grid-cols-12 gap-8 items-start mt-2">
-          <div className="lg:col-span-4 relative max-w-[220px] mx-auto lg:mx-0 w-full">
-            <div className="absolute -top-3 -start-3 w-20 h-20 border-2 border-brand-accent rounded-md -z-0" />
-            <img
-              src={assets.office}
-              alt="Yanabiya Gulf office"
-              className="relative rounded-2xl w-full object-cover aspect-[4/5] shadow-2xl bg-slate-50"
-              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-            />
-          </div>
-
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8 lg:order-1">
             <h2 className="font-serif text-lg md:text-xl text-slate-900 leading-tight text-center">
               Who We Are
             </h2>
@@ -158,6 +148,16 @@ export default function About() {
                 className={`ltr-flip transition-transform duration-200 ${showMore ? 'rotate-90' : ''}`}
               />
             </button>
+          </div>
+
+          <div className="lg:col-span-4 lg:order-2 relative max-w-[220px] mx-auto lg:mx-0 w-full">
+            <div className="absolute -top-3 -end-3 w-20 h-20 border-2 border-brand-accent rounded-md -z-0" />
+            <img
+              src={assets.office}
+              alt="Yanabiya Gulf office"
+              className="relative rounded-2xl w-full object-cover aspect-[4/5] shadow-2xl bg-slate-50"
+              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+            />
           </div>
         </div>
 
