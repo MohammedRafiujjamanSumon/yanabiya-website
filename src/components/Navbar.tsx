@@ -106,7 +106,7 @@ export default function Navbar() {
     }`
 
   return (
-    <header className="sticky top-0 z-40 bg-white pt-3 pb-3 px-3 lg:px-6 border-b border-slate-100">
+    <header className="sticky top-0 z-40 bg-brand-accent pt-3 pb-3 px-3 lg:px-6">
       <div
         className={`container-x mx-auto flex items-center gap-8 h-14 lg:h-16 px-4 lg:px-6
                     rounded-full bg-white
