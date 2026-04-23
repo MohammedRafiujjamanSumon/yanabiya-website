@@ -7,26 +7,21 @@ export default function TopBar() {
   const { t } = useTranslation()
   return (
     <div className="bg-brand-ink border-b border-brand-accent/30 text-xs text-slate-200">
-      {/* Row 1 — phone + email, right-aligned corner */}
-      <div className="container-x flex items-center justify-center md:justify-end gap-4 md:gap-6 py-1.5 text-[11px]">
-        <a
-          href={`tel:${contact.mobile.replace(/\s/g, '')}`}
-          className="flex items-center gap-1.5 hover:text-brand-accent"
-        >
-          <Phone size={12} /> <span>{contact.mobile}</span>
-        </a>
-        <a
-          href={`mailto:${contact.emails[0]}`}
-          className="flex items-center gap-1.5 hover:text-brand-accent"
-        >
-          <Mail size={12} /> <span>{contact.emails[0]}</span>
-        </a>
-      </div>
-
-      {/* Row 2 — flags left, tagline middle, Download PDF + Contact Us right */}
-      <div className="container-x grid grid-cols-1 md:grid-cols-3 md:items-center gap-1.5 md:gap-4 py-2 border-t border-white/10">
-        <div className="flex items-center justify-center md:justify-start gap-2 text-base leading-none">
-          <span aria-hidden>🇬🇧 🇴🇲 🇧🇩 🇺🇸</span>
+      {/* Row — phone + email left, tagline middle, Download PDF + Contact Us right */}
+      <div className="container-x grid grid-cols-1 md:grid-cols-3 md:items-center gap-1.5 md:gap-4 py-2">
+        <div className="flex items-center justify-center md:justify-start gap-4">
+          <a
+            href={`tel:${contact.mobile.replace(/\s/g, '')}`}
+            className="flex items-center gap-1.5 hover:text-brand-accent"
+          >
+            <Phone size={12} /> <span>{contact.mobile}</span>
+          </a>
+          <a
+            href={`mailto:${contact.emails[0]}`}
+            className="flex items-center gap-1.5 hover:text-brand-accent"
+          >
+            <Mail size={12} /> <span>{contact.emails[0]}</span>
+          </a>
         </div>
         <div className="text-center text-[11px] md:text-xs tracking-wide text-slate-100">
           {t('topbar.tagline')}
