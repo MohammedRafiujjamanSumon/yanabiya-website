@@ -122,7 +122,7 @@ export default function Navbar() {
     }`
 
   return (
-    <header className="bg-brand-deep pt-3 pb-3 px-3 lg:px-6">
+    <header className="sticky top-0 z-40 bg-brand-deep pt-3 pb-3 px-3 lg:px-6">
       <div
         className={`container-x mx-auto flex items-center gap-8 h-14 lg:h-16 px-4 lg:px-6
                     rounded-full bg-lime-700
