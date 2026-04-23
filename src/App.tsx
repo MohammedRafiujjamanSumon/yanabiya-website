@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import TopBar from './components/TopBar'
 import Footer from './components/Footer'
-import MobilePreview from './components/MobilePreview'
 
 import Home from './pages/Home'
 import BusinessDetail from './pages/BusinessDetail'
@@ -16,10 +15,6 @@ import CareersPage from './pages/CareersPage'
 import AboutUs from './pages/AboutUs'
 
 export default function App() {
-  const isPreviewIframe =
-    typeof window !== 'undefined' &&
-    new URLSearchParams(window.location.search).get('preview') === 'mobile'
-
   return (
     <div className="min-h-screen flex flex-col">
       <TopBar />
@@ -40,7 +35,6 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
-      {!isPreviewIframe && <MobilePreview />}
     </div>
   )
 }
