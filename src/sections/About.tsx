@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
+import AboutCategories from '../components/AboutCategories'
 
 export default function About() {
   const { t } = useTranslation()
@@ -96,6 +97,9 @@ export default function About() {
             </div>
           </div>
         </div>
+
+        {/* Vision · Mission · Core Goals · Sustainability · Approach — moving cards */}
+        <AboutCategories />
       </div>
     </Section>
   )
