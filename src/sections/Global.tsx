@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowRight, ChevronRight, Globe2 } from 'lucide-react'
+import { ArrowRight, Globe2 } from 'lucide-react'
 import Section from '../components/Section'
-import { countries } from '../data/countries'
 import { useReveal } from '../hooks/useReveal'
 
 function Reveal({
@@ -34,13 +33,6 @@ const orbitDots = [
   { code: 'BD', flag: '🇧🇩', label: 'Dhaka, Bangladesh',  top: '54%', left: '78%' },
   { code: 'US', flag: '🇺🇸', label: 'Austin, USA',        top: '44%', left: '14%' },
 ]
-
-const cardTags: Record<string, { label: string; desc: string }> = {
-  OM: { label: 'Headquarters',          desc: 'Headquarters · Gulf hub'  },
-  GB: { label: 'European Operations',   desc: 'European operations'      },
-  BD: { label: 'South Asia Operations', desc: 'South Asia delivery'      },
-  US: { label: 'North America Operations', desc: 'North America presence' },
-}
 
 export default function Global() {
   const { t } = useTranslation()
@@ -174,42 +166,6 @@ export default function Global() {
               ))}
             </div>
           </Reveal>
-        </div>
-
-        {/* ───────── COUNTRY CARDS GRID — below the 2-column block ───────── */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {countries.map((c, i) => {
-            const tag = cardTags[c.code] ?? { label: c.role, desc: c.role }
-            return (
-              <Reveal key={c.code} delay={i * 100}>
-                <Link
-                  to={`/country/${c.code.toLowerCase()}`}
-                  className="group block rounded-2xl bg-white/85 backdrop-blur-md border border-slate-200 p-5 h-full
-                             hover:border-brand-accent/40 hover:-translate-y-1
-                             hover:shadow-[0_20px_60px_-20px_rgba(158,199,58,0.35)]
-                             transition-all duration-300"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="text-3xl leading-none shrink-0">{c.flag}</div>
-                    <div className="min-w-0">
-                      <h3 className="font-serif text-lg leading-tight text-slate-900">
-                        {c.name}
-                      </h3>
-                      <div className="mt-1 text-[11px] uppercase tracking-wider text-brand-accentDark font-semibold">
-                        {tag.label}
-                      </div>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-sm text-slate-600 leading-relaxed">{tag.desc}</p>
-                  <div className="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider
-                                  text-slate-400 group-hover:text-brand-accentDark transition-colors">
-                    Explore
-                    <ChevronRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
-                  </div>
-                </Link>
-              </Reveal>
-            )
-          })}
         </div>
 
       </div>
