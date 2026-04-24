@@ -12,12 +12,14 @@ type NavItem = { id: string; label: string; desc?: string; icon?: LucideIcon; hr
 type NavSubGroup = {
   label: string
   parentSection?: string
+  parentRoute?: string
   items: NavItem[]
 }
 type NavGroup = {
   label: string
   id?: string
   parentSection?: string
+  parentRoute?: string
   items?: NavItem[]
   subGroups?: NavSubGroup[]
 }
@@ -56,7 +58,16 @@ export default function Navbar() {
 
   const navGroups: NavGroup[] = [
     { label: t('nav.home'),         id: 'home'         },
-    { label: t('nav.about'),        id: 'about'        },
+    {
+      label: t('nav.about'),
+      parentRoute: '/about-us',
+      items: [
+        { id: 'identity',   label: 'Company Overview',   href: '/about-us#identity'   },
+        { id: 'principles', label: 'Mission & Vision',   href: '/about-us#principles' },
+        { id: 'presence',   label: 'Global Presence',    href: '/about-us#presence'   },
+        { id: 'leadership-link', label: 'Leadership',    href: '/leadership/management' },
+      ],
+    },
     { label: t('nav.global'),       id: 'global'       },
     { label: t('nav.businesses'),   id: 'businesses'   },
     {
@@ -191,7 +202,18 @@ export default function Navbar() {
                 onMouseEnter={() => hoverOpen(g.label)}
                 onMouseLeave={hoverClose}
               >
-                {g.parentSection !== undefined ? (
+                {g.parentRoute !== undefined ? (
+                  <Link
+                    to={g.parentRoute}
+                    className={`${baseLinkCls(groupActive)} inline-flex items-center gap-1`}
+                  >
+                    {g.label}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                    />
+                  </Link>
+                ) : g.parentSection !== undefined ? (
                   <Link
                     to={`/#${g.parentSection}`}
                     onClick={(e) => handleHashClick(e, g.parentSection!)}
@@ -431,7 +453,17 @@ export default function Navbar() {
               return (
                 <div key={g.label} className="py-1">
                   <div className="flex items-stretch">
-                    {g.parentSection !== undefined ? (
+                    {g.parentRoute !== undefined ? (
+                      <Link
+                        to={g.parentRoute}
+                        onClick={() => { setOpen(false); setMobileOpenGroup(null) }}
+                        className={`flex-1 py-3 px-2 text-[15px] font-medium transition ${
+                          groupActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
+                        }`}
+                      >
+                        {g.label}
+                      </Link>
+                    ) : g.parentSection !== undefined ? (
                       <Link
                         to={`/#${g.parentSection}`}
                         onClick={(e) => { setOpen(false); handleHashClick(e, g.parentSection!) }}

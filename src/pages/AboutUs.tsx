@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
   ArrowLeft, ArrowRight, Target, Eye, Sparkles,
   Cpu, Globe2, Shirt, Handshake, Building2, Users,
@@ -68,15 +68,26 @@ const presence = [
 ]
 
 export default function AboutUs() {
+  const { hash } = useLocation()
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
-  }, [])
+    if (hash) {
+      const id = hash.replace('#', '')
+      // Wait one frame so the section has mounted before scrolling.
+      window.requestAnimationFrame(() => {
+        const el = document.getElementById(id)
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+    }
+  }, [hash])
 
   return (
     <main className="bg-[#fbfdfb] text-slate-900">
 
       {/* ───────── 1. HERO ───────── */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+      <section id="hero" className="relative min-h-[70vh] flex items-center overflow-hidden scroll-mt-28">
         <div
           aria-hidden="true"
           className="absolute -top-40 left-1/3 w-[520px] h-[520px] rounded-full
@@ -113,7 +124,7 @@ export default function AboutUs() {
       </section>
 
       {/* ───────── 2. WHO WE ARE ───────── */}
-      <section className="relative py-24 md:py-28 bg-white border-y border-slate-100">
+      <section id="identity" className="relative py-24 md:py-28 bg-white border-y border-slate-100 scroll-mt-28">
         <div className="container-x grid lg:grid-cols-12 gap-12 items-start">
           <Reveal className="lg:col-span-5">
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
@@ -146,12 +157,27 @@ export default function AboutUs() {
                 together — not in silos.
               </p>
             </Reveal>
+            <Reveal delay={360}>
+              <a
+                href="#principles"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('principles')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }}
+                className="mt-2 inline-flex items-center gap-2 rounded-full px-5 py-2.5
+                           border border-slate-300 text-slate-700 text-xs font-semibold uppercase tracking-wider
+                           hover:border-brand-accentDark hover:text-brand-accentDark hover:-translate-y-0.5
+                           transition-all"
+              >
+                View More <ChevronRight size={14} />
+              </a>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ───────── 3. MISSION · VISION · VALUES ───────── */}
-      <section className="relative py-24 md:py-32">
+      <section id="principles" className="relative py-24 md:py-32 scroll-mt-28">
         <div className="container-x">
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
@@ -187,11 +213,29 @@ export default function AboutUs() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={500}>
+            <div className="mt-10 text-center">
+              <a
+                href="#capability"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('capability')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }}
+                className="inline-flex items-center gap-2 rounded-full px-5 py-2.5
+                           border border-slate-300 text-slate-700 text-xs font-semibold uppercase tracking-wider
+                           hover:border-brand-accentDark hover:text-brand-accentDark hover:-translate-y-0.5
+                           transition-all"
+              >
+                Explore What We Do <ChevronRight size={14} />
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ───────── 4. WHAT WE DO ───────── */}
-      <section className="relative py-24 md:py-28 bg-white border-y border-slate-100">
+      <section id="capability" className="relative py-24 md:py-28 bg-white border-y border-slate-100 scroll-mt-28">
         <div className="container-x">
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
@@ -239,11 +283,29 @@ export default function AboutUs() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={600}>
+            <div className="mt-10 text-center">
+              <a
+                href="#presence"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('presence')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }}
+                className="inline-flex items-center gap-2 rounded-full px-5 py-2.5
+                           border border-slate-300 text-slate-700 text-xs font-semibold uppercase tracking-wider
+                           hover:border-brand-accentDark hover:text-brand-accentDark hover:-translate-y-0.5
+                           transition-all"
+              >
+                See Our Global Presence <ChevronRight size={14} />
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ───────── 5. GLOBAL PRESENCE ───────── */}
-      <section className="relative py-24 md:py-32">
+      <section id="presence" className="relative py-24 md:py-32 scroll-mt-28">
         <div className="container-x">
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
@@ -295,6 +357,20 @@ export default function AboutUs() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={500}>
+            <div className="mt-10 text-center">
+              <Link
+                to="/#businesses"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                           bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
+                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
+                           transition-all"
+              >
+                Explore Our Business <ArrowRight size={14} />
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
