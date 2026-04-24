@@ -29,10 +29,10 @@ function Reveal({
 }
 
 const orbitDots = [
-  { code: 'OM', label: 'Muscat', top: '50%', left: '54%' },
-  { code: 'GB', label: 'London', top: '32%', left: '48%' },
-  { code: 'BD', label: 'Dhaka',  top: '54%', left: '70%' },
-  { code: 'US', label: 'Austin', top: '46%', left: '22%' },
+  { code: 'OM', label: 'Muscat, Oman',       top: '64%', left: '62%' },
+  { code: 'GB', label: 'London, UK',         top: '24%', left: '46%' },
+  { code: 'BD', label: 'Dhaka, Bangladesh',  top: '54%', left: '78%' },
+  { code: 'US', label: 'Austin, USA',        top: '44%', left: '14%' },
 ]
 
 const cardTags: Record<string, { label: string; desc: string }> = {
