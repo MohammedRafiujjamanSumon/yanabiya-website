@@ -257,18 +257,6 @@ export default function OmanPresence() {
             </div>
           </Reveal>
 
-          {/* Plain-text index — guarantees names are visible on small screens */}
-          <Reveal delay={400}>
-            <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3
-                            text-sm text-slate-700 max-w-5xl">
-              {partners.map((p) => (
-                <div key={p.name} className="flex items-baseline gap-2">
-                  <span className="block w-1 h-1 rounded-full bg-blue-700 shrink-0 translate-y-[-2px]" />
-                  <span>{p.name}</span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </section>
 
