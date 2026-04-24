@@ -52,12 +52,23 @@ const industrialCore: Capability[] = [
   {
     icon: HardHat,
     title: 'Infrastructure & Engineering',
-    items: ['Building Construction', 'Electrical & Utility Networks', 'Interior Finishing'],
+    items: [
+      'Building Construction & Turnkey Projects',
+      'Electrical & Utility Network Installation',
+      'Plastering, Painting & Interior Finishing',
+      'Construction Equipment Rental with Operators',
+      'Retail of Construction Materials',
+    ],
   },
   {
     icon: Truck,
     title: 'Logistics & Industrial Operations',
-    items: ['Warehousing & Cold Storage', 'Maritime Transport', 'Loading & Packaging'],
+    items: [
+      'Loading, Unloading & Cargo Handling',
+      'Packaging & Labelling Activities',
+      'Cold & Frozen Storage Warehousing',
+      'International Maritime Freight',
+    ],
   },
 ]
 
@@ -67,21 +78,33 @@ const businessDigitalCore: Capability[] = [
     icon: Laptop,
     title: 'Technology & Digital Systems',
     items: [
-      'Cloud Infrastructure',
+      'Software Development & Web Design',
+      'Computer Network Development & Maintenance',
+      'Cloud Infrastructure & Hosting Services',
       'Cyber Security Consulting',
-      'Software Development',
-      'Systems Integration',
+      'Systems Analysis & Integration',
+      'Hardware Repair & Technical Support',
     ],
   },
   {
     icon: TrendingUp,
     title: 'Trade & Commercial Services',
-    items: ['Import & Export Operations', 'Wholesale & Retail Trading', 'Brokerage Services'],
+    items: [
+      'Export & Import Office Operations',
+      'Wholesale of Clothing & Accessories',
+      'Retail of Textiles & Fabrics',
+      'Commission Agency & Commercial Brokerage',
+    ],
   },
   {
     icon: Coffee,
     title: 'Service & Hospitality',
-    items: ['Catering Services', 'Facility Support Services'],
+    items: [
+      'Café & Restaurant Operations',
+      'Catering & Event Services',
+      'Specialised Building Cleaning',
+      'Management & Administrative Offices',
+    ],
   },
 ]
 
