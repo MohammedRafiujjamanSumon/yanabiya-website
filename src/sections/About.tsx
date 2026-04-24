@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Target, Eye, Award } from 'lucide-react'
+import { ArrowRight, Target, Eye, Award, Leaf, Compass } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 
 const pillars = [
@@ -21,6 +21,18 @@ const pillars = [
     icon: Award,
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
     teaser: 'Build a strong, scalable ecosystem across technology, trade, consulting, and automation.',
+  },
+  {
+    title: 'Sustainability',
+    icon: Leaf,
+    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
+    teaser: 'Growth that benefits people, communities, and the planet — not just balance sheets.',
+  },
+  {
+    title: 'Our Approach',
+    icon: Compass,
+    image: 'https://images.unsplash.com/photo-1517976547714-720226b864c1?auto=format&fit=crop&w=800&q=80',
+    teaser: 'Operating principles that turn strategy into consistent, repeatable execution.',
   },
 ]
 
