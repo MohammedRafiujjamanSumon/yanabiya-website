@@ -45,65 +45,75 @@ const partners: { name: string; category: string; x: number; y: number; align: N
   { name: 'Yanabiya Al Rustaq Contracting',              category: 'Contracting',          x: 38, y: 42, align: 'right' },
 ]
 
-type Capability = { icon: LucideIcon; title: string; items: string[] }
+type Capability = {
+  icon: LucideIcon
+  title: string
+  items: { code: string; name: string }[]
+}
 
-/* Industrial Core column — physical operations, infrastructure-led */
+/* Full 28-activity Oman commercial registry, grouped into the matrix.
+ * Codes are kept as official identifiers (shown beside each bullet). */
+
 const industrialCore: Capability[] = [
   {
     icon: HardHat,
     title: 'Infrastructure & Engineering',
     items: [
-      'Building Construction & Turnkey Projects',
-      'Electrical & Utility Network Installation',
-      'Plastering, Painting & Interior Finishing',
-      'Construction Equipment Rental with Operators',
-      'Retail of Construction Materials',
+      { code: '410001', name: 'Construction of Buildings' },
+      { code: '422002', name: 'Construction of Water, Electricity & Telephone Networks' },
+      { code: '433003', name: 'Plastering, Painting & Decorating' },
+      { code: '439008', name: 'Construction / Demolition Equipment Rental with Operator' },
+      { code: '475207', name: 'Retail of Construction Materials' },
     ],
   },
   {
     icon: Truck,
     title: 'Logistics & Industrial Operations',
     items: [
-      'Loading, Unloading & Cargo Handling',
-      'Packaging & Labelling Activities',
-      'Cold & Frozen Storage Warehousing',
-      'International Maritime Freight',
+      { code: '522401', name: 'Loading & Unloading of Goods' },
+      { code: '829201', name: 'Packaging Activities' },
+      { code: '521001', name: 'Cold & Frozen Warehousing' },
+      { code: '501201', name: 'International Maritime Goods Transport' },
     ],
   },
 ]
 
-/* Business & Digital Core column — knowledge work, trade, services */
 const businessDigitalCore: Capability[] = [
   {
     icon: Laptop,
     title: 'Technology & Digital Systems',
     items: [
-      'Software Development & Web Design',
-      'Computer Network Development & Maintenance',
-      'Cloud Infrastructure & Hosting Services',
-      'Cyber Security Consulting',
-      'Systems Analysis & Integration',
-      'Hardware Repair & Technical Support',
+      { code: '474105', name: 'Retail of Software & Computer Accessories' },
+      { code: '620101', name: 'Systems Analysis' },
+      { code: '620103', name: 'Software Maintenance & Website Design' },
+      { code: '620902', name: 'Installation of Computer Software' },
+      { code: '620902', name: 'Development of Computer Network' },
+      { code: '620204', name: 'IT & Cyber Security Consulting' },
+      { code: '631101', name: 'Data Entry Services' },
+      { code: '631103', name: 'Cloud & Hosting Services' },
+      { code: '951100', name: 'Repair of Computers & Peripheral Equipment' },
+      { code: '951201', name: 'Repair of Mobile Phones' },
     ],
   },
   {
     icon: TrendingUp,
     title: 'Trade & Commercial Services',
     items: [
-      'Export & Import Office Operations',
-      'Wholesale of Clothing & Accessories',
-      'Retail of Textiles & Fabrics',
-      'Commission Agency & Commercial Brokerage',
+      { code: '461001', name: 'Commission Agents & Brokerage Business' },
+      { code: '461003', name: 'Export & Import Office Operations' },
+      { code: '464102', name: 'Wholesale of Clothing & Clothing Accessories' },
+      { code: '475101', name: 'Retail of Textiles & Fabrics' },
     ],
   },
   {
     icon: Coffee,
     title: 'Service & Hospitality',
     items: [
-      'Café & Restaurant Operations',
-      'Catering & Event Services',
-      'Specialised Building Cleaning',
-      'Management & Administrative Offices',
+      { code: '561007', name: 'Cafés — Meals' },
+      { code: '562901', name: 'Catering Activities' },
+      { code: '563001', name: 'Cafés — Drinks' },
+      { code: '701001', name: 'Management Offices' },
+      { code: '812901', name: 'Specialised Building & Exterior Cleaning' },
     ],
   },
 ]
@@ -356,16 +366,20 @@ export default function OmanPresence() {
                         </h4>
                       </div>
                       <ul className="mt-4 ml-11 space-y-2 text-slate-700">
-                        {c.items.map((item) => (
+                        {c.items.map((item, idx) => (
                           <li
-                            key={item}
+                            key={`${item.code}-${idx}`}
                             className="text-sm leading-relaxed flex items-baseline gap-3
                                        cursor-default
-                                       hover:text-blue-700 hover:underline underline-offset-4
-                                       transition-colors duration-200"
+                                       transition-colors duration-200
+                                       hover:text-blue-700"
                           >
                             <span aria-hidden className="block w-3 h-px bg-slate-300 shrink-0 translate-y-[-2px]" />
-                            <span>{item}</span>
+                            <span className="font-mono text-[10px] tracking-wider text-slate-400 shrink-0
+                                             group-hover:text-blue-700/70 transition-colors">
+                              {item.code}
+                            </span>
+                            <span className="hover:underline underline-offset-4">{item.name}</span>
                           </li>
                         ))}
                       </ul>
@@ -403,16 +417,20 @@ export default function OmanPresence() {
                         </h4>
                       </div>
                       <ul className="mt-4 ml-11 space-y-2 text-slate-700">
-                        {c.items.map((item) => (
+                        {c.items.map((item, idx) => (
                           <li
-                            key={item}
+                            key={`${item.code}-${idx}`}
                             className="text-sm leading-relaxed flex items-baseline gap-3
                                        cursor-default
-                                       hover:text-blue-700 hover:underline underline-offset-4
-                                       transition-colors duration-200"
+                                       transition-colors duration-200
+                                       hover:text-blue-700"
                           >
                             <span aria-hidden className="block w-3 h-px bg-slate-300 shrink-0 translate-y-[-2px]" />
-                            <span>{item}</span>
+                            <span className="font-mono text-[10px] tracking-wider text-slate-400 shrink-0
+                                             group-hover:text-blue-700/70 transition-colors">
+                              {item.code}
+                            </span>
+                            <span className="hover:underline underline-offset-4">{item.name}</span>
                           </li>
                         ))}
                       </ul>
