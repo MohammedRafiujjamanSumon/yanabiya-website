@@ -101,13 +101,13 @@ export default function About() {
           </div>
         </div>
 
-        {/* Mission · Vision · Goals — three teaser cards, each navigates to /about-us */}
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Pillar teaser cards — 5 in a single row, navigate to /about-us */}
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
           {pillars.map((p) => (
             <Link
               key={p.title}
               to="/about-us"
-              className="group/card relative rounded-2xl overflow-hidden shadow-md h-48
+              className="group/card relative rounded-xl overflow-hidden shadow-md h-36
                          hover:-translate-y-1 hover:shadow-xl transition-all
                          focus:outline-none focus:ring-2 focus:ring-brand-accent block"
             >
@@ -120,22 +120,19 @@ export default function About() {
                 onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
-              <div className="absolute inset-0 p-5 flex flex-col">
-                <div className="w-10 h-10 rounded-lg bg-white/95 text-brand-accentDark grid place-items-center">
-                  <p.icon size={20} />
+              <div className="absolute inset-0 p-3 flex flex-col">
+                <div className="w-7 h-7 rounded-md bg-white/95 text-brand-accentDark grid place-items-center">
+                  <p.icon size={14} />
                 </div>
                 <div className="mt-auto">
-                  <h3 className="font-serif uppercase tracking-[0.16em] text-white text-base font-bold drop-shadow">
+                  <h3 className="font-serif uppercase tracking-[0.14em] text-white text-[12px] font-bold drop-shadow leading-tight">
                     {p.title}
                   </h3>
-                  <p className="mt-1 text-white/85 text-xs leading-snug line-clamp-2">
-                    {p.teaser}
-                  </p>
-                  <span className="mt-2 inline-flex items-center gap-1.5 rounded-full
-                                   px-3 py-1 text-[11px] font-semibold uppercase tracking-wider
+                  <span className="mt-1.5 inline-flex items-center gap-1 rounded-full
+                                   px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider
                                    bg-white/95 text-brand-accentDark
                                    transition-colors group-hover/card:bg-brand-accent group-hover/card:text-white">
-                    Read More <ArrowRight size={12} className="ltr-flip" />
+                    Read <ArrowRight size={10} className="ltr-flip" />
                   </span>
                 </div>
               </div>
