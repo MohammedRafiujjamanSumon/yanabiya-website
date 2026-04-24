@@ -1,16 +1,8 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import {
-  Mail, Building2, MapPin, Globe2,
-  HardHat, Truck, Laptop, ShipIcon, Coffee,
-  ArrowRight, Award,
-} from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
-import { assets } from '../data/assets'
 import BackButton from '../components/BackButton'
 
-/* ───────────────────────── Reveal helper ───────────────────────── */
+/* ───────────────────────── Reveal helper (subtle, editorial) ───────────────────────── */
 function Reveal({
   children,
   delay = 0,
@@ -25,7 +17,7 @@ function Reveal({
     <div
       ref={ref}
       className={`${className} transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
@@ -36,112 +28,41 @@ function Reveal({
 
 /* ───────────────────────── Data ───────────────────────── */
 
-const contactCards: { icon: LucideIcon; eyebrow: string; title: string; body: React.ReactNode }[] = [
-  {
-    icon: Mail,
-    eyebrow: 'Postal Address',
-    title: 'P.O. Box 1432',
-    body: (
-      <>
-        PC-133, Al Khuwair<br />
-        Muscat, Sultanate of Oman
-      </>
-    ),
-  },
-  {
-    icon: Building2,
-    eyebrow: 'Head Office',
-    title: 'Office-41, 4th Floor',
-    body: (
-      <>
-        Building-846, Way-4011, Complex-240<br />
-        Al Gubrah, Bushar, Muscat, Oman
-      </>
-    ),
-  },
-  {
-    icon: MapPin,
-    eyebrow: 'Location',
-    title: 'Muscat, Sultanate of Oman',
-    body: 'GCC Regional Hub — strategic gateway between the Gulf, South Asia, and East Africa.',
-  },
-  {
-    icon: Globe2,
-    eyebrow: 'Parent Company',
-    title: 'Yanabiya Gulf International',
-    body: 'Business & Trade SPC — the operating entity behind every Yanabiya venture in Oman.',
-  },
+/* Each node holds its (x, y) on the map (% of container) plus an `align`
+ * controlling whether the text label sits left or right of the dot. */
+type NodeAlign = 'left' | 'right'
+const HQ = { name: 'Muscat HQ', x: 80, y: 32 } as const
+
+const partners: { name: string; category: string; x: number; y: number; align: NodeAlign }[] = [
+  { name: 'Yanabiya Muscat United Trade',                category: 'Trade & Commerce',     x: 70, y: 22, align: 'right' },
+  { name: 'Yanabiya Muscat for Comprehensive Projects',  category: 'Construction',         x: 60, y: 18, align: 'right' },
+  { name: 'Yanabiya Muscat Integrated LLC',              category: 'Diversified Holdings', x: 50, y: 30, align: 'right' },
+  { name: 'Yanabiya Al Khairat United Trade LLC',        category: 'Trade & Commerce',     x: 86, y: 46, align: 'left'  },
+  { name: 'Yanabiya Muscat World Business',              category: 'Business Services',    x: 72, y: 56, align: 'right' },
+  { name: 'Yanabiya Muscat Al Mumyazat',                 category: 'Services',             x: 56, y: 62, align: 'right' },
+  { name: 'Yanabiya Al Rustaq Contracting',              category: 'Contracting',          x: 38, y: 42, align: 'right' },
 ]
 
-/* Each partner is plotted around the Muscat HQ node. Coordinates are in
- * % of the network-map container, picked so nodes don't overlap the HQ or
- * each other. Categories drive the small colour dot in the tooltip. */
-const partnerNodes = [
-  { name: 'Yanabiya Muscat United Trade',                category: 'Trade & Commerce',     x: 38, y: 30 },
-  { name: 'Yanabiya Muscat for Comprehensive Projects',  category: 'Construction',         x: 64, y: 28 },
-  { name: 'Yanabiya Muscat Integrated LLC',              category: 'Diversified Holdings', x: 28, y: 52 },
-  { name: 'Yanabiya Al Khairat United Trade LLC',        category: 'Trade & Commerce',     x: 72, y: 52 },
-  { name: 'Yanabiya Muscat World Business',              category: 'Business Services',    x: 36, y: 76 },
-  { name: 'Yanabiya Muscat Al Mumyazat',                 category: 'Services & Operations', x: 66, y: 76 },
-  { name: 'Yanabiya Al Rustaq Contracting',              category: 'Contracting',          x: 18, y: 36 },
-]
-
-const businessActivities: {
-  icon: LucideIcon
-  title: string
-  bullets: string[]
-}[] = [
+const activities: { title: string; items: string[] }[] = [
   {
-    icon: HardHat,
-    title: 'Construction & Infrastructure',
-    bullets: [
-      'Building construction & turnkey projects',
-      'Water, electricity & telecom network installation',
-      'Plastering, painting & specialised finishing',
-      'Construction equipment rental with operators',
-      'Retail of building & construction materials',
-    ],
+    title: 'Infrastructure & Construction',
+    items: ['Building & Civil Works', 'Electrical Networks', 'Interior Finishing'],
   },
   {
-    icon: Truck,
-    title: 'Logistics & Warehousing',
-    bullets: [
-      'Loading, unloading & cargo handling',
-      'Packaging & labelling activities',
-      'Cold & frozen storage warehousing',
-      'International maritime freight',
-    ],
+    title: 'Logistics & Industrial Services',
+    items: ['Warehousing & Transport', 'Loading & Packaging', 'Maritime Services'],
   },
   {
-    icon: Laptop,
-    title: 'Technology & IT Services',
-    bullets: [
-      'Software development & website design',
-      'Computer network development & maintenance',
-      'Cloud, hosting & systems analysis',
-      'IT & cyber-security consulting',
-      'Hardware repair & technical support',
-    ],
+    title: 'Technology & IT Solutions',
+    items: ['Cloud Infrastructure', 'Cyber Security', 'Software Development'],
   },
   {
-    icon: ShipIcon,
-    title: 'Trading & Import-Export',
-    bullets: [
-      'Export & import office operations',
-      'Wholesale of clothing & accessories',
-      'Retail of textiles & fabrics',
-      'Commission agency & commercial brokerage',
-    ],
+    title: 'Trade & Commercial Operations',
+    items: ['Import & Export', 'Retail & Wholesale Trading'],
   },
   {
-    icon: Coffee,
     title: 'Hospitality & Services',
-    bullets: [
-      'Café & restaurant operations',
-      'Catering & event services',
-      'Specialised building cleaning',
-      'Management & administrative offices',
-    ],
+    items: ['Catering', 'Facility Support'],
   },
 ]
 
@@ -153,278 +74,197 @@ export default function OmanPresence() {
   }, [])
 
   return (
-    <main className="relative bg-brand-deep text-white overflow-hidden">
+    <main className="bg-white text-slate-900">
       <BackButton to="/#global" label="Back to Global" />
 
-      {/* Ambient gradient orbs (subtle dark-navy gradient feel) */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[680px] h-[680px] rounded-full bg-brand-accent/20 blur-[160px]" />
-        <div className="absolute top-1/2 -right-40 w-[620px] h-[620px] rounded-full bg-brand-accent/15 blur-[160px]" />
-        <div className="absolute bottom-0 left-1/3 w-[560px] h-[560px] rounded-full bg-brand-accentDark/10 blur-[140px]" />
-      </div>
-      {/* Soft logo watermark behind everything */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none flex items-center justify-center">
-        <img src={assets.logo} alt="" className="w-[55%] max-w-[640px] opacity-[0.04] object-contain" />
-      </div>
-
       {/* ───────── 1. HERO ───────── */}
-      <section className="relative min-h-[78vh] flex items-center">
-        <div className="container-x relative z-10 py-24 text-center max-w-4xl mx-auto">
+      <section className="relative">
+        <div className="container-x py-24 md:py-32 text-center">
           <Reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-brand-accent/40 bg-white/5
-                            px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-brand-accent mb-8
-                            backdrop-blur-md">
-              <span className="text-base leading-none">🇴🇲</span>
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-6">
               Sultanate of Oman
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-[96px] leading-[0.95] tracking-tight">
-              Oman
-              <span className="block text-brand-accent">Global Presence.</span>
+            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-slate-900">
+              Oman Global Presence
             </h1>
           </Reveal>
-          <Reveal delay={300}>
-            <p className="mt-8 text-lg md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed">
-              Yanabiya Group · Muscat Headquarters &amp; Operations Hub
+          <Reveal delay={260}>
+            <p className="mt-6 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              Yanabiya Group — Integrated Business Network in Sultanate of Oman
             </p>
           </Reveal>
-          <Reveal delay={460}>
-            <div className="mt-10 flex items-center justify-center gap-2 text-xs uppercase tracking-[0.3em] text-white/50">
-              <span className="w-12 h-px bg-white/30" />
-              Established Excellence
-              <span className="w-12 h-px bg-white/30" />
-            </div>
+          <Reveal delay={400}>
+            <div className="mt-10 mx-auto w-12 h-px bg-slate-900" />
           </Reveal>
         </div>
       </section>
 
-      {/* ───────── 2. CONTACT — Postal first, then Head Office, Location, Parent ───────── */}
-      <section className="relative py-20 md:py-28">
-        <div className="container-x">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <Reveal>
-              <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accent mb-3">
-                Reach Us in Muscat
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                Headquarters &amp; Contact.
-              </h2>
-            </Reveal>
-          </div>
+      {/* ───────── 2. PARTNER NETWORK MAP ───────── */}
+      <section className="relative border-t border-slate-100">
+        <div className="container-x py-20 md:py-28">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
-            {contactCards.map((c, i) => (
-              <Reveal key={c.eyebrow} delay={i * 120}>
-                <div className="group relative h-full rounded-2xl
-                                bg-white/[0.06] backdrop-blur-md
-                                border border-white/10
-                                p-7
-                                transition-all duration-500
-                                hover:bg-white/[0.10] hover:border-brand-accent/40
-                                hover:-translate-y-1
-                                hover:shadow-[0_30px_80px_-20px_rgba(158,199,58,0.35)]">
-                  <div className="flex items-start gap-4">
-                    <div className="shrink-0 w-12 h-12 rounded-xl bg-brand-accent/15 ring-1 ring-brand-accent/30
-                                    grid place-items-center text-brand-accent
-                                    transition-all duration-300
-                                    group-hover:bg-brand-accent group-hover:text-brand-deep group-hover:rotate-3">
-                      <c.icon size={20} />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[10px] font-semibold tracking-[0.3em] uppercase text-brand-accent mb-1.5">
-                        {c.eyebrow}
-                      </div>
-                      <h3 className="font-serif text-xl text-white leading-tight">{c.title}</h3>
-                      <p className="mt-2.5 text-sm text-white/70 leading-relaxed">{c.body}</p>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── 3. PARTNER NETWORK MAP ───────── */}
-      <section className="relative py-20 md:py-28 border-y border-white/10">
-        <div className="container-x">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <Reveal>
-              <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accent mb-3">
-                Our Partner Network
+          <Reveal>
+            <div className="max-w-3xl">
+              <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
+                Partner Network
               </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                Partner Companies.
+              <h2 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
+                A unified group operating across Muscat.
               </h2>
-            </Reveal>
-            <Reveal delay={240}>
-              <p className="mt-4 text-white/65 leading-relaxed">
-                Strategic business entities operating across Oman under one integrated ecosystem.
+              <p className="mt-4 text-slate-600 leading-relaxed">
+                Strategic business entities operating across Oman under one integrated
+                ecosystem — every venture connected back to the Muscat headquarters.
               </p>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
 
-          {/* Network map container */}
-          <Reveal delay={300}>
-            <div className="relative mx-auto w-full max-w-5xl aspect-[16/10]
-                            rounded-3xl bg-[#0b2c1c] border border-white/10
-                            overflow-hidden">
-              {/* Subtle dot grid for the corporate-dashboard feel */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 opacity-[0.18]"
-                style={{
-                  backgroundImage:
-                    'radial-gradient(circle, rgba(158,199,58,0.35) 1px, transparent 1px)',
-                  backgroundSize: '28px 28px',
-                }}
-              />
-              {/* Soft glow behind HQ */}
-              <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
-                <div className="w-[55%] h-[70%] rounded-full bg-brand-accent/15 blur-[120px]" />
-              </div>
-
-              {/* Faint Oman / Arabian peninsula outline */}
+          {/* Map canvas */}
+          <Reveal delay={200}>
+            <div className="mt-12 relative w-full aspect-[16/9] bg-[#fafafa] border border-slate-100 rounded-sm">
+              {/* Subtle Arabian peninsula outline */}
               <svg
                 aria-hidden="true"
-                viewBox="0 0 100 62.5"
+                viewBox="0 0 100 56.25"
                 className="absolute inset-0 w-full h-full"
                 preserveAspectRatio="xMidYMid slice"
               >
                 <g
                   fill="none"
-                  stroke="rgba(158,199,58,0.22)"
-                  strokeWidth="0.25"
+                  stroke="rgba(15,23,42,0.18)"
+                  strokeWidth="0.18"
                   strokeLinejoin="round"
+                  strokeLinecap="round"
                 >
-                  {/* Stylised Arabian peninsula silhouette */}
-                  <path d="M 12 18 Q 28 8 48 12 Q 64 14 76 22 Q 86 32 82 44 Q 74 54 58 56 Q 38 58 22 50 Q 12 40 12 28 Z" />
-                  {/* Musandam enclave */}
-                  <path d="M 70 6 Q 76 3 82 8 L 80 14 Q 73 14 70 10 Z" />
+                  {/* Stylised Arabian peninsula — Saudi mass + UAE bump + Oman coastline + Yemen */}
+                  <path d="M 8 18 Q 18 10 34 12 Q 50 13 64 14 Q 74 12 82 16 L 90 22 Q 94 28 92 36 L 88 44 Q 80 50 70 50 L 56 50 Q 42 50 30 46 L 18 40 Q 10 32 10 24 Z" />
+                  {/* Musandam enclave (UAE / Oman north tip) */}
+                  <path d="M 78 6 Q 84 4 88 8 L 86 14 Q 80 14 78 10 Z" />
+                  {/* Qatar peninsula nub */}
+                  <path d="M 56 18 L 58 26 L 56 28 L 54 22 Z" />
+                </g>
+                {/* Faint grid for the dashboard feel */}
+                <g stroke="rgba(15,23,42,0.05)" strokeWidth="0.1">
+                  {[12, 24, 36, 48].map((y) => (
+                    <line key={`h-${y}`} x1="0" x2="100" y1={y} y2={y} />
+                  ))}
+                  {[20, 40, 60, 80].map((x) => (
+                    <line key={`v-${x}`} x1={x} x2={x} y1="0" y2="56.25" />
+                  ))}
                 </g>
               </svg>
 
-              {/* Connection lines: every partner → Muscat HQ (centre) */}
+              {/* Connection lines: every partner → Muscat HQ, with slow flowing dash */}
               <svg
                 aria-hidden="true"
-                viewBox="0 0 100 62.5"
-                className="absolute inset-0 w-full h-full"
+                viewBox="0 0 100 56.25"
+                className="absolute inset-0 w-full h-full overflow-visible"
                 preserveAspectRatio="none"
               >
-                {partnerNodes.map((p) => {
+                {/* Static hairline base */}
+                {partners.map((p) => {
                   const x = p.x
-                  const y = p.y * 0.625
+                  const y = p.y * 0.5625
                   return (
                     <line
-                      key={p.name}
-                      x1="50" y1={50 * 0.625} x2={x} y2={y}
-                      stroke="rgba(158,199,58,0.32)"
-                      strokeWidth="0.18"
-                      strokeDasharray="0.9 0.6"
+                      key={`${p.name}-base`}
+                      x1={HQ.x} y1={HQ.y * 0.5625} x2={x} y2={y}
+                      stroke="rgba(30,64,175,0.18)"
+                      strokeWidth="0.12"
+                    />
+                  )
+                })}
+                {/* Animated flowing dash */}
+                {partners.map((p, i) => {
+                  const x = p.x
+                  const y = p.y * 0.5625
+                  return (
+                    <line
+                      key={`${p.name}-flow`}
+                      x1={x} y1={y} x2={HQ.x} y2={HQ.y * 0.5625}
+                      stroke="rgba(30,64,175,0.55)"
+                      strokeWidth="0.2"
+                      strokeLinecap="round"
+                      className="animate-svg-flow"
+                      style={{ animationDelay: `${i * 0.5}s`, animationDuration: '5s' }}
                     />
                   )
                 })}
               </svg>
 
-              {/* MUSCAT HQ — central node */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                <div className="relative grid place-items-center">
+              {/* Muscat HQ — the only "highlighted" point */}
+              <div
+                className="absolute -translate-y-1/2 z-20 flex items-center gap-2"
+                style={{ left: `${HQ.x}%`, top: `${HQ.y}%`, transform: 'translate(-50%, -50%)' }}
+              >
+                <span className="relative inline-flex">
                   <span
-                    className="absolute w-24 h-24 rounded-full bg-brand-accent/30 blur-xl"
-                    style={{ animation: 'haloPulse 3.2s ease-in-out infinite' }}
+                    className="absolute inset-0 rounded-full bg-blue-700/25"
+                    style={{ animation: 'haloPulse 3s ease-in-out infinite' }}
                   />
-                  <span
-                    className="absolute w-16 h-16 rounded-full bg-brand-accent/40"
-                    style={{ animation: 'haloPulse 3.2s ease-in-out 0.4s infinite' }}
-                  />
-                  <div className="relative w-12 h-12 rounded-full bg-brand-accent
-                                  ring-4 ring-white/30 shadow-[0_0_30px_rgba(158,199,58,0.7)]
-                                  grid place-items-center text-brand-deep">
-                    <Award size={20} strokeWidth={2.4} />
-                  </div>
-                  <div className="mt-3 px-3 py-1 rounded-full bg-white/95 text-brand-deep
-                                  text-[10px] font-bold uppercase tracking-[0.18em] whitespace-nowrap shadow-md">
-                    Yanabiya Group HQ · Oman
-                  </div>
+                  <span className="relative block w-3 h-3 rounded-full bg-blue-700 ring-2 ring-white shadow" />
+                </span>
+              </div>
+              {/* HQ label as a separate, larger element */}
+              <div
+                className="absolute z-20 whitespace-nowrap"
+                style={{ left: `${HQ.x}%`, top: `${HQ.y}%`, transform: 'translate(12px, -50%)' }}
+              >
+                <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-blue-700">
+                  Muscat HQ
+                </div>
+                <div className="text-[10px] text-slate-500 mt-0.5 tracking-wide">
+                  Yanabiya Group · Oman
                 </div>
               </div>
 
-              {/* Partner nodes — hover reveals tooltip card */}
-              {partnerNodes.map((p, i) => (
+              {/* Partner nodes — text labels visible on the map */}
+              {partners.map((p) => (
                 <div
                   key={p.name}
-                  className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-30"
-                  style={{ left: `${p.x}%`, top: `${p.y}%` }}
+                  className="group absolute z-10 hover:z-30"
+                  style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)' }}
                 >
-                  {/* Node */}
-                  <span className="relative inline-flex">
-                    <span
-                      className="absolute inset-0 rounded-full bg-brand-accent/35"
-                      style={{ animation: `haloPulse 3s ease-in-out ${i * 0.45}s infinite` }}
-                    />
-                    <span
-                      className="relative block w-3 h-3 rounded-full bg-brand-accent
-                                 ring-2 ring-white/30
-                                 transition-all duration-300
-                                 group-hover:scale-150 group-hover:ring-white
-                                 group-hover:shadow-[0_0_18px_rgba(158,199,58,0.85)]"
-                    />
-                  </span>
-
-                  {/* Hover tooltip card */}
-                  <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-3
-                                  w-[220px] rounded-xl bg-white/95 backdrop-blur-md text-slate-900
-                                  border border-white/60 shadow-[0_18px_40px_-10px_rgba(0,0,0,0.45)]
-                                  px-3.5 py-2.5
-                                  opacity-0 translate-y-1 transition-all duration-300
-                                  group-hover:opacity-100 group-hover:translate-y-0">
-                    <div className="flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-brand-accentDark">
-                      <span className="block w-1.5 h-1.5 rounded-full bg-brand-accent" />
-                      {p.category}
-                    </div>
-                    <div className="mt-1.5 font-serif text-[13px] leading-snug font-semibold">
+                  {/* Dot */}
+                  <span className="block w-1.5 h-1.5 rounded-full bg-slate-900
+                                   transition-all duration-300
+                                   group-hover:scale-150 group-hover:bg-blue-700" />
+                  {/* Label — anchored left or right of dot, never on top */}
+                  <div
+                    className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap
+                                ${p.align === 'right' ? 'left-3' : 'right-3 text-right'}`}
+                  >
+                    <div className="text-[11px] font-semibold text-slate-900 leading-tight
+                                    transition-all duration-300
+                                    group-hover:text-blue-700 group-hover:underline underline-offset-2">
                       {p.name}
                     </div>
-                    {/* Pointer arrow */}
-                    <span className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-2.5 h-2.5 rotate-45
-                                     bg-white/95 border-r border-b border-white/60" />
+                    <div className="text-[9px] uppercase tracking-[0.18em] text-slate-400 mt-0.5">
+                      {p.category}
+                    </div>
                   </div>
                 </div>
               ))}
 
-              {/* Corner caption — corporate-dashboard chrome */}
-              <div className="absolute top-4 left-4 flex items-center gap-2 text-[10px] font-semibold uppercase
-                              tracking-[0.25em] text-white/55">
-                <span className="block w-2 h-2 rounded-full bg-brand-accent shadow-[0_0_8px_rgba(158,199,58,0.7)]" />
-                Live · 7 Entities
+              {/* Editorial chrome */}
+              <div className="absolute top-3 left-4 text-[9px] font-semibold uppercase tracking-[0.25em] text-slate-400">
+                Fig. 01 · Group Network · Oman
               </div>
-              <div className="absolute bottom-4 right-4 text-[10px] font-semibold uppercase
-                              tracking-[0.25em] text-white/40">
-                Sultanate of Oman
+              <div className="absolute bottom-3 right-4 text-[9px] font-semibold uppercase tracking-[0.25em] text-slate-300">
+                Source: Yanabiya Group
               </div>
             </div>
           </Reveal>
 
-          {/* Compact partner index — fallback for mobile + accessibility */}
-          <Reveal delay={500}>
-            <div className="mt-10 max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
-              {partnerNodes.map((p) => (
-                <div
-                  key={p.name}
-                  className="flex items-start gap-3 rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3"
-                >
-                  <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-brand-accent shrink-0" />
-                  <div className="min-w-0">
-                    <div className="text-white/90 leading-snug">{p.name}</div>
-                    <div className="text-[10px] uppercase tracking-[0.2em] text-brand-accent mt-0.5 font-semibold">
-                      {p.category}
-                    </div>
-                  </div>
+          {/* Plain-text index — guarantees names are visible on small screens */}
+          <Reveal delay={400}>
+            <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3
+                            text-sm text-slate-700 max-w-5xl">
+              {partners.map((p) => (
+                <div key={p.name} className="flex items-baseline gap-2">
+                  <span className="block w-1 h-1 rounded-full bg-blue-700 shrink-0 translate-y-[-2px]" />
+                  <span>{p.name}</span>
                 </div>
               ))}
             </div>
@@ -432,50 +272,39 @@ export default function OmanPresence() {
         </div>
       </section>
 
-      {/* ───────── 4. BUSINESS ACTIVITIES ───────── */}
-      <section className="relative py-20 md:py-28">
-        <div className="container-x">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <Reveal>
-              <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accent mb-3">
+      {/* ───────── 3. BUSINESS ACTIVITIES (editorial text) ───────── */}
+      <section className="relative border-t border-slate-100">
+        <div className="container-x py-20 md:py-28">
+
+          <Reveal>
+            <div className="max-w-3xl">
+              <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
                 Operating Capabilities
               </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                Business Activities.
+              <h2 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
+                Core Business Activities.
               </h2>
-            </Reveal>
-            <Reveal delay={240}>
-              <p className="mt-4 text-white/65 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Five integrated capability areas under a single licensed group structure
                 in the Sultanate of Oman.
               </p>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-            {businessActivities.map((b, i) => (
-              <Reveal key={b.title} delay={i * 110}>
-                <div className="group relative h-full rounded-2xl
-                                bg-white/[0.06] backdrop-blur-md border border-white/10 p-7
-                                transition-all duration-500
-                                hover:bg-white/[0.10] hover:border-brand-accent/40
-                                hover:-translate-y-1
-                                hover:shadow-[0_30px_80px_-20px_rgba(158,199,58,0.35)]">
-                  <div className="w-12 h-12 rounded-xl bg-brand-accent/15 ring-1 ring-brand-accent/30
-                                  grid place-items-center text-brand-accent
-                                  transition-all duration-300
-                                  group-hover:bg-brand-accent group-hover:text-brand-deep group-hover:rotate-3">
-                    <b.icon size={20} />
+          <div className="mt-12 grid md:grid-cols-2 gap-x-16 gap-y-12 max-w-5xl">
+            {activities.map((a, i) => (
+              <Reveal key={a.title} delay={i * 100}>
+                <div>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
+                    0{i + 1}
                   </div>
-                  <h3 className="mt-5 font-serif text-xl text-white leading-tight">{b.title}</h3>
-                  <ul className="mt-4 space-y-2">
-                    {b.bullets.map((bullet) => (
-                      <li key={bullet} className="flex items-start gap-2 text-sm text-white/70 leading-relaxed">
-                        <span className="mt-1.5 w-1 h-1 rounded-full bg-brand-accent shrink-0" />
-                        <span>{bullet}</span>
-                      </li>
+                  <h3 className="mt-2 font-serif text-xl md:text-2xl text-slate-900 leading-tight">
+                    {a.title}
+                  </h3>
+                  <div className="mt-3 w-8 h-px bg-slate-900/70" />
+                  <ul className="mt-4 space-y-1.5 text-slate-700">
+                    {a.items.map((item) => (
+                      <li key={item} className="text-sm leading-relaxed">{item}</li>
                     ))}
                   </ul>
                 </div>
@@ -485,40 +314,49 @@ export default function OmanPresence() {
         </div>
       </section>
 
-      {/* ───────── 5. CTA STRIP ───────── */}
-      <section className="relative py-20 border-t border-white/10">
-        <div className="container-x text-center max-w-2xl mx-auto">
+      {/* ───────── 4. CONTACT (text only) ───────── */}
+      <section className="relative border-t border-slate-100">
+        <div className="container-x py-20 md:py-28">
+
           <Reveal>
-            <h3 className="font-serif text-3xl md:text-4xl leading-tight">
-              Connect with our Muscat office.
-            </h3>
-          </Reveal>
-          <Reveal delay={150}>
-            <p className="mt-4 text-white/65 leading-relaxed">
-              Whether you’re a partner, supplier, or client — we’re ready to start the conversation.
-            </p>
-          </Reveal>
-          <Reveal delay={300}>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                to="/#contact"
-                className="inline-flex items-center gap-2 rounded-full px-7 py-3.5
-                           bg-brand-accent text-brand-deep font-semibold uppercase tracking-wider text-xs
-                           shadow-lg hover:bg-white hover:shadow-2xl hover:-translate-y-0.5
-                           transition-all duration-300"
-              >
-                Get in Touch <ArrowRight size={14} />
-              </Link>
-              <Link
-                to="/#global"
-                className="inline-flex items-center gap-2 rounded-full px-7 py-3.5
-                           border border-white/30 text-white text-xs font-semibold uppercase tracking-wider
-                           hover:bg-white/10 hover:border-white transition-colors"
-              >
-                Other Locations
-              </Link>
+            <div className="max-w-3xl">
+              <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
+                Reach Us in Muscat
+              </div>
+              <h2 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
+                Contact.
+              </h2>
             </div>
           </Reveal>
+
+          <div className="mt-12 grid md:grid-cols-2 gap-x-16 gap-y-10 max-w-4xl">
+            <Reveal>
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
+                  Head Office
+                </div>
+                <div className="mt-3 w-8 h-px bg-slate-900/70" />
+                <p className="mt-4 text-slate-700 leading-relaxed">
+                  Office-41, 4th Floor, Building-846<br />
+                  Way-4011, Complex-240<br />
+                  Al Gubrah, Bushar, Muscat, Oman
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
+                  Postal Address
+                </div>
+                <div className="mt-3 w-8 h-px bg-slate-900/70" />
+                <p className="mt-4 text-slate-700 leading-relaxed">
+                  P.O. Box 1432, PC-133<br />
+                  Al Khuwair, Muscat
+                </p>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
     </main>
