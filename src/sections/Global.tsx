@@ -29,10 +29,10 @@ function Reveal({
 }
 
 const orbitDots = [
-  { code: 'OM', label: 'Muscat, Oman',       top: '64%', left: '56%' },
-  { code: 'GB', label: 'London, UK',         top: '24%', left: '46%' },
-  { code: 'BD', label: 'Dhaka, Bangladesh',  top: '54%', left: '78%' },
-  { code: 'US', label: 'Austin, USA',        top: '44%', left: '14%' },
+  { code: 'OM', flag: '🇴🇲', label: 'Muscat, Oman',       top: '64%', left: '56%' },
+  { code: 'GB', flag: '🇬🇧', label: 'London, UK',         top: '24%', left: '46%' },
+  { code: 'BD', flag: '🇧🇩', label: 'Dhaka, Bangladesh',  top: '54%', left: '78%' },
+  { code: 'US', flag: '🇺🇸', label: 'Austin, USA',        top: '44%', left: '14%' },
 ]
 
 const cardTags: Record<string, { label: string; desc: string }> = {
@@ -140,22 +140,37 @@ export default function Global() {
                 })}
               </svg>
 
-              {/* Outer city pulse dots + labels */}
+              {/* Outer city pins — clickable flag cards routing to each country page */}
               {orbitDots.map((d, i) => (
-                <div
+                <Link
                   key={d.code}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2"
+                  to={`/country/${d.code.toLowerCase()}`}
+                  aria-label={`Explore ${d.label}`}
+                  className="group absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 z-10
+                             hover:z-20"
                   style={{ top: d.top, left: d.left }}
                 >
-                  <span
-                    className="block w-3 h-3 rounded-full bg-brand-accent shadow-[0_0_12px_rgba(158,199,58,0.7)]"
-                    style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
-                  />
+                  <span className="relative inline-flex">
+                    <span
+                      className="absolute inset-0 rounded-full bg-brand-accent/40"
+                      style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
+                    />
+                    <span
+                      className="relative inline-grid place-items-center w-9 h-9 rounded-full bg-white
+                                 ring-2 ring-brand-accent/60 shadow-md text-base
+                                 transition-all duration-300
+                                 group-hover:scale-110 group-hover:ring-brand-accent
+                                 group-hover:shadow-[0_0_20px_rgba(158,199,58,0.7)]"
+                    >
+                      {d.flag}
+                    </span>
+                  </span>
                   <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600
-                                   bg-white/85 backdrop-blur px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                                   bg-white/85 backdrop-blur px-2.5 py-0.5 rounded-full whitespace-nowrap
+                                   transition-colors duration-300 group-hover:text-brand-accentDark">
                     {d.label}
                   </span>
-                </div>
+                </Link>
               ))}
             </div>
           </Reveal>
