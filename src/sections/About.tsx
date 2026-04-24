@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Globe2 } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Section from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 
@@ -26,44 +26,92 @@ function Reveal({
   )
 }
 
-const orbitDots = [
-  { code: 'OM', label: 'Muscat',  top: '50%', left: '54%' },
-  { code: 'GB', label: 'London',  top: '32%', left: '48%' },
-  { code: 'BD', label: 'Dhaka',   top: '54%', left: '70%' },
-  { code: 'US', label: 'Austin',  top: '46%', left: '22%' },
+const stats = [
+  { value: '10+', label: 'Years of Experience' },
+  { value: '6',   label: 'Business Units'      },
+  { value: '4',   label: 'Continents Reached'  },
 ]
 
 export default function About() {
   return (
-    <Section id="about" className="bg-[#fbfdfb] overflow-hidden">
-      <div className="container-x py-20 md:py-28 grid lg:grid-cols-12 gap-10 items-center">
+    <Section id="about" className="relative overflow-hidden bg-[#fbfdfb]">
 
-        {/* LEFT — emotional copy + CTA */}
-        <div className="lg:col-span-5">
+      {/* ───────── Ambient background: abstract global network ───────── */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        <svg
+          viewBox="0 0 1200 600"
+          className="absolute inset-0 w-full h-full opacity-[0.18]"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            <linearGradient id="netLine" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%"   stopColor="rgba(125,164,42,0)" />
+              <stop offset="50%"  stopColor="rgba(125,164,42,0.55)" />
+              <stop offset="100%" stopColor="rgba(125,164,42,0)" />
+            </linearGradient>
+            <radialGradient id="netNode" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0%"   stopColor="rgba(158,199,58,0.9)" />
+              <stop offset="100%" stopColor="rgba(158,199,58,0)" />
+            </radialGradient>
+          </defs>
+
+          {/* Soft curved connection lines — abstract, no geographic meaning */}
+          <g stroke="url(#netLine)" strokeWidth="1.1" fill="none">
+            <path d="M -50 420 Q 240 280 520 360 T 1080 220" />
+            <path d="M -50 200 Q 320 320 620 240 T 1250 360" />
+            <path d="M -50 320 Q 200 180 480 260 T 920 460" />
+            <path d="M 100 540 Q 380 420 700 480 T 1300 380" />
+            <path d="M 200 60  Q 460 220 760 140 T 1280 240" />
+          </g>
+
+          {/* Nodes — small abstract pulse markers along the lines */}
+          {[
+            [180, 365], [420, 305], [620, 245], [810, 285], [1010, 235],
+            [320, 235], [560, 275], [880, 415], [710, 470], [950, 175],
+            [240, 95],  [490, 140], [770, 175], [1130, 320],
+          ].map(([cx, cy], i) => (
+            <g key={i}>
+              <circle cx={cx} cy={cy} r="14" fill="url(#netNode)" />
+              <circle cx={cx} cy={cy} r="2.4" fill="rgba(125,164,42,0.85)" />
+            </g>
+          ))}
+        </svg>
+
+        {/* Soft halo to keep centre legible */}
+        <div className="absolute inset-0 grid place-items-center">
+          <div className="w-[80%] h-[60%] rounded-full bg-white/70 blur-[80px]" />
+        </div>
+      </div>
+
+      {/* ───────── Foreground content ───────── */}
+      <div className="container-x relative py-24 md:py-32">
+
+        {/* HEADLINE BLOCK */}
+        <div className="text-center max-w-3xl mx-auto">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-5">
               About Yanabiya Group
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.05] tracking-tight">
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-[64px] leading-[1.05] tracking-tight text-slate-900">
               One group.
-              <span className="block">Four countries.</span>
-              <span className="block text-brand-accentDark">Many futures.</span>
+              <span className="block">Many futures.</span>
             </h2>
           </Reveal>
           <Reveal delay={280}>
-            <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-md">
+            <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-xl mx-auto">
               A trust-led platform building enterprises across continents — quietly,
               consistently, for over a decade.
             </p>
           </Reveal>
+
           <Reveal delay={420}>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               <Link
                 to="/about-us"
                 className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                           bg-brand-accent text-white font-semibold uppercase tracking-wider text-xs
+                           bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
                            shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 Explore About
@@ -81,78 +129,23 @@ export default function About() {
           </Reveal>
         </div>
 
-        {/* RIGHT — animated globe-mesh */}
-        <Reveal delay={300} className="lg:col-span-7">
-          <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto">
-            {/* Soft halo */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 grid place-items-center pointer-events-none"
-            >
-              <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/15 blur-[80px] animate-gradient" />
-            </div>
-
-            {/* Concentric orbit rings */}
-            <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
-              {[0.95, 0.75, 0.55, 0.35].map((s, i) => (
-                <div
-                  key={i}
-                  className="absolute rounded-full border border-brand-accent/20"
-                  style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
-                />
-              ))}
-            </div>
-
-            {/* Globe icon center */}
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accent/20
-                              grid place-items-center text-brand-accentDark animate-spin-slow">
-                <Globe2 size={36} strokeWidth={1.4} />
+        {/* PREMIUM TEXT POINTS — 3-up */}
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200/70 max-w-4xl mx-auto rounded-2xl overflow-hidden">
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={500 + i * 120}>
+              <div className="bg-[#fbfdfb] px-8 py-10 text-center h-full
+                              transition-colors duration-300 hover:bg-white">
+                <div className="font-serif text-5xl md:text-6xl text-brand-accentDark leading-none">
+                  {s.value}
+                </div>
+                <div className="mt-3 text-[11px] uppercase tracking-[0.25em] text-slate-600 font-semibold">
+                  {s.label}
+                </div>
               </div>
-            </div>
+            </Reveal>
+          ))}
+        </div>
 
-            {/* Country pulse dots + connecting lines */}
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 100 80"
-              className="absolute inset-0 w-full h-full"
-              preserveAspectRatio="none"
-            >
-              {/* Lines from each dot to center (50,40) */}
-              {orbitDots.map((d, i) => {
-                const x = parseFloat(d.left)
-                const y = parseFloat(d.top) * 0.8
-                return (
-                  <line
-                    key={d.code}
-                    x1="50" y1="40" x2={x} y2={y}
-                    stroke="rgba(125,164,42,0.35)"
-                    strokeWidth="0.2"
-                    strokeDasharray="0.8 0.6"
-                    style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
-                  />
-                )
-              })}
-            </svg>
-
-            {orbitDots.map((d, i) => (
-              <div
-                key={d.code}
-                className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2"
-                style={{ top: d.top, left: d.left }}
-              >
-                <span
-                  className="block w-3 h-3 rounded-full bg-brand-accent shadow-[0_0_12px_rgba(158,199,58,0.7)]"
-                  style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
-                />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500
-                                 bg-white/80 backdrop-blur px-2 py-0.5 rounded-full">
-                  {d.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </Reveal>
       </div>
     </Section>
   )
