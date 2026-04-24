@@ -26,6 +26,7 @@ const groupLinks = [
 
 const corporateLinks: { to: string; label: string }[] = [
   { to: '/about-us',                       label: 'Group Profile'              },
+  { to: '/about/our-story',                label: 'Our Story'                  },
   { to: '/leadership/management',          label: 'Our Management'             },
   { to: '/leadership/professionals',       label: 'High Skilled Professionals' },
   { to: '/community/blog',                 label: 'Blog'                       },

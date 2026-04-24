@@ -14,6 +14,7 @@ import SustainableGrowth from './pages/SustainableGrowth'
 import CommunityCare from './pages/CommunityCare'
 import CareersPage from './pages/CareersPage'
 import AboutUs from './pages/AboutUs'
+import OurStory from './pages/OurStory'
 
 export default function App() {
   const { pathname } = useLocation()
@@ -35,6 +36,8 @@ export default function App() {
           <Route path="/community/community-care" element={<CommunityCare />} />
           <Route path="/community/careers" element={<CareersPage />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/about/our-story" element={<OurStory />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>

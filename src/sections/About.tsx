@@ -1,144 +1,158 @@
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Target, Eye, Award, Leaf, Compass } from 'lucide-react'
-import Section, { Eyebrow } from '../components/Section'
+import { ArrowRight, Globe2 } from 'lucide-react'
+import Section from '../components/Section'
+import { useReveal } from '../hooks/useReveal'
 
-const pillars = [
-  {
-    title: 'Mission',
-    icon: Target,
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
-    teaser: 'Build and scale diversified ventures with innovation, technology, and strategic thinking.',
-  },
-  {
-    title: 'Vision',
-    icon: Eye,
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    teaser: 'Become a trusted global business ecosystem recognized for diversified, sustainable growth.',
-  },
-  {
-    title: 'Goals',
-    icon: Award,
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-    teaser: 'Build a strong, scalable ecosystem across technology, trade, consulting, and automation.',
-  },
-  {
-    title: 'Sustainability',
-    icon: Leaf,
-    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
-    teaser: 'Growth that benefits people, communities, and the planet — not just balance sheets.',
-  },
-  {
-    title: 'Our Approach',
-    icon: Compass,
-    image: 'https://images.unsplash.com/photo-1517976547714-720226b864c1?auto=format&fit=crop&w=800&q=80',
-    teaser: 'Operating principles that turn strategy into consistent, repeatable execution.',
-  },
+function Reveal({
+  children,
+  delay = 0,
+  className = '',
+}: {
+  children: React.ReactNode
+  delay?: number
+  className?: string
+}) {
+  const { ref, shown } = useReveal<HTMLDivElement>()
+  return (
+    <div
+      ref={ref}
+      className={`${className} transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  )
+}
+
+const orbitDots = [
+  { code: 'OM', label: 'Muscat',  top: '50%', left: '54%' },
+  { code: 'GB', label: 'London',  top: '32%', left: '48%' },
+  { code: 'BD', label: 'Dhaka',   top: '54%', left: '70%' },
+  { code: 'US', label: 'Austin',  top: '46%', left: '22%' },
 ]
 
 export default function About() {
-  const { t } = useTranslation()
-
   return (
-    <Section id="about">
-      <div className="container-x">
-        {/* Section header — About Us */}
-        <Eyebrow>{t('about.eyebrow')}</Eyebrow>
+    <Section id="about" className="bg-[#fbfdfb] overflow-hidden">
+      <div className="container-x py-20 md:py-28 grid lg:grid-cols-12 gap-10 items-center">
 
-        <div className="mt-4 grid lg:grid-cols-12">
-          <div className="lg:col-span-8">
-            <h2 className="font-serif text-2xl md:text-3xl text-brand-accentDark font-bold leading-tight">
-              <span className="inline-block relative pb-1
-                               after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[3px]
-                               after:bg-brand-accent after:rounded-full
-                               after:scale-x-0 after:origin-center after:transition-transform after:duration-300
-                               hover:after:scale-x-100 focus:after:scale-x-100">
-                Who We Are
-              </span>
-            </h2>
-
-            <div className="mt-3 space-y-3 text-slate-600 leading-relaxed text-justify">
-            <p>
-              Yanabiya Group is a diversified global enterprise operating as a unified business
-              platform across multiple international markets. Originating from Al Khuwair, Muscat,
-              Oman, we have expanded our presence into the United Kingdom, United States, and
-              Bangladesh, building a connected global structure that supports scalable and
-              sustainable growth.
-            </p>
-            <p>
-              We operate not as a single-sector company, but as a multi-business global platform
-              where different ventures are integrated under one ecosystem. Our platform enables us
-              to build, manage, and scale multiple businesses simultaneously, ensuring operational
-              synergy, efficiency, and long-term value creation.
-            </p>
-            <p>
-              Across our global network, we are involved in several core business operations
-              including technology-driven solutions, international trade facilitation, digital
-              services, infrastructure support, manpower deployment, and business management
-              services. Each operation functions independently where required, yet remains
-              strategically connected under the same unified group vision.
-            </p>
-            <p>
-              Our strength lies in this integrated model — where innovation, execution, and
-              operational capability come together. We design systems that allow businesses to
-              grow faster, operate smarter, and expand beyond geographical boundaries. This
-              approach enables us to support both enterprises and individuals through structured,
-              reliable, and scalable solutions.
-            </p>
+        {/* LEFT — emotional copy + CTA */}
+        <div className="lg:col-span-5">
+          <Reveal>
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-5">
+              About Yanabiya Group
             </div>
-
-            <div className="mt-5">
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.05] tracking-tight">
+              One group.
+              <span className="block">Four countries.</span>
+              <span className="block text-brand-accentDark">Many futures.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={280}>
+            <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-md">
+              A trust-led platform building enterprises across continents — quietly,
+              consistently, for over a decade.
+            </p>
+          </Reveal>
+          <Reveal delay={420}>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 to="/about-us"
-                className="inline-flex items-center gap-2 rounded-full
-                           bg-brand-accent px-6 py-2.5 text-xs font-semibold uppercase tracking-wider
-                           text-white shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                           bg-brand-accent text-white font-semibold uppercase tracking-wider text-xs
+                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
-                Read More
-                <ArrowRight size={14} className="ltr-flip" />
+                Explore About
+                <ArrowRight size={14} />
+              </Link>
+              <Link
+                to="/about/our-story"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                           border border-slate-300 text-slate-700 text-xs font-semibold uppercase tracking-wider
+                           hover:border-brand-accentDark hover:text-brand-accentDark transition-colors"
+              >
+                Read Our Story
               </Link>
             </div>
-          </div>
+          </Reveal>
         </div>
 
-        {/* Pillar teaser cards — 5 in a single row, navigate to /about-us */}
-        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-          {pillars.map((p) => (
-            <Link
-              key={p.title}
-              to="/about-us"
-              className="group/card relative rounded-xl overflow-hidden shadow-md h-36
-                         hover:-translate-y-1 hover:shadow-xl transition-all
-                         focus:outline-none focus:ring-2 focus:ring-brand-accent block"
+        {/* RIGHT — animated globe-mesh */}
+        <Reveal delay={300} className="lg:col-span-7">
+          <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto">
+            {/* Soft halo */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 grid place-items-center pointer-events-none"
             >
-              <img
-                src={p.image}
-                alt={p.title}
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover
-                           transition-transform duration-500 group-hover/card:scale-105"
-                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
-              <div className="absolute inset-0 p-3 flex flex-col">
-                <div className="w-7 h-7 rounded-md bg-white/95 text-brand-accentDark grid place-items-center">
-                  <p.icon size={14} />
-                </div>
-                <div className="mt-auto">
-                  <h3 className="font-serif uppercase tracking-[0.14em] text-white text-[12px] font-bold drop-shadow leading-tight">
-                    {p.title}
-                  </h3>
-                  <span className="mt-1.5 inline-flex items-center gap-1 rounded-full
-                                   px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider
-                                   bg-white/95 text-brand-accentDark
-                                   transition-colors group-hover/card:bg-brand-accent group-hover/card:text-white">
-                    Read <ArrowRight size={10} className="ltr-flip" />
-                  </span>
-                </div>
+              <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/15 blur-[80px] animate-gradient" />
+            </div>
+
+            {/* Concentric orbit rings */}
+            <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
+              {[0.95, 0.75, 0.55, 0.35].map((s, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full border border-brand-accent/20"
+                  style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
+                />
+              ))}
+            </div>
+
+            {/* Globe icon center */}
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accent/20
+                              grid place-items-center text-brand-accentDark animate-spin-slow">
+                <Globe2 size={36} strokeWidth={1.4} />
               </div>
-            </Link>
-          ))}
-        </div>
+            </div>
+
+            {/* Country pulse dots + connecting lines */}
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 100 80"
+              className="absolute inset-0 w-full h-full"
+              preserveAspectRatio="none"
+            >
+              {/* Lines from each dot to center (50,40) */}
+              {orbitDots.map((d, i) => {
+                const x = parseFloat(d.left)
+                const y = parseFloat(d.top) * 0.8
+                return (
+                  <line
+                    key={d.code}
+                    x1="50" y1="40" x2={x} y2={y}
+                    stroke="rgba(125,164,42,0.35)"
+                    strokeWidth="0.2"
+                    strokeDasharray="0.8 0.6"
+                    style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
+                  />
+                )
+              })}
+            </svg>
+
+            {orbitDots.map((d, i) => (
+              <div
+                key={d.code}
+                className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2"
+                style={{ top: d.top, left: d.left }}
+              >
+                <span
+                  className="block w-3 h-3 rounded-full bg-brand-accent shadow-[0_0_12px_rgba(158,199,58,0.7)]"
+                  style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
+                />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500
+                                 bg-white/80 backdrop-blur px-2 py-0.5 rounded-full">
+                  {d.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </Section>
   )
