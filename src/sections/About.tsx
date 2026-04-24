@@ -1,8 +1,28 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Target, Eye, Award } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
-import AboutCategories from '../components/AboutCategories'
+
+const pillars = [
+  {
+    title: 'Mission',
+    icon: Target,
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
+    teaser: 'Build and scale diversified ventures with innovation, technology, and strategic thinking.',
+  },
+  {
+    title: 'Vision',
+    icon: Eye,
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    teaser: 'Become a trusted global business ecosystem recognized for diversified, sustainable growth.',
+  },
+  {
+    title: 'Goals',
+    icon: Award,
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+    teaser: 'Build a strong, scalable ecosystem across technology, trade, consulting, and automation.',
+  },
+]
 
 export default function About() {
   const { t } = useTranslation()
@@ -12,35 +32,6 @@ export default function About() {
       <div className="container-x">
         {/* Section header — About Us */}
         <Eyebrow>{t('about.eyebrow')}</Eyebrow>
-
-        {/* Country flags marquee — silently scrolls between eyebrow and Who We Are */}
-        <div className="mt-2">
-          <div className="group relative w-screen left-1/2 -translate-x-1/2 overflow-hidden">
-            <div
-              className="flex animate-marquee marquee-pause gap-3 w-max py-1"
-              style={{ animationDuration: '28s' }}
-            >
-              {Array.from({ length: 3 }).flatMap(() => [
-                { flag: '🇴🇲', city: 'Muscat',  country: 'Oman' },
-                { flag: '🇬🇧', city: 'London',  country: 'United Kingdom' },
-                { flag: '🇺🇸', city: 'Austin',  country: 'USA' },
-                { flag: '🇧🇩', city: 'Dhaka',   country: 'Bangladesh' },
-              ]).map((c, i) => (
-                <div
-                  key={`${c.city}-${i}`}
-                  className="flex items-center gap-2 shrink-0 rounded-full bg-white border border-slate-200 px-4 py-2 shadow-sm"
-                >
-                  <span className="text-lg leading-none">{c.flag}</span>
-                  <span className="text-sm font-medium text-slate-700 whitespace-nowrap">
-                    {c.city}, {c.country}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-            <div className="absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
-          </div>
-        </div>
 
         <div className="mt-4 grid lg:grid-cols-12">
           <div className="lg:col-span-8">
@@ -98,8 +89,47 @@ export default function About() {
           </div>
         </div>
 
-        {/* Vision · Mission · Core Goals · Sustainability · Approach — moving cards */}
-        <AboutCategories />
+        {/* Mission · Vision · Goals — three teaser cards, each navigates to /about-us */}
+        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {pillars.map((p) => (
+            <Link
+              key={p.title}
+              to="/about-us"
+              className="group/card relative rounded-2xl overflow-hidden shadow-md h-48
+                         hover:-translate-y-1 hover:shadow-xl transition-all
+                         focus:outline-none focus:ring-2 focus:ring-brand-accent block"
+            >
+              <img
+                src={p.image}
+                alt={p.title}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover
+                           transition-transform duration-500 group-hover/card:scale-105"
+                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+              <div className="absolute inset-0 p-5 flex flex-col">
+                <div className="w-10 h-10 rounded-lg bg-white/95 text-brand-accentDark grid place-items-center">
+                  <p.icon size={20} />
+                </div>
+                <div className="mt-auto">
+                  <h3 className="font-serif uppercase tracking-[0.16em] text-white text-base font-bold drop-shadow">
+                    {p.title}
+                  </h3>
+                  <p className="mt-1 text-white/85 text-xs leading-snug line-clamp-2">
+                    {p.teaser}
+                  </p>
+                  <span className="mt-2 inline-flex items-center gap-1.5 rounded-full
+                                   px-3 py-1 text-[11px] font-semibold uppercase tracking-wider
+                                   bg-white/95 text-brand-accentDark
+                                   transition-colors group-hover/card:bg-brand-accent group-hover/card:text-white">
+                    Read More <ArrowRight size={12} className="ltr-flip" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </Section>
   )
