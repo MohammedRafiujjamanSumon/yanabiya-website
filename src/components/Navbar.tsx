@@ -109,7 +109,7 @@ export default function Navbar() {
   }
 
   const baseLinkCls = (isActive: boolean) =>
-    `relative text-base font-medium whitespace-nowrap py-1.5 px-4 rounded-full
+    `relative text-[15px] xl:text-base font-medium whitespace-nowrap py-1.5 px-3.5 xl:px-4 rounded-full
      transition-colors duration-200
      hover:bg-white hover:text-brand-deep ${
       isActive ? 'text-white underline underline-offset-4 decoration-white/70' : 'text-white'
@@ -119,20 +119,23 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 bg-brand-deep pt-1.5 pb-1.5">
       <div className="container-x">
       <div
-        className={`flex items-center gap-4 h-14 lg:h-14 ps-2 pe-5 lg:pe-8
-                    rounded-full bg-lime-700
+        className={`flex items-center gap-4 h-14 lg:h-14 pe-5 lg:pe-7
+                    rounded-full bg-lime-700 overflow-hidden
                     border border-lime-700 transition-shadow duration-200 ${
           scrolled ? 'shadow-md shadow-slate-900/10'
                    : 'shadow-sm shadow-slate-900/5'
         }`}
       >
 
-        {/* LEFT — LOGO */}
-        <Link to="/#home" className="flex items-center shrink-0 group">
+        {/* LEFT — LOGO BOX (white, full height, centered logo) */}
+        <Link
+          to="/#home"
+          className="group h-full flex items-center justify-center bg-white px-4 lg:px-5 shrink-0 border-r border-lime-200/40"
+        >
           <img
             src={assets.logo}
             alt="Yanabiya Group"
-            className="h-14 w-auto object-contain group-hover:opacity-90 transition"
+            className="h-9 lg:h-10 w-auto object-contain group-hover:scale-105 transition-transform"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
         </Link>
