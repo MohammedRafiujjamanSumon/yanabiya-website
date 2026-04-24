@@ -9,7 +9,7 @@ export default function PageWatermark() {
       <img
         src={assets.logo}
         alt=""
-        className="w-screen h-screen opacity-[0.10] object-contain p-4"
+        className="w-screen h-screen opacity-[0.20] object-contain p-4"
       />
     </div>
   )
