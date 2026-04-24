@@ -29,7 +29,7 @@ function Reveal({
 }
 
 const orbitDots = [
-  { code: 'OM', label: 'Muscat, Oman',       top: '64%', left: '62%' },
+  { code: 'OM', label: 'Muscat, Oman',       top: '64%', left: '56%' },
   { code: 'GB', label: 'London, UK',         top: '24%', left: '46%' },
   { code: 'BD', label: 'Dhaka, Bangladesh',  top: '54%', left: '78%' },
   { code: 'US', label: 'Austin, USA',        top: '44%', left: '14%' },
