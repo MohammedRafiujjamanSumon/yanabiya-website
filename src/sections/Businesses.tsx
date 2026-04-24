@@ -2,14 +2,20 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
 import { businesses } from '../data/businesses'
+import { assets } from '../data/assets'
 
 export default function Businesses() {
   const { t } = useTranslation()
   return (
-    <Section id="businesses" className="bg-brand-ink">
-      <div className="container-x">
-        <Eyebrow tone="light">{t('businesses.eyebrow')}</Eyebrow>
-        <p className="text-slate-300 leading-relaxed text-justify [text-align-last:center] max-w-3xl mx-auto mb-10">
+    <Section id="businesses" className="relative overflow-hidden bg-white">
+      {/* Yanabiya logo watermark */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center select-none">
+        <img src={assets.logo} alt="" className="w-[80%] max-w-[900px] opacity-[0.06] object-contain" />
+      </div>
+
+      <div className="container-x relative">
+        <Eyebrow>{t('businesses.eyebrow')}</Eyebrow>
+        <p className="text-slate-600 leading-relaxed text-justify [text-align-last:center] max-w-3xl mx-auto mb-10">
           Strategic divisions powering integrated enterprise solutions, global trade, and
           workforce ecosystems across key international markets.
         </p>
