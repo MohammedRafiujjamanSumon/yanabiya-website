@@ -95,7 +95,7 @@ export default function Global() {
                 aria-hidden="true"
                 className="absolute inset-0 grid place-items-center pointer-events-none"
               >
-                <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/15 blur-[80px] animate-gradient" />
+                <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/30 blur-[80px] animate-gradient" />
               </div>
 
               {/* Concentric orbit rings */}
@@ -103,7 +103,7 @@ export default function Global() {
                 {[0.95, 0.75, 0.55, 0.35].map((s, i) => (
                   <div
                     key={i}
-                    className="absolute rounded-full border border-brand-accent/20"
+                    className="absolute rounded-full border border-brand-accentDark/40"
                     style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
                   />
                 ))}
@@ -111,9 +111,9 @@ export default function Global() {
 
               {/* Globe icon centre */}
               <div className="absolute inset-0 grid place-items-center">
-                <div className="w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accent/20
-                                grid place-items-center text-brand-accentDark animate-spin-slow">
-                  <Globe2 size={36} strokeWidth={1.4} />
+                <div className="w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accentDark/60
+                                grid place-items-center text-brand-deep animate-spin-slow">
+                  <Globe2 size={36} strokeWidth={1.6} />
                 </div>
               </div>
 
@@ -131,8 +131,8 @@ export default function Global() {
                     <line
                       key={d.code}
                       x1="50" y1="40" x2={x} y2={y}
-                      stroke="rgba(125,164,42,0.35)"
-                      strokeWidth="0.2"
+                      stroke="rgba(15,58,35,0.55)"
+                      strokeWidth="0.28"
                       strokeDasharray="0.8 0.6"
                       style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
                     />
