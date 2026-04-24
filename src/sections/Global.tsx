@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowRight, ChevronRight, Globe2 } from 'lucide-react'
+import { ArrowRight, ChevronRight } from 'lucide-react'
 import Section from '../components/Section'
 import { countries } from '../data/countries'
 import { useReveal } from '../hooks/useReveal'
@@ -28,11 +28,11 @@ function Reveal({
   )
 }
 
+/* Outer cities (Oman is the centre, so it's not in this list). */
 const orbitDots = [
-  { code: 'OM', label: 'Muscat, Oman',       top: '64%', left: '56%' },
-  { code: 'GB', label: 'London, UK',         top: '24%', left: '46%' },
-  { code: 'BD', label: 'Dhaka, Bangladesh',  top: '54%', left: '78%' },
-  { code: 'US', label: 'Austin, USA',        top: '44%', left: '14%' },
+  { code: 'GB', label: 'London, UK',         top: '22%', left: '50%' },
+  { code: 'BD', label: 'Dhaka, Bangladesh',  top: '54%', left: '82%' },
+  { code: 'US', label: 'Austin, USA',        top: '46%', left: '12%' },
 ]
 
 const cardTags: Record<string, { label: string; desc: string }> = {
@@ -109,45 +109,65 @@ export default function Global() {
                 ))}
               </div>
 
-              {/* Globe icon centre */}
-              <div className="absolute inset-0 grid place-items-center">
-                <div className="w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accent/20
-                                grid place-items-center text-brand-accentDark animate-spin-slow">
-                  <Globe2 size={36} strokeWidth={1.4} />
-                </div>
-              </div>
-
-              {/* Connecting lines: Oman (HQ) is the hub — every other city links to it */}
+              {/* Connecting lines: outer city → Oman centre, with a flowing dash
+                  that travels in and "arrives" at the centre on every loop. */}
               <svg
                 aria-hidden="true"
                 viewBox="0 0 100 80"
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 w-full h-full overflow-visible"
                 preserveAspectRatio="none"
               >
-                {(() => {
-                  const oman = orbitDots.find((d) => d.code === 'OM')!
-                  const ox = parseFloat(oman.left)
-                  const oy = parseFloat(oman.top) * 0.8
-                  return orbitDots
-                    .filter((d) => d.code !== 'OM')
-                    .map((d, i) => {
-                      const x = parseFloat(d.left)
-                      const y = parseFloat(d.top) * 0.8
-                      return (
-                        <line
-                          key={d.code}
-                          x1={ox} y1={oy} x2={x} y2={y}
-                          stroke="rgba(125,164,42,0.55)"
-                          strokeWidth="0.3"
-                          strokeDasharray="0.9 0.7"
-                          style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
-                        />
-                      )
-                    })
-                })()}
+                {/* Background hairline guide for each link */}
+                {orbitDots.map((d) => {
+                  const x = parseFloat(d.left)
+                  const y = parseFloat(d.top) * 0.8
+                  return (
+                    <line
+                      key={`${d.code}-base`}
+                      x1="50" y1="40" x2={x} y2={y}
+                      stroke="rgba(125,164,42,0.18)"
+                      strokeWidth="0.18"
+                    />
+                  )
+                })}
+                {/* Flowing signal — short dash that travels from outer city into centre */}
+                {orbitDots.map((d, i) => {
+                  const x = parseFloat(d.left)
+                  const y = parseFloat(d.top) * 0.8
+                  return (
+                    <line
+                      key={`${d.code}-flow`}
+                      x1={x} y1={y} x2="50" y2="40"
+                      stroke="rgba(125,164,42,0.95)"
+                      strokeWidth="0.35"
+                      strokeLinecap="round"
+                      className="animate-svg-flow"
+                      style={{ animationDelay: `${i * 0.6}s` }}
+                    />
+                  )
+                })}
               </svg>
 
-              {/* City pulse dots + labels */}
+              {/* CENTRE — Oman flag as the HQ marker */}
+              <div className="absolute inset-0 grid place-items-center pointer-events-none">
+                <div className="relative">
+                  <span
+                    className="absolute inset-0 rounded-full bg-brand-accent/35 blur-md"
+                    style={{ animation: 'haloPulse 3s ease-in-out infinite' }}
+                  />
+                  <div className="relative w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accent
+                                  grid place-items-center text-3xl">
+                    🇴🇲
+                  </div>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3 whitespace-nowrap
+                                  text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-accentDark
+                                  bg-white/85 backdrop-blur px-2.5 py-0.5 rounded-full">
+                    Muscat, Oman · HQ
+                  </div>
+                </div>
+              </div>
+
+              {/* Outer city pulse dots + labels */}
               {orbitDots.map((d, i) => (
                 <div
                   key={d.code}
