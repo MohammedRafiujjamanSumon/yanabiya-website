@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowRight, ChevronRight } from 'lucide-react'
+import { ArrowRight, ChevronRight, Globe2 } from 'lucide-react'
 import Section from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 
@@ -33,41 +33,69 @@ type CountryCard = {
   name: string
   label: string
   desc: string
-  /** Position on the map container (% of width / height). Anchored bottom-center
-   *  so the card sits "above" its geographic point with a small offset arrow. */
-  x: number
-  y: number
-  /** Card alignment relative to its anchor — controls the translate so cards
-   *  don't fall off the edges of the map. */
-  anchor: 'left' | 'right' | 'center'
+  /** Pulse-dot position on the globe mesh (% of container width / height). */
+  dot: { top: string; left: string }
+  /** Card corner position (Tailwind classes). One card per corner avoids
+   *  overlap and gives a calm, airy composition. */
+  corner: string
+  /** Stagger delay for the floating animation so cards don't move in unison. */
+  floatDelay: string
 }
 
 const cards: CountryCard[] = [
-  { code: 'US', flag: '🇺🇸', name: 'United States',  label: 'North America Operations', desc: 'North America presence',   x: 18, y: 48, anchor: 'left'   },
-  { code: 'GB', flag: '🇬🇧', name: 'United Kingdom', label: 'European Operations',      desc: 'European operations',       x: 46, y: 26, anchor: 'center' },
-  { code: 'OM', flag: '🇴🇲', name: 'Sultanate of Oman', label: 'Headquarters',         desc: 'Headquarters · Gulf hub',   x: 58, y: 60, anchor: 'center' },
-  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh',     label: 'South Asia Operations',    desc: 'South Asia delivery',       x: 76, y: 56, anchor: 'right'  },
+  {
+    code: 'US', flag: '🇺🇸',
+    name: 'United States',
+    label: 'North America Operations',
+    desc: 'North America presence',
+    dot: { top: '46%', left: '24%' },
+    corner: 'top-3 left-3',
+    floatDelay: '0s',
+  },
+  {
+    code: 'GB', flag: '🇬🇧',
+    name: 'United Kingdom',
+    label: 'European Operations',
+    desc: 'European operations',
+    dot: { top: '30%', left: '50%' },
+    corner: 'top-3 right-3',
+    floatDelay: '1.5s',
+  },
+  {
+    code: 'OM', flag: '🇴🇲',
+    name: 'Sultanate of Oman',
+    label: 'Headquarters',
+    desc: 'Headquarters · Gulf hub',
+    dot: { top: '52%', left: '50%' },
+    corner: 'bottom-3 left-3',
+    floatDelay: '3s',
+  },
+  {
+    code: 'BD', flag: '🇧🇩',
+    name: 'Bangladesh',
+    label: 'South Asia Operations',
+    desc: 'South Asia delivery',
+    dot: { top: '58%', left: '72%' },
+    corner: 'bottom-3 right-3',
+    floatDelay: '4.5s',
+  },
 ]
 
 function FloatingCard({ c, delay }: { c: CountryCard; delay: number }) {
   const { ref, shown } = useReveal<HTMLDivElement>()
-  const translateX =
-    c.anchor === 'left'   ? 'translate-x-0'
-    : c.anchor === 'right' ? '-translate-x-full'
-    : '-translate-x-1/2'
-
   return (
     <Link
       to={`/country/${c.code.toLowerCase()}`}
       ref={ref as never}
-      className={`group absolute z-10 w-[200px] ${translateX} -translate-y-full
-                  rounded-xl bg-white/80 backdrop-blur-md border border-white/70
+      className={`group absolute z-20 w-[180px] xl:w-[200px] ${c.corner}
+                  rounded-xl bg-white/85 backdrop-blur-md border border-white/70
                   shadow-[0_10px_30px_-10px_rgba(15,58,35,0.25)]
                   px-3.5 py-3
                   transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
-                  hover:bg-white hover:scale-[1.04] hover:shadow-[0_18px_40px_-10px_rgba(125,164,42,0.35)]
+                  hover:bg-white hover:scale-[1.04] hover:shadow-[0_18px_40px_-10px_rgba(125,164,42,0.4)]
+                  hover:z-30 animate-float
                   ${shown ? 'opacity-100' : 'opacity-0 translate-y-4'}`}
-      style={{ left: `${c.x}%`, top: `${c.y}%`, transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: `${delay}ms`, animationDelay: c.floatDelay, animationDuration: '8s' }}
     >
       <div className="flex items-start gap-2">
         <span className="text-xl leading-none mt-0.5">{c.flag}</span>
@@ -86,77 +114,47 @@ function FloatingCard({ c, delay }: { c: CountryCard; delay: number }) {
         Explore
         <ChevronRight size={10} className="transition-transform duration-300 group-hover:translate-x-0.5" />
       </div>
-
-      {/* Pin / pointer connecting card to its geographic dot */}
-      <span
-        aria-hidden="true"
-        className={`absolute -bottom-2 ${
-          c.anchor === 'left'   ? 'left-4'
-          : c.anchor === 'right' ? 'right-4'
-          : 'left-1/2 -translate-x-1/2'
-        } w-2 h-2 rotate-45 bg-white/80 border-r border-b border-white/70`}
-      />
     </Link>
   )
 }
 
-function MapVisual({ withFloatingCards = false }: { withFloatingCards?: boolean }) {
+function GlobeMesh() {
   return (
-    <div className="relative w-full aspect-[4/3] rounded-3xl
-                    bg-gradient-to-br from-[#f3f8ee] to-[#fbfdfb]
-                    border border-slate-100 overflow-hidden">
+    <>
       {/* Soft halo */}
       <div
         aria-hidden="true"
         className="absolute inset-0 grid place-items-center pointer-events-none"
       >
-        <div className="w-[60%] h-[70%] rounded-full bg-brand-accent/12 blur-[100px]" />
+        <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/15 blur-[80px] animate-gradient" />
       </div>
 
-      {/* Stylised continent silhouettes — abstract, low-opacity */}
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 100 75"
-        className="absolute inset-0 w-full h-full"
-        preserveAspectRatio="xMidYMid meet"
-      >
-        <defs>
-          <linearGradient id="g-continent" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%"  stopColor="rgba(125,164,42,0.22)" />
-            <stop offset="100%" stopColor="rgba(125,164,42,0.08)" />
-          </linearGradient>
-        </defs>
-        {/* North America */}
-        <path d="M5,22 Q12,14 22,16 Q30,20 30,30 Q26,40 18,40 Q10,38 6,32 Z" fill="url(#g-continent)" />
-        {/* South America */}
-        <path d="M24,42 Q30,44 31,52 Q29,60 24,60 Q20,54 22,46 Z" fill="url(#g-continent)" />
-        {/* Europe */}
-        <path d="M42,20 Q50,16 56,22 Q56,28 50,30 Q44,28 42,24 Z" fill="url(#g-continent)" />
-        {/* Africa */}
-        <path d="M48,32 Q56,30 58,42 Q56,56 50,58 Q44,52 46,38 Z" fill="url(#g-continent)" />
-        {/* Asia */}
-        <path d="M55,18 Q70,12 86,18 Q90,28 84,36 Q72,40 60,36 Q56,28 55,22 Z" fill="url(#g-continent)" />
-        {/* India / South Asia */}
-        <path d="M70,36 Q76,34 78,44 Q72,50 68,46 Z" fill="url(#g-continent)" />
-        {/* Australia */}
-        <path d="M82,52 Q90,50 92,58 Q88,62 82,60 Z" fill="url(#g-continent)" />
+      {/* Concentric orbit rings */}
+      <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
+        {[0.92, 0.72, 0.52, 0.32].map((s, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full border border-brand-accent/20"
+            style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
+          />
+        ))}
+      </div>
 
-        {/* Connection arcs between Yanabiya cities */}
-        <g stroke="rgba(125,164,42,0.45)" strokeWidth="0.16" strokeDasharray="0.9 0.6" fill="none">
-          <path d="M 18 48 Q 32 30 46 26" />
-          <path d="M 46 26 Q 52 38 58 60" />
-          <path d="M 58 60 Q 67 56 76 56" />
-          <path d="M 18 48 Q 38 60 58 60" />
-        </g>
-      </svg>
+      {/* Globe icon centre */}
+      <div className="absolute inset-0 grid place-items-center">
+        <div className="w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accent/20
+                        grid place-items-center text-brand-accentDark animate-spin-slow">
+          <Globe2 size={36} strokeWidth={1.4} />
+        </div>
+      </div>
 
-      {/* Geographic anchor dots — visible behind the cards */}
+      {/* Pulsing geographic dots — connect cards to globe visually */}
       {cards.map((c, i) => (
         <span
           key={c.code}
           aria-hidden="true"
-          className="absolute -translate-x-1/2 -translate-y-1/2 z-0"
-          style={{ left: `${c.x}%`, top: `${c.y}%` }}
+          className="absolute -translate-x-1/2 -translate-y-1/2 z-10"
+          style={{ left: c.dot.left, top: c.dot.top }}
         >
           <span className="relative block">
             <span
@@ -167,12 +165,7 @@ function MapVisual({ withFloatingCards = false }: { withFloatingCards?: boolean 
           </span>
         </span>
       ))}
-
-      {/* Floating cards (desktop only) */}
-      {withFloatingCards && cards.map((c, i) => (
-        <FloatingCard key={c.code} c={c} delay={250 + i * 130} />
-      ))}
-    </div>
+    </>
   )
 }
 
@@ -221,26 +214,34 @@ export default function Global() {
             </Reveal>
           </div>
 
-          {/* RIGHT — map with floating cards (desktop) */}
+          {/* RIGHT — globe-mesh + floating corner cards */}
           <Reveal delay={200} className="lg:col-span-7">
-            {/* Desktop: map + floating overlay cards */}
-            <div className="hidden lg:block">
-              <MapVisual withFloatingCards />
+            {/* Desktop: globe with floating overlay cards in corners */}
+            <div className="hidden lg:block relative w-full aspect-[5/4]
+                            rounded-3xl bg-gradient-to-br from-[#f3f8ee] to-[#fbfdfb]
+                            border border-slate-100 overflow-hidden">
+              <GlobeMesh />
+              {cards.map((c, i) => (
+                <FloatingCard key={c.code} c={c} delay={250 + i * 130} />
+              ))}
             </div>
-            {/* Mobile / tablet: map alone */}
-            <div className="block lg:hidden">
-              <MapVisual />
+
+            {/* Mobile / tablet: globe alone */}
+            <div className="block lg:hidden relative w-full aspect-[5/4]
+                            rounded-3xl bg-gradient-to-br from-[#f3f8ee] to-[#fbfdfb]
+                            border border-slate-100 overflow-hidden">
+              <GlobeMesh />
             </div>
           </Reveal>
         </div>
 
-        {/* MOBILE / TABLET — stacked card grid below the map */}
+        {/* MOBILE / TABLET — stacked card grid below the globe */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10 lg:hidden">
           {cards.map((c, i) => (
             <Reveal key={c.code} delay={i * 100}>
               <Link
                 to={`/country/${c.code.toLowerCase()}`}
-                className="group block rounded-xl bg-white/80 backdrop-blur-md border border-slate-200 p-4
+                className="group block rounded-xl bg-white/85 backdrop-blur-md border border-slate-200 p-4
                            hover:border-brand-accent/40 hover:-translate-y-0.5 hover:shadow-lg
                            transition-all duration-300"
               >
