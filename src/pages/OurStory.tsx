@@ -6,6 +6,7 @@ import {
 } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import { assets } from '../data/assets'
+import BackButton from '../components/BackButton'
 
 /* ───────────────────────── Reveal helpers ───────────────────────── */
 
@@ -129,6 +130,7 @@ export default function OurStory() {
 
   return (
     <main className="bg-[#fbfdfb] text-slate-900">
+      <BackButton to="/about-us" label="Back to About Us" />
 
       {/* ───────── 1. CINEMATIC HERO ───────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-brand-deep text-white">
@@ -602,15 +604,6 @@ export default function OurStory() {
         </div>
       </section>
 
-      {/* Back link */}
-      <div className="bg-[#fbfdfb] py-10 text-center">
-        <Link
-          to="/about-us"
-          className="text-sm text-slate-500 hover:text-brand-accentDark transition-colors"
-        >
-          ← Back to About
-        </Link>
-      </div>
     </main>
   )
 }

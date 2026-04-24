@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import TopBar from './components/TopBar'
 import Footer from './components/Footer'
@@ -17,11 +17,9 @@ import AboutUs from './pages/AboutUs'
 import OurStory from './pages/OurStory'
 
 export default function App() {
-  const { pathname } = useLocation()
-  const isHome = pathname === '/' || pathname === ''
   return (
     <div className="min-h-screen flex flex-col">
-      {!isHome && <PageWatermark />}
+      <PageWatermark />
       <TopBar />
       <Navbar />
       <main className="flex-1 relative">

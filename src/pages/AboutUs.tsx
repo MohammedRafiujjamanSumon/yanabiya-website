@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import {
-  ArrowLeft, ArrowRight, Target, Eye, Sparkles,
+  ArrowRight, Target, Eye, Sparkles,
   Cpu, Globe2, Shirt, Handshake, Building2, Users,
   ChevronRight,
 } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
+import BackButton from '../components/BackButton'
 
 function Reveal({
   children,
@@ -85,6 +86,7 @@ export default function AboutUs() {
 
   return (
     <main className="bg-[#fbfdfb] text-slate-900">
+      <BackButton to="/#about" label="Back to Home" />
 
       {/* ───────── 1. HERO ───────── */}
       <section id="hero" className="relative min-h-[70vh] flex items-center overflow-hidden scroll-mt-28">
@@ -412,15 +414,6 @@ export default function AboutUs() {
         </div>
       </section>
 
-      <div className="bg-[#fbfdfb] py-10 text-center">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-brand-accentDark transition-colors"
-        >
-          <ArrowLeft size={14} />
-          Back to Home
-        </Link>
-      </div>
     </main>
   )
 }
