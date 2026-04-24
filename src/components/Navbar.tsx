@@ -69,21 +69,26 @@ export default function Navbar() {
       ],
     },
     {
-      label: 'Community',
-      parentSection: 'community',
-      items: [
-        { id: 'blog',               label: 'Blog',               href: '/community/blog'               },
-        { id: 'sustainable-growth', label: 'Sustainable Growth', href: '/community/sustainable-growth' },
-        { id: 'community-care',     label: 'Community Care',     href: '/community/community-care'     },
-        { id: 'careers',            label: t('nav.careers'),     href: '/community/careers'            },
-      ],
-    },
-    {
-      label: 'Leadership',
-      parentSection: 'leadership',
-      items: [
-        { id: 'management',    label: 'Our Management',             href: '/leadership/management'    },
-        { id: 'professionals', label: 'High Skilled Professionals', href: '/leadership/professionals' },
+      label: 'More',
+      subGroups: [
+        {
+          label: 'Community',
+          parentSection: 'community',
+          items: [
+            { id: 'blog',               label: 'Blog',               href: '/community/blog'               },
+            { id: 'sustainable-growth', label: 'Sustainable Growth', href: '/community/sustainable-growth' },
+            { id: 'community-care',     label: 'Community Care',     href: '/community/community-care'     },
+            { id: 'careers',            label: t('nav.careers'),     href: '/community/careers'            },
+          ],
+        },
+        {
+          label: 'Leadership',
+          parentSection: 'leadership',
+          items: [
+            { id: 'management',    label: 'Our Management',             href: '/leadership/management'    },
+            { id: 'professionals', label: 'High Skilled Professionals', href: '/leadership/professionals' },
+          ],
+        },
       ],
     },
   ]
