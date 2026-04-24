@@ -1,4 +1,6 @@
 import { useEffect } from 'react'
+import { HardHat, Truck, Laptop, TrendingUp, Coffee } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import BackButton from '../components/BackButton'
 
@@ -43,26 +45,43 @@ const partners: { name: string; category: string; x: number; y: number; align: N
   { name: 'Yanabiya Al Rustaq Contracting',              category: 'Contracting',          x: 38, y: 42, align: 'right' },
 ]
 
-const activities: { title: string; items: string[] }[] = [
+type Capability = { icon: LucideIcon; title: string; items: string[] }
+
+/* Industrial Core column — physical operations, infrastructure-led */
+const industrialCore: Capability[] = [
   {
-    title: 'Infrastructure & Construction',
-    items: ['Building & Civil Works', 'Electrical Networks', 'Interior Finishing'],
+    icon: HardHat,
+    title: 'Infrastructure & Engineering',
+    items: ['Building Construction', 'Electrical & Utility Networks', 'Interior Finishing'],
   },
   {
-    title: 'Logistics & Industrial Services',
-    items: ['Warehousing & Transport', 'Loading & Packaging', 'Maritime Services'],
+    icon: Truck,
+    title: 'Logistics & Industrial Operations',
+    items: ['Warehousing & Cold Storage', 'Maritime Transport', 'Loading & Packaging'],
+  },
+]
+
+/* Business & Digital Core column — knowledge work, trade, services */
+const businessDigitalCore: Capability[] = [
+  {
+    icon: Laptop,
+    title: 'Technology & Digital Systems',
+    items: [
+      'Cloud Infrastructure',
+      'Cyber Security Consulting',
+      'Software Development',
+      'Systems Integration',
+    ],
   },
   {
-    title: 'Technology & IT Solutions',
-    items: ['Cloud Infrastructure', 'Cyber Security', 'Software Development'],
+    icon: TrendingUp,
+    title: 'Trade & Commercial Services',
+    items: ['Import & Export Operations', 'Wholesale & Retail Trading', 'Brokerage Services'],
   },
   {
-    title: 'Trade & Commercial Operations',
-    items: ['Import & Export', 'Retail & Wholesale Trading'],
-  },
-  {
-    title: 'Hospitality & Services',
-    items: ['Catering', 'Facility Support'],
+    icon: Coffee,
+    title: 'Service & Hospitality',
+    items: ['Catering Services', 'Facility Support Services'],
   },
 ]
 
@@ -260,44 +279,125 @@ export default function OmanPresence() {
         </div>
       </section>
 
-      {/* ───────── 3. BUSINESS ACTIVITIES (editorial text) ───────── */}
+      {/* ───────── 3. CAPABILITY MATRIX (Industrial Core | Business & Digital Core) ───────── */}
       <section className="relative border-t border-slate-100">
         <div className="container-x py-20 md:py-28">
 
           <Reveal>
             <div className="max-w-3xl">
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
-                Operating Capabilities
+                Capability Matrix
               </div>
               <h2 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
-                Core Business Activities.
+                Core Business Capabilities.
               </h2>
               <p className="mt-4 text-slate-600 leading-relaxed">
-                Five integrated capability areas under a single licensed group structure
-                in the Sultanate of Oman.
+                Integrated operational sectors driving Yanabiya Group&rsquo;s regional growth.
               </p>
             </div>
           </Reveal>
 
-          <div className="mt-12 grid md:grid-cols-2 gap-x-16 gap-y-12 max-w-5xl">
-            {activities.map((a, i) => (
-              <Reveal key={a.title} delay={i * 100}>
-                <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
-                    0{i + 1}
-                  </div>
-                  <h3 className="mt-2 font-serif text-xl md:text-2xl text-slate-900 leading-tight">
-                    {a.title}
-                  </h3>
-                  <div className="mt-3 w-8 h-px bg-slate-900/70" />
-                  <ul className="mt-4 space-y-1.5 text-slate-700">
-                    {a.items.map((item) => (
-                      <li key={item} className="text-sm leading-relaxed">{item}</li>
-                    ))}
-                  </ul>
+          {/* 2-column matrix with thin vertical divider on lg+ */}
+          <div className="mt-14 max-w-6xl grid lg:grid-cols-2 gap-x-16 gap-y-14 relative">
+            {/* Vertical divider — only on desktop */}
+            <div
+              aria-hidden="true"
+              className="hidden lg:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px bg-slate-200"
+            />
+
+            {/* LEFT COLUMN — Industrial Core */}
+            <div className="lg:pr-10">
+              <Reveal>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500 mb-2">
+                  Column A
                 </div>
+                <h3 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight">
+                  Industrial Core
+                </h3>
+                <div className="mt-3 w-10 h-px bg-slate-900" />
               </Reveal>
-            ))}
+
+              <div className="mt-10 space-y-12">
+                {industrialCore.map((c, i) => (
+                  <Reveal key={c.title} delay={i * 120}>
+                    <div className="group">
+                      <div className="flex items-center gap-3">
+                        <span className="grid place-items-center w-8 h-8 rounded-full
+                                         border border-slate-300 text-slate-700
+                                         transition-colors duration-300
+                                         group-hover:border-blue-700 group-hover:text-blue-700">
+                          <c.icon size={15} strokeWidth={1.6} />
+                        </span>
+                        <h4 className="font-serif text-lg md:text-xl text-slate-900 leading-tight">
+                          {c.title}
+                        </h4>
+                      </div>
+                      <ul className="mt-4 ml-11 space-y-2 text-slate-700">
+                        {c.items.map((item) => (
+                          <li
+                            key={item}
+                            className="text-sm leading-relaxed flex items-baseline gap-3
+                                       cursor-default
+                                       hover:text-blue-700 hover:underline underline-offset-4
+                                       transition-colors duration-200"
+                          >
+                            <span aria-hidden className="block w-3 h-px bg-slate-300 shrink-0 translate-y-[-2px]" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN — Business & Digital Core */}
+            <div className="lg:pl-10">
+              <Reveal>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500 mb-2">
+                  Column B
+                </div>
+                <h3 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight">
+                  Business &amp; Digital Core
+                </h3>
+                <div className="mt-3 w-10 h-px bg-slate-900" />
+              </Reveal>
+
+              <div className="mt-10 space-y-12">
+                {businessDigitalCore.map((c, i) => (
+                  <Reveal key={c.title} delay={i * 120}>
+                    <div className="group">
+                      <div className="flex items-center gap-3">
+                        <span className="grid place-items-center w-8 h-8 rounded-full
+                                         border border-slate-300 text-slate-700
+                                         transition-colors duration-300
+                                         group-hover:border-blue-700 group-hover:text-blue-700">
+                          <c.icon size={15} strokeWidth={1.6} />
+                        </span>
+                        <h4 className="font-serif text-lg md:text-xl text-slate-900 leading-tight">
+                          {c.title}
+                        </h4>
+                      </div>
+                      <ul className="mt-4 ml-11 space-y-2 text-slate-700">
+                        {c.items.map((item) => (
+                          <li
+                            key={item}
+                            className="text-sm leading-relaxed flex items-baseline gap-3
+                                       cursor-default
+                                       hover:text-blue-700 hover:underline underline-offset-4
+                                       transition-colors duration-200"
+                          >
+                            <span aria-hidden className="block w-3 h-px bg-slate-300 shrink-0 translate-y-[-2px]" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
