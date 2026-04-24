@@ -117,27 +117,34 @@ export default function Global() {
                 </div>
               </div>
 
-              {/* Connecting lines from each dot to the centre */}
+              {/* Connecting lines: Oman (HQ) is the hub — every other city links to it */}
               <svg
                 aria-hidden="true"
                 viewBox="0 0 100 80"
                 className="absolute inset-0 w-full h-full"
                 preserveAspectRatio="none"
               >
-                {orbitDots.map((d, i) => {
-                  const x = parseFloat(d.left)
-                  const y = parseFloat(d.top) * 0.8
-                  return (
-                    <line
-                      key={d.code}
-                      x1="50" y1="40" x2={x} y2={y}
-                      stroke="rgba(125,164,42,0.35)"
-                      strokeWidth="0.2"
-                      strokeDasharray="0.8 0.6"
-                      style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
-                    />
-                  )
-                })}
+                {(() => {
+                  const oman = orbitDots.find((d) => d.code === 'OM')!
+                  const ox = parseFloat(oman.left)
+                  const oy = parseFloat(oman.top) * 0.8
+                  return orbitDots
+                    .filter((d) => d.code !== 'OM')
+                    .map((d, i) => {
+                      const x = parseFloat(d.left)
+                      const y = parseFloat(d.top) * 0.8
+                      return (
+                        <line
+                          key={d.code}
+                          x1={ox} y1={oy} x2={x} y2={y}
+                          stroke="rgba(125,164,42,0.55)"
+                          strokeWidth="0.3"
+                          strokeDasharray="0.9 0.7"
+                          style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
+                        />
+                      )
+                    })
+                })()}
               </svg>
 
               {/* City pulse dots + labels */}
