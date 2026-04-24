@@ -81,7 +81,7 @@ export default function About() {
       </div>
 
       {/* ───────── Foreground content ───────── */}
-      <div className="container-x relative py-24 md:py-32">
+      <div className="container-x relative py-14 md:py-20">
 
         <div className="text-center max-w-3xl mx-auto">
           <Reveal>

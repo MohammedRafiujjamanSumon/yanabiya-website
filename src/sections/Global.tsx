@@ -39,7 +39,7 @@ export default function Global() {
 
   return (
     <Section id="global" className="relative overflow-hidden bg-white">
-      <div className="container-x py-20 md:py-24">
+      <div className="container-x py-12 md:py-16">
 
         {/* ───────── 2-COLUMN HEADER + GEOMAP ───────── */}
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">

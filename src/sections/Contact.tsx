@@ -28,7 +28,7 @@ export default function Contact() {
 
   return (
     <Section id="contact" className="bg-[#fbfdfb]">
-      <div className="container-x py-16 md:py-24">
+      <div className="container-x py-10 md:py-16">
 
         {/* A. HERO — fade + slide up on load */}
         <div className="text-center max-w-3xl mx-auto fade-up" style={{ animationDelay: '60ms' }}>
