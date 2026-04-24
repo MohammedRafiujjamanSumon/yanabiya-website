@@ -5,6 +5,7 @@ import { MapPin, CheckCircle2 } from 'lucide-react'
 import Section from '../components/Section'
 import { countries } from '../data/countries'
 import { assets } from '../data/assets'
+import OmanPresence from './OmanPresence'
 
 type Country = (typeof countries)[number]
 
@@ -32,6 +33,8 @@ export default function CountryDetail() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [code])
+
+  if (upper === 'OM') return <OmanPresence />
 
   if (!country) {
     return (
