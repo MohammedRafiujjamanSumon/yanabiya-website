@@ -55,7 +55,6 @@ export default function About() {
             </radialGradient>
           </defs>
 
-          {/* Soft curved connection lines — abstract, no geographic meaning */}
           <g stroke="url(#netLine)" strokeWidth="1.1" fill="none">
             <path d="M -50 420 Q 240 280 520 360 T 1080 220" />
             <path d="M -50 200 Q 320 320 620 240 T 1250 360" />
@@ -64,7 +63,6 @@ export default function About() {
             <path d="M 200 60  Q 460 220 760 140 T 1280 240" />
           </g>
 
-          {/* Nodes — small abstract pulse markers along the lines */}
           {[
             [180, 365], [420, 305], [620, 245], [810, 285], [1010, 235],
             [320, 235], [560, 275], [880, 415], [710, 470], [950, 175],
@@ -77,7 +75,6 @@ export default function About() {
           ))}
         </svg>
 
-        {/* Soft halo to keep centre legible */}
         <div className="absolute inset-0 grid place-items-center">
           <div className="w-[80%] h-[60%] rounded-full bg-white/70 blur-[80px]" />
         </div>
@@ -86,7 +83,6 @@ export default function About() {
       {/* ───────── Foreground content ───────── */}
       <div className="container-x relative py-24 md:py-32">
 
-        {/* HEADLINE BLOCK */}
         <div className="text-center max-w-3xl mx-auto">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-5">
@@ -129,7 +125,6 @@ export default function About() {
           </Reveal>
         </div>
 
-        {/* PREMIUM TEXT POINTS — 3-up */}
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200/70 max-w-4xl mx-auto rounded-2xl overflow-hidden">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={500 + i * 120}>

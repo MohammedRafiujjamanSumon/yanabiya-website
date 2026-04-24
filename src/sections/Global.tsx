@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Globe2 } from 'lucide-react'
 import Section from '../components/Section'
 import { countries } from '../data/countries'
 import { useReveal } from '../hooks/useReveal'
@@ -28,13 +28,11 @@ function Reveal({
   )
 }
 
-/* Approximate equirectangular coordinates (% of width / % of height) for the
- * 4 cities, mapped against the simplified continent SVG below. */
-const cityPins = [
-  { code: 'US', label: 'Austin',   x: 22, y: 46 },
-  { code: 'GB', label: 'London',   x: 47, y: 32 },
-  { code: 'OM', label: 'Muscat',   x: 60, y: 52 },
-  { code: 'BD', label: 'Dhaka',    x: 71, y: 50 },
+const orbitDots = [
+  { code: 'OM', label: 'Muscat',  top: '50%', left: '54%' },
+  { code: 'GB', label: 'London',  top: '32%', left: '48%' },
+  { code: 'BD', label: 'Dhaka',   top: '54%', left: '70%' },
+  { code: 'US', label: 'Austin',  top: '46%', left: '22%' },
 ]
 
 const cardTags: Record<string, string> = {
@@ -68,74 +66,73 @@ export default function Global() {
           </div>
         </Reveal>
 
-        {/* ───────── 2. VISUAL AREA — stylised world map ───────── */}
+        {/* ───────── 2. VISUAL AREA — globe mesh with city pulse dots ───────── */}
         <Reveal delay={150}>
-          <div className="mt-14 relative mx-auto w-full max-w-5xl aspect-[2.4/1] rounded-3xl
-                          bg-gradient-to-b from-[#f3f8ee] to-[#fbfdfb] border border-slate-100
-                          overflow-hidden">
-            {/* Soft brand-accent halo */}
+          <div className="mt-14 relative mx-auto w-full max-w-3xl aspect-[5/4]">
+            {/* Soft halo */}
             <div
               aria-hidden="true"
               className="absolute inset-0 grid place-items-center pointer-events-none"
             >
-              <div className="w-[55%] h-[80%] rounded-full bg-brand-accent/15 blur-[100px]" />
+              <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/15 blur-[80px] animate-gradient" />
             </div>
 
-            {/* Stylised continent silhouettes — low-opacity blobs that read as a world map
-                without pulling in a heavy real-map asset */}
+            {/* Concentric orbit rings */}
+            <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
+              {[0.95, 0.75, 0.55, 0.35].map((s, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full border border-brand-accent/20"
+                  style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
+                />
+              ))}
+            </div>
+
+            {/* Globe icon center */}
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accent/20
+                              grid place-items-center text-brand-accentDark animate-spin-slow">
+                <Globe2 size={36} strokeWidth={1.4} />
+              </div>
+            </div>
+
+            {/* Connecting lines from each dot to the center */}
             <svg
               aria-hidden="true"
-              viewBox="0 0 100 42"
+              viewBox="0 0 100 80"
               className="absolute inset-0 w-full h-full"
-              preserveAspectRatio="xMidYMid meet"
+              preserveAspectRatio="none"
             >
-              <defs>
-                <linearGradient id="continent" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%"  stopColor="rgba(125,164,42,0.18)" />
-                  <stop offset="100%" stopColor="rgba(125,164,42,0.08)" />
-                </linearGradient>
-              </defs>
-              {/* North America */}
-              <path d="M5,12 Q10,7 18,9 Q24,11 26,18 Q24,24 18,25 Q10,24 6,20 Z" fill="url(#continent)" />
-              {/* South America */}
-              <path d="M22,26 Q26,28 27,33 Q25,38 22,38 Q19,34 20,29 Z" fill="url(#continent)" />
-              {/* Europe */}
-              <path d="M44,15 Q49,12 53,15 Q54,19 50,22 Q46,21 44,18 Z" fill="url(#continent)" />
-              {/* Africa */}
-              <path d="M48,22 Q54,21 56,28 Q55,35 50,36 Q46,32 47,26 Z" fill="url(#continent)" />
-              {/* Asia */}
-              <path d="M55,12 Q66,9 78,14 Q82,20 78,26 Q70,28 60,25 Q56,21 55,16 Z" fill="url(#continent)" />
-              {/* India / South Asia */}
-              <path d="M68,24 Q72,23 73,28 Q70,32 67,30 Z" fill="url(#continent)" />
-              {/* Australia */}
-              <path d="M80,30 Q86,29 88,33 Q86,36 81,35 Z" fill="url(#continent)" />
-
-              {/* Connection lines between Yanabiya cities */}
-              <g stroke="rgba(125,164,42,0.45)" strokeWidth="0.18" strokeDasharray="0.9 0.6" fill="none">
-                <line x1="22" y1="46" x2="47" y2="32" />
-                <line x1="47" y1="32" x2="60" y2="52" />
-                <line x1="60" y1="52" x2="71" y2="50" />
-                <line x1="22" y1="46" x2="60" y2="52" />
-              </g>
+              {orbitDots.map((d, i) => {
+                const x = parseFloat(d.left)
+                const y = parseFloat(d.top) * 0.8
+                return (
+                  <line
+                    key={d.code}
+                    x1="50" y1="40" x2={x} y2={y}
+                    stroke="rgba(125,164,42,0.35)"
+                    strokeWidth="0.2"
+                    strokeDasharray="0.8 0.6"
+                    style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
+                  />
+                )
+              })}
             </svg>
 
-            {/* Pulsing city pins + labels */}
-            {cityPins.map((p, i) => (
+            {/* City pulse dots + labels */}
+            {orbitDots.map((d, i) => (
               <div
-                key={p.code}
-                className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center"
-                style={{ left: `${p.x}%`, top: `${p.y}%` }}
+                key={d.code}
+                className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2"
+                style={{ top: d.top, left: d.left }}
               >
-                <span className="relative block">
-                  <span
-                    className="absolute inset-0 rounded-full bg-brand-accent/40"
-                    style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
-                  />
-                  <span className="relative block w-3 h-3 rounded-full bg-brand-accent shadow-[0_0_10px_rgba(158,199,58,0.6)]" />
-                </span>
-                <span className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-600
-                                 bg-white/85 backdrop-blur px-2 py-0.5 rounded-full whitespace-nowrap">
-                  {p.label}
+                <span
+                  className="block w-3 h-3 rounded-full bg-brand-accent shadow-[0_0_12px_rgba(158,199,58,0.7)]"
+                  style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
+                />
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600
+                                 bg-white/85 backdrop-blur px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                  {d.label}
                 </span>
               </div>
             ))}
