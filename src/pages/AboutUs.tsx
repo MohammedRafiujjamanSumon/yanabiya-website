@@ -14,36 +14,7 @@ export default function AboutUs() {
       <div className="container-x relative">
         <Eyebrow>About Us</Eyebrow>
 
-        {/* Country flags marquee — silently scrolls between eyebrow and Who We Are */}
-        <div className="mt-2">
-          <div className="group relative w-screen left-1/2 -translate-x-1/2 overflow-hidden">
-            <div
-              className="flex animate-marquee marquee-pause gap-3 w-max py-1"
-              style={{ animationDuration: '28s' }}
-            >
-              {Array.from({ length: 3 }).flatMap(() => [
-                { flag: '🇴🇲', city: 'Muscat',  country: 'Oman' },
-                { flag: '🇬🇧', city: 'London',  country: 'United Kingdom' },
-                { flag: '🇺🇸', city: 'Austin',  country: 'USA' },
-                { flag: '🇧🇩', city: 'Dhaka',   country: 'Bangladesh' },
-              ]).map((c, i) => (
-                <div
-                  key={`${c.city}-${i}`}
-                  className="flex items-center gap-2 shrink-0 rounded-full bg-white border border-slate-200 px-4 py-2 shadow-sm"
-                >
-                  <span className="text-lg leading-none">{c.flag}</span>
-                  <span className="text-sm font-medium text-slate-700 whitespace-nowrap">
-                    {c.city}, {c.country}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-            <div className="absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
-          </div>
-        </div>
-
-        <div className="mt-4 max-w-4xl mx-auto">
+        <div className="mt-6 max-w-4xl mx-auto">
           <h1 className="font-serif text-2xl md:text-3xl text-brand-accentDark font-bold leading-tight text-center">
             <span className="inline-block relative pb-1
                              after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[3px]
