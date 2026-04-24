@@ -148,16 +148,40 @@ export default function Global() {
                 })}
               </svg>
 
-              {/* CENTRE — Oman flag as the HQ marker */}
+              {/* CENTRE — Oman country silhouette as the HQ "goal box" */}
               <div className="absolute inset-0 grid place-items-center pointer-events-none">
                 <div className="relative">
                   <span
                     className="absolute inset-0 rounded-full bg-brand-accent/35 blur-md"
                     style={{ animation: 'haloPulse 3s ease-in-out infinite' }}
                   />
-                  <div className="relative w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accent
-                                  grid place-items-center text-3xl">
-                    🇴🇲
+                  <div className="relative w-24 h-24 rounded-full bg-white shadow-xl ring-2 ring-brand-accent
+                                  grid place-items-center overflow-hidden">
+                    {/* Stylised Oman country outline — recognisable boomerang shape
+                        along the SE Arabian peninsula */}
+                    <svg viewBox="0 0 100 100" className="w-14 h-14">
+                      <defs>
+                        <linearGradient id="om-fill" x1="0" x2="1" y1="0" y2="1">
+                          <stop offset="0%"  stopColor="#9ec73a" />
+                          <stop offset="100%" stopColor="#7da42a" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                        d="M 22 38 Q 28 24 44 22 Q 56 22 64 28 L 78 36 Q 84 44 80 56 Q 74 70 60 74 Q 46 78 34 70 Q 22 60 20 50 Z"
+                        fill="url(#om-fill)"
+                        stroke="#0f3a23"
+                        strokeWidth="1.2"
+                      />
+                      {/* Musandam enclave (small piece up north) */}
+                      <path
+                        d="M 70 14 Q 78 10 82 16 Q 80 22 72 22 Z"
+                        fill="url(#om-fill)"
+                        stroke="#0f3a23"
+                        strokeWidth="1.2"
+                      />
+                      {/* Capital marker — Muscat */}
+                      <circle cx="62" cy="34" r="3" fill="#fff" stroke="#0f3a23" strokeWidth="1" />
+                    </svg>
                   </div>
                   <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3 whitespace-nowrap
                                   text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-accentDark
