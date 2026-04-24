@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { HardHat, Truck, Laptop, TrendingUp, Coffee } from 'lucide-react'
+import { HardHat, Truck, Laptop, TrendingUp, Coffee, ArrowUpRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import BackButton from '../components/BackButton'
@@ -117,6 +117,66 @@ const businessDigitalCore: Capability[] = [
     ],
   },
 ]
+
+/* ───────────────────────── Capability cluster ───────────────────────── */
+/* A single capability area rendered as a corporate "registry table":
+ * header row (icon + serif title + activity count chip) above a list of
+ * code | name rows separated by hairline dividers. Hover lifts each row
+ * with a soft blue tint and reveals an arrow on the right. */
+function CapabilityCluster({ c }: { c: Capability }) {
+  return (
+    <div>
+      {/* Header */}
+      <div className="flex items-center justify-between gap-4 pb-4 border-b border-slate-300">
+        <div className="flex items-center gap-3 min-w-0">
+          <span className="grid place-items-center w-9 h-9 rounded-full border border-slate-300 text-slate-700">
+            <c.icon size={16} strokeWidth={1.6} />
+          </span>
+          <h4 className="font-serif text-lg md:text-xl text-slate-900 leading-tight truncate">
+            {c.title}
+          </h4>
+        </div>
+        <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full
+                         border border-slate-200 bg-slate-50 px-2.5 py-1
+                         text-[9px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+          <span className="text-slate-900 font-mono text-[10px]">{c.items.length.toString().padStart(2, '0')}</span>
+          Activities
+        </span>
+      </div>
+
+      {/* Registry rows */}
+      <ul className="divide-y divide-slate-100">
+        {c.items.map((item, idx) => (
+          <li
+            key={`${item.code}-${idx}`}
+            className="group/row grid grid-cols-[64px_1fr_16px] items-center gap-4
+                       py-3 px-2 -mx-2 rounded-sm
+                       transition-colors duration-200
+                       hover:bg-blue-50/60 cursor-default"
+          >
+            <span className="font-mono text-[11px] tracking-wider text-slate-400
+                             transition-colors duration-200
+                             group-hover/row:text-blue-700/80">
+              {item.code}
+            </span>
+            <span className="text-sm text-slate-800 leading-snug
+                             transition-colors duration-200
+                             group-hover/row:text-blue-700">
+              {item.name}
+            </span>
+            <ArrowUpRight
+              size={14}
+              className="text-slate-300 opacity-0 -translate-x-1
+                         transition-all duration-200
+                         group-hover/row:opacity-100 group-hover/row:translate-x-0
+                         group-hover/row:text-blue-700"
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
 
 /* ───────────────────────── Page ───────────────────────── */
 
@@ -350,40 +410,10 @@ export default function OmanPresence() {
                 <div className="mt-3 w-10 h-px bg-slate-900" />
               </Reveal>
 
-              <div className="mt-10 space-y-12">
+              <div className="mt-10 space-y-10">
                 {industrialCore.map((c, i) => (
                   <Reveal key={c.title} delay={i * 120}>
-                    <div className="group">
-                      <div className="flex items-center gap-3">
-                        <span className="grid place-items-center w-8 h-8 rounded-full
-                                         border border-slate-300 text-slate-700
-                                         transition-colors duration-300
-                                         group-hover:border-blue-700 group-hover:text-blue-700">
-                          <c.icon size={15} strokeWidth={1.6} />
-                        </span>
-                        <h4 className="font-serif text-lg md:text-xl text-slate-900 leading-tight">
-                          {c.title}
-                        </h4>
-                      </div>
-                      <ul className="mt-4 ml-11 space-y-2 text-slate-700">
-                        {c.items.map((item, idx) => (
-                          <li
-                            key={`${item.code}-${idx}`}
-                            className="text-sm leading-relaxed flex items-baseline gap-3
-                                       cursor-default
-                                       transition-colors duration-200
-                                       hover:text-blue-700"
-                          >
-                            <span aria-hidden className="block w-3 h-px bg-slate-300 shrink-0 translate-y-[-2px]" />
-                            <span className="font-mono text-[10px] tracking-wider text-slate-400 shrink-0
-                                             group-hover:text-blue-700/70 transition-colors">
-                              {item.code}
-                            </span>
-                            <span className="hover:underline underline-offset-4">{item.name}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <CapabilityCluster c={c} />
                   </Reveal>
                 ))}
               </div>
@@ -401,40 +431,10 @@ export default function OmanPresence() {
                 <div className="mt-3 w-10 h-px bg-slate-900" />
               </Reveal>
 
-              <div className="mt-10 space-y-12">
+              <div className="mt-10 space-y-10">
                 {businessDigitalCore.map((c, i) => (
                   <Reveal key={c.title} delay={i * 120}>
-                    <div className="group">
-                      <div className="flex items-center gap-3">
-                        <span className="grid place-items-center w-8 h-8 rounded-full
-                                         border border-slate-300 text-slate-700
-                                         transition-colors duration-300
-                                         group-hover:border-blue-700 group-hover:text-blue-700">
-                          <c.icon size={15} strokeWidth={1.6} />
-                        </span>
-                        <h4 className="font-serif text-lg md:text-xl text-slate-900 leading-tight">
-                          {c.title}
-                        </h4>
-                      </div>
-                      <ul className="mt-4 ml-11 space-y-2 text-slate-700">
-                        {c.items.map((item, idx) => (
-                          <li
-                            key={`${item.code}-${idx}`}
-                            className="text-sm leading-relaxed flex items-baseline gap-3
-                                       cursor-default
-                                       transition-colors duration-200
-                                       hover:text-blue-700"
-                          >
-                            <span aria-hidden className="block w-3 h-px bg-slate-300 shrink-0 translate-y-[-2px]" />
-                            <span className="font-mono text-[10px] tracking-wider text-slate-400 shrink-0
-                                             group-hover:text-blue-700/70 transition-colors">
-                              {item.code}
-                            </span>
-                            <span className="hover:underline underline-offset-4">{item.name}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <CapabilityCluster c={c} />
                   </Reveal>
                 ))}
               </div>
