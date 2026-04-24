@@ -3,6 +3,7 @@ import { HardHat, Truck, Laptop, TrendingUp, Coffee, ArrowUpRight } from 'lucide
 import type { LucideIcon } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import BackButton from '../components/BackButton'
+import { assets } from '../data/assets'
 
 /* ───────────────────────── Reveal helper (subtle, editorial) ───────────────────────── */
 function Reveal({
@@ -186,36 +187,48 @@ export default function OmanPresence() {
   }, [])
 
   return (
-    <main className="bg-white text-slate-900">
+    <main className="relative bg-white text-slate-900 overflow-hidden">
       <BackButton to="/#global" label="Back to Global" />
+
+      {/* Page-wide Yanabiya logo watermark — visible behind everything */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 flex items-start justify-center select-none"
+      >
+        <img
+          src={assets.logo}
+          alt=""
+          className="mt-32 w-[80%] max-w-[900px] opacity-[0.05] object-contain"
+        />
+      </div>
 
       {/* ───────── 1. HERO ───────── */}
       <section className="relative">
-        <div className="container-x py-24 md:py-32 text-center">
+        <div className="container-x py-14 md:py-20 text-center">
           <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-6">
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-5">
               Sultanate of Oman
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-slate-900">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-slate-900">
               Oman Global Presence
             </h1>
           </Reveal>
           <Reveal delay={260}>
-            <p className="mt-6 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-5 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
               Yanabiya Group — Integrated Business Network in Sultanate of Oman
             </p>
           </Reveal>
           <Reveal delay={400}>
-            <div className="mt-10 mx-auto w-12 h-px bg-slate-900" />
+            <div className="mt-7 mx-auto w-12 h-px bg-slate-900" />
           </Reveal>
         </div>
       </section>
 
       {/* ───────── 2. PARTNER NETWORK MAP ───────── */}
       <section className="relative border-t border-slate-100">
-        <div className="container-x py-20 md:py-28">
+        <div className="container-x py-14 md:py-20">
 
           <Reveal>
             <div className="max-w-3xl">
@@ -234,7 +247,7 @@ export default function OmanPresence() {
 
           {/* Map canvas */}
           <Reveal delay={200}>
-            <div className="mt-12 relative w-full aspect-[16/9] bg-[#fafafa] border border-slate-100 rounded-sm">
+            <div className="mt-10 relative w-full aspect-[16/9] bg-[#fafafa] border border-slate-100 rounded-sm">
               {/* Subtle Arabian peninsula outline */}
               <svg
                 aria-hidden="true"
@@ -374,7 +387,7 @@ export default function OmanPresence() {
 
       {/* ───────── 3. CAPABILITY MATRIX (Industrial Core | Business & Digital Core) ───────── */}
       <section className="relative border-t border-slate-100">
-        <div className="container-x py-20 md:py-28">
+        <div className="container-x py-14 md:py-20">
 
           <Reveal>
             <div className="max-w-3xl">
@@ -391,7 +404,7 @@ export default function OmanPresence() {
           </Reveal>
 
           {/* 2-column matrix with thin vertical divider on lg+ */}
-          <div className="mt-14 max-w-6xl grid lg:grid-cols-2 gap-x-16 gap-y-14 relative">
+          <div className="mt-10 max-w-6xl grid lg:grid-cols-2 gap-x-16 gap-y-10 relative">
             {/* Vertical divider — only on desktop */}
             <div
               aria-hidden="true"
@@ -410,7 +423,7 @@ export default function OmanPresence() {
                 <div className="mt-3 w-10 h-px bg-slate-900" />
               </Reveal>
 
-              <div className="mt-10 space-y-10">
+              <div className="mt-8 space-y-8">
                 {industrialCore.map((c, i) => (
                   <Reveal key={c.title} delay={i * 120}>
                     <CapabilityCluster c={c} />
@@ -431,7 +444,7 @@ export default function OmanPresence() {
                 <div className="mt-3 w-10 h-px bg-slate-900" />
               </Reveal>
 
-              <div className="mt-10 space-y-10">
+              <div className="mt-8 space-y-8">
                 {businessDigitalCore.map((c, i) => (
                   <Reveal key={c.title} delay={i * 120}>
                     <CapabilityCluster c={c} />
@@ -445,7 +458,7 @@ export default function OmanPresence() {
 
       {/* ───────── 4. CONTACT (text only) ───────── */}
       <section className="relative border-t border-slate-100">
-        <div className="container-x py-20 md:py-28">
+        <div className="container-x py-14 md:py-20">
 
           <Reveal>
             <div className="max-w-3xl">
@@ -458,8 +471,21 @@ export default function OmanPresence() {
             </div>
           </Reveal>
 
-          <div className="mt-12 grid md:grid-cols-2 gap-x-16 gap-y-10 max-w-4xl">
+          <div className="mt-10 grid md:grid-cols-2 gap-x-16 gap-y-8 max-w-4xl">
             <Reveal>
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
+                  Postal Address
+                </div>
+                <div className="mt-3 w-8 h-px bg-slate-900/70" />
+                <p className="mt-4 text-slate-700 leading-relaxed">
+                  P.O. Box 1432, PC-133<br />
+                  Al Khuwair, Muscat
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={120}>
               <div>
                 <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
                   Head Office
@@ -469,19 +495,6 @@ export default function OmanPresence() {
                   Office-41, 4th Floor, Building-846<br />
                   Way-4011, Complex-240<br />
                   Al Gubrah, Bushar, Muscat, Oman
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={120}>
-              <div>
-                <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
-                  Postal Address
-                </div>
-                <div className="mt-3 w-8 h-px bg-slate-900/70" />
-                <p className="mt-4 text-slate-700 leading-relaxed">
-                  P.O. Box 1432, PC-133<br />
-                  Al Khuwair, Muscat
                 </p>
               </div>
             </Reveal>
