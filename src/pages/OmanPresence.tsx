@@ -151,7 +151,7 @@ function CapabilityCluster({ c }: { c: Capability }) {
           <li
             key={`${item.code}-${idx}`}
             className="group/row grid grid-cols-[64px_1fr_16px] items-center gap-4
-                       py-3 px-2 -mx-2 rounded-sm
+                       py-2 px-2 -mx-2 rounded-sm
                        transition-colors duration-200
                        hover:bg-blue-50/60 cursor-default"
           >
@@ -179,6 +179,24 @@ function CapabilityCluster({ c }: { c: Capability }) {
   )
 }
 
+/* ───────────────────────── Section watermark ───────────────────────── */
+/* Renders a faint Yanabiya logo behind a single section. Each section gets
+ * its own copy so the watermark stays visible no matter how the user scrolls. */
+function SectionWatermark() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
+    >
+      <img
+        src={assets.logo}
+        alt=""
+        className="w-[55%] max-w-[480px] opacity-[0.07] object-contain"
+      />
+    </div>
+  )
+}
+
 /* ───────────────────────── Page ───────────────────────── */
 
 export default function OmanPresence() {
@@ -190,23 +208,12 @@ export default function OmanPresence() {
     <main className="relative bg-white text-slate-900 overflow-hidden">
       <BackButton to="/#global" label="Back to Global" />
 
-      {/* Page-wide Yanabiya logo watermark — visible behind everything */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 flex items-start justify-center select-none"
-      >
-        <img
-          src={assets.logo}
-          alt=""
-          className="mt-32 w-[80%] max-w-[900px] opacity-[0.05] object-contain"
-        />
-      </div>
-
       {/* ───────── 1. HERO ───────── */}
       <section className="relative">
-        <div className="container-x py-14 md:py-20 text-center">
+        <SectionWatermark />
+        <div className="relative container-x py-10 md:py-14 text-center">
           <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-5">
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-4">
               Sultanate of Oman
             </div>
           </Reveal>
@@ -216,19 +223,20 @@ export default function OmanPresence() {
             </h1>
           </Reveal>
           <Reveal delay={260}>
-            <p className="mt-5 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
               Yanabiya Group — Integrated Business Network in Sultanate of Oman
             </p>
           </Reveal>
           <Reveal delay={400}>
-            <div className="mt-7 mx-auto w-12 h-px bg-slate-900" />
+            <div className="mt-6 mx-auto w-12 h-px bg-slate-900" />
           </Reveal>
         </div>
       </section>
 
       {/* ───────── 2. PARTNER NETWORK MAP ───────── */}
       <section className="relative border-t border-slate-100">
-        <div className="container-x py-14 md:py-20">
+        <SectionWatermark />
+        <div className="relative container-x py-12 md:py-16">
 
           <Reveal>
             <div className="max-w-3xl">
@@ -247,7 +255,7 @@ export default function OmanPresence() {
 
           {/* Map canvas */}
           <Reveal delay={200}>
-            <div className="mt-10 relative w-full aspect-[16/9] bg-[#fafafa] border border-slate-100 rounded-sm">
+            <div className="mt-10 relative w-full aspect-[16/8] bg-[#fafafa] border border-slate-100 rounded-sm">
               {/* Subtle Arabian peninsula outline */}
               <svg
                 aria-hidden="true"
@@ -387,7 +395,8 @@ export default function OmanPresence() {
 
       {/* ───────── 3. CAPABILITY MATRIX (Industrial Core | Business & Digital Core) ───────── */}
       <section className="relative border-t border-slate-100">
-        <div className="container-x py-14 md:py-20">
+        <SectionWatermark />
+        <div className="relative container-x py-12 md:py-16">
 
           <Reveal>
             <div className="max-w-3xl">
@@ -404,7 +413,7 @@ export default function OmanPresence() {
           </Reveal>
 
           {/* 2-column matrix with thin vertical divider on lg+ */}
-          <div className="mt-10 max-w-6xl grid lg:grid-cols-2 gap-x-16 gap-y-10 relative">
+          <div className="mt-8 max-w-6xl grid lg:grid-cols-2 gap-x-12 gap-y-8 relative">
             {/* Vertical divider — only on desktop */}
             <div
               aria-hidden="true"
@@ -423,7 +432,7 @@ export default function OmanPresence() {
                 <div className="mt-3 w-10 h-px bg-slate-900" />
               </Reveal>
 
-              <div className="mt-8 space-y-8">
+              <div className="mt-6 space-y-6">
                 {industrialCore.map((c, i) => (
                   <Reveal key={c.title} delay={i * 120}>
                     <CapabilityCluster c={c} />
@@ -444,7 +453,7 @@ export default function OmanPresence() {
                 <div className="mt-3 w-10 h-px bg-slate-900" />
               </Reveal>
 
-              <div className="mt-8 space-y-8">
+              <div className="mt-6 space-y-6">
                 {businessDigitalCore.map((c, i) => (
                   <Reveal key={c.title} delay={i * 120}>
                     <CapabilityCluster c={c} />
@@ -458,7 +467,8 @@ export default function OmanPresence() {
 
       {/* ───────── 4. CONTACT (text only) ───────── */}
       <section className="relative border-t border-slate-100">
-        <div className="container-x py-14 md:py-20">
+        <SectionWatermark />
+        <div className="relative container-x py-12 md:py-16">
 
           <Reveal>
             <div className="max-w-3xl">
@@ -471,7 +481,7 @@ export default function OmanPresence() {
             </div>
           </Reveal>
 
-          <div className="mt-10 grid md:grid-cols-2 gap-x-16 gap-y-8 max-w-4xl">
+          <div className="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-6 max-w-4xl">
             <Reveal>
               <div>
                 <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
