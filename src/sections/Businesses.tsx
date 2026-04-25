@@ -362,32 +362,42 @@ export default function Businesses() {
 
       <div className="container-x py-14 md:py-20 relative">
 
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
-              <Sparkles size={12} className="text-brand-accent" />
-              Our Service
-              <Sparkles size={12} className="text-brand-accent" />
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight text-brand-deep">
-              Six divisions.
-              <span className="block text-brand-accentDark">One group.</span>
-            </h2>
-          </Reveal>
-        </div>
+        {/* HEADER + WORKFLOW — 2-col mirror (header LEFT, workflow RIGHT) */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center mb-12">
 
-        {/* WORKFLOW CANVAS — n8n-style hub + 6 service nodes with flowing signals */}
-        <Reveal delay={200}>
-          <ServiceWorkflow onSelect={(s) => setSelected(s)} />
-        </Reveal>
+          {/* LEFT — header text (lg:col-span-5) */}
+          <div className="lg:col-span-5">
+            <Reveal>
+              <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
+                <Sparkles size={12} className="text-brand-accent" />
+                Our Service
+                <Sparkles size={12} className="text-brand-accent" />
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight text-brand-deep">
+                Six divisions.
+                <span className="block text-brand-accentDark">One group.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={260}>
+              <p className="mt-5 text-base text-slate-600 leading-relaxed max-w-md">
+                Tap any node on the live workflow to open its profile — or scroll
+                to the cards below for the full breakdown.
+              </p>
+            </Reveal>
+            <Reveal delay={400}>
+              <div className="mt-6 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.32em] text-brand-accentDark font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                Live signal · 6 active nodes
+              </div>
+            </Reveal>
+          </div>
 
-        <div className="text-center mt-5 mb-10">
-          <span className="text-[10px] uppercase tracking-[0.32em] text-slate-400 font-bold">
-            Tap a node — or browse the cards below
-          </span>
+          {/* RIGHT — workflow canvas (lg:col-span-7) */}
+          <Reveal delay={200} className="lg:col-span-7">
+            <ServiceWorkflow onSelect={(s) => setSelected(s)} />
+          </Reveal>
         </div>
 
         {/* 6-card premium grid */}
