@@ -536,66 +536,43 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
   const flipMap = index % 2 === 1
   return (
     <>
-      {/* HERO — left-aligned editorial header */}
+      {/* HERO + ACTIVITIES — 40 / 60 editorial split (text left, capabilities right) */}
       <section className="relative">
         <SectionWatermark />
         <div className="relative container-x py-10 md:py-14">
-          <div className="max-w-3xl">
-            <Reveal>
-              <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-4">
-                {data.hero.eyebrow}
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-slate-900">
-                {data.hero.title}
-              </h2>
-            </Reveal>
-            {data.hero.tagline && (
-              <Reveal delay={200}>
-                <div className="mt-3 font-serif italic text-xl md:text-2xl text-brand-deep leading-snug">
-                  {data.hero.tagline}
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
+
+            {/* LEFT 40% — eyebrow + title + tagline + justified subtitle */}
+            <div className="lg:col-span-5">
+              <Reveal>
+                <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-4">
+                  {data.hero.eyebrow}
                 </div>
               </Reveal>
-            )}
-            <Reveal delay={300}>
-              <p className="mt-4 text-base md:text-lg text-slate-600 max-w-3xl leading-relaxed">
-                {data.hero.subtitle}
-              </p>
-            </Reveal>
-            <Reveal delay={420}>
-              <div className="mt-6 w-12 h-px bg-slate-900" />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* MAP — 2-col grid, text and map swap sides on alternate countries */}
-      <section className="relative border-t border-slate-100">
-        <SectionWatermark />
-        <div className="relative container-x py-12 md:py-16">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* TEXT BLOCK */}
-            <Reveal className={`lg:col-span-4 ${flipMap ? 'lg:order-2' : 'lg:order-1'}`}>
-              <div>
-                <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
-                  {showPartnerNetwork ? 'Partner Network' : 'Operations Hub'}
-                </div>
-                <h3 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
-                  {showPartnerNetwork
-                    ? `A unified group operating across ${data.hq.city}.`
-                    : `${data.hq.city} operations hub.`}
-                </h3>
-                <p className="mt-4 text-slate-600 leading-relaxed">
-                  {showPartnerNetwork
-                    ? 'Strategic business entities operating under one integrated ecosystem — every venture connected back to the headquarters.'
-                    : 'A single coordinated office anchoring the group’s presence in this market.'}
+              <Reveal delay={120}>
+                <h2 className="font-serif text-4xl md:text-5xl lg:text-[44px] leading-[1.05] tracking-tight text-slate-900">
+                  {data.hero.title}
+                </h2>
+              </Reveal>
+              {data.hero.tagline && (
+                <Reveal delay={200}>
+                  <div className="mt-3 font-serif italic text-xl md:text-2xl text-brand-deep leading-snug">
+                    {data.hero.tagline}
+                  </div>
+                </Reveal>
+              )}
+              <Reveal delay={300}>
+                <p className="mt-5 text-base text-slate-600 leading-relaxed text-justify">
+                  {data.hero.subtitle}
                 </p>
-              </div>
-            </Reveal>
+              </Reveal>
+              <Reveal delay={420}>
+                <div className="mt-6 w-12 h-px bg-slate-900" />
+              </Reveal>
+            </div>
 
-            {/* MAP BLOCK */}
-            <Reveal delay={200} className={`lg:col-span-8 ${flipMap ? 'lg:order-1' : 'lg:order-2'}`}>
+            {/* RIGHT 60% — orbital map (HQ centre + partner constellation) */}
+            <Reveal delay={200} className="lg:col-span-7">
               <div className="group/map relative w-full aspect-[16/8] bg-[#fafafa] border border-slate-100 rounded-sm">
               {/* Background outline + grid (stylised, not geographically literal) */}
               <svg
