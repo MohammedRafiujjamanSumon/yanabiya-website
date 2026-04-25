@@ -467,8 +467,8 @@ function CapabilityCluster({ c }: { c: Capability }) {
 /* ───────────────────────── Country tabs ───────────────────────── */
 
 /* Horizontal moving country marquee — sits below the hero subtitle.
- * The full TAB_ORDER list is rendered twice and the wrapper translates
- * by 50% to give a seamless continuous loop. Click any chip to jump. */
+ * Each chip is a small branch card: flag medallion + country name + HQ
+ * city + partner count chip. List is doubled for a seamless loop. */
 function CountryMarquee({ active }: { active: CountryCode }) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, code: CountryCode) => {
     e.preventDefault()
@@ -477,42 +477,63 @@ function CountryMarquee({ active }: { active: CountryCode }) {
   }
   const loop = [...TAB_ORDER, ...TAB_ORDER]
   return (
-    <div className="group relative w-full overflow-hidden">
+    <div className="group relative w-full overflow-hidden py-1">
       <div
-        className="flex items-center gap-3 w-max animate-marquee marquee-pause"
-        style={{ animationDuration: '32s' }}
+        className="flex items-stretch gap-4 w-max animate-marquee marquee-pause"
+        style={{ animationDuration: '40s' }}
       >
         {loop.map((code, idx) => {
           const p = PROFILES[code]
           const isActive = code === active
+          const partnerCount = p.partners.length
           return (
             <a
               key={`${code}-${idx}`}
               href={`#${code.toLowerCase()}`}
               onClick={(e) => handleClick(e, code)}
               aria-current={isActive ? 'true' : undefined}
-              className={`shrink-0 inline-flex items-center gap-2 rounded-full border px-4 py-2
-                          text-xs font-semibold uppercase tracking-[0.22em]
+              className={`shrink-0 group/chip flex items-center gap-3 px-4 py-3 rounded-2xl
+                          border bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]
                           transition-all duration-300
+                          hover:-translate-y-0.5 hover:shadow-md
                           ${
                             isActive
-                              ? 'bg-blue-700 text-white border-blue-700 shadow-md'
-                              : 'bg-white text-slate-700 border-slate-300 hover:border-blue-700 hover:text-blue-700'
+                              ? 'border-brand-deep bg-brand-deep/5'
+                              : 'border-slate-200 hover:border-brand-deep/40'
                           }`}
             >
-              <span className="text-base leading-none">{p.flag}</span>
-              <span>{p.shortName}</span>
-              <span className="text-slate-300">|</span>
-              <span className="text-[9px] tracking-[0.28em] text-slate-400">
-                {p.hq.city}
-              </span>
+              {/* Flag medallion */}
+              <div className={`shrink-0 w-10 h-10 rounded-full bg-white grid place-items-center
+                               text-xl shadow-sm ring-2 transition-colors duration-300
+                               ${isActive ? 'ring-brand-deep' : 'ring-slate-200 group-hover/chip:ring-brand-deep/40'}`}>
+                {p.flag}
+              </div>
+              {/* Name + city stack */}
+              <div className="text-left">
+                <div className={`font-serif text-sm font-bold leading-tight whitespace-nowrap
+                                 ${isActive ? 'text-brand-deep' : 'text-slate-900'}`}>
+                  {p.shortName}
+                </div>
+                <div className="text-[9px] uppercase tracking-[0.22em] text-slate-500 mt-0.5">
+                  {p.hq.city}
+                </div>
+              </div>
+              {/* Partner count badge */}
+              <div className="shrink-0 ml-1 inline-flex items-center gap-1
+                              rounded-full bg-slate-100 px-2 py-0.5
+                              text-[9px] font-bold uppercase tracking-[0.2em] text-slate-600">
+                <span className="font-mono text-[10px] text-brand-deep">
+                  {partnerCount.toString().padStart(2, '0')}
+                </span>
+                {partnerCount === 1 ? 'Branch' : 'Partners'}
+              </div>
             </a>
           )
         })}
       </div>
       {/* edge fades */}
-      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white via-white/95 to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white via-white/95 to-transparent pointer-events-none" />
     </div>
   )
 }
@@ -972,8 +993,6 @@ export default function OmanPresence() {
           </Reveal>
           <Reveal delay={260}>
             <p className="mt-4 text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              International Business Network — every branch, on one page.
-              <span className="text-slate-400 mx-2">|</span>
               Connecting Opportunities. Building Global Businesses.
             </p>
           </Reveal>
