@@ -8,6 +8,7 @@ import type { LucideIcon } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import BackButton from '../components/BackButton'
 import { assets } from '../data/assets'
+import Contact from '../sections/Contact'
 
 /* ───────────────────────── Helpers ───────────────────────── */
 
@@ -901,6 +902,11 @@ export default function OmanPresence() {
           <CountryView data={PROFILES[c]} index={i} />
         </section>
       ))}
+
+      {/* FULL CONTACT SECTION — country selector + map embed + form + stats */}
+      <div className="border-t-2 border-slate-200">
+        <Contact />
+      </div>
     </main>
   )
 }
