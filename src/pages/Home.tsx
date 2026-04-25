@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import Hero from '../sections/Hero'
+import About from '../sections/About'
 import Businesses from '../sections/Businesses'
 import Partnerships from '../sections/Partnerships'
 import Global from '../sections/Global'
@@ -9,14 +10,12 @@ import Community from '../sections/Community'
 import Contact from '../sections/Contact'
 
 /**
- * Home is the GLOBAL-first landing experience: Hero → Global Presence (map +
- * country branches) → Businesses → Partnerships → Community → Leadership →
- * Contact.
+ * Home order: Hero → About → Global → Businesses → Partnerships →
+ * Community → Leadership → Contact.
  *
- * About Us content is intentionally NOT mounted here. It lives only on
- * /about-us (and /about/our-story) and is reachable solely via the navbar
- * "About Us" link, keeping the home page focused on operations / global
- * presence rather than corporate narrative.
+ * The About teaser sits right after the Hero so visitors get the brand
+ * intro before scrolling into operations. Full About content still lives
+ * on /about-us (and /about/our-story) — this section is just the preview.
  */
 export default function Home() {
   const { hash } = useLocation()
@@ -31,6 +30,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <About />
       <Global />
       <Businesses />
       <Partnerships />

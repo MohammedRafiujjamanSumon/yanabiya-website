@@ -17,6 +17,7 @@ const socials = [
 
 const groupLinks = [
   { id: 'home',         label: 'Home'            },
+  { id: 'about',        label: 'About Us'        },
   { id: 'global',       label: 'Global Presence' },
   { id: 'businesses',   label: 'Our Service'     },
   { id: 'partnerships', label: 'Trusted Network' },

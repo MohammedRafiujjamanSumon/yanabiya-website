@@ -86,7 +86,7 @@ export default function AboutUs() {
 
   return (
     <main className="bg-[#fbfdfb] text-slate-900">
-      <BackButton to="/" label="Back to Home" />
+      <BackButton to="/#about" label="Back to Home" />
 
       {/* ───────── 1. HERO ───────── */}
       <section id="hero" className="relative min-h-[70vh] flex items-center overflow-hidden scroll-mt-28">
