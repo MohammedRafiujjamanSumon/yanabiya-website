@@ -1040,43 +1040,128 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
   )
 }
 
+/* ───────────────────────── Company Tree ───────────────────────── */
+/* Single tree visualisation: HQ root at the top, 4 country branches in a
+ * row, partner names listed under each. Replaces the four stacked country
+ * sections with one compact view of the whole group. */
+
+function CompanyTree() {
+  return (
+    <div className="relative max-w-7xl mx-auto py-8">
+
+      {/* ROOT — Yanabiya Group HQ */}
+      <Reveal>
+        <div className="flex justify-center">
+          <div className="inline-flex flex-col items-center gap-2 rounded-2xl
+                          bg-brand-deep text-white px-7 py-5 shadow-xl
+                          ring-4 ring-brand-accent/30">
+            <div className="text-[10px] font-semibold tracking-[0.3em] uppercase text-brand-accent">
+              Yanabiya Group
+            </div>
+            <div className="font-serif text-2xl md:text-3xl leading-tight">
+              Group HQ
+            </div>
+            <div className="text-[10px] uppercase tracking-[0.22em] text-white/65">
+              Sultanate of Oman · Est. Muscat
+            </div>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* CONNECTOR — vertical trunk + horizontal cross-bar to each branch */}
+      <div aria-hidden="true" className="relative h-12 mt-2 mb-4">
+        <svg
+          viewBox="0 0 100 16"
+          preserveAspectRatio="none"
+          className="absolute inset-0 w-full h-full overflow-visible"
+        >
+          {/* Vertical trunk */}
+          <line x1="50" y1="0" x2="50" y2="6"
+                stroke="rgba(15,58,35,0.45)" strokeWidth="0.4" />
+          {/* Horizontal bar across all 4 branches */}
+          <line x1="12.5" y1="6" x2="87.5" y2="6"
+                stroke="rgba(15,58,35,0.45)" strokeWidth="0.4" />
+          {/* Vertical drops to each branch */}
+          {[12.5, 37.5, 62.5, 87.5].map((x) => (
+            <line key={x} x1={x} y1="6" x2={x} y2="16"
+                  stroke="rgba(15,58,35,0.45)" strokeWidth="0.4" />
+          ))}
+        </svg>
+      </div>
+
+      {/* BRANCH ROW — 4 country nodes */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+        {TAB_ORDER.map((code, i) => {
+          const p = PROFILES[code]
+          return (
+            <Reveal key={code} delay={i * 100}>
+              <div className="group h-full rounded-2xl bg-white border border-slate-200
+                              shadow-[0_4px_12px_rgba(15,58,35,0.05)]
+                              transition-all duration-300
+                              hover:border-brand-deep/40 hover:-translate-y-1
+                              hover:shadow-[0_16px_40px_-12px_rgba(15,58,35,0.25)]">
+                {/* Country header */}
+                <div className="flex items-center gap-3 p-4 border-b border-slate-100">
+                  <div className="shrink-0 w-12 h-12 rounded-full bg-white grid place-items-center
+                                  text-2xl shadow-sm ring-2 ring-brand-accent/30
+                                  group-hover:ring-brand-deep transition-colors duration-300">
+                    {p.flag}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="font-serif text-base font-bold text-brand-deep leading-tight">
+                      {p.shortName}
+                    </div>
+                    <div className="text-[9px] uppercase tracking-[0.22em] text-slate-500 mt-0.5">
+                      {p.hq.city}
+                    </div>
+                  </div>
+                  <div className="shrink-0 inline-flex items-center gap-1 rounded-full
+                                  bg-brand-accent/15 border border-brand-accent/30
+                                  px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em]
+                                  text-brand-deep">
+                    <span className="font-mono text-[10px]">
+                      {p.partners.length.toString().padStart(2, '0')}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Partners list — small chips, scrollable for long ones */}
+                <div className="p-4">
+                  {p.partners.length > 0 ? (
+                    <ul className="max-h-[260px] overflow-y-auto pr-1 space-y-1.5
+                                   [&::-webkit-scrollbar]:w-1
+                                   [&::-webkit-scrollbar-thumb]:bg-brand-deep/20
+                                   [&::-webkit-scrollbar-thumb]:rounded-full">
+                      {p.partners.map((partner) => (
+                        <li
+                          key={partner.name}
+                          className="flex items-baseline gap-2 text-[11px] leading-snug text-brand-deep"
+                        >
+                          <span aria-hidden className="block w-1 h-1 rounded-full bg-brand-accent shrink-0 translate-y-[-2px]" />
+                          <span className="font-semibold">{partner.name}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div className="text-[11px] text-slate-500 italic">
+                      Operations launching soon
+                    </div>
+                  )}
+                </div>
+              </div>
+            </Reveal>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 /* ───────────────────────── Page (top-level) ───────────────────────── */
-/* All four branches render stacked on this single page. A sticky chip strip
- * scroll-spies the active country and jumps to its section on click. */
 
 export default function OmanPresence() {
-  const { code } = useParams<{ code: string }>()
-  const [active, setActive] = useState<CountryCode>('OM')
-
-  // On mount / URL change: scroll to the requested country section if any.
   useEffect(() => {
-    const upper = (code?.toUpperCase() as CountryCode) ?? null
-    if (upper && PROFILES[upper]) {
-      // Defer one frame so the section has mounted.
-      window.requestAnimationFrame(() => {
-        const el = document.getElementById(upper.toLowerCase())
-        if (el) el.scrollIntoView({ behavior: 'instant' as ScrollBehavior, block: 'start' })
-      })
-    } else {
-      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
-    }
-  }, [code])
-
-  // Scroll-spy: highlight the chip whose section is closest to the top.
-  useEffect(() => {
-    const onScroll = () => {
-      const probeY = window.scrollY + 200
-      let next: CountryCode = TAB_ORDER[0]
-      for (const c of TAB_ORDER) {
-        const el = document.getElementById(c.toLowerCase())
-        if (!el) continue
-        if (el.offsetTop <= probeY) next = c
-      }
-      setActive((prev) => (prev === next ? prev : next))
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
 
   return (
@@ -1102,26 +1187,18 @@ export default function OmanPresence() {
               Connecting Opportunities. Building Global Businesses.
             </p>
           </Reveal>
-          <Reveal delay={400}>
-            <div className="mt-8">
-              <CountryMarquee active={active} />
-            </div>
-          </Reveal>
         </div>
       </section>
 
-      {/* ALL COUNTRIES STACKED — every branch on the same page */}
-      {TAB_ORDER.map((c, i) => (
-        <section
-          key={c}
-          id={c.toLowerCase()}
-          className="scroll-mt-[100px] border-t-2 border-slate-200"
-        >
-          <CountryView data={PROFILES[c]} index={i} />
-        </section>
-      ))}
+      {/* COMPANY TREE — HQ + 4 country branches + partners */}
+      <section className="relative border-t border-slate-100">
+        <SectionWatermark />
+        <div className="relative container-x py-10 md:py-14">
+          <CompanyTree />
+        </div>
+      </section>
 
-      {/* FULL CONTACT SECTION — country selector + map embed + form + stats */}
+      {/* FULL CONTACT SECTION */}
       <div className="border-t-2 border-slate-200">
         <Contact />
       </div>
