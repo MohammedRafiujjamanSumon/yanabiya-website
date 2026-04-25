@@ -761,57 +761,57 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
         </div>
       </section>
 
-      {/* CONTACT */}
+      {/* CONTACT — compact, anchored top-left */}
       <section className="relative border-t border-slate-100">
         <SectionWatermark />
         <div className="relative container-x py-12 md:py-16">
-          <Reveal>
-            <div className="max-w-3xl">
+          <div className="max-w-md lg:max-w-lg">
+            <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
                 {data.contact.eyebrow}
               </div>
               <h3 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
                 {data.contact.title}
               </h3>
-            </div>
-          </Reveal>
+            </Reveal>
 
-          <div className="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-6 max-w-4xl">
-            {data.contact.postal && (
-              <Reveal>
+            <div className="mt-8 space-y-8">
+              {data.contact.postal && (
+                <Reveal>
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
+                      Postal Address
+                    </div>
+                    <div className="mt-3 w-8 h-px bg-slate-900/70" />
+                    <p className="mt-4 text-slate-700 leading-relaxed">
+                      {data.contact.postal.map((line, i) => (
+                        <span key={i}>
+                          {line}
+                          {i < data.contact.postal!.length - 1 && <br />}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                </Reveal>
+              )}
+
+              <Reveal delay={data.contact.postal ? 120 : 0}>
                 <div>
                   <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
-                    Postal Address
+                    Head Office
                   </div>
                   <div className="mt-3 w-8 h-px bg-slate-900/70" />
                   <p className="mt-4 text-slate-700 leading-relaxed">
-                    {data.contact.postal.map((line, i) => (
+                    {data.contact.head.map((line, i) => (
                       <span key={i}>
                         {line}
-                        {i < data.contact.postal!.length - 1 && <br />}
+                        {i < data.contact.head.length - 1 && <br />}
                       </span>
                     ))}
                   </p>
                 </div>
               </Reveal>
-            )}
-
-            <Reveal delay={data.contact.postal ? 120 : 0}>
-              <div>
-                <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
-                  Head Office
-                </div>
-                <div className="mt-3 w-8 h-px bg-slate-900/70" />
-                <p className="mt-4 text-slate-700 leading-relaxed">
-                  {data.contact.head.map((line, i) => (
-                    <span key={i}>
-                      {line}
-                      {i < data.contact.head.length - 1 && <br />}
-                    </span>
-                  ))}
-                </p>
-              </div>
-            </Reveal>
+            </div>
           </div>
         </div>
       </section>
