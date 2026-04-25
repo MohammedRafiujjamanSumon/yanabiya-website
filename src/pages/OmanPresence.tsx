@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {
   HardHat, Truck, Laptop, TrendingUp, Coffee,
-  Briefcase, Wrench, ArrowUpRight,
+  Briefcase, Wrench, ArrowUpRight, MapPin,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
@@ -777,7 +777,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
           <div className={`grid gap-8 lg:gap-12 items-start ${data.contact.map ? 'lg:grid-cols-12' : ''}`}>
 
             {/* LEFT — address text */}
-            <div className={data.contact.map ? 'lg:col-span-5' : 'max-w-md lg:max-w-lg'}>
+            <div className={data.contact.map ? 'lg:col-span-6' : 'max-w-md lg:max-w-lg'}>
               <Reveal>
                 <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
                   {data.contact.eyebrow}
@@ -828,8 +828,8 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
 
             {/* RIGHT — embedded Google Map (only when contact.map is provided) */}
             {data.contact.map && (
-              <Reveal delay={200} className="lg:col-span-7">
-                <div className="relative w-full aspect-[5/4] rounded-sm overflow-hidden border border-slate-200 shadow-sm">
+              <Reveal delay={200} className="lg:col-span-6">
+                <div className="group relative w-full aspect-[4/3] rounded-sm overflow-hidden border border-slate-200 shadow-sm">
                   <iframe
                     title={`Map of ${data.hq.city} office`}
                     src={`https://www.google.com/maps?q=${encodeURIComponent(data.contact.map.embedQuery)}&output=embed`}
@@ -837,6 +837,32 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />
+
+                  {/* Hover/touch overlay — red MapPin + Yanabiya logo badge */}
+                  <div className="absolute inset-0 z-10 grid place-items-center
+                                  bg-red-600/15 backdrop-blur-[1px]
+                                  opacity-0 group-hover:opacity-100 group-focus-within:opacity-100
+                                  transition-opacity duration-300 pointer-events-none">
+                    <div className="flex flex-col items-center gap-2 px-5 py-4 rounded-2xl
+                                    bg-white/95 shadow-2xl ring-2 ring-red-500/70">
+                      <div className="relative">
+                        <MapPin
+                          size={42}
+                          className="text-red-600 drop-shadow"
+                          strokeWidth={1.6}
+                          fill="currentColor"
+                        />
+                        <img
+                          src={assets.logo}
+                          alt=""
+                          className="absolute top-[6px] left-1/2 -translate-x-1/2 w-5 h-5 object-contain rounded-sm bg-white"
+                        />
+                      </div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-900">
+                        Yanabiya Group
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <a
                   href={data.contact.map.openUrl}
