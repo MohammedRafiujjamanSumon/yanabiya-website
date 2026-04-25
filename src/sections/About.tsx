@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import Section from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
-import { assets } from '../data/assets'
 
 function Reveal({
   children,
@@ -85,26 +84,8 @@ export default function About() {
       <div className="container-x relative py-14 md:py-20">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-          {/* LEFT — Yanabiya logo + 3 premium stat tiles */}
+          {/* LEFT — 3 premium stat tiles */}
           <div className="lg:col-span-5">
-            <Reveal>
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-16 h-16 rounded-2xl bg-white grid place-items-center
-                                shadow-md ring-2 ring-brand-accent/30">
-                  <img src={assets.logo} alt="Yanabiya Group"
-                       className="h-12 w-auto object-contain" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark">
-                    Yanabiya Group
-                  </div>
-                  <div className="font-serif text-lg text-slate-900 leading-tight mt-0.5">
-                    Group Office
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-px bg-slate-200/70 rounded-2xl overflow-hidden">
               {stats.map((s, i) => (
                 <Reveal key={s.label} delay={i * 120}>
