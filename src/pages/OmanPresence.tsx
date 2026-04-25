@@ -407,6 +407,53 @@ const PROFILES: Record<CountryCode, CountryProfile> = {
 
 const TAB_ORDER: CountryCode[] = ['OM', 'GB', 'BD', 'US']
 
+/* ───────────────────────── Capability scroll card ───────────────────────── */
+/* Premium white card with title + vertical marquee of activity names.
+ * Items render twice for a seamless loop. Pauses on hover with a slight
+ * scale lift. Even-index cards run slower than odd ones for asymmetric
+ * "premium feel" called out in the spec. */
+function CapabilityScrollCard({ card, index }: { card: CapabilityCard; index: number }) {
+  const speed = index % 2 === 0 ? 22 : 16
+  return (
+    <div
+      className="group relative h-full rounded-2xl bg-white border border-slate-200/90
+                 p-6 md:p-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)]
+                 transition-all duration-500
+                 hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
+    >
+      <div className="text-[10px] font-semibold tracking-[0.32em] uppercase text-blue-700 mb-2">
+        0{index + 1}
+      </div>
+      <h4 className="font-serif text-xl md:text-2xl text-slate-900 leading-tight">
+        {card.title}
+      </h4>
+      <div className="mt-3 w-8 h-px bg-slate-900/70" />
+
+      {/* Marquee viewport — clipped, vertically scrolling */}
+      <div className="relative mt-5 h-[260px] overflow-hidden">
+        <div
+          className="flex flex-col animate-vertical-marquee group-hover:[animation-play-state:paused]"
+          style={{ animationDuration: `${speed}s` }}
+        >
+          {[...card.items, ...card.items].map((item, idx) => (
+            <div
+              key={`${item}-${idx}`}
+              className="py-2.5 border-b border-slate-100 flex items-baseline gap-3
+                         text-sm text-brand-deep font-semibold leading-snug"
+            >
+              <span aria-hidden className="block w-1 h-1 rounded-full bg-brand-deep/70 shrink-0 translate-y-[-2px]" />
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+        {/* Top + bottom fade masks for the marquee */}
+        <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-white to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      </div>
+    </div>
+  )
+}
+
 /* ───────────────────────── Capability cluster ───────────────────────── */
 
 function CapabilityCluster({ c }: { c: Capability }) {
@@ -650,38 +697,44 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                              group-hover/map:[animation-play-state:paused]"
                   style={{ transformOrigin: `${data.hq.x}% ${data.hq.y}%` }}
                 >
-                  {/* Connection lines — orbit with the partners */}
+                  {/* Connection lines — short stub (max ~2 inches) extending
+                      from each partner toward the HQ. Long full-length lines
+                      reaching all the way to the centre were too noisy; we
+                      now clamp the segment to MAX_LEN viewBox units. */}
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 100 56.25"
                     className="absolute inset-0 w-full h-full overflow-visible"
                     preserveAspectRatio="none"
                   >
-                    {data.partners.map((p) => {
-                      const x = p.x
-                      const y = p.y * 0.5625
-                      return (
-                        <line
-                          key={`${p.name}-base`}
-                          x1={data.hq.x} y1={data.hq.y * 0.5625} x2={x} y2={y}
-                          stroke="rgba(15,58,35,0.18)"
-                          strokeWidth="0.12"
-                        />
-                      )
-                    })}
                     {data.partners.map((p, i) => {
-                      const x = p.x
-                      const y = p.y * 0.5625
+                      const px = p.x
+                      const py = p.y * 0.5625
+                      const hx = data.hq.x
+                      const hy = data.hq.y * 0.5625
+                      const dx = hx - px
+                      const dy = hy - py
+                      const len = Math.sqrt(dx * dx + dy * dy)
+                      const MAX_LEN = 14   // ≈ 2 inches at typical map width
+                      const t = len > 0 ? Math.min(1, MAX_LEN / len) : 0
+                      const ex = px + dx * t
+                      const ey = py + dy * t
                       return (
-                        <line
-                          key={`${p.name}-flow`}
-                          x1={x} y1={y} x2={data.hq.x} y2={data.hq.y * 0.5625}
-                          stroke="rgba(15,58,35,0.55)"
-                          strokeWidth="0.2"
-                          strokeLinecap="round"
-                          className="animate-svg-flow"
-                          style={{ animationDelay: `${i * 0.5}s`, animationDuration: '5s' }}
-                        />
+                        <g key={p.name}>
+                          <line
+                            x1={px} y1={py} x2={ex} y2={ey}
+                            stroke="rgba(15,58,35,0.18)"
+                            strokeWidth="0.12"
+                          />
+                          <line
+                            x1={px} y1={py} x2={ex} y2={ey}
+                            stroke="rgba(15,58,35,0.55)"
+                            strokeWidth="0.2"
+                            strokeLinecap="round"
+                            className="animate-svg-flow"
+                            style={{ animationDelay: `${i * 0.5}s`, animationDuration: '5s' }}
+                          />
+                        </g>
                       )
                     })}
                   </svg>
@@ -767,56 +820,68 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
             </div>
           </Reveal>
 
-          <div className="mt-8 max-w-6xl grid lg:grid-cols-2 gap-x-12 gap-y-8 relative">
-            {data.capabilities.columnA && data.capabilities.columnB && (
-              <div
-                aria-hidden="true"
-                className="hidden lg:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px bg-slate-200"
-              />
-            )}
-
-            {data.capabilities.columnA && (
-              <div className={data.capabilities.columnB ? 'lg:pr-10' : ''}>
-                <Reveal>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500 mb-2">
-                    Column A
-                  </div>
-                  <h4 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight">
-                    {data.capabilities.columnA.label}
-                  </h4>
-                  <div className="mt-3 w-10 h-px bg-slate-900" />
+          {/* If country has the new 4-card scroll layout, render that.
+              Otherwise fall back to the legacy column matrix. */}
+          {data.capabilities.cards ? (
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-5">
+              {data.capabilities.cards.map((card, i) => (
+                <Reveal key={card.title} delay={i * 120}>
+                  <CapabilityScrollCard card={card} index={i} />
                 </Reveal>
-                <div className="mt-6 space-y-6">
-                  {data.capabilities.columnA.clusters.map((c, i) => (
-                    <Reveal key={c.title} delay={i * 120}>
-                      <CapabilityCluster c={c} />
-                    </Reveal>
-                  ))}
-                </div>
-              </div>
-            )}
+              ))}
+            </div>
+          ) : (
+            <div className="mt-8 max-w-6xl grid lg:grid-cols-2 gap-x-12 gap-y-8 relative">
+              {data.capabilities.columnA && data.capabilities.columnB && (
+                <div
+                  aria-hidden="true"
+                  className="hidden lg:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px bg-slate-200"
+                />
+              )}
 
-            {data.capabilities.columnB && (
-              <div className={data.capabilities.columnA ? 'lg:pl-10' : ''}>
-                <Reveal>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500 mb-2">
-                    Column B
+              {data.capabilities.columnA && (
+                <div className={data.capabilities.columnB ? 'lg:pr-10' : ''}>
+                  <Reveal>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500 mb-2">
+                      Column A
+                    </div>
+                    <h4 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight">
+                      {data.capabilities.columnA.label}
+                    </h4>
+                    <div className="mt-3 w-10 h-px bg-slate-900" />
+                  </Reveal>
+                  <div className="mt-6 space-y-6">
+                    {data.capabilities.columnA.clusters.map((c, i) => (
+                      <Reveal key={c.title} delay={i * 120}>
+                        <CapabilityCluster c={c} />
+                      </Reveal>
+                    ))}
                   </div>
-                  <h4 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight">
-                    {data.capabilities.columnB.label}
-                  </h4>
-                  <div className="mt-3 w-10 h-px bg-slate-900" />
-                </Reveal>
-                <div className="mt-6 space-y-6">
-                  {data.capabilities.columnB.clusters.map((c, i) => (
-                    <Reveal key={c.title} delay={i * 120}>
-                      <CapabilityCluster c={c} />
-                    </Reveal>
-                  ))}
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+
+              {data.capabilities.columnB && (
+                <div className={data.capabilities.columnA ? 'lg:pl-10' : ''}>
+                  <Reveal>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500 mb-2">
+                      Column B
+                    </div>
+                    <h4 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight">
+                      {data.capabilities.columnB.label}
+                    </h4>
+                    <div className="mt-3 w-10 h-px bg-slate-900" />
+                  </Reveal>
+                  <div className="mt-6 space-y-6">
+                    {data.capabilities.columnB.clusters.map((c, i) => (
+                      <Reveal key={c.title} delay={i * 120}>
+                        <CapabilityCluster c={c} />
+                      </Reveal>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
