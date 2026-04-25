@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { X as CloseIcon, MapPin, Building2, Mail, Phone, Globe2 } from 'lucide-react'
 import {
   HardHat, Truck, Laptop, TrendingUp, Coffee,
   Briefcase, Wrench, ArrowUpRight, MapPin,
+  X as CloseIcon, Building2, Mail, Phone, Globe2,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
