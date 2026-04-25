@@ -205,7 +205,22 @@ const BANGLADESH: CountryProfile = {
     subtitle: 'Yanabiya Group — Bangladesh Operations Hub',
   },
   hq: { label: 'Dhaka HQ', group: 'Yanabiya Gulf International BD Trade', city: 'Dhaka', x: 50, y: 50 },
-  partners: [],
+  partners: [
+    { name: 'Connet Online',                     category: 'Internet & Connectivity', x: 14, y: 14, align: 'right' },
+    { name: 'Plexus Cloud',                      category: 'Cloud Services',          x: 32, y: 18, align: 'right' },
+    { name: 'Gtech Aviation',                    category: 'Aviation',                x: 50, y: 12, align: 'right' },
+    { name: 'Idea Tec',                          category: 'Technology',              x: 68, y: 18, align: 'right' },
+    { name: 'Citylink Communication',            category: 'Communications',          x: 86, y: 14, align: 'left'  },
+    { name: 'Eham WiFi',                         category: 'WiFi & Connectivity',     x: 8,  y: 32, align: 'right' },
+    { name: 'Business Zone Limited Company',     category: 'Business Services',       x: 92, y: 32, align: 'left'  },
+    { name: 'Trust Innovation Limited Company',  category: 'Technology',              x: 6,  y: 56, align: 'right' },
+    { name: 'Xlink Limited Company',             category: 'Internet & Connectivity', x: 94, y: 56, align: 'left'  },
+    { name: 'Dot Internet',                      category: 'Internet & ISP',          x: 10, y: 72, align: 'right' },
+    { name: 'Zero Link',                         category: 'Connectivity',            x: 90, y: 72, align: 'left'  },
+    { name: 'Global Communication Limited',      category: 'Communications',          x: 24, y: 86, align: 'right' },
+    { name: 'Dot Exploration Ltd',               category: 'Tech Services',           x: 50, y: 90, align: 'right' },
+    { name: 'Bongo WiFi',                        category: 'WiFi & Connectivity',     x: 76, y: 86, align: 'left'  },
+  ],
   mapNote: { fig: 'Fig. 01 · Group Network · Bangladesh', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
     eyebrow: 'Capability Matrix',
@@ -360,7 +375,7 @@ const PROFILES: Record<CountryCode, CountryProfile> = {
   US: USA,
 }
 
-const TAB_ORDER: CountryCode[] = ['OM', 'BD', 'GB', 'US']
+const TAB_ORDER: CountryCode[] = ['OM', 'GB', 'BD', 'US']
 
 /* ───────────────────────── Capability cluster ───────────────────────── */
 
@@ -520,7 +535,7 @@ function CountryView({ data }: { data: CountryProfile }) {
                 className="absolute inset-0 w-full h-full"
                 preserveAspectRatio="xMidYMid slice"
               >
-                {showPartnerNetwork && (
+                {data.code === 'OM' && (
                   <g
                     fill="none"
                     stroke="rgba(15,23,42,0.18)"
