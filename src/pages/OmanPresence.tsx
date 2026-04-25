@@ -1281,37 +1281,56 @@ function PartnerRadialNetwork({ data }: { data: CountryProfile }) {
   const centerX = 50
   const centerY = 50
 
+  /* Pre-compute partner positions on the ring so star + mesh share them */
+  const positions = partners.map((_, i) => {
+    const angle = (i / Math.max(partners.length, 1)) * Math.PI * 2 - Math.PI / 2
+    return {
+      x: centerX + Math.cos(angle) * radius,
+      y: centerY + Math.sin(angle) * radius,
+    }
+  })
+
   return (
     <div className="relative w-full aspect-square max-w-[320px] mx-auto">
-      {/* Connection lines — partner → centre */}
+      {/* Connection lines — STAR (centre → partner) + MESH (partner ↔ neighbour) */}
       <svg
         aria-hidden="true"
         viewBox="0 0 100 100"
         className="absolute inset-0 w-full h-full overflow-visible"
         preserveAspectRatio="xMidYMid meet"
       >
-        {partners.map((_, i) => {
-          const angle = (i / Math.max(partners.length, 1)) * Math.PI * 2 - Math.PI / 2
-          const x = centerX + Math.cos(angle) * radius
-          const y = centerY + Math.sin(angle) * radius
+        {/* MESH ring — connect each partner to its next neighbour, closing the loop */}
+        {positions.length > 1 && positions.map((pos, i) => {
+          const next = positions[(i + 1) % positions.length]
           return (
-            <g key={i}>
-              <line
-                x1={centerX} y1={centerY} x2={x} y2={y}
-                stroke="rgba(158,199,58,0.32)"
-                strokeWidth="0.4"
-              />
-              <line
-                x1={centerX} y1={centerY} x2={x} y2={y}
-                stroke="rgba(158,199,58,0.85)"
-                strokeWidth="0.45"
-                strokeLinecap="round"
-                className="animate-svg-flow"
-                style={{ animationDelay: `${i * 0.4}s`, animationDuration: '4.5s' }}
-              />
-            </g>
+            <line
+              key={`mesh-${i}`}
+              x1={pos.x} y1={pos.y} x2={next.x} y2={next.y}
+              stroke="rgba(15,58,35,0.28)"
+              strokeWidth="0.32"
+              strokeDasharray="0.7 0.6"
+            />
           )
         })}
+
+        {/* STAR — every partner connects back to the centre, with a flowing dash */}
+        {positions.map((pos, i) => (
+          <g key={`star-${i}`}>
+            <line
+              x1={centerX} y1={centerY} x2={pos.x} y2={pos.y}
+              stroke="rgba(15,58,35,0.30)"
+              strokeWidth="0.35"
+            />
+            <line
+              x1={centerX} y1={centerY} x2={pos.x} y2={pos.y}
+              stroke="rgba(158,199,58,0.95)"
+              strokeWidth="0.42"
+              strokeLinecap="round"
+              className="animate-svg-flow"
+              style={{ animationDelay: `${i * 0.4}s`, animationDuration: '4.5s' }}
+            />
+          </g>
+        ))}
       </svg>
 
       {/* Centre — country flag + name */}
@@ -1325,11 +1344,9 @@ function PartnerRadialNetwork({ data }: { data: CountryProfile }) {
         </div>
       </div>
 
-      {/* Partner nodes — small pulsing dots with hover-revealed name */}
+      {/* Partner nodes */}
       {partners.map((p, i) => {
-        const angle = (i / Math.max(partners.length, 1)) * Math.PI * 2 - Math.PI / 2
-        const x = centerX + Math.cos(angle) * radius
-        const y = centerY + Math.sin(angle) * radius
+        const { x, y } = positions[i]
         const onLeft = x < 50
         return (
           <div
@@ -1340,17 +1357,17 @@ function PartnerRadialNetwork({ data }: { data: CountryProfile }) {
           >
             <span className="relative inline-flex">
               <span
-                className="absolute inset-0 rounded-full bg-brand-accent/40"
+                className="absolute inset-0 rounded-full bg-brand-accent/45"
                 style={{ animation: `haloPulse 3s ease-in-out ${i * 0.3}s infinite` }}
               />
-              <span className="relative block w-2.5 h-2.5 rounded-full bg-brand-accent
-                               ring-2 ring-brand-deep
+              <span className="relative block w-3 h-3 rounded-full bg-brand-deep
+                               ring-2 ring-brand-accent
                                group-hover:scale-150 transition-transform duration-300
                                group-hover:shadow-[0_0_10px_rgba(158,199,58,0.9)]" />
             </span>
             {/* Hover label */}
             <div className={`pointer-events-none absolute top-1/2 -translate-y-1/2 whitespace-nowrap
-                             opacity-0 group-hover:opacity-100 transition-opacity duration-200
+                             opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30
                              ${onLeft ? 'right-4' : 'left-4'}`}>
               <span className="inline-block px-2 py-0.5 rounded bg-brand-deep text-brand-accent
                                text-[9px] font-bold uppercase tracking-[0.18em]
@@ -1365,7 +1382,7 @@ function PartnerRadialNetwork({ data }: { data: CountryProfile }) {
       {/* Overflow badge */}
       {overflow > 0 && (
         <div className="absolute bottom-2 right-2 z-20 px-2 py-0.5 rounded-full
-                        bg-brand-deep/80 backdrop-blur border border-brand-accent/40
+                        bg-brand-deep/90 backdrop-blur border border-brand-accent/40
                         text-[9px] font-bold uppercase tracking-[0.18em] text-brand-accent">
           +{overflow} more
         </div>
@@ -1387,14 +1404,16 @@ function CountryNetworkCard({
       type="button"
       onClick={onClick}
       className="group block w-full text-left rounded-2xl
-                 bg-white/[0.05] backdrop-blur-md border border-white/10
+                 bg-brand-deep text-white
+                 border border-brand-accent/30
                  p-5 md:p-6
+                 shadow-[0_8px_24px_rgba(15,58,35,0.15)]
                  transition-all duration-500
-                 hover:bg-white/[0.08] hover:border-brand-accent/40 hover:-translate-y-1
-                 hover:shadow-[0_30px_60px_-20px_rgba(158,199,58,0.35)]"
+                 hover:border-brand-accent hover:-translate-y-1
+                 hover:shadow-[0_30px_60px_-20px_rgba(158,199,58,0.45)]"
     >
       <div className="flex items-center gap-3">
-        <div className="shrink-0 w-12 h-12 rounded-full bg-white/10 ring-2 ring-brand-accent/40
+        <div className="shrink-0 w-12 h-12 rounded-full bg-white/10 ring-2 ring-brand-accent/50
                         grid place-items-center text-2xl
                         group-hover:ring-brand-accent transition-colors duration-300">
           {data.flag}
@@ -1408,7 +1427,7 @@ function CountryNetworkCard({
           </div>
         </div>
         <div className="shrink-0 inline-flex items-center gap-1 rounded-full
-                        bg-brand-accent/15 border border-brand-accent/40
+                        bg-brand-accent/20 border border-brand-accent/50
                         px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em]
                         text-brand-accent">
           <span className="font-mono text-[10px]">
@@ -1423,7 +1442,7 @@ function CountryNetworkCard({
       </div>
 
       <div className="mt-4 text-[10px] font-bold uppercase tracking-[0.22em]
-                      text-brand-accent/70 group-hover:text-brand-accent transition-colors">
+                      text-brand-accent/80 group-hover:text-brand-accent transition-colors">
         View Full Profile →
       </div>
     </button>
@@ -1434,9 +1453,9 @@ function CountryNetworkCard({
 function ActivityFeed({ code, isRight }: { code: CountryCode; isRight: boolean }) {
   const items = ACTIVITY_FEED[code] ?? []
   return (
-    <div className={`text-${isRight ? 'left' : 'right'}`}>
-      <div className={`text-[10px] font-semibold tracking-[0.32em] uppercase text-brand-accent mb-3
-                       inline-flex items-center gap-2`}>
+    <div className={isRight ? 'text-left' : 'md:text-right'}>
+      <div className="text-[10px] font-semibold tracking-[0.32em] uppercase text-brand-accentDark mb-3
+                       inline-flex items-center gap-2">
         <span className="block w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
         Live Activity
       </div>
@@ -1444,15 +1463,17 @@ function ActivityFeed({ code, isRight }: { code: CountryCode; isRight: boolean }
         {items.map((it, i) => (
           <li
             key={it.label}
-            className={`rounded-lg bg-white/[0.04] backdrop-blur-sm border border-white/10
-                        px-3 py-2 transition-all duration-300
-                        hover:bg-white/[0.08] hover:border-brand-accent/30`}
+            className="rounded-lg bg-brand-deep text-white
+                       border border-brand-accent/30
+                       px-3 py-2 transition-all duration-300
+                       hover:border-brand-accent
+                       hover:shadow-[0_10px_24px_-8px_rgba(158,199,58,0.4)]"
             style={{ animationDelay: `${i * 100}ms` }}
           >
-            <div className="text-[12px] text-white/90 font-semibold leading-tight">
+            <div className="text-[12px] text-white font-semibold leading-tight">
               {it.label}
             </div>
-            <div className="text-[9px] uppercase tracking-[0.2em] text-brand-accent/70 mt-0.5">
+            <div className="text-[9px] uppercase tracking-[0.2em] text-brand-accent/85 mt-0.5">
               {it.meta}
             </div>
           </li>
@@ -1549,31 +1570,31 @@ export default function OmanPresence() {
   }, [code])
 
   return (
-    <main className="relative bg-brand-deep text-white overflow-hidden">
+    <main className="relative bg-white text-slate-900 overflow-hidden">
       <BackButton to="/#global" label="Back to Global" />
 
-      {/* Ambient dark-theme glow layer */}
+      {/* Subtle ambient mint glow on the white surface */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[680px] h-[680px] rounded-full bg-brand-accent/10 blur-[160px]" />
-        <div className="absolute top-1/3 -right-40 w-[620px] h-[620px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 left-1/3 w-[560px] h-[560px] rounded-full bg-brand-accentDark/8 blur-[140px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
       </div>
 
       {/* GLOBAL HERO */}
       <section className="relative">
+        <SectionWatermark />
         <div className="relative container-x py-10 md:py-14 text-center">
           <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accent mb-4">
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
               Global Network · Live
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-white">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-brand-deep">
               Yanabiya Group
             </h1>
           </Reveal>
           <Reveal delay={260}>
-            <p className="mt-4 text-base md:text-lg text-white/65 max-w-3xl mx-auto leading-relaxed">
+            <p className="mt-4 text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Connecting Opportunities. Building Global Businesses.
             </p>
           </Reveal>
@@ -1581,14 +1602,14 @@ export default function OmanPresence() {
       </section>
 
       {/* ZIGZAG NETWORK MAP — HQ + alternating country/activity rows */}
-      <section className="relative border-t border-white/10">
+      <section className="relative border-t border-slate-100">
         <div className="relative container-x py-10 md:py-14">
           <CompanyTree onSelect={(c) => setSelected(c)} />
         </div>
       </section>
 
-      {/* FULL CONTACT SECTION (back to white surface) */}
-      <div className="border-t-2 border-white/10 bg-white text-slate-900 relative z-10">
+      {/* FULL CONTACT SECTION */}
+      <div className="border-t-2 border-slate-200 relative z-10">
         <Contact />
       </div>
 
