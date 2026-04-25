@@ -66,7 +66,7 @@ export default function Global() {
             <Reveal delay={420}>
               <div className="mt-8">
                 <Link
-                  to="/about-us#presence"
+                  to="/global-presence"
                   className="inline-flex items-center gap-2 rounded-full px-6 py-3
                              bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
                              shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5

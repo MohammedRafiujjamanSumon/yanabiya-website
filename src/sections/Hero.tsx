@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { ArrowRight, Handshake, Volume2, VolumeX } from 'lucide-react'
 import { useRef, useState } from 'react'
 
@@ -59,9 +60,9 @@ export default function Hero() {
 
           <div className="mt-9 flex flex-col sm:flex-row gap-4 justify-center items-center fade-up"
                style={{ animationDelay: '320ms' }}>
-            <a href="#global" className="btn-primary !px-8 !py-3.5 !rounded-full">
+            <Link to="/global-presence" className="btn-primary !px-8 !py-3.5 !rounded-full">
               Explore Global Presence <ArrowRight size={18} className="ltr-flip" />
-            </a>
+            </Link>
             <a href="#contact"
                className="btn-ghost !px-8 !py-3.5 !rounded-full !border-white/50 !text-white hover:!bg-white hover:!text-brand-ink hover:!border-white">
               <Handshake size={18} /> {t('hero.cta2')}
