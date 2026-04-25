@@ -1,62 +1,110 @@
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import Section, { Eyebrow } from '../components/Section'
+import { ArrowRight } from 'lucide-react'
+import Section from '../components/Section'
 import { businesses } from '../data/businesses'
-import { assets } from '../data/assets'
+import { useReveal } from '../hooks/useReveal'
+
+function Reveal({
+  children,
+  delay = 0,
+  className = '',
+}: {
+  children: React.ReactNode
+  delay?: number
+  className?: string
+}) {
+  const { ref, shown } = useReveal<HTMLDivElement>()
+  return (
+    <div
+      ref={ref}
+      className={`${className} transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  )
+}
+
+/* Short, plain-English overrides for the landing-page card titles + a
+ * one-liner each. Keep the verbose names on the data file for /business/<slug>
+ * detail pages. */
+const BUSINESS_DISPLAY: Record<string, { title: string; tag: string }> = {
+  'it-software':       { title: 'Tech & Software',  tag: 'Custom software, cloud, AI.' },
+  'export-import':     { title: 'Global Trade',     tag: 'Sourcing, freight, fulfilment.' },
+  'clothing':          { title: 'Apparel',          tag: 'Private label, sourcing, retail.' },
+  'agents-brokerage':  { title: 'Brokerage',        tag: 'Cross-border deals & partnerships.' },
+  'office-management': { title: 'Office Services',  tag: 'Serviced offices, PRO, admin.' },
+  'manpower':          { title: 'Global Mobility',  tag: 'Workforce, students, aviation.' },
+}
 
 export default function Businesses() {
-  const { t } = useTranslation()
   return (
     <Section id="businesses" className="relative overflow-hidden bg-white">
-      {/* Yanabiya logo watermark */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center select-none">
-        <img src={assets.logo} alt="" className="w-[80%] max-w-[900px] opacity-[0.06] object-contain" />
-      </div>
+      <div className="container-x py-14 md:py-20">
 
-      <div className="container-x relative">
-        <Eyebrow>{t('businesses.eyebrow')}</Eyebrow>
-        <p className="text-slate-600 leading-relaxed text-justify [text-align-last:center] max-w-3xl mx-auto mb-10">
-          Strategic divisions powering integrated enterprise solutions, global trade, and
-          workforce ecosystems across key international markets.
-        </p>
+        {/* Header — minimal, on-brand to match Global Presence */}
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <Reveal>
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
+              Our Service
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight text-brand-deep">
+              Six divisions.
+              <span className="block text-brand-accentDark">One group.</span>
+            </h2>
+          </Reveal>
+        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-          {businesses.map((b) => (
-            <Link
-              key={b.slug}
-              to={`/business/${b.slug}`}
-              className="group relative rounded-2xl overflow-hidden shadow-lg
-                         h-56 hover:-translate-y-1 transition-transform text-left
-                         focus:outline-none focus:ring-2 focus:ring-brand-accent block"
-            >
-              <img
-                src={b.image}
-                alt={b.title}
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover
-                           transition-transform duration-500 group-hover:scale-105"
-                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
-              <div className="absolute top-4 right-4 w-11 h-11 rounded-full
-                              bg-white/90 text-blue-600 grid place-items-center shadow
-                              ring-2 ring-white/70">
-                <b.icon size={20} />
-              </div>
-              <div className="absolute inset-x-0 bottom-0 p-5 flex flex-col items-start gap-3">
-                <h3 className="text-white text-lg md:text-xl font-semibold leading-tight drop-shadow">
-                  {b.title}
-                </h3>
-                <span className="inline-flex items-center gap-2 rounded-full
-                                 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider
-                                 bg-white/95 text-blue-700
-                                 transition-colors group-hover:bg-brand-accent group-hover:text-white">
-                  Read More
-                  <span aria-hidden>→</span>
-                </span>
-              </div>
-            </Link>
-          ))}
+        {/* 6-card grid — clean white cards with mint icon chip + short title + 1-line tag */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          {businesses.map((b, i) => {
+            const display = BUSINESS_DISPLAY[b.slug] ?? { title: b.title, tag: '' }
+            return (
+              <Reveal key={b.slug} delay={i * 70}>
+                <Link
+                  to={`/business/${b.slug}`}
+                  className="group block h-full rounded-2xl bg-white border border-slate-200
+                             p-5 shadow-[0_4px_12px_rgba(15,58,35,0.05)]
+                             transition-all duration-300
+                             hover:border-brand-deep/40 hover:-translate-y-1
+                             hover:shadow-[0_18px_40px_-12px_rgba(15,58,35,0.22)]"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 w-11 h-11 rounded-xl bg-brand-accent/15
+                                    grid place-items-center text-brand-deep
+                                    transition-all duration-300
+                                    group-hover:bg-brand-accent group-hover:text-white
+                                    group-hover:scale-110">
+                      <b.icon size={20} strokeWidth={1.6} />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-serif text-lg font-bold text-brand-deep leading-tight">
+                        {display.title}
+                      </h3>
+                      <p className="mt-1 text-[12.5px] text-slate-600 leading-snug">
+                        {display.tag}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Bottom CTA row */}
+                  <div className="mt-5 flex items-center justify-between
+                                  text-[10px] uppercase tracking-[0.22em] font-bold">
+                    <span className="text-slate-500">Division 0{i + 1}</span>
+                    <span className="inline-flex items-center gap-1 text-brand-accentDark
+                                     transition-all duration-300
+                                     group-hover:text-brand-deep group-hover:gap-1.5">
+                      Explore <ArrowRight size={11} />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            )
+          })}
         </div>
       </div>
     </Section>
