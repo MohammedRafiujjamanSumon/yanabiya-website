@@ -200,17 +200,22 @@
   animation: svgFlow 2.4s linear infinite;
 }
 
-/* Per-chip orbit — each partner pill traces a tiny circle in place around
- * its own anchor dot. Movement stays contained within the card; the
- * constellation as a whole stays anchored to the geographic positions. */
-@keyframes chipDrift {
-  0%, 100% { transform: translate(0, -5px); }
-  25%      { transform: translate(5px, 0); }
-  50%      { transform: translate(0, 5px); }
-  75%      { transform: translate(-5px, 0); }
+/* Solar-system orbit — partners revolve around the HQ at the centre.
+ * orbitRing rotates the constellation; orbitRingCounter spins each chip
+ * the opposite way so text always reads upright. Pair both at the same
+ * 40s duration so they cancel cleanly. */
+@keyframes orbitRing {
+  to { transform: rotate(360deg); }
 }
-.animate-chip-drift {
-  animation: chipDrift 8s linear infinite;
+@keyframes orbitRingCounter {
+  to { transform: rotate(-360deg); }
+}
+.animate-orbit-ring {
+  animation: orbitRing 40s linear infinite;
+  will-change: transform;
+}
+.animate-orbit-ring-counter {
+  animation: orbitRingCounter 40s linear infinite;
   will-change: transform;
 }
 

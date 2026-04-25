@@ -106,15 +106,18 @@ const OMAN: CountryProfile = {
     title: 'Oman Global Presence',
     subtitle: 'Yanabiya Group — Integrated Business Network in Sultanate of Oman',
   },
-  hq: { label: 'Muscat HQ', group: 'Yanabiya Group · Oman', city: 'Muscat', x: 80, y: 32 },
+  hq: { label: 'Muscat HQ', group: 'Yanabiya Group · Oman', city: 'Muscat', x: 50, y: 50 },
+  /* 7 partners arranged on a single ring around the centre HQ.
+   * Angles in degrees from 12 o'clock, radius ~32% horizontal, ~38% vertical
+   * (the 16:8 canvas is wider than tall so the ring is elongated). */
   partners: [
-    { name: 'Yanabiya Muscat United Trade',                category: 'Trade & Commerce',     x: 70, y: 22, align: 'right' },
-    { name: 'Yanabiya Muscat for Comprehensive Projects',  category: 'Construction',         x: 60, y: 18, align: 'right' },
-    { name: 'Yanabiya Muscat Integrated LLC',              category: 'Diversified Holdings', x: 50, y: 30, align: 'right' },
-    { name: 'Yanabiya Al Khairat United Trade LLC',        category: 'Trade & Commerce',     x: 86, y: 46, align: 'left'  },
-    { name: 'Yanabiya Muscat World Business',              category: 'Business Services',    x: 72, y: 56, align: 'right' },
-    { name: 'Yanabiya Muscat Al Mumyazat',                 category: 'Services',             x: 56, y: 62, align: 'right' },
-    { name: 'Yanabiya Al Rustaq Contracting',              category: 'Contracting',          x: 38, y: 42, align: 'right' },
+    { name: 'Yanabiya Muscat United Trade',                category: 'Trade & Commerce',     x: 50, y: 12, align: 'right' },
+    { name: 'Yanabiya Muscat for Comprehensive Projects',  category: 'Construction',         x: 78, y: 22, align: 'left'  },
+    { name: 'Yanabiya Muscat Integrated LLC',              category: 'Diversified Holdings', x: 88, y: 50, align: 'left'  },
+    { name: 'Yanabiya Al Khairat United Trade LLC',        category: 'Trade & Commerce',     x: 78, y: 78, align: 'left'  },
+    { name: 'Yanabiya Muscat World Business',              category: 'Business Services',    x: 50, y: 88, align: 'right' },
+    { name: 'Yanabiya Muscat Al Mumyazat',                 category: 'Services',             x: 22, y: 78, align: 'right' },
+    { name: 'Yanabiya Al Rustaq Contracting',              category: 'Contracting',          x: 12, y: 50, align: 'right' },
   ],
   mapNote: { fig: 'Fig. 01 · Group Network · Oman', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
@@ -582,7 +585,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
 
             {/* MAP BLOCK */}
             <Reveal delay={200} className={`lg:col-span-8 ${flipMap ? 'lg:order-1' : 'lg:order-2'}`}>
-              <div className="relative w-full aspect-[16/8] bg-[#fafafa] border border-slate-100 rounded-sm">
+              <div className="group/map relative w-full aspect-[16/8] bg-[#fafafa] border border-slate-100 rounded-sm">
               {/* Background outline + grid (stylised, not geographically literal) */}
               <svg
                 aria-hidden="true"
@@ -638,89 +641,102 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                 </div>
               </div>
 
-              {/* Connection lines — static, drawn once from each partner anchor to HQ */}
+              {/* ORBITAL CONSTELLATION — connection lines + partner chips
+                  rotate together around the HQ. Each chip's inner content
+                  counter-rotates so the text stays upright. Hovering anywhere
+                  in the map area pauses both rotations in sync (no merge,
+                  no spin — just frozen). */}
               {showPartnerNetwork && (
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 100 56.25"
-                  className="absolute inset-0 w-full h-full overflow-visible"
-                  preserveAspectRatio="none"
-                >
-                  {data.partners.map((p) => {
-                    const x = p.x
-                    const y = p.y * 0.5625
-                    return (
-                      <line
-                        key={`${p.name}-base`}
-                        x1={data.hq.x} y1={data.hq.y * 0.5625} x2={x} y2={y}
-                        stroke="rgba(15,58,35,0.18)"
-                        strokeWidth="0.12"
-                      />
-                    )
-                  })}
-                  {data.partners.map((p, i) => {
-                    const x = p.x
-                    const y = p.y * 0.5625
-                    return (
-                      <line
-                        key={`${p.name}-flow`}
-                        x1={x} y1={y} x2={data.hq.x} y2={data.hq.y * 0.5625}
-                        stroke="rgba(15,58,35,0.55)"
-                        strokeWidth="0.2"
-                        strokeLinecap="round"
-                        className="animate-svg-flow"
-                        style={{ animationDelay: `${i * 0.5}s`, animationDuration: '5s' }}
-                      />
-                    )
-                  })}
-                </svg>
-              )}
-
-              {/* Partner chips — static anchor + small in-card drift on the pill */}
-              {data.partners.map((p, idx) => (
                 <div
-                  key={p.name}
-                  className="group absolute z-10 hover:z-30"
-                  style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)' }}
+                  className="absolute inset-0 pointer-events-none animate-orbit-ring
+                             group-hover/map:[animation-play-state:paused]"
+                  style={{ transformOrigin: `${data.hq.x}% ${data.hq.y}%` }}
                 >
-                  {/* Anchor dot — fixed at the geographic point */}
-                  <span className="block w-1.5 h-1.5 rounded-full bg-brand-deep/70
-                                   transition-all duration-300
-                                   group-hover:scale-150 group-hover:bg-brand-deep
-                                   group-hover:shadow-[0_0_10px_rgba(15,58,35,0.55)]" />
-                  {/* Chip pill — drifts in a small circle inside its slot */}
-                  <div
-                    className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap animate-chip-drift
-                                group-hover:[animation-play-state:paused]
-                                ${p.align === 'right' ? 'left-3' : 'right-3'}`}
-                    style={{ animationDelay: `${(idx * 0.4) % 8}s` }}
+                  {/* Connection lines — orbit with the partners */}
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 100 56.25"
+                    className="absolute inset-0 w-full h-full overflow-visible"
+                    preserveAspectRatio="none"
                   >
+                    {data.partners.map((p) => {
+                      const x = p.x
+                      const y = p.y * 0.5625
+                      return (
+                        <line
+                          key={`${p.name}-base`}
+                          x1={data.hq.x} y1={data.hq.y * 0.5625} x2={x} y2={y}
+                          stroke="rgba(15,58,35,0.18)"
+                          strokeWidth="0.12"
+                        />
+                      )
+                    })}
+                    {data.partners.map((p, i) => {
+                      const x = p.x
+                      const y = p.y * 0.5625
+                      return (
+                        <line
+                          key={`${p.name}-flow`}
+                          x1={x} y1={y} x2={data.hq.x} y2={data.hq.y * 0.5625}
+                          stroke="rgba(15,58,35,0.55)"
+                          strokeWidth="0.2"
+                          strokeLinecap="round"
+                          className="animate-svg-flow"
+                          style={{ animationDelay: `${i * 0.5}s`, animationDuration: '5s' }}
+                        />
+                      )
+                    })}
+                  </svg>
+
+                  {/* Partner chips — orbit with parent, counter-rotate inner content */}
+                  {data.partners.map((p) => (
                     <div
-                      className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded
-                                  bg-white/95 backdrop-blur-sm border border-brand-deep/15
-                                  shadow-[0_1px_2px_rgba(15,58,35,0.05)]
-                                  transition-all duration-300
-                                  group-hover:border-brand-deep/60 group-hover:bg-brand-deep/5
-                                  group-hover:shadow-[0_8px_24px_-8px_rgba(15,58,35,0.45)]
-                                  group-hover:-translate-y-0.5`}
+                      key={p.name}
+                      className="group absolute z-10 pointer-events-auto hover:z-30"
+                      style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)' }}
                     >
-                      <span className="block w-1 h-1 rounded-full bg-brand-deep/80" />
-                      <span className="text-[12.5px] font-bold text-brand-deep leading-tight
-                                       transition-colors duration-300">
-                        {p.name}
-                      </span>
+                      {/* Counter-rotate so text reads upright while travelling */}
+                      <div className="animate-orbit-ring-counter
+                                      group-hover/map:[animation-play-state:paused]">
+                        {/* Anchor dot */}
+                        <span className="block w-1.5 h-1.5 rounded-full bg-brand-deep/70
+                                         transition-all duration-300
+                                         group-hover:scale-150 group-hover:bg-brand-deep
+                                         group-hover:shadow-[0_0_10px_rgba(15,58,35,0.55)]" />
+                        {/* Chip pill */}
+                        <div
+                          className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap
+                                      ${p.align === 'right' ? 'left-3' : 'right-3'}`}
+                        >
+                          <div
+                            className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded
+                                        bg-white/95 backdrop-blur-sm border border-brand-deep/15
+                                        shadow-[0_1px_2px_rgba(15,58,35,0.05)]
+                                        transition-all duration-300
+                                        group-hover:border-brand-deep/60 group-hover:bg-brand-deep/5
+                                        group-hover:shadow-[0_8px_24px_-8px_rgba(15,58,35,0.45)]
+                                        group-hover:-translate-y-0.5`}
+                          >
+                            <span className="block w-1 h-1 rounded-full bg-brand-deep/80" />
+                            <span className="text-[12.5px] font-bold text-brand-deep leading-tight
+                                             transition-colors duration-300">
+                              {p.name}
+                            </span>
+                          </div>
+                          {/* Category — visible on chip hover only */}
+                          <div className={`text-[9px] uppercase tracking-[0.18em] text-brand-deep/55 mt-0.5
+                                           opacity-0 -translate-y-1
+                                           transition-all duration-300
+                                           group-hover:opacity-100 group-hover:translate-y-0
+                                           ${p.align === 'right' ? 'pl-1.5' : 'pr-1.5 text-right'}`}>
+                            {p.category}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    {/* Category — visible on chip hover only */}
-                    <div className={`text-[9px] uppercase tracking-[0.18em] text-brand-deep/55 mt-0.5
-                                     opacity-0 -translate-y-1
-                                     transition-all duration-300
-                                     group-hover:opacity-100 group-hover:translate-y-0
-                                     ${p.align === 'right' ? 'pl-1.5' : 'pr-1.5 text-right'}`}>
-                      {p.category}
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
+              )}
 
               {/* Editorial chrome */}
               <div className="absolute top-3 left-4 text-[9px] font-semibold uppercase tracking-[0.25em] text-slate-400">
