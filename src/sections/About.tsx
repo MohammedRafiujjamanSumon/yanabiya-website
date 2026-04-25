@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import Section from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
+import { assets } from '../data/assets'
 
 function Reveal({
   children,
@@ -82,65 +83,89 @@ export default function About() {
 
       {/* ───────── Foreground content ───────── */}
       <div className="container-x relative py-14 md:py-20">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-        <div className="text-center max-w-3xl mx-auto">
-          <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-5">
-              About Yanabiya Group
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-[64px] leading-[1.05] tracking-tight text-slate-900">
-              One group.
-              <span className="block">Many futures.</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={280}>
-            <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-xl mx-auto">
-              A trust-led platform building enterprises across continents — quietly,
-              consistently, for over a decade.
-            </p>
-          </Reveal>
-
-          <Reveal delay={420}>
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                to="/about-us"
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                           bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
-                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
-              >
-                Explore About
-                <ArrowRight size={14} />
-              </Link>
-              <Link
-                to="/about/our-story"
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                           border border-slate-300 text-slate-700 text-xs font-semibold uppercase tracking-wider
-                           hover:border-brand-accentDark hover:text-brand-accentDark transition-colors"
-              >
-                Read Our Story
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200/70 max-w-4xl mx-auto rounded-2xl overflow-hidden">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={500 + i * 120}>
-              <div className="bg-[#fbfdfb] px-8 py-10 text-center h-full
-                              transition-colors duration-300 hover:bg-white">
-                <div className="font-serif text-5xl md:text-6xl text-brand-accentDark leading-none">
-                  {s.value}
+          {/* LEFT — Yanabiya logo + 3 premium stat tiles */}
+          <div className="lg:col-span-5">
+            <Reveal>
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-16 h-16 rounded-2xl bg-white grid place-items-center
+                                shadow-md ring-2 ring-brand-accent/30">
+                  <img src={assets.logo} alt="Yanabiya Group"
+                       className="h-12 w-auto object-contain" />
                 </div>
-                <div className="mt-3 text-[11px] uppercase tracking-[0.25em] text-slate-600 font-semibold">
-                  {s.label}
+                <div>
+                  <div className="text-[10px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark">
+                    Yanabiya Group
+                  </div>
+                  <div className="font-serif text-lg text-slate-900 leading-tight mt-0.5">
+                    Group Office
+                  </div>
                 </div>
               </div>
             </Reveal>
-          ))}
-        </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-px bg-slate-200/70 rounded-2xl overflow-hidden">
+              {stats.map((s, i) => (
+                <Reveal key={s.label} delay={i * 120}>
+                  <div className="bg-[#fbfdfb] px-7 py-8 h-full
+                                  transition-colors duration-300 hover:bg-white">
+                    <div className="font-serif text-5xl md:text-6xl text-brand-accentDark leading-none">
+                      {s.value}
+                    </div>
+                    <div className="mt-3 text-[11px] uppercase tracking-[0.25em] text-slate-600 font-semibold">
+                      {s.label}
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT — eyebrow + serif title + subtitle + CTAs */}
+          <div className="lg:col-span-7">
+            <Reveal>
+              <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-5">
+                About Yanabiya Group
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.05] tracking-tight text-slate-900">
+                One group.
+                <span className="block">Many futures.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={280}>
+              <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-xl">
+                A trust-led platform building enterprises across continents — quietly,
+                consistently, for over a decade.
+              </p>
+            </Reveal>
+
+            <Reveal delay={420}>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <Link
+                  to="/about-us"
+                  className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                             bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
+                             shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                >
+                  Explore About
+                  <ArrowRight size={14} />
+                </Link>
+                <Link
+                  to="/about/our-story"
+                  className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                             border border-slate-300 text-slate-700 text-xs font-semibold uppercase tracking-wider
+                             hover:border-brand-accentDark hover:text-brand-accentDark transition-colors"
+                >
+                  Read Our Story
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+
+        </div>
       </div>
     </Section>
   )
