@@ -282,7 +282,9 @@ const UNITED_KINGDOM: CountryProfile = {
   hero: {
     eyebrow: 'United Kingdom',
     title: 'UK Global Presence',
-    subtitle: 'Yanabiya Group — European Operations Hub',
+    tagline: 'Bridging Markets Across Europe',
+    subtitle:
+      'Yanabiya Group — European Operations Hub, where 21 trusted partners across IT services, retail, and hospitality connect through the London office to deliver scalable cross-border value.',
   },
   hq: { label: 'London HQ', group: 'Yanabiya Gulf International UK Ltd', city: 'London', x: 50, y: 50 },
   partners: [
@@ -318,37 +320,49 @@ const UNITED_KINGDOM: CountryProfile = {
     subtitle: 'Integrated operational sectors driving Yanabiya Group’s European operations.',
   },
   capabilities: {
-    columnA: {
-      label: 'Business Core',
-      clusters: [
-        {
-          icon: Laptop,
-          title: 'Technology & Consulting',
-          items: [
-            { code: '62020', name: 'Information Technology Consultancy Activities' },
-          ],
-        },
-        {
-          icon: Briefcase,
-          title: 'Professional Services',
-          items: [
-            { code: '74909', name: 'Other Professional, Scientific & Technical Activities' },
-          ],
-        },
-      ],
-    },
-    columnB: {
-      label: 'Industrial Core',
-      clusters: [
-        {
-          icon: Wrench,
-          title: 'Equipment & Leasing',
-          items: [
-            { code: '77390', name: 'Renting & Leasing of Other Machinery, Equipment & Tangible Goods' },
-          ],
-        },
-      ],
-    },
+    /* 4-card scroll layout — UK partner clusters as scrolling activity lists */
+    cards: [
+      {
+        title: 'IT Services & Consulting',
+        items: [
+          'Information Technology Consultancy',
+          'Enterprise IT Strategy',
+          'Cloud & Infrastructure Advisory',
+          'Cyber Security Consulting',
+          'Software & Systems Integration',
+          'Digital Transformation',
+        ],
+      },
+      {
+        title: 'Professional Services',
+        items: [
+          'Scientific & Technical Activities',
+          'Business Advisory',
+          'Cross-border Consulting',
+          'Market Entry Support',
+          'Compliance & Regulatory',
+        ],
+      },
+      {
+        title: 'Equipment & Leasing',
+        items: [
+          'Machinery Renting & Leasing',
+          'Tangible Goods Leasing',
+          'Equipment Procurement',
+          'Asset Management',
+        ],
+      },
+      {
+        title: 'Trade, Retail & Hospitality',
+        items: [
+          'Wholesale & Retail Trading',
+          'Foodservice & Catering',
+          'Restaurant Operations',
+          'Brand Distribution',
+          'Supply Chain Coordination',
+        ],
+      },
+    ],
   },
   contact: {
     eyebrow: 'Reach Us in London',
@@ -599,8 +613,8 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
         <div className="relative container-x py-10 md:py-14">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
 
-            {/* LEFT 40% — eyebrow + title + tagline + justified subtitle */}
-            <div className="lg:col-span-5">
+            {/* TEXT BLOCK — 40% (left on even index, right on odd) */}
+            <div className={`lg:col-span-5 ${flipMap ? 'lg:order-2' : 'lg:order-1'}`}>
               <Reveal>
                 <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-4">
                   {data.hero.eyebrow}
@@ -613,7 +627,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
               </Reveal>
               {data.hero.tagline && (
                 <Reveal delay={200}>
-                  <div className="mt-3 font-serif italic text-xl md:text-2xl text-brand-deep leading-snug">
+                  <div className="mt-3 font-serif italic text-xl md:text-2xl text-brand-accentDark leading-snug">
                     {data.hero.tagline}
                   </div>
                 </Reveal>
@@ -628,8 +642,8 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
               </Reveal>
             </div>
 
-            {/* RIGHT 60% — orbital map (HQ centre + partner constellation) */}
-            <Reveal delay={200} className="lg:col-span-7">
+            {/* ORBIT BLOCK — 60% (right on even index, left on odd) */}
+            <Reveal delay={200} className={`lg:col-span-7 ${flipMap ? 'lg:order-1' : 'lg:order-2'}`}>
               <div className="group/map relative w-full aspect-[16/8] bg-[#fafafa] border border-slate-100 rounded-sm">
               {/* Background outline + grid (stylised, not geographically literal) */}
               <svg
@@ -668,17 +682,17 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
               >
                 <span className="relative inline-flex">
                   <span
-                    className="absolute inset-0 rounded-full bg-blue-700/25"
+                    className="absolute inset-0 rounded-full bg-brand-accent/35"
                     style={{ animation: 'haloPulse 3s ease-in-out infinite' }}
                   />
-                  <span className="relative block w-3 h-3 rounded-full bg-blue-700 ring-2 ring-white shadow" />
+                  <span className="relative block w-3.5 h-3.5 rounded-full bg-brand-accent ring-2 ring-white shadow-[0_0_12px_rgba(158,199,58,0.7)]" />
                 </span>
               </div>
               <div
                 className="absolute z-20 whitespace-nowrap"
                 style={{ left: `${data.hq.x}%`, top: `${data.hq.y}%`, transform: 'translate(12px, -50%)' }}
               >
-                <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-blue-700">
+                <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
                   {data.hq.label}
                 </div>
                 <div className="text-[10px] text-slate-500 mt-0.5 tracking-wide">
@@ -723,13 +737,13 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                         <g key={p.name}>
                           <line
                             x1={px} y1={py} x2={ex} y2={ey}
-                            stroke="rgba(15,58,35,0.18)"
+                            stroke="rgba(125,164,42,0.35)"
                             strokeWidth="0.12"
                           />
                           <line
                             x1={px} y1={py} x2={ex} y2={ey}
-                            stroke="rgba(15,58,35,0.55)"
-                            strokeWidth="0.2"
+                            stroke="rgba(158,199,58,0.85)"
+                            strokeWidth="0.22"
                             strokeLinecap="round"
                             className="animate-svg-flow"
                             style={{ animationDelay: `${i * 0.5}s`, animationDuration: '5s' }}
@@ -750,10 +764,10 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                       <div className="animate-orbit-ring-counter
                                       group-hover/map:[animation-play-state:paused]">
                         {/* Anchor dot */}
-                        <span className="block w-1.5 h-1.5 rounded-full bg-brand-deep/70
+                        <span className="block w-1.5 h-1.5 rounded-full bg-brand-accentDark
                                          transition-all duration-300
-                                         group-hover:scale-150 group-hover:bg-brand-deep
-                                         group-hover:shadow-[0_0_10px_rgba(15,58,35,0.55)]" />
+                                         group-hover:scale-150 group-hover:bg-brand-accent
+                                         group-hover:shadow-[0_0_10px_rgba(158,199,58,0.7)]" />
                         {/* Chip pill */}
                         <div
                           className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap
@@ -761,21 +775,22 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                         >
                           <div
                             className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded
-                                        bg-white/95 backdrop-blur-sm border border-brand-deep/15
-                                        shadow-[0_1px_2px_rgba(15,58,35,0.05)]
+                                        bg-white/95 backdrop-blur-sm border border-brand-accentDark/30
+                                        shadow-[0_1px_2px_rgba(125,164,42,0.08)]
                                         transition-all duration-300
-                                        group-hover:border-brand-deep/60 group-hover:bg-brand-deep/5
-                                        group-hover:shadow-[0_8px_24px_-8px_rgba(15,58,35,0.45)]
+                                        group-hover:border-brand-accentDark group-hover:bg-brand-accent/10
+                                        group-hover:shadow-[0_8px_24px_-8px_rgba(158,199,58,0.55)]
                                         group-hover:-translate-y-0.5`}
                           >
-                            <span className="block w-1 h-1 rounded-full bg-brand-deep/80" />
+                            <span className="block w-1 h-1 rounded-full bg-brand-accentDark" />
                             <span className="text-[12.5px] font-bold text-brand-deep leading-tight
-                                             transition-colors duration-300">
+                                             transition-colors duration-300
+                                             group-hover:text-brand-accentDark">
                               {p.name}
                             </span>
                           </div>
                           {/* Category — visible on chip hover only */}
-                          <div className={`text-[9px] uppercase tracking-[0.18em] text-brand-deep/55 mt-0.5
+                          <div className={`text-[9px] uppercase tracking-[0.18em] text-brand-accentDark/70 mt-0.5
                                            opacity-0 -translate-y-1
                                            transition-all duration-300
                                            group-hover:opacity-100 group-hover:translate-y-0
