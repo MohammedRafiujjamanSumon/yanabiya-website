@@ -582,7 +582,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
 
             {/* MAP BLOCK */}
             <Reveal delay={200} className={`lg:col-span-8 ${flipMap ? 'lg:order-1' : 'lg:order-2'}`}>
-              <div className="group/map relative w-full aspect-[16/8] bg-[#fafafa] border border-slate-100 rounded-sm">
+              <div className="relative w-full aspect-[16/8] bg-[#fafafa] border border-slate-100 rounded-sm">
               {/* Background outline + grid (stylised, not geographically literal) */}
               <svg
                 aria-hidden="true"
@@ -638,102 +638,89 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                 </div>
               </div>
 
-              {/* ORBITAL CONSTELLATION — connection lines + partner chips
-                  rotate together around the HQ. Each chip's inner content
-                  counter-rotates so the text stays upright. Hovering anywhere
-                  in the map area pauses both rotations in sync. */}
+              {/* Connection lines — static, drawn once from each partner anchor to HQ */}
               {showPartnerNetwork && (
-                <div
-                  className="group/orbit absolute inset-0 pointer-events-none animate-orbit-ring
-                             group-hover/map:[animation-play-state:paused]"
-                  style={{ transformOrigin: `${data.hq.x}% ${data.hq.y}%` }}
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 100 56.25"
+                  className="absolute inset-0 w-full h-full overflow-visible"
+                  preserveAspectRatio="none"
                 >
-                  {/* Connection lines — rotate WITH the partners */}
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 100 56.25"
-                    className="absolute inset-0 w-full h-full overflow-visible"
-                    preserveAspectRatio="none"
-                  >
-                    {data.partners.map((p) => {
-                      const x = p.x
-                      const y = p.y * 0.5625
-                      return (
-                        <line
-                          key={`${p.name}-base`}
-                          x1={data.hq.x} y1={data.hq.y * 0.5625} x2={x} y2={y}
-                          stroke="rgba(30,64,175,0.18)"
-                          strokeWidth="0.12"
-                        />
-                      )
-                    })}
-                    {data.partners.map((p, i) => {
-                      const x = p.x
-                      const y = p.y * 0.5625
-                      return (
-                        <line
-                          key={`${p.name}-flow`}
-                          x1={x} y1={y} x2={data.hq.x} y2={data.hq.y * 0.5625}
-                          stroke="rgba(30,64,175,0.55)"
-                          strokeWidth="0.2"
-                          strokeLinecap="round"
-                          className="animate-svg-flow"
-                          style={{ animationDelay: `${i * 0.5}s`, animationDuration: '5s' }}
-                        />
-                      )
-                    })}
-                  </svg>
-
-                  {/* Partner chips — orbit with parent, counter-rotate inner content */}
-                  {data.partners.map((p) => (
-                    <div
-                      key={p.name}
-                      className="group absolute z-10 pointer-events-auto hover:z-30"
-                      style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)' }}
-                    >
-                      {/* Counter-rotate the chip content so the text never spins */}
-                      <div className="animate-orbit-ring-counter
-                                      group-hover/map:[animation-play-state:paused]">
-                        {/* Anchor dot */}
-                        <span className="block w-1.5 h-1.5 rounded-full bg-blue-700/60
-                                         transition-all duration-300
-                                         group-hover:scale-150 group-hover:bg-blue-700
-                                         group-hover:shadow-[0_0_10px_rgba(30,64,175,0.6)]" />
-                        {/* Chip pill */}
-                        <div
-                          className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap
-                                      ${p.align === 'right' ? 'left-3' : 'right-3'}`}
-                        >
-                          <div
-                            className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md
-                                        bg-white/95 backdrop-blur-sm border border-slate-200/90
-                                        shadow-[0_1px_2px_rgba(15,23,42,0.06)]
-                                        transition-all duration-300
-                                        group-hover:border-blue-700 group-hover:bg-blue-50
-                                        group-hover:shadow-[0_8px_24px_-8px_rgba(30,64,175,0.45)]
-                                        group-hover:-translate-y-0.5`}
-                          >
-                            <span className="block w-1 h-1 rounded-full bg-blue-700/80" />
-                            <span className="text-[10.5px] font-semibold text-slate-900 leading-tight
-                                             transition-colors duration-300
-                                             group-hover:text-blue-700">
-                              {p.name}
-                            </span>
-                          </div>
-                          {/* Category — visible on chip hover only */}
-                          <div className={`text-[8.5px] uppercase tracking-[0.18em] text-slate-500 mt-1
-                                           opacity-0 -translate-y-1
-                                           transition-all duration-300
-                                           group-hover:opacity-100 group-hover:translate-y-0
-                                           ${p.align === 'right' ? 'pl-2' : 'pr-2 text-right'}`}>
-                            {p.category}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                  {data.partners.map((p) => {
+                    const x = p.x
+                    const y = p.y * 0.5625
+                    return (
+                      <line
+                        key={`${p.name}-base`}
+                        x1={data.hq.x} y1={data.hq.y * 0.5625} x2={x} y2={y}
+                        stroke="rgba(15,58,35,0.18)"
+                        strokeWidth="0.12"
+                      />
+                    )
+                  })}
+                  {data.partners.map((p, i) => {
+                    const x = p.x
+                    const y = p.y * 0.5625
+                    return (
+                      <line
+                        key={`${p.name}-flow`}
+                        x1={x} y1={y} x2={data.hq.x} y2={data.hq.y * 0.5625}
+                        stroke="rgba(15,58,35,0.55)"
+                        strokeWidth="0.2"
+                        strokeLinecap="round"
+                        className="animate-svg-flow"
+                        style={{ animationDelay: `${i * 0.5}s`, animationDuration: '5s' }}
+                      />
+                    )
+                  })}
+                </svg>
               )}
+
+              {/* Partner chips — static anchor + small in-card drift on the pill */}
+              {data.partners.map((p, idx) => (
+                <div
+                  key={p.name}
+                  className="group absolute z-10 hover:z-30"
+                  style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)' }}
+                >
+                  {/* Anchor dot — fixed at the geographic point */}
+                  <span className="block w-1.5 h-1.5 rounded-full bg-brand-deep/70
+                                   transition-all duration-300
+                                   group-hover:scale-150 group-hover:bg-brand-deep
+                                   group-hover:shadow-[0_0_10px_rgba(15,58,35,0.55)]" />
+                  {/* Chip pill — drifts in a small circle inside its slot */}
+                  <div
+                    className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap animate-chip-drift
+                                group-hover:[animation-play-state:paused]
+                                ${p.align === 'right' ? 'left-3' : 'right-3'}`}
+                    style={{ animationDelay: `${(idx * 0.4) % 8}s` }}
+                  >
+                    <div
+                      className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded
+                                  bg-white/95 backdrop-blur-sm border border-brand-deep/15
+                                  shadow-[0_1px_2px_rgba(15,58,35,0.05)]
+                                  transition-all duration-300
+                                  group-hover:border-brand-deep/60 group-hover:bg-brand-deep/5
+                                  group-hover:shadow-[0_8px_24px_-8px_rgba(15,58,35,0.45)]
+                                  group-hover:-translate-y-0.5`}
+                    >
+                      <span className="block w-1 h-1 rounded-full bg-brand-deep/80" />
+                      <span className="text-[12.5px] font-bold text-brand-deep leading-tight
+                                       transition-colors duration-300">
+                        {p.name}
+                      </span>
+                    </div>
+                    {/* Category — visible on chip hover only */}
+                    <div className={`text-[9px] uppercase tracking-[0.18em] text-brand-deep/55 mt-0.5
+                                     opacity-0 -translate-y-1
+                                     transition-all duration-300
+                                     group-hover:opacity-100 group-hover:translate-y-0
+                                     ${p.align === 'right' ? 'pl-1.5' : 'pr-1.5 text-right'}`}>
+                      {p.category}
+                    </div>
+                  </div>
+                </div>
+              ))}
 
               {/* Editorial chrome */}
               <div className="absolute top-3 left-4 text-[9px] font-semibold uppercase tracking-[0.25em] text-slate-400">
