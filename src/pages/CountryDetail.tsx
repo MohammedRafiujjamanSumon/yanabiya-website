@@ -34,7 +34,7 @@ export default function CountryDetail() {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [code])
 
-  if (upper === 'OM') return <OmanPresence />
+  if (upper === 'OM' || upper === 'BD' || upper === 'GB' || upper === 'US') return <OmanPresence />
 
   if (!country) {
     return (
