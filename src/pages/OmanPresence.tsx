@@ -63,6 +63,10 @@ type Capability = {
   items: { code?: string; name: string }[]
 }
 
+/* Premium scroll-card model: each card title + a pure-text item list that
+ * vertically marquees inside a clipped frame. */
+type CapabilityCard = { title: string; items: string[] }
+
 type Partner = {
   name: string
   category: string
@@ -80,7 +84,13 @@ type CountryProfile = {
   partners: Partner[]                  // empty array → single-HQ map
   mapNote: { fig: string; source: string }
   capabilityHeading: { eyebrow: string; title: string; subtitle: string }
-  capabilities: { columnA?: { label: string; clusters: Capability[] }; columnB?: { label: string; clusters: Capability[] } }
+  capabilities: {
+    columnA?: { label: string; clusters: Capability[] }
+    columnB?: { label: string; clusters: Capability[] }
+    /** When present, renders the new 4-card scrolling layout instead of
+     *  the columnA/B matrix. */
+    cards?: CapabilityCard[]
+  }
   contact: {
     eyebrow: string
     title: string
@@ -128,74 +138,55 @@ const OMAN: CountryProfile = {
     subtitle: 'Integrated operational sectors driving Yanabiya Group’s regional growth.',
   },
   capabilities: {
-    columnA: {
-      label: 'Industrial Core',
-      clusters: [
-        {
-          icon: HardHat,
-          title: 'Infrastructure & Engineering',
-          items: [
-            { code: '410001', name: 'Construction of Buildings' },
-            { code: '422002', name: 'Construction of Water, Electricity & Telephone Networks' },
-            { code: '433003', name: 'Plastering, Painting & Decorating' },
-            { code: '439008', name: 'Construction / Demolition Equipment Rental with Operator' },
-            { code: '475207', name: 'Retail of Construction Materials' },
-          ],
-        },
-        {
-          icon: Truck,
-          title: 'Logistics & Industrial Operations',
-          items: [
-            { code: '522401', name: 'Loading & Unloading of Goods' },
-            { code: '829201', name: 'Packaging Activities' },
-            { code: '521001', name: 'Cold & Frozen Warehousing' },
-            { code: '501201', name: 'International Maritime Goods Transport' },
-          ],
-        },
-      ],
-    },
-    columnB: {
-      label: 'Business & Digital Core',
-      clusters: [
-        {
-          icon: Laptop,
-          title: 'Technology & Digital Systems',
-          items: [
-            { code: '474105', name: 'Retail of Software & Computer Accessories' },
-            { code: '620101', name: 'Systems Analysis' },
-            { code: '620103', name: 'Software Maintenance & Website Design' },
-            { code: '620902', name: 'Installation of Computer Software' },
-            { code: '620902', name: 'Development of Computer Network' },
-            { code: '620204', name: 'IT & Cyber Security Consulting' },
-            { code: '631101', name: 'Data Entry Services' },
-            { code: '631103', name: 'Cloud & Hosting Services' },
-            { code: '951100', name: 'Repair of Computers & Peripheral Equipment' },
-            { code: '951201', name: 'Repair of Mobile Phones' },
-          ],
-        },
-        {
-          icon: TrendingUp,
-          title: 'Trade & Commercial Services',
-          items: [
-            { code: '461001', name: 'Commission Agents & Brokerage Business' },
-            { code: '461003', name: 'Export & Import Office Operations' },
-            { code: '464102', name: 'Wholesale of Clothing & Clothing Accessories' },
-            { code: '475101', name: 'Retail of Textiles & Fabrics' },
-          ],
-        },
-        {
-          icon: Coffee,
-          title: 'Service & Hospitality',
-          items: [
-            { code: '561007', name: 'Cafés — Meals' },
-            { code: '562901', name: 'Catering Activities' },
-            { code: '563001', name: 'Cafés — Drinks' },
-            { code: '701001', name: 'Management Offices' },
-            { code: '812901', name: 'Specialised Building & Exterior Cleaning' },
-          ],
-        },
-      ],
-    },
+    /* 4-card scroll layout — each card vertically marquees its activities. */
+    cards: [
+      {
+        title: 'Infrastructure & Engineering',
+        items: [
+          'Construction of Buildings',
+          'Utility Networks',
+          'Plastering & Decorating',
+          'Equipment Rental',
+          'Construction Materials Retail',
+        ],
+      },
+      {
+        title: 'Logistics & Warehousing',
+        items: [
+          'Loading & Unloading',
+          'Packaging Operations',
+          'Cold & Frozen Warehousing',
+          'International Maritime Transport',
+        ],
+      },
+      {
+        title: 'Technology & Digital Systems',
+        items: [
+          'Software Development & Web Design',
+          'Computer Network Development',
+          'Cloud & Hosting Services',
+          'Cyber Security Consulting',
+          'Systems Analysis',
+          'IT Consultancy',
+          'Computer & Mobile Repair',
+          'Data Entry Services',
+          'Software & Hardware Retail',
+        ],
+      },
+      {
+        title: 'Trade, Service & Hospitality',
+        items: [
+          'Export & Import Operations',
+          'Commission & Brokerage',
+          'Wholesale Clothing & Accessories',
+          'Retail Textiles & Fabrics',
+          'Café Operations',
+          'Catering Services',
+          'Specialised Cleaning',
+          'Management Offices',
+        ],
+      },
+    ],
   },
   contact: {
     eyebrow: 'Reach Us in Muscat',

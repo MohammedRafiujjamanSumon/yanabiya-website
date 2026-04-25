@@ -200,6 +200,18 @@
   animation: svgFlow 2.4s linear infinite;
 }
 
+/* Vertical marquee — used inside capability cards. Content is rendered
+ * twice in a column; the wrapper translates by 50% over the loop so the
+ * second copy lands seamlessly where the first one was. */
+@keyframes verticalMarquee {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+.animate-vertical-marquee {
+  animation: verticalMarquee 18s linear infinite;
+  will-change: transform;
+}
+
 /* Solar-system orbit — partners revolve around the HQ at the centre.
  * orbitRing rotates the constellation; orbitRingCounter spins each chip
  * the opposite way so text always reads upright. Pair both at the same
