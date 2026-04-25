@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import {
   HardHat, Truck, Laptop, TrendingUp, Coffee,
   Briefcase, Wrench, ArrowUpRight,
@@ -421,24 +421,25 @@ function CapabilityCluster({ c }: { c: Capability }) {
 
 /* ───────────────────────── Country tabs ───────────────────────── */
 
-function CountryTabs({
-  active,
-  onChange,
-}: {
-  active: CountryCode
-  onChange: (c: CountryCode) => void
-}) {
+/* Anchor-jump chips. Clicking smooth-scrolls to the matching country section
+ * on the same page. The active chip is highlighted via scroll-spy. */
+function CountryAnchorNav({ active }: { active: CountryCode }) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, code: CountryCode) => {
+    e.preventDefault()
+    const el = document.getElementById(code.toLowerCase())
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
   return (
     <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
       {TAB_ORDER.map((code) => {
         const p = PROFILES[code]
         const isActive = code === active
         return (
-          <button
+          <a
             key={code}
-            type="button"
-            onClick={() => onChange(code)}
-            aria-pressed={isActive ? 'true' : 'false'}
+            href={`#${code.toLowerCase()}`}
+            onClick={(e) => handleClick(e, code)}
+            aria-current={isActive ? 'true' : undefined}
             className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2
                         text-xs font-semibold uppercase tracking-[0.22em]
                         transition-all duration-300
@@ -450,7 +451,7 @@ function CountryTabs({
           >
             <span className="text-base leading-none">{p.flag}</span>
             <span>{p.shortName}</span>
-          </button>
+          </a>
         )
       })}
     </div>
@@ -773,39 +774,49 @@ function CountryView({ data }: { data: CountryProfile }) {
 }
 
 /* ───────────────────────── Page (top-level) ───────────────────────── */
+/* All four branches render stacked on this single page. A sticky chip strip
+ * scroll-spies the active country and jumps to its section on click. */
 
 export default function OmanPresence() {
   const { code } = useParams<{ code: string }>()
-  const navigate = useNavigate()
+  const [active, setActive] = useState<CountryCode>('OM')
 
-  const initial = (code?.toUpperCase() as CountryCode) ?? 'OM'
-  const [active, setActive] = useState<CountryCode>(
-    PROFILES[initial] ? initial : 'OM',
-  )
-
-  // Keep state in sync with the URL when the user lands directly on /country/<x>
+  // On mount / URL change: scroll to the requested country section if any.
   useEffect(() => {
-    const upper = (code?.toUpperCase() as CountryCode) ?? 'OM'
-    if (PROFILES[upper] && upper !== active) setActive(upper)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const upper = (code?.toUpperCase() as CountryCode) ?? null
+    if (upper && PROFILES[upper]) {
+      // Defer one frame so the section has mounted.
+      window.requestAnimationFrame(() => {
+        const el = document.getElementById(upper.toLowerCase())
+        if (el) el.scrollIntoView({ behavior: 'instant' as ScrollBehavior, block: 'start' })
+      })
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+    }
   }, [code])
 
+  // Scroll-spy: highlight the chip whose section is closest to the top.
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
-  }, [active])
-
-  const handleTabChange = (next: CountryCode) => {
-    setActive(next)
-    navigate(`/country/${next.toLowerCase()}`)
-  }
-
-  const data = PROFILES[active]
+    const onScroll = () => {
+      const probeY = window.scrollY + 200
+      let next: CountryCode = TAB_ORDER[0]
+      for (const c of TAB_ORDER) {
+        const el = document.getElementById(c.toLowerCase())
+        if (!el) continue
+        if (el.offsetTop <= probeY) next = c
+      }
+      setActive((prev) => (prev === next ? prev : next))
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <main className="relative bg-white text-slate-900 overflow-hidden">
       <BackButton to="/#global" label="Back to Global" />
 
-      {/* GLOBAL HERO + COUNTRY TABS */}
+      {/* GLOBAL HERO */}
       <section className="relative">
         <SectionWatermark />
         <div className="relative container-x py-10 md:py-14 text-center">
@@ -821,21 +832,29 @@ export default function OmanPresence() {
           </Reveal>
           <Reveal delay={260}>
             <p className="mt-4 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              International Business Network
+              International Business Network — every branch, on one page.
             </p>
-          </Reveal>
-          <Reveal delay={400}>
-            <div className="mt-8">
-              <CountryTabs active={active} onChange={handleTabChange} />
-            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* COUNTRY CONTENT — fades on tab change via key reset */}
-      <div key={active} className="animate-[fadeUp_0.5s_ease-out_both]">
-        <CountryView data={data} />
+      {/* STICKY ANCHOR NAV — sits below the main navbar */}
+      <div className="sticky top-[78px] z-30 bg-white/85 backdrop-blur border-y border-slate-200">
+        <div className="container-x py-3">
+          <CountryAnchorNav active={active} />
+        </div>
       </div>
+
+      {/* ALL COUNTRIES STACKED — every branch on the same page */}
+      {TAB_ORDER.map((c) => (
+        <section
+          key={c}
+          id={c.toLowerCase()}
+          className="scroll-mt-[140px] border-t-2 border-slate-200"
+        >
+          <CountryView data={PROFILES[c]} />
+        </section>
+      ))}
     </main>
   )
 }
