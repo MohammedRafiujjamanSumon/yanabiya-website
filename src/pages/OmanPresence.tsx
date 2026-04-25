@@ -119,17 +119,21 @@ const OMAN: CountryProfile = {
       'Yanabiya Group — Integrated Business Network in the Sultanate of Oman, where a unified partner network operates across Muscat under a single integrated ecosystem with every venture directly connected back to the headquarters, including Yanabiya Muscat United Trade, Yanabiya Muscat for Comprehensive Projects, Yanabiya Muscat Integrated LLC, Yanabiya Al Khairat United Trade LLC, Yanabiya Muscat World Business, Yanabiya Muscat Al Mumyazat, and Yanabiya Al Rustaq Contracting, forming a coordinated and strategically aligned business structure.',
   },
   hq: { label: 'Muscat HQ', group: 'Yanabiya Group · Oman', city: 'Muscat', x: 50, y: 50 },
-  /* 7 partners arranged on a single ring around the centre HQ.
-   * Angles in degrees from 12 o'clock, radius ~32% horizontal, ~38% vertical
-   * (the 16:8 canvas is wider than tall so the ring is elongated). */
+  /* X-hierarchy layout — 7 partners distributed across 4 diagonal arms
+   * (NE / NW / SE / SW) radiating from the HQ. Each arm has 1-2 depth
+   * levels (inner / outer). Forms a clear X shape on the canvas. */
   partners: [
-    { name: 'Yanabiya Muscat United Trade',                category: 'Trade & Commerce',     x: 50, y: 12, align: 'right' },
-    { name: 'Yanabiya Muscat for Comprehensive Projects',  category: 'Construction',         x: 78, y: 22, align: 'left'  },
-    { name: 'Yanabiya Muscat Integrated LLC',              category: 'Diversified Holdings', x: 88, y: 50, align: 'left'  },
-    { name: 'Yanabiya Al Khairat United Trade LLC',        category: 'Trade & Commerce',     x: 78, y: 78, align: 'left'  },
-    { name: 'Yanabiya Muscat World Business',              category: 'Business Services',    x: 50, y: 88, align: 'right' },
-    { name: 'Yanabiya Muscat Al Mumyazat',                 category: 'Services',             x: 22, y: 78, align: 'right' },
-    { name: 'Yanabiya Al Rustaq Contracting',              category: 'Contracting',          x: 12, y: 50, align: 'right' },
+    /* NW arm */
+    { name: 'Yanabiya Muscat United Trade',                category: 'Trade & Commerce',     x: 36, y: 32, align: 'right' },
+    { name: 'Yanabiya Al Rustaq Contracting',              category: 'Contracting',          x: 18, y: 14, align: 'right' },
+    /* NE arm */
+    { name: 'Yanabiya Muscat for Comprehensive Projects',  category: 'Construction',         x: 64, y: 32, align: 'left'  },
+    { name: 'Yanabiya Muscat Integrated LLC',              category: 'Diversified Holdings', x: 82, y: 14, align: 'left'  },
+    /* SW arm */
+    { name: 'Yanabiya Muscat Al Mumyazat',                 category: 'Services',             x: 36, y: 68, align: 'right' },
+    /* SE arm */
+    { name: 'Yanabiya Al Khairat United Trade LLC',        category: 'Trade & Commerce',     x: 64, y: 68, align: 'left'  },
+    { name: 'Yanabiya Muscat World Business',              category: 'Business Services',    x: 82, y: 86, align: 'left'  },
   ],
   mapNote: { fig: 'Fig. 01 · Group Network · Oman', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
@@ -210,21 +214,27 @@ const BANGLADESH: CountryProfile = {
     subtitle: 'Yanabiya Group — Bangladesh Operations Hub',
   },
   hq: { label: 'Dhaka HQ', group: 'Yanabiya Gulf International BD Trade', city: 'Dhaka', x: 50, y: 50 },
+  /* X-hierarchy: 14 partners on 4 diagonal arms, 3-4 depth levels each. */
   partners: [
-    { name: 'Connet Online',                     category: 'Internet & Connectivity', x: 14, y: 14, align: 'right' },
-    { name: 'Plexus Cloud',                      category: 'Cloud Services',          x: 32, y: 18, align: 'right' },
-    { name: 'Gtech Aviation',                    category: 'Aviation',                x: 50, y: 12, align: 'right' },
-    { name: 'Idea Tec',                          category: 'Technology',              x: 68, y: 18, align: 'right' },
-    { name: 'Citylink Communication',            category: 'Communications',          x: 86, y: 14, align: 'left'  },
-    { name: 'Eham WiFi',                         category: 'WiFi & Connectivity',     x: 8,  y: 32, align: 'right' },
-    { name: 'Business Zone Limited Company',     category: 'Business Services',       x: 92, y: 32, align: 'left'  },
-    { name: 'Trust Innovation Limited Company',  category: 'Technology',              x: 6,  y: 56, align: 'right' },
-    { name: 'Xlink Limited Company',             category: 'Internet & Connectivity', x: 94, y: 56, align: 'left'  },
-    { name: 'Dot Internet',                      category: 'Internet & ISP',          x: 10, y: 72, align: 'right' },
-    { name: 'Zero Link',                         category: 'Connectivity',            x: 90, y: 72, align: 'left'  },
-    { name: 'Global Communication Limited',      category: 'Communications',          x: 24, y: 86, align: 'right' },
-    { name: 'Dot Exploration Ltd',               category: 'Tech Services',           x: 50, y: 90, align: 'right' },
-    { name: 'Bongo WiFi',                        category: 'WiFi & Connectivity',     x: 76, y: 86, align: 'left'  },
+    /* NW arm (3 levels) */
+    { name: 'Connet Online',                     category: 'Internet & Connectivity', x: 38, y: 36, align: 'right' },
+    { name: 'Plexus Cloud',                      category: 'Cloud Services',          x: 26, y: 22, align: 'right' },
+    { name: 'Trust Innovation Limited Company',  category: 'Technology',              x: 14, y: 8,  align: 'right' },
+    /* NE arm (3 levels) */
+    { name: 'Idea Tec',                          category: 'Technology',              x: 62, y: 36, align: 'left'  },
+    { name: 'Citylink Communication',            category: 'Communications',          x: 74, y: 22, align: 'left'  },
+    { name: 'Business Zone Limited Company',     category: 'Business Services',       x: 86, y: 8,  align: 'left'  },
+    /* SW arm (4 levels) */
+    { name: 'Eham WiFi',                         category: 'WiFi & Connectivity',     x: 38, y: 64, align: 'right' },
+    { name: 'Dot Internet',                      category: 'Internet & ISP',          x: 26, y: 78, align: 'right' },
+    { name: 'Global Communication Limited',      category: 'Communications',          x: 14, y: 92, align: 'right' },
+    /* SE arm (4 levels) */
+    { name: 'Xlink Limited Company',             category: 'Internet & Connectivity', x: 62, y: 64, align: 'left'  },
+    { name: 'Zero Link',                         category: 'Connectivity',            x: 74, y: 78, align: 'left'  },
+    { name: 'Bongo WiFi',                        category: 'WiFi & Connectivity',     x: 86, y: 92, align: 'left'  },
+    /* Two extras placed at the cardinal axes for balance */
+    { name: 'Dot Exploration Ltd',               category: 'Tech Services',           x: 50, y: 92, align: 'right' },
+    { name: 'Gtech Aviation',                    category: 'Aviation',                x: 50, y: 8,  align: 'right' },
   ],
   mapNote: { fig: 'Fig. 01 · Group Network · Bangladesh', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
@@ -287,31 +297,35 @@ const UNITED_KINGDOM: CountryProfile = {
       'Yanabiya Group — European Operations Hub, where 21 trusted partners across IT services, retail, and hospitality connect through the London office to deliver scalable cross-border value.',
   },
   hq: { label: 'London HQ', group: 'Yanabiya Gulf International UK Ltd', city: 'London', x: 50, y: 50 },
+  /* X-hierarchy — 21 partners over 4 diagonal arms (~5 each) by category cluster:
+   *   NW = IT giants, NE = subcontinent IT/dev, SW = trading/retail,
+   *   SE = hospitality/restaurants. */
   partners: [
-    /* IT / Technology Services */
-    { name: 'Infosys',                       category: 'IT Services',          x: 10, y: 8,  align: 'right' },
-    { name: 'Tata Consultancy Services',     category: 'IT Services',          x: 32, y: 14, align: 'right' },
-    { name: 'Wipro',                         category: 'IT Services',          x: 52, y: 6,  align: 'right' },
-    { name: 'HCLTech',                       category: 'IT Services',          x: 72, y: 14, align: 'right' },
-    { name: 'Tech Mahindra',                 category: 'IT Services',          x: 90, y: 8,  align: 'left'  },
-    { name: '10Pearls',                      category: 'Software Development', x: 8,  y: 26, align: 'right' },
-    { name: 'Systems Limited',               category: 'Software Engineering', x: 24, y: 32, align: 'right' },
-    { name: 'Arpatech',                      category: 'IT & Cloud',           x: 76, y: 32, align: 'left'  },
-    { name: 'Brain Station 23',              category: 'Software Development', x: 92, y: 26, align: 'left'  },
-    { name: 'DataSoft Systems Bangladesh',   category: 'Software Solutions',   x: 6,  y: 42, align: 'right' },
-    { name: 'REVE Systems',                  category: 'Telecom Software',     x: 94, y: 42, align: 'left'  },
-    /* Trading & Retail */
-    { name: 'Taj Stores',                    category: 'Grocery & Retail',     x: 6,  y: 58, align: 'right' },
-    { name: 'Green Valley Supermarket',      category: 'Supermarket',          x: 94, y: 58, align: 'left'  },
-    { name: 'Bangla Bazar Cash & Carry',     category: 'Wholesale',            x: 8,  y: 72, align: 'right' },
-    { name: 'Bestway Group',                 category: 'Wholesale Group',      x: 92, y: 72, align: 'left'  },
-    { name: 'East End Foods',                category: 'Foodservice',          x: 24, y: 78, align: 'right' },
-    /* Hospitality / Restaurants */
-    { name: 'Dishoom',                       category: 'Restaurants',          x: 76, y: 78, align: 'left'  },
-    { name: 'Aladin Brick Lane',             category: 'Restaurants',          x: 10, y: 90, align: 'right' },
-    { name: 'City Spice',                    category: 'Restaurants',          x: 32, y: 88, align: 'right' },
-    { name: 'Tayyabs',                       category: 'Restaurants',          x: 68, y: 88, align: 'left'  },
-    { name: 'Needoo Grill',                  category: 'Restaurants',          x: 90, y: 90, align: 'left'  },
+    /* NW arm — global IT giants */
+    { name: 'Infosys',                       category: 'IT Services',          x: 40, y: 38, align: 'right' },
+    { name: 'Tata Consultancy Services',     category: 'IT Services',          x: 32, y: 30, align: 'right' },
+    { name: 'Wipro',                         category: 'IT Services',          x: 24, y: 22, align: 'right' },
+    { name: 'HCLTech',                       category: 'IT Services',          x: 16, y: 14, align: 'right' },
+    { name: 'Tech Mahindra',                 category: 'IT Services',          x: 8,  y: 6,  align: 'right' },
+    /* NE arm — subcontinent software houses */
+    { name: '10Pearls',                      category: 'Software Development', x: 60, y: 38, align: 'left'  },
+    { name: 'Systems Limited',               category: 'Software Engineering', x: 68, y: 30, align: 'left'  },
+    { name: 'Arpatech',                      category: 'IT & Cloud',           x: 76, y: 22, align: 'left'  },
+    { name: 'Brain Station 23',              category: 'Software Development', x: 84, y: 14, align: 'left'  },
+    { name: 'DataSoft Systems Bangladesh',   category: 'Software Solutions',   x: 92, y: 6,  align: 'left'  },
+    { name: 'REVE Systems',                  category: 'Telecom Software',     x: 50, y: 8,  align: 'right' },
+    /* SW arm — trading & retail */
+    { name: 'Taj Stores',                    category: 'Grocery & Retail',     x: 40, y: 62, align: 'right' },
+    { name: 'Green Valley Supermarket',      category: 'Supermarket',          x: 32, y: 70, align: 'right' },
+    { name: 'Bangla Bazar Cash & Carry',     category: 'Wholesale',            x: 24, y: 78, align: 'right' },
+    { name: 'Bestway Group',                 category: 'Wholesale Group',      x: 16, y: 86, align: 'right' },
+    { name: 'East End Foods',                category: 'Foodservice',          x: 8,  y: 94, align: 'right' },
+    /* SE arm — hospitality */
+    { name: 'Dishoom',                       category: 'Restaurants',          x: 60, y: 62, align: 'left'  },
+    { name: 'Aladin Brick Lane',             category: 'Restaurants',          x: 68, y: 70, align: 'left'  },
+    { name: 'City Spice',                    category: 'Restaurants',          x: 76, y: 78, align: 'left'  },
+    { name: 'Tayyabs',                       category: 'Restaurants',          x: 84, y: 86, align: 'left'  },
+    { name: 'Needoo Grill',                  category: 'Restaurants',          x: 92, y: 94, align: 'left'  },
   ],
   mapNote: { fig: 'Fig. 01 · Group Network · United Kingdom', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
@@ -673,6 +687,15 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                     <line key={`v-${x}`} x1={x} x2={x} y1="0" y2="56.25" />
                   ))}
                 </g>
+                {/* X-hierarchy guide arms — faint diagonals from HQ to corners */}
+                {showPartnerNetwork && (
+                  <g stroke="rgba(125,164,42,0.18)" strokeWidth="0.18" strokeDasharray="0.6 0.5">
+                    <line x1="0"   y1="0"     x2={data.hq.x} y2={data.hq.y * 0.5625} />
+                    <line x1="100" y1="0"     x2={data.hq.x} y2={data.hq.y * 0.5625} />
+                    <line x1="0"   y1="56.25" x2={data.hq.x} y2={data.hq.y * 0.5625} />
+                    <line x1="100" y1="56.25" x2={data.hq.x} y2={data.hq.y * 0.5625} />
+                  </g>
+                )}
               </svg>
 
               {/* HQ node — STATIC at the centre */}
