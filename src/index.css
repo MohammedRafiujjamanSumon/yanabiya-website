@@ -200,18 +200,22 @@
   animation: svgFlow 2.4s linear infinite;
 }
 
-/* Circular orbit for partner chips — each chip traces a small circle
- * around its anchor dot, giving the visual of partners "moving around
- * the HQ" while the dot itself stays put on the map. Staggered delays
- * per chip mean the constellation never beats in unison. */
-@keyframes chipDrift {
-  0%, 100% { transform: translate(0, -7px); }
-  25%      { transform: translate(7px, 0); }
-  50%      { transform: translate(0, 7px); }
-  75%      { transform: translate(-7px, 0); }
+/* Partner constellation orbit — the whole partner ring slowly rotates
+ * around the HQ. Each chip's inner content uses orbitRingCounter so the
+ * text stays upright as it travels. Pair both animations with the same
+ * 36s duration so they always cancel out. */
+@keyframes orbitRing {
+  to { transform: rotate(360deg); }
 }
-.animate-chip-drift {
-  animation: chipDrift 9s linear infinite;
+@keyframes orbitRingCounter {
+  to { transform: rotate(-360deg); }
+}
+.animate-orbit-ring {
+  animation: orbitRing 36s linear infinite;
+  will-change: transform;
+}
+.animate-orbit-ring-counter {
+  animation: orbitRingCounter 36s linear infinite;
   will-change: transform;
 }
 
