@@ -86,6 +86,10 @@ type CountryProfile = {
     title: string
     postal?: string[]                  // first column
     head: string[]                     // second column
+    /** Optional Google Maps integration. When present the Contact section
+     *  becomes 2-col: address text on left, embedded map iframe on right,
+     *  with a "View on Maps ↗" link out to the source. */
+    map?: { embedQuery: string; openUrl: string }
   }
 }
 
@@ -193,6 +197,10 @@ const OMAN: CountryProfile = {
     title: 'Contact.',
     postal: ['P.O. Box 1432, PC-133', 'Al Khuwair, Muscat'],
     head: ['Office-41, 4th Floor, Building-846', 'Way-4011, Complex-240', 'Al Gubrah, Bushar, Muscat, Oman'],
+    map: {
+      embedQuery: 'Building 846, Way 4011, Al Gubrah, Bushar, Muscat, Oman',
+      openUrl: 'https://maps.app.goo.gl/8kfKBHGkBEZ7ExsT9',
+    },
   },
 }
 
@@ -762,57 +770,87 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
         </div>
       </section>
 
-      {/* CONTACT — compact, anchored top-left */}
+      {/* CONTACT — text on left, optional Google Maps embed on right */}
       <section className="relative border-t border-slate-100">
         <SectionWatermark />
         <div className="relative container-x py-12 md:py-16">
-          <div className="max-w-md lg:max-w-lg">
-            <Reveal>
-              <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
-                {data.contact.eyebrow}
-              </div>
-              <h3 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
-                {data.contact.title}
-              </h3>
-            </Reveal>
+          <div className={`grid gap-8 lg:gap-12 items-start ${data.contact.map ? 'lg:grid-cols-12' : ''}`}>
 
-            <div className="mt-8 space-y-8">
-              {data.contact.postal && (
-                <Reveal>
+            {/* LEFT — address text */}
+            <div className={data.contact.map ? 'lg:col-span-5' : 'max-w-md lg:max-w-lg'}>
+              <Reveal>
+                <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
+                  {data.contact.eyebrow}
+                </div>
+                <h3 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
+                  {data.contact.title}
+                </h3>
+              </Reveal>
+
+              <div className="mt-8 space-y-8">
+                {data.contact.postal && (
+                  <Reveal>
+                    <div>
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
+                        Postal Address
+                      </div>
+                      <div className="mt-3 w-8 h-px bg-slate-900/70" />
+                      <p className="mt-4 text-slate-700 leading-relaxed">
+                        {data.contact.postal.map((line, i) => (
+                          <span key={i}>
+                            {line}
+                            {i < data.contact.postal!.length - 1 && <br />}
+                          </span>
+                        ))}
+                      </p>
+                    </div>
+                  </Reveal>
+                )}
+
+                <Reveal delay={data.contact.postal ? 120 : 0}>
                   <div>
                     <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
-                      Postal Address
+                      Head Office
                     </div>
                     <div className="mt-3 w-8 h-px bg-slate-900/70" />
                     <p className="mt-4 text-slate-700 leading-relaxed">
-                      {data.contact.postal.map((line, i) => (
+                      {data.contact.head.map((line, i) => (
                         <span key={i}>
                           {line}
-                          {i < data.contact.postal!.length - 1 && <br />}
+                          {i < data.contact.head.length - 1 && <br />}
                         </span>
                       ))}
                     </p>
                   </div>
                 </Reveal>
-              )}
-
-              <Reveal delay={data.contact.postal ? 120 : 0}>
-                <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
-                    Head Office
-                  </div>
-                  <div className="mt-3 w-8 h-px bg-slate-900/70" />
-                  <p className="mt-4 text-slate-700 leading-relaxed">
-                    {data.contact.head.map((line, i) => (
-                      <span key={i}>
-                        {line}
-                        {i < data.contact.head.length - 1 && <br />}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-              </Reveal>
+              </div>
             </div>
+
+            {/* RIGHT — embedded Google Map (only when contact.map is provided) */}
+            {data.contact.map && (
+              <Reveal delay={200} className="lg:col-span-7">
+                <div className="relative w-full aspect-[5/4] rounded-sm overflow-hidden border border-slate-200 shadow-sm">
+                  <iframe
+                    title={`Map of ${data.hq.city} office`}
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(data.contact.map.embedQuery)}&output=embed`}
+                    className="absolute inset-0 w-full h-full border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+                <a
+                  href={data.contact.map.openUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.22em]
+                             text-blue-700 hover:text-blue-900 transition-colors"
+                >
+                  View on Google Maps
+                  <span aria-hidden>↗</span>
+                </a>
+              </Reveal>
+            )}
+
           </div>
         </div>
       </section>
