@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import {
   HardHat, Truck, Laptop, TrendingUp, Coffee,
   Briefcase, Wrench, ArrowUpRight, MapPin,
-  X as CloseIcon, Building2, Mail, Phone, Globe2,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
@@ -120,21 +119,17 @@ const OMAN: CountryProfile = {
       'Yanabiya Group — Integrated Business Network in the Sultanate of Oman, where a unified partner network operates across Muscat under a single integrated ecosystem with every venture directly connected back to the headquarters, including Yanabiya Muscat United Trade, Yanabiya Muscat for Comprehensive Projects, Yanabiya Muscat Integrated LLC, Yanabiya Al Khairat United Trade LLC, Yanabiya Muscat World Business, Yanabiya Muscat Al Mumyazat, and Yanabiya Al Rustaq Contracting, forming a coordinated and strategically aligned business structure.',
   },
   hq: { label: 'Muscat HQ', group: 'Yanabiya Group · Oman', city: 'Muscat', x: 50, y: 50 },
-  /* X-hierarchy layout — 7 partners distributed across 4 diagonal arms
-   * (NE / NW / SE / SW) radiating from the HQ. Each arm has 1-2 depth
-   * levels (inner / outer). Forms a clear X shape on the canvas. */
+  /* 7 partners arranged on a single ring around the centre HQ.
+   * Angles in degrees from 12 o'clock, radius ~32% horizontal, ~38% vertical
+   * (the 16:8 canvas is wider than tall so the ring is elongated). */
   partners: [
-    /* NW arm */
-    { name: 'Yanabiya Muscat United Trade',                category: 'Trade & Commerce',     x: 36, y: 32, align: 'right' },
-    { name: 'Yanabiya Al Rustaq Contracting',              category: 'Contracting',          x: 18, y: 14, align: 'right' },
-    /* NE arm */
-    { name: 'Yanabiya Muscat for Comprehensive Projects',  category: 'Construction',         x: 64, y: 32, align: 'left'  },
-    { name: 'Yanabiya Muscat Integrated LLC',              category: 'Diversified Holdings', x: 82, y: 14, align: 'left'  },
-    /* SW arm */
-    { name: 'Yanabiya Muscat Al Mumyazat',                 category: 'Services',             x: 36, y: 68, align: 'right' },
-    /* SE arm */
-    { name: 'Yanabiya Al Khairat United Trade LLC',        category: 'Trade & Commerce',     x: 64, y: 68, align: 'left'  },
-    { name: 'Yanabiya Muscat World Business',              category: 'Business Services',    x: 82, y: 86, align: 'left'  },
+    { name: 'Yanabiya Muscat United Trade',                category: 'Trade & Commerce',     x: 50, y: 12, align: 'right' },
+    { name: 'Yanabiya Muscat for Comprehensive Projects',  category: 'Construction',         x: 78, y: 22, align: 'left'  },
+    { name: 'Yanabiya Muscat Integrated LLC',              category: 'Diversified Holdings', x: 88, y: 50, align: 'left'  },
+    { name: 'Yanabiya Al Khairat United Trade LLC',        category: 'Trade & Commerce',     x: 78, y: 78, align: 'left'  },
+    { name: 'Yanabiya Muscat World Business',              category: 'Business Services',    x: 50, y: 88, align: 'right' },
+    { name: 'Yanabiya Muscat Al Mumyazat',                 category: 'Services',             x: 22, y: 78, align: 'right' },
+    { name: 'Yanabiya Al Rustaq Contracting',              category: 'Contracting',          x: 12, y: 50, align: 'right' },
   ],
   mapNote: { fig: 'Fig. 01 · Group Network · Oman', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
@@ -215,27 +210,21 @@ const BANGLADESH: CountryProfile = {
     subtitle: 'Yanabiya Group — Bangladesh Operations Hub',
   },
   hq: { label: 'Dhaka HQ', group: 'Yanabiya Gulf International BD Trade', city: 'Dhaka', x: 50, y: 50 },
-  /* X-hierarchy: 14 partners on 4 diagonal arms, 3-4 depth levels each. */
   partners: [
-    /* NW arm (3 levels) */
-    { name: 'Connet Online',                     category: 'Internet & Connectivity', x: 38, y: 36, align: 'right' },
-    { name: 'Plexus Cloud',                      category: 'Cloud Services',          x: 26, y: 22, align: 'right' },
-    { name: 'Trust Innovation Limited Company',  category: 'Technology',              x: 14, y: 8,  align: 'right' },
-    /* NE arm (3 levels) */
-    { name: 'Idea Tec',                          category: 'Technology',              x: 62, y: 36, align: 'left'  },
-    { name: 'Citylink Communication',            category: 'Communications',          x: 74, y: 22, align: 'left'  },
-    { name: 'Business Zone Limited Company',     category: 'Business Services',       x: 86, y: 8,  align: 'left'  },
-    /* SW arm (4 levels) */
-    { name: 'Eham WiFi',                         category: 'WiFi & Connectivity',     x: 38, y: 64, align: 'right' },
-    { name: 'Dot Internet',                      category: 'Internet & ISP',          x: 26, y: 78, align: 'right' },
-    { name: 'Global Communication Limited',      category: 'Communications',          x: 14, y: 92, align: 'right' },
-    /* SE arm (4 levels) */
-    { name: 'Xlink Limited Company',             category: 'Internet & Connectivity', x: 62, y: 64, align: 'left'  },
-    { name: 'Zero Link',                         category: 'Connectivity',            x: 74, y: 78, align: 'left'  },
-    { name: 'Bongo WiFi',                        category: 'WiFi & Connectivity',     x: 86, y: 92, align: 'left'  },
-    /* Two extras placed at the cardinal axes for balance */
-    { name: 'Dot Exploration Ltd',               category: 'Tech Services',           x: 50, y: 92, align: 'right' },
-    { name: 'Gtech Aviation',                    category: 'Aviation',                x: 50, y: 8,  align: 'right' },
+    { name: 'Connet Online',                     category: 'Internet & Connectivity', x: 14, y: 14, align: 'right' },
+    { name: 'Plexus Cloud',                      category: 'Cloud Services',          x: 32, y: 18, align: 'right' },
+    { name: 'Gtech Aviation',                    category: 'Aviation',                x: 50, y: 12, align: 'right' },
+    { name: 'Idea Tec',                          category: 'Technology',              x: 68, y: 18, align: 'right' },
+    { name: 'Citylink Communication',            category: 'Communications',          x: 86, y: 14, align: 'left'  },
+    { name: 'Eham WiFi',                         category: 'WiFi & Connectivity',     x: 8,  y: 32, align: 'right' },
+    { name: 'Business Zone Limited Company',     category: 'Business Services',       x: 92, y: 32, align: 'left'  },
+    { name: 'Trust Innovation Limited Company',  category: 'Technology',              x: 6,  y: 56, align: 'right' },
+    { name: 'Xlink Limited Company',             category: 'Internet & Connectivity', x: 94, y: 56, align: 'left'  },
+    { name: 'Dot Internet',                      category: 'Internet & ISP',          x: 10, y: 72, align: 'right' },
+    { name: 'Zero Link',                         category: 'Connectivity',            x: 90, y: 72, align: 'left'  },
+    { name: 'Global Communication Limited',      category: 'Communications',          x: 24, y: 86, align: 'right' },
+    { name: 'Dot Exploration Ltd',               category: 'Tech Services',           x: 50, y: 90, align: 'right' },
+    { name: 'Bongo WiFi',                        category: 'WiFi & Connectivity',     x: 76, y: 86, align: 'left'  },
   ],
   mapNote: { fig: 'Fig. 01 · Group Network · Bangladesh', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
@@ -298,35 +287,31 @@ const UNITED_KINGDOM: CountryProfile = {
       'Yanabiya Group — European Operations Hub, where 21 trusted partners across IT services, retail, and hospitality connect through the London office to deliver scalable cross-border value.',
   },
   hq: { label: 'London HQ', group: 'Yanabiya Gulf International UK Ltd', city: 'London', x: 50, y: 50 },
-  /* X-hierarchy — 21 partners over 4 diagonal arms (~5 each) by category cluster:
-   *   NW = IT giants, NE = subcontinent IT/dev, SW = trading/retail,
-   *   SE = hospitality/restaurants. */
   partners: [
-    /* NW arm — global IT giants */
-    { name: 'Infosys',                       category: 'IT Services',          x: 40, y: 38, align: 'right' },
-    { name: 'Tata Consultancy Services',     category: 'IT Services',          x: 32, y: 30, align: 'right' },
-    { name: 'Wipro',                         category: 'IT Services',          x: 24, y: 22, align: 'right' },
-    { name: 'HCLTech',                       category: 'IT Services',          x: 16, y: 14, align: 'right' },
-    { name: 'Tech Mahindra',                 category: 'IT Services',          x: 8,  y: 6,  align: 'right' },
-    /* NE arm — subcontinent software houses */
-    { name: '10Pearls',                      category: 'Software Development', x: 60, y: 38, align: 'left'  },
-    { name: 'Systems Limited',               category: 'Software Engineering', x: 68, y: 30, align: 'left'  },
-    { name: 'Arpatech',                      category: 'IT & Cloud',           x: 76, y: 22, align: 'left'  },
-    { name: 'Brain Station 23',              category: 'Software Development', x: 84, y: 14, align: 'left'  },
-    { name: 'DataSoft Systems Bangladesh',   category: 'Software Solutions',   x: 92, y: 6,  align: 'left'  },
-    { name: 'REVE Systems',                  category: 'Telecom Software',     x: 50, y: 8,  align: 'right' },
-    /* SW arm — trading & retail */
-    { name: 'Taj Stores',                    category: 'Grocery & Retail',     x: 40, y: 62, align: 'right' },
-    { name: 'Green Valley Supermarket',      category: 'Supermarket',          x: 32, y: 70, align: 'right' },
-    { name: 'Bangla Bazar Cash & Carry',     category: 'Wholesale',            x: 24, y: 78, align: 'right' },
-    { name: 'Bestway Group',                 category: 'Wholesale Group',      x: 16, y: 86, align: 'right' },
-    { name: 'East End Foods',                category: 'Foodservice',          x: 8,  y: 94, align: 'right' },
-    /* SE arm — hospitality */
-    { name: 'Dishoom',                       category: 'Restaurants',          x: 60, y: 62, align: 'left'  },
-    { name: 'Aladin Brick Lane',             category: 'Restaurants',          x: 68, y: 70, align: 'left'  },
-    { name: 'City Spice',                    category: 'Restaurants',          x: 76, y: 78, align: 'left'  },
-    { name: 'Tayyabs',                       category: 'Restaurants',          x: 84, y: 86, align: 'left'  },
-    { name: 'Needoo Grill',                  category: 'Restaurants',          x: 92, y: 94, align: 'left'  },
+    /* IT / Technology Services */
+    { name: 'Infosys',                       category: 'IT Services',          x: 10, y: 8,  align: 'right' },
+    { name: 'Tata Consultancy Services',     category: 'IT Services',          x: 32, y: 14, align: 'right' },
+    { name: 'Wipro',                         category: 'IT Services',          x: 52, y: 6,  align: 'right' },
+    { name: 'HCLTech',                       category: 'IT Services',          x: 72, y: 14, align: 'right' },
+    { name: 'Tech Mahindra',                 category: 'IT Services',          x: 90, y: 8,  align: 'left'  },
+    { name: '10Pearls',                      category: 'Software Development', x: 8,  y: 26, align: 'right' },
+    { name: 'Systems Limited',               category: 'Software Engineering', x: 24, y: 32, align: 'right' },
+    { name: 'Arpatech',                      category: 'IT & Cloud',           x: 76, y: 32, align: 'left'  },
+    { name: 'Brain Station 23',              category: 'Software Development', x: 92, y: 26, align: 'left'  },
+    { name: 'DataSoft Systems Bangladesh',   category: 'Software Solutions',   x: 6,  y: 42, align: 'right' },
+    { name: 'REVE Systems',                  category: 'Telecom Software',     x: 94, y: 42, align: 'left'  },
+    /* Trading & Retail */
+    { name: 'Taj Stores',                    category: 'Grocery & Retail',     x: 6,  y: 58, align: 'right' },
+    { name: 'Green Valley Supermarket',      category: 'Supermarket',          x: 94, y: 58, align: 'left'  },
+    { name: 'Bangla Bazar Cash & Carry',     category: 'Wholesale',            x: 8,  y: 72, align: 'right' },
+    { name: 'Bestway Group',                 category: 'Wholesale Group',      x: 92, y: 72, align: 'left'  },
+    { name: 'East End Foods',                category: 'Foodservice',          x: 24, y: 78, align: 'right' },
+    /* Hospitality / Restaurants */
+    { name: 'Dishoom',                       category: 'Restaurants',          x: 76, y: 78, align: 'left'  },
+    { name: 'Aladin Brick Lane',             category: 'Restaurants',          x: 10, y: 90, align: 'right' },
+    { name: 'City Spice',                    category: 'Restaurants',          x: 32, y: 88, align: 'right' },
+    { name: 'Tayyabs',                       category: 'Restaurants',          x: 68, y: 88, align: 'left'  },
+    { name: 'Needoo Grill',                  category: 'Restaurants',          x: 90, y: 90, align: 'left'  },
   ],
   mapNote: { fig: 'Fig. 01 · Group Network · United Kingdom', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
@@ -688,15 +673,6 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                     <line key={`v-${x}`} x1={x} x2={x} y1="0" y2="56.25" />
                   ))}
                 </g>
-                {/* X-hierarchy guide arms — faint dark-green diagonals from HQ to corners */}
-                {showPartnerNetwork && (
-                  <g stroke="rgba(15,58,35,0.20)" strokeWidth="0.18" strokeDasharray="0.6 0.5">
-                    <line x1="0"   y1="0"     x2={data.hq.x} y2={data.hq.y * 0.5625} />
-                    <line x1="100" y1="0"     x2={data.hq.x} y2={data.hq.y * 0.5625} />
-                    <line x1="0"   y1="56.25" x2={data.hq.x} y2={data.hq.y * 0.5625} />
-                    <line x1="100" y1="56.25" x2={data.hq.x} y2={data.hq.y * 0.5625} />
-                  </g>
-                )}
               </svg>
 
               {/* HQ node — STATIC at the centre */}
@@ -706,17 +682,17 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
               >
                 <span className="relative inline-flex">
                   <span
-                    className="absolute inset-0 rounded-full bg-brand-accent/45"
+                    className="absolute inset-0 rounded-full bg-brand-accent/35"
                     style={{ animation: 'haloPulse 3s ease-in-out infinite' }}
                   />
-                  <span className="relative block w-4 h-4 rounded-full bg-brand-deep ring-2 ring-brand-accent shadow-[0_0_14px_rgba(158,199,58,0.65)]" />
+                  <span className="relative block w-3.5 h-3.5 rounded-full bg-brand-accent ring-2 ring-white shadow-[0_0_12px_rgba(158,199,58,0.7)]" />
                 </span>
               </div>
               <div
                 className="absolute z-20 whitespace-nowrap"
-                style={{ left: `${data.hq.x}%`, top: `${data.hq.y}%`, transform: 'translate(14px, -50%)' }}
+                style={{ left: `${data.hq.x}%`, top: `${data.hq.y}%`, transform: 'translate(12px, -50%)' }}
               >
-                <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep">
+                <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
                   {data.hq.label}
                 </div>
                 <div className="text-[10px] text-slate-500 mt-0.5 tracking-wide">
@@ -759,16 +735,14 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                       const ey = py + dy * t
                       return (
                         <g key={p.name}>
-                          {/* Static base — dark green */}
                           <line
                             x1={px} y1={py} x2={ex} y2={ey}
-                            stroke="rgba(15,58,35,0.45)"
-                            strokeWidth="0.16"
+                            stroke="rgba(125,164,42,0.35)"
+                            strokeWidth="0.12"
                           />
-                          {/* Flowing signal — mint */}
                           <line
                             x1={px} y1={py} x2={ex} y2={ey}
-                            stroke="rgba(158,199,58,0.95)"
+                            stroke="rgba(158,199,58,0.85)"
                             strokeWidth="0.22"
                             strokeLinecap="round"
                             className="animate-svg-flow"
@@ -789,35 +763,34 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                       {/* Counter-rotate so text reads upright while travelling */}
                       <div className="animate-orbit-ring-counter
                                       group-hover/map:[animation-play-state:paused]">
-                        {/* Anchor dot — dark green default, mint on hover */}
-                        <span className="block w-2 h-2 rounded-full bg-brand-deep
-                                         ring-2 ring-brand-accent/60
+                        {/* Anchor dot */}
+                        <span className="block w-1.5 h-1.5 rounded-full bg-brand-accentDark
                                          transition-all duration-300
                                          group-hover:scale-150 group-hover:bg-brand-accent
-                                         group-hover:ring-brand-deep
                                          group-hover:shadow-[0_0_10px_rgba(158,199,58,0.7)]" />
-                        {/* Chip pill — dark green border + text, mint accent dot */}
+                        {/* Chip pill */}
                         <div
                           className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap
                                       ${p.align === 'right' ? 'left-3' : 'right-3'}`}
                         >
                           <div
-                            className={`inline-flex items-center gap-1 px-2 py-[2px] rounded
-                                        bg-white/95 backdrop-blur-sm border border-brand-deep/30
-                                        shadow-[0_1px_2px_rgba(15,58,35,0.08)]
+                            className={`inline-flex items-center gap-1 px-1.5 py-[1px] rounded
+                                        bg-white/95 backdrop-blur-sm border border-brand-accentDark/30
+                                        shadow-[0_1px_2px_rgba(125,164,42,0.08)]
                                         transition-all duration-300
-                                        group-hover:border-brand-deep group-hover:bg-brand-accent/15
+                                        group-hover:border-brand-accentDark group-hover:bg-brand-accent/10
                                         group-hover:shadow-[0_8px_24px_-8px_rgba(158,199,58,0.55)]
                                         group-hover:-translate-y-0.5`}
                           >
-                            <span className="block w-[4px] h-[4px] rounded-full bg-brand-accent" />
+                            <span className="block w-[3px] h-[3px] rounded-full bg-brand-accentDark" />
                             <span className="text-[10px] font-bold text-brand-deep leading-tight
-                                             transition-colors duration-300">
+                                             transition-colors duration-300
+                                             group-hover:text-brand-accentDark">
                               {p.name}
                             </span>
                           </div>
                           {/* Category — visible on chip hover only */}
-                          <div className={`text-[9px] uppercase tracking-[0.18em] text-brand-deep/65 mt-0.5
+                          <div className={`text-[9px] uppercase tracking-[0.18em] text-brand-accentDark/70 mt-0.5
                                            opacity-0 -translate-y-1
                                            transition-all duration-300
                                            group-hover:opacity-100 group-hover:translate-y-0
@@ -1041,555 +1014,60 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
   )
 }
 
-/* ───────────────────────── Country detail slide-in panel ───────────────────────── */
-/* Glassmorphic dashboard panel that slides in from the right when a tree
- * branch card is clicked. Shows the full corporate profile we have on the
- * country: flag + name, parent entity, HQ city, address lines, status,
- * and the complete partner list with categories. ESC + backdrop click
- * close it. Body scroll locked while open. */
-
-function CountryDetailPanel({
-  data,
-  onClose,
-}: {
-  data: CountryProfile | null
-  onClose: () => void
-}) {
-  useEffect(() => {
-    if (!data) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', onKey)
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = prev
-    }
-  }, [data, onClose])
-
-  if (!data) return null
-
-  const status =
-    data.partners.length === 0
-      ? { label: 'Launching', tone: 'bg-amber-500/15 text-amber-400 ring-amber-500/30' }
-      : { label: 'Active', tone: 'bg-brand-accent/20 text-brand-accent ring-brand-accent/40' }
-
-  return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={`${data.shortName} corporate profile`}
-      className="fixed inset-0 z-[100]"
-      onClick={onClose}
-    >
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/55 backdrop-blur-sm animate-[fadeUp_0.3s_ease-out_both]" />
-
-      {/* Panel */}
-      <aside
-        onClick={(e) => e.stopPropagation()}
-        className="absolute top-0 right-0 h-full w-full sm:w-[460px] md:w-[520px]
-                   bg-brand-deep text-white shadow-[0_0_60px_rgba(0,0,0,0.5)]
-                   border-l border-brand-accent/30
-                   overflow-y-auto
-                   animate-[fadeUp_0.4s_cubic-bezier(0.22,1,0.36,1)_both]"
-        style={{ animationName: 'slideInRight' }}
-      >
-        {/* Glow accents */}
-        <div aria-hidden="true" className="absolute -top-32 -left-20 w-[420px] h-[420px] rounded-full bg-brand-accent/15 blur-[120px] pointer-events-none" />
-        <div aria-hidden="true" className="absolute bottom-0 -right-20 w-[360px] h-[360px] rounded-full bg-brand-accentDark/15 blur-[120px] pointer-events-none" />
-
-        {/* Close button */}
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close panel"
-          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full
-                     bg-white/10 hover:bg-white/20 backdrop-blur-md
-                     border border-white/20
-                     grid place-items-center text-white/80 hover:text-white
-                     transition-colors"
-        >
-          <CloseIcon size={16} />
-        </button>
-
-        <div className="relative p-7 md:p-8 space-y-7">
-
-          {/* Header: flag + name + status */}
-          <div>
-            <div className="text-[10px] font-semibold tracking-[0.32em] uppercase text-brand-accent mb-2">
-              Country Profile
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-white/10 grid place-items-center text-2xl ring-2 ring-brand-accent/40">
-                {data.flag}
-              </div>
-              <div className="min-w-0">
-                <h3 className="font-serif text-2xl md:text-3xl leading-tight">
-                  {data.shortName}
-                </h3>
-                <div className="text-xs text-white/65 mt-0.5">
-                  {data.hero.eyebrow}
-                </div>
-              </div>
-            </div>
-            <div className={`mt-4 inline-flex items-center gap-2 rounded-full px-3 py-1
-                             text-[10px] font-bold uppercase tracking-[0.22em]
-                             ring-1 ${status.tone}`}>
-              <span className="block w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-              {status.label}
-            </div>
-          </div>
-
-          {/* Corporate facts */}
-          <div className="space-y-4 text-sm">
-            <ProfileRow icon={Building2} label="Parent Company" value={data.hq.group} />
-            <ProfileRow icon={MapPin}    label="Headquarters"  value={data.hq.city} />
-            <ProfileRow icon={Globe2}    label="Region"        value={data.hero.eyebrow} />
-            {data.contact.head && (
-              <ProfileRow
-                icon={MapPin}
-                label="Address"
-                value={data.contact.head.join(', ')}
-              />
-            )}
-            {data.contact.postal && (
-              <ProfileRow
-                icon={Mail}
-                label="Postal"
-                value={data.contact.postal.join(', ')}
-              />
-            )}
-            <ProfileRow
-              icon={Phone}
-              label="Group Switchboard"
-              value="+968 2249 5566"
-            />
-          </div>
-
-          {/* Partner network */}
-          <div>
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.3em] text-brand-accent">
-                Partner Network
-              </div>
-              <span className="text-[10px] font-mono font-bold text-white/60">
-                {data.partners.length.toString().padStart(2, '0')} entities
-              </span>
-            </div>
-            {data.partners.length > 0 ? (
-              <ul className="space-y-2">
-                {data.partners.map((p) => (
-                  <li
-                    key={p.name}
-                    className="rounded-lg bg-white/[0.05] border border-white/10
-                               px-3 py-2 hover:bg-white/[0.10] hover:border-brand-accent/40
-                               transition-colors"
-                  >
-                    <div className="flex items-baseline justify-between gap-3">
-                      <div className="text-[12px] font-semibold leading-tight">
-                        {p.name}
-                      </div>
-                      <div className="shrink-0 text-[8.5px] uppercase tracking-[0.18em] text-brand-accent/80">
-                        {p.category}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <div className="rounded-lg bg-white/[0.04] border border-white/10 px-4 py-5 text-center">
-                <div className="text-[11px] uppercase tracking-[0.22em] text-amber-400/90 font-bold">
-                  Operations Launching
-                </div>
-                <div className="text-xs text-white/55 mt-1">
-                  Local entity registered — partner network onboarding in progress.
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </aside>
-    </div>
-  )
-}
-
-function ProfileRow({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: typeof MapPin
-  label: string
-  value: string
-}) {
-  return (
-    <div className="flex items-start gap-3">
-      <div className="shrink-0 w-8 h-8 rounded-lg bg-white/[0.06] ring-1 ring-white/15
-                      grid place-items-center text-brand-accent">
-        <Icon size={14} />
-      </div>
-      <div className="min-w-0 flex-1">
-        <div className="text-[10px] uppercase tracking-[0.25em] text-white/55 font-semibold">
-          {label}
-        </div>
-        <div className="text-sm text-white/90 mt-0.5 leading-snug break-words">
-          {value}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ───────────────────────── Company Tree ───────────────────────── */
-/* Single tree visualisation: HQ root at the top, 4 country branches in a
- * row, partner names listed under each. Replaces the four stacked country
- * sections with one compact view of the whole group. */
-
-/* Mock activity feed per country — 'live' updates that animate beside each branch */
-const ACTIVITY_FEED: Record<CountryCode, { label: string; meta: string }[]> = {
-  OM: [
-    { label: 'Group HQ sync completed',   meta: '2 min ago · Live' },
-    { label: 'Gulf trade route operational', meta: 'Active · Tier 1' },
-    { label: 'New partner onboarded',     meta: '1 hr ago' },
-  ],
-  GB: [
-    { label: 'EMEA expansion activated',  meta: '5 min ago · Live' },
-    { label: 'London office sync online', meta: 'Active · Tier 1' },
-    { label: 'IT consultancy queue +3',   meta: '14 min ago' },
-  ],
-  BD: [
-    { label: 'South Asia delivery active', meta: '12 min ago · Live' },
-    { label: 'New partner onboarded',     meta: '1 hr ago' },
-    { label: 'Engineering throughput +8%',meta: 'Today' },
-  ],
-  US: [
-    { label: 'Austin entity registered',  meta: 'Today · New' },
-    { label: 'Operations launching',      meta: 'Q4 2026' },
-    { label: 'Network onboarding',        meta: 'In Progress' },
-  ],
-}
-
-/* Compact radial network diagram showing the country's partners as nodes
- * around a central country pulse. Limits to first 8 partners with +N badge. */
-function PartnerRadialNetwork({ data }: { data: CountryProfile }) {
-  const partners = data.partners.slice(0, 8)
-  const overflow = data.partners.length - partners.length
-  const radius = 38   // % of container
-  const centerX = 50
-  const centerY = 50
-
-  /* Pre-compute partner positions on the ring so star + mesh share them */
-  const positions = partners.map((_, i) => {
-    const angle = (i / Math.max(partners.length, 1)) * Math.PI * 2 - Math.PI / 2
-    return {
-      x: centerX + Math.cos(angle) * radius,
-      y: centerY + Math.sin(angle) * radius,
-    }
-  })
-
-  return (
-    <div className="relative w-full aspect-square max-w-[320px] mx-auto">
-      {/* Connection lines — STAR (centre → partner) + MESH (partner ↔ neighbour) */}
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 100 100"
-        className="absolute inset-0 w-full h-full overflow-visible"
-        preserveAspectRatio="xMidYMid meet"
-      >
-        {/* MESH ring — connect each partner to its next neighbour, closing the loop */}
-        {positions.length > 1 && positions.map((pos, i) => {
-          const next = positions[(i + 1) % positions.length]
-          return (
-            <line
-              key={`mesh-${i}`}
-              x1={pos.x} y1={pos.y} x2={next.x} y2={next.y}
-              stroke="rgba(15,58,35,0.28)"
-              strokeWidth="0.32"
-              strokeDasharray="0.7 0.6"
-            />
-          )
-        })}
-
-        {/* STAR — every partner connects back to the centre, with a flowing dash */}
-        {positions.map((pos, i) => (
-          <g key={`star-${i}`}>
-            <line
-              x1={centerX} y1={centerY} x2={pos.x} y2={pos.y}
-              stroke="rgba(15,58,35,0.30)"
-              strokeWidth="0.35"
-            />
-            <line
-              x1={centerX} y1={centerY} x2={pos.x} y2={pos.y}
-              stroke="rgba(158,199,58,0.95)"
-              strokeWidth="0.42"
-              strokeLinecap="round"
-              className="animate-svg-flow"
-              style={{ animationDelay: `${i * 0.4}s`, animationDuration: '4.5s' }}
-            />
-          </g>
-        ))}
-      </svg>
-
-      {/* Centre — country flag + name */}
-      <div className="absolute z-10" style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-        <div className="relative">
-          <span className="absolute inset-0 rounded-full bg-brand-accent/35 blur-md animate-pulse" />
-          <div className="relative w-16 h-16 rounded-full bg-brand-deep grid place-items-center
-                          text-2xl ring-2 ring-brand-accent shadow-[0_0_18px_rgba(158,199,58,0.5)]">
-            {data.flag}
-          </div>
-        </div>
-      </div>
-
-      {/* Partner nodes */}
-      {partners.map((p, i) => {
-        const { x, y } = positions[i]
-        const onLeft = x < 50
-        return (
-          <div
-            key={p.name}
-            className="group absolute z-20"
-            style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)' }}
-            title={p.name}
-          >
-            <span className="relative inline-flex">
-              <span
-                className="absolute inset-0 rounded-full bg-brand-accent/45"
-                style={{ animation: `haloPulse 3s ease-in-out ${i * 0.3}s infinite` }}
-              />
-              <span className="relative block w-3 h-3 rounded-full bg-brand-deep
-                               ring-2 ring-brand-accent
-                               group-hover:scale-150 transition-transform duration-300
-                               group-hover:shadow-[0_0_10px_rgba(158,199,58,0.9)]" />
-            </span>
-            {/* Hover label */}
-            <div className={`pointer-events-none absolute top-1/2 -translate-y-1/2 whitespace-nowrap
-                             opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30
-                             ${onLeft ? 'right-4' : 'left-4'}`}>
-              <span className="inline-block px-2 py-0.5 rounded bg-brand-deep text-brand-accent
-                               text-[9px] font-bold uppercase tracking-[0.18em]
-                               shadow-md">
-                {p.name}
-              </span>
-            </div>
-          </div>
-        )
-      })}
-
-      {/* Overflow badge */}
-      {overflow > 0 && (
-        <div className="absolute bottom-2 right-2 z-20 px-2 py-0.5 rounded-full
-                        bg-brand-deep/90 backdrop-blur border border-brand-accent/40
-                        text-[9px] font-bold uppercase tracking-[0.18em] text-brand-accent">
-          +{overflow} more
-        </div>
-      )}
-    </div>
-  )
-}
-
-/* Country block: full glassmorphic card with header + radial network + count */
-function CountryNetworkCard({
-  data,
-  onClick,
-}: {
-  data: CountryProfile
-  onClick: () => void
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="group block w-full text-left rounded-2xl
-                 bg-brand-deep text-white
-                 border border-brand-accent/30
-                 p-5 md:p-6
-                 shadow-[0_8px_24px_rgba(15,58,35,0.15)]
-                 transition-all duration-500
-                 hover:border-brand-accent hover:-translate-y-1
-                 hover:shadow-[0_30px_60px_-20px_rgba(158,199,58,0.45)]"
-    >
-      <div className="flex items-center gap-3">
-        <div className="shrink-0 w-12 h-12 rounded-full bg-white/10 ring-2 ring-brand-accent/50
-                        grid place-items-center text-2xl
-                        group-hover:ring-brand-accent transition-colors duration-300">
-          {data.flag}
-        </div>
-        <div className="min-w-0 flex-1">
-          <div className="font-serif text-lg font-bold text-white leading-tight">
-            {data.shortName}
-          </div>
-          <div className="text-[9px] uppercase tracking-[0.22em] text-brand-accent/85 mt-0.5">
-            {data.hq.city} · {data.hero.eyebrow}
-          </div>
-        </div>
-        <div className="shrink-0 inline-flex items-center gap-1 rounded-full
-                        bg-brand-accent/20 border border-brand-accent/50
-                        px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em]
-                        text-brand-accent">
-          <span className="font-mono text-[10px]">
-            {data.partners.length.toString().padStart(2, '0')}
-          </span>
-          Partners
-        </div>
-      </div>
-
-      <div className="mt-4">
-        <PartnerRadialNetwork data={data} />
-      </div>
-
-      <div className="mt-4 text-[10px] font-bold uppercase tracking-[0.22em]
-                      text-brand-accent/80 group-hover:text-brand-accent transition-colors">
-        View Full Profile →
-      </div>
-    </button>
-  )
-}
-
-/* Activity feed beside a country — looks like a live log */
-function ActivityFeed({ code, isRight }: { code: CountryCode; isRight: boolean }) {
-  const items = ACTIVITY_FEED[code] ?? []
-  return (
-    <div className={isRight ? 'text-left' : 'md:text-right'}>
-      <div className="text-[10px] font-semibold tracking-[0.32em] uppercase text-brand-accentDark mb-3
-                       inline-flex items-center gap-2">
-        <span className="block w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-        Live Activity
-      </div>
-      <ul className="space-y-2.5">
-        {items.map((it, i) => (
-          <li
-            key={it.label}
-            className="rounded-lg bg-brand-deep text-white
-                       border border-brand-accent/30
-                       px-3 py-2 transition-all duration-300
-                       hover:border-brand-accent
-                       hover:shadow-[0_10px_24px_-8px_rgba(158,199,58,0.4)]"
-            style={{ animationDelay: `${i * 100}ms` }}
-          >
-            <div className="text-[12px] text-white font-semibold leading-tight">
-              {it.label}
-            </div>
-            <div className="text-[9px] uppercase tracking-[0.2em] text-brand-accent/85 mt-0.5">
-              {it.meta}
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-function CompanyTree({ onSelect }: { onSelect: (code: CountryCode) => void }) {
-  return (
-    <div className="relative max-w-6xl mx-auto py-6">
-
-      {/* ROOT — Yanabiya Group HQ */}
-      <Reveal>
-        <div className="flex justify-center">
-          <div className="relative inline-flex flex-col items-center gap-2 rounded-2xl
-                          bg-brand-deep text-white px-8 py-6 shadow-2xl
-                          ring-4 ring-brand-accent/40">
-            <span className="absolute -inset-1 rounded-2xl bg-brand-accent/15 blur-xl animate-pulse pointer-events-none" />
-            <div className="relative text-[10px] font-semibold tracking-[0.3em] uppercase text-brand-accent">
-              Yanabiya Group
-            </div>
-            <div className="relative font-serif text-2xl md:text-3xl leading-tight">
-              Parent · Group HQ
-            </div>
-            <div className="relative text-[10px] uppercase tracking-[0.22em] text-white/65">
-              Sultanate of Oman · Est. Muscat
-            </div>
-          </div>
-        </div>
-      </Reveal>
-
-      {/* ZIGZAG — vertical spine with alternating country/activity rows */}
-      <div className="relative mt-14 pb-4">
-        {/* Centre spine */}
-        <div
-          aria-hidden="true"
-          className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px
-                     bg-gradient-to-b from-brand-accent/50 via-brand-accent/25 to-transparent"
-        />
-
-        <div className="space-y-16">
-          {TAB_ORDER.map((code, i) => {
-            const p = PROFILES[code]
-            const isRight = i % 2 === 0   // OM right, UK left, BD right, USA left
-            return (
-              <Reveal key={code} delay={i * 110}>
-                <div className="relative grid md:grid-cols-2 gap-6 md:gap-10 items-center">
-
-                  {/* Spine dot — pulsing */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-                               w-4 h-4 rounded-full bg-brand-accent z-10
-                               ring-4 ring-brand-deep shadow-[0_0_18px_rgba(158,199,58,0.7)]"
-                  >
-                    <span className="absolute inset-0 rounded-full bg-brand-accent animate-ping opacity-50" />
-                  </span>
-
-                  {/* Country card on one side */}
-                  <div className={isRight ? 'md:order-2' : 'md:order-1'}>
-                    <CountryNetworkCard data={p} onClick={() => onSelect(code)} />
-                  </div>
-
-                  {/* Activity feed on opposite side */}
-                  <div className={isRight ? 'md:order-1' : 'md:order-2'}>
-                    <ActivityFeed code={code} isRight={!isRight} />
-                  </div>
-                </div>
-              </Reveal>
-            )
-          })}
-        </div>
-      </div>
-    </div>
-  )
-}
-
 /* ───────────────────────── Page (top-level) ───────────────────────── */
+/* All four branches render stacked on this single page. A sticky chip strip
+ * scroll-spies the active country and jumps to its section on click. */
 
 export default function OmanPresence() {
   const { code } = useParams<{ code: string }>()
-  const [selected, setSelected] = useState<CountryCode | null>(null)
+  const [active, setActive] = useState<CountryCode>('OM')
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
-  }, [])
-
-  // If the URL came in as /country/<code>, auto-open that country's panel.
+  // On mount / URL change: scroll to the requested country section if any.
   useEffect(() => {
     const upper = (code?.toUpperCase() as CountryCode) ?? null
-    if (upper && PROFILES[upper]) setSelected(upper)
+    if (upper && PROFILES[upper]) {
+      // Defer one frame so the section has mounted.
+      window.requestAnimationFrame(() => {
+        const el = document.getElementById(upper.toLowerCase())
+        if (el) el.scrollIntoView({ behavior: 'instant' as ScrollBehavior, block: 'start' })
+      })
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+    }
   }, [code])
+
+  // Scroll-spy: highlight the chip whose section is closest to the top.
+  useEffect(() => {
+    const onScroll = () => {
+      const probeY = window.scrollY + 200
+      let next: CountryCode = TAB_ORDER[0]
+      for (const c of TAB_ORDER) {
+        const el = document.getElementById(c.toLowerCase())
+        if (!el) continue
+        if (el.offsetTop <= probeY) next = c
+      }
+      setActive((prev) => (prev === next ? prev : next))
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <main className="relative bg-white text-slate-900 overflow-hidden">
       <BackButton to="/#global" label="Back to Global" />
-
-      {/* Subtle ambient mint glow on the white surface */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
-      </div>
 
       {/* GLOBAL HERO */}
       <section className="relative">
         <SectionWatermark />
         <div className="relative container-x py-10 md:py-14 text-center">
           <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
-              Global Network · Live
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-4">
+              Global Presence
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-brand-deep">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-slate-900">
               Yanabiya Group
             </h1>
           </Reveal>
@@ -1598,26 +1076,29 @@ export default function OmanPresence() {
               Connecting Opportunities. Building Global Businesses.
             </p>
           </Reveal>
+          <Reveal delay={400}>
+            <div className="mt-8">
+              <CountryMarquee active={active} />
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ZIGZAG NETWORK MAP — HQ + alternating country/activity rows */}
-      <section className="relative border-t border-slate-100">
-        <div className="relative container-x py-10 md:py-14">
-          <CompanyTree onSelect={(c) => setSelected(c)} />
-        </div>
-      </section>
+      {/* ALL COUNTRIES STACKED — every branch on the same page */}
+      {TAB_ORDER.map((c, i) => (
+        <section
+          key={c}
+          id={c.toLowerCase()}
+          className="scroll-mt-[100px] border-t-2 border-slate-200"
+        >
+          <CountryView data={PROFILES[c]} index={i} />
+        </section>
+      ))}
 
-      {/* FULL CONTACT SECTION */}
-      <div className="border-t-2 border-slate-200 relative z-10">
+      {/* FULL CONTACT SECTION — country selector + map embed + form + stats */}
+      <div className="border-t-2 border-slate-200">
         <Contact />
       </div>
-
-      {/* SLIDE-IN COUNTRY DETAIL PANEL */}
-      <CountryDetailPanel
-        data={selected ? PROFILES[selected] : null}
-        onClose={() => setSelected(null)}
-      />
     </main>
   )
 }
