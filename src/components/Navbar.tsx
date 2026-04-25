@@ -60,7 +60,7 @@ export default function Navbar() {
     { label: t('nav.home'),         id: 'home'         },
     {
       label: t('nav.about'),
-      parentRoute: '/about-us',
+      parentSection: 'about',
       items: [
         { id: 'identity',   label: 'Company Overview',   href: '/about-us#identity'   },
         { id: 'principles', label: 'Mission & Vision',   href: '/about-us#principles' },
