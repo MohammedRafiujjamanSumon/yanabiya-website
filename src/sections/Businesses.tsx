@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Sparkles, X as CloseIcon, ExternalLink } from 'lucide-react'
+import { Sparkles, X as CloseIcon, ExternalLink } from 'lucide-react'
 import Section from '../components/Section'
 import { businesses } from '../data/businesses'
 import { useReveal } from '../hooks/useReveal'
@@ -400,109 +400,6 @@ export default function Businesses() {
           </Reveal>
         </div>
 
-        {/* 6-card premium grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-          {businesses.map((b, i) => {
-            const display = BUSINESS_DISPLAY[b.slug] ?? { title: b.title, tag: '', sample: [] }
-            const subCount = b.subServices?.length ?? 0
-            const num = String(i + 1).padStart(2, '0')
-            return (
-              <Reveal key={b.slug} delay={i * 70}>
-                <Link
-                  to={`/business/${b.slug}`}
-                  className="group relative block h-full rounded-2xl bg-white border border-slate-200
-                             p-6 shadow-[0_4px_12px_rgba(15,58,35,0.05)]
-                             overflow-hidden
-                             transition-all duration-500
-                             hover:border-brand-deep/50 hover:-translate-y-1.5
-                             hover:shadow-[0_24px_50px_-14px_rgba(15,58,35,0.28)]"
-                >
-                  {/* Decorative serif numeral watermark — bottom-right */}
-                  <span aria-hidden="true"
-                        className="absolute -bottom-4 -right-2 font-serif text-[120px] font-bold leading-none
-                                   text-brand-accent/[0.06] select-none pointer-events-none
-                                   transition-colors duration-500
-                                   group-hover:text-brand-accent/[0.14]">
-                    {num}
-                  </span>
-
-                  {/* Hover gradient sweep */}
-                  <span aria-hidden="true"
-                        className="absolute inset-0 bg-gradient-to-br from-brand-accent/0 to-brand-accent/0
-                                   opacity-0 group-hover:opacity-100 group-hover:from-brand-accent/8 group-hover:to-transparent
-                                   transition-opacity duration-500 pointer-events-none" />
-
-                  <div className="relative">
-                    {/* Top row — icon + sub-service count */}
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="shrink-0 w-12 h-12 rounded-xl bg-brand-accent/15
-                                      grid place-items-center text-brand-deep
-                                      ring-1 ring-brand-accent/20
-                                      transition-all duration-300
-                                      group-hover:bg-brand-accent group-hover:text-white
-                                      group-hover:ring-brand-accent group-hover:scale-110
-                                      group-hover:rotate-3">
-                        <b.icon size={22} strokeWidth={1.6} />
-                      </div>
-                      {subCount > 0 && (
-                        <span className="inline-flex items-center gap-1 rounded-full
-                                         bg-slate-50 border border-slate-200
-                                         px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.22em] text-slate-600">
-                          <span className="font-mono text-[10px] text-brand-deep">{subCount.toString().padStart(2, '0')}</span>
-                          Services
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Title + animated underline */}
-                    <div className="mt-5">
-                      <h3 className="font-serif text-xl md:text-2xl font-bold text-brand-deep leading-tight">
-                        {display.title}
-                      </h3>
-                      <span aria-hidden="true"
-                            className="block mt-2 h-px bg-brand-accent w-8
-                                       transition-all duration-500
-                                       group-hover:w-20" />
-                    </div>
-
-                    {/* Tag */}
-                    <p className="mt-3 text-[13px] text-slate-600 leading-snug">
-                      {display.tag}
-                    </p>
-
-                    {/* Sub-service teaser chips — fade in on hover */}
-                    {display.sample.length > 0 && (
-                      <div className="mt-4 flex flex-wrap gap-1.5
-                                      opacity-0 -translate-y-1
-                                      transition-all duration-500
-                                      group-hover:opacity-100 group-hover:translate-y-0">
-                        {display.sample.map((s) => (
-                          <span key={s}
-                                className="inline-block px-2 py-0.5 rounded-full
-                                           bg-brand-accent/10 border border-brand-accent/30
-                                           text-[9px] font-bold uppercase tracking-[0.18em] text-brand-deep">
-                            {s}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Bottom CTA */}
-                    <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between
-                                    text-[10px] uppercase tracking-[0.22em] font-bold">
-                      <span className="text-slate-400">Division · {num}</span>
-                      <span className="inline-flex items-center gap-1 text-brand-accentDark
-                                       transition-all duration-300
-                                       group-hover:text-brand-deep group-hover:gap-2">
-                        Explore <ArrowRight size={12} />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </Reveal>
-            )
-          })}
-        </div>
       </div>
 
       {/* Slide-in detail panel for the workflow node click */}
