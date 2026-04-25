@@ -632,6 +632,17 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
               <Reveal delay={420}>
                 <div className="mt-6 w-12 h-px bg-slate-900" />
               </Reveal>
+              <Reveal delay={520}>
+                <Link
+                  to={`/global-presence/${data.code.toLowerCase()}`}
+                  className="mt-5 inline-flex items-center gap-1.5 rounded-full px-4 py-2
+                             border border-slate-300 text-slate-700 text-[11px] font-semibold uppercase tracking-wider
+                             hover:border-brand-accentDark hover:text-brand-accentDark hover:-translate-y-0.5
+                             transition-all"
+                >
+                  Open {data.shortName} page <ArrowUpRight size={12} />
+                </Link>
+              </Reveal>
             </div>
 
             {/* ORBIT BLOCK — 60% (right on even index, left on odd) */}

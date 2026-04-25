@@ -72,11 +72,11 @@ export default function Navbar() {
     { label: t('nav.businesses'),   id: 'businesses'   },
     {
       label: 'Trusted Network',
-      parentSection: 'partnerships',
+      parentRoute: '/partners',
       items: [
-        { id: 'sponsors', label: 'Our Membership'   },
-        { id: 'partners', label: 'Our Partners'     },
-        { id: 'clients',  label: 'Valuable Clients' },
+        { id: 'partners',    label: 'Technology Partners',  href: '/partners#technology'   },
+        { id: 'memberships', label: 'Memberships',          href: '/partners#memberships'  },
+        { id: 'clients',     label: 'Valuable Clients',     href: '/partners#clients'      },
       ],
     },
     {
