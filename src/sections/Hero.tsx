@@ -59,8 +59,8 @@ export default function Hero() {
 
           <div className="mt-9 flex flex-col sm:flex-row gap-4 justify-center items-center fade-up"
                style={{ animationDelay: '320ms' }}>
-            <a href="#businesses" className="btn-primary !px-8 !py-3.5 !rounded-full">
-              {t('hero.cta1')} <ArrowRight size={18} className="ltr-flip" />
+            <a href="#global" className="btn-primary !px-8 !py-3.5 !rounded-full">
+              Explore Global Presence <ArrowRight size={18} className="ltr-flip" />
             </a>
             <a href="#contact"
                className="btn-ghost !px-8 !py-3.5 !rounded-full !border-white/50 !text-white hover:!bg-white hover:!text-brand-ink hover:!border-white">
