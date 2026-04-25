@@ -132,7 +132,7 @@ export default function Navbar() {
     }`
 
   return (
-    <header className="sticky top-0 z-40 bg-black pt-1.5 pb-1.5">
+    <header className="sticky top-0 z-40 bg-brand-deep pt-1.5 pb-1.5">
       <div className="container-x">
       <div
         className={`flex items-center gap-4 h-14 lg:h-14 ps-2 pe-5 lg:pe-8
