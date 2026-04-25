@@ -1248,123 +1248,280 @@ function ProfileRow({
  * row, partner names listed under each. Replaces the four stacked country
  * sections with one compact view of the whole group. */
 
+/* Mock activity feed per country — 'live' updates that animate beside each branch */
+const ACTIVITY_FEED: Record<CountryCode, { label: string; meta: string }[]> = {
+  OM: [
+    { label: 'Group HQ sync completed',   meta: '2 min ago · Live' },
+    { label: 'Gulf trade route operational', meta: 'Active · Tier 1' },
+    { label: 'New partner onboarded',     meta: '1 hr ago' },
+  ],
+  GB: [
+    { label: 'EMEA expansion activated',  meta: '5 min ago · Live' },
+    { label: 'London office sync online', meta: 'Active · Tier 1' },
+    { label: 'IT consultancy queue +3',   meta: '14 min ago' },
+  ],
+  BD: [
+    { label: 'South Asia delivery active', meta: '12 min ago · Live' },
+    { label: 'New partner onboarded',     meta: '1 hr ago' },
+    { label: 'Engineering throughput +8%',meta: 'Today' },
+  ],
+  US: [
+    { label: 'Austin entity registered',  meta: 'Today · New' },
+    { label: 'Operations launching',      meta: 'Q4 2026' },
+    { label: 'Network onboarding',        meta: 'In Progress' },
+  ],
+}
+
+/* Compact radial network diagram showing the country's partners as nodes
+ * around a central country pulse. Limits to first 8 partners with +N badge. */
+function PartnerRadialNetwork({ data }: { data: CountryProfile }) {
+  const partners = data.partners.slice(0, 8)
+  const overflow = data.partners.length - partners.length
+  const radius = 38   // % of container
+  const centerX = 50
+  const centerY = 50
+
+  return (
+    <div className="relative w-full aspect-square max-w-[320px] mx-auto">
+      {/* Connection lines — partner → centre */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 100 100"
+        className="absolute inset-0 w-full h-full overflow-visible"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        {partners.map((_, i) => {
+          const angle = (i / Math.max(partners.length, 1)) * Math.PI * 2 - Math.PI / 2
+          const x = centerX + Math.cos(angle) * radius
+          const y = centerY + Math.sin(angle) * radius
+          return (
+            <g key={i}>
+              <line
+                x1={centerX} y1={centerY} x2={x} y2={y}
+                stroke="rgba(158,199,58,0.32)"
+                strokeWidth="0.4"
+              />
+              <line
+                x1={centerX} y1={centerY} x2={x} y2={y}
+                stroke="rgba(158,199,58,0.85)"
+                strokeWidth="0.45"
+                strokeLinecap="round"
+                className="animate-svg-flow"
+                style={{ animationDelay: `${i * 0.4}s`, animationDuration: '4.5s' }}
+              />
+            </g>
+          )
+        })}
+      </svg>
+
+      {/* Centre — country flag + name */}
+      <div className="absolute z-10" style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+        <div className="relative">
+          <span className="absolute inset-0 rounded-full bg-brand-accent/35 blur-md animate-pulse" />
+          <div className="relative w-16 h-16 rounded-full bg-brand-deep grid place-items-center
+                          text-2xl ring-2 ring-brand-accent shadow-[0_0_18px_rgba(158,199,58,0.5)]">
+            {data.flag}
+          </div>
+        </div>
+      </div>
+
+      {/* Partner nodes — small pulsing dots with hover-revealed name */}
+      {partners.map((p, i) => {
+        const angle = (i / Math.max(partners.length, 1)) * Math.PI * 2 - Math.PI / 2
+        const x = centerX + Math.cos(angle) * radius
+        const y = centerY + Math.sin(angle) * radius
+        const onLeft = x < 50
+        return (
+          <div
+            key={p.name}
+            className="group absolute z-20"
+            style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)' }}
+            title={p.name}
+          >
+            <span className="relative inline-flex">
+              <span
+                className="absolute inset-0 rounded-full bg-brand-accent/40"
+                style={{ animation: `haloPulse 3s ease-in-out ${i * 0.3}s infinite` }}
+              />
+              <span className="relative block w-2.5 h-2.5 rounded-full bg-brand-accent
+                               ring-2 ring-brand-deep
+                               group-hover:scale-150 transition-transform duration-300
+                               group-hover:shadow-[0_0_10px_rgba(158,199,58,0.9)]" />
+            </span>
+            {/* Hover label */}
+            <div className={`pointer-events-none absolute top-1/2 -translate-y-1/2 whitespace-nowrap
+                             opacity-0 group-hover:opacity-100 transition-opacity duration-200
+                             ${onLeft ? 'right-4' : 'left-4'}`}>
+              <span className="inline-block px-2 py-0.5 rounded bg-brand-deep text-brand-accent
+                               text-[9px] font-bold uppercase tracking-[0.18em]
+                               shadow-md">
+                {p.name}
+              </span>
+            </div>
+          </div>
+        )
+      })}
+
+      {/* Overflow badge */}
+      {overflow > 0 && (
+        <div className="absolute bottom-2 right-2 z-20 px-2 py-0.5 rounded-full
+                        bg-brand-deep/80 backdrop-blur border border-brand-accent/40
+                        text-[9px] font-bold uppercase tracking-[0.18em] text-brand-accent">
+          +{overflow} more
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* Country block: full glassmorphic card with header + radial network + count */
+function CountryNetworkCard({
+  data,
+  onClick,
+}: {
+  data: CountryProfile
+  onClick: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="group block w-full text-left rounded-2xl
+                 bg-white/[0.05] backdrop-blur-md border border-white/10
+                 p-5 md:p-6
+                 transition-all duration-500
+                 hover:bg-white/[0.08] hover:border-brand-accent/40 hover:-translate-y-1
+                 hover:shadow-[0_30px_60px_-20px_rgba(158,199,58,0.35)]"
+    >
+      <div className="flex items-center gap-3">
+        <div className="shrink-0 w-12 h-12 rounded-full bg-white/10 ring-2 ring-brand-accent/40
+                        grid place-items-center text-2xl
+                        group-hover:ring-brand-accent transition-colors duration-300">
+          {data.flag}
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="font-serif text-lg font-bold text-white leading-tight">
+            {data.shortName}
+          </div>
+          <div className="text-[9px] uppercase tracking-[0.22em] text-brand-accent/85 mt-0.5">
+            {data.hq.city} · {data.hero.eyebrow}
+          </div>
+        </div>
+        <div className="shrink-0 inline-flex items-center gap-1 rounded-full
+                        bg-brand-accent/15 border border-brand-accent/40
+                        px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em]
+                        text-brand-accent">
+          <span className="font-mono text-[10px]">
+            {data.partners.length.toString().padStart(2, '0')}
+          </span>
+          Partners
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <PartnerRadialNetwork data={data} />
+      </div>
+
+      <div className="mt-4 text-[10px] font-bold uppercase tracking-[0.22em]
+                      text-brand-accent/70 group-hover:text-brand-accent transition-colors">
+        View Full Profile →
+      </div>
+    </button>
+  )
+}
+
+/* Activity feed beside a country — looks like a live log */
+function ActivityFeed({ code, isRight }: { code: CountryCode; isRight: boolean }) {
+  const items = ACTIVITY_FEED[code] ?? []
+  return (
+    <div className={`text-${isRight ? 'left' : 'right'}`}>
+      <div className={`text-[10px] font-semibold tracking-[0.32em] uppercase text-brand-accent mb-3
+                       inline-flex items-center gap-2`}>
+        <span className="block w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+        Live Activity
+      </div>
+      <ul className="space-y-2.5">
+        {items.map((it, i) => (
+          <li
+            key={it.label}
+            className={`rounded-lg bg-white/[0.04] backdrop-blur-sm border border-white/10
+                        px-3 py-2 transition-all duration-300
+                        hover:bg-white/[0.08] hover:border-brand-accent/30`}
+            style={{ animationDelay: `${i * 100}ms` }}
+          >
+            <div className="text-[12px] text-white/90 font-semibold leading-tight">
+              {it.label}
+            </div>
+            <div className="text-[9px] uppercase tracking-[0.2em] text-brand-accent/70 mt-0.5">
+              {it.meta}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 function CompanyTree({ onSelect }: { onSelect: (code: CountryCode) => void }) {
   return (
-    <div className="relative max-w-4xl mx-auto py-6">
+    <div className="relative max-w-6xl mx-auto py-6">
 
       {/* ROOT — Yanabiya Group HQ */}
       <Reveal>
         <div className="flex justify-center">
-          <div className="inline-flex flex-col items-center gap-2 rounded-2xl
-                          bg-brand-deep text-white px-8 py-5 shadow-xl
-                          ring-4 ring-brand-accent/30">
-            <div className="text-[10px] font-semibold tracking-[0.3em] uppercase text-brand-accent">
+          <div className="relative inline-flex flex-col items-center gap-2 rounded-2xl
+                          bg-brand-deep text-white px-8 py-6 shadow-2xl
+                          ring-4 ring-brand-accent/40">
+            <span className="absolute -inset-1 rounded-2xl bg-brand-accent/15 blur-xl animate-pulse pointer-events-none" />
+            <div className="relative text-[10px] font-semibold tracking-[0.3em] uppercase text-brand-accent">
               Yanabiya Group
             </div>
-            <div className="font-serif text-2xl md:text-3xl leading-tight">
-              Group HQ
+            <div className="relative font-serif text-2xl md:text-3xl leading-tight">
+              Parent · Group HQ
             </div>
-            <div className="text-[10px] uppercase tracking-[0.22em] text-white/65">
+            <div className="relative text-[10px] uppercase tracking-[0.22em] text-white/65">
               Sultanate of Oman · Est. Muscat
             </div>
           </div>
         </div>
       </Reveal>
 
-      {/* TIMELINE — vertical centre spine + alternating country cards */}
-      <div className="relative mt-12 pb-4">
+      {/* ZIGZAG — vertical spine with alternating country/activity rows */}
+      <div className="relative mt-14 pb-4">
         {/* Centre spine */}
         <div
           aria-hidden="true"
-          className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-px
-                     bg-gradient-to-b from-brand-deep/40 via-brand-deep/25 to-brand-deep/0"
+          className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px
+                     bg-gradient-to-b from-brand-accent/50 via-brand-accent/25 to-transparent"
         />
 
-        <div className="space-y-10">
+        <div className="space-y-16">
           {TAB_ORDER.map((code, i) => {
             const p = PROFILES[code]
-            const right = i % 2 === 1
+            const isRight = i % 2 === 0   // OM right, UK left, BD right, USA left
             return (
               <Reveal key={code} delay={i * 110}>
-                <div className="relative grid md:grid-cols-2 gap-4 md:gap-8 items-start">
+                <div className="relative grid md:grid-cols-2 gap-6 md:gap-10 items-center">
 
-                  {/* Spine dot — pulsing brand-accent */}
+                  {/* Spine dot — pulsing */}
                   <span
                     aria-hidden="true"
-                    className="absolute left-6 md:left-1/2 -translate-x-1/2 top-4
-                               w-3.5 h-3.5 rounded-full bg-brand-accent
-                               ring-4 ring-white shadow-[0_0_0_1px_rgba(15,58,35,0.35)]"
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                               w-4 h-4 rounded-full bg-brand-accent z-10
+                               ring-4 ring-brand-deep shadow-[0_0_18px_rgba(158,199,58,0.7)]"
                   >
-                    <span className="absolute inset-0 rounded-full bg-brand-accent animate-ping opacity-40" />
+                    <span className="absolute inset-0 rounded-full bg-brand-accent animate-ping opacity-50" />
                   </span>
 
-                  {/* Card on alternating sides */}
-                  <button
-                    type="button"
-                    onClick={() => onSelect(code)}
-                    className={`group block w-full text-left
-                                pl-12 md:pl-0
-                                ${right ? 'md:order-2 md:pl-12' : 'md:pr-12 md:text-right'}`}
-                  >
-                    <div className="rounded-2xl bg-white border border-slate-200
-                                    shadow-[0_4px_12px_rgba(15,58,35,0.05)]
-                                    p-5
-                                    transition-all duration-300
-                                    group-hover:border-brand-deep/50 group-hover:-translate-y-1
-                                    group-hover:shadow-[0_16px_40px_-12px_rgba(15,58,35,0.25)]">
+                  {/* Country card on one side */}
+                  <div className={isRight ? 'md:order-2' : 'md:order-1'}>
+                    <CountryNetworkCard data={p} onClick={() => onSelect(code)} />
+                  </div>
 
-                      {/* Header row */}
-                      <div className={`flex items-center gap-3 ${right ? '' : 'md:flex-row-reverse'}`}>
-                        <div className="shrink-0 w-12 h-12 rounded-full bg-white grid place-items-center
-                                        text-2xl shadow-sm ring-2 ring-brand-accent/30
-                                        group-hover:ring-brand-deep transition-colors duration-300">
-                          {p.flag}
-                        </div>
-                        <div className={`min-w-0 flex-1 ${right ? '' : 'md:text-right'}`}>
-                          <div className="font-serif text-lg font-bold text-brand-deep leading-tight">
-                            {p.shortName}
-                          </div>
-                          <div className="text-[9px] uppercase tracking-[0.22em] text-slate-500 mt-0.5">
-                            {p.hq.city} · {p.hero.eyebrow}
-                          </div>
-                        </div>
-                        <div className="shrink-0 inline-flex items-center gap-1 rounded-full
-                                        bg-brand-accent/15 border border-brand-accent/30
-                                        px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em]
-                                        text-brand-deep">
-                          <span className="font-mono text-[10px]">
-                            {p.partners.length.toString().padStart(2, '0')}
-                          </span>
-                          {p.partners.length === 1 ? 'Branch' : 'Partners'}
-                        </div>
-                      </div>
-
-                      {/* Body — partner sample (first 3) + view-all hint */}
-                      {p.partners.length > 0 ? (
-                        <div className={`mt-3 text-[11px] leading-snug text-slate-600
-                                         ${right ? '' : 'md:text-right'}`}>
-                          {p.partners.slice(0, 3).map((pp) => pp.name).join(' · ')}
-                          {p.partners.length > 3 && ` · +${p.partners.length - 3} more`}
-                        </div>
-                      ) : (
-                        <div className={`mt-3 text-[11px] italic text-slate-500
-                                         ${right ? '' : 'md:text-right'}`}>
-                          Operations launching soon
-                        </div>
-                      )}
-
-                      {/* View profile micro-CTA */}
-                      <div className={`mt-3 text-[10px] font-bold uppercase tracking-[0.22em]
-                                       text-brand-accentDark
-                                       transition-colors group-hover:text-brand-deep
-                                       ${right ? '' : 'md:text-right'}`}>
-                        View Profile →
-                      </div>
-                    </div>
-                  </button>
-
-                  {/* Empty cell on the opposite side */}
-                  <div className="hidden md:block" />
+                  {/* Activity feed on opposite side */}
+                  <div className={isRight ? 'md:order-1' : 'md:order-2'}>
+                    <ActivityFeed code={code} isRight={!isRight} />
+                  </div>
                 </div>
               </Reveal>
             )
@@ -1392,41 +1549,46 @@ export default function OmanPresence() {
   }, [code])
 
   return (
-    <main className="relative bg-white text-slate-900 overflow-hidden">
+    <main className="relative bg-brand-deep text-white overflow-hidden">
       <BackButton to="/#global" label="Back to Global" />
+
+      {/* Ambient dark-theme glow layer */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-40 -left-40 w-[680px] h-[680px] rounded-full bg-brand-accent/10 blur-[160px]" />
+        <div className="absolute top-1/3 -right-40 w-[620px] h-[620px] rounded-full bg-brand-accent/8 blur-[160px]" />
+        <div className="absolute bottom-0 left-1/3 w-[560px] h-[560px] rounded-full bg-brand-accentDark/8 blur-[140px]" />
+      </div>
 
       {/* GLOBAL HERO */}
       <section className="relative">
-        <SectionWatermark />
         <div className="relative container-x py-10 md:py-14 text-center">
           <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-4">
-              Global Presence
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accent mb-4">
+              Global Network · Live
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-slate-900">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-white">
               Yanabiya Group
             </h1>
           </Reveal>
           <Reveal delay={260}>
-            <p className="mt-4 text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="mt-4 text-base md:text-lg text-white/65 max-w-3xl mx-auto leading-relaxed">
               Connecting Opportunities. Building Global Businesses.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* VERTICAL TIMELINE — HQ at top, countries down the spine */}
-      <section className="relative border-t border-slate-100">
-        <SectionWatermark />
+      {/* ZIGZAG NETWORK MAP — HQ + alternating country/activity rows */}
+      <section className="relative border-t border-white/10">
         <div className="relative container-x py-10 md:py-14">
           <CompanyTree onSelect={(c) => setSelected(c)} />
         </div>
       </section>
 
-      {/* FULL CONTACT SECTION */}
-      <div className="border-t-2 border-slate-200">
+      {/* FULL CONTACT SECTION (back to white surface) */}
+      <div className="border-t-2 border-white/10 bg-white text-slate-900 relative z-10">
         <Contact />
       </div>
 
