@@ -136,8 +136,8 @@ export default function Navbar() {
       <div className="container-x">
       <div
         className={`flex items-center gap-4 h-14 lg:h-14 ps-2 pe-5 lg:pe-8
-                    rounded-full bg-lime-700
-                    border border-lime-700 transition-shadow duration-200 ${
+                    rounded-full bg-black
+                    border border-black transition-shadow duration-200 ${
           scrolled ? 'shadow-md shadow-slate-900/10'
                    : 'shadow-sm shadow-slate-900/5'
         }`}
