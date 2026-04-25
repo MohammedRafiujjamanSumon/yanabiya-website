@@ -687,9 +687,9 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                     <line key={`v-${x}`} x1={x} x2={x} y1="0" y2="56.25" />
                   ))}
                 </g>
-                {/* X-hierarchy guide arms — faint diagonals from HQ to corners */}
+                {/* X-hierarchy guide arms — faint dark-green diagonals from HQ to corners */}
                 {showPartnerNetwork && (
-                  <g stroke="rgba(125,164,42,0.18)" strokeWidth="0.18" strokeDasharray="0.6 0.5">
+                  <g stroke="rgba(15,58,35,0.20)" strokeWidth="0.18" strokeDasharray="0.6 0.5">
                     <line x1="0"   y1="0"     x2={data.hq.x} y2={data.hq.y * 0.5625} />
                     <line x1="100" y1="0"     x2={data.hq.x} y2={data.hq.y * 0.5625} />
                     <line x1="0"   y1="56.25" x2={data.hq.x} y2={data.hq.y * 0.5625} />
@@ -705,17 +705,17 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
               >
                 <span className="relative inline-flex">
                   <span
-                    className="absolute inset-0 rounded-full bg-brand-accent/35"
+                    className="absolute inset-0 rounded-full bg-brand-accent/45"
                     style={{ animation: 'haloPulse 3s ease-in-out infinite' }}
                   />
-                  <span className="relative block w-3.5 h-3.5 rounded-full bg-brand-accent ring-2 ring-white shadow-[0_0_12px_rgba(158,199,58,0.7)]" />
+                  <span className="relative block w-4 h-4 rounded-full bg-brand-deep ring-2 ring-brand-accent shadow-[0_0_14px_rgba(158,199,58,0.65)]" />
                 </span>
               </div>
               <div
                 className="absolute z-20 whitespace-nowrap"
-                style={{ left: `${data.hq.x}%`, top: `${data.hq.y}%`, transform: 'translate(12px, -50%)' }}
+                style={{ left: `${data.hq.x}%`, top: `${data.hq.y}%`, transform: 'translate(14px, -50%)' }}
               >
-                <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
+                <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep">
                   {data.hq.label}
                 </div>
                 <div className="text-[10px] text-slate-500 mt-0.5 tracking-wide">
@@ -758,14 +758,16 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                       const ey = py + dy * t
                       return (
                         <g key={p.name}>
+                          {/* Static base — dark green */}
                           <line
                             x1={px} y1={py} x2={ex} y2={ey}
-                            stroke="rgba(125,164,42,0.35)"
-                            strokeWidth="0.12"
+                            stroke="rgba(15,58,35,0.45)"
+                            strokeWidth="0.16"
                           />
+                          {/* Flowing signal — mint */}
                           <line
                             x1={px} y1={py} x2={ex} y2={ey}
-                            stroke="rgba(158,199,58,0.85)"
+                            stroke="rgba(158,199,58,0.95)"
                             strokeWidth="0.22"
                             strokeLinecap="round"
                             className="animate-svg-flow"
@@ -786,34 +788,35 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                       {/* Counter-rotate so text reads upright while travelling */}
                       <div className="animate-orbit-ring-counter
                                       group-hover/map:[animation-play-state:paused]">
-                        {/* Anchor dot */}
-                        <span className="block w-1.5 h-1.5 rounded-full bg-brand-accentDark
+                        {/* Anchor dot — dark green default, mint on hover */}
+                        <span className="block w-2 h-2 rounded-full bg-brand-deep
+                                         ring-2 ring-brand-accent/60
                                          transition-all duration-300
                                          group-hover:scale-150 group-hover:bg-brand-accent
+                                         group-hover:ring-brand-deep
                                          group-hover:shadow-[0_0_10px_rgba(158,199,58,0.7)]" />
-                        {/* Chip pill */}
+                        {/* Chip pill — dark green border + text, mint accent dot */}
                         <div
                           className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap
                                       ${p.align === 'right' ? 'left-3' : 'right-3'}`}
                         >
                           <div
-                            className={`inline-flex items-center gap-1 px-1.5 py-[1px] rounded
-                                        bg-white/95 backdrop-blur-sm border border-brand-accentDark/30
-                                        shadow-[0_1px_2px_rgba(125,164,42,0.08)]
+                            className={`inline-flex items-center gap-1 px-2 py-[2px] rounded
+                                        bg-white/95 backdrop-blur-sm border border-brand-deep/30
+                                        shadow-[0_1px_2px_rgba(15,58,35,0.08)]
                                         transition-all duration-300
-                                        group-hover:border-brand-accentDark group-hover:bg-brand-accent/10
+                                        group-hover:border-brand-deep group-hover:bg-brand-accent/15
                                         group-hover:shadow-[0_8px_24px_-8px_rgba(158,199,58,0.55)]
                                         group-hover:-translate-y-0.5`}
                           >
-                            <span className="block w-[3px] h-[3px] rounded-full bg-brand-accentDark" />
+                            <span className="block w-[4px] h-[4px] rounded-full bg-brand-accent" />
                             <span className="text-[10px] font-bold text-brand-deep leading-tight
-                                             transition-colors duration-300
-                                             group-hover:text-brand-accentDark">
+                                             transition-colors duration-300">
                               {p.name}
                             </span>
                           </div>
                           {/* Category — visible on chip hover only */}
-                          <div className={`text-[9px] uppercase tracking-[0.18em] text-brand-accentDark/70 mt-0.5
+                          <div className={`text-[9px] uppercase tracking-[0.18em] text-brand-deep/65 mt-0.5
                                            opacity-0 -translate-y-1
                                            transition-all duration-300
                                            group-hover:opacity-100 group-hover:translate-y-0
