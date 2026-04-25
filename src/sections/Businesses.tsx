@@ -3,6 +3,7 @@ import { ArrowRight, Sparkles } from 'lucide-react'
 import Section from '../components/Section'
 import { businesses } from '../data/businesses'
 import { useReveal } from '../hooks/useReveal'
+import { assets } from '../data/assets'
 
 function Reveal({
   children,
@@ -41,6 +42,130 @@ const BUSINESS_DISPLAY: Record<
   'manpower':          { title: 'Global Mobility',  tag: 'Workforce, students, aviation.',      sample: ['Recruitment', 'Student Visa', 'Aviation'] },
 }
 
+/* Service Constellation — geo-map style visualisation: central Yanabiya
+ * hub (with logo) + 6 service nodes radiating out at fixed angles, each
+ * connected back to the hub with a thin mint flowing-dash line. */
+function ServiceConstellation() {
+  // 6 services around centre — angle 0 = 12 o'clock, going clockwise
+  const nodeRadius = 38   // % of canvas
+  const cx = 50
+  const cy = 50
+
+  const positions = businesses.map((_, i) => {
+    const angle = (i / businesses.length) * Math.PI * 2 - Math.PI / 2
+    return {
+      x: cx + Math.cos(angle) * nodeRadius,
+      y: cy + Math.sin(angle) * nodeRadius,
+      angle,
+    }
+  })
+
+  return (
+    <div className="relative mx-auto w-full max-w-[640px] aspect-square">
+      {/* Faint orbit rings */}
+      <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
+        {[0.92, 0.68, 0.42].map((s, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full border border-brand-accent/20"
+            style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
+          />
+        ))}
+      </div>
+
+      {/* Connection lines: every service → centre */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 100 100"
+        className="absolute inset-0 w-full h-full overflow-visible"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        {positions.map((pos, i) => (
+          <g key={i}>
+            <line
+              x1={cx} y1={cy} x2={pos.x} y2={pos.y}
+              stroke="rgba(15,58,35,0.20)"
+              strokeWidth="0.25"
+            />
+            <line
+              x1={cx} y1={cy} x2={pos.x} y2={pos.y}
+              stroke="rgba(158,199,58,0.95)"
+              strokeWidth="0.35"
+              strokeLinecap="round"
+              className="animate-svg-flow"
+              style={{ animationDelay: `${i * 0.4}s`, animationDuration: '5s' }}
+            />
+          </g>
+        ))}
+      </svg>
+
+      {/* Centre — Yanabiya hub */}
+      <div className="absolute z-10" style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+        <div className="relative">
+          <span className="absolute inset-0 rounded-full bg-brand-accent/35 blur-md animate-pulse" />
+          <div className="relative w-24 h-24 rounded-full bg-white grid place-items-center
+                          ring-2 ring-brand-accent shadow-[0_0_24px_rgba(158,199,58,0.45)]">
+            <img
+              src={assets.logo}
+              alt="Yanabiya Group"
+              className="h-12 w-auto object-contain"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Service nodes */}
+      {businesses.map((b, i) => {
+        const pos = positions[i]
+        const display = BUSINESS_DISPLAY[b.slug] ?? { title: b.title, tag: '', sample: [] }
+        const onLeft = pos.x < 50
+        const Icon = b.icon
+        return (
+          <Link
+            key={b.slug}
+            to={`/business/${b.slug}`}
+            className="group absolute z-20"
+            style={{ left: `${pos.x}%`, top: `${pos.y}%`, transform: 'translate(-50%, -50%)' }}
+            aria-label={display.title}
+          >
+            {/* Pulsing halo + node */}
+            <span className="relative inline-flex">
+              <span
+                className="absolute inset-0 rounded-full bg-brand-accent/35"
+                style={{ animation: `haloPulse 3s ease-in-out ${i * 0.35}s infinite` }}
+              />
+              <span className="relative inline-grid place-items-center w-12 h-12 rounded-full
+                               bg-white text-brand-deep
+                               ring-2 ring-brand-accent
+                               shadow-[0_4px_14px_rgba(15,58,35,0.18)]
+                               transition-all duration-300
+                               group-hover:scale-110 group-hover:bg-brand-accent group-hover:text-white
+                               group-hover:shadow-[0_0_20px_rgba(158,199,58,0.7)]">
+                <Icon size={20} strokeWidth={1.6} />
+              </span>
+            </span>
+            {/* Label */}
+            <div
+              className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap
+                          ${onLeft ? 'right-[58px]' : 'left-[58px]'}`}
+            >
+              <div className="inline-block px-2.5 py-1 rounded-full
+                              bg-white/95 backdrop-blur border border-brand-deep/15
+                              shadow-sm
+                              transition-all duration-300
+                              group-hover:border-brand-deep group-hover:shadow-md">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-deep">
+                  {display.title}
+                </span>
+              </div>
+            </div>
+          </Link>
+        )
+      })}
+    </div>
+  )
+}
+
 export default function Businesses() {
   return (
     <Section id="businesses" className="relative overflow-hidden bg-white">
@@ -53,7 +178,7 @@ export default function Businesses() {
       <div className="container-x py-14 md:py-20 relative">
 
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-10">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
               <Sparkles size={12} className="text-brand-accent" />
@@ -67,6 +192,17 @@ export default function Businesses() {
               <span className="block text-brand-accentDark">One group.</span>
             </h2>
           </Reveal>
+        </div>
+
+        {/* SERVICE CONSTELLATION — geo-map style: hub + 6 service nodes around */}
+        <Reveal delay={200}>
+          <ServiceConstellation />
+        </Reveal>
+
+        <div className="text-center mt-2 mb-10">
+          <span className="text-[10px] uppercase tracking-[0.32em] text-slate-400 font-bold">
+            Tap a node — or browse the cards below
+          </span>
         </div>
 
         {/* 6-card premium grid */}
