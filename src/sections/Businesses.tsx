@@ -42,119 +42,117 @@ const BUSINESS_DISPLAY: Record<
   'manpower':          { title: 'Global Mobility',  tag: 'Workforce, students, aviation.',      sample: ['Recruitment', 'Student Visa', 'Aviation'] },
 }
 
-/* Service Constellation — geo-map style visualisation: central Yanabiya
- * hub (with logo) + 6 service nodes radiating out at fixed angles, each
- * connected back to the hub with a thin mint flowing-dash line. */
-function ServiceConstellation() {
-  // 6 services around centre — angle 0 = 12 o'clock, going clockwise
-  const nodeRadius = 38   // % of canvas
-  const cx = 50
-  const cy = 50
+/* Honeycomb-shape clip-path — pointy-top hex */
+const HEX_CLIP =
+  'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
 
-  const positions = businesses.map((_, i) => {
-    const angle = (i / businesses.length) * Math.PI * 2 - Math.PI / 2
-    return {
-      x: cx + Math.cos(angle) * nodeRadius,
-      y: cy + Math.sin(angle) * nodeRadius,
-      angle,
-    }
-  })
+/* Service Honeycomb — 6 services arranged in a flower pattern around a
+ * central Yanabiya hub. Each cell is a hexagonal tile (clip-path), and
+ * the layout uses absolute positioning to lock the honeycomb shape. */
+function ServiceHoneycomb() {
+  // Tile width in px; height = w * 1.155 for pointy-top hex.
+  // Positions are relative offsets from the centre hex (cx, cy) inside
+  // a 480x480 container. The 6 surrounding hexes sit at 60° intervals.
+  const cx = 240
+  const cy = 240
+  const w = 132              // hex tile width (px)
+  const h = w * 1.155        // pointy-top hex height
+  const dx = w * 0.75        // horizontal offset to a neighbour
+  const dy = h * 0.5         // vertical offset to a neighbour
+
+  const slots = [
+    { dx: 0,    dy: -h          }, // top
+    { dx:  dx,  dy: -dy         }, // top-right
+    { dx:  dx,  dy:  dy         }, // bottom-right
+    { dx: 0,    dy:  h          }, // bottom
+    { dx: -dx,  dy:  dy         }, // bottom-left
+    { dx: -dx,  dy: -dy         }, // top-left
+  ]
 
   return (
-    <div className="relative mx-auto w-full max-w-[640px] aspect-square">
-      {/* Faint orbit rings */}
-      <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
-        {[0.92, 0.68, 0.42].map((s, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full border border-brand-accent/20"
-            style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
-          />
-        ))}
+    <div className="relative mx-auto w-full max-w-[480px] aspect-square">
+      {/* Soft mint glow behind the hub */}
+      <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
+        <div className="w-[60%] h-[60%] rounded-full bg-brand-accent/15 blur-[80px]" />
       </div>
 
-      {/* Connection lines: every service → centre */}
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 100 100"
-        className="absolute inset-0 w-full h-full overflow-visible"
-        preserveAspectRatio="xMidYMid meet"
+      {/* CENTRE — Yanabiya hex hub */}
+      <div
+        className="absolute"
+        style={{
+          left: cx,
+          top: cy,
+          width: w,
+          height: h,
+          transform: 'translate(-50%, -50%)',
+        }}
       >
-        {positions.map((pos, i) => (
-          <g key={i}>
-            <line
-              x1={cx} y1={cy} x2={pos.x} y2={pos.y}
-              stroke="rgba(15,58,35,0.20)"
-              strokeWidth="0.25"
-            />
-            <line
-              x1={cx} y1={cy} x2={pos.x} y2={pos.y}
-              stroke="rgba(158,199,58,0.95)"
-              strokeWidth="0.35"
-              strokeLinecap="round"
-              className="animate-svg-flow"
-              style={{ animationDelay: `${i * 0.4}s`, animationDuration: '5s' }}
-            />
-          </g>
-        ))}
-      </svg>
-
-      {/* Centre — Yanabiya hub */}
-      <div className="absolute z-10" style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-        <div className="relative">
-          <span className="absolute inset-0 rounded-full bg-brand-accent/35 blur-md animate-pulse" />
-          <div className="relative w-24 h-24 rounded-full bg-white grid place-items-center
-                          ring-2 ring-brand-accent shadow-[0_0_24px_rgba(158,199,58,0.45)]">
+        <div
+          className="relative w-full h-full bg-brand-deep grid place-items-center"
+          style={{ clipPath: HEX_CLIP }}
+        >
+          <div className="flex flex-col items-center gap-1.5">
             <img
               src={assets.logo}
               alt="Yanabiya Group"
-              className="h-12 w-auto object-contain"
+              className="h-10 w-auto object-contain bg-white rounded p-1"
             />
+            <div className="text-[8px] font-bold tracking-[0.3em] uppercase text-brand-accent">
+              Yanabiya
+            </div>
           </div>
         </div>
+        {/* Mint outline overlay (sits just above the dark hex via a slightly bigger hex behind) */}
+        <div
+          aria-hidden="true"
+          className="absolute -inset-[3px] -z-10 bg-brand-accent"
+          style={{ clipPath: HEX_CLIP }}
+        />
       </div>
 
-      {/* Service nodes */}
+      {/* 6 SERVICE HEXES around the centre */}
       {businesses.map((b, i) => {
-        const pos = positions[i]
+        const slot = slots[i]
         const display = BUSINESS_DISPLAY[b.slug] ?? { title: b.title, tag: '', sample: [] }
-        const onLeft = pos.x < 50
         const Icon = b.icon
         return (
           <Link
             key={b.slug}
             to={`/business/${b.slug}`}
-            className="group absolute z-20"
-            style={{ left: `${pos.x}%`, top: `${pos.y}%`, transform: 'translate(-50%, -50%)' }}
+            className="group absolute"
+            style={{
+              left: cx + slot.dx,
+              top: cy + slot.dy,
+              width: w,
+              height: h,
+              transform: 'translate(-50%, -50%)',
+            }}
             aria-label={display.title}
           >
-            {/* Pulsing halo + node */}
-            <span className="relative inline-flex">
-              <span
-                className="absolute inset-0 rounded-full bg-brand-accent/35"
-                style={{ animation: `haloPulse 3s ease-in-out ${i * 0.35}s infinite` }}
-              />
-              <span className="relative inline-grid place-items-center w-12 h-12 rounded-full
-                               bg-white text-brand-deep
-                               ring-2 ring-brand-accent
-                               shadow-[0_4px_14px_rgba(15,58,35,0.18)]
-                               transition-all duration-300
-                               group-hover:scale-110 group-hover:bg-brand-accent group-hover:text-white
-                               group-hover:shadow-[0_0_20px_rgba(158,199,58,0.7)]">
-                <Icon size={20} strokeWidth={1.6} />
-              </span>
-            </span>
-            {/* Label */}
+            {/* Outer mint outline sits behind the white hex face */}
             <div
-              className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap
-                          ${onLeft ? 'right-[58px]' : 'left-[58px]'}`}
+              aria-hidden="true"
+              className="absolute -inset-[2px] bg-brand-deep/15
+                         transition-all duration-300
+                         group-hover:bg-brand-accent group-hover:-inset-[3px]"
+              style={{ clipPath: HEX_CLIP }}
+            />
+            {/* White hex face with content */}
+            <div
+              className="relative w-full h-full bg-white grid place-items-center
+                         transition-all duration-300
+                         group-hover:bg-brand-accent/8"
+              style={{ clipPath: HEX_CLIP }}
             >
-              <div className="inline-block px-2.5 py-1 rounded-full
-                              bg-white/95 backdrop-blur border border-brand-deep/15
-                              shadow-sm
-                              transition-all duration-300
-                              group-hover:border-brand-deep group-hover:shadow-md">
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-deep">
+              <div className="flex flex-col items-center gap-1.5 px-2 text-center">
+                <span className="grid place-items-center w-9 h-9 rounded-full
+                                 bg-brand-accent/15 text-brand-deep
+                                 transition-all duration-300
+                                 group-hover:bg-brand-deep group-hover:text-white
+                                 group-hover:scale-110">
+                  <Icon size={16} strokeWidth={1.6} />
+                </span>
+                <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-brand-deep leading-tight">
                   {display.title}
                 </span>
               </div>
@@ -194,14 +192,14 @@ export default function Businesses() {
           </Reveal>
         </div>
 
-        {/* SERVICE CONSTELLATION — geo-map style: hub + 6 service nodes around */}
+        {/* SERVICE HONEYCOMB — Yanabiya hub + 6 hexagonal service tiles */}
         <Reveal delay={200}>
-          <ServiceConstellation />
+          <ServiceHoneycomb />
         </Reveal>
 
-        <div className="text-center mt-2 mb-10">
+        <div className="text-center mt-4 mb-10">
           <span className="text-[10px] uppercase tracking-[0.32em] text-slate-400 font-bold">
-            Tap a node — or browse the cards below
+            Tap a hex — or browse the cards below
           </span>
         </div>
 
