@@ -470,40 +470,56 @@ function CapabilityCluster({ c }: { c: Capability }) {
 
 /* ───────────────────────── Country tabs ───────────────────────── */
 
-/* Anchor-jump chips. Clicking smooth-scrolls to the matching country section
- * on the same page. The active chip is highlighted via scroll-spy. */
-function CountryAnchorNav({ active }: { active: CountryCode }) {
+/* Vertical left rail navigation — Deloitte / Bloomberg style.
+ * Fixed to the left edge of the viewport on lg+ screens; smooth-scrolls to
+ * the matching country section on click and self-highlights via scroll-spy. */
+function CountrySideNav({ active }: { active: CountryCode }) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, code: CountryCode) => {
     e.preventDefault()
     const el = document.getElementById(code.toLowerCase())
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-      {TAB_ORDER.map((code) => {
-        const p = PROFILES[code]
-        const isActive = code === active
-        return (
-          <a
-            key={code}
-            href={`#${code.toLowerCase()}`}
-            onClick={(e) => handleClick(e, code)}
-            aria-current={isActive ? 'true' : undefined}
-            className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2
-                        text-xs font-semibold uppercase tracking-[0.22em]
-                        transition-all duration-300
-                        ${
-                          isActive
-                            ? 'bg-blue-700 text-white border-blue-700 shadow-md'
-                            : 'bg-white text-slate-700 border-slate-300 hover:border-blue-700 hover:text-blue-700'
-                        }`}
-          >
-            <span className="text-base leading-none">{p.flag}</span>
-            <span>{p.shortName}</span>
-          </a>
-        )
-      })}
-    </div>
+    <aside className="hidden lg:block fixed left-3 top-[110px] z-30">
+      <div className="text-[9px] font-semibold uppercase tracking-[0.28em] text-slate-400 mb-3 pl-3">
+        Branches
+      </div>
+      <nav className="flex flex-col gap-1 bg-white/85 backdrop-blur-md
+                      border border-slate-200 rounded-xl shadow-md p-2 w-[160px]">
+        {TAB_ORDER.map((code) => {
+          const p = PROFILES[code]
+          const isActive = code === active
+          return (
+            <a
+              key={code}
+              href={`#${code.toLowerCase()}`}
+              onClick={(e) => handleClick(e, code)}
+              aria-current={isActive ? 'true' : undefined}
+              className={`group relative flex items-center gap-2.5 px-3 py-2.5 rounded-lg
+                          transition-all duration-200
+                          ${
+                            isActive
+                              ? 'bg-blue-50 text-blue-700'
+                              : 'text-slate-700 hover:bg-slate-50 hover:text-blue-700'
+                          }`}
+            >
+              {/* Active left bar */}
+              <span
+                className={`absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 rounded-r-full
+                            transition-all duration-300
+                            ${isActive ? 'bg-blue-700' : 'bg-transparent'}`}
+              />
+              <span className="text-base leading-none">{p.flag}</span>
+              <span className="text-xs font-semibold tracking-wide">{p.shortName}</span>
+              <span
+                className={`ml-auto block w-1.5 h-1.5 rounded-full transition-all duration-300
+                            ${isActive ? 'bg-blue-700 shadow-[0_0_8px_rgba(30,64,175,0.55)]' : 'bg-transparent'}`}
+              />
+            </a>
+          )
+        })}
+      </nav>
+    </aside>
   )
 }
 
@@ -660,26 +676,45 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                 </div>
               </div>
 
-              {/* Partner labels */}
+              {/* Partner labels — smart pill chips with hover lift */}
               {data.partners.map((p) => (
                 <div
                   key={p.name}
                   className="group absolute z-10 hover:z-30"
                   style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)' }}
                 >
-                  <span className="block w-1.5 h-1.5 rounded-full bg-slate-900
+                  {/* Anchor dot — small, sits at the geographic point */}
+                  <span className="block w-1.5 h-1.5 rounded-full bg-blue-700/60
                                    transition-all duration-300
-                                   group-hover:scale-150 group-hover:bg-blue-700" />
+                                   group-hover:scale-150 group-hover:bg-blue-700
+                                   group-hover:shadow-[0_0_10px_rgba(30,64,175,0.6)]" />
+                  {/* Chip card — anchored left or right of dot */}
                   <div
                     className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap
-                                ${p.align === 'right' ? 'left-3' : 'right-3 text-right'}`}
+                                ${p.align === 'right' ? 'left-3' : 'right-3'}`}
                   >
-                    <div className="text-[11px] font-semibold text-slate-900 leading-tight
-                                    transition-all duration-300
-                                    group-hover:text-blue-700 group-hover:underline underline-offset-2">
-                      {p.name}
+                    <div
+                      className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md
+                                  bg-white/95 backdrop-blur-sm border border-slate-200/90
+                                  shadow-[0_1px_2px_rgba(15,23,42,0.06)]
+                                  transition-all duration-300
+                                  group-hover:border-blue-700 group-hover:bg-blue-50
+                                  group-hover:shadow-[0_8px_24px_-8px_rgba(30,64,175,0.45)]
+                                  group-hover:-translate-y-0.5`}
+                    >
+                      <span className="block w-1 h-1 rounded-full bg-blue-700/80" />
+                      <span className="text-[10.5px] font-semibold text-slate-900 leading-tight
+                                       transition-colors duration-300
+                                       group-hover:text-blue-700">
+                        {p.name}
+                      </span>
                     </div>
-                    <div className="text-[9px] uppercase tracking-[0.18em] text-slate-400 mt-0.5">
+                    {/* Category — only visible on hover for a cleaner default */}
+                    <div className={`text-[8.5px] uppercase tracking-[0.18em] text-slate-500 mt-1
+                                     opacity-0 -translate-y-1
+                                     transition-all duration-300
+                                     group-hover:opacity-100 group-hover:translate-y-0
+                                     ${p.align === 'right' ? 'pl-2' : 'pr-2 text-right'}`}>
                       {p.category}
                     </div>
                   </div>
@@ -949,19 +984,15 @@ export default function OmanPresence() {
         </div>
       </section>
 
-      {/* STICKY ANCHOR NAV — sits below the main navbar */}
-      <div className="sticky top-[78px] z-30 bg-white/85 backdrop-blur border-y border-slate-200">
-        <div className="container-x py-3">
-          <CountryAnchorNav active={active} />
-        </div>
-      </div>
+      {/* LEFT VERTICAL RAIL NAV — Deloitte/Bloomberg style, lg+ only */}
+      <CountrySideNav active={active} />
 
       {/* ALL COUNTRIES STACKED — every branch on the same page */}
       {TAB_ORDER.map((c, i) => (
         <section
           key={c}
           id={c.toLowerCase()}
-          className="scroll-mt-[140px] border-t-2 border-slate-200"
+          className="scroll-mt-[100px] border-t-2 border-slate-200"
         >
           <CountryView data={PROFILES[c]} index={i} />
         </section>
