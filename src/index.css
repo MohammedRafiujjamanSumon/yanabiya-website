@@ -200,16 +200,18 @@
   animation: svgFlow 2.4s linear infinite;
 }
 
-/* Subtle organic drift for partner chips on the geo map — makes them feel
- * alive without losing their position on the canvas. */
+/* Circular orbit for partner chips — each chip traces a small circle
+ * around its anchor dot, giving the visual of partners "moving around
+ * the HQ" while the dot itself stays put on the map. Staggered delays
+ * per chip mean the constellation never beats in unison. */
 @keyframes chipDrift {
-  0%, 100% { transform: translate(0, 0); }
-  25%      { transform: translate(1.5px, -3px); }
-  50%      { transform: translate(0, -5px); }
-  75%      { transform: translate(-1.5px, -2px); }
+  0%, 100% { transform: translate(0, -7px); }
+  25%      { transform: translate(7px, 0); }
+  50%      { transform: translate(0, 7px); }
+  75%      { transform: translate(-7px, 0); }
 }
 .animate-chip-drift {
-  animation: chipDrift 6s ease-in-out infinite;
+  animation: chipDrift 9s linear infinite;
   will-change: transform;
 }
 
