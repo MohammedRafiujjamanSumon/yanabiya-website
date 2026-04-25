@@ -66,7 +66,13 @@ const WORKFLOW_NODES: WorkflowNode[] = [
 const HUB_X = 86
 const HUB_Y = 50
 
-function ServiceWorkflow({ onSelect }: { onSelect: (slug: string) => void }) {
+function ServiceWorkflow({
+  onSelect,
+  onSelectHub,
+}: {
+  onSelect: (slug: string) => void
+  onSelectHub: () => void
+}) {
   return (
     <div className="relative mx-auto w-full max-w-5xl">
       {/* Editor-like card */}
@@ -139,27 +145,43 @@ function ServiceWorkflow({ onSelect }: { onSelect: (slug: string) => void }) {
             })}
           </svg>
 
-          {/* HUB — Yanabiya */}
-          <div
-            className="absolute z-10"
+          {/* HUB — Yanabiya (clickable, full logo cover) */}
+          <button
+            type="button"
+            onClick={onSelectHub}
+            aria-label="Open all services overview"
+            className="group/hub absolute z-10"
             style={{ left: `${HUB_X}%`, top: `${HUB_Y}%`, transform: 'translate(-50%, -50%)' }}
           >
             <div className="relative">
-              <span className="absolute inset-0 rounded-2xl bg-brand-accent/30 blur-md animate-pulse" />
-              <div className="relative w-[120px] rounded-2xl bg-brand-deep text-white
-                              ring-2 ring-brand-accent shadow-[0_10px_30px_-8px_rgba(15,58,35,0.5)]
-                              p-3 flex flex-col items-center gap-1.5">
+              <span className="absolute inset-0 rounded-2xl bg-brand-accent/35 blur-md animate-pulse" />
+              <span aria-hidden="true"
+                    className="absolute -inset-1 rounded-2xl bg-brand-accent
+                               opacity-0 group-hover/hub:opacity-100 blur-sm transition-opacity duration-300" />
+              <div className="relative w-[140px] h-[140px] rounded-2xl bg-white
+                              ring-2 ring-brand-accent shadow-[0_12px_30px_-8px_rgba(15,58,35,0.5)]
+                              grid place-items-center overflow-hidden
+                              transition-transform duration-300
+                              group-hover/hub:scale-105">
                 <img
                   src={assets.logo}
-                  alt="Yanabiya"
-                  className="h-9 w-auto object-contain bg-white rounded-md p-1"
+                  alt="Yanabiya Group"
+                  className="w-full h-full object-contain p-3"
                 />
-                <div className="text-[9px] font-bold tracking-[0.3em] uppercase text-brand-accent">
-                  Group HQ
-                </div>
+              </div>
+              {/* HQ caption pill below */}
+              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 whitespace-nowrap">
+                <span className="inline-flex items-center gap-1.5 rounded-full
+                                 bg-brand-deep text-brand-accent
+                                 px-2.5 py-0.5
+                                 text-[9px] font-bold tracking-[0.3em] uppercase
+                                 shadow-md">
+                  <span className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
+                  Group HQ · Tap
+                </span>
               </div>
             </div>
-          </div>
+          </button>
 
           {/* Service nodes */}
           {WORKFLOW_NODES.map((n, i) => {
@@ -221,12 +243,13 @@ function ServiceWorkflow({ onSelect }: { onSelect: (slug: string) => void }) {
   )
 }
 
-/* Slide-in detail panel for a clicked workflow node */
+/* Slide-in detail panel — supports a single-division view OR a special
+ * 'overview' mode that lists every division (when the HQ is clicked). */
 function NodeDetailPanel({
   slug,
   onClose,
 }: {
-  slug: string | null
+  slug: string | 'overview' | null
   onClose: () => void
 }) {
   useEffect(() => {
@@ -244,6 +267,101 @@ function NodeDetailPanel({
   }, [slug, onClose])
 
   if (!slug) return null
+
+  // OVERVIEW mode — HQ click. Show every division in one panel.
+  if (slug === 'overview') {
+    return (
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="All Yanabiya Group divisions"
+        className="fixed inset-0 z-[100]"
+        onClick={onClose}
+      >
+        <div className="absolute inset-0 bg-slate-900/55 backdrop-blur-sm animate-[fadeUp_0.3s_ease-out_both]" />
+        <aside
+          onClick={(e) => e.stopPropagation()}
+          className="absolute top-0 right-0 h-full w-full sm:w-[480px] md:w-[560px]
+                     bg-white shadow-[0_0_60px_rgba(0,0,0,0.35)]
+                     border-l border-brand-accent/30
+                     overflow-y-auto"
+          style={{ animation: 'slideInRight 0.4s cubic-bezier(0.22,1,0.36,1) both' }}
+        >
+          <div aria-hidden="true" className="absolute -top-32 -left-20 w-[420px] h-[420px] rounded-full bg-brand-accent/15 blur-[120px] pointer-events-none" />
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full
+                       bg-slate-100 hover:bg-slate-200 border border-slate-200
+                       grid place-items-center text-slate-700 hover:text-brand-deep transition-colors"
+          >
+            <CloseIcon size={16} />
+          </button>
+
+          <div className="relative p-7 md:p-9">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-12 h-12 rounded-xl bg-brand-deep grid place-items-center
+                              ring-2 ring-brand-accent overflow-hidden">
+                <img src={assets.logo} alt="" className="w-9 h-9 object-contain bg-white rounded p-0.5" />
+              </div>
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark">
+                  Group HQ
+                </div>
+                <h3 className="font-serif text-2xl text-brand-deep leading-tight mt-0.5">
+                  All Divisions
+                </h3>
+              </div>
+            </div>
+            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+              Yanabiya Group operates six diversified business divisions, each
+              independent yet aligned under one strategic group vision.
+            </p>
+
+            <div className="mt-7 space-y-2.5">
+              {businesses.map((b, i) => {
+                const display = BUSINESS_DISPLAY[b.slug] ?? { title: b.title, tag: '', sample: [] }
+                const Icon = b.icon
+                const num = String(i + 1).padStart(2, '0')
+                return (
+                  <Link
+                    key={b.slug}
+                    to={`/business/${b.slug}`}
+                    onClick={onClose}
+                    className="group flex items-center gap-3 rounded-xl bg-slate-50 border border-slate-200
+                               px-3 py-2.5 transition-all duration-300
+                               hover:bg-brand-accent/8 hover:border-brand-deep/40 hover:translate-x-1"
+                  >
+                    <span className="shrink-0 grid place-items-center w-9 h-9 rounded-lg
+                                     bg-brand-accent/15 text-brand-deep
+                                     transition-colors duration-300
+                                     group-hover:bg-brand-deep group-hover:text-white">
+                      <Icon size={16} strokeWidth={1.7} />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-[12px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
+                        {display.title}
+                      </div>
+                      <div className="text-[11px] text-slate-600 mt-0.5 truncate">
+                        {display.tag}
+                      </div>
+                    </div>
+                    <span className="shrink-0 font-mono text-[10px] text-slate-400">
+                      {num}
+                    </span>
+                    <ExternalLink size={12} className="shrink-0 text-slate-400 group-hover:text-brand-deep transition-colors" />
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        </aside>
+      </div>
+    )
+  }
+
+  // SINGLE DIVISION mode — node click
   const b = businesses.find((bb) => bb.slug === slug)
   if (!b) return null
   const display = BUSINESS_DISPLAY[slug] ?? { title: b.title, tag: '', sample: [] }
@@ -351,7 +469,7 @@ function NodeDetailPanel({
 }
 
 export default function Businesses() {
-  const [selected, setSelected] = useState<string | null>(null)
+  const [selected, setSelected] = useState<string | 'overview' | null>(null)
   return (
     <Section id="businesses" className="relative overflow-hidden bg-white">
       {/* Soft ambient mint glow on the white surface */}
@@ -362,11 +480,19 @@ export default function Businesses() {
 
       <div className="container-x py-14 md:py-20 relative">
 
-        {/* HEADER + WORKFLOW — 2-col mirror (header LEFT, workflow RIGHT) */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center mb-12">
+        {/* HEADER + WORKFLOW — 2-col (workflow LEFT 8/12, header RIGHT 4/12) */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-12">
 
-          {/* LEFT — header text (lg:col-span-5) */}
-          <div className="lg:col-span-5">
+          {/* LEFT — workflow canvas (bigger, lg:col-span-8) */}
+          <Reveal delay={200} className="lg:col-span-8">
+            <ServiceWorkflow
+              onSelect={(s) => setSelected(s)}
+              onSelectHub={() => setSelected('overview')}
+            />
+          </Reveal>
+
+          {/* RIGHT — header text (lg:col-span-4) */}
+          <div className="lg:col-span-4">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
                 <Sparkles size={12} className="text-brand-accent" />
@@ -375,15 +501,15 @@ export default function Businesses() {
               </div>
             </Reveal>
             <Reveal delay={120}>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight text-brand-deep">
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-[42px] leading-[1.05] tracking-tight text-brand-deep">
                 Six divisions.
                 <span className="block text-brand-accentDark">One group.</span>
               </h2>
             </Reveal>
             <Reveal delay={260}>
               <p className="mt-5 text-base text-slate-600 leading-relaxed max-w-md">
-                Tap any node on the live workflow to open its profile — or scroll
-                to the cards below for the full breakdown.
+                Tap any node to open its profile — or click the central HQ to see
+                every division in one place.
               </p>
             </Reveal>
             <Reveal delay={400}>
@@ -393,11 +519,6 @@ export default function Businesses() {
               </div>
             </Reveal>
           </div>
-
-          {/* RIGHT — workflow canvas (lg:col-span-7) */}
-          <Reveal delay={200} className="lg:col-span-7">
-            <ServiceWorkflow onSelect={(s) => setSelected(s)} />
-          </Reveal>
         </div>
 
       </div>
