@@ -500,8 +500,10 @@ function CountryAnchorNav({ active }: { active: CountryCode }) {
 
 /* ───────────────────────── Single-country view ───────────────────────── */
 
-function CountryView({ data }: { data: CountryProfile }) {
+function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number }) {
   const showPartnerNetwork = data.partners.length > 0
+  /* Alternate the map row: even index → text-left/map-right; odd → flipped. */
+  const flipMap = index % 2 === 1
   return (
     <>
       {/* HERO */}
@@ -529,30 +531,33 @@ function CountryView({ data }: { data: CountryProfile }) {
         </div>
       </section>
 
-      {/* MAP */}
+      {/* MAP — 2-col grid, text and map swap sides on alternate countries */}
       <section className="relative border-t border-slate-100">
         <SectionWatermark />
         <div className="relative container-x py-12 md:py-16">
-          <Reveal>
-            <div className="max-w-3xl">
-              <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
-                {showPartnerNetwork ? 'Partner Network' : 'Operations Hub'}
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* TEXT BLOCK */}
+            <Reveal className={`lg:col-span-4 ${flipMap ? 'lg:order-2' : 'lg:order-1'}`}>
+              <div>
+                <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
+                  {showPartnerNetwork ? 'Partner Network' : 'Operations Hub'}
+                </div>
+                <h3 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
+                  {showPartnerNetwork
+                    ? `A unified group operating across ${data.hq.city}.`
+                    : `${data.hq.city} operations hub.`}
+                </h3>
+                <p className="mt-4 text-slate-600 leading-relaxed">
+                  {showPartnerNetwork
+                    ? 'Strategic business entities operating under one integrated ecosystem — every venture connected back to the headquarters.'
+                    : 'A single coordinated office anchoring the group’s presence in this market.'}
+                </p>
               </div>
-              <h3 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
-                {showPartnerNetwork
-                  ? `A unified group operating across ${data.hq.city}.`
-                  : `${data.hq.city} operations hub.`}
-              </h3>
-              <p className="mt-4 text-slate-600 leading-relaxed">
-                {showPartnerNetwork
-                  ? 'Strategic business entities operating under one integrated ecosystem — every venture connected back to the headquarters.'
-                  : 'A single coordinated office anchoring the group’s presence in this market.'}
-              </p>
-            </div>
-          </Reveal>
+            </Reveal>
 
-          <Reveal delay={200}>
-            <div className="mt-10 relative w-full aspect-[16/8] bg-[#fafafa] border border-slate-100 rounded-sm">
+            {/* MAP BLOCK */}
+            <Reveal delay={200} className={`lg:col-span-8 ${flipMap ? 'lg:order-1' : 'lg:order-2'}`}>
+              <div className="relative w-full aspect-[16/8] bg-[#fafafa] border border-slate-100 rounded-sm">
               {/* Background outline + grid (stylised, not geographically literal) */}
               <svg
                 aria-hidden="true"
@@ -681,6 +686,7 @@ function CountryView({ data }: { data: CountryProfile }) {
               </div>
             </div>
           </Reveal>
+          </div>
         </div>
       </section>
 
@@ -886,13 +892,13 @@ export default function OmanPresence() {
       </div>
 
       {/* ALL COUNTRIES STACKED — every branch on the same page */}
-      {TAB_ORDER.map((c) => (
+      {TAB_ORDER.map((c, i) => (
         <section
           key={c}
           id={c.toLowerCase()}
           className="scroll-mt-[140px] border-t-2 border-slate-200"
         >
-          <CountryView data={PROFILES[c]} />
+          <CountryView data={PROFILES[c]} index={i} />
         </section>
       ))}
     </main>
