@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight, Sparkles, X as CloseIcon, ExternalLink } from 'lucide-react'
 import Section from '../components/Section'
 import { businesses } from '../data/businesses'
 import { useReveal } from '../hooks/useReveal'
@@ -42,129 +43,315 @@ const BUSINESS_DISPLAY: Record<
   'manpower':          { title: 'Global Mobility',  tag: 'Workforce, students, aviation.',      sample: ['Recruitment', 'Student Visa', 'Aviation'] },
 }
 
-/* Honeycomb-shape clip-path — pointy-top hex */
-const HEX_CLIP =
-  'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
+/* Service Workflow — n8n.io-inspired canvas card with a Yanabiya hub on
+ * the left and 6 service nodes laid out to the right, each connected to
+ * the hub by a curved bezier line with a flowing mint signal. Clicking
+ * any node opens a slide-in detail panel on the right edge. */
 
-/* Service Honeycomb — 6 services arranged in a flower pattern around a
- * central Yanabiya hub. Each cell is a hexagonal tile (clip-path), and
- * the layout uses absolute positioning to lock the honeycomb shape. */
-function ServiceHoneycomb() {
-  // Tile width in px; height = w * 1.155 for pointy-top hex.
-  // Positions are relative offsets from the centre hex (cx, cy) inside
-  // a 480x480 container. The 6 surrounding hexes sit at 60° intervals.
-  const cx = 240
-  const cy = 240
-  const w = 132              // hex tile width (px)
-  const h = w * 1.155        // pointy-top hex height
-  const dx = w * 0.75        // horizontal offset to a neighbour
-  const dy = h * 0.5         // vertical offset to a neighbour
+type WorkflowNode = {
+  slug: string
+  x: number   // % of canvas
+  y: number   // % of canvas
+}
 
-  const slots = [
-    { dx: 0,    dy: -h          }, // top
-    { dx:  dx,  dy: -dy         }, // top-right
-    { dx:  dx,  dy:  dy         }, // bottom-right
-    { dx: 0,    dy:  h          }, // bottom
-    { dx: -dx,  dy:  dy         }, // bottom-left
-    { dx: -dx,  dy: -dy         }, // top-left
-  ]
+const WORKFLOW_NODES: WorkflowNode[] = [
+  { slug: 'it-software',       x: 38, y: 18 },
+  { slug: 'export-import',     x: 60, y: 18 },
+  { slug: 'clothing',          x: 82, y: 28 },
+  { slug: 'agents-brokerage',  x: 38, y: 82 },
+  { slug: 'office-management', x: 60, y: 82 },
+  { slug: 'manpower',          x: 82, y: 72 },
+]
 
+const HUB_X = 14
+const HUB_Y = 50
+
+function ServiceWorkflow({ onSelect }: { onSelect: (slug: string) => void }) {
   return (
-    <div className="relative mx-auto w-full max-w-[480px] aspect-square">
-      {/* Soft mint glow behind the hub */}
-      <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
-        <div className="w-[60%] h-[60%] rounded-full bg-brand-accent/15 blur-[80px]" />
-      </div>
-
-      {/* CENTRE — Yanabiya hex hub */}
-      <div
-        className="absolute"
-        style={{
-          left: cx,
-          top: cy,
-          width: w,
-          height: h,
-          transform: 'translate(-50%, -50%)',
-        }}
-      >
-        <div
-          className="relative w-full h-full bg-brand-deep grid place-items-center"
-          style={{ clipPath: HEX_CLIP }}
-        >
-          <div className="flex flex-col items-center gap-1.5">
-            <img
-              src={assets.logo}
-              alt="Yanabiya Group"
-              className="h-10 w-auto object-contain bg-white rounded p-1"
-            />
-            <div className="text-[8px] font-bold tracking-[0.3em] uppercase text-brand-accent">
-              Yanabiya
-            </div>
+    <div className="relative mx-auto w-full max-w-5xl">
+      {/* Editor-like card */}
+      <div className="relative rounded-2xl bg-white border border-slate-200
+                      shadow-[0_18px_40px_-16px_rgba(15,58,35,0.18)] overflow-hidden">
+        {/* Top toolbar — IDE feel */}
+        <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-100 bg-slate-50/60">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-brand-accent" />
+            <span className="ml-3 text-[10px] font-mono text-slate-500 tracking-wide">
+              yanabiya-group.workflow
+            </span>
+          </div>
+          <div className="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+            Live
           </div>
         </div>
-        {/* Mint outline overlay (sits just above the dark hex via a slightly bigger hex behind) */}
-        <div
-          aria-hidden="true"
-          className="absolute -inset-[3px] -z-10 bg-brand-accent"
-          style={{ clipPath: HEX_CLIP }}
-        />
-      </div>
 
-      {/* 6 SERVICE HEXES around the centre */}
-      {businesses.map((b, i) => {
-        const slot = slots[i]
-        const display = BUSINESS_DISPLAY[b.slug] ?? { title: b.title, tag: '', sample: [] }
-        const Icon = b.icon
-        return (
-          <Link
-            key={b.slug}
-            to={`/business/${b.slug}`}
-            className="group absolute"
+        {/* Canvas */}
+        <div className="relative aspect-[21/10] bg-[#fafbf8]">
+          {/* Subtle dot grid */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-[0.45]"
             style={{
-              left: cx + slot.dx,
-              top: cy + slot.dy,
-              width: w,
-              height: h,
-              transform: 'translate(-50%, -50%)',
+              backgroundImage:
+                'radial-gradient(circle, rgba(15,58,35,0.12) 1px, transparent 1px)',
+              backgroundSize: '22px 22px',
             }}
-            aria-label={display.title}
+          />
+
+          {/* Connection lines (curved bezier per node → hub) */}
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            className="absolute inset-0 w-full h-full overflow-visible"
           >
-            {/* Outer mint outline sits behind the white hex face */}
-            <div
-              aria-hidden="true"
-              className="absolute -inset-[2px] bg-brand-deep/15
-                         transition-all duration-300
-                         group-hover:bg-brand-accent group-hover:-inset-[3px]"
-              style={{ clipPath: HEX_CLIP }}
-            />
-            {/* White hex face with content */}
-            <div
-              className="relative w-full h-full bg-white grid place-items-center
-                         transition-all duration-300
-                         group-hover:bg-brand-accent/8"
-              style={{ clipPath: HEX_CLIP }}
-            >
-              <div className="flex flex-col items-center gap-1.5 px-2 text-center">
-                <span className="grid place-items-center w-9 h-9 rounded-full
-                                 bg-brand-accent/15 text-brand-deep
-                                 transition-all duration-300
-                                 group-hover:bg-brand-deep group-hover:text-white
-                                 group-hover:scale-110">
-                  <Icon size={16} strokeWidth={1.6} />
-                </span>
-                <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-brand-deep leading-tight">
-                  {display.title}
-                </span>
+            {WORKFLOW_NODES.map((n, i) => {
+              const sx = HUB_X
+              const sy = HUB_Y
+              const ex = n.x
+              const ey = n.y
+              // control point in the middle for a soft curve
+              const cx1 = sx + (ex - sx) * 0.6
+              const cy1 = sy
+              const path = `M ${sx} ${sy} C ${cx1} ${cy1}, ${ex - 6} ${ey}, ${ex} ${ey}`
+              return (
+                <g key={n.slug}>
+                  <path
+                    d={path}
+                    fill="none"
+                    stroke="rgba(15,58,35,0.25)"
+                    strokeWidth="0.32"
+                  />
+                  <path
+                    d={path}
+                    fill="none"
+                    stroke="rgba(158,199,58,0.95)"
+                    strokeWidth="0.4"
+                    strokeLinecap="round"
+                    className="animate-svg-flow"
+                    style={{ animationDelay: `${i * 0.4}s`, animationDuration: '5s' }}
+                  />
+                </g>
+              )
+            })}
+          </svg>
+
+          {/* HUB — Yanabiya */}
+          <div
+            className="absolute z-10"
+            style={{ left: `${HUB_X}%`, top: `${HUB_Y}%`, transform: 'translate(-50%, -50%)' }}
+          >
+            <div className="relative">
+              <span className="absolute inset-0 rounded-2xl bg-brand-accent/30 blur-md animate-pulse" />
+              <div className="relative w-[120px] rounded-2xl bg-brand-deep text-white
+                              ring-2 ring-brand-accent shadow-[0_10px_30px_-8px_rgba(15,58,35,0.5)]
+                              p-3 flex flex-col items-center gap-1.5">
+                <img
+                  src={assets.logo}
+                  alt="Yanabiya"
+                  className="h-9 w-auto object-contain bg-white rounded-md p-1"
+                />
+                <div className="text-[9px] font-bold tracking-[0.3em] uppercase text-brand-accent">
+                  Group HQ
+                </div>
               </div>
             </div>
-          </Link>
-        )
-      })}
+          </div>
+
+          {/* Service nodes */}
+          {WORKFLOW_NODES.map((n, i) => {
+            const b = businesses.find((bb) => bb.slug === n.slug)
+            if (!b) return null
+            const display = BUSINESS_DISPLAY[n.slug] ?? { title: b.title, tag: '', sample: [] }
+            const Icon = b.icon
+            return (
+              <button
+                key={n.slug}
+                type="button"
+                onClick={() => onSelect(n.slug)}
+                aria-label={display.title}
+                className="group absolute z-10"
+                style={{ left: `${n.x}%`, top: `${n.y}%`, transform: 'translate(-50%, -50%)' }}
+              >
+                <div className="flex items-center gap-2.5 rounded-xl bg-white
+                                border border-slate-200 px-3 py-2.5
+                                shadow-[0_4px_12px_rgba(15,58,35,0.08)]
+                                transition-all duration-300
+                                group-hover:border-brand-deep group-hover:-translate-y-0.5
+                                group-hover:shadow-[0_12px_28px_-8px_rgba(15,58,35,0.28)]">
+                  <span className="shrink-0 grid place-items-center w-9 h-9 rounded-lg
+                                   bg-brand-accent/15 text-brand-deep
+                                   transition-all duration-300
+                                   group-hover:bg-brand-accent group-hover:text-white">
+                    <Icon size={16} strokeWidth={1.7} />
+                  </span>
+                  <div className="text-left">
+                    <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
+                      {display.title}
+                    </div>
+                    <div className="text-[8.5px] font-mono text-slate-400 tracking-wide leading-none mt-0.5">
+                      0{i + 1} · {n.slug}
+                    </div>
+                  </div>
+                </div>
+                {/* Pulsing arrival dot anchored on the inbound edge */}
+                <span
+                  aria-hidden="true"
+                  className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-accent
+                             shadow-[0_0_8px_rgba(158,199,58,0.7)]"
+                  style={{ animation: `haloPulse 2.6s ease-in-out ${i * 0.3}s infinite` }}
+                />
+              </button>
+            )
+          })}
+
+          {/* Editorial chrome */}
+          <div className="absolute top-3 left-4 text-[9px] font-mono text-slate-400 tracking-wide">
+            6 nodes · live signal
+          </div>
+          <div className="absolute bottom-3 right-4 text-[9px] font-mono text-slate-400 tracking-wide">
+            tap a node →
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* Slide-in detail panel for a clicked workflow node */
+function NodeDetailPanel({
+  slug,
+  onClose,
+}: {
+  slug: string | null
+  onClose: () => void
+}) {
+  useEffect(() => {
+    if (!slug) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+    }
+  }, [slug, onClose])
+
+  if (!slug) return null
+  const b = businesses.find((bb) => bb.slug === slug)
+  if (!b) return null
+  const display = BUSINESS_DISPLAY[slug] ?? { title: b.title, tag: '', sample: [] }
+  const Icon = b.icon
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${display.title} division detail`}
+      className="fixed inset-0 z-[100]"
+      onClick={onClose}
+    >
+      <div className="absolute inset-0 bg-slate-900/55 backdrop-blur-sm animate-[fadeUp_0.3s_ease-out_both]" />
+      <aside
+        onClick={(e) => e.stopPropagation()}
+        className="absolute top-0 right-0 h-full w-full sm:w-[440px] md:w-[500px]
+                   bg-white shadow-[0_0_60px_rgba(0,0,0,0.35)]
+                   border-l border-brand-accent/30
+                   overflow-y-auto"
+        style={{ animation: 'slideInRight 0.4s cubic-bezier(0.22,1,0.36,1) both' }}
+      >
+        <div aria-hidden="true" className="absolute -top-32 -left-20 w-[420px] h-[420px] rounded-full bg-brand-accent/15 blur-[120px] pointer-events-none" />
+
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full
+                     bg-slate-100 hover:bg-slate-200 border border-slate-200
+                     grid place-items-center text-slate-700 hover:text-brand-deep transition-colors"
+        >
+          <CloseIcon size={16} />
+        </button>
+
+        <div className="relative p-7 md:p-9">
+          {/* Header */}
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-brand-accent/15 grid place-items-center text-brand-deep
+                            ring-1 ring-brand-accent/30">
+              <Icon size={22} strokeWidth={1.6} />
+            </div>
+            <div>
+              <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark">
+                Division
+              </div>
+              <h3 className="font-serif text-2xl text-brand-deep leading-tight mt-0.5">
+                {display.title}
+              </h3>
+            </div>
+          </div>
+
+          <p className="mt-5 text-sm text-slate-600 leading-relaxed">
+            {display.tag}
+          </p>
+
+          {/* Sub-services */}
+          {display.sample.length > 0 && (
+            <>
+              <div className="mt-7 text-[10px] font-bold uppercase tracking-[0.28em] text-brand-accentDark mb-3">
+                What's Inside
+              </div>
+              <ul className="space-y-2">
+                {display.sample.map((s) => (
+                  <li
+                    key={s}
+                    className="rounded-lg bg-slate-50 border border-slate-200 px-3 py-2
+                               text-sm text-slate-700 flex items-baseline gap-2"
+                  >
+                    <span className="block w-1 h-1 rounded-full bg-brand-accent shrink-0 translate-y-[-2px]" />
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          {/* Sub-services count from real data */}
+          {b.subServices && b.subServices.length > 0 && (
+            <div className="mt-6 inline-flex items-center gap-2 rounded-full
+                            bg-brand-deep/5 border border-brand-deep/15 px-3 py-1
+                            text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep">
+              <span className="font-mono">{b.subServices.length.toString().padStart(2, '0')}</span>
+              Total Services
+            </div>
+          )}
+
+          {/* CTA out to detail page */}
+          <div className="mt-8">
+            <Link
+              to={`/business/${slug}`}
+              onClick={onClose}
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                         bg-brand-deep text-white text-xs font-bold uppercase tracking-[0.22em]
+                         hover:bg-brand-accentDark transition-colors"
+            >
+              Open Full Page
+              <ExternalLink size={14} />
+            </Link>
+          </div>
+        </div>
+      </aside>
     </div>
   )
 }
 
 export default function Businesses() {
+  const [selected, setSelected] = useState<string | null>(null)
   return (
     <Section id="businesses" className="relative overflow-hidden bg-white">
       {/* Soft ambient mint glow on the white surface */}
@@ -192,14 +379,14 @@ export default function Businesses() {
           </Reveal>
         </div>
 
-        {/* SERVICE HONEYCOMB — Yanabiya hub + 6 hexagonal service tiles */}
+        {/* WORKFLOW CANVAS — n8n-style hub + 6 service nodes with flowing signals */}
         <Reveal delay={200}>
-          <ServiceHoneycomb />
+          <ServiceWorkflow onSelect={(s) => setSelected(s)} />
         </Reveal>
 
-        <div className="text-center mt-4 mb-10">
+        <div className="text-center mt-5 mb-10">
           <span className="text-[10px] uppercase tracking-[0.32em] text-slate-400 font-bold">
-            Tap a hex — or browse the cards below
+            Tap a node — or browse the cards below
           </span>
         </div>
 
@@ -307,6 +494,9 @@ export default function Businesses() {
           })}
         </div>
       </div>
+
+      {/* Slide-in detail panel for the workflow node click */}
+      <NodeDetailPanel slug={selected} onClose={() => setSelected(null)} />
     </Section>
   )
 }
