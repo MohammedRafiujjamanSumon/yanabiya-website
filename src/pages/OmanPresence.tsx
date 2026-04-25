@@ -75,7 +75,7 @@ type CountryProfile = {
   code: CountryCode
   flag: string
   shortName: string
-  hero: { eyebrow: string; title: string; subtitle: string }
+  hero: { eyebrow: string; title: string; subtitle: string; tagline?: string }
   hq: { label: string; group: string; city: string; x: number; y: number }
   partners: Partner[]                  // empty array → single-HQ map
   mapNote: { fig: string; source: string }
@@ -104,6 +104,7 @@ const OMAN: CountryProfile = {
   hero: {
     eyebrow: 'Sultanate of Oman',
     title: 'Oman Global Presence',
+    tagline: 'Connecting Businesses Across Borders',
     subtitle: 'Yanabiya Group — Integrated Business Network in Sultanate of Oman',
   },
   hq: { label: 'Muscat HQ', group: 'Yanabiya Group · Oman', city: 'Muscat', x: 50, y: 50 },
@@ -534,28 +535,37 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
   const flipMap = index % 2 === 1
   return (
     <>
-      {/* HERO */}
+      {/* HERO — left-aligned editorial header */}
       <section className="relative">
         <SectionWatermark />
-        <div className="relative container-x py-10 md:py-14 text-center">
-          <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-4">
-              {data.hero.eyebrow}
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-slate-900">
-              {data.hero.title}
-            </h2>
-          </Reveal>
-          <Reveal delay={260}>
-            <p className="mt-4 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              {data.hero.subtitle}
-            </p>
-          </Reveal>
-          <Reveal delay={400}>
-            <div className="mt-6 mx-auto w-12 h-px bg-slate-900" />
-          </Reveal>
+        <div className="relative container-x py-10 md:py-14">
+          <div className="max-w-3xl">
+            <Reveal>
+              <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-4">
+                {data.hero.eyebrow}
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-slate-900">
+                {data.hero.title}
+              </h2>
+            </Reveal>
+            {data.hero.tagline && (
+              <Reveal delay={200}>
+                <div className="mt-3 font-serif italic text-xl md:text-2xl text-brand-deep leading-snug">
+                  {data.hero.tagline}
+                </div>
+              </Reveal>
+            )}
+            <Reveal delay={300}>
+              <p className="mt-4 text-base md:text-lg text-slate-600 max-w-2xl leading-relaxed">
+                {data.hero.subtitle}
+              </p>
+            </Reveal>
+            <Reveal delay={420}>
+              <div className="mt-6 w-12 h-px bg-slate-900" />
+            </Reveal>
+          </div>
         </div>
       </section>
 
