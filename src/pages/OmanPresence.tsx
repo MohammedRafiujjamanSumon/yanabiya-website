@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import {
   HardHat, Truck, Laptop, TrendingUp, Coffee,
-  Briefcase, Wrench, ArrowUpRight, MapPin,
+  Briefcase, Wrench, ArrowUpRight, ArrowRight,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import BackButton from '../components/BackButton'
 import { assets } from '../data/assets'
-import Contact from '../sections/Contact'
 
 /* ───────────────────────── Helpers ───────────────────────── */
 
@@ -876,116 +875,6 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
         </div>
       </section>
 
-      {/* CONTACT — text on left, optional Google Maps embed on right */}
-      <section className="relative border-t border-slate-100">
-        <SectionWatermark />
-        <div className="relative container-x py-12 md:py-16">
-          <div className={`grid gap-8 lg:gap-12 items-start ${data.contact.map ? 'lg:grid-cols-12' : ''}`}>
-
-            {/* LEFT — address text */}
-            <div className={data.contact.map ? 'lg:col-span-6' : 'max-w-md lg:max-w-lg'}>
-              <Reveal>
-                <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
-                  {data.contact.eyebrow}
-                </div>
-                <h3 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
-                  {data.contact.title}
-                </h3>
-              </Reveal>
-
-              <div className="mt-8 space-y-8">
-                {data.contact.postal && (
-                  <Reveal>
-                    <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
-                        Postal Address
-                      </div>
-                      <div className="mt-3 w-8 h-px bg-slate-900/70" />
-                      <p className="mt-4 text-slate-700 leading-relaxed">
-                        {data.contact.postal.map((line, i) => (
-                          <span key={i}>
-                            {line}
-                            {i < data.contact.postal!.length - 1 && <br />}
-                          </span>
-                        ))}
-                      </p>
-                    </div>
-                  </Reveal>
-                )}
-
-                <Reveal delay={data.contact.postal ? 120 : 0}>
-                  <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-700">
-                      Head Office
-                    </div>
-                    <div className="mt-3 w-8 h-px bg-slate-900/70" />
-                    <p className="mt-4 text-slate-700 leading-relaxed">
-                      {data.contact.head.map((line, i) => (
-                        <span key={i}>
-                          {line}
-                          {i < data.contact.head.length - 1 && <br />}
-                        </span>
-                      ))}
-                    </p>
-                  </div>
-                </Reveal>
-              </div>
-            </div>
-
-            {/* RIGHT — embedded Google Map (only when contact.map is provided) */}
-            {data.contact.map && (
-              <Reveal delay={200} className="lg:col-span-6">
-                <div className="group relative w-full aspect-[4/3] rounded-sm overflow-hidden border border-slate-200 shadow-sm">
-                  <iframe
-                    title={`Map of ${data.hq.city} office`}
-                    src={`https://www.google.com/maps?q=${encodeURIComponent(data.contact.map.embedQuery)}&output=embed`}
-                    className="absolute inset-0 w-full h-full border-0"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-
-                  {/* Hover/touch overlay — red MapPin + Yanabiya logo badge */}
-                  <div className="absolute inset-0 z-10 grid place-items-center
-                                  bg-red-600/15 backdrop-blur-[1px]
-                                  opacity-0 group-hover:opacity-100 group-focus-within:opacity-100
-                                  transition-opacity duration-300 pointer-events-none">
-                    <div className="flex flex-col items-center gap-2 px-5 py-4 rounded-2xl
-                                    bg-white/95 shadow-2xl ring-2 ring-red-500/70">
-                      <div className="relative">
-                        <MapPin
-                          size={42}
-                          className="text-red-600 drop-shadow"
-                          strokeWidth={1.6}
-                          fill="currentColor"
-                        />
-                        <img
-                          src={assets.logo}
-                          alt=""
-                          className="absolute top-[6px] left-1/2 -translate-x-1/2 w-5 h-5 object-contain rounded-sm bg-white"
-                        />
-                      </div>
-                      <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-900">
-                        Yanabiya Group
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <a
-                  href={data.contact.map.openUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.22em]
-                             text-blue-700 hover:text-blue-900 transition-colors"
-                >
-                  View on Google Maps
-                  <span aria-hidden>↗</span>
-                </a>
-              </Reveal>
-            )}
-
-          </div>
-        </div>
-      </section>
     </>
   )
 }
@@ -1071,10 +960,31 @@ export default function OmanPresence() {
         </section>
       ))}
 
-      {/* FULL CONTACT SECTION — country selector + map embed + form + stats */}
-      <div className="border-t-2 border-slate-200">
-        <Contact />
-      </div>
+      {/* CONTACT CTA — link out to the centralised /contact page */}
+      <section className="border-t-2 border-slate-200 bg-[#fbfdfb]">
+        <div className="container-x py-12 md:py-16 text-center">
+          <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
+            Get in Touch
+          </div>
+          <h3 className="font-serif text-2xl md:text-3xl text-brand-deep leading-tight">
+            Browse every office in one place.
+          </h3>
+          <p className="mt-3 text-slate-600 max-w-xl mx-auto">
+            All Yanabiya Group contact details — Oman HQ, UK, Bangladesh, USA — live on a single
+            centralised page.
+          </p>
+          <Link
+            to="/contact"
+            className="mt-6 inline-flex items-center gap-2 rounded-full px-7 py-3.5
+                       bg-brand-accent text-white text-xs font-bold uppercase tracking-[0.22em]
+                       shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
+                       transition-all"
+          >
+            Open Contact Network
+            <ArrowRight size={14} />
+          </Link>
+        </div>
+      </section>
     </main>
   )
 }

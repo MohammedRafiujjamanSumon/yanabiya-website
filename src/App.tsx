@@ -16,6 +16,7 @@ import CareersPage from './pages/CareersPage'
 import AboutUs from './pages/AboutUs'
 import OurStory from './pages/OurStory'
 import OmanPresence from './pages/OmanPresence'
+import ContactGlobal from './pages/ContactGlobal'
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/business/:slug" element={<BusinessDetail />} />
           <Route path="/country/:code" element={<CountryDetail />} />
           <Route path="/global-presence" element={<OmanPresence />} />
+          <Route path="/contact" element={<ContactGlobal />} />
           <Route path="/leadership/management" element={<Management />} />
           <Route path="/leadership/professionals" element={<Professionals />} />
           <Route path="/community/blog" element={<Blog />} />
