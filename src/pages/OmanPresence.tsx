@@ -538,10 +538,10 @@ function CountryMarquee({ active }: { active: CountryCode }) {
   }
   const loop = [...TAB_ORDER, ...TAB_ORDER]
   return (
-    <div className="group relative w-full overflow-hidden py-2">
+    <div className="group relative w-full overflow-hidden py-3">
       <div
-        className="flex items-center gap-5 w-max animate-marquee marquee-pause"
-        style={{ animationDuration: '40s' }}
+        className="flex items-center gap-3 w-max animate-marquee marquee-pause"
+        style={{ animationDuration: '45s' }}
       >
         {loop.map((code, idx) => {
           const p = PROFILES[code]
@@ -553,20 +553,20 @@ function CountryMarquee({ active }: { active: CountryCode }) {
               onClick={(e) => handleClick(e, code)}
               aria-current={isActive ? 'true' : undefined}
               aria-label={`${p.shortName} — read more`}
-              className={`group/chip relative shrink-0 flex items-center gap-2
-                          rounded-full bg-white border shadow-sm
+              className={`group/chip relative shrink-0 flex items-center gap-2.5
+                          rounded-full bg-white border-2 shadow-md
                           transition-all duration-300
-                          h-14 pl-1 pr-1
-                          hover:pr-5
+                          h-20 pl-1.5 pr-1.5
+                          hover:pr-6 hover:-translate-y-0.5 hover:shadow-xl
                           ${
                             isActive
                               ? 'border-brand-deep ring-2 ring-brand-accent/40'
                               : 'border-slate-200 hover:border-brand-deep'
                           }`}
             >
-              {/* Flag medallion — circular, always visible */}
-              <span className={`shrink-0 w-12 h-12 rounded-full bg-white grid place-items-center
-                                text-2xl shadow-sm ring-2 transition-colors duration-300
+              {/* Flag medallion — bigger circular, always visible */}
+              <span className={`shrink-0 w-16 h-16 md:w-[68px] md:h-[68px] rounded-full bg-white grid place-items-center
+                                text-3xl md:text-[34px] shadow-sm ring-2 transition-colors duration-300
                                 ${isActive
                                   ? 'ring-brand-accent'
                                   : 'ring-slate-200 group-hover/chip:ring-brand-accent'}`}>
@@ -575,9 +575,9 @@ function CountryMarquee({ active }: { active: CountryCode }) {
               {/* Read More label — expands inline on hover */}
               <span className="overflow-hidden whitespace-nowrap
                                max-w-0 opacity-0
-                               group-hover/chip:max-w-[150px] group-hover/chip:opacity-100
+                               group-hover/chip:max-w-[180px] group-hover/chip:opacity-100
                                transition-all duration-300 ease-out
-                               text-[10px] font-bold uppercase tracking-[0.22em]
+                               text-[11px] font-bold uppercase tracking-[0.22em]
                                text-brand-deep">
                 {p.shortName} → Read More
               </span>
@@ -693,21 +693,11 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                 </div>
               </div>
 
-              {/* ORBITAL CONSTELLATION — connection lines + partner chips
-                  rotate together around the HQ. Each chip's inner content
-                  counter-rotates so the text stays upright. Hovering anywhere
-                  in the map area pauses both rotations in sync (no merge,
-                  no spin — just frozen). */}
+              {/* GEO-PINS — connection lines + static partner pins (no orbit, no drift).
+                  Same visual language as the home Global section's labelled city pins. */}
               {showPartnerNetwork && (
-                <div
-                  className="absolute inset-0 pointer-events-none animate-orbit-ring
-                             group-hover/map:[animation-play-state:paused]"
-                  style={{ transformOrigin: `${data.hq.x}% ${data.hq.y}%` }}
-                >
-                  {/* Connection lines — short stub (max ~2 inches) extending
-                      from each partner toward the HQ. Long full-length lines
-                      reaching all the way to the centre were too noisy; we
-                      now clamp the segment to MAX_LEN viewBox units. */}
+                <>
+                  {/* Connection lines — short stub from each partner toward HQ */}
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 100 56.25"
@@ -722,7 +712,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                       const dx = hx - px
                       const dy = hy - py
                       const len = Math.sqrt(dx * dx + dy * dy)
-                      const MAX_LEN = 14   // ≈ 2 inches at typical map width
+                      const MAX_LEN = 14
                       const t = len > 0 ? Math.min(1, MAX_LEN / len) : 0
                       const ex = px + dx * t
                       const ey = py + dy * t
@@ -730,7 +720,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                         <g key={p.name}>
                           <line
                             x1={px} y1={py} x2={ex} y2={ey}
-                            stroke="rgba(125,164,42,0.35)"
+                            stroke="rgba(15,58,35,0.20)"
                             strokeWidth="0.12"
                           />
                           <line
@@ -746,55 +736,48 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                     })}
                   </svg>
 
-                  {/* Partner chips — orbit with parent, counter-rotate inner content */}
-                  {data.partners.map((p) => (
+                  {/* Static partner pins — same style as home Global section's city pins */}
+                  {data.partners.map((p, i) => (
                     <div
                       key={p.name}
-                      className="group absolute z-10 pointer-events-auto hover:z-30"
-                      style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)' }}
+                      className="group absolute z-10 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 hover:z-30"
+                      style={{ left: `${p.x}%`, top: `${p.y}%` }}
                     >
-                      {/* Counter-rotate so text reads upright while travelling */}
-                      <div className="animate-orbit-ring-counter
-                                      group-hover/map:[animation-play-state:paused]">
-                        {/* Anchor dot */}
-                        <span className="block w-1.5 h-1.5 rounded-full bg-brand-accentDark
-                                         transition-all duration-300
-                                         group-hover:scale-150 group-hover:bg-brand-accent
-                                         group-hover:shadow-[0_0_10px_rgba(158,199,58,0.7)]" />
-                        {/* Chip pill */}
-                        <div
-                          className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap
-                                      ${p.align === 'right' ? 'left-3' : 'right-3'}`}
-                        >
-                          <div
-                            className={`inline-flex items-center gap-1 px-1.5 py-[1px] rounded
-                                        bg-white/95 backdrop-blur-sm border border-brand-accentDark/30
-                                        shadow-[0_1px_2px_rgba(125,164,42,0.08)]
+                      {/* Pulsing geo dot */}
+                      <span className="relative inline-flex">
+                        <span
+                          className="absolute inset-0 rounded-full bg-brand-accent/40"
+                          style={{ animation: `haloPulse 3s ease-in-out ${i * 0.35}s infinite` }}
+                        />
+                        <span className="relative block w-3 h-3 rounded-full bg-brand-accent
+                                         ring-2 ring-brand-deep
+                                         shadow-[0_0_12px_rgba(158,199,58,0.7)]
+                                         transition-transform duration-300
+                                         group-hover:scale-125" />
+                      </span>
+                      {/* Label pill — name on default, category fades in on hover */}
+                      <div className={`whitespace-nowrap ${p.align === 'right' ? '' : 'order-first'}`}>
+                        <div className="inline-flex items-center gap-1.5
+                                        bg-white/95 backdrop-blur border border-brand-deep/20
+                                        rounded-full px-2.5 py-1
+                                        shadow-sm
                                         transition-all duration-300
-                                        group-hover:border-brand-accentDark group-hover:bg-brand-accent/10
-                                        group-hover:shadow-[0_8px_24px_-8px_rgba(158,199,58,0.55)]
-                                        group-hover:-translate-y-0.5`}
-                          >
-                            <span className="block w-[3px] h-[3px] rounded-full bg-brand-accentDark" />
-                            <span className="text-[10px] font-bold text-brand-deep leading-tight
-                                             transition-colors duration-300
-                                             group-hover:text-brand-accentDark">
-                              {p.name}
-                            </span>
-                          </div>
-                          {/* Category — visible on chip hover only */}
-                          <div className={`text-[9px] uppercase tracking-[0.18em] text-brand-accentDark/70 mt-0.5
-                                           opacity-0 -translate-y-1
-                                           transition-all duration-300
-                                           group-hover:opacity-100 group-hover:translate-y-0
-                                           ${p.align === 'right' ? 'pl-1.5' : 'pr-1.5 text-right'}`}>
-                            {p.category}
-                          </div>
+                                        group-hover:border-brand-deep group-hover:shadow-md
+                                        group-hover:-translate-y-0.5">
+                          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-deep">
+                            {p.name}
+                          </span>
+                        </div>
+                        <div className={`text-[8.5px] uppercase tracking-[0.18em] text-brand-accentDark mt-0.5
+                                         opacity-0 transition-opacity duration-300
+                                         group-hover:opacity-100
+                                         ${p.align === 'right' ? 'pl-2.5' : 'pr-2.5 text-right'}`}>
+                          {p.category}
                         </div>
                       </div>
                     </div>
                   ))}
-                </div>
+                </>
               )}
 
               {/* Editorial chrome */}
