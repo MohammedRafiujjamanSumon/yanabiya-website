@@ -105,7 +105,8 @@ const OMAN: CountryProfile = {
     eyebrow: 'Sultanate of Oman',
     title: 'Oman Global Presence',
     tagline: 'Connecting Businesses Across Borders',
-    subtitle: 'Yanabiya Group — Integrated Business Network in Sultanate of Oman',
+    subtitle:
+      'Yanabiya Group — Integrated Business Network in the Sultanate of Oman, where a unified partner network operates across Muscat under a single integrated ecosystem with every venture directly connected back to the headquarters, including Yanabiya Muscat United Trade, Yanabiya Muscat for Comprehensive Projects, Yanabiya Muscat Integrated LLC, Yanabiya Al Khairat United Trade LLC, Yanabiya Muscat World Business, Yanabiya Muscat Al Mumyazat, and Yanabiya Al Rustaq Contracting, forming a coordinated and strategically aligned business structure.',
   },
   hq: { label: 'Muscat HQ', group: 'Yanabiya Group · Oman', city: 'Muscat', x: 50, y: 50 },
   /* 7 partners arranged on a single ring around the centre HQ.
@@ -558,7 +559,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
               </Reveal>
             )}
             <Reveal delay={300}>
-              <p className="mt-4 text-base md:text-lg text-slate-600 max-w-2xl leading-relaxed">
+              <p className="mt-4 text-base md:text-lg text-slate-600 max-w-3xl leading-relaxed">
                 {data.hero.subtitle}
               </p>
             </Reveal>
