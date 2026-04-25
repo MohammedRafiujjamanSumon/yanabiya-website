@@ -676,8 +676,8 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                 </div>
               </div>
 
-              {/* Partner labels — smart pill chips with hover lift */}
-              {data.partners.map((p) => (
+              {/* Partner labels — smart pill chips with idle drift + hover lift */}
+              {data.partners.map((p, idx) => (
                 <div
                   key={p.name}
                   className="group absolute z-10 hover:z-30"
@@ -688,10 +688,12 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                                    transition-all duration-300
                                    group-hover:scale-150 group-hover:bg-blue-700
                                    group-hover:shadow-[0_0_10px_rgba(30,64,175,0.6)]" />
-                  {/* Chip card — anchored left or right of dot */}
+                  {/* Chip card — anchored left or right of dot, gently drifting */}
                   <div
-                    className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap
+                    className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap animate-chip-drift
+                                group-hover:[animation-play-state:paused]
                                 ${p.align === 'right' ? 'left-3' : 'right-3'}`}
+                    style={{ animationDelay: `${(idx * 0.35) % 6}s` }}
                   >
                     <div
                       className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md

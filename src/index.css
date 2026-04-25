@@ -200,6 +200,19 @@
   animation: svgFlow 2.4s linear infinite;
 }
 
+/* Subtle organic drift for partner chips on the geo map — makes them feel
+ * alive without losing their position on the canvas. */
+@keyframes chipDrift {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(1.5px, -3px); }
+  50%      { transform: translate(0, -5px); }
+  75%      { transform: translate(-1.5px, -2px); }
+}
+.animate-chip-drift {
+  animation: chipDrift 6s ease-in-out infinite;
+  will-change: transform;
+}
+
 .flip-card { perspective: 1200px; }
 .flip-card-inner {
   position: relative;
