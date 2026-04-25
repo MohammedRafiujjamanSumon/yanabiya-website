@@ -156,8 +156,8 @@ export default function Footer() {
                 <MapPin size={14} className="text-brand-accent" />
               </span>
               <div className="text-white/85 leading-relaxed">
-                <div>{contact.address}</div>
-                <div className="text-white/60 text-xs mt-0.5">{contact.poBox}</div>
+                <div className="font-semibold">{contact.poBox}</div>
+                <div className="text-white/75 text-sm mt-0.5">{contact.address}</div>
               </div>
             </li>
             <li className="flex items-start gap-3">

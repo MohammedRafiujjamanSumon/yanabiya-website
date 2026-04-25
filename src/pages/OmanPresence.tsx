@@ -527,9 +527,9 @@ function CapabilityCluster({ c }: { c: Capability }) {
 
 /* ───────────────────────── Country tabs ───────────────────────── */
 
-/* Horizontal moving country marquee — sits below the hero subtitle.
- * Each chip is a small branch card: flag medallion + country name + HQ
- * city + partner count chip. List is doubled for a seamless loop. */
+/* Horizontal moving country marquee — round flag medallions only by default.
+ * On hover the medallion expands into a 'Read More' chip. Click smooth-scrolls
+ * to the matching country section below. List doubled for a seamless loop. */
 function CountryMarquee({ active }: { active: CountryCode }) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, code: CountryCode) => {
     e.preventDefault()
@@ -538,56 +538,49 @@ function CountryMarquee({ active }: { active: CountryCode }) {
   }
   const loop = [...TAB_ORDER, ...TAB_ORDER]
   return (
-    <div className="group relative w-full overflow-hidden py-1">
+    <div className="group relative w-full overflow-hidden py-2">
       <div
-        className="flex items-stretch gap-4 w-max animate-marquee marquee-pause"
+        className="flex items-center gap-5 w-max animate-marquee marquee-pause"
         style={{ animationDuration: '40s' }}
       >
         {loop.map((code, idx) => {
           const p = PROFILES[code]
           const isActive = code === active
-          const partnerCount = p.partners.length
           return (
             <a
               key={`${code}-${idx}`}
               href={`#${code.toLowerCase()}`}
               onClick={(e) => handleClick(e, code)}
               aria-current={isActive ? 'true' : undefined}
-              className={`shrink-0 group/chip flex items-center gap-3 px-4 py-3 rounded-2xl
-                          border bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]
+              aria-label={`${p.shortName} — read more`}
+              className={`group/chip relative shrink-0 flex items-center gap-2
+                          rounded-full bg-white border shadow-sm
                           transition-all duration-300
-                          hover:-translate-y-0.5 hover:shadow-md
+                          h-14 pl-1 pr-1
+                          hover:pr-5
                           ${
                             isActive
-                              ? 'border-brand-deep bg-brand-deep/5'
-                              : 'border-slate-200 hover:border-brand-deep/40'
+                              ? 'border-brand-deep ring-2 ring-brand-accent/40'
+                              : 'border-slate-200 hover:border-brand-deep'
                           }`}
             >
-              {/* Flag medallion */}
-              <div className={`shrink-0 w-10 h-10 rounded-full bg-white grid place-items-center
-                               text-xl shadow-sm ring-2 transition-colors duration-300
-                               ${isActive ? 'ring-brand-deep' : 'ring-slate-200 group-hover/chip:ring-brand-deep/40'}`}>
+              {/* Flag medallion — circular, always visible */}
+              <span className={`shrink-0 w-12 h-12 rounded-full bg-white grid place-items-center
+                                text-2xl shadow-sm ring-2 transition-colors duration-300
+                                ${isActive
+                                  ? 'ring-brand-accent'
+                                  : 'ring-slate-200 group-hover/chip:ring-brand-accent'}`}>
                 {p.flag}
-              </div>
-              {/* Name + city stack */}
-              <div className="text-left">
-                <div className={`font-serif text-sm font-bold leading-tight whitespace-nowrap
-                                 ${isActive ? 'text-brand-deep' : 'text-slate-900'}`}>
-                  {p.shortName}
-                </div>
-                <div className="text-[9px] uppercase tracking-[0.22em] text-slate-500 mt-0.5">
-                  {p.hq.city}
-                </div>
-              </div>
-              {/* Partner count badge */}
-              <div className="shrink-0 ml-1 inline-flex items-center gap-1
-                              rounded-full bg-slate-100 px-2 py-0.5
-                              text-[9px] font-bold uppercase tracking-[0.2em] text-slate-600">
-                <span className="font-mono text-[10px] text-brand-deep">
-                  {partnerCount.toString().padStart(2, '0')}
-                </span>
-                {partnerCount === 1 ? 'Branch' : 'Partners'}
-              </div>
+              </span>
+              {/* Read More label — expands inline on hover */}
+              <span className="overflow-hidden whitespace-nowrap
+                               max-w-0 opacity-0
+                               group-hover/chip:max-w-[150px] group-hover/chip:opacity-100
+                               transition-all duration-300 ease-out
+                               text-[10px] font-bold uppercase tracking-[0.22em]
+                               text-brand-deep">
+                {p.shortName} → Read More
+              </span>
             </a>
           )
         })}

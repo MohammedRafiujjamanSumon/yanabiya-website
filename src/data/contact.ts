@@ -1,7 +1,7 @@
 export const contact = {
   address: 'Al-Khuwair, Muscat, Sultanate of Oman',
   poBox: 'P.O. Box: 1432, Postal Code: 133',
-  phones: ['+968 2249 5566', '+968 2267 8669'],
+  phones: ['+968 2249 5566'],
   mobile: '+968 9116 1677',
   emails: ['info@yanabiyagroup.com', 'admin@yanabiyagroup.com'],
   webmail: 'https://webmail.yanabiyagroup.com/',
@@ -24,7 +24,7 @@ export type CountryContact = {
 export const contactByCountry: CountryContact[] = [
   {
     code: 'OM',
-    phones: ['+968 2249 5566', '+968 2267 8669'],
+    phones: ['+968 2249 5566'],
     mobile: '+968 9116 1677',
     emails: ['info@yanabiyagroup.com', 'admin@yanabiyagroup.com'],
     hours: 'Sunday – Thursday, 8:00 AM – 6:00 PM (GST)',

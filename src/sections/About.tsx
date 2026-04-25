@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import Section from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
+import { assets } from '../data/assets'
 
 function Reveal({
   children,
@@ -84,23 +85,64 @@ export default function About() {
       <div className="container-x relative py-14 md:py-20">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-          {/* LEFT — 3 premium stat tiles */}
+          {/* LEFT — single combined card: office image with YANABIYA wall logo + 3 stats */}
           <div className="lg:col-span-5">
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-px bg-slate-200/70 rounded-2xl overflow-hidden">
-              {stats.map((s, i) => (
-                <Reveal key={s.label} delay={i * 120}>
-                  <div className="bg-[#fbfdfb] px-7 py-8 h-full
-                                  transition-colors duration-300 hover:bg-white">
-                    <div className="font-serif text-5xl md:text-6xl text-brand-accentDark leading-none">
-                      {s.value}
-                    </div>
-                    <div className="mt-3 text-[11px] uppercase tracking-[0.25em] text-slate-600 font-semibold">
-                      {s.label}
+            <Reveal>
+              <div className="relative rounded-2xl overflow-hidden bg-white border border-slate-200
+                              shadow-[0_12px_40px_-12px_rgba(15,58,35,0.18)]">
+
+                {/* Office image with Yanabiya logo overlaid on the wall */}
+                <div className="relative aspect-[5/3] overflow-hidden bg-slate-900">
+                  <img
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+                    alt="Yanabiya Group office"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  {/* Wall vignette so the logo reads on any image */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/55 via-brand-deep/15 to-transparent" />
+                  {/* Yanabiya logo — positioned as if mounted on the back wall */}
+                  <div className="absolute inset-0 grid place-items-center">
+                    <div className="flex flex-col items-center gap-2 text-white">
+                      <img
+                        src={assets.logo}
+                        alt=""
+                        aria-hidden="true"
+                        className="h-16 md:h-20 w-auto object-contain drop-shadow-[0_4px_18px_rgba(0,0,0,0.45)]"
+                      />
+                      <div className="text-[10px] font-bold tracking-[0.4em] uppercase">
+                        Yanabiya Group
+                      </div>
                     </div>
                   </div>
-                </Reveal>
-              ))}
-            </div>
+                  {/* Bottom caption */}
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between
+                                  text-white/85 text-[10px] uppercase tracking-[0.22em]">
+                    <span>Group Office · Muscat</span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="block w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                      Live
+                    </span>
+                  </div>
+                </div>
+
+                {/* 3 stat tiles inside the same card */}
+                <div className="grid grid-cols-3 divide-x divide-slate-200">
+                  {stats.map((s, i) => (
+                    <Reveal key={s.label} delay={150 + i * 100}>
+                      <div className="px-3 py-5 text-center transition-colors duration-300 hover:bg-brand-accent/5">
+                        <div className="font-serif text-3xl md:text-4xl text-brand-accentDark leading-none">
+                          {s.value}
+                        </div>
+                        <div className="mt-2 text-[9px] uppercase tracking-[0.22em] text-slate-600 font-semibold leading-tight">
+                          {s.label}
+                        </div>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
           </div>
 
           {/* RIGHT — eyebrow + serif title + subtitle + CTAs */}
