@@ -774,7 +774,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                                       ${p.align === 'right' ? 'left-3' : 'right-3'}`}
                         >
                           <div
-                            className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded
+                            className={`inline-flex items-center gap-1 px-1.5 py-[1px] rounded
                                         bg-white/95 backdrop-blur-sm border border-brand-accentDark/30
                                         shadow-[0_1px_2px_rgba(125,164,42,0.08)]
                                         transition-all duration-300
@@ -782,8 +782,8 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                                         group-hover:shadow-[0_8px_24px_-8px_rgba(158,199,58,0.55)]
                                         group-hover:-translate-y-0.5`}
                           >
-                            <span className="block w-1 h-1 rounded-full bg-brand-accentDark" />
-                            <span className="text-[12.5px] font-bold text-brand-deep leading-tight
+                            <span className="block w-[3px] h-[3px] rounded-full bg-brand-accentDark" />
+                            <span className="text-[10px] font-bold text-brand-deep leading-tight
                                              transition-colors duration-300
                                              group-hover:text-brand-accentDark">
                               {p.name}
