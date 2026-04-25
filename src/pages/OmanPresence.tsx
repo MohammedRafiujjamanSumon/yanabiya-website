@@ -466,56 +466,54 @@ function CapabilityCluster({ c }: { c: Capability }) {
 
 /* ───────────────────────── Country tabs ───────────────────────── */
 
-/* Vertical left rail navigation — Deloitte / Bloomberg style.
- * Fixed to the left edge of the viewport on lg+ screens; smooth-scrolls to
- * the matching country section on click and self-highlights via scroll-spy. */
-function CountrySideNav({ active }: { active: CountryCode }) {
+/* Horizontal moving country marquee — sits below the hero subtitle.
+ * The full TAB_ORDER list is rendered twice and the wrapper translates
+ * by 50% to give a seamless continuous loop. Click any chip to jump. */
+function CountryMarquee({ active }: { active: CountryCode }) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, code: CountryCode) => {
     e.preventDefault()
     const el = document.getElementById(code.toLowerCase())
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
+  const loop = [...TAB_ORDER, ...TAB_ORDER]
   return (
-    <aside className="hidden lg:block fixed left-3 top-[110px] z-30">
-      <div className="text-[9px] font-semibold uppercase tracking-[0.28em] text-slate-400 mb-3 pl-3">
-        Branches
-      </div>
-      <nav className="flex flex-col gap-1 bg-white/85 backdrop-blur-md
-                      border border-slate-200 rounded-xl shadow-md p-2 w-[160px]">
-        {TAB_ORDER.map((code) => {
+    <div className="group relative w-full overflow-hidden">
+      <div
+        className="flex items-center gap-3 w-max animate-marquee marquee-pause"
+        style={{ animationDuration: '32s' }}
+      >
+        {loop.map((code, idx) => {
           const p = PROFILES[code]
           const isActive = code === active
           return (
             <a
-              key={code}
+              key={`${code}-${idx}`}
               href={`#${code.toLowerCase()}`}
               onClick={(e) => handleClick(e, code)}
               aria-current={isActive ? 'true' : undefined}
-              className={`group relative flex items-center gap-2.5 px-3 py-2.5 rounded-lg
-                          transition-all duration-200
+              className={`shrink-0 inline-flex items-center gap-2 rounded-full border px-4 py-2
+                          text-xs font-semibold uppercase tracking-[0.22em]
+                          transition-all duration-300
                           ${
                             isActive
-                              ? 'bg-blue-50 text-blue-700'
-                              : 'text-slate-700 hover:bg-slate-50 hover:text-blue-700'
+                              ? 'bg-blue-700 text-white border-blue-700 shadow-md'
+                              : 'bg-white text-slate-700 border-slate-300 hover:border-blue-700 hover:text-blue-700'
                           }`}
             >
-              {/* Active left bar */}
-              <span
-                className={`absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 rounded-r-full
-                            transition-all duration-300
-                            ${isActive ? 'bg-blue-700' : 'bg-transparent'}`}
-              />
               <span className="text-base leading-none">{p.flag}</span>
-              <span className="text-xs font-semibold tracking-wide">{p.shortName}</span>
-              <span
-                className={`ml-auto block w-1.5 h-1.5 rounded-full transition-all duration-300
-                            ${isActive ? 'bg-blue-700 shadow-[0_0_8px_rgba(30,64,175,0.55)]' : 'bg-transparent'}`}
-              />
+              <span>{p.shortName}</span>
+              <span className="text-slate-300">|</span>
+              <span className="text-[9px] tracking-[0.28em] text-slate-400">
+                {p.hq.city}
+              </span>
             </a>
           )
         })}
-      </nav>
-    </aside>
+      </div>
+      {/* edge fades */}
+      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+    </div>
   )
 }
 
@@ -973,15 +971,19 @@ export default function OmanPresence() {
             </h1>
           </Reveal>
           <Reveal delay={260}>
-            <p className="mt-4 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
               International Business Network — every branch, on one page.
+              <span className="text-slate-400 mx-2">|</span>
+              Connecting Opportunities. Building Global Businesses.
             </p>
+          </Reveal>
+          <Reveal delay={400}>
+            <div className="mt-8">
+              <CountryMarquee active={active} />
+            </div>
           </Reveal>
         </div>
       </section>
-
-      {/* LEFT VERTICAL RAIL NAV — Deloitte/Bloomberg style, lg+ only */}
-      <CountrySideNav active={active} />
 
       {/* ALL COUNTRIES STACKED — every branch on the same page */}
       {TAB_ORDER.map((c, i) => (

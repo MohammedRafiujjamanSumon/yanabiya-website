@@ -165,8 +165,12 @@ export default function Navbar() {
                     key={g.label}
                     to="/"
                     onClick={(e) => {
-                      e.preventDefault()
-                      window.scrollTo({ top: 0, behavior: 'smooth' })
+                      // Already on home? Just smooth-scroll to top.
+                      // Anywhere else? Let the Link navigate to '/'.
+                      if (location.pathname === '/' || location.pathname === '') {
+                        e.preventDefault()
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                      }
                     }}
                     className={baseLinkCls(isActive)}
                   >
@@ -416,9 +420,11 @@ export default function Navbar() {
                       key={g.label}
                       to="/"
                       onClick={(e) => {
-                        e.preventDefault()
                         setOpen(false)
-                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                        if (location.pathname === '/' || location.pathname === '') {
+                          e.preventDefault()
+                          window.scrollTo({ top: 0, behavior: 'smooth' })
+                        }
                       }}
                       className={`py-3 px-2 text-[15px] font-medium transition ${
                         isActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
