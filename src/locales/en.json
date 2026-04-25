@@ -16,11 +16,11 @@
   },
   "topbar": { "operating": "Operating across 4 countries", "downloadPdf": "Download PDF", "tagline": "Connecting Opportunities. Building Global Businesses." },
   "hero": {
-    "welcome": "Welcome to Yanabiya Group",
+    "welcome": "Yanabiya Group",
     "tagline": "Connecting Opportunities. Building Global Businesses.",
-    "desc1": "A trust-led organisation dedicated to excellence and sustainable, consistent long-term growth across diversified global businesses.",
-    "desc2": "We operate across multiple industries, building strategic partnerships and exploring new opportunities to create long-term value.",
-    "desc3": "Our focus is on innovation, global expansion, and responsible business development.",
+    "desc1": "A diversified global group, trust-led for over a decade.",
+    "desc2": "Six divisions. Four countries. One platform.",
+    "desc3": "Innovation, global reach, responsible growth.",
     "cta1": "Explore Businesses",
     "cta2": "Partner With Us",
     "stats": { "countries": "Countries", "industries": "Industries", "experience": "Experience", "clients": "Clients" }

@@ -59,8 +59,7 @@ export default function Global() {
             </Reveal>
             <Reveal delay={280}>
               <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-md">
-                One coordinated network — not separate offices. Every market we
-                enter is wired into the same operating discipline.
+                One coordinated network across four countries.
               </p>
             </Reveal>
             <Reveal delay={420}>

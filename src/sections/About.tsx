@@ -160,8 +160,7 @@ export default function About() {
             </Reveal>
             <Reveal delay={280}>
               <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-xl">
-                A trust-led platform building enterprises across continents — quietly,
-                consistently, for over a decade.
+                Trust-led. Diversified. Decade-tested.
               </p>
             </Reveal>
 

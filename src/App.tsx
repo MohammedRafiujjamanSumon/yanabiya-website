@@ -17,6 +17,8 @@ import AboutUs from './pages/AboutUs'
 import OurStory from './pages/OurStory'
 import OmanPresence from './pages/OmanPresence'
 import ContactGlobal from './pages/ContactGlobal'
+import LeadershipOverview from './pages/LeadershipOverview'
+import CommunityOverview from './pages/CommunityOverview'
 
 export default function App() {
   return (
@@ -31,8 +33,10 @@ export default function App() {
           <Route path="/country/:code" element={<CountryDetail />} />
           <Route path="/global-presence" element={<OmanPresence />} />
           <Route path="/contact" element={<ContactGlobal />} />
+          <Route path="/leadership" element={<LeadershipOverview />} />
           <Route path="/leadership/management" element={<Management />} />
           <Route path="/leadership/professionals" element={<Professionals />} />
+          <Route path="/community" element={<CommunityOverview />} />
           <Route path="/community/blog" element={<Blog />} />
           <Route path="/community/sustainable-growth" element={<SustainableGrowth />} />
           <Route path="/community/community-care" element={<CommunityCare />} />

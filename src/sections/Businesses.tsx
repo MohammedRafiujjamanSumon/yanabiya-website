@@ -508,8 +508,7 @@ export default function Businesses() {
             </Reveal>
             <Reveal delay={260}>
               <p className="mt-5 text-base text-slate-600 leading-relaxed max-w-md">
-                Tap any node to open its profile — or click the central HQ to see
-                every division in one place.
+                Tap a node — or the HQ for every division.
               </p>
             </Reveal>
             <Reveal delay={400}>
