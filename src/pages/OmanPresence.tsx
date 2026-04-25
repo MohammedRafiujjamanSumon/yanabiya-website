@@ -280,7 +280,32 @@ const UNITED_KINGDOM: CountryProfile = {
     subtitle: 'Yanabiya Group — European Operations Hub',
   },
   hq: { label: 'London HQ', group: 'Yanabiya Gulf International UK Ltd', city: 'London', x: 50, y: 50 },
-  partners: [],
+  partners: [
+    /* IT / Technology Services */
+    { name: 'Infosys',                       category: 'IT Services',          x: 10, y: 8,  align: 'right' },
+    { name: 'Tata Consultancy Services',     category: 'IT Services',          x: 32, y: 14, align: 'right' },
+    { name: 'Wipro',                         category: 'IT Services',          x: 52, y: 6,  align: 'right' },
+    { name: 'HCLTech',                       category: 'IT Services',          x: 72, y: 14, align: 'right' },
+    { name: 'Tech Mahindra',                 category: 'IT Services',          x: 90, y: 8,  align: 'left'  },
+    { name: '10Pearls',                      category: 'Software Development', x: 8,  y: 26, align: 'right' },
+    { name: 'Systems Limited',               category: 'Software Engineering', x: 24, y: 32, align: 'right' },
+    { name: 'Arpatech',                      category: 'IT & Cloud',           x: 76, y: 32, align: 'left'  },
+    { name: 'Brain Station 23',              category: 'Software Development', x: 92, y: 26, align: 'left'  },
+    { name: 'DataSoft Systems Bangladesh',   category: 'Software Solutions',   x: 6,  y: 42, align: 'right' },
+    { name: 'REVE Systems',                  category: 'Telecom Software',     x: 94, y: 42, align: 'left'  },
+    /* Trading & Retail */
+    { name: 'Taj Stores',                    category: 'Grocery & Retail',     x: 6,  y: 58, align: 'right' },
+    { name: 'Green Valley Supermarket',      category: 'Supermarket',          x: 94, y: 58, align: 'left'  },
+    { name: 'Bangla Bazar Cash & Carry',     category: 'Wholesale',            x: 8,  y: 72, align: 'right' },
+    { name: 'Bestway Group',                 category: 'Wholesale Group',      x: 92, y: 72, align: 'left'  },
+    { name: 'East End Foods',                category: 'Foodservice',          x: 24, y: 78, align: 'right' },
+    /* Hospitality / Restaurants */
+    { name: 'Dishoom',                       category: 'Restaurants',          x: 76, y: 78, align: 'left'  },
+    { name: 'Aladin Brick Lane',             category: 'Restaurants',          x: 10, y: 90, align: 'right' },
+    { name: 'City Spice',                    category: 'Restaurants',          x: 32, y: 88, align: 'right' },
+    { name: 'Tayyabs',                       category: 'Restaurants',          x: 68, y: 88, align: 'left'  },
+    { name: 'Needoo Grill',                  category: 'Restaurants',          x: 90, y: 90, align: 'left'  },
+  ],
   mapNote: { fig: 'Fig. 01 · Group Network · United Kingdom', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
     eyebrow: 'Capability Matrix',
