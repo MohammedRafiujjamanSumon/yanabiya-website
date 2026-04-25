@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Sparkles, MapPin, Building2, Briefcase, Globe2,
-  X as CloseIcon, ArrowRight, ExternalLink,
+  X as CloseIcon, ArrowRight, ExternalLink, Plus, Minus, Crosshair,
 } from 'lucide-react'
 import BackButton from '../components/BackButton'
 import { countries } from '../data/countries'
@@ -33,53 +33,52 @@ function Reveal({
   )
 }
 
-/* ───────────── Country node positions on the canvas ───────────── */
-type NodePos = { code: string; x: number; y: number }
+/* ───────────── Country pin coordinates on the world canvas ─────────────
+ * Approximate equirectangular projection of the country capitals onto
+ * a 100×56 (16:9) canvas. HQ is Oman; arcs flow outward from there. */
+type Pin = { code: string; x: number; y: number; isHub?: boolean }
 
-const NODE_POSITIONS: NodePos[] = [
-  { code: 'OM', x: 18, y: 18 },
-  { code: 'GB', x: 18, y: 40 },
-  { code: 'BD', x: 18, y: 62 },
-  { code: 'US', x: 18, y: 84 },
+const PINS: Pin[] = [
+  { code: 'US', x: 22, y: 28 },           // Austin, TX
+  { code: 'GB', x: 47, y: 19 },           // London
+  { code: 'OM', x: 62, y: 35, isHub: true }, // Muscat — HQ
+  { code: 'BD', x: 75, y: 33 },           // Dhaka
 ]
 
-const HUB_X = 86
-const HUB_Y = 50
+/* ───────────── World Map ───────────── */
 
-/* ───────────── Workflow card ───────────── */
-
-function NetworkWorkflow({
+function WorldMap({
   onSelect,
   onSelectHub,
 }: {
   onSelect: (code: string) => void
   onSelectHub: () => void
 }) {
+  const hub = PINS.find((p) => p.isHub)!
+  const others = PINS.filter((p) => !p.isHub)
+
   return (
-    <div className="relative mx-auto w-full max-w-5xl">
+    <div className="relative mx-auto w-full max-w-6xl">
       <div className="relative rounded-2xl bg-white border border-slate-200
                       shadow-[0_18px_40px_-16px_rgba(15,58,35,0.18)] overflow-hidden">
-        {/* IDE toolbar */}
+        {/* Map toolbar */}
         <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-100 bg-slate-50/60">
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-brand-accent" />
-            <span className="ml-3 text-[10px] font-mono text-slate-500 tracking-wide">
-              yanabiya-group.presence
-            </span>
+          <div className="inline-flex items-center gap-2 text-[10px] font-mono text-slate-500 tracking-wide">
+            <Crosshair size={12} className="text-brand-accentDark" />
+            yanabiya-group.world
           </div>
           <div className="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-            Live
+            Live · 4 hubs
           </div>
         </div>
 
-        {/* Canvas */}
-        <div className="relative aspect-[21/12] bg-[#fafbf8]">
+        {/* Canvas — 16:9 stylised world */}
+        <div className="relative aspect-[16/9] bg-gradient-to-b from-[#f5f8f3] to-[#eef3ea]">
+          {/* Subtle dot grid */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 opacity-[0.45]"
+            className="absolute inset-0 opacity-[0.35]"
             style={{
               backgroundImage:
                 'radial-gradient(circle, rgba(15,58,35,0.12) 1px, transparent 1px)',
@@ -87,124 +86,163 @@ function NetworkWorkflow({
             }}
           />
 
-          {/* Connection lines */}
+          {/* Stylised continent outlines (simplified) */}
           <svg
             aria-hidden="true"
-            viewBox="0 0 100 100"
+            viewBox="0 0 100 56"
+            preserveAspectRatio="none"
+            className="absolute inset-0 w-full h-full"
+          >
+            {/* equator + tropics */}
+            <g stroke="rgba(15,58,35,0.08)" strokeWidth="0.12" strokeDasharray="0.6 0.6" fill="none">
+              <line x1="0" x2="100" y1="34" y2="34" />
+              <line x1="0" x2="100" y1="22" y2="22" />
+              <line x1="0" x2="100" y1="46" y2="46" />
+            </g>
+            {/* Continents — soft fills */}
+            <g fill="rgba(15,58,35,0.10)" stroke="rgba(15,58,35,0.18)" strokeWidth="0.18" strokeLinejoin="round">
+              {/* North America */}
+              <path d="M 6 14 Q 16 9 26 12 L 30 18 Q 32 22 28 26 L 22 30 Q 16 32 12 30 L 8 26 Q 5 20 6 14 Z" />
+              {/* South America */}
+              <path d="M 24 32 L 30 32 L 32 38 L 30 46 L 26 50 L 22 46 L 22 38 Z" />
+              {/* Europe */}
+              <path d="M 44 14 Q 50 12 54 14 L 56 18 Q 54 22 50 22 L 44 22 L 42 18 Z" />
+              {/* Africa */}
+              <path d="M 47 24 L 56 24 L 58 30 L 58 38 L 54 46 L 50 50 L 46 46 L 44 38 L 45 30 Z" />
+              {/* Middle East / Arabian peninsula */}
+              <path d="M 58 26 L 64 26 L 66 32 L 64 36 L 60 36 L 58 32 Z" />
+              {/* Russia / N. Asia */}
+              <path d="M 56 10 Q 70 8 84 10 L 88 14 L 86 18 L 70 18 L 60 16 L 56 14 Z" />
+              {/* China / S.E Asia */}
+              <path d="M 70 20 L 82 20 L 84 26 L 80 30 L 74 30 L 72 26 Z" />
+              {/* India / Bangladesh */}
+              <path d="M 70 28 L 76 28 L 78 34 L 74 38 L 71 36 Z" />
+              {/* Australia */}
+              <path d="M 82 40 L 92 40 L 94 46 L 90 48 L 84 46 Z" />
+            </g>
+          </svg>
+
+          {/* Arc connections from HQ (Oman) → others */}
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 100 56"
             preserveAspectRatio="none"
             className="absolute inset-0 w-full h-full overflow-visible"
           >
-            {NODE_POSITIONS.map((n, i) => {
-              const sx = HUB_X
-              const sy = HUB_Y
-              const ex = n.x
-              const ey = n.y
-              const cx1 = sx + (ex - sx) * 0.6
-              const cy1 = sy
-              const path = `M ${sx} ${sy} C ${cx1} ${cy1}, ${ex + 6} ${ey}, ${ex} ${ey}`
+            {others.map((p, i) => {
+              const sx = hub.x
+              const sy = hub.y
+              const ex = p.x
+              const ey = p.y
+              // Arc upward — control point above the midpoint
+              const mx = (sx + ex) / 2
+              const my = Math.min(sy, ey) - Math.abs(ex - sx) * 0.25
+              const path = `M ${sx} ${sy} Q ${mx} ${my}, ${ex} ${ey}`
               return (
-                <g key={n.code}>
-                  <path d={path} fill="none" stroke="rgba(15,58,35,0.25)" strokeWidth="0.32" />
+                <g key={p.code}>
+                  <path d={path} fill="none" stroke="rgba(15,58,35,0.32)" strokeWidth="0.22" strokeDasharray="0.8 0.8" />
                   <path
                     d={path}
                     fill="none"
                     stroke="rgba(158,199,58,0.95)"
-                    strokeWidth="0.4"
+                    strokeWidth="0.32"
                     strokeLinecap="round"
                     className="animate-svg-flow"
-                    style={{ animationDelay: `${i * 0.4}s`, animationDuration: '5s' }}
+                    style={{ animationDelay: `${i * 0.5}s`, animationDuration: '5s' }}
                   />
                 </g>
               )
             })}
           </svg>
 
-          {/* HUB */}
-          <button
-            type="button"
-            onClick={onSelectHub}
-            aria-label="Open the full global presence overview"
-            className="group/hub absolute z-10"
-            style={{ left: `${HUB_X}%`, top: `${HUB_Y}%`, transform: 'translate(-50%, -50%)' }}
-          >
-            <div className="relative">
-              <span className="absolute inset-0 rounded-2xl bg-brand-accent/35 blur-md animate-pulse" />
-              <span aria-hidden="true"
-                    className="absolute -inset-1 rounded-2xl bg-brand-accent
-                               opacity-0 group-hover/hub:opacity-100 blur-sm transition-opacity duration-300" />
-              <div className="relative w-[140px] h-[140px] rounded-2xl bg-white
-                              ring-2 ring-brand-accent shadow-[0_12px_30px_-8px_rgba(15,58,35,0.5)]
-                              grid place-items-center overflow-hidden
-                              transition-transform duration-300
-                              group-hover/hub:scale-105">
-                <img
-                  src={assets.logo}
-                  alt="Yanabiya Group"
-                  className="w-full h-full object-contain p-3"
-                />
-              </div>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 whitespace-nowrap">
-                <span className="inline-flex items-center gap-1.5 rounded-full
-                                 bg-brand-deep text-brand-accent
-                                 px-2.5 py-0.5
-                                 text-[9px] font-bold tracking-[0.3em] uppercase
-                                 shadow-md">
-                  <span className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
-                  Group HQ · Tap
-                </span>
-              </div>
-            </div>
-          </button>
-
-          {/* Country nodes */}
-          {NODE_POSITIONS.map((n, i) => {
-            const c = countries.find((cc) => cc.code === n.code)
+          {/* Pins */}
+          {PINS.map((p, i) => {
+            const c = countries.find((cc) => cc.code === p.code)
             if (!c) return null
+            const isHub = !!p.isHub
             return (
               <button
-                key={n.code}
+                key={p.code}
                 type="button"
-                onClick={() => onSelect(n.code)}
-                aria-label={c.name}
+                onClick={() => (isHub ? onSelectHub() : onSelect(p.code))}
+                aria-label={`${c.name} · ${c.role}`}
                 className="group absolute z-10"
-                style={{ left: `${n.x}%`, top: `${n.y}%`, transform: 'translate(-50%, -50%)' }}
+                style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)' }}
               >
-                <div className="flex items-center gap-2.5 rounded-xl bg-white
-                                border border-slate-200 px-3 py-2.5
-                                shadow-[0_4px_12px_rgba(15,58,35,0.08)]
-                                transition-all duration-300
-                                group-hover:border-brand-deep group-hover:-translate-y-0.5
-                                group-hover:shadow-[0_12px_28px_-8px_rgba(15,58,35,0.28)]">
-                  <span className="shrink-0 grid place-items-center w-9 h-9 rounded-lg
-                                   bg-brand-accent/15 text-2xl leading-none
-                                   transition-all duration-300
-                                   group-hover:bg-brand-accent">
-                    {c.flag}
-                  </span>
-                  <div className="text-left">
-                    <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
-                      {c.name.replace('Sultanate of ', '').replace(' of America', '')}
-                    </div>
-                    <div className="text-[8.5px] font-mono text-slate-400 tracking-wide leading-none mt-0.5">
-                      0{i + 1} · {c.role}
-                    </div>
-                  </div>
-                </div>
+                {/* Halo */}
                 <span
                   aria-hidden="true"
-                  className="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-accent
-                             shadow-[0_0_8px_rgba(158,199,58,0.7)]"
-                  style={{ animation: `haloPulse 2.6s ease-in-out ${i * 0.3}s infinite` }}
+                  className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full
+                              ${isHub ? 'w-12 h-12 bg-brand-accent/30' : 'w-9 h-9 bg-brand-accent/25'}`}
+                  style={{ animation: `haloPulse 2.6s ease-in-out ${i * 0.25}s infinite` }}
                 />
+                {/* Outer ring (hover only) */}
+                <span
+                  aria-hidden="true"
+                  className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-brand-accent
+                              opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                              ${isHub ? 'w-16 h-16' : 'w-12 h-12'}`}
+                />
+                {/* Pin head */}
+                <span
+                  aria-hidden="true"
+                  className={`relative block rounded-full grid place-items-center text-white shadow-[0_4px_12px_rgba(15,58,35,0.4)]
+                              transition-transform duration-300 group-hover:scale-110
+                              ${isHub
+                                ? 'w-7 h-7 bg-brand-deep ring-[3px] ring-brand-accent'
+                                : 'w-5 h-5 bg-brand-accentDark ring-2 ring-white'}`}
+                >
+                  <MapPin size={isHub ? 14 : 10} strokeWidth={2.2} />
+                </span>
+
+                {/* Label tag */}
+                <div
+                  className={`absolute left-1/2 -translate-x-1/2 ${isHub ? 'top-full mt-3' : 'top-full mt-2'}
+                              whitespace-nowrap`}
+                >
+                  <span
+                    className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1
+                                text-[9px] font-bold tracking-[0.22em] uppercase shadow-md
+                                transition-all duration-300
+                                ${isHub
+                                  ? 'bg-brand-deep text-brand-accent'
+                                  : 'bg-white text-brand-deep border border-slate-200 group-hover:border-brand-accentDark'}`}
+                  >
+                    <span className="text-[11px] leading-none">{c.flag}</span>
+                    {isHub
+                      ? 'HQ · Muscat'
+                      : c.name.replace('Sultanate of ', '').replace(' of America', '')}
+                  </span>
+                </div>
               </button>
             )
           })}
 
-          <div className="absolute top-3 left-4 text-[9px] font-mono text-slate-400 tracking-wide">
-            4 nodes · live signal
+          {/* Map chrome — corner zoom controls (decorative) */}
+          <div className="absolute top-3 right-3 flex flex-col gap-1.5 opacity-70">
+            <button
+              type="button"
+              aria-label="Zoom in"
+              className="w-7 h-7 rounded-md bg-white border border-slate-200 grid place-items-center
+                         text-slate-500 hover:text-brand-deep hover:border-brand-accentDark transition"
+            >
+              <Plus size={12} />
+            </button>
+            <button
+              type="button"
+              aria-label="Zoom out"
+              className="w-7 h-7 rounded-md bg-white border border-slate-200 grid place-items-center
+                         text-slate-500 hover:text-brand-deep hover:border-brand-accentDark transition"
+            >
+              <Minus size={12} />
+            </button>
+          </div>
+
+          <div className="absolute bottom-3 left-4 text-[9px] font-mono text-slate-400 tracking-wide">
+            equirectangular · stylised
           </div>
           <div className="absolute bottom-3 right-4 text-[9px] font-mono text-slate-400 tracking-wide">
-            tap a node →
+            tap a pin →
           </div>
         </div>
       </div>
@@ -262,8 +300,8 @@ function CountryPanel({
         </p>
 
         <div className="mt-7 space-y-2.5">
-          {NODE_POSITIONS.map((n, i) => {
-            const c = countries.find((cc) => cc.code === n.code)
+          {PINS.map((p, i) => {
+            const c = countries.find((cc) => cc.code === p.code)
             if (!c) return null
             const num = String(i + 1).padStart(2, '0')
             return (
@@ -485,46 +523,60 @@ export default function GlobalPresence() {
         <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
       </div>
 
+      {/* Header */}
       <section className="relative">
-        <div className="container-x py-14 md:py-20">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-
-            {/* LEFT — workflow card */}
-            <Reveal delay={200} className="lg:col-span-8">
-              <NetworkWorkflow
-                onSelect={(code) => setSelected(code)}
-                onSelectHub={() => setSelected('overview')}
-              />
-            </Reveal>
-
-            {/* RIGHT — header */}
-            <div className="lg:col-span-4">
-              <Reveal>
-                <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
-                  <Sparkles size={12} className="text-brand-accent" />
-                  Global Presence
-                  <Sparkles size={12} className="text-brand-accent" />
-                </div>
-              </Reveal>
-              <Reveal delay={120}>
-                <h1 className="font-serif text-3xl md:text-4xl lg:text-[42px] leading-[1.05] tracking-tight text-brand-deep">
-                  Four countries.
-                  <span className="block text-brand-accentDark">One network.</span>
-                </h1>
-              </Reveal>
-              <Reveal delay={260}>
-                <p className="mt-5 text-base text-slate-600 leading-relaxed max-w-md">
-                  Tap a country — or the HQ for the full network at once.
-                </p>
-              </Reveal>
-              <Reveal delay={400}>
-                <div className="mt-6 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.32em] text-brand-accentDark font-bold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                  Live signal · 4 active hubs
-                </div>
-              </Reveal>
+        <div className="container-x pt-14 md:pt-20 pb-6 text-center max-w-3xl mx-auto">
+          <Reveal>
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
+              <Sparkles size={12} className="text-brand-accent" />
+              Global Presence
+              <Sparkles size={12} className="text-brand-accent" />
             </div>
-          </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-brand-deep">
+              Four countries.
+              <span className="text-brand-accentDark"> One network.</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={260}>
+            <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
+              Tap a pin to open a country — or the HQ marker for the full network at once.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Map */}
+      <section className="relative">
+        <div className="container-x pb-20 md:pb-28">
+          <Reveal delay={200}>
+            <WorldMap
+              onSelect={(code) => setSelected(code)}
+              onSelectHub={() => setSelected('overview')}
+            />
+          </Reveal>
+
+          {/* Country chip strip — quick alt-nav under the map */}
+          <Reveal delay={320}>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+              {countries.map((c) => (
+                <button
+                  key={c.code}
+                  type="button"
+                  onClick={() => setSelected(c.code)}
+                  className="group inline-flex items-center gap-2 rounded-full
+                             bg-white border border-slate-200 px-3 py-1.5
+                             text-[11px] font-semibold uppercase tracking-wider text-brand-deep
+                             hover:border-brand-accentDark hover:text-brand-accentDark
+                             hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <span className="text-base leading-none">{c.flag}</span>
+                  {c.name.replace('Sultanate of ', '').replace(' of America', '')}
+                </button>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
