@@ -55,15 +55,15 @@ type WorkflowNode = {
 }
 
 const WORKFLOW_NODES: WorkflowNode[] = [
-  { slug: 'it-software',       x: 38, y: 18 },
-  { slug: 'export-import',     x: 60, y: 18 },
-  { slug: 'clothing',          x: 82, y: 28 },
-  { slug: 'agents-brokerage',  x: 38, y: 82 },
-  { slug: 'office-management', x: 60, y: 82 },
-  { slug: 'manpower',          x: 82, y: 72 },
+  { slug: 'it-software',       x: 62, y: 18 },
+  { slug: 'export-import',     x: 40, y: 18 },
+  { slug: 'clothing',          x: 18, y: 28 },
+  { slug: 'agents-brokerage',  x: 62, y: 82 },
+  { slug: 'office-management', x: 40, y: 82 },
+  { slug: 'manpower',          x: 18, y: 72 },
 ]
 
-const HUB_X = 14
+const HUB_X = 86
 const HUB_Y = 50
 
 function ServiceWorkflow({ onSelect }: { onSelect: (slug: string) => void }) {
@@ -116,7 +116,7 @@ function ServiceWorkflow({ onSelect }: { onSelect: (slug: string) => void }) {
               // control point in the middle for a soft curve
               const cx1 = sx + (ex - sx) * 0.6
               const cy1 = sy
-              const path = `M ${sx} ${sy} C ${cx1} ${cy1}, ${ex - 6} ${ey}, ${ex} ${ey}`
+              const path = `M ${sx} ${sy} C ${cx1} ${cy1}, ${ex + 6} ${ey}, ${ex} ${ey}`
               return (
                 <g key={n.slug}>
                   <path
@@ -197,10 +197,10 @@ function ServiceWorkflow({ onSelect }: { onSelect: (slug: string) => void }) {
                     </div>
                   </div>
                 </div>
-                {/* Pulsing arrival dot anchored on the inbound edge */}
+                {/* Pulsing arrival dot anchored on the inbound (right) edge */}
                 <span
                   aria-hidden="true"
-                  className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-accent
+                  className="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-accent
                              shadow-[0_0_8px_rgba(158,199,58,0.7)]"
                   style={{ animation: `haloPulse 2.6s ease-in-out ${i * 0.3}s infinite` }}
                 />
