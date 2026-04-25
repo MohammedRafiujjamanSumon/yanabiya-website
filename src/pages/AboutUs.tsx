@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import {
   ArrowRight, Target, Eye, Sparkles,
   Cpu, Globe2, Shirt, Handshake, Building2, Users,
-  ChevronRight,
+  ChevronRight, Layers, MapPinned, ShieldCheck,
 } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import BackButton from '../components/BackButton'
@@ -120,6 +120,35 @@ export default function AboutUs() {
                 A diversified international group operating as one platform —
                 across technology, trade, talent, and consulting in four countries.
               </p>
+            </Reveal>
+
+            {/* Executive summary — three proof points at a glance */}
+            <Reveal delay={460}>
+              <div className="mt-12 grid sm:grid-cols-3 gap-3 max-w-3xl">
+                {[
+                  { icon: Layers,      label: 'Six sectors', body: 'One operating discipline across tech, trade, and talent.' },
+                  { icon: MapPinned,   label: 'Four countries', body: 'Oman HQ, with teams in the UK, Bangladesh, and USA.' },
+                  { icon: ShieldCheck, label: 'Decade of trust', body: '10+ years of compounding partnerships across borders.' },
+                ].map((s) => (
+                  <div
+                    key={s.label}
+                    className="rounded-xl border border-slate-200 bg-white/80 backdrop-blur-sm
+                               p-4 transition-all duration-300
+                               hover:border-brand-accent/50 hover:-translate-y-0.5
+                               hover:shadow-[0_12px_30px_-12px_rgba(158,199,58,0.35)]"
+                  >
+                    <div className="flex items-center gap-2 text-brand-accentDark">
+                      <s.icon size={16} strokeWidth={1.8} />
+                      <span className="text-[10px] font-bold uppercase tracking-[0.22em]">
+                        {s.label}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-[13px] text-slate-600 leading-relaxed">
+                      {s.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </Reveal>
           </div>
         </div>

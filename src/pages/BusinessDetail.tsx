@@ -146,10 +146,60 @@ export default function BusinessDetail() {
             )}
 
             <ServiceForm sectorTitle={business.title} features={business.features} />
+
+            {/* Related Divisions strip — cross-discovery into the rest of the group */}
+            <RelatedDivisions currentSlug={business.slug} />
           </div>
         </div>
       </div>
     </Section>
+  )
+}
+
+/* Related Divisions — picks up to 3 other divisions and shows them as
+ * compact cards so visitors discover the wider Yanabiya Group. */
+function RelatedDivisions({ currentSlug }: { currentSlug: string }) {
+  const others = businesses.filter((b) => b.slug !== currentSlug).slice(0, 3)
+  if (others.length === 0) return null
+  return (
+    <div className="mt-12 pt-10 border-t border-white/10">
+      <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-brand-accent mb-2">
+        From the Group
+      </div>
+      <h3 className="font-serif text-2xl md:text-3xl text-white leading-tight mb-6">
+        Explore other divisions
+      </h3>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {others.map((b) => (
+          <Link
+            key={b.slug}
+            to={`/business/${b.slug}`}
+            className="group flex items-start gap-3 rounded-xl bg-white/[0.05] border border-white/10
+                       p-4 transition-all duration-300
+                       hover:bg-white/[0.10] hover:border-brand-accent/40 hover:-translate-y-0.5"
+          >
+            <span className="shrink-0 grid place-items-center w-10 h-10 rounded-lg
+                             bg-brand-accent/15 text-brand-accent
+                             transition-colors duration-300
+                             group-hover:bg-brand-accent group-hover:text-brand-deep">
+              <b.icon size={18} strokeWidth={1.6} />
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="text-[13px] font-semibold text-white leading-tight">
+                {b.title.replace('🤝 ', '')}
+              </div>
+              <div className="mt-1 text-[10px] uppercase tracking-[0.22em] text-brand-accent
+                              inline-flex items-center gap-1
+                              transition-all duration-300
+                              group-hover:gap-1.5">
+                Explore <ArrowRight size={11} />
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
   )
 }
 
