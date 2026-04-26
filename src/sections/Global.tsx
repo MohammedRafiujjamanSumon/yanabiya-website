@@ -44,24 +44,28 @@ export default function Global() {
     <Section id="global" className="relative overflow-hidden bg-white">
       <div className="container-x py-12 md:py-16">
 
-        {/* ───────── 2-COLUMN HEADER + GEOMAP ───────── */}
+        {/* ───────── FULL-WIDTH HEADER (single-line headline) ───────── */}
+        <div className="mb-10 md:mb-14 max-w-5xl">
+          <Reveal>
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
+              {t('global.eyebrow', 'Global Presence')}
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-[40px] leading-[1.15] tracking-tight text-slate-900 lg:whitespace-nowrap">
+              Aligned across borders as{' '}
+              <span className="text-brand-accentDark">one unified network.</span>
+            </h2>
+          </Reveal>
+        </div>
+
+        {/* ───────── 2-COLUMN BODY + GEOMAP ───────── */}
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
-          {/* LEFT — title + description + CTA */}
+          {/* LEFT — description + flags + CTA */}
           <div className="lg:col-span-5">
-            <Reveal>
-              <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-5">
-                {t('global.eyebrow', 'Global Presence')}
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="font-serif text-2xl md:text-3xl lg:text-[34px] leading-[1.15] tracking-tight text-slate-900">
-                Aligned across borders as{' '}
-                <span className="text-brand-accentDark">one unified network.</span>
-              </h2>
-            </Reveal>
             <Reveal delay={280}>
-              <p className="mt-6 text-base md:text-lg text-slate-600 leading-relaxed max-w-md">
+              <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-md">
                 We operate through a coordinated structure across key global markets,
                 where every location follows shared systems, standards, and strategic
                 direction.
