@@ -226,41 +226,49 @@ function ServicesPyramid({
                     transition: 'box-shadow 0.5s ease, background 0.4s ease',
                   }}
                 />
-                {/* Label — billboard chip that COUNTER-rotates the parent's
-                 *  Y spin so it always faces the camera (never goes edge-on
-                 *  during the rotation). Wrapper is positioned at the centre
-                 *  of the ring, the inner div carries the reverse animation,
-                 *  the chip itself is the visible white pill. */}
-                <div
-                  className="absolute left-1/2 top-1/2 pointer-events-none"
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Floating labels — separate non-rotating layer, positioned at each
+       *  ring's vertical level. They never spin with the pyramid, so the
+       *  white pill + dark-green text + icon stay 100% readable at every
+       *  angle and even when paused. */}
+      <div className="absolute inset-0 grid place-items-center pointer-events-none">
+        <div className="relative" style={{ width: '460px', height: '700px' }}>
+          {PYRAMID_LAYERS.map((layer, i) => {
+            const fromBottom = total - 1 - i
+            const width = baseWidth - fromBottom * stepWidth
+            const yOffset = (i - (total - 1) / 2) * stepY
+            const isActive = active === i
+            const fontPx = Math.max(11, Math.min(14, width / 28))
+            const Icon = layer.icon
+            return (
+              <span
+                key={layer.slug}
+                className="absolute left-1/2 top-1/2"
+                style={{
+                  transform: `translate(-50%, -50%) translateY(${yOffset}px) ${isActive ? 'scale(1.06)' : ''}`,
+                  transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)',
+                }}
+              >
+                <span
+                  className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full
+                             bg-white/95 backdrop-blur-sm
+                             px-3.5 py-1 font-bold uppercase text-brand-deep
+                             shadow-[0_6px_14px_-6px_rgba(15,58,35,0.45)]
+                             ring-1 ring-white/70"
                   style={{
-                    transform: 'translate(-50%, -50%)',
-                    transformStyle: 'preserve-3d',
+                    fontSize: `${fontPx}px`,
+                    letterSpacing: '0.18em',
                   }}
                 >
-                  <div
-                    className="animate-pyramid-spin-reverse"
-                    style={{
-                      transformStyle: 'preserve-3d',
-                      animationPlayState: paused ? 'paused' : 'running',
-                    }}
-                  >
-                    <span
-                      className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full
-                                 bg-white/95 backdrop-blur-sm
-                                 px-3 py-1 font-bold uppercase text-brand-deep
-                                 shadow-[0_4px_10px_-4px_rgba(15,58,35,0.35)]"
-                      style={{
-                        fontSize: `${fontPx}px`,
-                        letterSpacing: '0.18em',
-                      }}
-                    >
-                      <Icon size={fontPx + 3} strokeWidth={2.4} className="text-brand-deep" />
-                      {layer.label}
-                    </span>
-                  </div>
-                </div>
-              </div>
+                  <Icon size={fontPx + 3} strokeWidth={2.4} className="text-brand-deep" />
+                  {layer.label}
+                </span>
+              </span>
             )
           })}
         </div>
