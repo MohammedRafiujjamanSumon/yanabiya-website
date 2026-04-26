@@ -362,35 +362,38 @@ function CountryPanel({
         </div>
       </div>
 
-      {/* Embedded country map */}
-      {contact && (
-        <a
-          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.mapQuery)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group mt-6 block relative aspect-[16/10] rounded-xl overflow-hidden
-                     border border-slate-200 shadow-[0_12px_30px_-14px_rgba(15,58,35,0.35)]"
-        >
-          <iframe
-            title={`Map of ${c.name}`}
-            src={`https://www.google.com/maps?q=${encodeURIComponent(contact.mapQuery)}&output=embed`}
+      {/* Country map illustration */}
+      {(c as { mapImage?: string }).mapImage && (
+        <div className="relative mt-6 rounded-xl overflow-hidden
+                        bg-gradient-to-b from-[#f5f8f3] to-[#eef3ea]
+                        border border-slate-200 shadow-[0_12px_30px_-14px_rgba(15,58,35,0.35)]
+                        aspect-[5/4] grid place-items-center p-4">
+          <img
+            src={(c as { mapImage: string }).mapImage}
+            alt={`Administrative map of ${c.name}`}
             loading="lazy"
-            className="absolute inset-0 w-full h-full"
-            referrerPolicy="no-referrer-when-downgrade"
+            className="max-h-full max-w-full object-contain"
           />
           <div className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5
                           rounded-full bg-white/95 backdrop-blur px-2.5 py-1
                           text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep">
             <span className="text-[12px] leading-none">{c.flag}</span>
-            {c.code}
+            {c.code} · Map
           </div>
-          <div className="absolute top-2.5 right-2.5 inline-flex items-center gap-1.5
-                          rounded-full bg-white/95 backdrop-blur px-2.5 py-1
-                          text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep
-                          opacity-0 group-hover:opacity-100 transition-opacity">
-            Open in Maps <ExternalLink size={11} />
-          </div>
-        </a>
+          {contact && (
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.mapQuery)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-2.5 right-2.5 inline-flex items-center gap-1.5
+                         rounded-full bg-white/95 backdrop-blur px-2.5 py-1
+                         text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep
+                         hover:bg-brand-accent hover:text-brand-deep transition-colors"
+            >
+              Find office <ExternalLink size={11} />
+            </a>
+          )}
+        </div>
       )}
 
       <div className="mt-4 flex items-start gap-2 text-sm text-slate-700">
