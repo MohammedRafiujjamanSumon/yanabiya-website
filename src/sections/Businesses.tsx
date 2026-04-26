@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Sparkles, X as CloseIcon, ExternalLink } from 'lucide-react'
+import { Sparkles, X as CloseIcon, ExternalLink, ArrowRight } from 'lucide-react'
 import Section from '../components/Section'
 import { businesses } from '../data/businesses'
 import { useReveal } from '../hooks/useReveal'
@@ -43,205 +43,180 @@ const BUSINESS_DISPLAY: Record<
   'manpower':          { title: 'Global Mobility',  tag: 'Workforce, students, aviation.',      sample: ['Recruitment', 'Student Visa', 'Aviation'] },
 }
 
-/* Service Workflow — n8n.io-inspired canvas card with a Yanabiya hub on
- * the left and 6 service nodes laid out to the right, each connected to
- * the hub by a curved bezier line with a flowing mint signal. Clicking
- * any node opens a slide-in detail panel on the right edge. */
-
-type WorkflowNode = {
+/* Bottom-up gradient palette per pyramid layer. Bottom is the broad
+ * "foundation" layer; top is the strategic apex. Order matches the
+ * order each layer is rendered (top of array → bottom of pyramid
+ * via reverse positioning). */
+type PyramidLayer = {
   slug: string
-  x: number   // % of canvas
-  y: number   // % of canvas
+  label: string
+  from: string  // gradient start
+  to: string    // gradient end
+  glow: string  // box-shadow rgba when active
 }
 
-/* HQ on top, 6 nodes laid out in a 2×3 grid below. */
-const WORKFLOW_NODES: WorkflowNode[] = [
-  { slug: 'it-software',       x: 18, y: 52 },
-  { slug: 'export-import',     x: 50, y: 52 },
-  { slug: 'clothing',          x: 82, y: 52 },
-  { slug: 'agents-brokerage',  x: 18, y: 84 },
-  { slug: 'office-management', x: 50, y: 84 },
-  { slug: 'manpower',          x: 82, y: 84 },
+const PYRAMID_LAYERS: PyramidLayer[] = [
+  { slug: 'it-software',       label: 'Tech & Software', from: '#38bdf8', to: '#0284c7', glow: 'rgba(56,189,248,0.55)' },
+  { slug: 'export-import',     label: 'Global Trade',    from: '#34d399', to: '#059669', glow: 'rgba(52,211,153,0.55)' },
+  { slug: 'clothing',          label: 'Apparel',         from: '#fbbf24', to: '#d97706', glow: 'rgba(251,191,36,0.55)' },
+  { slug: 'agents-brokerage',  label: 'Brokerage',       from: '#c084fc', to: '#9333ea', glow: 'rgba(192,132,252,0.55)' },
+  { slug: 'office-management', label: 'Office Services', from: '#fb7185', to: '#e11d48', glow: 'rgba(251,113,133,0.55)' },
+  { slug: 'manpower',          label: 'Global Mobility', from: '#22d3ee', to: '#0891b2', glow: 'rgba(34,211,238,0.55)' },
 ]
 
-const HUB_X = 50
-const HUB_Y = 16
-
-function ServiceWorkflow({
+/* ServicesPyramid — six-layer 3D rotating "turntable" pyramid.
+ *
+ * Each layer is an elliptical disc of decreasing width going up. The
+ * whole stack lives inside a `transform-style: preserve-3d` wrapper
+ * that rotates around its central Y axis on a 12s loop. Each disc is
+ * pre-tilted with rotateX(72deg) so that, viewed from the front with
+ * a slight perspective, it looks like a flat horizontal layer. As the
+ * wrapper spins, every disc spins around the central axis together.
+ *
+ * Active layer (auto-cycled every ~2.4s, paused on hover) lifts up
+ * 5px, scales 1.05, and gains a coloured glow. Hovering pauses the
+ * rotation and sets the hovered layer as active. Clicking opens the
+ * NodeDetailPanel for that service. */
+function ServicesPyramid({
+  active,
+  setActive,
+  paused,
+  setPaused,
   onSelect,
   onSelectHub,
 }: {
+  active: number
+  setActive: (i: number) => void
+  paused: boolean
+  setPaused: (p: boolean) => void
   onSelect: (slug: string) => void
   onSelectHub: () => void
 }) {
-  return (
-    <div className="relative mx-auto w-full max-w-5xl">
-      {/* Editor-like card */}
-      <div className="relative rounded-2xl bg-white border border-slate-200
-                      shadow-[0_18px_40px_-16px_rgba(15,58,35,0.18)] overflow-hidden">
-        {/* Top toolbar — IDE feel */}
-        <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-100 bg-slate-50/60">
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-brand-accent" />
-            <span className="ml-3 text-[10px] font-mono text-slate-500 tracking-wide">
-              yanabiya-group.workflow
-            </span>
-          </div>
-          <div className="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-            Live
-          </div>
-        </div>
+  const total = PYRAMID_LAYERS.length
+  // Layer dimensions: top is smallest, bottom is biggest.
+  const baseWidth = 320   // bottom disc width (px)
+  const stepWidth = 38    // shrink per step going up
+  const layerH = 36       // each disc height
+  const stepY = 42        // vertical step between layers (px in 3D space)
 
-        {/* Canvas — taller (HQ on top, 2 rows of nodes below). Portrait
-         *  on mobile, slightly landscape on md+. */}
-        <div className="relative aspect-[4/5] md:aspect-[5/4] bg-[#fafbf8]">
-          {/* Subtle dot grid */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 opacity-[0.45]"
+  return (
+    <div
+      className="relative mx-auto w-full max-w-[460px] aspect-square select-none"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      style={{ perspective: '1200px' }}
+    >
+      {/* Faint orbit ring around the base */}
+      <div
+        aria-hidden="true"
+        className="absolute left-1/2 top-[78%] -translate-x-1/2 -translate-y-1/2
+                   w-[88%] aspect-[4/1] rounded-full
+                   border border-brand-accent/25
+                   bg-gradient-to-b from-brand-accent/0 via-brand-accent/10 to-brand-accent/0
+                   pointer-events-none"
+      />
+      {/* Two orbit indicator dots travelling along the ring */}
+      <div
+        aria-hidden="true"
+        className="absolute left-1/2 top-[78%] -translate-x-1/2 -translate-y-1/2
+                   w-[88%] aspect-[4/1] pointer-events-none"
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        {[0, 0.5].map((delay, i) => (
+          <span
+            key={i}
+            className="absolute top-1/2 left-1/2 -ml-1 -mt-1 w-2 h-2 rounded-full bg-brand-accent
+                       shadow-[0_0_8px_rgba(158,199,58,0.7)]"
             style={{
-              backgroundImage:
-                'radial-gradient(circle, rgba(15,58,35,0.12) 1px, transparent 1px)',
-              backgroundSize: '22px 22px',
+              ['--orbit-r' as never]: '180px',
+              animation: `orbitDot 8s linear ${delay * 8}s infinite`,
+              transform: `rotate(0deg) translateX(180px)`,
             }}
           />
+        ))}
+      </div>
 
-          {/* Connection lines (curved bezier per node → hub) */}
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            className="absolute inset-0 w-full h-full overflow-visible"
-          >
-            {WORKFLOW_NODES.map((n, i) => {
-              const sx = HUB_X
-              const sy = HUB_Y
-              const ex = n.x
-              const ey = n.y
-              // Top-down soft curve: drop straight from hub, then arc
-              // outward toward the node's column.
-              const cx1 = sx
-              const cy1 = sy + (ey - sy) * 0.55
-              const cx2 = ex
-              const cy2 = ey - 8
-              const path = `M ${sx} ${sy} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${ex} ${ey}`
-              return (
-                <g key={n.slug}>
-                  <path
-                    d={path}
-                    fill="none"
-                    stroke="rgba(15,58,35,0.25)"
-                    strokeWidth="0.32"
-                  />
-                  <path
-                    d={path}
-                    fill="none"
-                    stroke="rgba(158,199,58,0.95)"
-                    strokeWidth="0.4"
-                    strokeLinecap="round"
-                    className="animate-svg-flow"
-                    style={{ animationDelay: `${i * 0.4}s`, animationDuration: '5s' }}
-                  />
-                </g>
-              )
-            })}
-          </svg>
+      {/* Pyramid stack */}
+      <div
+        className="absolute inset-0 grid place-items-center"
+        style={{ transformStyle: 'preserve-3d', transform: 'rotateX(8deg)' }}
+      >
+        <div
+          className={paused ? '' : 'animate-pyramid-spin'}
+          style={{
+            transformStyle: 'preserve-3d',
+            transformOrigin: 'center center',
+            position: 'relative',
+            width: '320px',
+            height: '320px',
+          }}
+        >
+          {PYRAMID_LAYERS.map((layer, i) => {
+            // i=0 top → smallest. Reverse for visual: bottom layer is widest.
+            const fromBottom = total - 1 - i  // 5,4,3,2,1,0 → bottom row first
+            const width = baseWidth - fromBottom * stepWidth
+            // yOffset: top layer (i=0) goes highest (negative), bottom layer (i=total-1) lowest.
+            const yOffset = (i - (total - 1) / 2) * stepY
+            const isActive = active === i
 
-          {/* HUB — Yanabiya (clickable, full logo cover) */}
-          <button
-            type="button"
-            onClick={onSelectHub}
-            aria-label="Open all services overview"
-            className="group/hub absolute z-10"
-            style={{ left: `${HUB_X}%`, top: `${HUB_Y}%`, transform: 'translate(-50%, -50%)' }}
-          >
-            <div className="relative">
-              <span className="absolute inset-0 rounded-2xl bg-brand-accent/35 blur-md animate-pulse" />
-              <span aria-hidden="true"
-                    className="absolute -inset-1 rounded-2xl bg-brand-accent
-                               opacity-0 group-hover/hub:opacity-100 blur-sm transition-opacity duration-300" />
-              <div className="relative w-[88px] h-[88px] md:w-[140px] md:h-[140px] rounded-2xl bg-white
-                              ring-2 ring-brand-accent shadow-[0_12px_30px_-8px_rgba(15,58,35,0.5)]
-                              grid place-items-center overflow-hidden
-                              transition-transform duration-300
-                              group-hover/hub:scale-105">
-                <img
-                  src={assets.logo}
-                  alt="Yanabiya Group"
-                  className="w-full h-full object-contain p-3"
-                />
-              </div>
-              {/* HQ caption pill below */}
-              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 whitespace-nowrap">
-                <span className="inline-flex items-center gap-1.5 rounded-full
-                                 bg-brand-deep text-brand-accent
-                                 px-2.5 py-0.5
-                                 text-[9px] font-bold tracking-[0.3em] uppercase
-                                 shadow-md">
-                  <span className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
-                  Group HQ · Tap
-                </span>
-              </div>
-            </div>
-          </button>
-
-          {/* Service nodes */}
-          {WORKFLOW_NODES.map((n, i) => {
-            const b = businesses.find((bb) => bb.slug === n.slug)
-            if (!b) return null
-            const display = BUSINESS_DISPLAY[n.slug] ?? { title: b.title, tag: '', sample: [] }
-            const Icon = b.icon
             return (
               <button
-                key={n.slug}
+                key={layer.slug}
                 type="button"
-                onClick={() => onSelect(n.slug)}
-                aria-label={display.title}
-                className="group absolute z-10"
-                style={{ left: `${n.x}%`, top: `${n.y}%`, transform: 'translate(-50%, -50%)' }}
-              >
-                <div className="flex items-center gap-3 rounded-2xl bg-white
-                                border border-slate-200 px-4 py-3
-                                shadow-[0_6px_16px_rgba(15,58,35,0.10)]
-                                transition-all duration-300
-                                group-hover:border-brand-deep group-hover:-translate-y-0.5
-                                group-hover:shadow-[0_14px_32px_-8px_rgba(15,58,35,0.30)]">
-                  <span className="shrink-0 grid place-items-center w-11 h-11 rounded-xl
-                                   bg-brand-accent/15 text-brand-deep
-                                   transition-all duration-300
-                                   group-hover:bg-brand-accent group-hover:text-white">
-                    <Icon size={18} strokeWidth={1.7} />
-                  </span>
-                  <div className="text-left">
-                    <div className="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
-                      {display.title}
-                    </div>
-                    <div className="text-[9px] font-mono text-slate-400 tracking-wide leading-none mt-1">
-                      0{i + 1} · {n.slug}
-                    </div>
-                  </div>
-                </div>
-                {/* Pulsing arrival dot anchored on the top edge (inbound from above) */}
-                <span
-                  aria-hidden="true"
-                  className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-brand-accent
-                             shadow-[0_0_8px_rgba(158,199,58,0.7)]"
-                  style={{ animation: `haloPulse 2.6s ease-in-out ${i * 0.3}s infinite` }}
-                />
-              </button>
+                onClick={() => onSelect(layer.slug)}
+                onMouseEnter={() => setActive(i)}
+                aria-label={layer.label}
+                className="group absolute left-1/2 top-1/2 cursor-pointer outline-none
+                           focus-visible:ring-2 focus-visible:ring-brand-accent rounded-full"
+                style={{
+                  width: `${width}px`,
+                  height: `${layerH}px`,
+                  marginLeft: `-${width / 2}px`,
+                  marginTop: `-${layerH / 2}px`,
+                  transform: `translate3d(0, ${yOffset}px, 0) rotateX(72deg) ${isActive ? 'scale(1.05) translateY(-5px)' : ''}`,
+                  transformStyle: 'preserve-3d',
+                  background: `linear-gradient(135deg, ${layer.from}, ${layer.to})`,
+                  borderRadius: '999px',
+                  boxShadow: isActive
+                    ? `0 18px 40px -8px ${layer.glow}, 0 0 0 1px rgba(255,255,255,0.4) inset`
+                    : `0 6px 14px -4px rgba(15,58,35,0.30), 0 0 0 1px rgba(255,255,255,0.25) inset`,
+                  transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s ease',
+                }}
+              />
             )
           })}
+        </div>
+      </div>
 
-          {/* Editorial chrome */}
-          <div className="absolute top-3 left-4 text-[9px] font-mono text-slate-400 tracking-wide">
-            6 nodes · live signal
-          </div>
-          <div className="absolute bottom-3 right-4 text-[9px] font-mono text-slate-400 tracking-wide">
-            tap a node →
-          </div>
+      {/* Apex hub — small Yanabiya logo above the pyramid, click → overview */}
+      <button
+        type="button"
+        onClick={onSelectHub}
+        aria-label="Open all services overview"
+        className="group/hub absolute left-1/2 top-2 -translate-x-1/2 z-10"
+      >
+        <div className="relative w-12 h-12 rounded-full bg-white ring-2 ring-brand-accent
+                        shadow-[0_8px_22px_-6px_rgba(15,58,35,0.45)]
+                        grid place-items-center overflow-hidden
+                        transition-transform duration-300 group-hover/hub:scale-110">
+          <img src={assets.logo} alt="Yanabiya Group" className="w-10 h-10 object-contain p-1" />
+        </div>
+        <span className="absolute left-1/2 -translate-x-1/2 top-full mt-1.5 whitespace-nowrap
+                         text-[8px] font-bold tracking-[0.32em] uppercase text-brand-accentDark">
+          Group HQ
+        </span>
+      </button>
+
+      {/* Active layer label below the pyramid (responsive to active index) */}
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-2 text-center">
+        <div className="text-[9px] font-bold uppercase tracking-[0.32em] text-brand-accentDark">
+          Active · 0{active + 1} of {total}
+        </div>
+        <div
+          className="font-serif text-lg text-brand-deep mt-1 leading-tight transition-colors duration-300"
+          style={{ color: PYRAMID_LAYERS[active].to }}
+        >
+          {PYRAMID_LAYERS[active].label}
         </div>
       </div>
     </div>
@@ -475,6 +450,26 @@ function NodeDetailPanel({
 
 export default function Businesses() {
   const [selected, setSelected] = useState<string | 'overview' | null>(null)
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const tickRef = useRef<number | undefined>(undefined)
+
+  /* Auto-cycle the active layer every 2.4s while not paused. Hovering
+   * the pyramid (or its surrounding card) sets paused=true, which
+   * also halts the rotation animation. */
+  useEffect(() => {
+    if (paused) {
+      if (tickRef.current) window.clearInterval(tickRef.current)
+      return
+    }
+    tickRef.current = window.setInterval(() => {
+      setActive((a) => (a + 1) % PYRAMID_LAYERS.length)
+    }, 2400)
+    return () => {
+      if (tickRef.current) window.clearInterval(tickRef.current)
+    }
+  }, [paused])
+
   return (
     <Section id="businesses" className="relative overflow-hidden bg-white">
       {/* Soft ambient mint glow on the white surface */}
@@ -485,19 +480,11 @@ export default function Businesses() {
 
       <div className="container-x py-14 md:py-20 relative">
 
-        {/* WORKFLOW ON TOP — text below, centered */}
-        <div className="flex flex-col gap-12 md:gap-14 items-center">
+        {/* TEXT LEFT (col-span-5), PYRAMID RIGHT (col-span-7) */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
-          {/* TOP — workflow canvas */}
-          <Reveal delay={200} className="w-full">
-            <ServiceWorkflow
-              onSelect={(s) => setSelected(s)}
-              onSelectHub={() => setSelected('overview')}
-            />
-          </Reveal>
-
-          {/* BELOW — Services / Divisions text, centered */}
-          <div className="w-full max-w-3xl mx-auto text-center">
+          {/* LEFT — Services / Divisions text */}
+          <div className="lg:col-span-5">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
                 <Sparkles size={12} className="text-brand-accent" />
@@ -511,8 +498,9 @@ export default function Businesses() {
                 <span className="text-brand-accentDark">divisions.</span>
               </h2>
             </Reveal>
-            {/* Body — line-cascade reveal, centered */}
-            <div className="mt-5 max-w-2xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
+
+            {/* Body — line cascade */}
+            <div className="mt-5 max-w-md space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:left]">
               <Reveal delay={260}>
                 <p>Each division operates with focused expertise,</p>
               </Reveal>
@@ -523,14 +511,15 @@ export default function Businesses() {
                 <p>that connects all operations.</p>
               </Reveal>
             </div>
+
             <Reveal delay={760}>
-              <p className="mt-4 text-sm text-slate-500 leading-relaxed max-w-xl mx-auto">
+              <p className="mt-4 text-sm text-slate-500 leading-relaxed max-w-md">
                 Explore each division to understand its scope, or let us guide you
                 to the right solution.
               </p>
             </Reveal>
             <Reveal delay={900}>
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <div className="mt-6 flex flex-wrap items-center gap-3">
                 <Link
                   to="/contact"
                   className="inline-flex items-center gap-2 rounded-full px-6 py-3
@@ -538,14 +527,27 @@ export default function Businesses() {
                              shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
                 >
                   Get a Quote
+                  <ArrowRight size={14} />
                 </Link>
                 <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.32em] text-brand-accentDark font-bold">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                  Live · 6 nodes
+                  Live · {PYRAMID_LAYERS.length} layers
                 </div>
               </div>
             </Reveal>
           </div>
+
+          {/* RIGHT — rotating Services Pyramid */}
+          <Reveal delay={200} className="lg:col-span-7">
+            <ServicesPyramid
+              active={active}
+              setActive={setActive}
+              paused={paused}
+              setPaused={setPaused}
+              onSelect={(s) => setSelected(s)}
+              onSelectHub={() => setSelected('overview')}
+            />
+          </Reveal>
         </div>
 
       </div>

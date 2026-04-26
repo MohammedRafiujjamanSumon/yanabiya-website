@@ -176,6 +176,21 @@
 }
 .animate-spin-slow { animation: spinSlow 18s linear infinite; }
 
+/* 3D pyramid turntable rotation — used by /#businesses ServicesPyramid.
+ * Applied to a wrapper that has `transform-style: preserve-3d` so all
+ * tilted child layers spin around the central Y axis together. */
+@keyframes pyramidSpin {
+  from { transform: rotateY(0deg);   }
+  to   { transform: rotateY(360deg); }
+}
+.animate-pyramid-spin { animation: pyramidSpin 12s linear infinite; }
+
+/* Orbit indicator dot — small pulse travelling along a circular path. */
+@keyframes orbitDot {
+  from { transform: rotate(0deg)   translateX(var(--orbit-r, 140px)) rotate(0deg);   }
+  to   { transform: rotate(360deg) translateX(var(--orbit-r, 140px)) rotate(-360deg); }
+}
+
 @keyframes ringGlow {
   0%, 100% { box-shadow: 0 0 12px 2px rgba(158, 199, 58, 0.35); }
   50%      { box-shadow: 0 0 28px 6px rgba(158, 199, 58, 0.75); }
