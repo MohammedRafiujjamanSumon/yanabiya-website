@@ -262,9 +262,9 @@ export default function Community() {
                 const sx = geo.handX
                 const sy = geo.handY
                 const ex = end.x
-                /* End the rope well above the card top so the dot sits
-                 * clearly above the card, not on its edge. */
-                const ey = end.y - 26
+                /* Rope tip sits right ON the card's top edge — the round
+                 * card itself is the terminator. */
+                const ey = end.y
                 const c1x = sx
                 const c1y = sy + (ey - sy) * 0.55
                 const c2x = ex
@@ -280,26 +280,27 @@ export default function Community() {
                       strokeWidth="2"
                       strokeLinecap="round"
                     />
-                    {/* Accent flow */}
+                    {/* Accent flow — sped up */}
                     <path
                       d={path}
                       fill="none"
                       stroke={c.accent.rope}
-                      strokeWidth="1.4"
+                      strokeWidth="1.6"
                       strokeLinecap="round"
                       className="animate-svg-flow"
-                      style={{ animationDelay: `${i * 0.5}s`, animationDuration: '5s' }}
+                      style={{ animationDelay: `${i * 0.2}s`, animationDuration: '1.8s' }}
                     />
-                    {/* Terminator dot — line stops here */}
-                    <circle cx={ex} cy={ey} r="3.5" fill="white" stroke={c.accent.rope} strokeWidth="1.8" />
+                    {/* Connection dot at the rope tip — sits on the card edge */}
+                    <circle cx={ex} cy={ey} r="3" fill={c.accent.rope} stroke="white" strokeWidth="1.4" />
                   </g>
                 )
               })}
             </svg>
           )}
 
-          {/* CARDS — 2×2 mini-tiles. Each is a pill with icon + label +
-           *  CTA arrow only; the rope dot sits clearly above each tile. */}
+          {/* CARDS — 2×2 round pills. Each pill is fully rounded; the
+           *  rope tip sits exactly on the pill's top edge with the dot
+           *  marking the connection point. */}
           <div className="relative z-10 mt-16 md:mt-24 grid grid-cols-2 gap-3 md:gap-4 max-w-md mx-auto">
             {cards.map((c, i) => {
               const Icon = c.icon
@@ -309,16 +310,16 @@ export default function Community() {
                     ref={(el) => { cardRefs.current[i] = el }}
                     to={c.href}
                     title={c.desc}
-                    className={`group h-full flex items-center gap-2 rounded-xl bg-white/85 backdrop-blur-sm
-                                border border-slate-200 px-3 py-2.5
-                                shadow-[0_6px_18px_-10px_rgba(15,58,35,0.18)]
+                    className={`group h-full flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm
+                                border border-slate-200 pl-1.5 pr-3 py-1.5
+                                shadow-[0_6px_18px_-10px_rgba(15,58,35,0.20)]
                                 transition-all duration-500
                                 hover:-translate-y-0.5 ${c.accent.ring} ${c.accent.shadow}`}
                   >
-                    <span className={`shrink-0 grid place-items-center w-8 h-8 rounded-lg
+                    <span className={`shrink-0 grid place-items-center w-9 h-9 rounded-full
                                       ${c.accent.iconBg} ${c.accent.iconText}
                                       transition-transform duration-300 group-hover:scale-110`}>
-                      <Icon size={14} strokeWidth={1.7} />
+                      <Icon size={15} strokeWidth={1.8} />
                     </span>
                     <div className="min-w-0 flex-1">
                       <div className="text-[8px] font-bold uppercase tracking-[0.22em] text-slate-500 leading-none mb-0.5">
