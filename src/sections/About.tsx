@@ -159,7 +159,7 @@ export default function About() {
               </h2>
             </Reveal>
             <Reveal delay={220}>
-              <p className="mt-5 font-serif italic text-xl md:text-2xl text-brand-accentDark leading-snug max-w-xl mx-auto">
+              <p className="mt-5 font-serif italic text-base sm:text-lg md:text-xl lg:text-2xl text-brand-accentDark leading-snug mx-auto lg:whitespace-nowrap">
                 Built on trust, scaled with purpose, and proven over time.
               </p>
             </Reveal>
