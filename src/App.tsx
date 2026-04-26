@@ -7,7 +7,6 @@ import PageWatermark from './components/PageWatermark'
 import Home from './pages/Home'
 import BusinessDetail from './pages/BusinessDetail'
 import CountryDetail from './pages/CountryDetail'
-import GlobalPresence from './pages/GlobalPresence'
 import Management from './pages/Management'
 import Professionals from './pages/Professionals'
 import Blog from './pages/Blog'
@@ -33,7 +32,6 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/business/:slug" element={<BusinessDetail />} />
           <Route path="/country/:code" element={<CountryDetail />} />
-          <Route path="/global-presence" element={<GlobalPresence />} />
           <Route path="/global-presence/scroll" element={<OmanPresence />} />
           <Route path="/global-presence/:code" element={<CountryDetail />} />
           <Route path="/partners" element={<Partners />} />

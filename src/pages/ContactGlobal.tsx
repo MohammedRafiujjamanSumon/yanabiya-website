@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  X as CloseIcon, MapPin, Mail, Phone, Globe2, Building2, ArrowRight, ExternalLink,
+  X as CloseIcon, Mail, Phone, Globe2, Building2, ArrowRight, ExternalLink,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import BackButton from '../components/BackButton'
@@ -450,17 +450,6 @@ export default function ContactGlobal() {
             ))}
           </div>
 
-          {/* Compact home link */}
-          <div className="text-center mt-12">
-            <Link
-              to="/global-presence"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accentDark hover:text-brand-deep transition-colors"
-            >
-              <MapPin size={14} />
-              See full Global Presence map
-              <ArrowRight size={12} />
-            </Link>
-          </div>
         </div>
       </section>
 
