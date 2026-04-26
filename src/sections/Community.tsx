@@ -139,7 +139,10 @@ export default function Community() {
       const wRect = wrap.getBoundingClientRect()
       const hRect = hand.getBoundingClientRect()
       const handX = (hRect.left + hRect.right) / 2 - wRect.left
-      const handY = hRect.bottom - wRect.top
+      /* Lift the rope start up into the logo's visual bottom edge — the
+       * square container has whitespace below the object-contain logo, so
+       * starting at hRect.bottom looks detached. */
+      const handY = hRect.bottom - wRect.top - hRect.height * 0.22
       const ends = cardRefs.current.map((el) => {
         if (!el) return { x: 0, y: 0 }
         const r = el.getBoundingClientRect()
