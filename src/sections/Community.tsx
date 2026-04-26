@@ -311,8 +311,8 @@ export default function Community() {
                     to={c.href}
                     title={`${c.eyebrow} · ${c.desc}`}
                     aria-label={`${c.title} — ${c.eyebrow}`}
-                    className={`group h-full flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-sm
-                                border border-slate-200 pl-1 pr-2.5 py-1
+                    className={`group w-fit mx-auto inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-sm
+                                border border-slate-200 pl-1 pr-3 py-1
                                 shadow-[0_4px_14px_-8px_rgba(15,58,35,0.20)]
                                 transition-all duration-300
                                 hover:-translate-y-0.5 ${c.accent.ring} ${c.accent.shadow}`}
