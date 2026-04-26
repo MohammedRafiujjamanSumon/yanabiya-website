@@ -309,27 +309,22 @@ export default function Community() {
                   <Link
                     ref={(el) => { cardRefs.current[i] = el }}
                     to={c.href}
-                    title={c.desc}
-                    className={`group h-full flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm
-                                border border-slate-200 pl-1.5 pr-3 py-1.5
-                                shadow-[0_6px_18px_-10px_rgba(15,58,35,0.20)]
-                                transition-all duration-500
+                    title={`${c.eyebrow} · ${c.desc}`}
+                    aria-label={`${c.title} — ${c.eyebrow}`}
+                    className={`group h-full flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-sm
+                                border border-slate-200 pl-1 pr-2.5 py-1
+                                shadow-[0_4px_14px_-8px_rgba(15,58,35,0.20)]
+                                transition-all duration-300
                                 hover:-translate-y-0.5 ${c.accent.ring} ${c.accent.shadow}`}
                   >
-                    <span className={`shrink-0 grid place-items-center w-9 h-9 rounded-full
+                    <span className={`shrink-0 grid place-items-center w-7 h-7 rounded-full
                                       ${c.accent.iconBg} ${c.accent.iconText}
                                       transition-transform duration-300 group-hover:scale-110`}>
-                      <Icon size={15} strokeWidth={1.8} />
+                      <Icon size={13} strokeWidth={1.9} />
                     </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[8px] font-bold uppercase tracking-[0.22em] text-slate-500 leading-none mb-0.5">
-                        {c.eyebrow}
-                      </div>
-                      <div className="font-serif text-[13px] text-brand-deep leading-tight truncate">
-                        {c.title}
-                      </div>
-                    </div>
-                    <ArrowRight size={11} className="shrink-0 text-slate-400 group-hover:text-brand-deep transition-colors" />
+                    <span className="font-serif text-[12px] text-brand-deep leading-tight truncate">
+                      {c.title}
+                    </span>
                   </Link>
                 </Reveal>
               )
