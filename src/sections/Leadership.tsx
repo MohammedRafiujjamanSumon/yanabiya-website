@@ -72,12 +72,6 @@ export default function Leadership() {
               <span className="block">Led by <span className="italic text-brand-accentDark">vision</span>.</span>
             </h2>
           </Reveal>
-          <Reveal delay={260}>
-            <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
-              Two founders set the long-term direction. A cross-functional bench delivers it
-              — across IT, trade, mobility and operations in four countries.
-            </p>
-          </Reveal>
         </div>
 
         {/* FOUNDERS DIPTYCH */}
