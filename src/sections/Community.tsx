@@ -1,9 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import {
-  ArrowRight, Newspaper, Leaf, HeartHandshake, Briefcase, Hand,
-} from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
+import { ArrowRight, Hand } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 
@@ -44,10 +41,9 @@ type CommunityCard = {
   eyebrow: string
   title: string
   desc: string
-  icon: LucideIcon
   cta: string
   accent: Accent
-  /** Real-life thumbnail rendered in the round photo chip on each card. */
+  /** Real-life thumbnail rendered as the front of the flip card. */
   photo: string
 }
 
@@ -58,7 +54,6 @@ const cards: CommunityCard[] = [
     eyebrow: 'Insights',
     title: 'Blog',
     desc: 'Stories, market views and ideas from across our group and partner network.',
-    icon: Newspaper,
     cta: 'Read articles',
     accent: {
       ring: 'hover:border-sky-400/60',
@@ -74,7 +69,6 @@ const cards: CommunityCard[] = [
     eyebrow: 'Environment',
     title: 'Sustainable Growth',
     desc: 'Greener operations, circular practices and climate commitments shaping how we work.',
-    icon: Leaf,
     cta: 'Explore initiatives',
     accent: {
       ring: 'hover:border-emerald-400/60',
@@ -90,7 +84,6 @@ const cards: CommunityCard[] = [
     eyebrow: 'Welfare',
     title: 'Community Care',
     desc: 'Charitable donations and welfare programmes built on transparency and lasting impact.',
-    icon: HeartHandshake,
     cta: 'See programmes',
     accent: {
       ring: 'hover:border-rose-400/60',
@@ -106,7 +99,6 @@ const cards: CommunityCard[] = [
     eyebrow: 'People',
     title: 'Careers',
     desc: 'Join a team that values craft, integrity and growth across the Gulf and beyond.',
-    icon: Briefcase,
     cta: 'View openings',
     accent: {
       ring: 'hover:border-amber-400/60',
@@ -307,45 +299,68 @@ export default function Community() {
           {/* CARDS — 2×2 round pills. Each pill is fully rounded; the
            *  rope tip sits exactly on the pill's top edge with the dot
            *  marking the connection point. */}
-          <div className="relative z-10 mt-16 md:mt-24 grid grid-cols-2 gap-x-12 md:gap-x-24 gap-y-6 md:gap-y-8 max-w-2xl mx-auto">
-            {cards.map((c, i) => {
-              const Icon = c.icon
-              return (
-                <Reveal key={c.id} delay={i * 90}>
-                  <Link
-                    ref={(el) => { cardRefs.current[i] = el }}
-                    to={c.href}
-                    title={`${c.eyebrow} · ${c.desc}`}
-                    aria-label={`${c.title} — ${c.eyebrow}`}
-                    className={`group w-fit mx-auto inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-sm
-                                border border-slate-200 pl-1 pr-3 py-1
-                                shadow-[0_4px_14px_-8px_rgba(15,58,35,0.20)]
-                                transition-all duration-300
-                                hover:-translate-y-0.5 ${c.accent.ring} ${c.accent.shadow}`}
-                  >
-                    {/* Real-life thumbnail (icon overlay as accent badge). */}
-                    <span className={`relative shrink-0 w-7 h-7 rounded-full overflow-hidden
-                                      ring-2 ${c.accent.iconBg.replace('bg-', 'ring-').replace('-100', '-300/70')}
-                                      transition-transform duration-300 group-hover:scale-110`}>
-                      <img
-                        src={c.photo}
-                        alt=""
-                        loading="lazy"
-                        className="absolute inset-0 w-full h-full object-cover"
-                        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                      />
-                      <span className={`absolute -bottom-0 -right-0 w-3.5 h-3.5 grid place-items-center rounded-full
-                                        ${c.accent.iconBg} ${c.accent.iconText} ring-2 ring-white`}>
-                        <Icon size={8} strokeWidth={2.2} />
-                      </span>
-                    </span>
-                    <span className="font-serif text-[12px] text-brand-deep leading-tight truncate">
+          <div className="relative z-10 mt-16 md:mt-24 grid grid-cols-2 gap-x-12 md:gap-x-24 gap-y-8 md:gap-y-10 max-w-2xl mx-auto">
+            {cards.map((c, i) => (
+              <Reveal key={c.id} delay={i * 90}>
+                <Link
+                  ref={(el) => { cardRefs.current[i] = el }}
+                  to={c.href}
+                  title={c.desc}
+                  aria-label={`${c.title} — ${c.eyebrow}`}
+                  className="group w-fit mx-auto flex flex-col items-center gap-2"
+                >
+                  {/* Flip card — front = real-life photo, back = Read more */}
+                  <div className="relative w-20 h-20 md:w-24 md:h-24 [perspective:700px]">
+                    <div
+                      className="relative w-full h-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                                 [transform-style:preserve-3d]
+                                 group-hover:[transform:rotateY(180deg)]
+                                 group-focus-visible:[transform:rotateY(180deg)]"
+                    >
+                      {/* FRONT — photo */}
+                      <div className={`absolute inset-0 rounded-full overflow-hidden
+                                       ring-2 ring-slate-200
+                                       shadow-[0_8px_22px_-10px_rgba(15,58,35,0.30)]
+                                       transition-shadow duration-500
+                                       [backface-visibility:hidden]
+                                       group-hover:ring-transparent`}>
+                        <img
+                          src={c.photo}
+                          alt=""
+                          loading="lazy"
+                          className="absolute inset-0 w-full h-full object-cover"
+                          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                        />
+                      </div>
+                      {/* BACK — Read more pill (accent-coloured) */}
+                      <div
+                        className="absolute inset-0 rounded-full grid place-items-center text-center
+                                   bg-brand-deep text-white
+                                   shadow-[0_10px_24px_-10px_rgba(15,58,35,0.45)]
+                                   [backface-visibility:hidden]
+                                   [transform:rotateY(180deg)]"
+                        style={{ borderColor: c.accent.rope, borderWidth: '2px', borderStyle: 'solid' }}
+                      >
+                        <div className="flex flex-col items-center gap-1">
+                          <span className="text-[8.5px] font-bold uppercase tracking-[0.22em]"
+                                style={{ color: c.accent.rope }}>
+                            Read More
+                          </span>
+                          <ArrowRight size={14} className="text-white" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* TITLE — small, outside the card */}
+                  <div className="text-center w-24 md:w-28">
+                    <div className="text-[10px] font-semibold text-brand-deep leading-tight">
                       {c.title}
-                    </span>
-                  </Link>
-                </Reveal>
-              )
-            })}
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
       </div>
