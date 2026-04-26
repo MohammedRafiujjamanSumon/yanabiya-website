@@ -83,10 +83,10 @@ export default function About() {
 
       {/* ───────── Foreground content ───────── */}
       <div className="container-x relative py-14 md:py-20">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="flex flex-col gap-12 md:gap-16 items-center">
 
-          {/* LEFT — single combined card: office image with YANABIYA wall logo + 3 stats */}
-          <div className="lg:col-span-5">
+          {/* TOP — combined card: office image with YANABIYA wall logo + 3 stats */}
+          <div className="w-full max-w-3xl mx-auto">
             <Reveal>
               <div className="relative rounded-2xl overflow-hidden bg-white border border-slate-200
                               shadow-[0_12px_40px_-12px_rgba(15,58,35,0.18)]">
@@ -145,8 +145,8 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* RIGHT — eyebrow + serif title + subtitle + CTAs */}
-          <div className="lg:col-span-7">
+          {/* BELOW — eyebrow + serif title + subtitle + CTAs (centered) */}
+          <div className="w-full max-w-3xl mx-auto text-center">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-5">
                 About
@@ -159,14 +159,14 @@ export default function About() {
               </h2>
             </Reveal>
             <Reveal delay={220}>
-              <p className="mt-5 font-serif italic text-xl md:text-2xl text-brand-accentDark leading-snug max-w-xl">
+              <p className="mt-5 font-serif italic text-xl md:text-2xl text-brand-accentDark leading-snug max-w-xl mx-auto">
                 Built on trust, scaled with purpose, and proven over time.
               </p>
             </Reveal>
 
             {/* Description — split into lines so each surfaces on scroll
-             *  one after another. Justified inside max-w-xl. */}
-            <div className="mt-5 max-w-xl space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:left]">
+             *  one after another. Justified, last line centered. */}
+            <div className="mt-5 max-w-xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
               <Reveal delay={340}>
                 <p>A diversified group connecting businesses across markets,</p>
               </Reveal>
@@ -179,7 +179,7 @@ export default function About() {
             </div>
 
             <Reveal delay={840}>
-              <div className="mt-9 flex flex-wrap items-center gap-3">
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
                 <Link
                   to="/about-us"
                   className="inline-flex items-center gap-2 rounded-full px-6 py-3
