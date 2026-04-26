@@ -1,293 +1,203 @@
-import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { ArrowRight, Quote } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
-import { assets } from '../data/assets'
-import { board, chairmanMessage, viceChairmanMessage } from '../data/leadership'
-import { ArrowRight, Quote, Users, Sparkles } from 'lucide-react'
+import { board, team } from '../data/leadership'
+import { useReveal } from '../hooks/useReveal'
+
+function Reveal({
+  children,
+  delay = 0,
+  className = '',
+}: {
+  children: React.ReactNode
+  delay?: number
+  className?: string
+}) {
+  const { ref, shown } = useReveal<HTMLDivElement>()
+  return (
+    <div
+      ref={ref}
+      className={`${className} transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  )
+}
+
+/* Distilled pull quotes — one signature line per founder lifted from
+ * their full message on /leadership/management. The full text and
+ * formal salutation live on the dedicated page. */
+const founders = [
+  {
+    ...board[0],
+    role: 'Founder & Chairman',
+    quote:
+      '"There is no shortcut to business goals — values, ethics, and honesty come first."',
+    href: '/leadership/management#chairman',
+  },
+  {
+    ...board[1],
+    role: 'Vice Chairman',
+    quote:
+      '"Built on values, committed to growth and to building a better tomorrow."',
+    href: '/leadership/management#vice-chairman',
+  },
+]
 
 export default function Leadership() {
   const { t } = useTranslation()
-  const [chairmanOpen, setChairmanOpen] = useState(false)
-  const [viceOpen, setViceOpen] = useState(false)
-
-  useEffect(() => {
-    const anyOpen = chairmanOpen || viceOpen
-    if (!anyOpen) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setChairmanOpen(false)
-        setViceOpen(false)
-      }
-    }
-    document.addEventListener('keydown', onKey)
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = prev
-    }
-  }, [chairmanOpen, viceOpen])
 
   return (
-    <Section id="leadership" className="bg-stone-50">
-      <div className="container-x">
-        {/* Header */}
-        <div className="text-center max-w-4xl mx-auto mb-14">
-          <Eyebrow>{t('leadership.eyebrow')}</Eyebrow>
-          <h2 className="mt-2 font-serif text-xl md:text-2xl leading-tight text-brand-accentDark">
-            Guided by <span className="italic text-brand-accent">experience</span>
-            , Driven by <span className="italic text-brand-accent">integrity</span>.
-          </h2>
-          <div className="mt-4 mx-auto w-20 h-[2px] bg-brand-accent rounded-full" />
-          <p className="mt-6 text-slate-600 leading-relaxed text-justify-center">
-            {t('leadership.sub')}
-          </p>
-        </div>
-
-        {/* Two-column layout: LEFT = logo + Vice Chairman, RIGHT = Chairman + nav cards */}
-        <div id="management" className="grid lg:grid-cols-2 gap-6 scroll-mt-28 items-stretch">
-          {/* LEFT COLUMN */}
-          <div className="flex flex-col gap-6 h-full">
-            <div className="relative card-panel overflow-hidden p-0 h-[168px] md:h-[200px] bg-brand-deep">
-              <video
-                className="absolute inset-0 w-full h-full object-cover"
-                src="https://videos.pexels.com/video-files/8084618/8084618-uhd_2560_1440_25fps.mp4"
-                poster="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-brand-ink/25 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 flex flex-col items-center text-center">
-                <img
-                  src={assets.logo}
-                  alt="Yanabiya Group"
-                  className="h-10 md:h-12 w-auto object-contain drop-shadow-md mb-2"
-                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                />
-                <div className="text-[10px] md:text-xs uppercase tracking-[0.28em] text-brand-accent font-bold">
-                  Strength in Leadership
-                </div>
-              </div>
-            </div>
-
-            <article className="card-panel relative overflow-hidden flex-1">
-              <Quote className="absolute -top-2 -end-2 text-brand-accent/10" size={140} />
-              <div className="relative flex flex-col md:flex-row gap-5 items-start">
-                <img
-                  src={board[1].photo}
-                  alt={board[1].name}
-                  className="w-28 h-36 md:w-32 md:h-40 rounded-2xl object-cover object-top border-2 border-brand-accent/40 shrink-0 bg-white"
-                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                />
-                <div className="flex-1">
-                  <div className="text-xs uppercase tracking-widest text-brand-accent mb-1">
-                    Vice Chairman Message
-                  </div>
-                  <h3 className="font-serif text-xl md:text-2xl text-slate-900 mb-3">
-                    {board[1].name}
-                  </h3>
-                  <p className="text-slate-700 mb-2">Dear Visitors,</p>
-                  <div className="space-y-3 text-slate-600 leading-relaxed text-justify">
-                    {viceChairmanMessage.slice(0, 2).map((para, i) => (
-                      <p key={i}>{para}</p>
-                    ))}
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setViceOpen(true)}
-                    className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand-accent px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white shadow-sm hover:bg-brand-accentDark hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-brand-accent/50"
-                  >
-                    Read Full Message <ArrowRight size={14} />
-                  </button>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          {/* RIGHT COLUMN */}
-          <div className="flex flex-col gap-6 h-full">
-            <article className="card-panel relative overflow-hidden flex-1">
-              <Quote className="absolute -top-2 -end-2 text-brand-accent/10" size={160} />
-              <div className="relative flex flex-col md:flex-row gap-6 items-start">
-                <img
-                  src={board[0].photo}
-                  alt={board[0].name}
-                  className="w-28 h-36 md:w-32 md:h-44 rounded-2xl object-cover border-2 border-brand-accent/40 shrink-0 bg-white"
-                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                />
-                <div className="flex-1">
-                  <div className="text-xs uppercase tracking-widest text-brand-accent mb-1">
-                    Founder &amp; Chairman Message
-                  </div>
-                  <h3 className="font-serif text-2xl md:text-3xl text-slate-900 mb-4">
-                    {board[0].name}
-                  </h3>
-                  <p className="text-slate-700 mb-3">Greetings from YANABIYA GROUP,</p>
-                  <p className="text-slate-600 leading-relaxed text-justify">
-                    {chairmanMessage[0]}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setChairmanOpen(true)}
-                    className="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-accent px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white shadow-sm hover:bg-brand-accentDark hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-brand-accent/50"
-                  >
-                    Read Full Message <ArrowRight size={14} />
-                  </button>
-                </div>
-              </div>
-            </article>
-
-            {/* Two navigation cards */}
-            <div id="professionals" className="grid sm:grid-cols-2 gap-4 scroll-mt-28">
-              <Link
-                to="/leadership/management"
-                className="group relative rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 transition h-36 md:h-44"
-              >
-                <img
-                  src="./images/management-event.jpg"
-                  alt="Yanabiya Group management"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
-                <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col items-start gap-1">
-                  <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest text-brand-accent font-bold">
-                    <Users size={14} /> Management
-                  </div>
-                  <div className="font-serif text-base md:text-lg text-white leading-tight drop-shadow">
-                    Our Management
-                  </div>
-                  <span className="inline-flex items-center gap-2 mt-1 text-[11px] font-semibold uppercase tracking-wider text-white/90 group-hover:text-brand-accent transition">
-                    View Page <ArrowRight size={12} />
-                  </span>
-                </div>
-              </Link>
-
-              <Link
-                to="/leadership/professionals"
-                className="group relative rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 transition h-36 md:h-44"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
-                  alt="High skilled professionals team"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
-                <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col items-start gap-1">
-                  <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest text-brand-accent font-bold">
-                    <Sparkles size={14} /> Specialists
-                  </div>
-                  <div className="font-serif text-base md:text-lg text-white leading-tight drop-shadow">
-                    High Skilled Professionals
-                  </div>
-                  <span className="inline-flex items-center gap-2 mt-1 text-[11px] font-semibold uppercase tracking-wider text-white/90 group-hover:text-brand-accent transition">
-                    View Team <ArrowRight size={12} />
-                  </span>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </div>
+    <Section id="leadership" className="relative overflow-hidden bg-[#fbfdfb]">
+      {/* Ambient mint */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-32 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[520px] h-[520px] rounded-full bg-brand-accentDark/6 blur-[140px]" />
       </div>
 
-      {/* Chairman full-message modal (same pattern as About Vision card) */}
-      {chairmanOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Founder & Chairman Message"
-          onClick={() => setChairmanOpen(false)}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-8 md:p-10"
-          >
-            <button
-              type="button"
-              onClick={() => setChairmanOpen(false)}
-              aria-label="Close"
-              className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors"
-            >
-              <span className="text-xl leading-none">×</span>
-            </button>
+      <div className="container-x relative">
 
-            <div className="text-xs uppercase tracking-widest text-brand-accent text-center mb-2">
-              Founder &amp; Chairman Message
+        {/* HEADER */}
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <Reveal>
+            <Eyebrow>{t('leadership.eyebrow', 'Leadership')}</Eyebrow>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="mt-3 font-serif text-3xl md:text-5xl leading-tight text-brand-deep">
+              Built on <span className="italic text-brand-accentDark">trust</span>.
+              <span className="block">Led by <span className="italic text-brand-accentDark">vision</span>.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={260}>
+            <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
+              Two founders set the long-term direction. A cross-functional bench delivers it
+              — across IT, trade, mobility and operations in four countries.
+            </p>
+          </Reveal>
+        </div>
+
+        {/* FOUNDERS DIPTYCH */}
+        <div id="management" className="grid lg:grid-cols-2 gap-5 md:gap-6 max-w-6xl mx-auto scroll-mt-28">
+          {founders.map((f, i) => (
+            <Reveal key={f.name} delay={i * 140}>
+              <article
+                className="group h-full flex flex-col md:flex-row rounded-2xl bg-white
+                           border border-slate-200 overflow-hidden
+                           shadow-[0_18px_40px_-20px_rgba(15,58,35,0.18)]
+                           transition-all duration-500
+                           hover:border-brand-deep/30 hover:-translate-y-0.5
+                           hover:shadow-[0_28px_60px_-24px_rgba(15,58,35,0.30)]"
+              >
+                {/* Portrait — left on desktop, top on mobile */}
+                <div className="relative md:w-2/5 aspect-[4/5] md:aspect-auto bg-slate-100 overflow-hidden">
+                  <img
+                    src={f.photo}
+                    alt={f.name}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover object-top
+                               transition-transform duration-700 group-hover:scale-[1.03]"
+                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/60 via-brand-deep/10 to-transparent" />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5
+                                  rounded-full bg-white/95 backdrop-blur px-3 py-1
+                                  text-[10px] font-bold uppercase tracking-[0.28em] text-brand-deep">
+                    {i === 0 ? 'Founder' : 'Co-Founder'}
+                  </div>
+                </div>
+
+                {/* Identity + quote */}
+                <div className="relative md:w-3/5 p-6 md:p-7 flex flex-col">
+                  <Quote className="absolute top-4 right-4 text-brand-accent/15" size={56} />
+                  <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark mb-2">
+                    {f.role}
+                  </div>
+                  <h3 className="font-serif text-xl md:text-2xl text-brand-deep leading-tight">
+                    {f.name}
+                  </h3>
+                  <div className="mt-3 mb-5 w-10 h-px bg-brand-accent" />
+                  <blockquote className="font-serif italic text-[15px] md:text-base text-slate-700 leading-relaxed flex-1">
+                    {f.quote}
+                  </blockquote>
+                  <Link
+                    to={f.href}
+                    className="mt-6 inline-flex items-center gap-1.5 self-start
+                               text-[11px] font-bold uppercase tracking-[0.22em]
+                               text-brand-accentDark hover:text-brand-deep hover:gap-2.5
+                               transition-all duration-300"
+                  >
+                    Read message <ArrowRight size={12} />
+                  </Link>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* LEADERSHIP BENCH — quiet team strip */}
+        <div id="professionals" className="mt-16 md:mt-20 max-w-6xl mx-auto scroll-mt-28">
+          <Reveal>
+            <div className="flex items-center gap-3 justify-center mb-6">
+              <span className="w-12 h-px bg-slate-300" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark">
+                Leadership Bench
+              </span>
+              <span className="w-12 h-px bg-slate-300" />
             </div>
-            <h3 className="font-serif text-2xl md:text-3xl text-slate-900 text-center">
-              {board[0].name}
-            </h3>
-            <div className="mt-2 mx-auto w-16 h-[2px] bg-brand-accent rounded-full" />
+          </Reveal>
 
-            <p className="mt-6 text-slate-700">Greetings from YANABIYA GROUP,</p>
-            <div className="mt-4 space-y-4 text-slate-600 leading-relaxed text-justify">
-              {chairmanMessage.map((para, i) => (
-                <p key={i}>{para}</p>
+          <Reveal delay={120}>
+            <div className="flex flex-wrap items-start justify-center gap-x-5 gap-y-6 md:gap-x-7">
+              {team.slice(0, 8).map((m) => (
+                <div key={m.name} className="group flex flex-col items-center text-center w-20 md:w-24">
+                  <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden
+                                  ring-2 ring-slate-200
+                                  transition-all duration-300
+                                  group-hover:ring-brand-accent group-hover:-translate-y-0.5
+                                  shadow-[0_8px_20px_-10px_rgba(15,58,35,0.30)]">
+                    <img
+                      src={m.photo}
+                      alt={m.name}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500
+                                 group-hover:scale-105"
+                      onError={(e) => {
+                        const img = e.currentTarget as HTMLImageElement
+                        img.style.display = 'none'
+                      }}
+                    />
+                  </div>
+                  <div className="mt-2 text-[11px] font-semibold text-brand-deep leading-tight line-clamp-2">
+                    {m.name}
+                  </div>
+                  <div className="text-[9px] uppercase tracking-[0.16em] text-slate-500 mt-0.5 line-clamp-1">
+                    {m.role}
+                  </div>
+                </div>
               ))}
             </div>
-            <div className="mt-6 text-slate-700">
-              <p>Sincerely,</p>
-              <p className="font-semibold text-slate-900 mt-1">S M Shamim Ahmed</p>
-              <p className="text-sm text-brand-accent uppercase tracking-widest">
-                Founder &amp; Chairman — Yanabiya Group
-              </p>
+          </Reveal>
+
+          <Reveal delay={260}>
+            <div className="mt-10 text-center">
+              <Link
+                to="/leadership/professionals"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                           bg-brand-deep text-white text-xs font-bold uppercase tracking-[0.22em]
+                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
+                           transition-all duration-300"
+              >
+                Meet the full team <ArrowRight size={14} />
+              </Link>
             </div>
-          </div>
+          </Reveal>
         </div>
-      )}
 
-      {/* Vice Chairman full-message modal */}
-      {viceOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Vice Chairman Message"
-          onClick={() => setViceOpen(false)}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-8 md:p-10"
-          >
-            <button
-              type="button"
-              onClick={() => setViceOpen(false)}
-              aria-label="Close"
-              className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors"
-            >
-              <span className="text-xl leading-none">×</span>
-            </button>
-
-            <div className="text-xs uppercase tracking-widest text-brand-accent text-center mb-2">
-              Vice Chairman Message
-            </div>
-            <h3 className="font-serif text-2xl md:text-3xl text-slate-900 text-center">
-              {board[1].name}
-            </h3>
-            <div className="mt-2 mx-auto w-16 h-[2px] bg-brand-accent rounded-full" />
-
-            <p className="mt-6 text-slate-700">Dear Visitors,</p>
-            <div className="mt-4 space-y-4 text-slate-600 leading-relaxed text-justify">
-              {viceChairmanMessage.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
-            <div className="mt-6 text-slate-700">
-              <p>Sincerely,</p>
-              <p className="font-semibold text-slate-900 mt-1">Mohammad Abu Jaheed</p>
-              <p className="text-sm text-brand-accent uppercase tracking-widest">
-                Vice Chairman — Yanabiya Group
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+      </div>
     </Section>
   )
 }
