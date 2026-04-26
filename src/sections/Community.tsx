@@ -1,8 +1,9 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Hand } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
+import { assets } from '../data/assets'
 
 function Reveal({
   children,
@@ -110,10 +111,6 @@ const cards: CommunityCard[] = [
   },
 ]
 
-/** Hand image — palm-down hand. Lucide Hand icon is the safe fallback. */
-const HAND_IMAGE =
-  'https://images.unsplash.com/photo-1531315630201-bb15abeb1653?auto=format&fit=crop&w=600&q=80'
-
 type Geometry = {
   width: number
   height: number
@@ -212,33 +209,24 @@ export default function Community() {
          *  always meet the actual card edges. */}
         <div ref={wrapRef} className="relative mx-auto max-w-5xl">
 
-          {/* Hand at the very top, centred */}
+          {/* Yanabiya logo at the top, centred — matches the section's
+           *  light background so it reads as the brand mark, not a chip. */}
           <Reveal>
             <div ref={handRef} className="relative z-20 mx-auto w-32 md:w-40 aspect-square">
               <div
                 aria-hidden="true"
-                className="absolute inset-0 rounded-full bg-brand-accent/25 blur-2xl animate-pulse"
+                className="absolute inset-0 rounded-full bg-brand-accent/20 blur-2xl animate-pulse"
               />
-              <div className="relative w-full h-full rounded-full overflow-hidden
-                              ring-2 ring-brand-accent/40 shadow-[0_18px_40px_-12px_rgba(15,58,35,0.35)]
-                              bg-white grid place-items-center">
+              <div className="relative w-full h-full grid place-items-center">
                 <img
-                  src={HAND_IMAGE}
-                  alt="A guiding hand"
+                  src={assets.logo}
+                  alt="Yanabiya Group"
                   loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(15,58,35,0.18)]"
                   onError={(e) => {
                     (e.currentTarget as HTMLImageElement).style.display = 'none'
                   }}
                 />
-                <Hand size={56} strokeWidth={1.4} className="text-brand-deep relative" />
-              </div>
-              <div className="absolute left-1/2 -translate-x-1/2 -bottom-6
-                              inline-flex items-center gap-1.5 rounded-full whitespace-nowrap
-                              bg-brand-deep text-brand-accent px-3 py-1
-                              text-[9px] font-bold tracking-[0.32em] uppercase shadow-md">
-                <span className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
-                Yanabiya Group
               </div>
             </div>
           </Reveal>
