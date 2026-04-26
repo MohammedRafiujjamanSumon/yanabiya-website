@@ -94,14 +94,14 @@ function ServicesPyramid({
 }) {
   const total = PYRAMID_LAYERS.length
   // Layer dimensions: top is smallest, bottom is biggest.
-  const baseWidth = 320   // bottom disc width (px)
-  const stepWidth = 38    // shrink per step going up
-  const layerH = 36       // each disc height
-  const stepY = 42        // vertical step between layers (px in 3D space)
+  const baseWidth = 400   // bottom disc width (px)
+  const stepWidth = 44    // shrink per step going up
+  const layerH = 50       // each disc height
+  const stepY = 60        // vertical step between layers (px in 3D space)
 
   return (
     <div
-      className="relative mx-auto w-full max-w-[460px] aspect-square select-none"
+      className="relative mx-auto w-full max-w-[560px] aspect-square select-none"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       style={{ perspective: '1200px' }}
@@ -147,8 +147,8 @@ function ServicesPyramid({
             transformStyle: 'preserve-3d',
             transformOrigin: 'center center',
             position: 'relative',
-            width: '320px',
-            height: '320px',
+            width: '400px',
+            height: '420px',
           }}
         >
           {PYRAMID_LAYERS.map((layer, i) => {
@@ -160,29 +160,65 @@ function ServicesPyramid({
             const isActive = active === i
 
             return (
-              <button
+              <div
                 key={layer.slug}
-                type="button"
-                onClick={() => onSelect(layer.slug)}
-                onMouseEnter={() => setActive(i)}
-                aria-label={layer.label}
-                className="group absolute left-1/2 top-1/2 cursor-pointer outline-none
-                           focus-visible:ring-2 focus-visible:ring-brand-accent rounded-full"
+                className="absolute left-1/2 top-1/2"
                 style={{
-                  width: `${width}px`,
-                  height: `${layerH}px`,
                   marginLeft: `-${width / 2}px`,
                   marginTop: `-${layerH / 2}px`,
-                  transform: `translate3d(0, ${yOffset}px, 0) rotateX(72deg) ${isActive ? 'scale(1.05) translateY(-5px)' : ''}`,
+                  width: `${width}px`,
+                  height: `${layerH}px`,
                   transformStyle: 'preserve-3d',
-                  background: `linear-gradient(135deg, ${layer.from}, ${layer.to})`,
-                  borderRadius: '999px',
-                  boxShadow: isActive
-                    ? `0 18px 40px -8px ${layer.glow}, 0 0 0 1px rgba(255,255,255,0.4) inset`
-                    : `0 6px 14px -4px rgba(15,58,35,0.30), 0 0 0 1px rgba(255,255,255,0.25) inset`,
-                  transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s ease',
+                  transform: `translate3d(0, ${yOffset}px, 0) ${isActive ? 'scale(1.05) translateY(-5px)' : ''}`,
+                  transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)',
                 }}
-              />
+              >
+                {/* Tilted disc — clickable surface */}
+                <button
+                  type="button"
+                  onClick={() => onSelect(layer.slug)}
+                  onMouseEnter={() => setActive(i)}
+                  aria-label={layer.label}
+                  className="absolute inset-0 cursor-pointer outline-none
+                             focus-visible:ring-2 focus-visible:ring-brand-accent rounded-full"
+                  style={{
+                    transform: 'rotateX(72deg)',
+                    background: `linear-gradient(135deg, ${layer.from}, ${layer.to})`,
+                    borderRadius: '999px',
+                    boxShadow: isActive
+                      ? `0 18px 40px -8px ${layer.glow}, 0 0 0 1px rgba(255,255,255,0.4) inset`
+                      : `0 6px 14px -4px rgba(15,58,35,0.30), 0 0 0 1px rgba(255,255,255,0.25) inset`,
+                    transition: 'box-shadow 0.5s ease',
+                  }}
+                />
+                {/* FRONT label — sits flat on the disc, faces +Z */}
+                <span
+                  className="absolute inset-0 grid place-items-center pointer-events-none
+                             font-semibold uppercase tracking-[0.18em] text-white"
+                  style={{
+                    transform: 'rotateX(72deg) translateZ(0.5px)',
+                    fontSize: `${Math.max(9, Math.min(13, width / 32))}px`,
+                    textShadow: '0 1px 2px rgba(0,0,0,0.45)',
+                    backfaceVisibility: 'hidden',
+                  }}
+                >
+                  {layer.label}
+                </span>
+                {/* BACK label — same disc, but mirrored so it reads correctly
+                 *  from the opposite side as the pyramid rotates. */}
+                <span
+                  className="absolute inset-0 grid place-items-center pointer-events-none
+                             font-semibold uppercase tracking-[0.18em] text-white"
+                  style={{
+                    transform: 'rotateY(180deg) rotateX(72deg) translateZ(0.5px)',
+                    fontSize: `${Math.max(9, Math.min(13, width / 32))}px`,
+                    textShadow: '0 1px 2px rgba(0,0,0,0.45)',
+                    backfaceVisibility: 'hidden',
+                  }}
+                >
+                  {layer.label}
+                </span>
+              </div>
             )
           })}
         </div>
