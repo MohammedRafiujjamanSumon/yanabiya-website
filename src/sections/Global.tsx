@@ -132,35 +132,43 @@ export default function Global() {
           </div>
         </Reveal>
 
-        {/* ───────── TEXT BELOW (centered) ───────── */}
-        <div className="text-center max-w-3xl mx-auto">
+        {/* ───────── TEXT BELOW ───────── */}
+        <div className="max-w-5xl mx-auto text-center">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
               {t('global.eyebrow', 'Global Presence')}
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-[40px] leading-[1.15] tracking-tight text-slate-900">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-[34px] lg:text-[40px] leading-[1.15] tracking-tight text-slate-900 lg:whitespace-nowrap">
               Aligned across borders as{' '}
               <span className="text-brand-accentDark">one unified network.</span>
             </h2>
           </Reveal>
-          <Reveal delay={280}>
-            <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
-              We operate through a coordinated structure across key global markets,
-              where every location follows shared systems, standards, and strategic
-              direction.
-            </p>
-          </Reveal>
-          <Reveal delay={360}>
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px] text-slate-700">
+
+          {/* Description — split into individual lines so each reveals
+           *  on scroll one after the other; justified so both edges align. */}
+          <div className="mt-6 max-w-3xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
+            <Reveal delay={260}>
+              <p>We operate through a coordinated structure across key global markets,</p>
+            </Reveal>
+            <Reveal delay={420}>
+              <p>where every location follows shared systems, standards,</p>
+            </Reveal>
+            <Reveal delay={580}>
+              <p>and strategic direction.</p>
+            </Reveal>
+          </div>
+
+          <Reveal delay={760}>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px] text-slate-700">
               <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇴🇲</span> Muscat, Oman</span>
               <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇬🇧</span> London, United Kingdom</span>
               <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇧🇩</span> Dhaka, Bangladesh</span>
               <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇺🇸</span> Austin, United States</span>
             </div>
           </Reveal>
-          <Reveal delay={420}>
+          <Reveal delay={900}>
             <div className="mt-8">
               <button
                 type="button"
