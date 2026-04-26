@@ -55,9 +55,9 @@ export default function Global() {
               </div>
             </Reveal>
             <Reveal delay={120}>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.05] tracking-tight text-slate-900">
-                Aligned across borders as
-                <span className="block text-brand-accentDark">one unified network.</span>
+              <h2 className="font-serif text-2xl md:text-3xl lg:text-[34px] leading-[1.15] tracking-tight text-slate-900">
+                Aligned across borders as{' '}
+                <span className="text-brand-accentDark">one unified network.</span>
               </h2>
             </Reveal>
             <Reveal delay={280}>
