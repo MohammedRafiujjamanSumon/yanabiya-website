@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  Sparkles, MapPin, Building2, Briefcase,
+  MapPin, Building2, Briefcase,
   X as CloseIcon, ArrowRight, ExternalLink, Plus, Minus, Crosshair,
 } from 'lucide-react'
 import BackButton from '../components/BackButton'
@@ -556,33 +556,9 @@ export default function GlobalPresence() {
         <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
       </div>
 
-      {/* Header */}
-      <section className="relative">
-        <div className="container-x pt-14 md:pt-20 pb-6 text-center max-w-3xl mx-auto">
-          <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
-              <Sparkles size={12} className="text-brand-accent" />
-              Global Presence
-              <Sparkles size={12} className="text-brand-accent" />
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-brand-deep">
-              Four countries.
-              <span className="text-brand-accentDark"> One network.</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={260}>
-            <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
-              Tap a pin to open a country — or the HQ marker for the full network at once.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Map */}
       <section className="relative">
-        <div className="container-x pb-20 md:pb-28">
+        <div className="container-x pt-14 md:pt-20 pb-20 md:pb-28">
           <Reveal delay={200}>
             <WorldMap
               onSelect={(code) => setSelected(code)}
