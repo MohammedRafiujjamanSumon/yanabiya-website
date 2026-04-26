@@ -262,9 +262,9 @@ export default function Community() {
                 const sx = geo.handX
                 const sy = geo.handY
                 const ex = end.x
-                /* End the rope a bit above the card top so the dot floats
-                 * clearly between the rope tip and the card edge. */
-                const ey = end.y - 14
+                /* End the rope well above the card top so the dot sits
+                 * clearly above the card, not on its edge. */
+                const ey = end.y - 26
                 const c1x = sx
                 const c1y = sy + (ey - sy) * 0.55
                 const c2x = ex
@@ -298,8 +298,9 @@ export default function Community() {
             </svg>
           )}
 
-          {/* CARDS — 2×2 grid (compact) */}
-          <div className="relative z-10 mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-3xl mx-auto">
+          {/* CARDS — 2×2 mini-tiles. Each is a pill with icon + label +
+           *  CTA arrow only; the rope dot sits clearly above each tile. */}
+          <div className="relative z-10 mt-16 md:mt-24 grid grid-cols-2 gap-3 md:gap-4 max-w-md mx-auto">
             {cards.map((c, i) => {
               const Icon = c.icon
               return (
@@ -307,35 +308,27 @@ export default function Community() {
                   <Link
                     ref={(el) => { cardRefs.current[i] = el }}
                     to={c.href}
-                    className={`group h-full block rounded-xl bg-white/80 backdrop-blur-sm
-                                border border-slate-200 p-4
-                                shadow-[0_8px_24px_-12px_rgba(15,58,35,0.18)]
+                    title={c.desc}
+                    className={`group h-full flex items-center gap-2 rounded-xl bg-white/85 backdrop-blur-sm
+                                border border-slate-200 px-3 py-2.5
+                                shadow-[0_6px_18px_-10px_rgba(15,58,35,0.18)]
                                 transition-all duration-500
-                                hover:-translate-y-1 ${c.accent.ring} ${c.accent.shadow}`}
+                                hover:-translate-y-0.5 ${c.accent.ring} ${c.accent.shadow}`}
                   >
-                    <div className="flex items-start gap-2.5">
-                      <span className={`shrink-0 grid place-items-center w-9 h-9 rounded-lg
-                                        ${c.accent.iconBg} ${c.accent.iconText}
-                                        transition-transform duration-300 group-hover:scale-110`}>
-                        <Icon size={16} strokeWidth={1.7} />
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <div className="text-[9px] font-bold uppercase tracking-[0.26em] text-slate-500 mb-0.5">
-                          {c.eyebrow}
-                        </div>
-                        <h3 className="font-serif text-base md:text-lg text-brand-deep leading-tight">
-                          {c.title}
-                        </h3>
+                    <span className={`shrink-0 grid place-items-center w-8 h-8 rounded-lg
+                                      ${c.accent.iconBg} ${c.accent.iconText}
+                                      transition-transform duration-300 group-hover:scale-110`}>
+                      <Icon size={14} strokeWidth={1.7} />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-[8px] font-bold uppercase tracking-[0.22em] text-slate-500 leading-none mb-0.5">
+                        {c.eyebrow}
+                      </div>
+                      <div className="font-serif text-[13px] text-brand-deep leading-tight truncate">
+                        {c.title}
                       </div>
                     </div>
-                    <p className="mt-3 text-[12.5px] text-slate-600 leading-relaxed line-clamp-3">
-                      {c.desc}
-                    </p>
-                    <div className="mt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
-                                    text-brand-accentDark group-hover:text-brand-deep group-hover:gap-1.5
-                                    transition-all duration-300">
-                      {c.cta} <ArrowRight size={11} />
-                    </div>
+                    <ArrowRight size={11} className="shrink-0 text-slate-400 group-hover:text-brand-deep transition-colors" />
                   </Link>
                 </Reveal>
               )
