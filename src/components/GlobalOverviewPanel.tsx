@@ -119,18 +119,6 @@ export default function GlobalOverviewPanel({
             })}
           </div>
 
-          {/* Tail CTA — let users open the full map page if they want */}
-          <div className="mt-8">
-            <Link
-              to="/global-presence"
-              onClick={onClose}
-              className="inline-flex items-center gap-2 rounded-full px-5 py-2.5
-                         border border-slate-300 text-slate-700 text-[11px] font-bold uppercase tracking-[0.22em]
-                         hover:border-brand-accentDark hover:text-brand-accentDark transition-all"
-            >
-              Open full world map <ArrowRight size={12} />
-            </Link>
-          </div>
         </div>
       </aside>
     </div>
