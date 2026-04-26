@@ -58,10 +58,10 @@ export default function CountryDetail() {
           </div>
           <h2 className="font-serif text-3xl text-brand-deep mb-3">Country not found.</h2>
           <Link
-            to="/global-presence"
+            to="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accentDark hover:text-brand-deep"
           >
-            Back to Global Presence <ArrowRight size={14} />
+            Back to Home <ArrowRight size={14} />
           </Link>
         </div>
       </main>
@@ -78,7 +78,7 @@ export default function CountryDetail() {
 
   return (
     <main className="relative bg-[#fbfdfb] text-slate-900 overflow-hidden min-h-screen">
-      <BackButton to="/global-presence" label="Back to Global Presence" />
+      <BackButton to="/" label="Back to Home" />
 
       {/* Ambient glow */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
