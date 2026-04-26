@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Sparkles, X as CloseIcon, ExternalLink, ArrowRight } from 'lucide-react'
+import {
+  Sparkles, X as CloseIcon, ExternalLink, ArrowRight,
+  Cpu, Globe2, Shirt, Handshake, Building2, Users,
+} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import Section from '../components/Section'
 import { businesses } from '../data/businesses'
 import { useReveal } from '../hooks/useReveal'
@@ -50,18 +54,19 @@ const BUSINESS_DISPLAY: Record<
 type PyramidLayer = {
   slug: string
   label: string
-  from: string  // gradient start
-  to: string    // gradient end
-  glow: string  // box-shadow rgba when active
+  icon: LucideIcon
+  from: string  // gradient TOP (lighter)
+  to: string    // gradient BOTTOM (darker)
+  glow: string  // outer shadow rgba when active
 }
 
 const PYRAMID_LAYERS: PyramidLayer[] = [
-  { slug: 'it-software',       label: 'Tech & Software', from: '#38bdf8', to: '#0284c7', glow: 'rgba(56,189,248,0.55)' },
-  { slug: 'export-import',     label: 'Global Trade',    from: '#34d399', to: '#059669', glow: 'rgba(52,211,153,0.55)' },
-  { slug: 'clothing',          label: 'Apparel',         from: '#fbbf24', to: '#d97706', glow: 'rgba(251,191,36,0.55)' },
-  { slug: 'agents-brokerage',  label: 'Brokerage',       from: '#c084fc', to: '#9333ea', glow: 'rgba(192,132,252,0.55)' },
-  { slug: 'office-management', label: 'Office Services', from: '#fb7185', to: '#e11d48', glow: 'rgba(251,113,133,0.55)' },
-  { slug: 'manpower',          label: 'Global Mobility', from: '#22d3ee', to: '#0891b2', glow: 'rgba(34,211,238,0.55)' },
+  { slug: 'it-software',       label: 'Tech & Software', icon: Cpu,       from: '#7dd3fc', to: '#0369a1', glow: 'rgba(56,189,248,0.55)' },
+  { slug: 'export-import',     label: 'Global Trade',    icon: Globe2,    from: '#6ee7b7', to: '#047857', glow: 'rgba(52,211,153,0.55)' },
+  { slug: 'clothing',          label: 'Apparel',         icon: Shirt,     from: '#fcd34d', to: '#b45309', glow: 'rgba(251,191,36,0.55)' },
+  { slug: 'agents-brokerage',  label: 'Brokerage',       icon: Handshake, from: '#d8b4fe', to: '#7e22ce', glow: 'rgba(192,132,252,0.55)' },
+  { slug: 'office-management', label: 'Office Services', icon: Building2, from: '#fda4af', to: '#be123c', glow: 'rgba(251,113,133,0.55)' },
+  { slug: 'manpower',          label: 'Global Mobility', icon: Users,     from: '#67e8f9', to: '#0e7490', glow: 'rgba(34,211,238,0.55)' },
 ]
 
 /* ServicesPyramid — six-layer 3D rotating "turntable" pyramid.
@@ -93,15 +98,16 @@ function ServicesPyramid({
   onSelectHub: () => void
 }) {
   const total = PYRAMID_LAYERS.length
-  // Layer dimensions: top is smallest, bottom is biggest.
-  const baseWidth = 400   // bottom disc width (px)
+  // Pipe-ring dimensions: top smallest, bottom biggest, all thick + spaced.
+  const baseWidth = 400   // bottom ring width (px)
   const stepWidth = 44    // shrink per step going up
-  const layerH = 50       // each disc height
-  const stepY = 60        // vertical step between layers (px in 3D space)
+  const layerH = 70       // ring thickness (px) — bigger = fatter pipe
+  const stepY = 84        // vertical step between rings, includes spacing
+  const tiltX = 60        // less aggressive tilt so the ring's rim is visible
 
   return (
     <div
-      className="relative mx-auto w-full max-w-[560px] aspect-square select-none"
+      className="relative mx-auto w-full max-w-[600px] aspect-[5/6] select-none"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       style={{ perspective: '1200px' }}
@@ -147,8 +153,8 @@ function ServicesPyramid({
             transformStyle: 'preserve-3d',
             transformOrigin: 'center center',
             position: 'relative',
-            width: '400px',
-            height: '420px',
+            width: '420px',
+            height: '560px',
           }}
         >
           {PYRAMID_LAYERS.map((layer, i) => {
@@ -158,6 +164,35 @@ function ServicesPyramid({
             // yOffset: top layer (i=0) goes highest (negative), bottom layer (i=total-1) lowest.
             const yOffset = (i - (total - 1) / 2) * stepY
             const isActive = active === i
+
+            const Icon = layer.icon
+            const fontPx = Math.max(11, Math.min(15, width / 28))
+
+            // Multi-stop gradient with a top highlight band → suggests
+            // a glossy curved pipe surface.
+            const ringBg =
+              `linear-gradient(180deg, ` +
+              `${layer.from} 0%, ` +
+              `${layer.from} 22%, ` +
+              `${layer.to} 78%, ` +
+              `${layer.to} 100%)`
+
+            // Layered shadows: outer drop, inner top highlight (light from
+            // above), inner bottom shadow (curvature), faint outer rim.
+            const ringShadow = isActive
+              ? [
+                  `0 20px 50px -10px ${layer.glow}`,
+                  `0 8px 18px -4px rgba(15,58,35,0.30)`,
+                  `inset 0 2px 0 rgba(255,255,255,0.55)`,
+                  `inset 0 -10px 18px -8px rgba(0,0,0,0.35)`,
+                  `inset 0 0 0 1px rgba(255,255,255,0.30)`,
+                ].join(', ')
+              : [
+                  `0 10px 22px -8px rgba(15,58,35,0.28)`,
+                  `inset 0 2px 0 rgba(255,255,255,0.45)`,
+                  `inset 0 -8px 14px -8px rgba(0,0,0,0.32)`,
+                  `inset 0 0 0 1px rgba(255,255,255,0.22)`,
+                ].join(', ')
 
             return (
               <div
@@ -169,54 +204,69 @@ function ServicesPyramid({
                   width: `${width}px`,
                   height: `${layerH}px`,
                   transformStyle: 'preserve-3d',
-                  transform: `translate3d(0, ${yOffset}px, 0) ${isActive ? 'scale(1.05) translateY(-5px)' : ''}`,
+                  transform: `translate3d(0, ${yOffset}px, 0) ${isActive ? 'scale(1.05) translateY(-6px)' : ''}`,
                   transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)',
                 }}
               >
-                {/* Tilted disc — clickable surface */}
+                {/* Pipe ring — thick rounded slab, gently tilted so the rim
+                 *  reads as solid + 3D. */}
                 <button
                   type="button"
                   onClick={() => onSelect(layer.slug)}
                   onMouseEnter={() => setActive(i)}
                   aria-label={layer.label}
                   className="absolute inset-0 cursor-pointer outline-none
-                             focus-visible:ring-2 focus-visible:ring-brand-accent rounded-full"
+                             focus-visible:ring-2 focus-visible:ring-brand-accent"
                   style={{
-                    transform: 'rotateX(72deg)',
-                    background: `linear-gradient(135deg, ${layer.from}, ${layer.to})`,
-                    borderRadius: '999px',
-                    boxShadow: isActive
-                      ? `0 18px 40px -8px ${layer.glow}, 0 0 0 1px rgba(255,255,255,0.4) inset`
-                      : `0 6px 14px -4px rgba(15,58,35,0.30), 0 0 0 1px rgba(255,255,255,0.25) inset`,
-                    transition: 'box-shadow 0.5s ease',
+                    transform: `rotateX(${tiltX}deg)`,
+                    background: ringBg,
+                    borderRadius: `${layerH}px`,  // capsule
+                    boxShadow: ringShadow,
+                    transition: 'box-shadow 0.5s ease, background 0.4s ease',
                   }}
                 />
-                {/* FRONT label — sits flat on the disc, faces +Z */}
+                {/* FRONT label — icon + name, on the front face of the ring. */}
                 <span
                   className="absolute inset-0 grid place-items-center pointer-events-none
-                             font-semibold uppercase tracking-[0.18em] text-white"
+                             font-bold uppercase text-white"
                   style={{
-                    transform: 'rotateX(72deg) translateZ(0.5px)',
-                    fontSize: `${Math.max(9, Math.min(13, width / 32))}px`,
-                    textShadow: '0 1px 2px rgba(0,0,0,0.45)',
+                    transform: `rotateX(${tiltX}deg) translateZ(1px)`,
                     backfaceVisibility: 'hidden',
                   }}
                 >
-                  {layer.label}
+                  <span
+                    className="inline-flex items-center gap-1.5"
+                    style={{
+                      fontSize: `${fontPx}px`,
+                      letterSpacing: '0.16em',
+                      textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                    }}
+                  >
+                    <Icon size={fontPx + 4} strokeWidth={2.4} />
+                    {layer.label}
+                  </span>
                 </span>
-                {/* BACK label — same disc, but mirrored so it reads correctly
-                 *  from the opposite side as the pyramid rotates. */}
+                {/* BACK label — mirrored copy so the name still reads
+                 *  correctly when the rear face is facing the camera. */}
                 <span
                   className="absolute inset-0 grid place-items-center pointer-events-none
-                             font-semibold uppercase tracking-[0.18em] text-white"
+                             font-bold uppercase text-white"
                   style={{
-                    transform: 'rotateY(180deg) rotateX(72deg) translateZ(0.5px)',
-                    fontSize: `${Math.max(9, Math.min(13, width / 32))}px`,
-                    textShadow: '0 1px 2px rgba(0,0,0,0.45)',
+                    transform: `rotateY(180deg) rotateX(${tiltX}deg) translateZ(1px)`,
                     backfaceVisibility: 'hidden',
                   }}
                 >
-                  {layer.label}
+                  <span
+                    className="inline-flex items-center gap-1.5"
+                    style={{
+                      fontSize: `${fontPx}px`,
+                      letterSpacing: '0.16em',
+                      textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                    }}
+                  >
+                    <Icon size={fontPx + 4} strokeWidth={2.4} />
+                    {layer.label}
+                  </span>
                 </span>
               </div>
             )
