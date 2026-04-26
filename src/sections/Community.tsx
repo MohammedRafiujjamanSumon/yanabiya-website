@@ -262,12 +262,13 @@ export default function Community() {
                 const sx = geo.handX
                 const sy = geo.handY
                 const ex = end.x
-                const ey = end.y
-                // Soft S-curve: control points create a relaxed organic drape
+                /* End the rope a bit above the card top so the dot floats
+                 * clearly between the rope tip and the card edge. */
+                const ey = end.y - 14
                 const c1x = sx
                 const c1y = sy + (ey - sy) * 0.55
                 const c2x = ex
-                const c2y = ey - Math.min(80, (ey - sy) * 0.45)
+                const c2y = ey - Math.min(70, (ey - sy) * 0.45)
                 const path = `M ${sx} ${sy} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${ex} ${ey}`
                 return (
                   <g key={c.id}>
@@ -275,30 +276,30 @@ export default function Community() {
                     <path
                       d={path}
                       fill="none"
-                      stroke="rgba(15,58,35,0.30)"
-                      strokeWidth="2.4"
+                      stroke="rgba(15,58,35,0.28)"
+                      strokeWidth="2"
                       strokeLinecap="round"
                     />
-                    {/* Accent flow (mint by default — overridden per-card) */}
+                    {/* Accent flow */}
                     <path
                       d={path}
                       fill="none"
                       stroke={c.accent.rope}
-                      strokeWidth="1.6"
+                      strokeWidth="1.4"
                       strokeLinecap="round"
                       className="animate-svg-flow"
                       style={{ animationDelay: `${i * 0.5}s`, animationDuration: '5s' }}
                     />
-                    {/* End-dot at the card edge */}
-                    <circle cx={ex} cy={ey} r="3.2" fill="white" stroke={c.accent.rope} strokeWidth="1.6" />
+                    {/* Terminator dot — line stops here */}
+                    <circle cx={ex} cy={ey} r="3.5" fill="white" stroke={c.accent.rope} strokeWidth="1.8" />
                   </g>
                 )
               })}
             </svg>
           )}
 
-          {/* CARDS — 2×2 grid */}
-          <div className="relative z-10 mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6">
+          {/* CARDS — 2×2 grid (compact) */}
+          <div className="relative z-10 mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-3xl mx-auto">
             {cards.map((c, i) => {
               const Icon = c.icon
               return (
@@ -306,34 +307,34 @@ export default function Community() {
                   <Link
                     ref={(el) => { cardRefs.current[i] = el }}
                     to={c.href}
-                    className={`group h-full block rounded-2xl bg-white/80 backdrop-blur-sm
-                                border border-slate-200 p-6
-                                shadow-[0_10px_30px_-12px_rgba(15,58,35,0.18)]
+                    className={`group h-full block rounded-xl bg-white/80 backdrop-blur-sm
+                                border border-slate-200 p-4
+                                shadow-[0_8px_24px_-12px_rgba(15,58,35,0.18)]
                                 transition-all duration-500
-                                hover:-translate-y-1.5 ${c.accent.ring} ${c.accent.shadow}`}
+                                hover:-translate-y-1 ${c.accent.ring} ${c.accent.shadow}`}
                   >
-                    <div className="flex items-start gap-3">
-                      <span className={`shrink-0 grid place-items-center w-12 h-12 rounded-xl
+                    <div className="flex items-start gap-2.5">
+                      <span className={`shrink-0 grid place-items-center w-9 h-9 rounded-lg
                                         ${c.accent.iconBg} ${c.accent.iconText}
                                         transition-transform duration-300 group-hover:scale-110`}>
-                        <Icon size={22} strokeWidth={1.6} />
+                        <Icon size={16} strokeWidth={1.7} />
                       </span>
                       <div className="min-w-0 flex-1">
-                        <div className="text-[10px] font-bold uppercase tracking-[0.28em] text-slate-500 mb-1">
+                        <div className="text-[9px] font-bold uppercase tracking-[0.26em] text-slate-500 mb-0.5">
                           {c.eyebrow}
                         </div>
-                        <h3 className="font-serif text-xl md:text-2xl text-brand-deep leading-tight">
+                        <h3 className="font-serif text-base md:text-lg text-brand-deep leading-tight">
                           {c.title}
                         </h3>
                       </div>
                     </div>
-                    <p className="mt-4 text-sm md:text-[15px] text-slate-600 leading-relaxed">
+                    <p className="mt-3 text-[12.5px] text-slate-600 leading-relaxed line-clamp-3">
                       {c.desc}
                     </p>
-                    <div className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.22em]
-                                    text-brand-accentDark group-hover:text-brand-deep group-hover:gap-2
+                    <div className="mt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
+                                    text-brand-accentDark group-hover:text-brand-deep group-hover:gap-1.5
                                     transition-all duration-300">
-                      {c.cta} <ArrowRight size={12} />
+                      {c.cta} <ArrowRight size={11} />
                     </div>
                   </Link>
                 </Reveal>
