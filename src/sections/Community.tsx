@@ -301,7 +301,7 @@ export default function Community() {
           {/* CARDS — 2×2 round pills. Each pill is fully rounded; the
            *  rope tip sits exactly on the pill's top edge with the dot
            *  marking the connection point. */}
-          <div className="relative z-10 mt-16 md:mt-24 grid grid-cols-2 gap-3 md:gap-4 max-w-md mx-auto">
+          <div className="relative z-10 mt-16 md:mt-24 grid grid-cols-2 gap-x-12 md:gap-x-24 gap-y-6 md:gap-y-8 max-w-2xl mx-auto">
             {cards.map((c, i) => {
               const Icon = c.icon
               return (
