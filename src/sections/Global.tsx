@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight, Globe2 } from 'lucide-react'
 import Section from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
+import GlobalOverviewPanel from '../components/GlobalOverviewPanel'
 
 function Reveal({
   children,
@@ -36,6 +38,7 @@ const orbitDots = [
 
 export default function Global() {
   const { t } = useTranslation()
+  const [presenceOpen, setPresenceOpen] = useState(false)
 
   return (
     <Section id="global" className="relative overflow-hidden bg-white">
@@ -64,8 +67,9 @@ export default function Global() {
             </Reveal>
             <Reveal delay={420}>
               <div className="mt-8">
-                <Link
-                  to="/global-presence"
+                <button
+                  type="button"
+                  onClick={() => setPresenceOpen(true)}
                   className="inline-flex items-center gap-2 rounded-full px-6 py-3
                              bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
                              shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
@@ -73,7 +77,7 @@ export default function Global() {
                 >
                   Explore Global Presence
                   <ArrowRight size={14} />
-                </Link>
+                </button>
               </div>
             </Reveal>
           </div>
@@ -168,6 +172,8 @@ export default function Global() {
         </div>
 
       </div>
+
+      <GlobalOverviewPanel open={presenceOpen} onClose={() => setPresenceOpen(false)} />
     </Section>
   )
 }
