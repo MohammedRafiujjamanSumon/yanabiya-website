@@ -47,6 +47,8 @@ type CommunityCard = {
   icon: LucideIcon
   cta: string
   accent: Accent
+  /** Real-life thumbnail rendered in the round photo chip on each card. */
+  photo: string
 }
 
 const cards: CommunityCard[] = [
@@ -64,6 +66,7 @@ const cards: CommunityCard[] = [
       rope: 'rgba(2,132,199,0.55)',
       shadow: 'hover:shadow-[0_24px_60px_-24px_rgba(2,132,199,0.35)]',
     },
+    photo: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=200&q=80',
   },
   {
     id: 'sustainable-growth',
@@ -79,6 +82,7 @@ const cards: CommunityCard[] = [
       rope: 'rgba(5,150,105,0.55)',
       shadow: 'hover:shadow-[0_24px_60px_-24px_rgba(5,150,105,0.35)]',
     },
+    photo: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=200&q=80',
   },
   {
     id: 'community-care',
@@ -94,6 +98,7 @@ const cards: CommunityCard[] = [
       rope: 'rgba(225,29,72,0.55)',
       shadow: 'hover:shadow-[0_24px_60px_-24px_rgba(225,29,72,0.35)]',
     },
+    photo: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=200&q=80',
   },
   {
     id: 'careers',
@@ -109,6 +114,7 @@ const cards: CommunityCard[] = [
       rope: 'rgba(217,119,6,0.55)',
       shadow: 'hover:shadow-[0_24px_60px_-24px_rgba(217,119,6,0.35)]',
     },
+    photo: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=200&q=80',
   },
 ]
 
@@ -236,7 +242,7 @@ export default function Community() {
                 <Hand size={56} strokeWidth={1.4} className="text-brand-deep relative" />
               </div>
               <div className="absolute left-1/2 -translate-x-1/2 -bottom-6
-                              inline-flex items-center gap-1.5 rounded-full
+                              inline-flex items-center gap-1.5 rounded-full whitespace-nowrap
                               bg-brand-deep text-brand-accent px-3 py-1
                               text-[9px] font-bold tracking-[0.32em] uppercase shadow-md">
                 <span className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
@@ -317,10 +323,21 @@ export default function Community() {
                                 transition-all duration-300
                                 hover:-translate-y-0.5 ${c.accent.ring} ${c.accent.shadow}`}
                   >
-                    <span className={`shrink-0 grid place-items-center w-7 h-7 rounded-full
-                                      ${c.accent.iconBg} ${c.accent.iconText}
+                    {/* Real-life thumbnail (icon overlay as accent badge). */}
+                    <span className={`relative shrink-0 w-7 h-7 rounded-full overflow-hidden
+                                      ring-2 ${c.accent.iconBg.replace('bg-', 'ring-').replace('-100', '-300/70')}
                                       transition-transform duration-300 group-hover:scale-110`}>
-                      <Icon size={13} strokeWidth={1.9} />
+                      <img
+                        src={c.photo}
+                        alt=""
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                      />
+                      <span className={`absolute -bottom-0 -right-0 w-3.5 h-3.5 grid place-items-center rounded-full
+                                        ${c.accent.iconBg} ${c.accent.iconText} ring-2 ring-white`}>
+                        <Icon size={8} strokeWidth={2.2} />
+                      </span>
                     </span>
                     <span className="font-serif text-[12px] text-brand-deep leading-tight truncate">
                       {c.title}
