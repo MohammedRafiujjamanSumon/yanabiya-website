@@ -225,53 +225,37 @@ function ServicesPyramid({
                     transition: 'box-shadow 0.5s ease, background 0.4s ease',
                   }}
                 />
-                {/* FRONT label — billboard chip (NOT tilted with the ring,
-                 *  so it stays upright and readable through the whole spin).
-                 *  White pill + dark-green text + icon for max contrast. */}
-                <span
+                {/* Label — billboard chip that COUNTER-rotates the parent's
+                 *  Y spin so it always faces the camera (never goes edge-on
+                 *  during the rotation). Wrapper is positioned at the centre
+                 *  of the ring, the inner div carries the reverse animation,
+                 *  the chip itself is the visible white pill. */}
+                <div
                   className="absolute left-1/2 top-1/2 pointer-events-none"
                   style={{
-                    transform: 'translate(-50%, -50%) translateZ(2px)',
-                    backfaceVisibility: 'hidden',
+                    transform: 'translate(-50%, -50%)',
+                    transformStyle: 'preserve-3d',
                   }}
                 >
-                  <span
-                    className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full
-                               bg-white/95 backdrop-blur-sm
-                               px-3 py-1 font-bold uppercase text-brand-deep
-                               shadow-[0_4px_10px_-4px_rgba(15,58,35,0.35)]"
-                    style={{
-                      fontSize: `${fontPx}px`,
-                      letterSpacing: '0.18em',
-                    }}
+                  <div
+                    className={paused ? '' : 'animate-pyramid-spin-reverse'}
+                    style={{ transformStyle: 'preserve-3d' }}
                   >
-                    <Icon size={fontPx + 3} strokeWidth={2.4} className="text-brand-deep" />
-                    {layer.label}
-                  </span>
-                </span>
-                {/* BACK label — same chip, mirrored so it reads correctly
-                 *  when the rear face is toward the camera. */}
-                <span
-                  className="absolute left-1/2 top-1/2 pointer-events-none"
-                  style={{
-                    transform: 'translate(-50%, -50%) rotateY(180deg) translateZ(2px)',
-                    backfaceVisibility: 'hidden',
-                  }}
-                >
-                  <span
-                    className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full
-                               bg-white/95 backdrop-blur-sm
-                               px-3 py-1 font-bold uppercase text-brand-deep
-                               shadow-[0_4px_10px_-4px_rgba(15,58,35,0.35)]"
-                    style={{
-                      fontSize: `${fontPx}px`,
-                      letterSpacing: '0.18em',
-                    }}
-                  >
-                    <Icon size={fontPx + 3} strokeWidth={2.4} className="text-brand-deep" />
-                    {layer.label}
-                  </span>
-                </span>
+                    <span
+                      className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full
+                                 bg-white/95 backdrop-blur-sm
+                                 px-3 py-1 font-bold uppercase text-brand-deep
+                                 shadow-[0_4px_10px_-4px_rgba(15,58,35,0.35)]"
+                      style={{
+                        fontSize: `${fontPx}px`,
+                        letterSpacing: '0.18em',
+                      }}
+                    >
+                      <Icon size={fontPx + 3} strokeWidth={2.4} className="text-brand-deep" />
+                      {layer.label}
+                    </span>
+                  </div>
+                </div>
               </div>
             )
           })}
