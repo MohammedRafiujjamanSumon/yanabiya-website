@@ -86,8 +86,8 @@ export default function Leadership() {
                            hover:border-brand-deep/30 hover:-translate-y-0.5
                            hover:shadow-[0_28px_60px_-24px_rgba(15,58,35,0.30)]"
               >
-                {/* Portrait — left on desktop, top on mobile */}
-                <div className="relative md:w-2/5 aspect-[4/5] md:aspect-auto bg-slate-100 overflow-hidden">
+                {/* Portrait — banner on mobile, side panel on desktop */}
+                <div className="relative md:w-2/5 aspect-[5/3] md:aspect-auto bg-slate-100 overflow-hidden">
                   <img
                     src={f.photo}
                     alt={f.name}

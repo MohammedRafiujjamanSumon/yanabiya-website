@@ -94,8 +94,9 @@ function ServiceWorkflow({
           </div>
         </div>
 
-        {/* Canvas — taller to give nodes more breathing room */}
-        <div className="relative aspect-[21/13] bg-[#fafbf8]">
+        {/* Canvas — squarer on mobile so the HQ + 6 nodes don't crush
+         *  each other; widens to landscape on md+. */}
+        <div className="relative aspect-[5/6] md:aspect-[21/13] bg-[#fafbf8]">
           {/* Subtle dot grid */}
           <div
             aria-hidden="true"
@@ -158,7 +159,7 @@ function ServiceWorkflow({
               <span aria-hidden="true"
                     className="absolute -inset-1 rounded-2xl bg-brand-accent
                                opacity-0 group-hover/hub:opacity-100 blur-sm transition-opacity duration-300" />
-              <div className="relative w-[140px] h-[140px] rounded-2xl bg-white
+              <div className="relative w-[88px] h-[88px] md:w-[140px] md:h-[140px] rounded-2xl bg-white
                               ring-2 ring-brand-accent shadow-[0_12px_30px_-8px_rgba(15,58,35,0.5)]
                               grid place-items-center overflow-hidden
                               transition-transform duration-300
