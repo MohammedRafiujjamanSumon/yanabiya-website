@@ -148,13 +148,14 @@ function ServicesPyramid({
         style={{ transformStyle: 'preserve-3d', transform: 'rotateX(8deg)' }}
       >
         <div
-          className={paused ? '' : 'animate-pyramid-spin'}
+          className="animate-pyramid-spin"
           style={{
             transformStyle: 'preserve-3d',
             transformOrigin: 'center center',
             position: 'relative',
             width: '460px',
             height: '700px',
+            animationPlayState: paused ? 'paused' : 'running',
           }}
         >
           {PYRAMID_LAYERS.map((layer, i) => {
@@ -238,8 +239,11 @@ function ServicesPyramid({
                   }}
                 >
                   <div
-                    className={paused ? '' : 'animate-pyramid-spin-reverse'}
-                    style={{ transformStyle: 'preserve-3d' }}
+                    className="animate-pyramid-spin-reverse"
+                    style={{
+                      transformStyle: 'preserve-3d',
+                      animationPlayState: paused ? 'paused' : 'running',
+                    }}
                   >
                     <span
                       className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full
