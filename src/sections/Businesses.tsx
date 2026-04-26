@@ -54,17 +54,18 @@ type WorkflowNode = {
   y: number   // % of canvas
 }
 
+/* HQ on top, 6 nodes laid out in a 2×3 grid below. */
 const WORKFLOW_NODES: WorkflowNode[] = [
-  { slug: 'it-software',       x: 60, y: 12 },
-  { slug: 'export-import',     x: 36, y: 14 },
-  { slug: 'clothing',          x: 14, y: 26 },
-  { slug: 'agents-brokerage',  x: 60, y: 88 },
-  { slug: 'office-management', x: 36, y: 86 },
-  { slug: 'manpower',          x: 14, y: 74 },
+  { slug: 'it-software',       x: 18, y: 52 },
+  { slug: 'export-import',     x: 50, y: 52 },
+  { slug: 'clothing',          x: 82, y: 52 },
+  { slug: 'agents-brokerage',  x: 18, y: 84 },
+  { slug: 'office-management', x: 50, y: 84 },
+  { slug: 'manpower',          x: 82, y: 84 },
 ]
 
-const HUB_X = 86
-const HUB_Y = 50
+const HUB_X = 50
+const HUB_Y = 16
 
 function ServiceWorkflow({
   onSelect,
@@ -94,9 +95,9 @@ function ServiceWorkflow({
           </div>
         </div>
 
-        {/* Canvas — squarer on mobile so the HQ + 6 nodes don't crush
-         *  each other; widens to landscape on md+. */}
-        <div className="relative aspect-[5/6] md:aspect-[21/13] bg-[#fafbf8]">
+        {/* Canvas — taller (HQ on top, 2 rows of nodes below). Portrait
+         *  on mobile, slightly landscape on md+. */}
+        <div className="relative aspect-[4/5] md:aspect-[5/4] bg-[#fafbf8]">
           {/* Subtle dot grid */}
           <div
             aria-hidden="true"
@@ -120,10 +121,13 @@ function ServiceWorkflow({
               const sy = HUB_Y
               const ex = n.x
               const ey = n.y
-              // control point in the middle for a soft curve
-              const cx1 = sx + (ex - sx) * 0.6
-              const cy1 = sy
-              const path = `M ${sx} ${sy} C ${cx1} ${cy1}, ${ex + 6} ${ey}, ${ex} ${ey}`
+              // Top-down soft curve: drop straight from hub, then arc
+              // outward toward the node's column.
+              const cx1 = sx
+              const cy1 = sy + (ey - sy) * 0.55
+              const cx2 = ex
+              const cy2 = ey - 8
+              const path = `M ${sx} ${sy} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${ex} ${ey}`
               return (
                 <g key={n.slug}>
                   <path
@@ -220,10 +224,10 @@ function ServiceWorkflow({
                     </div>
                   </div>
                 </div>
-                {/* Pulsing arrival dot anchored on the inbound (right) edge */}
+                {/* Pulsing arrival dot anchored on the top edge (inbound from above) */}
                 <span
                   aria-hidden="true"
-                  className="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-accent
+                  className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-brand-accent
                              shadow-[0_0_8px_rgba(158,199,58,0.7)]"
                   style={{ animation: `haloPulse 2.6s ease-in-out ${i * 0.3}s infinite` }}
                 />
