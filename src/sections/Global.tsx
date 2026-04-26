@@ -44,143 +44,135 @@ export default function Global() {
     <Section id="global" className="relative overflow-hidden bg-white">
       <div className="container-x py-12 md:py-16">
 
-        {/* ───────── FULL-WIDTH HEADER (single-line headline) ───────── */}
-        <div className="mb-10 md:mb-14 max-w-5xl">
+        {/* ───────── GEOMAP ON TOP ───────── */}
+        <Reveal>
+          <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto mb-10 md:mb-14">
+            {/* Soft halo */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 grid place-items-center pointer-events-none"
+            >
+              <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/30 blur-[80px] animate-gradient" />
+            </div>
+
+            {/* Concentric orbit rings */}
+            <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
+              {[0.95, 0.75, 0.55, 0.35].map((s, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full border border-brand-accentDark/40"
+                  style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
+                />
+              ))}
+            </div>
+
+            {/* Globe icon centre */}
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accentDark/60
+                              grid place-items-center text-brand-deep animate-spin-slow">
+                <Globe2 size={36} strokeWidth={1.6} />
+              </div>
+            </div>
+
+            {/* Connecting lines from each dot to the centre */}
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 100 80"
+              className="absolute inset-0 w-full h-full"
+              preserveAspectRatio="none"
+            >
+              {orbitDots.map((d, i) => {
+                const x = parseFloat(d.left)
+                const y = parseFloat(d.top) * 0.8
+                return (
+                  <line
+                    key={d.code}
+                    x1="50" y1="40" x2={x} y2={y}
+                    stroke="rgba(15,58,35,0.55)"
+                    strokeWidth="0.28"
+                    strokeDasharray="0.8 0.6"
+                    style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
+                  />
+                )
+              })}
+            </svg>
+
+            {/* Outer city pins — clickable flag cards routing to each country page */}
+            {orbitDots.map((d, i) => (
+              <Link
+                key={d.code}
+                to={`/country/${d.code.toLowerCase()}`}
+                aria-label={`Explore ${d.label}`}
+                className="group absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 z-10
+                           hover:z-20"
+                style={{ top: d.top, left: d.left }}
+              >
+                <span className="relative inline-flex">
+                  <span
+                    className="absolute inset-0 rounded-full bg-brand-accent/40"
+                    style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
+                  />
+                  <span
+                    className="relative inline-grid place-items-center w-9 h-9 rounded-full bg-white
+                               ring-2 ring-brand-accent/60 shadow-md text-base
+                               transition-all duration-300
+                               group-hover:scale-110 group-hover:ring-brand-accent
+                               group-hover:shadow-[0_0_20px_rgba(158,199,58,0.7)]"
+                  >
+                    {d.flag}
+                  </span>
+                </span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600
+                                 bg-white/85 backdrop-blur px-2.5 py-0.5 rounded-full whitespace-nowrap
+                                 transition-colors duration-300 group-hover:text-brand-accentDark">
+                  {d.label}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </Reveal>
+
+        {/* ───────── TEXT BELOW (centered) ───────── */}
+        <div className="text-center max-w-3xl mx-auto">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
               {t('global.eyebrow', 'Global Presence')}
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-[40px] leading-[1.15] tracking-tight text-slate-900 lg:whitespace-nowrap">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-[40px] leading-[1.15] tracking-tight text-slate-900">
               Aligned across borders as{' '}
               <span className="text-brand-accentDark">one unified network.</span>
             </h2>
           </Reveal>
-        </div>
-
-        {/* ───────── 2-COLUMN BODY + GEOMAP ───────── */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-
-          {/* LEFT — description + flags + CTA */}
-          <div className="lg:col-span-5">
-            <Reveal delay={280}>
-              <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-md">
-                We operate through a coordinated structure across key global markets,
-                where every location follows shared systems, standards, and strategic
-                direction.
-              </p>
-            </Reveal>
-            <Reveal delay={360}>
-              <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-slate-700">
-                <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇴🇲</span> Muscat, Oman</span>
-                <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇬🇧</span> London, United Kingdom</span>
-                <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇧🇩</span> Dhaka, Bangladesh</span>
-                <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇺🇸</span> Austin, United States</span>
-              </div>
-            </Reveal>
-            <Reveal delay={420}>
-              <div className="mt-8">
-                <button
-                  type="button"
-                  onClick={() => setPresenceOpen(true)}
-                  className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                             bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
-                             shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
-                             transition-all duration-300"
-                >
-                  Explore Global Presence
-                  <ArrowRight size={14} />
-                </button>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* RIGHT — labeled globe-mesh (the "geomap" from About) */}
-          <Reveal delay={200} className="lg:col-span-7">
-            <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto">
-              {/* Soft halo */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 grid place-items-center pointer-events-none"
+          <Reveal delay={280}>
+            <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
+              We operate through a coordinated structure across key global markets,
+              where every location follows shared systems, standards, and strategic
+              direction.
+            </p>
+          </Reveal>
+          <Reveal delay={360}>
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px] text-slate-700">
+              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇴🇲</span> Muscat, Oman</span>
+              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇬🇧</span> London, United Kingdom</span>
+              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇧🇩</span> Dhaka, Bangladesh</span>
+              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇺🇸</span> Austin, United States</span>
+            </div>
+          </Reveal>
+          <Reveal delay={420}>
+            <div className="mt-8">
+              <button
+                type="button"
+                onClick={() => setPresenceOpen(true)}
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                           bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
+                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
+                           transition-all duration-300"
               >
-                <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/30 blur-[80px] animate-gradient" />
-              </div>
-
-              {/* Concentric orbit rings */}
-              <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
-                {[0.95, 0.75, 0.55, 0.35].map((s, i) => (
-                  <div
-                    key={i}
-                    className="absolute rounded-full border border-brand-accentDark/40"
-                    style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
-                  />
-                ))}
-              </div>
-
-              {/* Globe icon centre */}
-              <div className="absolute inset-0 grid place-items-center">
-                <div className="w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accentDark/60
-                                grid place-items-center text-brand-deep animate-spin-slow">
-                  <Globe2 size={36} strokeWidth={1.6} />
-                </div>
-              </div>
-
-              {/* Connecting lines from each dot to the centre */}
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 100 80"
-                className="absolute inset-0 w-full h-full"
-                preserveAspectRatio="none"
-              >
-                {orbitDots.map((d, i) => {
-                  const x = parseFloat(d.left)
-                  const y = parseFloat(d.top) * 0.8
-                  return (
-                    <line
-                      key={d.code}
-                      x1="50" y1="40" x2={x} y2={y}
-                      stroke="rgba(15,58,35,0.55)"
-                      strokeWidth="0.28"
-                      strokeDasharray="0.8 0.6"
-                      style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
-                    />
-                  )
-                })}
-              </svg>
-
-              {/* Outer city pins — clickable flag cards routing to each country page */}
-              {orbitDots.map((d, i) => (
-                <Link
-                  key={d.code}
-                  to={`/country/${d.code.toLowerCase()}`}
-                  aria-label={`Explore ${d.label}`}
-                  className="group absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 z-10
-                             hover:z-20"
-                  style={{ top: d.top, left: d.left }}
-                >
-                  <span className="relative inline-flex">
-                    <span
-                      className="absolute inset-0 rounded-full bg-brand-accent/40"
-                      style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
-                    />
-                    <span
-                      className="relative inline-grid place-items-center w-9 h-9 rounded-full bg-white
-                                 ring-2 ring-brand-accent/60 shadow-md text-base
-                                 transition-all duration-300
-                                 group-hover:scale-110 group-hover:ring-brand-accent
-                                 group-hover:shadow-[0_0_20px_rgba(158,199,58,0.7)]"
-                    >
-                      {d.flag}
-                    </span>
-                  </span>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600
-                                   bg-white/85 backdrop-blur px-2.5 py-0.5 rounded-full whitespace-nowrap
-                                   transition-colors duration-300 group-hover:text-brand-accentDark">
-                    {d.label}
-                  </span>
-                </Link>
-              ))}
+                Explore Global Presence
+                <ArrowRight size={14} />
+              </button>
             </div>
           </Reveal>
         </div>
