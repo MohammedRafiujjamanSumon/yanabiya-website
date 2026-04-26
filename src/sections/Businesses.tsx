@@ -507,19 +507,25 @@ export default function Businesses() {
                 <span className="block text-brand-accentDark">divisions.</span>
               </h2>
             </Reveal>
-            <Reveal delay={260}>
-              <p className="mt-5 text-base text-slate-600 leading-relaxed max-w-md">
-                Each division operates with focused expertise while remaining fully
-                integrated into the core system that connects all operations.
-              </p>
-            </Reveal>
-            <Reveal delay={360}>
-              <p className="mt-3 text-sm text-slate-500 leading-relaxed max-w-md">
+            {/* Body — line-cascade reveal */}
+            <div className="mt-5 max-w-md space-y-1 text-base text-slate-600 leading-relaxed text-justify [text-align-last:left]">
+              <Reveal delay={260}>
+                <p>Each division operates with focused expertise,</p>
+              </Reveal>
+              <Reveal delay={420}>
+                <p>fully integrated into the core system</p>
+              </Reveal>
+              <Reveal delay={580}>
+                <p>that connects all operations.</p>
+              </Reveal>
+            </div>
+            <Reveal delay={760}>
+              <p className="mt-4 text-sm text-slate-500 leading-relaxed max-w-md">
                 Explore each division to understand its scope, or let us guide you
                 to the right solution.
               </p>
             </Reveal>
-            <Reveal delay={460}>
+            <Reveal delay={900}>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <Link
                   to="/contact"

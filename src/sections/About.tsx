@@ -163,14 +163,22 @@ export default function About() {
                 Built on trust, scaled with purpose, and proven over time.
               </p>
             </Reveal>
-            <Reveal delay={320}>
-              <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed max-w-xl">
-                A diversified group connecting businesses across markets through a
-                unified structure, shared standards, and long-term vision.
-              </p>
-            </Reveal>
 
-            <Reveal delay={420}>
+            {/* Description — split into lines so each surfaces on scroll
+             *  one after another. Justified inside max-w-xl. */}
+            <div className="mt-5 max-w-xl space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:left]">
+              <Reveal delay={340}>
+                <p>A diversified group connecting businesses across markets,</p>
+              </Reveal>
+              <Reveal delay={500}>
+                <p>through a unified structure and shared standards,</p>
+              </Reveal>
+              <Reveal delay={660}>
+                <p>built on a long-term vision.</p>
+              </Reveal>
+            </div>
+
+            <Reveal delay={840}>
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <Link
                   to="/about-us"

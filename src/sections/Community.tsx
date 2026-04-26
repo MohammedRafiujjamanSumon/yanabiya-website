@@ -198,14 +198,20 @@ export default function Community() {
               <span className="block">connected ecosystem of people and initiatives.</span>
             </h2>
           </Reveal>
-          <Reveal delay={260}>
-            <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
-              From insights and sustainability to welfare and careers, every initiative
-              contributes to long-term value and shared growth.
-            </p>
-          </Reveal>
-          <Reveal delay={360}>
-            <p className="mt-3 text-sm text-slate-500 leading-relaxed">
+          {/* Description — line-cascade reveal, justified */}
+          <div className="mt-5 max-w-2xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
+            <Reveal delay={260}>
+              <p>From insights and sustainability to welfare and careers,</p>
+            </Reveal>
+            <Reveal delay={420}>
+              <p>every initiative contributes to long-term value</p>
+            </Reveal>
+            <Reveal delay={580}>
+              <p>and shared growth.</p>
+            </Reveal>
+          </div>
+          <Reveal delay={760}>
+            <p className="mt-4 text-sm text-slate-500 leading-relaxed">
               Explore each area to see our impact, or connect with us directly.
             </p>
           </Reveal>
