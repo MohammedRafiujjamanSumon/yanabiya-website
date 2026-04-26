@@ -497,25 +497,42 @@ export default function Businesses() {
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
                 <Sparkles size={12} className="text-brand-accent" />
-                Our Service
+                Services / Divisions
                 <Sparkles size={12} className="text-brand-accent" />
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-[42px] leading-[1.05] tracking-tight text-brand-deep">
-                Six divisions.
-                <span className="block text-brand-accentDark">One group.</span>
+                Structured into specialized
+                <span className="block text-brand-accentDark">divisions.</span>
               </h2>
             </Reveal>
             <Reveal delay={260}>
               <p className="mt-5 text-base text-slate-600 leading-relaxed max-w-md">
-                Tap a node — or the HQ for every division.
+                Each division operates with focused expertise while remaining fully
+                integrated into the core system that connects all operations.
               </p>
             </Reveal>
-            <Reveal delay={400}>
-              <div className="mt-6 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.32em] text-brand-accentDark font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                Live signal · 6 active nodes
+            <Reveal delay={360}>
+              <p className="mt-3 text-sm text-slate-500 leading-relaxed max-w-md">
+                Explore each division to understand its scope, or let us guide you
+                to the right solution.
+              </p>
+            </Reveal>
+            <Reveal delay={460}>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                             bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
+                             shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                >
+                  Get a Quote
+                </Link>
+                <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.32em] text-brand-accentDark font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                  Live · 6 nodes
+                </div>
               </div>
             </Reveal>
           </div>

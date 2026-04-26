@@ -149,18 +149,24 @@ export default function About() {
           <div className="lg:col-span-7">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-5">
-                About Yanabiya Group
+                About
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.05] tracking-tight text-slate-900">
-                One group.
-                <span className="block">Many futures.</span>
+                One group operating across
+                <span className="block text-brand-accentDark">multiple futures.</span>
               </h2>
             </Reveal>
-            <Reveal delay={280}>
-              <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-xl">
-                Trust-led. Diversified. Decade-tested.
+            <Reveal delay={220}>
+              <p className="mt-5 font-serif italic text-xl md:text-2xl text-brand-accentDark leading-snug max-w-xl">
+                Built on trust, scaled with purpose, and proven over time.
+              </p>
+            </Reveal>
+            <Reveal delay={320}>
+              <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed max-w-xl">
+                A diversified group connecting businesses across markets through a
+                unified structure, shared standards, and long-term vision.
               </p>
             </Reveal>
 

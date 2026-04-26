@@ -194,14 +194,19 @@ export default function Community() {
           </Reveal>
           <Reveal delay={120}>
             <h2 className="mt-3 font-serif text-3xl md:text-5xl leading-tight text-brand-deep">
-              Built around <span className="italic text-brand-accentDark">people</span>,
-              <span className="block">driven by <span className="italic text-brand-accentDark">purpose</span>.</span>
+              Driven by <span className="italic text-brand-accentDark">purpose</span> across a
+              <span className="block">connected ecosystem of people and initiatives.</span>
             </h2>
           </Reveal>
           <Reveal delay={260}>
             <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
-              From insights and sustainability to welfare and careers — explore the ways
-              Yanabiya Group invests in the communities and teams that grow with us.
+              From insights and sustainability to welfare and careers, every initiative
+              contributes to long-term value and shared growth.
+            </p>
+          </Reveal>
+          <Reveal delay={360}>
+            <p className="mt-3 text-sm text-slate-500 leading-relaxed">
+              Explore each area to see our impact, or connect with us directly.
             </p>
           </Reveal>
         </div>
@@ -353,6 +358,21 @@ export default function Community() {
               </Reveal>
             ))}
           </div>
+
+          {/* TAIL CTA */}
+          <Reveal delay={300}>
+            <div className="mt-12 md:mt-16 text-center">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-full px-7 py-3
+                           bg-brand-deep text-white text-xs font-bold uppercase tracking-[0.22em]
+                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
+                           transition-all duration-300"
+              >
+                Get in Touch <ArrowRight size={14} />
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </div>
     </Section>

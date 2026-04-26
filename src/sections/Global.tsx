@@ -56,14 +56,24 @@ export default function Global() {
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.05] tracking-tight text-slate-900">
-                We operate across
-                <span className="block text-brand-accentDark">four countries.</span>
+                Aligned across borders as
+                <span className="block text-brand-accentDark">one unified network.</span>
               </h2>
             </Reveal>
             <Reveal delay={280}>
-              <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-md">
-                One coordinated network across four countries.
+              <p className="mt-6 text-base md:text-lg text-slate-600 leading-relaxed max-w-md">
+                We operate through a coordinated structure across key global markets,
+                where every location follows shared systems, standards, and strategic
+                direction.
               </p>
+            </Reveal>
+            <Reveal delay={360}>
+              <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-slate-700">
+                <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇴🇲</span> Muscat, Oman</span>
+                <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇬🇧</span> London, United Kingdom</span>
+                <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇧🇩</span> Dhaka, Bangladesh</span>
+                <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇺🇸</span> Austin, United States</span>
+              </div>
             </Reveal>
             <Reveal delay={420}>
               <div className="mt-8">
