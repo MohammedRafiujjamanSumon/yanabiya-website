@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  Sparkles, MapPin, Building2, Briefcase, Globe2,
+  Sparkles, MapPin, Building2, Briefcase,
   X as CloseIcon, ArrowRight, ExternalLink, Plus, Minus, Crosshair,
 } from 'lucide-react'
 import BackButton from '../components/BackButton'
@@ -378,7 +378,7 @@ function CountryPanel({
                           rounded-full bg-white/95 backdrop-blur px-2.5 py-1
                           text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep">
             <span className="text-[12px] leading-none">{c.flag}</span>
-            {c.code} · Map
+            Map
           </div>
           {contact && (
             <a
@@ -402,10 +402,9 @@ function CountryPanel({
       </div>
 
       {/* Quick stats */}
-      <div className="mt-6 grid grid-cols-3 gap-2">
+      <div className="mt-6 grid grid-cols-2 gap-2">
         <Stat icon={Building2} label="Entities" value={String(c.entities.length)} />
         <Stat icon={Briefcase} label="Activities" value={activities ? String(activities.length) : '—'} />
-        <Stat icon={Globe2} label="Code" value={c.code} />
       </div>
 
       {/* Top entities preview */}
