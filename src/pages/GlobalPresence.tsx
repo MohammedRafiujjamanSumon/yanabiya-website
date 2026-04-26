@@ -173,7 +173,7 @@ function WorldMap({
                 <span
                   aria-hidden="true"
                   className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full
-                              ${isHub ? 'w-12 h-12 bg-brand-accent/30' : 'w-9 h-9 bg-brand-accent/25'}`}
+                              ${isHub ? 'w-16 h-16 bg-brand-accent/30' : 'w-12 h-12 bg-brand-accent/25'}`}
                   style={{ animation: `haloPulse 2.6s ease-in-out ${i * 0.25}s infinite` }}
                 />
                 {/* Outer ring (hover only) */}
@@ -181,34 +181,34 @@ function WorldMap({
                   aria-hidden="true"
                   className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-brand-accent
                               opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                              ${isHub ? 'w-16 h-16' : 'w-12 h-12'}`}
+                              ${isHub ? 'w-20 h-20' : 'w-16 h-16'}`}
                 />
                 {/* Pin head */}
                 <span
                   aria-hidden="true"
-                  className={`relative block rounded-full grid place-items-center text-white shadow-[0_4px_12px_rgba(15,58,35,0.4)]
+                  className={`relative block rounded-full grid place-items-center text-white shadow-[0_6px_16px_rgba(15,58,35,0.45)]
                               transition-transform duration-300 group-hover:scale-110
                               ${isHub
-                                ? 'w-7 h-7 bg-brand-deep ring-[3px] ring-brand-accent'
-                                : 'w-5 h-5 bg-brand-accentDark ring-2 ring-white'}`}
+                                ? 'w-10 h-10 bg-brand-deep ring-[3px] ring-brand-accent'
+                                : 'w-7 h-7 bg-brand-accentDark ring-2 ring-white'}`}
                 >
-                  <MapPin size={isHub ? 14 : 10} strokeWidth={2.2} />
+                  <MapPin size={isHub ? 18 : 14} strokeWidth={2.2} />
                 </span>
 
                 {/* Label tag */}
                 <div
-                  className={`absolute left-1/2 -translate-x-1/2 ${isHub ? 'top-full mt-3' : 'top-full mt-2'}
+                  className={`absolute left-1/2 -translate-x-1/2 ${isHub ? 'top-full mt-4' : 'top-full mt-3'}
                               whitespace-nowrap`}
                 >
                   <span
-                    className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1
-                                text-[9px] font-bold tracking-[0.22em] uppercase shadow-md
+                    className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5
+                                text-[11px] font-bold tracking-[0.22em] uppercase shadow-md
                                 transition-all duration-300
                                 ${isHub
                                   ? 'bg-brand-deep text-brand-accent'
                                   : 'bg-white text-brand-deep border border-slate-200 group-hover:border-brand-accentDark'}`}
                   >
-                    <span className="text-[11px] leading-none">{c.flag}</span>
+                    <span className="text-[14px] leading-none">{c.flag}</span>
                     {isHub
                       ? 'HQ · Muscat'
                       : c.name.replace('Sultanate of ', '').replace(' of America', '')}

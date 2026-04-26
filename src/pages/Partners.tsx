@@ -57,8 +57,8 @@ const CATEGORIES: Category[] = [
     body: 'Hyperscalers, enterprise software, and hardware platforms behind our IT and trade systems.',
     icon: Handshake,
     items: partners,
-    x: 18,
-    y: 22,
+    x: 14,
+    y: 16,
   },
   {
     key: 'memberships',
@@ -67,7 +67,7 @@ const CATEGORIES: Category[] = [
     body: 'Industry bodies and accreditations that anchor our cross-border operations.',
     icon: Award,
     items: memberships,
-    x: 18,
+    x: 14,
     y: 50,
   },
   {
@@ -77,8 +77,8 @@ const CATEGORIES: Category[] = [
     body: 'A selection of organisations we have delivered for — across sectors and countries.',
     icon: Users2,
     items: valuableClients,
-    x: 18,
-    y: 78,
+    x: 14,
+    y: 84,
   },
 ]
 
@@ -114,8 +114,8 @@ function NetworkWorkflow({
           </div>
         </div>
 
-        {/* Canvas */}
-        <div className="relative aspect-[21/12] bg-[#fafbf8]">
+        {/* Canvas — taller for more node breathing room */}
+        <div className="relative aspect-[21/14] bg-[#fafbf8]">
           {/* Dot grid */}
           <div
             aria-hidden="true"
@@ -208,23 +208,23 @@ function NetworkWorkflow({
                 className="group absolute z-10"
                 style={{ left: `${c.x}%`, top: `${c.y}%`, transform: 'translate(-50%, -50%)' }}
               >
-                <div className="flex items-center gap-2.5 rounded-xl bg-white
-                                border border-slate-200 px-3 py-2.5
-                                shadow-[0_4px_12px_rgba(15,58,35,0.08)]
+                <div className="flex items-center gap-3 rounded-2xl bg-white
+                                border border-slate-200 px-4 py-3
+                                shadow-[0_6px_16px_rgba(15,58,35,0.10)]
                                 transition-all duration-300
                                 group-hover:border-brand-deep group-hover:-translate-y-0.5
-                                group-hover:shadow-[0_12px_28px_-8px_rgba(15,58,35,0.28)]">
-                  <span className="shrink-0 grid place-items-center w-9 h-9 rounded-lg
+                                group-hover:shadow-[0_14px_32px_-8px_rgba(15,58,35,0.30)]">
+                  <span className="shrink-0 grid place-items-center w-11 h-11 rounded-xl
                                    bg-brand-accent/15 text-brand-deep
                                    transition-all duration-300
                                    group-hover:bg-brand-accent group-hover:text-white">
-                    <Icon size={16} strokeWidth={1.7} />
+                    <Icon size={18} strokeWidth={1.7} />
                   </span>
                   <div className="text-left">
-                    <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
+                    <div className="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
                       {c.shortLabel}
                     </div>
-                    <div className="text-[8.5px] font-mono text-slate-400 tracking-wide leading-none mt-0.5">
+                    <div className="text-[9px] font-mono text-slate-400 tracking-wide leading-none mt-1">
                       0{i + 1} · {c.items.length} entries
                     </div>
                   </div>
