@@ -153,9 +153,9 @@ export default function About() {
               </div>
             </Reveal>
             <Reveal delay={120}>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.05] tracking-tight text-slate-900">
-                One group operating across
-                <span className="block text-brand-accentDark">multiple futures.</span>
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-[34px] lg:text-[40px] leading-[1.15] tracking-tight text-slate-900 lg:whitespace-nowrap">
+                One group operating across{' '}
+                <span className="text-brand-accentDark">multiple futures.</span>
               </h2>
             </Reveal>
             <Reveal delay={220}>

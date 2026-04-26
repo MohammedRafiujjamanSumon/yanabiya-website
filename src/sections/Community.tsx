@@ -193,9 +193,8 @@ export default function Community() {
             <Eyebrow>Community</Eyebrow>
           </Reveal>
           <Reveal delay={120}>
-            <h2 className="mt-3 font-serif text-3xl md:text-5xl leading-tight text-brand-deep">
-              Driven by <span className="italic text-brand-accentDark">purpose</span> across a
-              <span className="block">connected ecosystem of people and initiatives.</span>
+            <h2 className="mt-3 font-serif text-xl sm:text-2xl md:text-[26px] lg:text-[30px] leading-[1.2] tracking-tight text-brand-deep lg:whitespace-nowrap">
+              Driven by <span className="italic text-brand-accentDark">purpose</span> across a connected ecosystem of people and initiatives.
             </h2>
           </Reveal>
           {/* Description — line-cascade reveal, justified */}

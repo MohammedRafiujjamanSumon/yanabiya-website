@@ -67,9 +67,8 @@ export default function Leadership() {
             <Eyebrow>{t('leadership.eyebrow', 'Leadership')}</Eyebrow>
           </Reveal>
           <Reveal delay={120}>
-            <h2 className="mt-3 font-serif text-3xl md:text-5xl leading-tight text-brand-deep">
-              Built on <span className="italic text-brand-accentDark">trust</span>.
-              <span className="block">Led by <span className="italic text-brand-accentDark">vision</span>.</span>
+            <h2 className="mt-3 font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-[1.15] tracking-tight text-brand-deep lg:whitespace-nowrap">
+              Built on <span className="italic text-brand-accentDark">trust</span>. Led by <span className="italic text-brand-accentDark">vision</span>.
             </h2>
           </Reveal>
         </div>
