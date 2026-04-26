@@ -98,16 +98,16 @@ function ServicesPyramid({
   onSelectHub: () => void
 }) {
   const total = PYRAMID_LAYERS.length
-  // Pipe-ring dimensions: top smallest, bottom biggest, all thick + spaced.
-  const baseWidth = 400   // bottom ring width (px)
-  const stepWidth = 44    // shrink per step going up
-  const layerH = 70       // ring thickness (px) — bigger = fatter pipe
-  const stepY = 84        // vertical step between rings, includes spacing
-  const tiltX = 60        // less aggressive tilt so the ring's rim is visible
+  // Pipe-ring dimensions — fatter rings + more breathing room.
+  const baseWidth = 440   // bottom ring width (px)
+  const stepWidth = 48    // shrink per step going up
+  const layerH = 96       // ring thickness (px) — fatter pipe
+  const stepY = 110       // vertical step between rings
+  const tiltX = 58        // less aggressive tilt so the ring's rim is visible
 
   return (
     <div
-      className="relative mx-auto w-full max-w-[600px] aspect-[5/6] select-none"
+      className="relative mx-auto w-full max-w-[640px] aspect-[5/6] select-none"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       style={{ perspective: '1200px' }}
@@ -153,8 +153,8 @@ function ServicesPyramid({
             transformStyle: 'preserve-3d',
             transformOrigin: 'center center',
             position: 'relative',
-            width: '420px',
-            height: '560px',
+            width: '460px',
+            height: '700px',
           }}
         >
           {PYRAMID_LAYERS.map((layer, i) => {
@@ -166,7 +166,7 @@ function ServicesPyramid({
             const isActive = active === i
 
             const Icon = layer.icon
-            const fontPx = Math.max(11, Math.min(15, width / 28))
+            const fontPx = Math.max(11, Math.min(14, width / 28))
 
             // Multi-stop gradient with a top highlight band → suggests
             // a glossy curved pipe surface.
@@ -225,46 +225,50 @@ function ServicesPyramid({
                     transition: 'box-shadow 0.5s ease, background 0.4s ease',
                   }}
                 />
-                {/* FRONT label — icon + name, on the front face of the ring. */}
+                {/* FRONT label — billboard chip (NOT tilted with the ring,
+                 *  so it stays upright and readable through the whole spin).
+                 *  White pill + dark-green text + icon for max contrast. */}
                 <span
-                  className="absolute inset-0 grid place-items-center pointer-events-none
-                             font-bold uppercase text-white"
+                  className="absolute left-1/2 top-1/2 pointer-events-none"
                   style={{
-                    transform: `rotateX(${tiltX}deg) translateZ(1px)`,
+                    transform: 'translate(-50%, -50%) translateZ(2px)',
                     backfaceVisibility: 'hidden',
                   }}
                 >
                   <span
-                    className="inline-flex items-center gap-1.5"
+                    className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full
+                               bg-white/95 backdrop-blur-sm
+                               px-3 py-1 font-bold uppercase text-brand-deep
+                               shadow-[0_4px_10px_-4px_rgba(15,58,35,0.35)]"
                     style={{
                       fontSize: `${fontPx}px`,
-                      letterSpacing: '0.16em',
-                      textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                      letterSpacing: '0.18em',
                     }}
                   >
-                    <Icon size={fontPx + 4} strokeWidth={2.4} />
+                    <Icon size={fontPx + 3} strokeWidth={2.4} className="text-brand-deep" />
                     {layer.label}
                   </span>
                 </span>
-                {/* BACK label — mirrored copy so the name still reads
-                 *  correctly when the rear face is facing the camera. */}
+                {/* BACK label — same chip, mirrored so it reads correctly
+                 *  when the rear face is toward the camera. */}
                 <span
-                  className="absolute inset-0 grid place-items-center pointer-events-none
-                             font-bold uppercase text-white"
+                  className="absolute left-1/2 top-1/2 pointer-events-none"
                   style={{
-                    transform: `rotateY(180deg) rotateX(${tiltX}deg) translateZ(1px)`,
+                    transform: 'translate(-50%, -50%) rotateY(180deg) translateZ(2px)',
                     backfaceVisibility: 'hidden',
                   }}
                 >
                   <span
-                    className="inline-flex items-center gap-1.5"
+                    className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full
+                               bg-white/95 backdrop-blur-sm
+                               px-3 py-1 font-bold uppercase text-brand-deep
+                               shadow-[0_4px_10px_-4px_rgba(15,58,35,0.35)]"
                     style={{
                       fontSize: `${fontPx}px`,
-                      letterSpacing: '0.16em',
-                      textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                      letterSpacing: '0.18em',
                     }}
                   >
-                    <Icon size={fontPx + 4} strokeWidth={2.4} />
+                    <Icon size={fontPx + 3} strokeWidth={2.4} className="text-brand-deep" />
                     {layer.label}
                   </span>
                 </span>
