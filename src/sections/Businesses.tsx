@@ -55,12 +55,12 @@ type WorkflowNode = {
 }
 
 const WORKFLOW_NODES: WorkflowNode[] = [
-  { slug: 'it-software',       x: 62, y: 18 },
-  { slug: 'export-import',     x: 40, y: 18 },
-  { slug: 'clothing',          x: 18, y: 28 },
-  { slug: 'agents-brokerage',  x: 62, y: 82 },
-  { slug: 'office-management', x: 40, y: 82 },
-  { slug: 'manpower',          x: 18, y: 72 },
+  { slug: 'it-software',       x: 60, y: 12 },
+  { slug: 'export-import',     x: 36, y: 14 },
+  { slug: 'clothing',          x: 14, y: 26 },
+  { slug: 'agents-brokerage',  x: 60, y: 88 },
+  { slug: 'office-management', x: 36, y: 86 },
+  { slug: 'manpower',          x: 14, y: 74 },
 ]
 
 const HUB_X = 86
@@ -94,8 +94,8 @@ function ServiceWorkflow({
           </div>
         </div>
 
-        {/* Canvas */}
-        <div className="relative aspect-[21/10] bg-[#fafbf8]">
+        {/* Canvas — taller to give nodes more breathing room */}
+        <div className="relative aspect-[21/13] bg-[#fafbf8]">
           {/* Subtle dot grid */}
           <div
             aria-hidden="true"
@@ -198,23 +198,23 @@ function ServiceWorkflow({
                 className="group absolute z-10"
                 style={{ left: `${n.x}%`, top: `${n.y}%`, transform: 'translate(-50%, -50%)' }}
               >
-                <div className="flex items-center gap-2.5 rounded-xl bg-white
-                                border border-slate-200 px-3 py-2.5
-                                shadow-[0_4px_12px_rgba(15,58,35,0.08)]
+                <div className="flex items-center gap-3 rounded-2xl bg-white
+                                border border-slate-200 px-4 py-3
+                                shadow-[0_6px_16px_rgba(15,58,35,0.10)]
                                 transition-all duration-300
                                 group-hover:border-brand-deep group-hover:-translate-y-0.5
-                                group-hover:shadow-[0_12px_28px_-8px_rgba(15,58,35,0.28)]">
-                  <span className="shrink-0 grid place-items-center w-9 h-9 rounded-lg
+                                group-hover:shadow-[0_14px_32px_-8px_rgba(15,58,35,0.30)]">
+                  <span className="shrink-0 grid place-items-center w-11 h-11 rounded-xl
                                    bg-brand-accent/15 text-brand-deep
                                    transition-all duration-300
                                    group-hover:bg-brand-accent group-hover:text-white">
-                    <Icon size={16} strokeWidth={1.7} />
+                    <Icon size={18} strokeWidth={1.7} />
                   </span>
                   <div className="text-left">
-                    <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
+                    <div className="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
                       {display.title}
                     </div>
-                    <div className="text-[8.5px] font-mono text-slate-400 tracking-wide leading-none mt-0.5">
+                    <div className="text-[9px] font-mono text-slate-400 tracking-wide leading-none mt-1">
                       0{i + 1} · {n.slug}
                     </div>
                   </div>
