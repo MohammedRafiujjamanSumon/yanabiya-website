@@ -146,21 +146,9 @@ export default function Global() {
             </h2>
           </Reveal>
 
-          {/* Description — split into individual lines so each reveals
-           *  on scroll one after the other; justified so both edges align. */}
-          <div className="mt-6 max-w-3xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
-            <Reveal delay={260}>
-              <p>We operate through a coordinated structure across key global markets,</p>
-            </Reveal>
-            <Reveal delay={420}>
-              <p>where every location follows shared systems, standards,</p>
-            </Reveal>
-            <Reveal delay={580}>
-              <p>and strategic direction.</p>
-            </Reveal>
-          </div>
-
-          <Reveal delay={760}>
+          {/* Country pins — surfaced right under the headline so the four
+           *  hubs read at a glance before the descriptive copy. */}
+          <Reveal delay={220}>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px] text-slate-700">
               <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇴🇲</span> Muscat, Oman</span>
               <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇬🇧</span> London, United Kingdom</span>
@@ -168,6 +156,20 @@ export default function Global() {
               <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇺🇸</span> Austin, United States</span>
             </div>
           </Reveal>
+
+          {/* Description — split into individual lines so each reveals
+           *  on scroll one after the other; justified so both edges align. */}
+          <div className="mt-6 max-w-3xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
+            <Reveal delay={380}>
+              <p>We operate through a coordinated structure across key global markets,</p>
+            </Reveal>
+            <Reveal delay={540}>
+              <p>where every location follows shared systems, standards,</p>
+            </Reveal>
+            <Reveal delay={700}>
+              <p>and strategic direction.</p>
+            </Reveal>
+          </div>
           <Reveal delay={900}>
             <div className="mt-8">
               <button
