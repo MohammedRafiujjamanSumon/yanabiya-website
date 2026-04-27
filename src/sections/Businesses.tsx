@@ -98,16 +98,16 @@ function ServicesPyramid({
   onSelectHub: () => void
 }) {
   const total = PYRAMID_LAYERS.length
-  // Pipe-ring dimensions — fatter rings + more breathing room.
+  // Pipe-ring dimensions — tighter stack, fatter rings.
   const baseWidth = 440   // bottom ring width (px)
   const stepWidth = 48    // shrink per step going up
-  const layerH = 96       // ring thickness (px) — fatter pipe
-  const stepY = 110       // vertical step between rings
+  const layerH = 88       // ring thickness (px)
+  const stepY = 74        // vertical step — rings overlap slightly for stacked feel
   const tiltX = 58        // less aggressive tilt so the ring's rim is visible
 
   return (
     <div
-      className="relative mx-auto w-full max-w-[640px] aspect-[5/6] select-none"
+      className="relative mx-auto w-full max-w-[600px] aspect-[5/5] select-none"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       style={{ perspective: '1200px' }}
@@ -154,7 +154,7 @@ function ServicesPyramid({
             transformOrigin: 'center center',
             position: 'relative',
             width: '460px',
-            height: '700px',
+            height: '540px',
             animationPlayState: paused ? 'paused' : 'running',
           }}
         >
@@ -237,7 +237,7 @@ function ServicesPyramid({
        *  white pill + dark-green text + icon stay 100% readable at every
        *  angle and even when paused. */}
       <div className="absolute inset-0 grid place-items-center pointer-events-none">
-        <div className="relative" style={{ width: '460px', height: '700px' }}>
+        <div className="relative" style={{ width: '460px', height: '540px' }}>
           {PYRAMID_LAYERS.map((layer, i) => {
             const fromBottom = total - 1 - i
             const width = baseWidth - fromBottom * stepWidth
@@ -569,12 +569,12 @@ export default function Businesses() {
         {/* TEXT ON TOP — pyramid below (matches /#about pattern). */}
         <div className="flex flex-col gap-12 md:gap-16 items-center">
 
-          {/* TOP — Services / Divisions text, centered */}
+          {/* TOP — Our Service text, centered */}
           <div className="w-full max-w-3xl mx-auto text-center order-1">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
                 <Sparkles size={12} className="text-brand-accent" />
-                Services / Divisions
+                Our Service
                 <Sparkles size={12} className="text-brand-accent" />
               </div>
             </Reveal>
