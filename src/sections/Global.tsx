@@ -42,11 +42,66 @@ export default function Global() {
 
   return (
     <Section id="global" className="relative overflow-hidden bg-white">
-      <div className="container-x py-12 md:py-16 flex flex-col">
+      <div className="container-x py-12 md:py-16">
 
-        {/* ───────── GEOMAP (rendered second below the text — order-2) ───────── */}
-        <Reveal>
-          <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto mt-10 md:mt-14 order-2">
+        {/* ───────── TEXT FIRST ───────── */}
+        <div className="max-w-5xl mx-auto text-center">
+          <Reveal>
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
+              {t('global.eyebrow', 'Global Presence')}
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-[34px] lg:text-[40px] leading-[1.15] tracking-tight text-slate-900 lg:whitespace-nowrap">
+              Aligned across borders as{' '}
+              <span className="text-brand-accentDark">one unified network.</span>
+            </h2>
+          </Reveal>
+
+          {/* Country pins — surfaced right under the headline so the four
+           *  hubs read at a glance before the descriptive copy. */}
+          <Reveal delay={220}>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px] text-slate-700">
+              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇴🇲</span> Muscat, Oman</span>
+              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇬🇧</span> London, United Kingdom</span>
+              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇧🇩</span> Dhaka, Bangladesh</span>
+              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇺🇸</span> Austin, United States</span>
+            </div>
+          </Reveal>
+
+          {/* Description — split into individual lines so each reveals
+           *  on scroll one after the other; justified so both edges align. */}
+          <div className="mt-6 max-w-3xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
+            <Reveal delay={380}>
+              <p>We operate through a coordinated structure across key global markets,</p>
+            </Reveal>
+            <Reveal delay={540}>
+              <p>where every location follows shared systems, standards,</p>
+            </Reveal>
+            <Reveal delay={700}>
+              <p>and strategic direction.</p>
+            </Reveal>
+          </div>
+          <Reveal delay={900}>
+            <div className="mt-8">
+              <button
+                type="button"
+                onClick={() => setPresenceOpen(true)}
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                           bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
+                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
+                           transition-all duration-300"
+              >
+                Explore Global Presence
+                <ArrowRight size={14} />
+              </button>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* ───────── GEOMAP — sits BELOW the text ───────── */}
+        <Reveal delay={1080}>
+          <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto mt-12 md:mt-16">
             {/* Soft halo */}
             <div
               aria-hidden="true"
@@ -131,61 +186,6 @@ export default function Global() {
             ))}
           </div>
         </Reveal>
-
-        {/* ───────── TEXT FIRST (order-1) ───────── */}
-        <div className="max-w-5xl mx-auto text-center order-1">
-          <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
-              {t('global.eyebrow', 'Global Presence')}
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-[34px] lg:text-[40px] leading-[1.15] tracking-tight text-slate-900 lg:whitespace-nowrap">
-              Aligned across borders as{' '}
-              <span className="text-brand-accentDark">one unified network.</span>
-            </h2>
-          </Reveal>
-
-          {/* Country pins — surfaced right under the headline so the four
-           *  hubs read at a glance before the descriptive copy. */}
-          <Reveal delay={220}>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px] text-slate-700">
-              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇴🇲</span> Muscat, Oman</span>
-              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇬🇧</span> London, United Kingdom</span>
-              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇧🇩</span> Dhaka, Bangladesh</span>
-              <span className="inline-flex items-center gap-1.5"><span className="text-base leading-none">🇺🇸</span> Austin, United States</span>
-            </div>
-          </Reveal>
-
-          {/* Description — split into individual lines so each reveals
-           *  on scroll one after the other; justified so both edges align. */}
-          <div className="mt-6 max-w-3xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
-            <Reveal delay={380}>
-              <p>We operate through a coordinated structure across key global markets,</p>
-            </Reveal>
-            <Reveal delay={540}>
-              <p>where every location follows shared systems, standards,</p>
-            </Reveal>
-            <Reveal delay={700}>
-              <p>and strategic direction.</p>
-            </Reveal>
-          </div>
-          <Reveal delay={900}>
-            <div className="mt-8">
-              <button
-                type="button"
-                onClick={() => setPresenceOpen(true)}
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                           bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
-                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
-                           transition-all duration-300"
-              >
-                Explore Global Presence
-                <ArrowRight size={14} />
-              </button>
-            </div>
-          </Reveal>
-        </div>
 
       </div>
 
