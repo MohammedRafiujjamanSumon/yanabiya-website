@@ -42,7 +42,7 @@ export default function Global() {
 
   return (
     <Section id="global" className="relative overflow-hidden bg-white">
-      <div className="container-x py-14 md:py-20">
+      <div className="container-x pt-4 md:pt-6 pb-14 md:pb-20">
 
         {/* ───────── TEXT FIRST ───────── */}
         <div className="max-w-5xl mx-auto text-center">
