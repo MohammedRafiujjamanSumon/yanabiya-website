@@ -564,7 +564,7 @@ export default function Businesses() {
         <div className="absolute -bottom-40 left-1/3 w-[460px] h-[460px] rounded-full bg-brand-accentDark/6 blur-[140px]" />
       </div>
 
-      <div className="container-x py-14 md:py-20 relative">
+      <div className="container-x pt-4 md:pt-6 pb-14 md:pb-20 relative">
 
         {/* TEXT ON TOP — pyramid below (matches /#about pattern). */}
         <div className="flex flex-col gap-12 md:gap-16 items-center">
