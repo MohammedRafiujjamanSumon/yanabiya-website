@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { X as CloseIcon, ArrowRight } from 'lucide-react'
 import { countries } from '../data/countries'
+import { contactByCountry } from '../data/contact'
 import { assets } from '../data/assets'
 
 /* Right-side slide-in panel that lists all 4 countries — same look &
@@ -82,9 +83,10 @@ export default function GlobalOverviewPanel({
             Yanabiya Group operates across four countries — one coordinated network, four operational hubs.
           </p>
 
-          <div className="mt-7 space-y-2.5">
+          <div className="mt-7 space-y-3">
             {ORDER.map((code, i) => {
               const c = countries.find((cc) => cc.code === code)
+              const k = contactByCountry.find((cc) => cc.code === code)
               if (!c) return null
               const num = String(i + 1).padStart(2, '0')
               return (
@@ -92,28 +94,56 @@ export default function GlobalOverviewPanel({
                   key={c.code}
                   to={`/global-presence/${c.code.toLowerCase()}`}
                   onClick={onClose}
-                  className="group w-full flex items-center gap-3 rounded-xl bg-slate-50 border border-slate-200
-                             px-3 py-3 text-left transition-all duration-300
+                  className="group block w-full rounded-xl bg-slate-50 border border-slate-200
+                             p-3.5 text-left transition-all duration-300
                              hover:bg-brand-accent/8 hover:border-brand-deep/40 hover:translate-x-1"
                 >
-                  <span className="shrink-0 grid place-items-center w-10 h-10 rounded-lg
-                                   bg-brand-accent/15 text-2xl leading-none
-                                   transition-colors duration-300
-                                   group-hover:bg-brand-accent">
-                    {c.flag}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <div className="text-[12px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
-                      {c.name}
-                    </div>
-                    <div className="text-[11px] text-slate-600 mt-0.5 line-clamp-1">
-                      {c.role} · {c.entities.length} {c.entities.length === 1 ? 'entity' : 'entities'}
+                  <div className="flex items-start gap-3">
+                    <span className="shrink-0 grid place-items-center w-10 h-10 rounded-lg
+                                     bg-brand-accent/15 text-2xl leading-none
+                                     transition-colors duration-300
+                                     group-hover:bg-brand-accent">
+                      {c.flag}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-baseline justify-between gap-2">
+                        <div className="text-[12px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
+                          {c.name}
+                        </div>
+                        <span className="shrink-0 font-mono text-[10px] text-slate-400">
+                          {num}
+                        </span>
+                      </div>
+                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-accentDark mt-0.5">
+                        {c.role}
+                      </div>
+                      {k && (
+                        <>
+                          <div className="text-[11.5px] font-semibold text-slate-700 mt-1.5 leading-snug">
+                            {k.legalName}
+                          </div>
+                          <div className="text-[10px] text-slate-500 mt-1 flex flex-wrap gap-x-3 gap-y-0.5">
+                            <span>
+                              <span className="font-bold uppercase tracking-wider text-brand-accentDark">
+                                {k.registration.label}
+                              </span>{' '}
+                              <span className="font-mono text-slate-700">{k.registration.value}</span>
+                            </span>
+                            <span>
+                              <span className="font-bold uppercase tracking-wider text-brand-accentDark">
+                                Est.
+                              </span>{' '}
+                              {k.established}
+                            </span>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
-                  <span className="shrink-0 font-mono text-[10px] text-slate-400">
-                    {num}
-                  </span>
-                  <ArrowRight size={12} className="shrink-0 text-slate-400 group-hover:text-brand-deep transition-colors" />
+                  <div className="mt-2.5 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
+                                  text-brand-accentDark group-hover:text-brand-deep group-hover:gap-1.5 transition-all">
+                    Open page <ArrowRight size={11} />
+                  </div>
                 </Link>
               )
             })}
