@@ -82,7 +82,7 @@ export default function About() {
       </div>
 
       {/* ───────── Foreground content ───────── */}
-      <div className="container-x relative py-14 md:py-20">
+      <div className="container-x relative pt-8 md:pt-12 pb-8 md:pb-12">
         <div className="flex flex-col gap-12 md:gap-16 items-center">
 
           {/* TOP — eyebrow + serif title + subtitle + CTAs (centered) */}

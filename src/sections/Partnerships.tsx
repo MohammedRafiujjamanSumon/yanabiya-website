@@ -71,7 +71,7 @@ export default function Partnerships() {
 
   return (
     <Section id="partnerships" className="bg-stone-50">
-      <div className="container-x text-center mx-auto pt-4 md:pt-6 pb-14 md:pb-20 mb-12">
+      <div className="container-x text-center mx-auto pt-4 md:pt-6 pb-8 md:pb-12 mb-12">
         <H2 className="text-center">Trusted Network</H2>
         <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-slate-600">
           <span>Connecting Opportunities Worldwide to Build Strong, Scalable Global Businesses.</span>
