@@ -185,7 +185,7 @@ export default function Community() {
         <div className="absolute bottom-0 right-1/4 w-[480px] h-[480px] rounded-full bg-amber-200/20 blur-[140px]" />
       </div>
 
-      <div className="container-x relative">
+      <div className="container-x relative py-14 md:py-20">
 
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
