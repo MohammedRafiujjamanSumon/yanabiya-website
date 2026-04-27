@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  MapPin, Phone, Mail, Clock, Send, ExternalLink, Globe2, Building2, Layers, Users,
+  MapPin, Phone, Mail, Clock, Send, ExternalLink, Globe2,
   Smartphone, FileBadge,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -258,35 +258,6 @@ export default function Contact() {
               </div>
             )}
           </form>
-        </div>
-
-        {/* E. GLOBAL PRESENCE STATS */}
-        <div className="mt-16 fade-up" style={{ animationDelay: '540ms' }}>
-          <div className="text-center max-w-2xl mx-auto mb-6">
-            <h3 className="font-serif text-2xl md:text-3xl text-slate-900">Global Presence</h3>
-            <p className="mt-2 text-slate-600 text-sm">
-              One unified business platform — operating across markets, time zones, and cultures.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { icon: Globe2,    label: 'Countries',  value: '4' },
-              { icon: Building2, label: 'Offices',    value: `${offices.length}+` },
-              { icon: Layers,    label: 'Industries', value: '6' },
-              { icon: Users,     label: 'Languages',  value: '4' },
-            ].map((s) => (
-              <div
-                key={s.label}
-                className="rounded-2xl bg-white border border-slate-200 p-5 text-center hover:-translate-y-1 hover:shadow-md transition-all"
-              >
-                <div className="w-11 h-11 rounded-full bg-[#eef9ee] text-brand-accentDark grid place-items-center mx-auto">
-                  <s.icon size={20} />
-                </div>
-                <div className="mt-3 font-serif text-3xl font-bold text-brand-accentDark">{s.value}</div>
-                <div className="mt-1 text-xs uppercase tracking-wider text-slate-600">{s.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
 
       </div>
