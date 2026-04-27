@@ -89,7 +89,7 @@ export default function About() {
           <div className="w-full max-w-3xl mx-auto text-center order-1">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-5">
-                About
+                About Us
               </div>
             </Reveal>
             <Reveal delay={120}>
