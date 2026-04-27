@@ -29,11 +29,17 @@ function Reveal({
   )
 }
 
+/* Orbit ring assignments (innermost → outermost):
+ *   Oman  → ring 1 (scale 0.35), placed east of centre
+ *   UK    → ring 2 (scale 0.55), placed north
+ *   BD    → ring 3 (scale 0.75), placed south-east
+ *   USA   → ring 4 (scale 0.95), placed north-west
+ * Position formula: left% = 50 + scale*50·cos(θ), top% = 50 + scale*50·sin(θ). */
 const orbitDots = [
-  { code: 'OM', flag: '🇴🇲', label: 'Muscat, Oman',       top: '64%', left: '56%' },
-  { code: 'GB', flag: '🇬🇧', label: 'London, UK',         top: '24%', left: '46%' },
-  { code: 'BD', flag: '🇧🇩', label: 'Dhaka, Bangladesh',  top: '54%', left: '78%' },
-  { code: 'US', flag: '🇺🇸', label: 'Austin, USA',        top: '44%', left: '14%' },
+  { code: 'OM', flag: '🇴🇲', label: 'Muscat, Oman',       top: '50%', left: '67%' },
+  { code: 'GB', flag: '🇬🇧', label: 'London, UK',         top: '23%', left: '50%' },
+  { code: 'BD', flag: '🇧🇩', label: 'Dhaka, Bangladesh',  top: '76%', left: '76%' },
+  { code: 'US', flag: '🇺🇸', label: 'Austin, USA',        top: '17%', left: '17%' },
 ]
 
 export default function Global() {
