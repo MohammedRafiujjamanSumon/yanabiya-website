@@ -111,7 +111,7 @@ export default function CountryDetail() {
               <Reveal delay={360}>
                 <div className="mt-6 inline-flex items-start gap-2 text-sm text-slate-700 max-w-xl">
                   <MapPin size={16} className="mt-0.5 shrink-0 text-brand-accentDark" />
-                  <span className="leading-relaxed">{c.address}</span>
+                  <span className="leading-relaxed whitespace-pre-line">{c.address}</span>
                 </div>
               </Reveal>
             </div>

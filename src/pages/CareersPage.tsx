@@ -88,7 +88,7 @@ export default function CareersPage() {
                       <div className="text-xs uppercase tracking-widest text-brand-accent mt-1">{c.role}</div>
                       <div className="flex items-start gap-2 text-xs text-slate-500 mt-2">
                         <MapPin size={12} className="shrink-0 mt-0.5" />
-                        <span>{c.address}</span>
+                        <span className="whitespace-pre-line">{c.address}</span>
                       </div>
                     </div>
                   </div>
