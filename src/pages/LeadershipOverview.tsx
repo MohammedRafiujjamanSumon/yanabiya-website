@@ -77,7 +77,7 @@ export default function LeadershipOverview() {
             </h1>
           </Reveal>
           <Reveal delay={260}>
-            <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
+            <p className="mt-5 text-base md:text-lg text-slate-600 leading-snug">
               Founding chairs and a cross-country professional bench. Pick a hub to dive in.
             </p>
           </Reveal>
@@ -121,7 +121,7 @@ export default function LeadershipOverview() {
                     <h3 className="font-serif text-2xl text-brand-deep leading-tight">
                       {h.title}
                     </h3>
-                    <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                    <p className="mt-3 text-sm text-slate-600 leading-snug">
                       {h.body}
                     </p>
                     <div className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.22em]

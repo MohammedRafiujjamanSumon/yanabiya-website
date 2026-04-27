@@ -12,7 +12,7 @@ export default function Hero() {
             Built on Trust,<br />Driven by<br />Excellence
           </h1>
           <p className="mt-6 italic text-2xl text-brand-accent font-serif">{company.subTagline}</p>
-          <p className="mt-6 text-slate-600 max-w-xl leading-relaxed">{company.heroDescription}</p>
+          <p className="mt-6 text-slate-600 max-w-xl leading-snug">{company.heroDescription}</p>
 
           <div className="mt-9 flex flex-wrap gap-4">
             <Link to="/our-businesses" className="btn-primary">

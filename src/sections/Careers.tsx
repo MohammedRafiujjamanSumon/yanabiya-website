@@ -24,7 +24,7 @@ export default function Careers() {
         <div className="lg:col-span-5">
           <Eyebrow>{t('careers.eyebrow')}</Eyebrow>
           <H2>{t('careers.title')}</H2>
-          <p className="mt-5 text-slate-600 leading-relaxed">{t('careers.sub')}</p>
+          <p className="mt-5 text-slate-600 leading-snug">{t('careers.sub')}</p>
 
           <div className="grid sm:grid-cols-2 gap-4 mt-8">
             {reasons.map((r) => (

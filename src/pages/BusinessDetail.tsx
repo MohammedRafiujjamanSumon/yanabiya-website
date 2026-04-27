@@ -105,7 +105,7 @@ export default function BusinessDetail() {
                   {business.title}
                 </h2>
                 <div className="w-16 h-0.5 bg-brand-accent rounded-full" />
-                <p className="text-slate-200 leading-relaxed text-center max-w-2xl mx-auto">
+                <p className="text-slate-200 leading-snug text-center max-w-2xl mx-auto">
                   {business.details}
                 </p>
               </div>
@@ -316,7 +316,7 @@ function SubServiceModal({ sub, onClose }: { sub: SubService; onClose: () => voi
           </div>
         </div>
         <div className="p-6 md:p-8">
-          <p className="text-slate-200 leading-relaxed mb-6">{sub.body}</p>
+          <p className="text-slate-200 leading-snug mb-6">{sub.body}</p>
           <h4 className="text-brand-accent uppercase tracking-[0.22em] text-xs font-bold mb-4">
             What We Offer
           </h4>

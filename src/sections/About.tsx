@@ -106,7 +106,7 @@ export default function About() {
 
             {/* Description — split into lines so each surfaces on scroll
              *  one after another. Justified, last line centered. */}
-            <div className="mt-5 max-w-xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
+            <div className="mt-5 max-w-xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-snug text-justify [text-align-last:center]">
               <Reveal delay={340}>
                 <p>A diversified group connecting businesses across markets,</p>
               </Reveal>

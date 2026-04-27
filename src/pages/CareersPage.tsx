@@ -47,7 +47,7 @@ export default function CareersPage() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <Eyebrow>Community</Eyebrow>
           <H2 className="text-center">Careers</H2>
-          <p className="mt-5 text-slate-600 leading-relaxed">
+          <p className="mt-5 text-slate-600 leading-snug">
             Join a global team across Oman, the United Kingdom, Bangladesh and the USA —
             and help shape the future of trade, technology and community.
           </p>
@@ -65,7 +65,7 @@ export default function CareersPage() {
                   <r.icon size={22} />
                 </div>
                 <h4 className="text-slate-900 text-lg mb-1">{r.title}</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">{r.desc}</p>
+                <p className="text-sm text-slate-600 leading-snug">{r.desc}</p>
               </div>
             ))}
           </div>

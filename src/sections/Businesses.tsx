@@ -380,7 +380,7 @@ function NodeDetailPanel({
                 </h3>
               </div>
             </div>
-            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            <p className="mt-3 text-sm text-slate-600 leading-snug">
               Yanabiya Group operates six diversified business divisions, each
               independent yet aligned under one strategic group vision.
             </p>
@@ -480,7 +480,7 @@ function NodeDetailPanel({
             </div>
           </div>
 
-          <p className="mt-5 text-sm text-slate-600 leading-relaxed">
+          <p className="mt-5 text-sm text-slate-600 leading-snug">
             {display.tag}
           </p>
 
@@ -586,7 +586,7 @@ export default function Businesses() {
             </Reveal>
 
             {/* Body — line cascade, centered */}
-            <div className="mt-5 max-w-2xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
+            <div className="mt-5 max-w-2xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-snug text-justify [text-align-last:center]">
               <Reveal delay={260}>
                 <p>Each division operates with focused expertise,</p>
               </Reveal>
@@ -599,7 +599,7 @@ export default function Businesses() {
             </div>
 
             <Reveal delay={760}>
-              <p className="mt-4 text-sm text-slate-500 leading-relaxed max-w-xl mx-auto">
+              <p className="mt-4 text-sm text-slate-500 leading-snug max-w-xl mx-auto">
                 Explore each division to understand its scope, or let us guide you
                 to the right solution.
               </p>

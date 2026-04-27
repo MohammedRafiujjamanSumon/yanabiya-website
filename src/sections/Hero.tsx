@@ -54,7 +54,7 @@ export default function Hero() {
               style={{ animationDelay: '120ms' }}>
             {t('hero.welcome')}
           </h1>
-          <p className="text-white/95 text-base md:text-lg leading-relaxed mx-auto max-w-2xl drop-shadow-lg fade-up"
+          <p className="text-white/95 text-base md:text-lg leading-snug mx-auto max-w-2xl drop-shadow-lg fade-up"
              style={{ animationDelay: '240ms' }}>
             {t('hero.desc1')}
           </p>

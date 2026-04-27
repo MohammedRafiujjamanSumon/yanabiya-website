@@ -71,7 +71,7 @@ export default function Global() {
 
           {/* Description — split into individual lines so each reveals
            *  on scroll one after the other; justified so both edges align. */}
-          <div className="mt-6 max-w-3xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
+          <div className="mt-6 max-w-3xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-snug text-justify [text-align-last:center]">
             <Reveal delay={380}>
               <p>We operate through a coordinated structure across key global markets,</p>
             </Reveal>

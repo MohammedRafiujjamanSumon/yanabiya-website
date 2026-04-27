@@ -79,7 +79,7 @@ export default function GlobalOverviewPanel({
               </h3>
             </div>
           </div>
-          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+          <p className="mt-3 text-sm text-slate-600 leading-snug">
             Yanabiya Group operates across four countries — one coordinated network, four operational hubs.
           </p>
 

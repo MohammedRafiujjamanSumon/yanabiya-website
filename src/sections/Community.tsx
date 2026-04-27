@@ -198,7 +198,7 @@ export default function Community() {
             </h2>
           </Reveal>
           {/* Description — line-cascade reveal, justified */}
-          <div className="mt-5 max-w-2xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
+          <div className="mt-5 max-w-2xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-snug text-justify [text-align-last:center]">
             <Reveal delay={260}>
               <p>From insights and sustainability to welfare and careers,</p>
             </Reveal>
@@ -210,7 +210,7 @@ export default function Community() {
             </Reveal>
           </div>
           <Reveal delay={760}>
-            <p className="mt-4 text-sm text-slate-500 leading-relaxed">
+            <p className="mt-4 text-sm text-slate-500 leading-snug">
               Explore each area to see our impact, or connect with us directly.
             </p>
           </Reveal>

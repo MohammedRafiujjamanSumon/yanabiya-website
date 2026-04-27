@@ -251,7 +251,7 @@ export default function AboutCategoryGrid() {
                         <h4 className="font-serif font-bold text-sm md:text-[15px] text-slate-900 leading-snug">
                           {item.title}
                         </h4>
-                        <p className="mt-1.5 text-[13px] text-slate-600 leading-relaxed">
+                        <p className="mt-1.5 text-[13px] text-slate-600 leading-snug">
                           {item.body}
                         </p>
                         <div className="mt-2.5 flex items-start gap-2 rounded-lg bg-brand-accent/8 border-l-2 border-brand-accent px-2.5 py-1.5">

@@ -119,7 +119,7 @@ export default function Solutions() {
       <div className="container-x">
         <Eyebrow>Our Solutions</Eyebrow>
 
-        <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-relaxed text-sm text-justify [text-align-last:center]">
+        <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-snug text-sm text-justify [text-align-last:center]">
           We deliver end-to-end digital and enterprise solutions designed to help organizations,
           partners, and communities grow together in a connected global ecosystem.
         </p>
@@ -205,7 +205,7 @@ export default function Solutions() {
               </h3>
               <div className="mt-2 mx-auto w-16 h-[2px] bg-brand-accent rounded-full" />
             </div>
-            <div className="mt-6 space-y-4 text-slate-600 leading-relaxed text-justify">
+            <div className="mt-6 space-y-4 text-slate-600 leading-snug text-justify">
               {active.body.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}

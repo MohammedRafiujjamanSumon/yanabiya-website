@@ -143,7 +143,7 @@ function CategoryMarquee({
           {category.label}
         </span>
       </h2>
-      <p className="mt-1 max-w-3xl mx-auto text-slate-600 leading-relaxed text-sm text-justify [text-align-last:center]">
+      <p className="mt-1 max-w-3xl mx-auto text-slate-600 leading-snug text-sm text-justify [text-align-last:center]">
         {category.intro}
       </p>
 
@@ -260,7 +260,7 @@ export default function AboutCategories() {
               </h3>
               <div className="mt-2 mx-auto w-16 h-[2px] bg-brand-accent rounded-full" />
             </div>
-            <div className="mt-6 space-y-4 text-slate-600 leading-relaxed text-justify">
+            <div className="mt-6 space-y-4 text-slate-600 leading-snug text-justify">
               <p>{active.body}</p>
               <div className="rounded-xl bg-brand-accent/10 border-l-4 border-brand-accent px-4 py-3 flex items-start gap-3">
                 <span className="mt-0.5 shrink-0 w-7 h-7 rounded-full bg-brand-accent/20 text-brand-accentDark grid place-items-center">

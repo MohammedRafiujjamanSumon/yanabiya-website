@@ -90,7 +90,7 @@ export default function Footer() {
               </div>
             </div>
           </Link>
-          <p className="mt-4 text-sm text-white/70 leading-relaxed">
+          <p className="mt-4 text-sm text-white/70 leading-snug">
             A trusted international group of companies — building, scaling, and operating
             high-impact ventures across technology, trade, talent and consulting.
           </p>
@@ -156,7 +156,7 @@ export default function Footer() {
               <span className="shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-white/10 grid place-items-center">
                 <MapPin size={14} className="text-brand-accent" />
               </span>
-              <div className="text-white/85 leading-relaxed">
+              <div className="text-white/85 leading-snug">
                 <div className="font-semibold">{contact.poBox}</div>
                 <div className="text-white/75 text-sm mt-0.5">{contact.address}</div>
               </div>

@@ -87,7 +87,7 @@ export default function CommunityOverview() {
             </h1>
           </Reveal>
           <Reveal delay={260}>
-            <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
+            <p className="mt-5 text-base md:text-lg text-slate-600 leading-snug">
               Stories, sustainability, welfare, careers — four ways into the group beyond business.
             </p>
           </Reveal>
@@ -125,7 +125,7 @@ export default function CommunityOverview() {
                       </h3>
                     </div>
                   </div>
-                  <p className="mt-4 text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-4 text-sm text-slate-600 leading-snug">
                     {h.body}
                   </p>
                   <div className="mt-5 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]

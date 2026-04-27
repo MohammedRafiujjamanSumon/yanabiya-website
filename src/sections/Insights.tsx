@@ -30,7 +30,7 @@ export default function Insights() {
             <div className="relative">
               <div className="text-xs uppercase tracking-widest text-brand-accent mb-3">{feature.c}</div>
               <h3 className="font-serif text-3xl text-slate-900 mb-4 leading-tight">{feature.t}</h3>
-              <p className="text-slate-600 mb-6 leading-relaxed">{feature.e}</p>
+              <p className="text-slate-600 mb-6 leading-snug">{feature.e}</p>
               <div className="flex items-center justify-between text-sm text-slate-500 border-t border-slate-200 pt-4">
                 <span className="flex items-center gap-2"><Calendar size={14} /> {feature.d}</span>
                 <span className="flex items-center gap-2 text-brand-accent group-hover:gap-3 transition-all">

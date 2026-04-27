@@ -24,7 +24,7 @@ export default function CSR() {
         <div className="text-center max-w-3xl mx-auto mb-10">
           <Eyebrow>{t('csr.eyebrow')}</Eyebrow>
           <H2 className="text-center">{t('csr.title')}</H2>
-          <p className="mt-5 text-slate-600 leading-relaxed">{t('csr.sub')}</p>
+          <p className="mt-5 text-slate-600 leading-snug">{t('csr.sub')}</p>
         </div>
 
         <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-14">
@@ -54,7 +54,7 @@ export default function CSR() {
                 <it.icon size={22} />
               </div>
               <h4 className="text-slate-900 text-lg mb-1">{it.title}</h4>
-              <p className="text-sm text-slate-600 leading-relaxed">{it.desc}</p>
+              <p className="text-sm text-slate-600 leading-snug">{it.desc}</p>
             </div>
           ))}
         </div>
@@ -73,7 +73,7 @@ export default function CSR() {
                 <it.icon size={22} />
               </div>
               <h4 className="text-slate-900 text-lg mb-1">{t(`csr.items.${it.k}.t`)}</h4>
-              <p className="text-sm text-slate-600 leading-relaxed">{t(`csr.items.${it.k}.d`)}</p>
+              <p className="text-sm text-slate-600 leading-snug">{t(`csr.items.${it.k}.d`)}</p>
             </div>
           ))}
         </div>

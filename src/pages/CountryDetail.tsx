@@ -103,7 +103,7 @@ export default function CountryDetail() {
                 </h1>
               </Reveal>
               <Reveal delay={240}>
-                <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl">
+                <p className="mt-5 text-base md:text-lg text-slate-600 leading-snug max-w-2xl">
                   {description ??
                     `Yanabiya Group's ${c.role.toLowerCase()} — a coordinated team operating under the wider international network.`}
                 </p>
@@ -111,7 +111,7 @@ export default function CountryDetail() {
               <Reveal delay={360}>
                 <div className="mt-6 inline-flex items-start gap-2 text-sm text-slate-700 max-w-xl">
                   <MapPin size={16} className="mt-0.5 shrink-0 text-brand-accentDark" />
-                  <span className="leading-relaxed whitespace-pre-line">{c.address}</span>
+                  <span className="leading-snug whitespace-pre-line">{c.address}</span>
                 </div>
               </Reveal>
             </div>

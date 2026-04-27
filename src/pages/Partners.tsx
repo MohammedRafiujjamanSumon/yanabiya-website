@@ -297,7 +297,7 @@ function CategoryPanel({
             </h3>
           </div>
         </div>
-        <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+        <p className="mt-3 text-sm text-slate-600 leading-snug">
           Three pillars of the network behind Yanabiya Group's delivery — tap a category to explore in detail.
         </p>
 
@@ -362,7 +362,7 @@ function CategoryPanel({
         </div>
       </div>
 
-      <p className="mt-5 text-sm text-slate-600 leading-relaxed">
+      <p className="mt-5 text-sm text-slate-600 leading-snug">
         {c.body}
       </p>
 
@@ -516,7 +516,7 @@ export default function Partners() {
                 </h1>
               </Reveal>
               <Reveal delay={260}>
-                <p className="mt-5 text-base text-slate-600 leading-relaxed max-w-md">
+                <p className="mt-5 text-base text-slate-600 leading-snug max-w-md">
                   Tap a node — or the HQ for the full network at once.
                 </p>
               </Reveal>

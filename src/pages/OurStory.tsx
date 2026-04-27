@@ -165,7 +165,7 @@ export default function OurStory() {
               </h1>
             </Reveal>
             <Reveal delay={320}>
-              <p className="mt-8 text-lg md:text-xl text-white/75 max-w-2xl leading-relaxed">
+              <p className="mt-8 text-lg md:text-xl text-white/75 max-w-2xl leading-snug">
                 A decade of building enterprises across four countries — written one
                 relationship, one delivery, one chapter at a time.
               </p>
@@ -234,7 +234,7 @@ export default function OurStory() {
                     <h3 className="mt-4 font-serif text-3xl md:text-4xl leading-tight">
                       {m.quote}
                     </h3>
-                    <p className="mt-4 text-slate-600 text-lg leading-relaxed max-w-md">
+                    <p className="mt-4 text-slate-600 text-lg leading-snug max-w-md">
                       {m.body}
                     </p>
                   </Reveal>
@@ -287,7 +287,7 @@ export default function OurStory() {
               </h2>
             </Reveal>
             <Reveal delay={350}>
-              <p className="mt-8 text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
+              <p className="mt-8 text-lg text-slate-600 leading-snug max-w-2xl mx-auto">
                 Deeper expertise across our six sectors. Deeper trust with the
                 communities we serve. Deeper connections across the four countries
                 we already call home.
@@ -340,7 +340,7 @@ export default function OurStory() {
                         <h3 className="mt-2 font-serif text-2xl md:text-3xl leading-tight">
                           {m.title}
                         </h3>
-                        <p className="mt-2 text-slate-600 leading-relaxed max-w-md md:ml-auto md:mr-0">
+                        <p className="mt-2 text-slate-600 leading-snug max-w-md md:ml-auto md:mr-0">
                           {right ? m.body : m.body}
                         </p>
                       </div>
@@ -398,7 +398,7 @@ export default function OurStory() {
                   <h3 className="font-serif text-4xl md:text-5xl leading-tight">
                     {r.name}
                   </h3>
-                  <p className="mt-5 text-slate-600 text-lg leading-relaxed">
+                  <p className="mt-5 text-slate-600 text-lg leading-snug">
                     {r.body}
                   </p>
                   <Link
@@ -449,7 +449,7 @@ export default function OurStory() {
                       {l.role}
                     </div>
                     <h3 className="mt-2 font-serif text-2xl">{l.name}</h3>
-                    <blockquote className="mt-4 text-slate-600 italic leading-relaxed border-l-2 border-brand-accent pl-4">
+                    <blockquote className="mt-4 text-slate-600 italic leading-snug border-l-2 border-brand-accent pl-4">
                       “{l.quote}”
                     </blockquote>
                   </div>
@@ -479,7 +479,7 @@ export default function OurStory() {
             <h2 className="font-serif text-4xl md:text-5xl leading-tight">
               Growth that gives back.
             </h2>
-            <p className="mt-5 text-slate-600 text-lg leading-relaxed">
+            <p className="mt-5 text-slate-600 text-lg leading-snug">
               Profit isn’t the only thing we measure. Across every country we operate
               in, we commit to community welfare programmes, education access, and
               environmental responsibility — because long-term value isn’t built any
@@ -573,7 +573,7 @@ export default function OurStory() {
             </h2>
           </Reveal>
           <Reveal delay={350}>
-            <p className="mt-8 text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
+            <p className="mt-8 text-lg text-white/70 max-w-xl mx-auto leading-snug">
               Whether you’re scaling a venture, sourcing a partner, or entering a new
               market — let’s talk about what’s possible.
             </p>

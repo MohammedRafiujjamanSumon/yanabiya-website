@@ -15,7 +15,7 @@ export default function Card({ icon: Icon, title, body }: Props) {
         </div>
       )}
       <h3 className="text-xl text-slate-900 mb-2">{title}</h3>
-      <p className="text-sm text-slate-600 leading-relaxed">{body}</p>
+      <p className="text-sm text-slate-600 leading-snug">{body}</p>
     </div>
   )
 }

@@ -193,7 +193,7 @@ function CountryCard({
           </span>
         </div>
 
-        <p className="mt-4 text-sm text-slate-600 leading-relaxed">
+        <p className="mt-4 text-sm text-slate-600 leading-snug">
           {data.summary}
         </p>
 
@@ -298,7 +298,7 @@ function CountryPreviewPanel({
                     Postal Address
                   </div>
                   {data.postal.map((line, i) => (
-                    <div key={i} className="text-sm text-slate-800 leading-relaxed">
+                    <div key={i} className="text-sm text-slate-800 leading-snug">
                       {line}
                     </div>
                   ))}
@@ -310,7 +310,7 @@ function CountryPreviewPanel({
                 Head Office
               </div>
               {data.headOffice.map((line, i) => (
-                <div key={i} className="text-sm text-slate-800 leading-relaxed">
+                <div key={i} className="text-sm text-slate-800 leading-snug">
                   {line}
                 </div>
               ))}
@@ -322,7 +322,7 @@ function CountryPreviewPanel({
                     Branch Office
                   </div>
                   {data.branchOffice.map((line, i) => (
-                    <div key={i} className="text-sm text-slate-800 leading-relaxed">
+                    <div key={i} className="text-sm text-slate-800 leading-snug">
                       {line}
                     </div>
                   ))}
@@ -428,7 +428,7 @@ export default function ContactGlobal() {
             </h1>
           </Reveal>
           <Reveal delay={260}>
-            <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
+            <p className="mt-5 text-base md:text-lg text-slate-600 leading-snug">
               Choose any country office below to preview its address, phone, email, and office hours.
               Open the page for full details.
             </p>

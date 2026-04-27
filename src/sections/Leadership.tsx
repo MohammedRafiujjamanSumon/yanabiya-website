@@ -113,7 +113,7 @@ export default function Leadership() {
                     {f.name}
                   </h3>
                   <div className="mt-3 mb-5 w-10 h-px bg-brand-accent" />
-                  <blockquote className="font-serif italic text-[15px] md:text-base text-slate-700 leading-relaxed flex-1">
+                  <blockquote className="font-serif italic text-[15px] md:text-base text-slate-700 leading-snug flex-1">
                     {f.quote}
                   </blockquote>
                   <Link

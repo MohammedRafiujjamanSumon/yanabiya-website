@@ -50,7 +50,7 @@ export default function SustainableGrowth() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <Eyebrow>Community</Eyebrow>
           <H2 className="text-center">Sustainable Growth</H2>
-          <p className="mt-5 text-slate-600 leading-relaxed">
+          <p className="mt-5 text-slate-600 leading-snug">
             Building business practices that protect the environment and support long-term
             value for every stakeholder — in every country we operate.
           </p>
@@ -68,7 +68,7 @@ export default function SustainableGrowth() {
                   <p.icon size={22} />
                 </div>
                 <h4 className="text-slate-900 text-lg mb-1">{p.title}</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">{p.desc}</p>
+                <p className="text-sm text-slate-600 leading-snug">{p.desc}</p>
               </div>
             ))}
           </div>
@@ -111,7 +111,7 @@ export default function SustainableGrowth() {
             {commitments.map((c) => (
               <div key={c.year} className="card-panel text-center">
                 <div className="font-serif text-3xl text-brand-accent">{c.year}</div>
-                <div className="text-sm text-slate-600 mt-2 leading-relaxed">{c.goal}</div>
+                <div className="text-sm text-slate-600 mt-2 leading-snug">{c.goal}</div>
               </div>
             ))}
           </div>

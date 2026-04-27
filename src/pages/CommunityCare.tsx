@@ -51,7 +51,7 @@ export default function CommunityCare() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <Eyebrow>Community</Eyebrow>
           <H2 className="text-center">Community Care</H2>
-          <p className="mt-5 text-slate-600 leading-relaxed">
+          <p className="mt-5 text-slate-600 leading-snug">
             Structured charitable donations and welfare programmes focused on transparency,
             dignity and lasting impact — delivered across every country where we operate.
           </p>
@@ -78,7 +78,7 @@ export default function CommunityCare() {
                   <p.icon size={22} />
                 </div>
                 <h4 className="text-slate-900 text-lg mb-1">{p.title}</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">{p.desc}</p>
+                <p className="text-sm text-slate-600 leading-snug">{p.desc}</p>
               </div>
             ))}
           </div>

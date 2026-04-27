@@ -45,7 +45,7 @@ export default function Management() {
                 {board[0].name}
               </h3>
               <p className="text-slate-700 mb-4">Greetings from YANABIYA GROUP,</p>
-              <div className="space-y-4 text-slate-600 leading-relaxed text-justify">
+              <div className="space-y-4 text-slate-600 leading-snug text-justify">
                 {chairmanMessage.map((para, i) => (
                   <p key={i}>{para}</p>
                 ))}
@@ -79,7 +79,7 @@ export default function Management() {
                 {board[1].name}
               </h3>
               <p className="text-slate-700 mb-4">Dear Visitors,</p>
-              <div className="space-y-4 text-slate-600 leading-relaxed text-justify">
+              <div className="space-y-4 text-slate-600 leading-snug text-justify">
                 {viceChairmanMessage.map((para, i) => (
                   <p key={i}>{para}</p>
                 ))}

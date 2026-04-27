@@ -625,7 +625,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                 </Reveal>
               )}
               <Reveal delay={300}>
-                <p className="mt-5 text-base text-slate-600 leading-relaxed text-justify">
+                <p className="mt-5 text-base text-slate-600 leading-snug text-justify">
                   {data.hero.subtitle}
                 </p>
               </Reveal>
@@ -815,7 +815,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
               <h3 className="font-serif text-3xl md:text-4xl leading-tight text-slate-900">
                 {data.capabilityHeading.title}
               </h3>
-              <p className="mt-4 text-slate-600 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-snug">
                 {data.capabilityHeading.subtitle}
               </p>
             </div>
@@ -948,7 +948,7 @@ export default function OmanPresence() {
             </h1>
           </Reveal>
           <Reveal delay={260}>
-            <p className="mt-4 text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="mt-4 text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-snug">
               Connecting Opportunities. Building Global Businesses.
             </p>
           </Reveal>

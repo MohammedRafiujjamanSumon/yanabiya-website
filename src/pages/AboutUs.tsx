@@ -116,7 +116,7 @@ export default function AboutUs() {
               </h1>
             </Reveal>
             <Reveal delay={300}>
-              <p className="mt-8 text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed">
+              <p className="mt-8 text-lg md:text-xl text-slate-600 max-w-2xl leading-snug">
                 A diversified international group operating as one platform —
                 across technology, trade, talent, and consulting in four countries.
               </p>
@@ -143,7 +143,7 @@ export default function AboutUs() {
                         {s.label}
                       </span>
                     </div>
-                    <p className="mt-2 text-[13px] text-slate-600 leading-relaxed">
+                    <p className="mt-2 text-[13px] text-slate-600 leading-snug">
                       {s.body}
                     </p>
                   </div>
@@ -166,7 +166,7 @@ export default function AboutUs() {
             </h2>
           </Reveal>
 
-          <div className="lg:col-span-7 space-y-5 text-slate-600 text-lg leading-relaxed">
+          <div className="lg:col-span-7 space-y-5 text-slate-600 text-lg leading-snug">
             <Reveal>
               <p>
                 Yanabiya Group is a diversified global enterprise originating in
@@ -239,7 +239,7 @@ export default function AboutUs() {
                     {t.eyebrow}
                   </div>
                   <h3 className="mt-2 font-serif text-2xl leading-tight">{t.title}</h3>
-                  <p className="mt-3 text-slate-600 leading-relaxed">{t.body}</p>
+                  <p className="mt-3 text-slate-600 leading-snug">{t.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -303,7 +303,7 @@ export default function AboutUs() {
                       <c.icon size={20} />
                     </div>
                     <h3 className="mt-4 font-serif text-xl leading-tight">{c.label}</h3>
-                    <p className="mt-2 text-sm text-slate-600 leading-relaxed">{c.desc}</p>
+                    <p className="mt-2 text-sm text-slate-600 leading-snug">{c.desc}</p>
                     <div className="mt-3 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider
                                     text-brand-accentDark opacity-0 -translate-x-1
                                     group-hover:opacity-100 group-hover:translate-x-0 transition-all">

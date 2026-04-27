@@ -44,7 +44,7 @@ export default function Contact() {
           <p className="mt-5 text-xl text-slate-700 font-medium">
             Let’s start the conversation.
           </p>
-          <p className="mt-3 text-slate-600 leading-relaxed">
+          <p className="mt-3 text-slate-600 leading-snug">
             Reach our headquarters in Muscat or any of our offices across the United Kingdom,
             Bangladesh and the United States — choose an office to see contact details and the map.
           </p>
@@ -137,7 +137,7 @@ export default function Contact() {
                 </DetailRow>
 
                 <DetailRow icon={MapPin} label="Address">
-                  <div className="text-slate-800 leading-relaxed whitespace-pre-line">{active.country.address}</div>
+                  <div className="text-slate-800 leading-snug whitespace-pre-line">{active.country.address}</div>
                 </DetailRow>
 
                 {active.phones.length > 0 && (

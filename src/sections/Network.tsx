@@ -127,7 +127,7 @@ export default function NetworkSection() {
               </h3>
               <div className="mt-2 mx-auto w-16 h-[2px] bg-brand-accent rounded-full" />
             </div>
-            <div className="mt-6 space-y-4 text-slate-600 leading-relaxed text-justify">
+            <div className="mt-6 space-y-4 text-slate-600 leading-snug text-justify">
               {networkBody.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}

@@ -91,7 +91,7 @@ export default function Blog() {
                 <span className="text-xs text-slate-500">{countryLabel(feature.country)}</span>
               </div>
               <h3 className="font-serif text-3xl text-slate-900 mb-4 leading-tight">{feature.title}</h3>
-              <p className="text-slate-600 mb-6 leading-relaxed">{feature.excerpt}</p>
+              <p className="text-slate-600 mb-6 leading-snug">{feature.excerpt}</p>
               <div className="flex items-center justify-between text-sm text-slate-500 border-t border-slate-200 pt-4">
                 <span className="flex items-center gap-2"><Calendar size={14} /> {feature.date}</span>
                 <span className="flex items-center gap-2 text-brand-accent">
