@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import TopBar from './components/TopBar'
 import Footer from './components/Footer'
 import PageWatermark from './components/PageWatermark'
+import SocialFloat from './components/SocialFloat'
 
 import Home from './pages/Home'
 import BusinessDetail from './pages/BusinessDetail'
@@ -51,6 +52,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <SocialFloat />
     </div>
   )
 }

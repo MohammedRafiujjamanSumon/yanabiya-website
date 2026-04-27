@@ -83,6 +83,17 @@ export const contactByCountry: CountryContact[] = [
 /** Group-wide always-on WhatsApp endpoint. */
 export const groupWhatsApp = '+968 9116 1677'
 
+/** Direct-to-customer messaging + social handles, surfaced in the
+ *  floating chat dock on every page. Replace placeholders with real
+ *  handles when ready — leave any URL empty (`''`) to hide that button. */
+export const social = {
+  whatsapp:  'https://wa.me/96891161677',
+  telegram:  'https://t.me/yanabiyagroup',
+  messenger: 'https://m.me/yanabiyagroup',
+  linkedin:  'https://www.linkedin.com/company/yanabiyagroup/',
+  instagram: 'https://www.instagram.com/yanabiyagroup/',
+} as const
+
 // Single-page navbar — each link scrolls to a section anchor on the same page.
 export const sections = [
   { id: 'home',         tKey: 'nav.home' },
