@@ -20,7 +20,6 @@ import OmanPresence from './pages/OmanPresence'
 import ContactGlobal from './pages/ContactGlobal'
 import LeadershipOverview from './pages/LeadershipOverview'
 import CommunityOverview from './pages/CommunityOverview'
-import Partners from './pages/Partners'
 
 export default function App() {
   return (
@@ -35,7 +34,6 @@ export default function App() {
           <Route path="/country/:code" element={<CountryDetail />} />
           <Route path="/global-presence/scroll" element={<OmanPresence />} />
           <Route path="/global-presence/:code" element={<CountryDetail />} />
-          <Route path="/partners" element={<Partners />} />
           <Route path="/contact" element={<ContactGlobal />} />
           <Route path="/leadership" element={<LeadershipOverview />} />
           <Route path="/leadership/management" element={<Management />} />
