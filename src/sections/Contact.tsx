@@ -1,6 +1,9 @@
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { MapPin, Phone, Mail, Clock, Send, ExternalLink, Globe2, Building2, Layers, Users } from 'lucide-react'
+import {
+  MapPin, Phone, Mail, Clock, Send, ExternalLink, Globe2, Building2, Layers, Users,
+  Smartphone, FileBadge,
+} from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import Section from '../components/Section'
 import { contactByCountry } from '../data/contact'
