@@ -566,24 +566,11 @@ export default function Businesses() {
 
       <div className="container-x py-14 md:py-20 relative">
 
-        {/* PYRAMID ON TOP — text below, centered (matches /#about, /#global,
-         *  /#community, /#leadership pattern). */}
+        {/* TEXT ON TOP — pyramid below (matches /#about pattern). */}
         <div className="flex flex-col gap-12 md:gap-16 items-center">
 
-          {/* TOP — rotating Services Pyramid */}
-          <Reveal delay={200} className="w-full">
-            <ServicesPyramid
-              active={active}
-              setActive={setActive}
-              paused={paused}
-              setPaused={setPaused}
-              onSelect={(s) => setSelected(s)}
-              onSelectHub={() => setSelected('overview')}
-            />
-          </Reveal>
-
-          {/* BELOW — Services / Divisions text, centered */}
-          <div className="w-full max-w-3xl mx-auto text-center">
+          {/* TOP — Services / Divisions text, centered */}
+          <div className="w-full max-w-3xl mx-auto text-center order-1">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
                 <Sparkles size={12} className="text-brand-accent" />
@@ -635,6 +622,18 @@ export default function Businesses() {
               </div>
             </Reveal>
           </div>
+
+          {/* BELOW — rotating Services Pyramid */}
+          <Reveal delay={200} className="w-full order-2">
+            <ServicesPyramid
+              active={active}
+              setActive={setActive}
+              paused={paused}
+              setPaused={setPaused}
+              onSelect={(s) => setSelected(s)}
+              onSelectHub={() => setSelected('overview')}
+            />
+          </Reveal>
         </div>
 
       </div>

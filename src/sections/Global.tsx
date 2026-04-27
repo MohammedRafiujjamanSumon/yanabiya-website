@@ -42,11 +42,11 @@ export default function Global() {
 
   return (
     <Section id="global" className="relative overflow-hidden bg-white">
-      <div className="container-x py-12 md:py-16">
+      <div className="container-x py-12 md:py-16 flex flex-col">
 
-        {/* ───────── GEOMAP ON TOP ───────── */}
+        {/* ───────── GEOMAP (rendered second below the text — order-2) ───────── */}
         <Reveal>
-          <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto mb-10 md:mb-14">
+          <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto mt-10 md:mt-14 order-2">
             {/* Soft halo */}
             <div
               aria-hidden="true"
@@ -132,8 +132,8 @@ export default function Global() {
           </div>
         </Reveal>
 
-        {/* ───────── TEXT BELOW ───────── */}
-        <div className="max-w-5xl mx-auto text-center">
+        {/* ───────── TEXT FIRST (order-1) ───────── */}
+        <div className="max-w-5xl mx-auto text-center order-1">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
               {t('global.eyebrow', 'Global Presence')}
