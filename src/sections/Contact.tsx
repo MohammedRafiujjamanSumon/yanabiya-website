@@ -117,31 +117,79 @@ export default function Contact() {
               </div>
 
               <div className="mt-5 space-y-5 text-sm">
-                <DetailRow icon={MapPin} label="Address">
-                  <div className="text-slate-800 leading-relaxed">{active.country.address}</div>
-                  {active.poBox && <div className="text-slate-500 text-xs mt-1">{active.poBox}</div>}
+                {/* Registered Entity — legal name + registration + est. date */}
+                <DetailRow icon={FileBadge} label="Registered Entity">
+                  <div className="text-slate-800 font-semibold leading-snug">{active.legalName}</div>
+                  <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-slate-500">
+                    <span>
+                      <span className="font-bold uppercase tracking-wider text-brand-accentDark">
+                        {active.registration.label}
+                      </span>{' '}
+                      <span className="font-mono text-slate-700">{active.registration.value}</span>
+                    </span>
+                    <span>
+                      <span className="font-bold uppercase tracking-wider text-brand-accentDark">
+                        Established
+                      </span>{' '}
+                      <span className="text-slate-700">{active.established}</span>
+                    </span>
+                  </div>
                 </DetailRow>
 
-                {(active.phones.length > 0 || active.mobile) && (
+                <DetailRow icon={MapPin} label="Address">
+                  <div className="text-slate-800 leading-relaxed whitespace-pre-line">{active.country.address}</div>
+                </DetailRow>
+
+                {active.phones.length > 0 && (
                   <DetailRow icon={Phone} label="Phone">
                     <div className="space-y-0.5">
                       {active.phones.map((p) => (
-                        <a key={p} href={`tel:${p.replace(/\s/g, '')}`} className="block text-slate-800 hover:text-brand-accentDark transition-colors">{p}</a>
+                        <a key={p} href={`tel:${p.replace(/\s/g, '')}`}
+                           className="block text-slate-800 hover:text-brand-accentDark transition-colors">
+                          {p}
+                        </a>
                       ))}
-                      {active.mobile && (
-                        <a href={`tel:${active.mobile.replace(/\s/g, '')}`} className="block text-slate-800 hover:text-brand-accentDark transition-colors">{active.mobile}</a>
-                      )}
                     </div>
+                  </DetailRow>
+                )}
+
+                {active.mobile && (
+                  <DetailRow icon={Smartphone} label="Mobile / WhatsApp">
+                    <a href={`tel:${active.mobile.replace(/\s/g, '')}`}
+                       className="block text-slate-800 hover:text-brand-accentDark transition-colors">
+                      {active.mobile}
+                    </a>
                   </DetailRow>
                 )}
 
                 <DetailRow icon={Mail} label="Email">
                   <div className="space-y-0.5">
                     {active.emails.map((e) => (
-                      <a key={e} href={`mailto:${e}`} className="block text-slate-800 hover:text-brand-accentDark transition-colors break-all">{e}</a>
+                      <a key={e} href={`mailto:${e}`}
+                         className="block text-slate-800 hover:text-brand-accentDark transition-colors break-all">
+                        {e}
+                      </a>
                     ))}
                   </div>
                 </DetailRow>
+
+                {active.websites.length > 0 && (
+                  <DetailRow icon={Globe2} label="Website">
+                    <div className="space-y-0.5">
+                      {active.websites.map((w) => (
+                        <a
+                          key={w}
+                          href={w.startsWith('http') ? w : `https://${w}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-slate-800 hover:text-brand-accentDark transition-colors break-all"
+                        >
+                          {w}
+                        </a>
+                      ))}
+                    </div>
+                  </DetailRow>
+                )}
 
                 <DetailRow icon={Clock} label="Office Hours">
                   <div className="text-slate-800">{active.hours}</div>
