@@ -566,11 +566,24 @@ export default function Businesses() {
 
       <div className="container-x py-14 md:py-20 relative">
 
-        {/* TEXT LEFT (col-span-5), PYRAMID RIGHT (col-span-7) */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        {/* PYRAMID ON TOP — text below, centered (matches /#about, /#global,
+         *  /#community, /#leadership pattern). */}
+        <div className="flex flex-col gap-12 md:gap-16 items-center">
 
-          {/* LEFT — Services / Divisions text */}
-          <div className="lg:col-span-5">
+          {/* TOP — rotating Services Pyramid */}
+          <Reveal delay={200} className="w-full">
+            <ServicesPyramid
+              active={active}
+              setActive={setActive}
+              paused={paused}
+              setPaused={setPaused}
+              onSelect={(s) => setSelected(s)}
+              onSelectHub={() => setSelected('overview')}
+            />
+          </Reveal>
+
+          {/* BELOW — Services / Divisions text, centered */}
+          <div className="w-full max-w-3xl mx-auto text-center">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
                 <Sparkles size={12} className="text-brand-accent" />
@@ -579,14 +592,14 @@ export default function Businesses() {
               </div>
             </Reveal>
             <Reveal delay={120}>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-[42px] leading-[1.05] tracking-tight text-brand-deep">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-[34px] lg:text-[42px] leading-[1.15] tracking-tight text-brand-deep lg:whitespace-nowrap">
                 Structured into specialized{' '}
                 <span className="text-brand-accentDark">divisions.</span>
               </h2>
             </Reveal>
 
-            {/* Body — line cascade */}
-            <div className="mt-5 max-w-md space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:left]">
+            {/* Body — line cascade, centered */}
+            <div className="mt-5 max-w-2xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-relaxed text-justify [text-align-last:center]">
               <Reveal delay={260}>
                 <p>Each division operates with focused expertise,</p>
               </Reveal>
@@ -599,13 +612,13 @@ export default function Businesses() {
             </div>
 
             <Reveal delay={760}>
-              <p className="mt-4 text-sm text-slate-500 leading-relaxed max-w-md">
+              <p className="mt-4 text-sm text-slate-500 leading-relaxed max-w-xl mx-auto">
                 Explore each division to understand its scope, or let us guide you
                 to the right solution.
               </p>
             </Reveal>
             <Reveal delay={900}>
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                 <Link
                   to="/contact"
                   className="inline-flex items-center gap-2 rounded-full px-6 py-3
@@ -622,18 +635,6 @@ export default function Businesses() {
               </div>
             </Reveal>
           </div>
-
-          {/* RIGHT — rotating Services Pyramid */}
-          <Reveal delay={200} className="lg:col-span-7">
-            <ServicesPyramid
-              active={active}
-              setActive={setActive}
-              paused={paused}
-              setPaused={setPaused}
-              onSelect={(s) => setSelected(s)}
-              onSelectHub={() => setSelected('overview')}
-            />
-          </Reveal>
         </div>
 
       </div>
