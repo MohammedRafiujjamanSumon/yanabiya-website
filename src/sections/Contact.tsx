@@ -31,7 +31,7 @@ export default function Contact() {
 
   return (
     <Section id="contact" className="bg-[#fbfdfb]">
-      <div className="container-x pt-4 md:pt-6 pb-8 md:pb-12">
+      <div className="container-x pt-2 md:pt-3 pb-4 md:pb-6">
 
         {/* A. HERO — fade + slide up on load */}
         <div className="text-center max-w-3xl mx-auto fade-up" style={{ animationDelay: '60ms' }}>
