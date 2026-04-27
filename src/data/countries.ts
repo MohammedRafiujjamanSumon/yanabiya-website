@@ -57,9 +57,9 @@ export const countries = [
     role: 'European Operations',
     heroImage: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80',
     mapImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/United_Kingdom%2C_administrative_divisions_-_en.svg/500px-United_Kingdom%2C_administrative_divisions_-_en.svg.png',
-    address: '167-169 Great Portland Street, 5th Floor, London, W1W 5PF',
+    address: '167-169 Great Portland Street, 5th Floor, London W1W 5PF, United Kingdom',
     description:
-      'Currently, we operate in the United Kingdom under Yanabiya Gulf International UK Ltd., managing our regional business activities and services across the UK market.',
+      'Operating in the United Kingdom as Yanabiya Gulf International UK Ltd, managing regional business activities and services across the UK market since June 2023.',
     licenceName: 'Yanabiya Gulf International UK Ltd',
     entities: ['Yanabiya Gulf International UK Ltd'],
   },
@@ -71,7 +71,10 @@ export const countries = [
     heroImage: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=800&q=80',
     mapImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Bangladesh_divisions_mag.svg/500px-Bangladesh_divisions_mag.svg.png',
     address:
-      'Office # 211, Plot # 322/B, Block # Kanchkura, Uttarkhan, Dhaka-1230, Bangladesh',
+      'Office #211, Plot #322/B, Block # Kanchkura, Uttarkhan, Dhaka 1230, Bangladesh',
+    description:
+      'Trading in Bangladesh as Yanabiya Gulf International BD Trade — a long-established South Asia operation licensed since November 1998.',
+    licenceName: 'Yanabiya Gulf International BD Trade',
     entities: ['Yanabiya Gulf International BD Trade'],
   },
   {
@@ -81,7 +84,10 @@ export const countries = [
     role: 'North America Operations',
     heroImage: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80',
     mapImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Blank_USA_states_map.png/500px-Blank_USA_states_map.png',
-    address: '5900 Balcones Drive # 18651, Austin, TX 78731, USA',
+    address: '5900 Balcones Drive #18651, Austin, TX 78731, United States',
+    description:
+      'Operating in the United States as Yanabiya Gulf International US LLC — the group\'s North America entity, formed in August 2025.',
+    licenceName: 'Yanabiya Gulf International US LLC',
     entities: ['Yanabiya Gulf International US LLC'],
   },
 ]

@@ -159,28 +159,62 @@ export default function CountryDetail() {
         </div>
       </section>
 
-      {/* PARENT COMPANY (Oman only) */}
-      {parentCompany && (
+      {/* LEGAL ENTITY — registered company name + registration no + date */}
+      {contact && (
         <section className="relative mt-12">
           <div className="container-x max-w-6xl mx-auto">
             <Reveal>
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 md:p-8
+                              flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                <div className="min-w-0">
                   <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark mb-1">
-                    Parent Company
+                    Registered Entity
                   </div>
                   <div className="font-serif text-xl md:text-2xl text-brand-deep leading-tight">
-                    {parentCompany}
+                    {contact.legalName}
+                  </div>
+                  <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[12px] text-slate-600">
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
+                        {contact.registration.label}
+                      </span>
+                      <span className="font-mono">{contact.registration.value}</span>
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
+                        Established
+                      </span>
+                      {contact.established}
+                    </span>
                   </div>
                 </div>
                 <Link
                   to="/contact"
-                  className="self-start md:self-auto inline-flex items-center gap-1.5 rounded-full px-4 py-2
+                  className="self-start md:self-auto shrink-0 inline-flex items-center gap-1.5 rounded-full px-4 py-2
                              border border-slate-300 text-slate-700 text-[11px] font-semibold uppercase tracking-wider
                              hover:border-brand-accentDark hover:text-brand-accentDark transition-all"
                 >
                   Contact this office <ArrowRight size={12} />
                 </Link>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {/* PARENT COMPANY (Oman only — kept as a separate Group HQ note) */}
+      {parentCompany && c.code === 'OM' && (
+        <section className="relative mt-6">
+          <div className="container-x max-w-6xl mx-auto">
+            <Reveal>
+              <div className="rounded-2xl border border-brand-deep/15 bg-brand-deep/5 px-6 py-4
+                              flex items-start gap-3">
+                <span className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark shrink-0">
+                  Group HQ
+                </span>
+                <span className="text-sm text-brand-deep leading-snug">
+                  Parent · {parentCompany}
+                </span>
               </div>
             </Reveal>
           </div>
@@ -293,6 +327,15 @@ export default function CountryDetail() {
                 )}
                 {contact.emails.map((e) => (
                   <ContactRow key={e} icon={Mail} label="Email" value={e} href={`mailto:${e}`} />
+                ))}
+                {contact.websites.map((w) => (
+                  <ContactRow
+                    key={w}
+                    icon={Globe2}
+                    label="Website"
+                    value={w}
+                    href={w.startsWith('http') ? w : `https://${w}`}
+                  />
                 ))}
                 <ContactRow icon={Clock} label="Hours" value={contact.hours} />
                 {contact.poBox && (
