@@ -59,7 +59,7 @@ export default function Leadership() {
         <div className="absolute bottom-0 -right-40 w-[520px] h-[520px] rounded-full bg-brand-accentDark/6 blur-[140px]" />
       </div>
 
-      <div className="container-x relative py-14 md:py-20">
+      <div className="container-x relative pt-4 md:pt-6 pb-14 md:pb-20">
 
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
