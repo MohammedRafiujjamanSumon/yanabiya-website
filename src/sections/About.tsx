@@ -125,30 +125,32 @@ export default function About() {
                   {/* Slim bottom-only vignette for the caption */}
                   <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/55 to-transparent" />
 
-                  {/* Soft left-side darkening so the stats stack reads on
+                  {/* Soft left-side darkening so the stats panel reads on
                    *  the dark seating / floor area of the photo */}
-                  <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-black/65 via-black/35 to-transparent" />
+                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
-                  {/* Stats — 3 boxed cards stacked vertically on the
-                   *  left dark area of the photo. Each card carries its
-                   *  value (mint, serif) and label (uppercase white) on
-                   *  a glass-dark panel so the trio reads cleanly. */}
-                  <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-2.5">
-                    {stats.map((s, i) => (
-                      <Reveal key={s.label} delay={120 + i * 110}>
-                        <div className="rounded-xl bg-black/45 backdrop-blur-sm border border-white/15
-                                        px-3.5 py-2.5 min-w-[140px] md:min-w-[160px]
-                                        shadow-[0_8px_22px_-8px_rgba(0,0,0,0.55)]">
-                          <div className="font-serif text-2xl md:text-3xl text-brand-accent leading-none">
+                  {/* Stats — single merged glass panel split into 3 equal
+                   *  sections. Sized to fit within the dark gradient area
+                   *  on the left so it never crosses into the bright wall. */}
+                  <Reveal delay={120}>
+                    <div className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2
+                                    w-[28%] max-w-[170px]
+                                    rounded-xl bg-black/55 backdrop-blur-sm border border-white/15
+                                    shadow-[0_10px_28px_-8px_rgba(0,0,0,0.6)]
+                                    flex flex-col divide-y divide-white/15
+                                    overflow-hidden">
+                      {stats.map((s) => (
+                        <div key={s.label} className="flex-1 px-3 py-2.5">
+                          <div className="font-serif text-xl md:text-2xl text-brand-accent leading-none">
                             {s.value}
                           </div>
-                          <div className="mt-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.22em] font-semibold text-white/85 leading-tight">
+                          <div className="mt-1 text-[8.5px] md:text-[9px] uppercase tracking-[0.22em] font-semibold text-white/85 leading-tight">
                             {s.label}
                           </div>
                         </div>
-                      </Reveal>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  </Reveal>
 
                   {/* Bottom caption */}
                   <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between
