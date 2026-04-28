@@ -95,7 +95,9 @@ export default function Global() {
               ))}
             </div>
 
-            {/* Centre — spinning Yanabiya logo medallion */}
+            {/* Centre — spinning Yanabiya logo medallion. Same circle
+             *  size as before; the logo is scaled up inside it to fill
+             *  the disc instead of sitting with padding around it. */}
             <div className="absolute inset-0 grid place-items-center">
               <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white shadow-xl
                               ring-2 ring-brand-accentDark/60 overflow-hidden
@@ -103,7 +105,7 @@ export default function Global() {
                 <img
                   src={assets.logo}
                   alt="Yanabiya Group"
-                  className="w-full h-full object-contain p-2"
+                  className="w-full h-full object-contain scale-[1.35]"
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                 />
               </div>
