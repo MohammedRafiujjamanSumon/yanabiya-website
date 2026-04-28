@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowRight, Globe2 } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import { assets } from '../data/assets'
 import Section from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import GlobalOverviewPanel from '../components/GlobalOverviewPanel'
@@ -94,11 +95,17 @@ export default function Global() {
               ))}
             </div>
 
-            {/* Globe icon centre */}
+            {/* Centre — spinning Yanabiya logo medallion */}
             <div className="absolute inset-0 grid place-items-center">
-              <div className="w-20 h-20 rounded-full bg-white shadow-xl ring-2 ring-brand-accentDark/60
-                              grid place-items-center text-brand-deep animate-spin-slow">
-                <Globe2 size={36} strokeWidth={1.6} />
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white shadow-xl
+                              ring-2 ring-brand-accentDark/60 overflow-hidden
+                              grid place-items-center animate-spin-slow">
+                <img
+                  src={assets.logo}
+                  alt="Yanabiya Group"
+                  className="w-full h-full object-contain p-2"
+                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                />
               </div>
             </div>
 
