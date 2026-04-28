@@ -105,16 +105,18 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* BELOW — combined office card: image with YANABIYA wall logo + 3 stats */}
-          <div className="w-full max-w-3xl mx-auto order-2">
+          {/* BELOW — composition card: clean office photo on the left,
+           *  brand-deep stats panel on the right (matches the supplied
+           *  design reference). No overlay on the photo — the two halves
+           *  sit side-by-side under one mint-bordered wrapper. */}
+          <div className="w-full max-w-4xl mx-auto order-2">
             <Reveal>
-              <div className="relative rounded-2xl overflow-hidden bg-white border border-slate-200
-                              shadow-[0_12px_40px_-12px_rgba(15,58,35,0.18)]">
+              <div className="grid grid-cols-12 rounded-2xl overflow-hidden
+                              border border-brand-accent/30
+                              shadow-[0_18px_44px_-14px_rgba(15,58,35,0.30)]">
 
-                {/* Real Yanabiya office photo — shown clean, no overlay
-                 *  on the wall logo. Only a thin bottom gradient stays so
-                 *  the caption pill at the foot of the photo reads. */}
-                <div className="relative aspect-[5/3] overflow-hidden bg-slate-900">
+                {/* LEFT — clean office photo */}
+                <div className="col-span-12 md:col-span-8 relative bg-slate-900 aspect-[5/3] md:aspect-auto md:min-h-[300px]">
                   <img
                     src={assets.office}
                     alt="Yanabiya Group office"
@@ -122,41 +124,7 @@ export default function About() {
                     className="absolute inset-0 w-full h-full object-cover"
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
-                  {/* Slim bottom-only vignette for the caption */}
                   <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/55 to-transparent" />
-
-                  {/* Soft right-side darkening so the stats panel reads
-                   *  on the green-wall side of the photo */}
-                  <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-black/55 via-black/25 to-transparent" />
-
-                  {/* Stats — minimalist vertical column on the right wall
-                   *  side, matching the supplied design reference: thin
-                   *  brand-accent dividers between each section, mint
-                   *  serif numbers stacked over small uppercase labels,
-                   *  centred inside each cell. */}
-                  <Reveal delay={120}>
-                    <div className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2
-                                    w-[26%] max-w-[160px]
-                                    rounded-xl bg-brand-deep/55 backdrop-blur-sm
-                                    border border-brand-accent/40
-                                    shadow-[0_10px_28px_-8px_rgba(0,0,0,0.6)]
-                                    flex flex-col divide-y divide-brand-accent/30
-                                    overflow-hidden">
-                      {stats.map((s) => (
-                        <div key={s.label} className="flex-1 px-3 py-3 text-center">
-                          <div className="font-serif text-2xl md:text-3xl text-brand-accent leading-none
-                                          drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]">
-                            {s.value}
-                          </div>
-                          <div className="mt-1.5 text-[8.5px] md:text-[9px] uppercase tracking-[0.32em] font-semibold text-white/90 leading-tight">
-                            {s.label}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </Reveal>
-
-                  {/* Bottom caption */}
                   <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between
                                   text-white/90 text-[10px] uppercase tracking-[0.22em]">
                     <span>Group Office · Muscat</span>
@@ -164,6 +132,36 @@ export default function About() {
                       <span className="block w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
                       Live
                     </span>
+                  </div>
+                </div>
+
+                {/* RIGHT — brand-deep stats panel matching the reference */}
+                <div className="col-span-12 md:col-span-4 relative bg-brand-deep p-3 md:p-4">
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-2 rounded-xl border border-brand-accent/30 pointer-events-none"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-brand-accent/15 blur-3xl pointer-events-none"
+                  />
+                  <div className="relative flex md:flex-col h-full divide-x md:divide-x-0 md:divide-y divide-brand-accent/25">
+                    {stats.map((s, i) => (
+                      <Reveal key={s.label} delay={120 + i * 110} className="flex-1">
+                        <div className="h-full px-4 py-5 md:py-6 grid place-items-center text-center">
+                          <div>
+                            <div className="font-serif text-3xl md:text-4xl text-brand-accent leading-none
+                                            drop-shadow-[0_2px_10px_rgba(158,199,58,0.25)]">
+                              {s.value}
+                            </div>
+                            <div className="mt-2 text-[9px] md:text-[10px] uppercase tracking-[0.32em]
+                                            font-semibold text-white/85 leading-tight">
+                              {s.label}
+                            </div>
+                          </div>
+                        </div>
+                      </Reveal>
+                    ))}
                   </div>
                 </div>
               </div>
