@@ -406,26 +406,6 @@ function SceneLeadership() {
 function SceneClosing() {
   return (
     <>
-      {/* Radial network */}
-      <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none"
-           className="absolute inset-0 w-full h-full opacity-55">
-        {Array.from({ length: 24 }).map((_, i) => {
-          const θ = (i / 24) * Math.PI * 2
-          const ex = 50 + Math.cos(θ) * 48
-          const ey = 50 + Math.sin(θ) * 48
-          return (
-            <g key={i}>
-              <line
-                x1="50" y1="50" x2={ex} y2={ey}
-                stroke="rgba(158,199,58,0.30)"
-                strokeWidth="0.14"
-                strokeDasharray="0.6 0.8"
-              />
-              <circle cx={ex} cy={ey} r="0.5" fill="rgba(158,199,58,0.85)" />
-            </g>
-          )
-        })}
-      </svg>
       {/* Pulsing halo behind logo */}
       <span
         aria-hidden="true"
