@@ -111,30 +111,54 @@ export default function About() {
               <div className="relative rounded-2xl overflow-hidden bg-white border border-slate-200
                               shadow-[0_12px_40px_-12px_rgba(15,58,35,0.18)]">
 
-                {/* Office image with Yanabiya logo overlaid on the wall */}
+                {/* Real Yanabiya office photo with the wall logo COVERED by
+                 *  the official Yanabiya Group logo. The covering plate sits
+                 *  over the right portion of the photo (where the wall mark
+                 *  is painted) — a brand-deep panel masks the painted
+                 *  "YANABIYA GULF" wordmark, with the real logo on top. */}
                 <div className="relative aspect-[5/3] overflow-hidden bg-slate-900">
                   <img
-                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+                    src={assets.office}
                     alt="Yanabiya Group office"
                     loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover"
+                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
-                  {/* Wall vignette so the logo reads on any image */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/55 via-brand-deep/15 to-transparent" />
-                  {/* Yanabiya logo — positioned as if mounted on the back wall */}
-                  <div className="absolute inset-0 grid place-items-center">
-                    <div className="flex flex-col items-center gap-2 text-white">
+                  {/* Soft full vignette for legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/35 via-brand-deep/0 to-transparent" />
+
+                  {/* Logo cover plate — sized + positioned to sit over the
+                   *  green wall area on the right of the photo, masking the
+                   *  painted YANABIYA GULF logo underneath. */}
+                  <div
+                    className="absolute"
+                    style={{
+                      left: '38%',
+                      top: '24%',
+                      width: '54%',
+                      height: '46%',
+                    }}
+                  >
+                    {/* Brand-deep mask blending into the wall colour */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-md"
+                      style={{
+                        background:
+                          'radial-gradient(ellipse at center, rgba(15,58,35,0.92) 0%, rgba(15,58,35,0.78) 55%, rgba(15,58,35,0) 100%)',
+                      }}
+                    />
+                    {/* Yanabiya logo on top, centred in the mask */}
+                    <div className="absolute inset-0 grid place-items-center">
                       <img
                         src={assets.logo}
                         alt=""
                         aria-hidden="true"
-                        className="h-16 md:h-20 w-auto object-contain drop-shadow-[0_4px_18px_rgba(0,0,0,0.45)]"
+                        className="h-20 md:h-28 w-auto object-contain drop-shadow-[0_4px_18px_rgba(0,0,0,0.55)]"
                       />
-                      <div className="text-[10px] font-bold tracking-[0.4em] uppercase">
-                        Yanabiya Group
-                      </div>
                     </div>
                   </div>
+
                   {/* Bottom caption */}
                   <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between
                                   text-white/85 text-[10px] uppercase tracking-[0.22em]">
