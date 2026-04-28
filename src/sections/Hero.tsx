@@ -31,6 +31,11 @@ type Scene = {
   eyebrow: string
   headline: string
   body: string
+  /** Real-life background photo (Unsplash) — full-bleed, dark-overlay-on-top. */
+  photo: string
+  /** Photo focal area (CSS object-position). */
+  photoPos?: string
+  /** SVG / icon "motion overlay" sitting on top of the photo. */
   Visual: () => JSX.Element
 }
 
@@ -445,6 +450,8 @@ const SCENES: Scene[] = [
     eyebrow: 'Scene 01 · Opening',
     headline: 'Connecting Businesses Across Borders',
     body: 'A world driven by connection, innovation, and opportunity.',
+    photo: 'https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?auto=format&fit=crop&w=1600&q=80',
+    photoPos: 'center',
     Visual: SceneOpening,
   },
   {
@@ -452,6 +459,8 @@ const SCENES: Scene[] = [
     eyebrow: 'Scene 02 · The Group',
     headline: 'A dynamic group of companies.',
     body: 'Building an integrated global business ecosystem across multiple industries.',
+    photo: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80',
+    photoPos: 'center',
     Visual: SceneAbout,
   },
   {
@@ -459,6 +468,8 @@ const SCENES: Scene[] = [
     eyebrow: 'Scene 03 · Services',
     headline: 'Complete business solutions.',
     body: 'International trade · Strategic consulting · Logistics · Investment.',
+    photo: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80',
+    photoPos: 'center',
     Visual: SceneServices,
   },
   {
@@ -466,6 +477,8 @@ const SCENES: Scene[] = [
     eyebrow: 'Scene 04 · Trusted Network',
     headline: 'Trusted by partners worldwide.',
     body: 'We collaborate with leading organisations to create long-term value.',
+    photo: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80',
+    photoPos: 'center',
     Visual: ScenePartners,
   },
   {
@@ -473,6 +486,8 @@ const SCENES: Scene[] = [
     eyebrow: 'Scene 05 · Community',
     headline: 'Growth beyond business.',
     body: 'Empowering communities and creating sustainable impact.',
+    photo: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80',
+    photoPos: 'center',
     Visual: SceneCommunity,
   },
   {
@@ -480,6 +495,8 @@ const SCENES: Scene[] = [
     eyebrow: 'Scene 06 · Leadership',
     headline: 'Visionary leadership.',
     body: 'Turning ideas into global success stories.',
+    photo: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80',
+    photoPos: 'center top',
     Visual: SceneLeadership,
   },
   {
@@ -487,6 +504,8 @@ const SCENES: Scene[] = [
     eyebrow: 'Scene 07 · Closing',
     headline: 'Yanabiya Group',
     body: 'Building the Future, Together.',
+    photo: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&q=80',
+    photoPos: 'center',
     Visual: SceneClosing,
   },
 ]
@@ -566,7 +585,16 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* ──────── Scene visuals (stacked, fade in/out) ──────── */}
+        {/* ──────── Scene layers (stacked, fade in/out)
+         *
+         *  Each layer:
+         *    1. Real-life Unsplash background photo (full-bleed object-cover,
+         *       very subtle Ken-Burns scale-in via animate-pulse on the img
+         *       wrapper to give the photo motion across the scene).
+         *    2. Dark brand-deep gradient over the photo so the text + motion
+         *       overlay still read clearly.
+         *    3. The SVG/icon motion overlay (continents, beams, icons, etc.).
+         */}
         {SCENES.map((s, i) => {
           const isActive = i === scene
           const SceneViz = s.Visual
@@ -577,6 +605,25 @@ export default function Hero() {
               className={`absolute inset-0 transition-opacity duration-700 ease-in-out
                           ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
             >
+              {/* Real-life photo background */}
+              <img
+                src={s.photo}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ objectPosition: s.photoPos ?? 'center' }}
+                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+              />
+              {/* Dark gradient overlay (legibility) */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0"
+                style={{
+                  background:
+                    'linear-gradient(180deg, rgba(8,28,18,0.78) 0%, rgba(8,28,18,0.55) 40%, rgba(8,28,18,0.85) 100%)',
+                }}
+              />
+              {/* SVG / icon motion overlay */}
               <SceneViz />
             </div>
           )
