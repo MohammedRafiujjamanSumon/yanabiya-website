@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   ArrowRight, Handshake, Building2, Cpu, Globe2, Truck, Briefcase, Users,
-  HeartHandshake, Sparkles, Compass, Pause, Play,
+  HeartHandshake, Sparkles, Compass,
 } from 'lucide-react'
 import GlobalOverviewPanel from '../components/GlobalOverviewPanel'
 import { assets } from '../data/assets'
@@ -25,7 +25,7 @@ import { assets } from '../data/assets'
  * clickable progress dots sit at the bottom-right for manual control.
  * ──────────────────────────────────────────────────────────────────── */
 
-const SCENE_MS = 7500
+const SCENE_MS = 4500
 
 type Scene = {
   id: string
@@ -536,7 +536,6 @@ export default function Hero() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [scene, setScene] = useState(0)
-  const [paused, setPaused] = useState(false)
   const [presenceOpen, setPresenceOpen] = useState(false)
 
   /* Click handler for the per-scene CTA. The opening scene routes to the
@@ -561,24 +560,19 @@ export default function Hero() {
     navigate(href)
   }
 
-  /* Auto-advance scene every SCENE_MS while not paused. */
+  /* Auto-advance scene every SCENE_MS — always running, no pause. */
   useEffect(() => {
-    if (paused) return
     const id = window.setInterval(() => {
       setScene((s) => (s + 1) % SCENES.length)
     }, SCENE_MS)
     return () => window.clearInterval(id)
-  }, [paused])
+  }, [])
 
   const active = SCENES[scene]
 
   return (
     <section id="home" className="relative scroll-mt-24">
-      <div
-        className="relative w-full h-[78svh] min-h-[520px] overflow-hidden bg-brand-ink"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
+      <div className="relative w-full h-[78svh] min-h-[520px] overflow-hidden bg-brand-ink">
 
         {/* ──────── Persistent: dark gradient background ──────── */}
         <div
@@ -635,7 +629,7 @@ export default function Hero() {
           return (
             <div
               key={s.id}
-              aria-hidden={!isActive}
+              aria-hidden={!isActive ? 'true' : 'false'}
               className={`absolute inset-0 transition-opacity duration-700 ease-in-out
                           ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
             >
@@ -730,9 +724,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ──────── Bottom-right: scene controls ──────── */}
-        <div className="absolute bottom-5 right-5 md:bottom-6 md:right-6 z-20 flex items-center gap-3">
-          {/* Progress dots — clickable */}
+        {/* ──────── Bottom-right: scene progress dots (clickable nav) ──────── */}
+        <div className="absolute bottom-5 right-5 md:bottom-6 md:right-6 z-20">
           <div className="flex items-center gap-1.5 rounded-full bg-brand-deep/60 backdrop-blur px-3 py-1.5
                           border border-brand-accent/30">
             {SCENES.map((_, i) => (
@@ -748,18 +741,6 @@ export default function Hero() {
               />
             ))}
           </div>
-          {/* Pause / play */}
-          <button
-            type="button"
-            onClick={() => setPaused((p) => !p)}
-            aria-label={paused ? 'Play scene cycle' : 'Pause scene cycle'}
-            className="grid place-items-center w-9 h-9 rounded-full
-                       bg-brand-deep/60 backdrop-blur border border-brand-accent/30
-                       text-brand-accent hover:bg-brand-accent hover:text-brand-deep
-                       transition-colors"
-          >
-            {paused ? <Play size={14} strokeWidth={2.4} /> : <Pause size={14} strokeWidth={2.4} />}
-          </button>
         </div>
       </div>
 
