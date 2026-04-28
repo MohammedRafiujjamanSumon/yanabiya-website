@@ -585,26 +585,7 @@ export default function Businesses() {
               </h2>
             </Reveal>
 
-            {/* Body — line cascade, centered */}
-            <div className="mt-5 max-w-2xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-snug text-justify [text-align-last:center]">
-              <Reveal delay={260}>
-                <p>Each division operates with focused expertise,</p>
-              </Reveal>
-              <Reveal delay={420}>
-                <p>fully integrated into the core system</p>
-              </Reveal>
-              <Reveal delay={580}>
-                <p>that connects all operations.</p>
-              </Reveal>
-            </div>
-
-            <Reveal delay={760}>
-              <p className="mt-4 text-sm text-slate-500 leading-snug max-w-xl mx-auto">
-                Explore each division to understand its scope, or let us guide you
-                to the right solution.
-              </p>
-            </Reveal>
-            <Reveal delay={900}>
+            <Reveal delay={260}>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                 <Link
                   to="/contact"
