@@ -130,13 +130,9 @@ export default function About() {
                 <div className="col-span-12 md:col-span-4 relative bg-brand-deep p-3 md:p-4">
                   <div
                     aria-hidden="true"
-                    className="absolute inset-2 rounded-xl border border-brand-accent/30 pointer-events-none"
-                  />
-                  <div
-                    aria-hidden="true"
                     className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-brand-accent/15 blur-3xl pointer-events-none"
                   />
-                  <div className="relative flex md:flex-col h-full divide-x md:divide-x-0 md:divide-y divide-brand-accent/25">
+                  <div className="relative flex md:flex-col h-full md:divide-y divide-brand-accent/25">
                     {stats.map((s, i) => (
                       <Reveal key={s.label} delay={120 + i * 110} className="flex-1">
                         <div className="h-full px-4 py-5 md:py-6 grid place-items-center text-center">
