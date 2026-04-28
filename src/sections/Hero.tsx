@@ -501,15 +501,6 @@ const SCENES: Scene[] = [
   },
 ]
 
-/* Stable particle field — drifts behind every scene. */
-const PARTICLES = Array.from({ length: 24 }, (_, i) => ({
-  x: (i * 37 + 11) % 100,
-  y: (i * 23 + 7) % 100,
-  size: (i % 3) + 2,
-  dur: 14 + (i % 7),
-  delay: (i % 9) * 0.7,
-}))
-
 /* ─────────── Component ─────────── */
 
 export default function Hero() {
@@ -573,25 +564,6 @@ export default function Hero() {
           className="absolute -bottom-40 -left-24 w-[560px] h-[560px] rounded-full
                      bg-brand-accentDark/10 blur-[160px]"
         />
-
-        {/* ──────── Persistent: drifting particles ──────── */}
-        <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-          {PARTICLES.map((p, i) => (
-            <span
-              key={i}
-              className="absolute rounded-full bg-brand-accent/60"
-              style={{
-                left: `${p.x}%`,
-                top: `${p.y}%`,
-                width: `${p.size}px`,
-                height: `${p.size}px`,
-                opacity: 0.4,
-                animation: `float ${p.dur}s ease-in-out ${p.delay}s infinite`,
-                boxShadow: '0 0 8px rgba(158,199,58,0.6)',
-              }}
-            />
-          ))}
-        </div>
 
         {/* ──────── Scene layers (stacked, fade in/out)
          *
