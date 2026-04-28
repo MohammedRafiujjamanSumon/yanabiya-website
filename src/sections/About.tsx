@@ -125,6 +125,26 @@ export default function About() {
                   {/* Slim bottom-only vignette for the caption */}
                   <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/55 to-transparent" />
 
+                  {/* Soft left-side darkening so the stats stack reads on
+                   *  the dark seating / floor area of the photo */}
+                  <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-black/65 via-black/35 to-transparent" />
+
+                  {/* Stats — vertical stack on the left dark area of the photo */}
+                  <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-3">
+                    {stats.map((s, i) => (
+                      <Reveal key={s.label} delay={120 + i * 110}>
+                        <div className="flex items-baseline gap-2 text-white">
+                          <span className="font-serif text-3xl md:text-4xl text-brand-accent leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]">
+                            {s.value}
+                          </span>
+                          <span className="text-[9px] md:text-[10px] uppercase tracking-[0.22em] font-semibold text-white/85 leading-tight max-w-[7rem]">
+                            {s.label}
+                          </span>
+                        </div>
+                      </Reveal>
+                    ))}
+                  </div>
+
                   {/* Bottom caption */}
                   <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between
                                   text-white/90 text-[10px] uppercase tracking-[0.22em]">
@@ -134,22 +154,6 @@ export default function About() {
                       Live
                     </span>
                   </div>
-                </div>
-
-                {/* 3 stat tiles inside the same card */}
-                <div className="grid grid-cols-3 divide-x divide-slate-200">
-                  {stats.map((s, i) => (
-                    <Reveal key={s.label} delay={150 + i * 100}>
-                      <div className="px-3 py-5 text-center transition-colors duration-300 hover:bg-brand-accent/5">
-                        <div className="font-serif text-3xl md:text-4xl text-brand-accentDark leading-none">
-                          {s.value}
-                        </div>
-                        <div className="mt-2 text-[9px] uppercase tracking-[0.22em] text-slate-600 font-semibold leading-tight">
-                          {s.label}
-                        </div>
-                      </div>
-                    </Reveal>
-                  ))}
                 </div>
               </div>
             </Reveal>
