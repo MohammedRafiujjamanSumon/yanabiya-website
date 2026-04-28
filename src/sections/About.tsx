@@ -103,28 +103,6 @@ export default function About() {
                 Built on trust, scaled with purpose, and proven over time.
               </p>
             </Reveal>
-
-            <Reveal delay={340}>
-              <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  to="/about-us"
-                  className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                             bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
-                             shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
-                >
-                  Explore About
-                  <ArrowRight size={14} />
-                </Link>
-                <Link
-                  to="/about/our-story"
-                  className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                             border border-slate-300 text-slate-700 text-xs font-semibold uppercase tracking-wider
-                             hover:border-brand-accentDark hover:text-brand-accentDark transition-colors"
-                >
-                  Read Our Story
-                </Link>
-              </div>
-            </Reveal>
           </div>
 
           {/* BELOW — combined office card: image with YANABIYA wall logo + 3 stats */}
@@ -186,6 +164,29 @@ export default function About() {
               </div>
             </Reveal>
           </div>
+
+          {/* BOTTOM — CTAs (centered, below the office card) */}
+          <Reveal delay={340} className="order-3">
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link
+                to="/about-us"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                           bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
+                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
+              >
+                Explore About
+                <ArrowRight size={14} />
+              </Link>
+              <Link
+                to="/about/our-story"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                           border border-slate-300 text-slate-700 text-xs font-semibold uppercase tracking-wider
+                           hover:border-brand-accentDark hover:text-brand-accentDark transition-colors"
+              >
+                Read Our Story
+              </Link>
+            </div>
+          </Reveal>
 
         </div>
       </div>
