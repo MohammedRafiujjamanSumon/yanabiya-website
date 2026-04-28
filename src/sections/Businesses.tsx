@@ -584,27 +584,9 @@ export default function Businesses() {
                 <span className="text-brand-accentDark">divisions.</span>
               </h2>
             </Reveal>
-
-            <Reveal delay={260}>
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                             bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
-                             shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
-                >
-                  Get a Quote
-                  <ArrowRight size={14} />
-                </Link>
-                <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.32em] text-brand-accentDark font-bold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                  Live · {PYRAMID_LAYERS.length} layers
-                </div>
-              </div>
-            </Reveal>
           </div>
 
-          {/* BELOW — rotating Services Pyramid */}
+          {/* MIDDLE — rotating Services Pyramid */}
           <Reveal delay={200} className="w-full order-2">
             <ServicesPyramid
               active={active}
@@ -614,6 +596,25 @@ export default function Businesses() {
               onSelect={(s) => setSelected(s)}
               onSelectHub={() => setSelected('overview')}
             />
+          </Reveal>
+
+          {/* BOTTOM — Get a Quote CTA + Live signal pill */}
+          <Reveal delay={320} className="w-full order-3">
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                           bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
+                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
+              >
+                Get a Quote
+                <ArrowRight size={14} />
+              </Link>
+              <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.32em] text-brand-accentDark font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                Live · {PYRAMID_LAYERS.length} layers
+              </div>
+            </div>
           </Reveal>
         </div>
 
