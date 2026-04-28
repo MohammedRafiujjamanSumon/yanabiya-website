@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   ArrowRight, Handshake, Building2, Cpu, Globe2, Truck, Briefcase, Users,
@@ -37,6 +38,9 @@ type Scene = {
   photoPos?: string
   /** SVG / icon "motion overlay" sitting on top of the photo. */
   Visual: () => JSX.Element
+  /** Per-scene primary CTA — links to the matching landing section
+   *  or detail page so the video scene becomes navigation. */
+  cta: { label: string; href: string }
 }
 
 /* ─────────── Scene visuals (each ~40-80 lines of SVG/CSS) ─────────── */
@@ -453,6 +457,7 @@ const SCENES: Scene[] = [
     photo: 'https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?auto=format&fit=crop&w=1600&q=80',
     photoPos: 'center',
     Visual: SceneOpening,
+    cta: { label: 'Explore Global Presence', href: '/#global' },
   },
   {
     id: 'about',
@@ -462,6 +467,7 @@ const SCENES: Scene[] = [
     photo: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80',
     photoPos: 'center',
     Visual: SceneAbout,
+    cta: { label: 'Explore About Us', href: '/about-us' },
   },
   {
     id: 'services',
@@ -471,6 +477,7 @@ const SCENES: Scene[] = [
     photo: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80',
     photoPos: 'center',
     Visual: SceneServices,
+    cta: { label: 'Explore Our Services', href: '/#businesses' },
   },
   {
     id: 'partners',
@@ -480,6 +487,7 @@ const SCENES: Scene[] = [
     photo: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80',
     photoPos: 'center',
     Visual: ScenePartners,
+    cta: { label: 'Explore Trusted Network', href: '/#partnerships' },
   },
   {
     id: 'community',
@@ -489,6 +497,7 @@ const SCENES: Scene[] = [
     photo: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80',
     photoPos: 'center',
     Visual: SceneCommunity,
+    cta: { label: 'Explore Community', href: '/community' },
   },
   {
     id: 'leadership',
@@ -498,6 +507,7 @@ const SCENES: Scene[] = [
     photo: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80',
     photoPos: 'center top',
     Visual: SceneLeadership,
+    cta: { label: 'Meet Our Leadership', href: '/leadership' },
   },
   {
     id: 'closing',
@@ -507,6 +517,7 @@ const SCENES: Scene[] = [
     photo: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&q=80',
     photoPos: 'center',
     Visual: SceneClosing,
+    cta: { label: 'Get in Touch', href: '/contact' },
   },
 ]
 
@@ -523,9 +534,32 @@ const PARTICLES = Array.from({ length: 24 }, (_, i) => ({
 
 export default function Hero() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [scene, setScene] = useState(0)
   const [paused, setPaused] = useState(false)
   const [presenceOpen, setPresenceOpen] = useState(false)
+
+  /* Click handler for the per-scene CTA. The opening scene routes to the
+   * global-presence overview panel (in-place), every other scene navigates
+   * to the matching landing anchor or detail page. */
+  const onSceneCta = (s: Scene) => {
+    if (s.id === 'opening') {
+      setPresenceOpen(true)
+      return
+    }
+    const href = s.cta.href
+    if (href.startsWith('/#')) {
+      // Smooth-scroll to the landing anchor.
+      const id = href.slice(2)
+      navigate('/')
+      window.requestAnimationFrame(() => {
+        const el = document.getElementById(id)
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+      return
+    }
+    navigate(href)
+  }
 
   /* Auto-advance scene every SCENE_MS while not paused. */
   useEffect(() => {
@@ -670,25 +704,29 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* Persistent CTAs (visible across all scenes) */}
+          {/* Per-scene primary CTA + persistent "Get in touch" secondary.
+           *  The primary CTA's label, href and icon swap per scene so the
+           *  hero becomes navigation: each scene = one section/page link.
+           *  Re-keyed on scene index so the fade-up replays each cycle. */}
           <div
+            key={`cta-${scene}`}
             className="mt-9 flex flex-col sm:flex-row gap-4 justify-center items-center fade-up"
             style={{ animationDelay: '500ms' }}
           >
             <button
               type="button"
-              onClick={() => setPresenceOpen(true)}
+              onClick={() => onSceneCta(active)}
               className="btn-primary !px-8 !py-3.5 !rounded-full"
             >
-              Explore Global Presence <ArrowRight size={18} className="ltr-flip" />
+              {active.cta.label} <ArrowRight size={18} className="ltr-flip" />
             </button>
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="btn-ghost !px-8 !py-3.5 !rounded-full !border-white/50 !text-white
                          hover:!bg-white hover:!text-brand-ink hover:!border-white"
             >
               <Handshake size={18} /> {t('hero.cta2')}
-            </a>
+            </Link>
           </div>
         </div>
 
