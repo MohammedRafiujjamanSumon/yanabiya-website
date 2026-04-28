@@ -63,22 +63,6 @@ export default function Global() {
               <span className="text-brand-accentDark">one unified network.</span>
             </h2>
           </Reveal>
-
-          <Reveal delay={900}>
-            <div className="mt-8">
-              <button
-                type="button"
-                onClick={() => setPresenceOpen(true)}
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                           bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
-                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
-                           transition-all duration-300"
-              >
-                Explore Global Presence
-                <ArrowRight size={14} />
-              </button>
-            </div>
-          </Reveal>
         </div>
 
         {/* ───────── GEOMAP — sits BELOW the text ───────── */}
@@ -166,6 +150,23 @@ export default function Global() {
                 </span>
               </Link>
             ))}
+          </div>
+        </Reveal>
+
+        {/* CTA — sits BELOW the geomap */}
+        <Reveal delay={1200}>
+          <div className="mt-10 md:mt-12 text-center">
+            <button
+              type="button"
+              onClick={() => setPresenceOpen(true)}
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                         bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
+                         shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
+                         transition-all duration-300"
+            >
+              Explore Global Presence
+              <ArrowRight size={14} />
+            </button>
           </div>
         </Reveal>
 
