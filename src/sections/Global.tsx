@@ -35,11 +35,17 @@ function Reveal({
  *   BD    → ring 3 (scale 0.75), placed south-east
  *   USA   → ring 4 (scale 0.95), placed north-west
  * Position formula: left% = 50 + scale*50·cos(θ), top% = 50 + scale*50·sin(θ). */
+/* Orbit ring assignments (innermost ring is 1, outermost is 5):
+ *   Oman → ring 2, east
+ *   UK   → ring 3, north
+ *   BD   → ring 4, south-east
+ *   USA  → ring 5 (outermost / "last"), south-west
+ * Position formula: left% = 50 + scale·50·cos(θ), top% = 50 + scale·50·sin(θ). */
 const orbitDots = [
-  { code: 'OM', flag: '🇴🇲', label: 'Muscat, Oman',       top: '50%', left: '67%' },
-  { code: 'GB', flag: '🇬🇧', label: 'London, UK',         top: '23%', left: '50%' },
+  { code: 'OM', flag: '🇴🇲', label: 'Muscat, Oman',       top: '50%', left: '69%' },
+  { code: 'GB', flag: '🇬🇧', label: 'London, UK',         top: '22%', left: '50%' },
   { code: 'BD', flag: '🇧🇩', label: 'Dhaka, Bangladesh',  top: '76%', left: '76%' },
-  { code: 'US', flag: '🇺🇸', label: 'Austin, USA',        top: '17%', left: '17%' },
+  { code: 'US', flag: '🇺🇸', label: 'Austin, USA',        top: '83%', left: '17%' },
 ]
 
 export default function Global() {
@@ -76,9 +82,10 @@ export default function Global() {
               <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/30 blur-[80px] animate-gradient" />
             </div>
 
-            {/* Concentric orbit rings */}
+            {/* Concentric orbit rings — 5 rings so each office can sit
+             *  on its own (Oman·2, UK·3, BD·4, USA·5/outermost). */}
             <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
-              {[0.95, 0.75, 0.55, 0.35].map((s, i) => (
+              {[0.92, 0.74, 0.56, 0.38, 0.20].map((s, i) => (
                 <div
                   key={i}
                   className="absolute rounded-full border border-brand-accentDark/40"
@@ -118,13 +125,14 @@ export default function Global() {
               })}
             </svg>
 
-            {/* Outer city pins — clickable flag cards routing to each country page */}
+            {/* Outer city pins — flag-only, no label text */}
             {orbitDots.map((d, i) => (
               <Link
                 key={d.code}
                 to={`/country/${d.code.toLowerCase()}`}
                 aria-label={`Explore ${d.label}`}
-                className="group absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 z-10
+                title={d.label}
+                className="group absolute -translate-x-1/2 -translate-y-1/2 inline-flex z-10
                            hover:z-20"
                 style={{ top: d.top, left: d.left }}
               >
@@ -134,19 +142,14 @@ export default function Global() {
                     style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
                   />
                   <span
-                    className="relative inline-grid place-items-center w-9 h-9 rounded-full bg-white
-                               ring-2 ring-brand-accent/60 shadow-md text-base
+                    className="relative inline-grid place-items-center w-10 h-10 rounded-full bg-white
+                               ring-2 ring-brand-accent/60 shadow-md text-lg
                                transition-all duration-300
                                group-hover:scale-110 group-hover:ring-brand-accent
                                group-hover:shadow-[0_0_20px_rgba(158,199,58,0.7)]"
                   >
                     {d.flag}
                   </span>
-                </span>
-                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600
-                                 bg-white/85 backdrop-blur px-2.5 py-0.5 rounded-full whitespace-nowrap
-                                 transition-colors duration-300 group-hover:text-brand-accentDark">
-                  {d.label}
                 </span>
               </Link>
             ))}
