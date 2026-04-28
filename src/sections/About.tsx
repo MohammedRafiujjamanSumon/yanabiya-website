@@ -124,15 +124,6 @@ export default function About() {
                     className="absolute inset-0 w-full h-full object-cover"
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/55 to-transparent" />
-                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between
-                                  text-white/90 text-[10px] uppercase tracking-[0.22em]">
-                    <span>Group Office · Muscat</span>
-                    <span className="inline-flex items-center gap-1.5">
-                      <span className="block w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                      Live
-                    </span>
-                  </div>
                 </div>
 
                 {/* RIGHT — brand-deep stats panel matching the reference */}
