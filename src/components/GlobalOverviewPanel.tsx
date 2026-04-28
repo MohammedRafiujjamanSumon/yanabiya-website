@@ -122,19 +122,11 @@ export default function GlobalOverviewPanel({
                           <div className="text-[11.5px] font-semibold text-slate-700 mt-1.5 leading-snug">
                             {k.legalName}
                           </div>
-                          <div className="text-[10px] text-slate-500 mt-1 flex flex-wrap gap-x-3 gap-y-0.5">
-                            <span>
-                              <span className="font-bold uppercase tracking-wider text-brand-accentDark">
-                                {k.registration.label}
-                              </span>{' '}
-                              <span className="font-mono text-slate-700">{k.registration.value}</span>
-                            </span>
-                            <span>
-                              <span className="font-bold uppercase tracking-wider text-brand-accentDark">
-                                Est.
-                              </span>{' '}
-                              {k.established}
-                            </span>
+                          <div className="text-[10px] text-slate-500 mt-1">
+                            <span className="font-bold uppercase tracking-wider text-brand-accentDark">
+                              Est.
+                            </span>{' '}
+                            {k.established}
                           </div>
                         </>
                       )}

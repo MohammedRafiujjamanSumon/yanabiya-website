@@ -104,21 +104,7 @@ export default function About() {
               </p>
             </Reveal>
 
-            {/* Description — split into lines so each surfaces on scroll
-             *  one after another. Justified, last line centered. */}
-            <div className="mt-5 max-w-xl mx-auto space-y-1 text-base md:text-lg text-slate-600 leading-snug text-justify [text-align-last:center]">
-              <Reveal delay={340}>
-                <p>A diversified group connecting businesses across markets,</p>
-              </Reveal>
-              <Reveal delay={500}>
-                <p>through a unified structure and shared standards,</p>
-              </Reveal>
-              <Reveal delay={660}>
-                <p>built on a long-term vision.</p>
-              </Reveal>
-            </div>
-
-            <Reveal delay={840}>
+            <Reveal delay={340}>
               <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
                 <Link
                   to="/about-us"

@@ -173,19 +173,11 @@ export default function CountryDetail() {
                   <div className="font-serif text-xl md:text-2xl text-brand-deep leading-tight">
                     {contact.legalName}
                   </div>
-                  <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[12px] text-slate-600">
-                    <span className="inline-flex items-center gap-1.5">
-                      <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
-                        {contact.registration.label}
-                      </span>
-                      <span className="font-mono">{contact.registration.value}</span>
+                  <div className="mt-3 inline-flex items-center gap-1.5 text-[12px] text-slate-600">
+                    <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
+                      Established
                     </span>
-                    <span className="inline-flex items-center gap-1.5">
-                      <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
-                        Established
-                      </span>
-                      {contact.established}
-                    </span>
+                    {contact.established}
                   </div>
                 </div>
                 <Link

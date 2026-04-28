@@ -117,22 +117,14 @@ export default function Contact() {
               </div>
 
               <div className="mt-5 space-y-5 text-sm">
-                {/* Registered Entity — legal name + registration + est. date */}
+                {/* Registered Entity — legal name + established date */}
                 <DetailRow icon={FileBadge} label="Registered Entity">
                   <div className="text-slate-800 font-semibold leading-snug">{active.legalName}</div>
-                  <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-slate-500">
-                    <span>
-                      <span className="font-bold uppercase tracking-wider text-brand-accentDark">
-                        {active.registration.label}
-                      </span>{' '}
-                      <span className="font-mono text-slate-700">{active.registration.value}</span>
-                    </span>
-                    <span>
-                      <span className="font-bold uppercase tracking-wider text-brand-accentDark">
-                        Established
-                      </span>{' '}
-                      <span className="text-slate-700">{active.established}</span>
-                    </span>
+                  <div className="mt-1 text-[11px] text-slate-500">
+                    <span className="font-bold uppercase tracking-wider text-brand-accentDark">
+                      Established
+                    </span>{' '}
+                    <span className="text-slate-700">{active.established}</span>
                   </div>
                 </DetailRow>
 
