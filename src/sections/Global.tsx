@@ -41,14 +41,13 @@ function Reveal({
  *   UK   → ring 3, north
  *   BD   → ring 4, south
  *   USA  → ring 5 (outermost), west
- * `name` is what appears in the hover-expand label.
- * `expand` is which side the label slides out to so it stays inside
- * the visible orbit area. */
+ * `name` shows on the right of the flag on hover, "Read more" on
+ * the left — both inside one continuous pill. */
 const orbitDots = [
-  { code: 'OM', flag: '🇴🇲', name: 'Oman',       label: 'Muscat, Oman',       top: '50%', left: '69%', expand: 'left'  as const },
-  { code: 'GB', flag: '🇬🇧', name: 'UK',         label: 'London, UK',         top: '22%', left: '50%', expand: 'right' as const },
-  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', label: 'Dhaka, Bangladesh',  top: '85%', left: '50%', expand: 'right' as const },
-  { code: 'US', flag: '🇺🇸', name: 'USA',        label: 'Austin, USA',        top: '45%', left: '5%',  expand: 'right' as const },
+  { code: 'OM', flag: '🇴🇲', name: 'Oman',       label: 'Muscat, Oman',       top: '50%', left: '69%' },
+  { code: 'GB', flag: '🇬🇧', name: 'UK',         label: 'London, UK',         top: '22%', left: '50%' },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', label: 'Dhaka, Bangladesh',  top: '85%', left: '50%' },
+  { code: 'US', flag: '🇺🇸', name: 'USA',        label: 'Austin, USA',        top: '45%', left: '5%'  },
 ]
 
 export default function Global() {
@@ -136,66 +135,58 @@ export default function Global() {
               })}
             </svg>
 
-            {/* Outer city pins — flag medallion by default; on hover/tap
-             *  the card extends horizontally to show the country name +
-             *  "Read more →" label. Direction (left/right) is per pin so
-             *  the expansion always stays inside the orbit area. */}
-            {orbitDots.map((d, i) => {
-              const expandsLeft = d.expand === 'left'
-              return (
-                <Link
-                  key={d.code}
-                  to={`/country/${d.code.toLowerCase()}`}
-                  aria-label={`Explore ${d.label}`}
-                  title={d.label}
-                  className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20"
-                  style={{ top: d.top, left: d.left }}
-                >
-                  <div className={`relative inline-flex items-center ${expandsLeft ? 'flex-row-reverse' : ''}`}>
-                    {/* Halo behind the flag medallion (stays a circle, doesn't expand) */}
-                    <span
-                      aria-hidden="true"
-                      className="absolute top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-brand-accent/40 pointer-events-none"
-                      style={{
-                        ...(expandsLeft ? { right: 0 } : { left: 0 }),
-                        animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite`,
-                      }}
-                    />
-                    {/* Flag medallion — anchor of the pin */}
-                    <span
-                      className="relative inline-grid place-items-center w-10 h-10 rounded-full bg-white
-                                 ring-2 ring-brand-accent/60 shadow-md text-lg shrink-0
-                                 transition-all duration-300
-                                 group-hover:ring-brand-accent
-                                 group-hover:shadow-[0_0_20px_rgba(158,199,58,0.7)]"
-                    >
-                      {d.flag}
+            {/* Outer city pins — flag medallion in the centre of one
+             *  continuous pill that expands BOTH sides on hover/tap:
+             *  "Read more" slides out to the left, country name slides
+             *  out to the right. Symmetric growth keeps the flag (and
+             *  the pin's coordinate) anchored. */}
+            {orbitDots.map((d, i) => (
+              <Link
+                key={d.code}
+                to={`/country/${d.code.toLowerCase()}`}
+                aria-label={`Explore ${d.label}`}
+                title={d.label}
+                className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20"
+                style={{ top: d.top, left: d.left }}
+              >
+                <div className="relative inline-flex items-center
+                                bg-white rounded-full ring-2 ring-brand-accent/60 shadow-md
+                                transition-shadow duration-300
+                                group-hover:ring-brand-accent
+                                group-hover:shadow-[0_0_20px_rgba(158,199,58,0.7)]">
+                  {/* Halo behind the flag medallion (stays a circle, doesn't grow with the pill) */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                               w-10 h-10 rounded-full bg-brand-accent/40 pointer-events-none -z-10"
+                    style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
+                  />
+
+                  {/* LEFT — "Read more" slides in from the left on hover */}
+                  <div className="overflow-hidden max-w-0 group-hover:max-w-[110px]
+                                  transition-all duration-300 ease-out">
+                    <span className="block whitespace-nowrap pl-3 pr-1
+                                     text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
+                      Read more
                     </span>
-                    {/* Expanding label — slides out from the flag on hover */}
-                    <div
-                      className={`relative overflow-hidden whitespace-nowrap
-                                  transition-all duration-300 ease-out
-                                  max-w-0 group-hover:max-w-[200px]
-                                  ${expandsLeft ? 'pr-1' : 'pl-1'}`}
-                    >
-                      <div
-                        className={`flex flex-col leading-tight px-2.5 py-1 rounded-full
-                                    bg-white/95 backdrop-blur ring-1 ring-brand-accent/40
-                                    shadow-md
-                                    ${expandsLeft ? 'items-end' : 'items-start'}`}
-                      >
-                        <span className="text-[11px] font-semibold text-brand-deep">
-                          {d.name}
-                        </span>
-                        <span className="text-[8px] uppercase tracking-[0.18em] text-brand-accentDark inline-flex items-center gap-0.5">
-                          {expandsLeft ? '← Read more' : 'Read more →'}
-                        </span>
-                      </div>
-                    </div>
                   </div>
-                </Link>
-              )
-            })}
+
+                  {/* CENTRE — flag medallion (always visible, anchor of the pin) */}
+                  <span className="relative grid place-items-center w-10 h-10 text-lg shrink-0">
+                    {d.flag}
+                  </span>
+
+                  {/* RIGHT — country name slides in from the right on hover */}
+                  <div className="overflow-hidden max-w-0 group-hover:max-w-[140px]
+                                  transition-all duration-300 ease-out">
+                    <span className="block whitespace-nowrap pr-3 pl-1
+                                     text-[11px] font-semibold text-brand-deep">
+                      {d.name}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </Reveal>
 
