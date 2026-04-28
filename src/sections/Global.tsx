@@ -45,7 +45,7 @@ const orbitDots = [
   { code: 'OM', flag: '🇴🇲', label: 'Muscat, Oman',       top: '50%', left: '69%' },
   { code: 'GB', flag: '🇬🇧', label: 'London, UK',         top: '22%', left: '50%' },
   { code: 'BD', flag: '🇧🇩', label: 'Dhaka, Bangladesh',  top: '76%', left: '76%' },
-  { code: 'US', flag: '🇺🇸', label: 'Austin, USA',        top: '83%', left: '17%' },
+  { code: 'US', flag: '🇺🇸', label: 'Austin, USA',        top: '45%', left: '5%'  },
 ]
 
 export default function Global() {
