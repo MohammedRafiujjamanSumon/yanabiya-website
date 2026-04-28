@@ -125,26 +125,30 @@ export default function About() {
                   {/* Slim bottom-only vignette for the caption */}
                   <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/55 to-transparent" />
 
-                  {/* Soft left-side darkening so the stats panel reads on
-                   *  the dark seating / floor area of the photo */}
-                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+                  {/* Soft right-side darkening so the stats panel reads
+                   *  on the green-wall side of the photo */}
+                  <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-black/55 via-black/25 to-transparent" />
 
-                  {/* Stats — single merged glass panel split into 3 equal
-                   *  sections. Sized to fit within the dark gradient area
-                   *  on the left so it never crosses into the bright wall. */}
+                  {/* Stats — minimalist vertical column on the right wall
+                   *  side, matching the supplied design reference: thin
+                   *  brand-accent dividers between each section, mint
+                   *  serif numbers stacked over small uppercase labels,
+                   *  centred inside each cell. */}
                   <Reveal delay={120}>
-                    <div className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2
-                                    w-[28%] max-w-[170px]
-                                    rounded-xl bg-black/55 backdrop-blur-sm border border-white/15
+                    <div className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2
+                                    w-[26%] max-w-[160px]
+                                    rounded-xl bg-brand-deep/55 backdrop-blur-sm
+                                    border border-brand-accent/40
                                     shadow-[0_10px_28px_-8px_rgba(0,0,0,0.6)]
-                                    flex flex-col divide-y divide-white/15
+                                    flex flex-col divide-y divide-brand-accent/30
                                     overflow-hidden">
                       {stats.map((s) => (
-                        <div key={s.label} className="flex-1 px-3 py-2.5">
-                          <div className="font-serif text-xl md:text-2xl text-brand-accent leading-none">
+                        <div key={s.label} className="flex-1 px-3 py-3 text-center">
+                          <div className="font-serif text-2xl md:text-3xl text-brand-accent leading-none
+                                          drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]">
                             {s.value}
                           </div>
-                          <div className="mt-1 text-[8.5px] md:text-[9px] uppercase tracking-[0.22em] font-semibold text-white/85 leading-tight">
+                          <div className="mt-1.5 text-[8.5px] md:text-[9px] uppercase tracking-[0.32em] font-semibold text-white/90 leading-tight">
                             {s.label}
                           </div>
                         </div>
