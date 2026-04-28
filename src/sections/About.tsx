@@ -126,23 +126,22 @@ export default function About() {
                   />
                 </div>
 
-                {/* RIGHT — brand-deep stats panel matching the reference */}
-                <div className="col-span-12 md:col-span-4 relative bg-brand-deep p-3 md:p-4">
+                {/* RIGHT — light stats panel (no dark background) */}
+                <div className="col-span-12 md:col-span-4 relative bg-white p-3 md:p-4">
                   <div
                     aria-hidden="true"
                     className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-brand-accent/15 blur-3xl pointer-events-none"
                   />
-                  <div className="relative flex md:flex-col h-full md:divide-y divide-brand-accent/25">
+                  <div className="relative flex md:flex-col h-full md:divide-y divide-slate-200">
                     {stats.map((s, i) => (
                       <Reveal key={s.label} delay={120 + i * 110} className="flex-1">
                         <div className="h-full px-4 py-5 md:py-6 grid place-items-center text-center">
                           <div>
-                            <div className="font-serif text-3xl md:text-4xl text-brand-accent leading-none
-                                            drop-shadow-[0_2px_10px_rgba(158,199,58,0.25)]">
+                            <div className="font-serif text-3xl md:text-4xl text-brand-accentDark leading-none">
                               {s.value}
                             </div>
                             <div className="mt-2 text-[9px] md:text-[10px] uppercase tracking-[0.32em]
-                                            font-semibold text-white/85 leading-tight">
+                                            font-semibold text-slate-600 leading-tight">
                               {s.label}
                             </div>
                           </div>
