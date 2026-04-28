@@ -1,49 +1,533 @@
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ArrowRight, Handshake } from 'lucide-react'
-import { useState } from 'react'
+import {
+  ArrowRight, Handshake, Building2, Cpu, Globe2, Truck, Briefcase, Users,
+  HeartHandshake, Sparkles, Compass, Pause, Play,
+} from 'lucide-react'
 import GlobalOverviewPanel from '../components/GlobalOverviewPanel'
 import { assets } from '../data/assets'
 
-/* CSS-only hero — no YouTube embed. Matches the Figma motion spec:
- *   • full-bleed dark gradient background (brand-ink → brand-deep)
- *   • world-map continent outlines at low opacity
- *   • 4 pulsing pins at the four office cities
- *   • beams from Oman HQ to each branch (animated stroke flow)
- *   • drifting particle field
- *   • centred Yanabiya logo with halo glow + scale-in
- *   • welcome copy + CTAs
- */
+/* ──────────────────────────────────────────────────────────────────────
+ * Hero — auto-cycling 7-scene cinematic hero
+ *
+ * Mirrors the corporate-video brief:
+ *   01 OPENING       · "Connecting Businesses Across Borders"
+ *   02 ABOUT         · "A dynamic group of companies …"
+ *   03 SERVICES      · "Complete business solutions …"
+ *   04 PARTNERS      · "Trusted by partners worldwide …"
+ *   05 COMMUNITY     · "Growth beyond business …"
+ *   06 LEADERSHIP    · "Visionary leadership …"
+ *   07 CLOSING       · "Building the Future, Together."
+ *
+ * Each scene auto-advances every ~7.5s. Hovering the hero pauses the
+ * cycle (matching the chat-dock UX). A tiny play/pause toggle and
+ * clickable progress dots sit at the bottom-right for manual control.
+ * ──────────────────────────────────────────────────────────────────── */
+
+const SCENE_MS = 7500
+
+type Scene = {
+  id: string
+  eyebrow: string
+  headline: string
+  body: string
+  Visual: () => JSX.Element
+}
+
+/* ─────────── Scene visuals (each ~40-80 lines of SVG/CSS) ─────────── */
 
 const PINS = [
-  { code: 'OM', x: 62, y: 38, hub: true,  label: 'Muscat'   },
-  { code: 'GB', x: 47, y: 22, hub: false, label: 'London'   },
-  { code: 'BD', x: 75, y: 36, hub: false, label: 'Dhaka'    },
-  { code: 'US', x: 22, y: 32, hub: false, label: 'Austin'   },
+  { x: 62, y: 38, hub: true,  label: 'Muscat' },
+  { x: 47, y: 22, hub: false, label: 'London' },
+  { x: 75, y: 36, hub: false, label: 'Dhaka'  },
+  { x: 22, y: 32, hub: false, label: 'Austin' },
 ]
 
-const HUB = PINS.find((p) => p.hub)!
-const BRANCHES = PINS.filter((p) => !p.hub)
+function Continents() {
+  return (
+    <g
+      fill="rgba(158,199,58,0.06)"
+      stroke="rgba(158,199,58,0.32)"
+      strokeWidth="0.14"
+      strokeLinejoin="round"
+    >
+      <path d="M 6 14 Q 16 9 26 12 L 30 18 Q 32 22 28 26 L 22 30 Q 16 32 12 30 L 8 26 Q 5 20 6 14 Z" />
+      <path d="M 24 32 L 30 32 L 32 38 L 30 46 L 26 50 L 22 46 L 22 38 Z" />
+      <path d="M 44 14 Q 50 12 54 14 L 56 18 Q 54 22 50 22 L 44 22 L 42 18 Z" />
+      <path d="M 47 24 L 56 24 L 58 30 L 58 38 L 54 46 L 50 50 L 46 46 L 44 38 L 45 30 Z" />
+      <path d="M 58 26 L 64 26 L 66 32 L 64 36 L 60 36 L 58 32 Z" />
+      <path d="M 56 10 Q 70 8 84 10 L 88 14 L 86 18 L 70 18 L 60 16 L 56 14 Z" />
+      <path d="M 70 20 L 82 20 L 84 26 L 80 30 L 74 30 L 72 26 Z" />
+      <path d="M 70 28 L 76 28 L 78 34 L 74 38 L 71 36 Z" />
+      <path d="M 82 40 L 92 40 L 94 46 L 90 48 L 84 46 Z" />
+    </g>
+  )
+}
 
-/* Particle field — fixed seed so positions are stable across renders. */
-const PARTICLES = Array.from({ length: 24 }, (_, i) => {
-  // Deterministic pseudo-random (just modular arithmetic on i)
-  const x = (i * 37 + 11) % 100
-  const y = (i * 23 + 7) % 100
-  const size = (i % 3) + 2  // 2, 3, or 4
-  const dur = 14 + (i % 7)  // 14–20s
-  const delay = (i % 9) * 0.7
-  return { x, y, size, dur, delay }
-})
+/* 01 — OPENING: world map + arc beams from Oman HQ to branches */
+function SceneOpening() {
+  const hub = PINS[0]
+  const branches = PINS.slice(1)
+  return (
+    <>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 100 56"
+        preserveAspectRatio="xMidYMid slice"
+        className="absolute inset-0 w-full h-full opacity-30"
+      >
+        <Continents />
+      </svg>
+      {/* Beams */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 100 56"
+        preserveAspectRatio="xMidYMid slice"
+        className="absolute inset-0 w-full h-full overflow-visible"
+      >
+        {branches.map((b, i) => {
+          const mx = (hub.x + b.x) / 2
+          const my = Math.min(hub.y, b.y) - Math.abs(b.x - hub.x) * 0.18
+          const path = `M ${hub.x} ${hub.y} Q ${mx} ${my}, ${b.x} ${b.y}`
+          return (
+            <g key={i}>
+              <path d={path} fill="none" stroke="rgba(158,199,58,0.28)" strokeWidth="0.18" strokeDasharray="0.8 0.8" />
+              <path
+                d={path}
+                fill="none"
+                stroke="rgba(158,199,58,0.95)"
+                strokeWidth="0.32"
+                strokeLinecap="round"
+                className="animate-svg-flow"
+                style={{ animationDelay: `${i * 0.55}s`, animationDuration: '4s' }}
+              />
+            </g>
+          )
+        })}
+      </svg>
+      {/* Pins */}
+      {PINS.map((p, i) => (
+        <div
+          key={i}
+          aria-hidden="true"
+          className="absolute"
+          style={{ left: `${p.x}%`, top: `${(p.y / 56) * 100}%`, transform: 'translate(-50%, -50%)' }}
+        >
+          <div className="relative">
+            <span
+              className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full
+                          ${p.hub ? 'w-12 h-12 bg-brand-accent/45' : 'w-8 h-8 bg-brand-accent/35'}`}
+              style={{ animation: `haloPulse 2.6s ease-in-out ${i * 0.3}s infinite` }}
+            />
+            <span
+              className={`relative block rounded-full ring-2
+                          ${p.hub
+                            ? 'w-3 h-3 bg-brand-accent ring-white/70 shadow-[0_0_12px_rgba(158,199,58,0.9)]'
+                            : 'w-2 h-2 bg-brand-accent ring-white/50 shadow-[0_0_8px_rgba(158,199,58,0.7)]'}`}
+            />
+          </div>
+        </div>
+      ))}
+    </>
+  )
+}
+
+/* 02 — ABOUT: office building silhouettes + grid */
+function SceneAbout() {
+  return (
+    <>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 100 56"
+        preserveAspectRatio="xMidYMid slice"
+        className="absolute inset-0 w-full h-full opacity-40"
+      >
+        {/* Skyline silhouettes */}
+        <g fill="rgba(158,199,58,0.18)" stroke="rgba(158,199,58,0.42)" strokeWidth="0.12">
+          <rect x="6"  y="32" width="6"  height="20" />
+          <rect x="13" y="28" width="5"  height="24" />
+          <rect x="19" y="34" width="4"  height="18" />
+          <rect x="24" y="22" width="6"  height="30" />
+          <rect x="31" y="30" width="4"  height="22" />
+          <rect x="36" y="26" width="6"  height="26" />
+          <rect x="43" y="20" width="7"  height="32" />
+          <rect x="51" y="28" width="5"  height="24" />
+          <rect x="57" y="24" width="6"  height="28" />
+          <rect x="64" y="32" width="4"  height="20" />
+          <rect x="69" y="26" width="6"  height="26" />
+          <rect x="76" y="30" width="5"  height="22" />
+          <rect x="82" y="22" width="7"  height="30" />
+          <rect x="90" y="32" width="5"  height="20" />
+        </g>
+        {/* Window dots — random office lights */}
+        <g fill="rgba(255,235,180,0.6)">
+          {[
+            [8, 36], [10, 42], [14, 32], [16, 40], [20, 38], [25, 26], [27, 32], [29, 40],
+            [32, 34], [37, 30], [40, 38], [44, 24], [46, 32], [48, 40], [52, 32], [54, 38],
+            [58, 28], [61, 36], [65, 36], [70, 30], [72, 38], [77, 34], [83, 26], [86, 34],
+            [88, 42], [91, 36], [93, 44],
+          ].map(([cx, cy], i) => (
+            <circle key={i} cx={cx} cy={cy} r="0.4" />
+          ))}
+        </g>
+      </svg>
+      {/* Grid overlay */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.18]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(158,199,58,0.18) 1px, transparent 1px), ' +
+            'linear-gradient(90deg, rgba(158,199,58,0.18) 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+        }}
+      />
+    </>
+  )
+}
+
+/* 03 — SERVICES: 6 service icons in a circular constellation */
+function SceneServices() {
+  const SERVICE_ICONS = [
+    { Icon: Cpu,       label: 'Tech & Software', angle: -90 },
+    { Icon: Globe2,    label: 'Global Trade',     angle: -30 },
+    { Icon: Truck,     label: 'Logistics',        angle: 30  },
+    { Icon: Briefcase, label: 'Consulting',       angle: 90  },
+    { Icon: Building2, label: 'Office Services',  angle: 150 },
+    { Icon: Users,     label: 'Mobility',         angle: 210 },
+  ]
+  const radius = 28  // % of half-width
+  return (
+    <>
+      {/* Centre pulse */}
+      <div
+        aria-hidden="true"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                   w-32 h-32 rounded-full bg-brand-accent/15 blur-2xl animate-pulse"
+      />
+      {/* Constellation lines */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        className="absolute inset-0 w-full h-full opacity-50"
+      >
+        {SERVICE_ICONS.map((s, i) => {
+          const θ = (s.angle * Math.PI) / 180
+          const ex = 50 + Math.cos(θ) * radius
+          const ey = 50 + Math.sin(θ) * radius
+          return (
+            <line
+              key={i}
+              x1="50" y1="50" x2={ex} y2={ey}
+              stroke="rgba(158,199,58,0.45)"
+              strokeWidth="0.18"
+              strokeDasharray="0.8 0.8"
+            />
+          )
+        })}
+      </svg>
+      {/* Icons */}
+      {SERVICE_ICONS.map((s, i) => {
+        const θ = (s.angle * Math.PI) / 180
+        const left = 50 + Math.cos(θ) * radius
+        const top  = 50 + Math.sin(θ) * radius
+        return (
+          <div
+            key={i}
+            aria-hidden="true"
+            className="absolute"
+            style={{ left: `${left}%`, top: `${top}%`, transform: 'translate(-50%, -50%)' }}
+          >
+            <div className="relative w-14 h-14 rounded-full bg-brand-deep/80 backdrop-blur
+                            ring-2 ring-brand-accent/60 grid place-items-center
+                            shadow-[0_8px_22px_-8px_rgba(158,199,58,0.5)]"
+                 style={{ animation: `haloPulse 2.8s ease-in-out ${i * 0.2}s infinite` }}>
+              <s.Icon size={22} strokeWidth={1.8} className="text-brand-accent" />
+            </div>
+          </div>
+        )
+      })}
+    </>
+  )
+}
+
+/* 04 — PARTNERS: handshake centre + partner dot constellation */
+function ScenePartners() {
+  const dots = Array.from({ length: 18 }).map((_, i) => {
+    const θ = (i / 18) * Math.PI * 2
+    const r = 30 + (i % 3) * 6
+    return {
+      x: 50 + Math.cos(θ) * r,
+      y: 50 + Math.sin(θ) * r,
+      delay: i * 0.15,
+    }
+  })
+  return (
+    <>
+      {/* Concentric pulse rings */}
+      {[0, 0.6, 1.2].map((delay, i) => (
+        <span
+          key={i}
+          aria-hidden="true"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                     w-32 h-32 rounded-full border-2 border-brand-accent/40"
+          style={{ animation: `haloPulse 3s ease-out ${delay}s infinite` }}
+        />
+      ))}
+      {/* Centre handshake */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                      w-24 h-24 rounded-full bg-brand-deep/80 backdrop-blur
+                      ring-2 ring-brand-accent grid place-items-center
+                      shadow-[0_12px_30px_-8px_rgba(158,199,58,0.6)]">
+        <Handshake size={40} strokeWidth={1.8} className="text-brand-accent" />
+      </div>
+      {/* Partner dots */}
+      {dots.map((d, i) => (
+        <span
+          key={i}
+          aria-hidden="true"
+          className="absolute w-2 h-2 rounded-full bg-brand-accent
+                     shadow-[0_0_10px_rgba(158,199,58,0.8)]"
+          style={{
+            left: `${d.x}%`,
+            top: `${d.y}%`,
+            transform: 'translate(-50%, -50%)',
+            animation: `haloPulse 2.4s ease-in-out ${d.delay}s infinite`,
+          }}
+        />
+      ))}
+    </>
+  )
+}
+
+/* 05 — COMMUNITY: heart centre + people ring + outward connections */
+function SceneCommunity() {
+  const people = Array.from({ length: 8 }).map((_, i) => {
+    const θ = -Math.PI / 2 + (i / 8) * Math.PI * 2
+    const r = 32
+    return { x: 50 + Math.cos(θ) * r, y: 50 + Math.sin(θ) * r, delay: i * 0.18 }
+  })
+  return (
+    <>
+      {/* Lines from centre to people */}
+      <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none"
+           className="absolute inset-0 w-full h-full opacity-60">
+        {people.map((p, i) => (
+          <line
+            key={i}
+            x1="50" y1="50" x2={p.x} y2={p.y}
+            stroke="rgba(158,199,58,0.55)"
+            strokeWidth="0.18"
+            strokeDasharray="0.6 0.8"
+          />
+        ))}
+      </svg>
+      {/* Centre heart-handshake */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                      w-20 h-20 rounded-full bg-brand-deep/80 backdrop-blur
+                      ring-2 ring-brand-accent grid place-items-center
+                      shadow-[0_10px_28px_-8px_rgba(158,199,58,0.6)]">
+        <HeartHandshake size={32} strokeWidth={1.8} className="text-brand-accent" />
+      </div>
+      {/* People nodes */}
+      {people.map((p, i) => (
+        <div
+          key={i}
+          aria-hidden="true"
+          className="absolute"
+          style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)' }}
+        >
+          <div
+            className="w-10 h-10 rounded-full bg-brand-deep/70 backdrop-blur
+                       ring-2 ring-brand-accent/60 grid place-items-center"
+            style={{ animation: `haloPulse 2.6s ease-in-out ${p.delay}s infinite` }}
+          >
+            <Users size={16} strokeWidth={1.8} className="text-brand-accent" />
+          </div>
+        </div>
+      ))}
+    </>
+  )
+}
+
+/* 06 — LEADERSHIP: compass / vision lines radiating outward */
+function SceneLeadership() {
+  return (
+    <>
+      {/* Radial vision rays */}
+      <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none"
+           className="absolute inset-0 w-full h-full opacity-55">
+        {Array.from({ length: 16 }).map((_, i) => {
+          const θ = (i / 16) * Math.PI * 2
+          const ex = 50 + Math.cos(θ) * 45
+          const ey = 50 + Math.sin(θ) * 45
+          return (
+            <line
+              key={i}
+              x1="50" y1="50" x2={ex} y2={ey}
+              stroke="rgba(158,199,58,0.35)"
+              strokeWidth={i % 2 === 0 ? '0.2' : '0.14'}
+              strokeDasharray={i % 2 === 0 ? undefined : '0.5 0.7'}
+            />
+          )
+        })}
+      </svg>
+      {/* Concentric vision rings */}
+      {[20, 14, 8].map((s, i) => (
+        <span
+          key={i}
+          aria-hidden="true"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-accent/40"
+          style={{ width: `${s}rem`, height: `${s}rem` }}
+        />
+      ))}
+      {/* Compass core */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                      w-24 h-24 rounded-full bg-brand-deep/85 backdrop-blur
+                      ring-2 ring-brand-accent grid place-items-center
+                      shadow-[0_12px_30px_-8px_rgba(158,199,58,0.6)]">
+        <Compass size={42} strokeWidth={1.8} className="text-brand-accent animate-spin-slow" />
+      </div>
+    </>
+  )
+}
+
+/* 07 — CLOSING: logo center + radial network exploding outward */
+function SceneClosing() {
+  return (
+    <>
+      {/* Radial network */}
+      <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none"
+           className="absolute inset-0 w-full h-full opacity-55">
+        {Array.from({ length: 24 }).map((_, i) => {
+          const θ = (i / 24) * Math.PI * 2
+          const ex = 50 + Math.cos(θ) * 48
+          const ey = 50 + Math.sin(θ) * 48
+          return (
+            <g key={i}>
+              <line
+                x1="50" y1="50" x2={ex} y2={ey}
+                stroke="rgba(158,199,58,0.30)"
+                strokeWidth="0.14"
+                strokeDasharray="0.6 0.8"
+              />
+              <circle cx={ex} cy={ey} r="0.5" fill="rgba(158,199,58,0.85)" />
+            </g>
+          )
+        })}
+      </svg>
+      {/* Pulsing halo behind logo */}
+      <span
+        aria-hidden="true"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                   w-56 h-56 rounded-full bg-brand-accent/30 blur-3xl animate-pulse"
+      />
+      {/* Logo */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <img
+          src={assets.logo}
+          alt="Yanabiya Group"
+          className="h-24 md:h-36 w-auto object-contain
+                     drop-shadow-[0_8px_36px_rgba(158,199,58,0.6)]"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+        />
+      </div>
+    </>
+  )
+}
+
+/* ─────────── Scene script ─────────── */
+
+const SCENES: Scene[] = [
+  {
+    id: 'opening',
+    eyebrow: 'Scene 01 · Opening',
+    headline: 'Connecting Businesses Across Borders',
+    body: 'A world driven by connection, innovation, and opportunity.',
+    Visual: SceneOpening,
+  },
+  {
+    id: 'about',
+    eyebrow: 'Scene 02 · The Group',
+    headline: 'A dynamic group of companies.',
+    body: 'Building an integrated global business ecosystem across multiple industries.',
+    Visual: SceneAbout,
+  },
+  {
+    id: 'services',
+    eyebrow: 'Scene 03 · Services',
+    headline: 'Complete business solutions.',
+    body: 'International trade · Strategic consulting · Logistics · Investment.',
+    Visual: SceneServices,
+  },
+  {
+    id: 'partners',
+    eyebrow: 'Scene 04 · Trusted Network',
+    headline: 'Trusted by partners worldwide.',
+    body: 'We collaborate with leading organisations to create long-term value.',
+    Visual: ScenePartners,
+  },
+  {
+    id: 'community',
+    eyebrow: 'Scene 05 · Community',
+    headline: 'Growth beyond business.',
+    body: 'Empowering communities and creating sustainable impact.',
+    Visual: SceneCommunity,
+  },
+  {
+    id: 'leadership',
+    eyebrow: 'Scene 06 · Leadership',
+    headline: 'Visionary leadership.',
+    body: 'Turning ideas into global success stories.',
+    Visual: SceneLeadership,
+  },
+  {
+    id: 'closing',
+    eyebrow: 'Scene 07 · Closing',
+    headline: 'Yanabiya Group',
+    body: 'Building the Future, Together.',
+    Visual: SceneClosing,
+  },
+]
+
+/* Stable particle field — drifts behind every scene. */
+const PARTICLES = Array.from({ length: 24 }, (_, i) => ({
+  x: (i * 37 + 11) % 100,
+  y: (i * 23 + 7) % 100,
+  size: (i % 3) + 2,
+  dur: 14 + (i % 7),
+  delay: (i % 9) * 0.7,
+}))
+
+/* ─────────── Component ─────────── */
 
 export default function Hero() {
   const { t } = useTranslation()
+  const [scene, setScene] = useState(0)
+  const [paused, setPaused] = useState(false)
   const [presenceOpen, setPresenceOpen] = useState(false)
+
+  /* Auto-advance scene every SCENE_MS while not paused. */
+  useEffect(() => {
+    if (paused) return
+    const id = window.setInterval(() => {
+      setScene((s) => (s + 1) % SCENES.length)
+    }, SCENE_MS)
+    return () => window.clearInterval(id)
+  }, [paused])
+
+  const active = SCENES[scene]
 
   return (
     <section id="home" className="relative scroll-mt-24">
-      <div className="relative w-full h-[78svh] min-h-[520px] overflow-hidden bg-brand-ink">
+      <div
+        className="relative w-full h-[78svh] min-h-[520px] overflow-hidden bg-brand-ink"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
 
-        {/* ──────── Background gradient stack ──────── */}
+        {/* ──────── Persistent: dark gradient background ──────── */}
         <div
           aria-hidden="true"
           className="absolute inset-0"
@@ -52,130 +536,18 @@ export default function Hero() {
               'radial-gradient(ellipse at 50% 35%, rgba(15,58,35,0.55) 0%, rgba(8,28,18,0.92) 55%, #060f0a 100%)',
           }}
         />
-        {/* Mint accent glow upper-right */}
         <div
           aria-hidden="true"
           className="absolute -top-32 -right-24 w-[640px] h-[640px] rounded-full
                      bg-brand-accent/15 blur-[160px] animate-pulse"
         />
-        {/* Lime accent glow lower-left */}
         <div
           aria-hidden="true"
           className="absolute -bottom-40 -left-24 w-[560px] h-[560px] rounded-full
                      bg-brand-accentDark/10 blur-[160px]"
         />
 
-        {/* ──────── World map — continent outlines + grid ──────── */}
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 100 56"
-          preserveAspectRatio="xMidYMid slice"
-          className="absolute inset-0 w-full h-full opacity-[0.20]"
-        >
-          {/* equator + tropics dashes */}
-          <g stroke="rgba(158,199,58,0.20)" strokeWidth="0.08" strokeDasharray="0.6 0.8" fill="none">
-            <line x1="0" x2="100" y1="34" y2="34" />
-            <line x1="0" x2="100" y1="22" y2="22" />
-            <line x1="0" x2="100" y1="46" y2="46" />
-          </g>
-          {/* Continent silhouettes — soft mint stroke */}
-          <g
-            fill="rgba(158,199,58,0.06)"
-            stroke="rgba(158,199,58,0.32)"
-            strokeWidth="0.14"
-            strokeLinejoin="round"
-          >
-            {/* North America */}
-            <path d="M 6 14 Q 16 9 26 12 L 30 18 Q 32 22 28 26 L 22 30 Q 16 32 12 30 L 8 26 Q 5 20 6 14 Z" />
-            {/* South America */}
-            <path d="M 24 32 L 30 32 L 32 38 L 30 46 L 26 50 L 22 46 L 22 38 Z" />
-            {/* Europe */}
-            <path d="M 44 14 Q 50 12 54 14 L 56 18 Q 54 22 50 22 L 44 22 L 42 18 Z" />
-            {/* Africa */}
-            <path d="M 47 24 L 56 24 L 58 30 L 58 38 L 54 46 L 50 50 L 46 46 L 44 38 L 45 30 Z" />
-            {/* Middle East / Arabian peninsula */}
-            <path d="M 58 26 L 64 26 L 66 32 L 64 36 L 60 36 L 58 32 Z" />
-            {/* Russia / N. Asia */}
-            <path d="M 56 10 Q 70 8 84 10 L 88 14 L 86 18 L 70 18 L 60 16 L 56 14 Z" />
-            {/* China / SE Asia */}
-            <path d="M 70 20 L 82 20 L 84 26 L 80 30 L 74 30 L 72 26 Z" />
-            {/* India / Bangladesh */}
-            <path d="M 70 28 L 76 28 L 78 34 L 74 38 L 71 36 Z" />
-            {/* Australia */}
-            <path d="M 82 40 L 92 40 L 94 46 L 90 48 L 84 46 Z" />
-          </g>
-        </svg>
-
-        {/* ──────── Beam paths — HQ → each branch (mint flow) ──────── */}
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 100 56"
-          preserveAspectRatio="xMidYMid slice"
-          className="absolute inset-0 w-full h-full overflow-visible"
-        >
-          {BRANCHES.map((b, i) => {
-            const sx = HUB.x
-            const sy = HUB.y
-            const ex = b.x
-            const ey = b.y
-            // Arc upward — control point above midpoint
-            const mx = (sx + ex) / 2
-            const my = Math.min(sy, ey) - Math.abs(ex - sx) * 0.18
-            const path = `M ${sx} ${sy} Q ${mx} ${my}, ${ex} ${ey}`
-            return (
-              <g key={b.code}>
-                <path d={path} fill="none" stroke="rgba(158,199,58,0.30)" strokeWidth="0.18" strokeDasharray="0.8 0.8" />
-                <path
-                  d={path}
-                  fill="none"
-                  stroke="rgba(158,199,58,0.95)"
-                  strokeWidth="0.32"
-                  strokeLinecap="round"
-                  className="animate-svg-flow"
-                  style={{ animationDelay: `${i * 0.55}s`, animationDuration: '5s' }}
-                />
-              </g>
-            )
-          })}
-        </svg>
-
-        {/* ──────── Country pins (positioned in % over the map) ──────── */}
-        {PINS.map((p, i) => (
-          <div
-            key={p.code}
-            aria-hidden="true"
-            className="absolute"
-            style={{
-              left: `${p.x}%`,
-              top: `${(p.y / 56) * 100}%`,
-              transform: 'translate(-50%, -50%)',
-            }}
-          >
-            <div className="relative">
-              {/* Halo */}
-              <span
-                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full
-                            ${p.hub ? 'w-12 h-12 bg-brand-accent/45' : 'w-8 h-8 bg-brand-accent/35'}`}
-                style={{ animation: `haloPulse 2.6s ease-in-out ${i * 0.3}s infinite` }}
-              />
-              {/* Pin head */}
-              <span
-                className={`relative block rounded-full ring-2
-                            ${p.hub
-                              ? 'w-3 h-3 bg-brand-accent ring-white/70 shadow-[0_0_12px_rgba(158,199,58,0.9)]'
-                              : 'w-2 h-2 bg-brand-accent ring-white/50 shadow-[0_0_8px_rgba(158,199,58,0.7)]'}`}
-              />
-              {/* Label (subtle) */}
-              <span className="absolute left-1/2 -translate-x-1/2 top-full mt-1.5 whitespace-nowrap
-                               text-[9px] font-bold tracking-[0.22em] uppercase
-                               text-brand-accent/85 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
-                {p.label}
-              </span>
-            </div>
-          </div>
-        ))}
-
-        {/* ──────── Drifting particles ──────── */}
+        {/* ──────── Persistent: drifting particles ──────── */}
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
           {PARTICLES.map((p, i) => (
             <span
@@ -186,7 +558,7 @@ export default function Hero() {
                 top: `${p.y}%`,
                 width: `${p.size}px`,
                 height: `${p.size}px`,
-                opacity: 0.5,
+                opacity: 0.4,
                 animation: `float ${p.dur}s ease-in-out ${p.delay}s infinite`,
                 boxShadow: '0 0 8px rgba(158,199,58,0.6)',
               }}
@@ -194,7 +566,23 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* ──────── Soft vignette for legibility ──────── */}
+        {/* ──────── Scene visuals (stacked, fade in/out) ──────── */}
+        {SCENES.map((s, i) => {
+          const isActive = i === scene
+          const SceneViz = s.Visual
+          return (
+            <div
+              key={s.id}
+              aria-hidden={!isActive}
+              className={`absolute inset-0 transition-opacity duration-700 ease-in-out
+                          ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            >
+              <SceneViz />
+            </div>
+          )
+        })}
+
+        {/* ──────── Vignette (legibility) ──────── */}
         <div
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none"
@@ -204,47 +592,41 @@ export default function Hero() {
           }}
         />
 
-        {/* ──────── Centre content: logo + welcome + CTAs ──────── */}
+        {/* ──────── Centre content (per-scene text + persistent CTAs) ──────── */}
         <div className="relative h-full container-x flex flex-col items-center justify-center text-center">
 
-          {/* Logo with halo glow + scale-in reveal */}
-          <div className="relative mb-6 fade-up" style={{ animationDelay: '60ms' }}>
-            <span
-              aria-hidden="true"
-              className="absolute inset-0 -z-10 rounded-full bg-brand-accent/30 blur-2xl animate-pulse"
-            />
-            <img
-              src={assets.logo}
-              alt="Yanabiya Group"
-              className="h-16 md:h-24 w-auto object-contain
-                         drop-shadow-[0_8px_28px_rgba(158,199,58,0.5)]"
-              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-            />
+          {/* Scene-specific eyebrow + headline + body
+           *  `key={scene}` forces a re-mount so the fade-up replays each cycle. */}
+          <div key={`txt-${scene}`} className="max-w-3xl mx-auto">
+            <div
+              className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.32em] uppercase
+                         text-brand-accent/85 mb-5 fade-up"
+              style={{ animationDelay: '60ms' }}
+            >
+              <Sparkles size={10} className="text-brand-accent" />
+              {active.eyebrow}
+            </div>
+            <h1
+              className="font-serif text-white drop-shadow-lg fade-up
+                         text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight mb-4 md:mb-5
+                         tracking-tight"
+              style={{ animationDelay: '180ms' }}
+            >
+              {active.headline}
+            </h1>
+            <p
+              className="text-white/95 text-base md:text-lg leading-snug mx-auto max-w-2xl
+                         drop-shadow-lg fade-up"
+              style={{ animationDelay: '300ms' }}
+            >
+              {active.body}
+            </p>
           </div>
 
-          {/* Welcome heading */}
-          <h1
-            className="font-serif text-white drop-shadow-lg fade-up
-                       text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight mb-4 md:mb-5
-                       tracking-tight"
-            style={{ animationDelay: '180ms' }}
-          >
-            {t('hero.welcome')}
-          </h1>
-
-          {/* Subtitle */}
-          <p
-            className="text-white/95 text-base md:text-lg leading-snug mx-auto max-w-2xl
-                       drop-shadow-lg fade-up"
-            style={{ animationDelay: '320ms' }}
-          >
-            {t('hero.desc1')}
-          </p>
-
-          {/* CTAs */}
+          {/* Persistent CTAs (visible across all scenes) */}
           <div
             className="mt-9 flex flex-col sm:flex-row gap-4 justify-center items-center fade-up"
-            style={{ animationDelay: '440ms' }}
+            style={{ animationDelay: '500ms' }}
           >
             <button
               type="button"
@@ -261,18 +643,38 @@ export default function Hero() {
               <Handshake size={18} /> {t('hero.cta2')}
             </a>
           </div>
+        </div>
 
-          {/* Live tagline pill */}
-          <div
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-brand-accent/40
-                       bg-brand-deep/40 backdrop-blur-sm px-4 py-1.5 fade-up"
-            style={{ animationDelay: '600ms' }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-            <span className="text-[10px] font-bold tracking-[0.32em] uppercase text-brand-accent">
-              4 countries · 6 sectors · one platform
-            </span>
+        {/* ──────── Bottom-right: scene controls ──────── */}
+        <div className="absolute bottom-5 right-5 md:bottom-6 md:right-6 z-20 flex items-center gap-3">
+          {/* Progress dots — clickable */}
+          <div className="flex items-center gap-1.5 rounded-full bg-brand-deep/60 backdrop-blur px-3 py-1.5
+                          border border-brand-accent/30">
+            {SCENES.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setScene(i)}
+                aria-label={`Scene ${i + 1}`}
+                className={`rounded-full transition-all duration-300
+                            ${i === scene
+                              ? 'w-6 h-1.5 bg-brand-accent'
+                              : 'w-1.5 h-1.5 bg-white/40 hover:bg-brand-accent/70'}`}
+              />
+            ))}
           </div>
+          {/* Pause / play */}
+          <button
+            type="button"
+            onClick={() => setPaused((p) => !p)}
+            aria-label={paused ? 'Play scene cycle' : 'Pause scene cycle'}
+            className="grid place-items-center w-9 h-9 rounded-full
+                       bg-brand-deep/60 backdrop-blur border border-brand-accent/30
+                       text-brand-accent hover:bg-brand-accent hover:text-brand-deep
+                       transition-colors"
+          >
+            {paused ? <Play size={14} strokeWidth={2.4} /> : <Pause size={14} strokeWidth={2.4} />}
+          </button>
         </div>
       </div>
 
