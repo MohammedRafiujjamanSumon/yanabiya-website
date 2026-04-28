@@ -129,17 +129,22 @@ export default function About() {
                    *  the dark seating / floor area of the photo */}
                   <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-black/65 via-black/35 to-transparent" />
 
-                  {/* Stats — vertical stack on the left dark area of the photo */}
-                  <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-3">
+                  {/* Stats — 3 boxed cards stacked vertically on the
+                   *  left dark area of the photo. Each card carries its
+                   *  value (mint, serif) and label (uppercase white) on
+                   *  a glass-dark panel so the trio reads cleanly. */}
+                  <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-2.5">
                     {stats.map((s, i) => (
                       <Reveal key={s.label} delay={120 + i * 110}>
-                        <div className="flex items-baseline gap-2 text-white">
-                          <span className="font-serif text-3xl md:text-4xl text-brand-accent leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]">
+                        <div className="rounded-xl bg-black/45 backdrop-blur-sm border border-white/15
+                                        px-3.5 py-2.5 min-w-[140px] md:min-w-[160px]
+                                        shadow-[0_8px_22px_-8px_rgba(0,0,0,0.55)]">
+                          <div className="font-serif text-2xl md:text-3xl text-brand-accent leading-none">
                             {s.value}
-                          </span>
-                          <span className="text-[9px] md:text-[10px] uppercase tracking-[0.22em] font-semibold text-white/85 leading-tight max-w-[7rem]">
+                          </div>
+                          <div className="mt-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.22em] font-semibold text-white/85 leading-tight">
                             {s.label}
-                          </span>
+                          </div>
                         </div>
                       </Reveal>
                     ))}
