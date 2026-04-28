@@ -111,11 +111,9 @@ export default function About() {
               <div className="relative rounded-2xl overflow-hidden bg-white border border-slate-200
                               shadow-[0_12px_40px_-12px_rgba(15,58,35,0.18)]">
 
-                {/* Real Yanabiya office photo with the wall logo COVERED by
-                 *  the official Yanabiya Group logo. The covering plate sits
-                 *  over the right portion of the photo (where the wall mark
-                 *  is painted) — a brand-deep panel masks the painted
-                 *  "YANABIYA GULF" wordmark, with the real logo on top. */}
+                {/* Real Yanabiya office photo — shown clean, no overlay
+                 *  on the wall logo. Only a thin bottom gradient stays so
+                 *  the caption pill at the foot of the photo reads. */}
                 <div className="relative aspect-[5/3] overflow-hidden bg-slate-900">
                   <img
                     src={assets.office}
@@ -124,44 +122,12 @@ export default function About() {
                     className="absolute inset-0 w-full h-full object-cover"
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
-                  {/* Soft full vignette for legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/35 via-brand-deep/0 to-transparent" />
-
-                  {/* Logo cover plate — sized + positioned to sit over the
-                   *  green wall area on the right of the photo, masking the
-                   *  painted YANABIYA GULF logo underneath. */}
-                  <div
-                    className="absolute"
-                    style={{
-                      left: '38%',
-                      top: '24%',
-                      width: '54%',
-                      height: '46%',
-                    }}
-                  >
-                    {/* Brand-deep mask blending into the wall colour */}
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 rounded-md"
-                      style={{
-                        background:
-                          'radial-gradient(ellipse at center, rgba(15,58,35,0.92) 0%, rgba(15,58,35,0.78) 55%, rgba(15,58,35,0) 100%)',
-                      }}
-                    />
-                    {/* Yanabiya logo on top, centred in the mask */}
-                    <div className="absolute inset-0 grid place-items-center">
-                      <img
-                        src={assets.logo}
-                        alt=""
-                        aria-hidden="true"
-                        className="h-20 md:h-28 w-auto object-contain drop-shadow-[0_4px_18px_rgba(0,0,0,0.55)]"
-                      />
-                    </div>
-                  </div>
+                  {/* Slim bottom-only vignette for the caption */}
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/55 to-transparent" />
 
                   {/* Bottom caption */}
                   <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between
-                                  text-white/85 text-[10px] uppercase tracking-[0.22em]">
+                                  text-white/90 text-[10px] uppercase tracking-[0.22em]">
                     <span>Group Office · Muscat</span>
                     <span className="inline-flex items-center gap-1.5">
                       <span className="block w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
