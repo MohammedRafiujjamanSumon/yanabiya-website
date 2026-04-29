@@ -50,48 +50,148 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* B. COUNTRY SELECTOR — 2x2 premium card grid */}
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
-          {offices.map((o, idx) => {
-            const isActive = o.code === activeCode
-            const isHQ = o.country.role === 'Headquarters'
-            return (
-              <button
-                key={o.code}
-                type="button"
-                onClick={() => setActiveCode(o.code)}
-                style={{ animationDelay: `${120 + idx * 90}ms` }}
-                className={`group relative rounded-2xl border bg-white p-5 text-left
-                            transition-all duration-300 ease-out
-                            focus:outline-none focus:ring-4 focus:ring-brand-accent/20 fade-up
-                            ${isActive
-                              ? 'border-brand-accent bg-[#eef9ee] scale-[1.03] shadow-[0_10px_30px_-10px_rgba(125,164,42,0.45)] ring-2 ring-brand-accent/30'
-                              : 'border-slate-200 hover:-translate-y-1 hover:shadow-lg hover:border-brand-accent/40 ' +
-                                (activeCode ? 'opacity-70 hover:opacity-100' : 'opacity-100')
-                            }`}
+        {/* B. HUB-AND-SPOKES COUNTRY SELECTOR
+         *
+         *  A central "Get in Touch" hub on the left, four country office
+         *  spokes stacked on the right, each connected to the hub by a
+         *  curved SVG line. Click a spoke to load that office's details
+         *  in the panel below. Faded world-map backdrop ties the whole
+         *  thing into the global brand. */}
+        <div className="mt-12 md:mt-14 relative max-w-5xl mx-auto px-2 md:px-6">
+
+          {/* Faded world-map backdrop */}
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 100 56"
+            preserveAspectRatio="xMidYMid slice"
+            className="absolute inset-0 w-full h-full opacity-[0.18] pointer-events-none"
+          >
+            <g
+              fill="rgba(15,58,35,0.10)"
+              stroke="rgba(15,58,35,0.32)"
+              strokeWidth="0.14"
+              strokeLinejoin="round"
+            >
+              <path d="M 6 14 Q 16 9 26 12 L 30 18 Q 32 22 28 26 L 22 30 Q 16 32 12 30 L 8 26 Q 5 20 6 14 Z" />
+              <path d="M 24 32 L 30 32 L 32 38 L 30 46 L 26 50 L 22 46 L 22 38 Z" />
+              <path d="M 44 14 Q 50 12 54 14 L 56 18 Q 54 22 50 22 L 44 22 L 42 18 Z" />
+              <path d="M 47 24 L 56 24 L 58 30 L 58 38 L 54 46 L 50 50 L 46 46 L 44 38 L 45 30 Z" />
+              <path d="M 58 26 L 64 26 L 66 32 L 64 36 L 60 36 L 58 32 Z" />
+              <path d="M 56 10 Q 70 8 84 10 L 88 14 L 86 18 L 70 18 L 60 16 L 56 14 Z" />
+              <path d="M 70 20 L 82 20 L 84 26 L 80 30 L 74 30 L 72 26 Z" />
+              <path d="M 70 28 L 76 28 L 78 34 L 74 38 L 71 36 Z" />
+              <path d="M 82 40 L 92 40 L 94 46 L 90 48 L 84 46 Z" />
+            </g>
+          </svg>
+
+          {/* Connector curves — hub centre → each spoke centre.
+           *  Hub centre roughly at (24, 50). Spokes at x:78, evenly
+           *  spaced at y:18 / 38 / 62 / 82. */}
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            className="absolute inset-0 w-full h-full overflow-visible pointer-events-none"
+          >
+            {[18, 38, 62, 82].map((y, i) => {
+              const sx = 24, sy = 50
+              const ex = 78, ey = y
+              const cx = (sx + ex) / 2
+              const path = `M ${sx} ${sy} C ${cx} ${sy}, ${cx} ${ey}, ${ex} ${ey}`
+              return (
+                <g key={i}>
+                  <path d={path} fill="none" stroke="rgba(15,58,35,0.30)" strokeWidth="0.32" strokeDasharray="0.8 0.8" />
+                  <path
+                    d={path}
+                    fill="none"
+                    stroke="rgba(158,199,58,0.85)"
+                    strokeWidth="0.4"
+                    strokeLinecap="round"
+                    className="animate-svg-flow"
+                    style={{ animationDelay: `${i * 0.45}s`, animationDuration: '5s' }}
+                  />
+                </g>
+              )
+            })}
+          </svg>
+
+          {/* Two-column layout */}
+          <div className="relative grid grid-cols-12 gap-4 md:gap-6 items-center min-h-[420px] md:min-h-[480px]">
+
+            {/* LEFT — central "Get in Touch" hub */}
+            <div className="col-span-12 md:col-span-5 grid place-items-center">
+              <div
+                className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full
+                           bg-white border-4 border-brand-accent text-center
+                           grid place-items-center
+                           shadow-[0_18px_44px_-14px_rgba(125,164,42,0.45)]"
               >
-                {isHQ && (
-                  <span className="absolute top-3 right-3 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-brand-accent text-white shadow">
-                    HQ
-                  </span>
-                )}
-                <div className="flex items-center gap-4">
-                  <div className={`w-14 h-14 rounded-2xl bg-white grid place-items-center text-3xl shadow ring-2 transition-all
-                                   ${isActive ? 'ring-brand-accent' : 'ring-white group-hover:ring-brand-accent/40'}`}>
-                    {o.country.flag}
+                {/* Soft mint halo */}
+                <span
+                  aria-hidden="true"
+                  className="absolute -inset-3 rounded-full bg-brand-accent/20 blur-2xl animate-pulse pointer-events-none"
+                />
+                <div className="relative px-6">
+                  <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark mb-2">
+                    Hub
                   </div>
-                  <div className="min-w-0">
-                    <div className="font-serif font-semibold text-slate-900 text-lg leading-tight">
-                      {o.country.name}
-                    </div>
-                    <div className={`text-[11px] uppercase tracking-wider mt-1 font-medium ${isActive ? 'text-brand-accentDark' : 'text-slate-500'}`}>
-                      {o.country.role}
-                    </div>
+                  <div className="font-serif text-xl md:text-2xl text-brand-deep leading-tight">
+                    Get in Touch
+                  </div>
+                  <div className="mt-2 text-[11px] text-slate-600 leading-snug">
+                    Pick an office to view contact details.
                   </div>
                 </div>
-              </button>
-            )
-          })}
+              </div>
+            </div>
+
+            {/* RIGHT — 4 country spokes stacked vertically */}
+            <div className="col-span-12 md:col-span-7 flex flex-col gap-3 md:gap-4">
+              {offices.map((o) => {
+                const isActive = o.code === activeCode
+                const isHQ = o.country.role === 'Headquarters'
+                return (
+                  <button
+                    key={o.code}
+                    type="button"
+                    onClick={() => setActiveCode(o.code)}
+                    className={`group relative flex items-center gap-3 md:gap-4 text-left
+                                rounded-full pl-1 pr-4 py-1
+                                bg-white border-2 transition-all duration-300
+                                focus:outline-none focus:ring-4 focus:ring-brand-accent/25
+                                ${isActive
+                                  ? 'border-brand-accent shadow-[0_12px_28px_-10px_rgba(125,164,42,0.55)] scale-[1.02]'
+                                  : 'border-slate-200 hover:border-brand-accent/50 hover:-translate-y-0.5 hover:shadow-md'}`}
+                  >
+                    {/* Round flag medallion */}
+                    <span
+                      className={`shrink-0 grid place-items-center w-14 h-14 md:w-16 md:h-16 rounded-full text-3xl
+                                  bg-white ring-4 transition-all duration-300
+                                  ${isActive ? 'ring-brand-accent' : 'ring-slate-100 group-hover:ring-brand-accent/50'}`}
+                    >
+                      {o.country.flag}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <div className="font-serif text-base md:text-lg text-brand-deep leading-tight font-semibold">
+                          {o.country.name}
+                        </div>
+                        {isHQ && (
+                          <span className="text-[8px] font-bold uppercase tracking-[0.22em] px-1.5 py-0.5 rounded-full bg-brand-accent text-white">
+                            HQ
+                          </span>
+                        )}
+                      </div>
+                      <div className={`text-[10px] uppercase tracking-[0.22em] mt-0.5 font-semibold
+                                       ${isActive ? 'text-brand-accentDark' : 'text-slate-500'}`}>
+                        {o.country.role}
+                      </div>
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
         </div>
 
         {/* C. DETAILS PANEL — animated reveal on country change */}
