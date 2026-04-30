@@ -49,7 +49,7 @@ export default function NetworkSection() {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <Eyebrow>{t('network.eyebrow')}</Eyebrow>
           <H2 className="text-center">{t('network.title')}</H2>
-          <p className="mt-5 text-slate-600">
+          <p className="mt-4 max-w-2xl mx-auto text-sm md:text-base text-slate-600 leading-snug text-justify [text-align-last:center]">
             {t('network.sub')}
             {' '}
             <button

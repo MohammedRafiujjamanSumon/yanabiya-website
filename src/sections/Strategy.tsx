@@ -21,7 +21,7 @@ export default function Strategy() {
         <div className="max-w-3xl mb-14">
           <Eyebrow>{t('strategy.eyebrow')}</Eyebrow>
           <H2>{t('strategy.title')}</H2>
-          <p className="mt-5 text-slate-600">{t('strategy.sub')}</p>
+          <p className="mt-4 max-w-2xl text-sm md:text-base text-slate-600 leading-snug text-justify">{t('strategy.sub')}</p>
         </div>
 
         {/* Numbered timeline pillars */}

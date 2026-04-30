@@ -24,7 +24,7 @@ export default function CSR() {
         <div className="text-center max-w-3xl mx-auto mb-10">
           <Eyebrow>{t('csr.eyebrow')}</Eyebrow>
           <H2 className="text-center">{t('csr.title')}</H2>
-          <p className="mt-5 text-slate-600 leading-snug">{t('csr.sub')}</p>
+          <p className="mt-4 max-w-2xl mx-auto text-sm md:text-base text-slate-600 leading-snug text-justify [text-align-last:center]">{t('csr.sub')}</p>
         </div>
 
         <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-14">

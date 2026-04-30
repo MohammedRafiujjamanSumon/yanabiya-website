@@ -68,7 +68,7 @@ export default function Partnerships() {
       <div className="container-x text-center mx-auto pt-2 md:pt-3 pb-4 md:pb-6 mb-10">
         <Eyebrow>Trusted Network</Eyebrow>
         <H2 className="text-center">Connecting opportunities worldwide.</H2>
-        <p className="mt-4 text-slate-600">
+        <p className="mt-4 max-w-2xl mx-auto text-sm md:text-base text-slate-600 leading-snug text-justify [text-align-last:center]">
           Building strong, scalable global businesses.
         </p>
       </div>

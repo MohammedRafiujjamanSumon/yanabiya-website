@@ -116,10 +116,7 @@ export default function Community() {
                              after:h-[3px] after:bg-brand-accent after:rounded-full
                              after:scale-x-0 after:origin-center after:transition-transform after:duration-300
                              hover:after:scale-x-100 focus-within:after:scale-x-100 active:after:scale-x-100">
-                Driven by Purpose,{' '}
-                <span className="italic text-brand-accentDark">
-                  Across Our Community
-                </span>
+                Driven by Purpose.
               </h2>
             </Reveal>
           </div>
