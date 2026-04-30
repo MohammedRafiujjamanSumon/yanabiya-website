@@ -135,11 +135,11 @@ export default function Navbar() {
     }`
 
   return (
-    <header className="sticky top-0 z-40 bg-brand-deep pt-2 pb-2">
+    <header className="sticky top-0 z-40 bg-brand-deep pt-2.5 pb-2.5">
       {/* Three-layer sandwich:
-       *    pt-2  → top green strip   (header bg, full viewport width)
-       *    inner → black bar full edge-to-edge with the navigation
-       *    pb-2  → bottom green strip
+       *    pt-2.5 → top green strip   (header bg, full viewport width)
+       *    inner  → narrow black bar full edge-to-edge with the navigation
+       *    pb-2.5 → bottom green strip
        */}
       <div className="bg-black">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
@@ -149,7 +149,7 @@ export default function Navbar() {
           <img
             src={assets.logo}
             alt="Yanabiya Group"
-            className="h-14 md:h-16 w-auto object-contain
+            className="h-11 md:h-12 w-auto object-contain
                        drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]
                        group-hover:opacity-95 transition"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -159,7 +159,7 @@ export default function Navbar() {
         {/* RIGHT — same black bg as the inner bar so logo + nav cluster
          *  read as one black band sandwiched between two green strips. */}
       <div
-        className={`flex flex-1 items-center gap-4 h-14 lg:h-14 ps-4 pe-5 lg:pe-8
+        className={`flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8
                     bg-black transition-shadow duration-200 ${
           scrolled ? 'shadow-md shadow-slate-900/10'
                    : 'shadow-sm shadow-slate-900/5'

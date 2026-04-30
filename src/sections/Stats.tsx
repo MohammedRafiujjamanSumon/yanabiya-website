@@ -1,6 +1,5 @@
 import { Globe2, Layers, Calendar, Users } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import Section from '../components/Section'
 import { company } from '../data/company'
 import { useReveal } from '../hooks/useReveal'
 
@@ -43,17 +42,15 @@ function Reveal({
  * a continuation of the logo rather than another generic white card. */
 export default function Stats() {
   return (
-    <Section id="stats" className="bg-[#fbfdfb]">
-      <div className="container-x py-2 md:py-3">
-        <div
-          className="relative max-w-md mx-auto rounded-2xl overflow-hidden
-                     bg-black
-                     ring-1 ring-white/10
-                     shadow-[0_12px_26px_-14px_rgba(0,0,0,0.55)]
-                     px-3 py-3 md:px-4 md:py-4"
-        >
-
-          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 [perspective:1400px]">
+    <section id="stats" className="bg-brand-deep pt-2.5 pb-2.5">
+      {/* Same green-black-green sandwich as the navbar:
+       *    pt-2.5 → top green strip (full viewport width)
+       *    inner  → black bar full edge-to-edge with the four stats
+       *    pb-2.5 → bottom green strip
+       */}
+      <div className="bg-black">
+        <div className="container-x px-2 md:px-4 py-2 md:py-2.5">
+          <div className="grid grid-cols-4 gap-3 md:gap-4 [perspective:1400px]">
             {company.stats.map((s, i) => {
               const Icon = STAT_ICONS[s.label] ?? Globe2
               return (
@@ -63,31 +60,27 @@ export default function Stats() {
                     style={{ animationDelay: `${i * 0.9}s` }}
                   >
                     <div
-                      className="relative h-full flex flex-col items-center text-center px-1.5 py-2
+                      className="relative h-full flex items-center justify-center gap-2 md:gap-3
                                  [transform-style:preserve-3d]
                                  transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                                  group-hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.03)]"
                     >
                       <div
-                        className="w-8 h-8 rounded-full bg-white/10 text-white
-                                   grid place-items-center mb-1
+                        className="shrink-0 w-7 h-7 rounded-full bg-white/10 text-white
+                                   grid place-items-center
                                    ring-1 ring-white/15 backdrop-blur-sm
                                    [transform:translateZ(18px)]"
                       >
-                        <Icon size={13} strokeWidth={2} />
+                        <Icon size={12} strokeWidth={2} />
                       </div>
-                      <div
-                        className="font-serif text-xl md:text-2xl text-white leading-none
-                                   [transform:translateZ(12px)]"
-                      >
-                        {s.value}
-                      </div>
-                      <div
-                        className="mt-0.5 text-[9px] md:text-[10px] uppercase tracking-[0.22em]
-                                   font-semibold text-white
-                                   [transform:translateZ(6px)]"
-                      >
-                        {s.label}
+                      <div className="flex flex-col items-start [transform:translateZ(10px)]">
+                        <span className="font-serif text-base md:text-lg text-white leading-none">
+                          {s.value}
+                        </span>
+                        <span className="mt-0.5 text-[8px] md:text-[9px] uppercase tracking-[0.22em]
+                                         font-semibold text-white/90 leading-tight">
+                          {s.label}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -97,6 +90,6 @@ export default function Stats() {
           </div>
         </div>
       </div>
-    </Section>
+    </section>
   )
 }
