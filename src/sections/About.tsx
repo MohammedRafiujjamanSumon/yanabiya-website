@@ -175,18 +175,19 @@ export default function About() {
           <div
             aria-hidden
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-                       w-[55%] max-w-[420px] aspect-square pointer-events-none animate-float-3d
+                       w-[62%] max-w-[480px] aspect-square pointer-events-none animate-float-3d
                        [perspective:1200px]"
           >
             {/* Outer glow halo */}
             <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-[80px]" />
             <div className="absolute inset-[10%] rounded-full bg-amber-300/15 blur-[60px]" />
 
-            {/* Logo with depth shadow */}
+            {/* Logo with depth shadow — slightly transparent so the
+             *  ghost YANABIYA wordmark behind it can still read through. */}
             <img
               src={assets.logo}
               alt=""
-              className="relative w-full h-full object-contain
+              className="relative w-full h-full object-contain opacity-80
                          drop-shadow-[0_30px_60px_rgba(252,211,77,0.25)]
                          drop-shadow-[0_12px_24px_rgba(15,58,35,0.35)]"
               style={{

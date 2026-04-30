@@ -46,17 +46,12 @@ export default function Stats() {
     <Section id="stats" className="bg-[#fbfdfb]">
       <div className="container-x py-2 md:py-3">
         <div
-          className="relative max-w-2xl mx-auto rounded-2xl overflow-hidden
-                     bg-gradient-to-br from-[#fdf6e7] via-[#fbf5e3] to-[#f7ecd0]
-                     ring-1 ring-amber-200/50
-                     shadow-[0_12px_28px_-14px_rgba(176,128,38,0.22)]
-                     px-3 py-4 md:px-5 md:py-5"
+          className="relative max-w-md mx-auto rounded-2xl overflow-hidden
+                     bg-black
+                     ring-1 ring-white/10
+                     shadow-[0_12px_26px_-14px_rgba(0,0,0,0.55)]
+                     px-3 py-3 md:px-4 md:py-4"
         >
-          {/* Warm champagne halos so the strip reads as lit, not flat. */}
-          <div aria-hidden className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-20 -left-20 w-[280px] h-[280px] rounded-full bg-amber-200/35 blur-[100px]" />
-            <div className="absolute -bottom-20 -right-20 w-[280px] h-[280px] rounded-full bg-emerald-200/25 blur-[100px]" />
-          </div>
 
           <div className="relative grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 [perspective:1400px]">
             {company.stats.map((s, i) => {
@@ -74,23 +69,22 @@ export default function Stats() {
                                  group-hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.03)]"
                     >
                       <div
-                        className="w-8 h-8 rounded-full bg-amber-100 text-amber-800
+                        className="w-8 h-8 rounded-full bg-white/10 text-white
                                    grid place-items-center mb-1
-                                   shadow-[0_3px_8px_-3px_rgba(176,128,38,0.30)]
-                                   ring-1 ring-amber-300/60
+                                   ring-1 ring-white/15 backdrop-blur-sm
                                    [transform:translateZ(18px)]"
                       >
                         <Icon size={13} strokeWidth={2} />
                       </div>
                       <div
-                        className="font-serif text-xl md:text-2xl text-brand-deep leading-none
+                        className="font-serif text-xl md:text-2xl text-white leading-none
                                    [transform:translateZ(12px)]"
                       >
                         {s.value}
                       </div>
                       <div
                         className="mt-0.5 text-[9px] md:text-[10px] uppercase tracking-[0.22em]
-                                   font-semibold text-amber-800/90
+                                   font-semibold text-white
                                    [transform:translateZ(6px)]"
                       >
                         {s.label}
