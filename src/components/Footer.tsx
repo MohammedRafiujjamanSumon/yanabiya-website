@@ -236,22 +236,27 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* BOTTOM BAR — copyright + legal */}
-      <div className="relative border-t border-white/10 bg-black/15">
-        <div className="container-x py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/60">
-          <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
-            <span>
-              © {year} Yanabiya Group · Since 2021 · All rights reserved.
-            </span>
-          </div>
-          <div className="flex items-center gap-5">
-            <Link to="/about-us" className={linkClass}>Group Profile</Link>
-            <a
-              href={`mailto:${contact.emails[0]}`}
-              className={linkClass}
-            >
-              {contact.emails[0]}
-            </a>
+      {/* BOTTOM BAR — green-black-green sandwich, same format as the
+       *  navbar at the top of the page. Green strips above + below
+       *  (from the section pt/pb), black bar edge-to-edge in the
+       *  middle, content centred in the standard container. */}
+      <div className="bg-brand-deep pt-2 pb-2 border-t border-white/10">
+        <div className="bg-black">
+          <div className="container-x py-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/70">
+            <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
+              <span>
+                © {year} Yanabiya Group · Since 2021 · All rights reserved.
+              </span>
+            </div>
+            <div className="flex items-center gap-5">
+              <Link to="/about-us" className={linkClass}>Group Profile</Link>
+              <a
+                href={`mailto:${contact.emails[0]}`}
+                className={linkClass}
+              >
+                {contact.emails[0]}
+              </a>
+            </div>
           </div>
         </div>
       </div>
