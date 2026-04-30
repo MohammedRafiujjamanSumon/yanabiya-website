@@ -127,12 +127,14 @@ export default function Global() {
               </div>
             </div>
 
-            {/* COUNTRY NODES — silhouette cards plotted around the orbit at
-             *  N / E / S / W like four regions drawn on a globe. Each card
-             *  shows the country shape (glowing brand-accent gradient) +
-             *  flag + name and links through to the country detail page. */}
+            {/* COUNTRY NODES — flag-filled country silhouettes plotted at
+             *  N / E / S / W. The card itself is transparent: only the
+             *  silhouette (filled with that country's real flag via CSS
+             *  mask) sits on the orbit. Tapping any country still
+             *  navigates to its detail page. */}
             {COUNTRY_NODES.map((d, i) => {
               const mapUrl = `${MAP_BASE}${d.code.toLowerCase()}.svg`
+              const flagUrl = `${MAP_BASE}flags/${d.code.toLowerCase()}.svg`
               return (
                 <Link
                   key={d.code}
@@ -142,59 +144,36 @@ export default function Global() {
                   className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20"
                   style={{ top: d.top, left: d.left }}
                 >
-                  <div className="relative flex flex-col items-center gap-1.5 px-3 pt-3 pb-2
-                                  w-[110px] md:w-[120px]
-                                  rounded-2xl bg-white ring-2 ring-brand-accent/60 shadow-md
-                                  transition-all duration-300
-                                  group-hover:-translate-y-0.5 group-hover:ring-brand-accent
-                                  group-hover:shadow-[0_0_24px_rgba(158,199,58,0.7)]">
-                    {/* Pulsing halo behind the silhouette */}
+                  <div className="relative grid place-items-center w-24 h-24 md:w-28 md:h-28">
+                    {/* Pulsing halo */}
                     <span
                       aria-hidden="true"
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%]
-                                 w-14 h-14 rounded-full bg-brand-accent/40 pointer-events-none -z-10"
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                                 w-full h-full rounded-full bg-brand-accent/30
+                                 pointer-events-none -z-10"
                       style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
                     />
 
-                    {/* Country silhouette */}
-                    <div className="relative w-12 h-12 md:w-14 md:h-14">
-                      <div
-                        aria-hidden="true"
-                        className="absolute inset-0 opacity-70 group-hover:opacity-100
-                                   transition-opacity duration-300 pointer-events-none"
-                        style={{
-                          background:
-                            'radial-gradient(ellipse at center, rgba(158,199,58,0.55) 0%, transparent 70%)',
-                          filter: 'blur(10px)',
-                        }}
-                      />
-                      <div
-                        className="relative w-full h-full transition-transform duration-300
-                                   group-hover:scale-110"
-                        style={{
-                          WebkitMaskImage: `url(${mapUrl})`,
-                          maskImage: `url(${mapUrl})`,
-                          WebkitMaskSize: 'contain',
-                          maskSize: 'contain',
-                          WebkitMaskRepeat: 'no-repeat',
-                          maskRepeat: 'no-repeat',
-                          WebkitMaskPosition: 'center',
-                          maskPosition: 'center',
-                          backgroundImage:
-                            'linear-gradient(135deg, #b8d75a 0%, #9ec73a 50%, #6f9526 100%)',
-                          filter:
-                            'drop-shadow(0 0 8px rgba(158,199,58,0.7)) drop-shadow(0 0 2px rgba(158,199,58,0.5))',
-                        }}
-                      />
-                    </div>
-
-                    {/* Flag + name */}
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-base leading-none">{d.flag}</span>
-                      <span className="text-[11px] md:text-xs font-semibold text-brand-deep leading-tight">
-                        {d.name}
-                      </span>
-                    </div>
+                    {/* Country silhouette filled with the real flag (mask) */}
+                    <div
+                      className="relative w-full h-full transition-transform duration-300
+                                 group-hover:scale-110"
+                      style={{
+                        WebkitMaskImage: `url(${mapUrl})`,
+                        maskImage: `url(${mapUrl})`,
+                        WebkitMaskSize: 'contain',
+                        maskSize: 'contain',
+                        WebkitMaskRepeat: 'no-repeat',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskPosition: 'center',
+                        maskPosition: 'center',
+                        backgroundImage: `url(${flagUrl})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        filter:
+                          'drop-shadow(0 4px 12px rgba(15,58,35,0.35)) drop-shadow(0 0 8px rgba(158,199,58,0.5))',
+                      }}
+                    />
                   </div>
                 </Link>
               )
