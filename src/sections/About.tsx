@@ -54,7 +54,7 @@ export default function About() {
     <Section
       id="about"
       className="relative overflow-hidden
-                 bg-gradient-to-br from-[#13241b] via-[#162e21] to-[#0e1c14]"
+                 bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]"
     >
       <div className="container-x py-4 md:py-6">
 
@@ -66,14 +66,11 @@ export default function About() {
           </Reveal>
         </div>
 
-        {/* Dark forest-green hero card. Section bg sits a few shades
-         *  lighter than the card, so the boundary softens into one
-         *  cohesive dark area instead of a hard "card on page" split.
-         *  Ring + shadow are minimised so the edge no longer pops. */}
+        {/* Card chrome fully removed — section bg owns the colour, the
+         *  inner div is just a content container with padding. No bg,
+         *  no rounded corners, no ring, no shadow → no visible card. */}
         <div
-          className="relative rounded-3xl overflow-hidden
-                     bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]
-                     px-5 py-10 md:px-12 md:py-14
+          className="relative px-1 py-4 md:px-6 md:py-6
                      min-h-[520px] md:min-h-[600px]"
         >
 
