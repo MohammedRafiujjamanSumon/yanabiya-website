@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Send, ArrowRight, ArrowLeft } from 'lucide-react'
 import Section from '../components/Section'
+import PageHero from '../components/PageHero'
 import { businesses, type SubService } from '../data/businesses'
 
 export default function SubServiceDetail() {
@@ -36,7 +37,20 @@ export default function SubServiceDetail() {
   const others = subs.filter((s) => s.slug !== sub.slug).slice(0, 6)
 
   return (
-    <Section id="sub-service-detail" className="bg-brand-ink">
+    <>
+      <PageHero
+        eyebrow={business.title}
+        title={sub.title}
+        subtitle={sub.body}
+        cta={{ label: 'Back to', sublabel: business.title, to: `/business/${business.slug}` }}
+        rightCaption={{
+          caption: <>Built for{<br />}global delivery</>,
+          body: 'Engineered, executed and supported by Yanabiya teams across four continents.',
+          cta: { label: 'About Us', to: '/#about' },
+        }}
+      />
+
+      <Section id="sub-service-detail" className="bg-brand-ink">
       <div className="container-x">
         {/* Breadcrumb + prev/next */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-6 border-b border-white/10">
@@ -182,6 +196,7 @@ export default function SubServiceDetail() {
         </div>
       </div>
     </Section>
+    </>
   )
 }
 

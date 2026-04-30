@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { CheckCircle2, Send, ArrowRight, ArrowLeft } from 'lucide-react'
 import Section from '../components/Section'
+import PageHero from '../components/PageHero'
 import { businesses, type SubService } from '../data/businesses'
 import { countries as countryList } from '../data/countries'
 
@@ -33,7 +34,23 @@ export default function BusinessDetail() {
     currentIndex < businesses.length - 1 ? businesses[currentIndex + 1] : null
 
   return (
-    <Section id="business-detail" className="bg-brand-ink">
+    <>
+      {/* Shared brand hero — same dark forest-green / 3D-logo language
+       *  as the home About section. Title comes from the business data
+       *  so each service page reads as a chapter of the same brand. */}
+      <PageHero
+        eyebrow="Our Service"
+        title={business.title}
+        subtitle={business.body}
+        cta={{ label: 'Back to', sublabel: 'Service List', to: '/#businesses' }}
+        rightCaption={{
+          caption: <>Engineered for{<br />}long-term growth</>,
+          body: 'Built on integrity, professionalism, and a long-term vision across four continents.',
+          cta: { label: 'About Us', to: '/#about' },
+        }}
+      />
+
+      <Section id="business-detail" className="bg-brand-ink">
       <div className="container-x">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-6 border-b border-white/10">
           <Link
@@ -158,6 +175,7 @@ export default function BusinessDetail() {
         </div>
       </div>
     </Section>
+    </>
   )
 }
 
