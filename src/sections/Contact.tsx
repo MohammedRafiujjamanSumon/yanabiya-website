@@ -84,18 +84,19 @@ export default function Contact() {
             </g>
           </svg>
 
-          {/* Connector curves — hub centre → each spoke centre.
-           *  Hub centre roughly at (24, 50). Spokes at x:78, evenly
-           *  spaced at y:18 / 38 / 62 / 82. */}
+          {/* Connector curves — hub right edge → each spoke circle's
+           *  left edge. Hub centre at (24,50) with radius ~16% so right
+           *  edge is at x:40. Spoke circles sit at x:50 (left edge of
+           *  the col-span-7 column), evenly spaced at y:14 / 38 / 62 / 86. */}
           <svg
             aria-hidden="true"
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
             className="absolute inset-0 w-full h-full overflow-visible pointer-events-none"
           >
-            {[18, 38, 62, 82].map((y, i) => {
-              const sx = 24, sy = 50
-              const ex = 78, ey = y
+            {[14, 38, 62, 86].map((y, i) => {
+              const sx = 40, sy = 50
+              const ex = 50, ey = y
               const cx = (sx + ex) / 2
               const path = `M ${sx} ${sy} C ${cx} ${sy}, ${cx} ${ey}, ${ex} ${ey}`
               return (
@@ -104,12 +105,14 @@ export default function Contact() {
                   <path
                     d={path}
                     fill="none"
-                    stroke="rgba(158,199,58,0.85)"
-                    strokeWidth="0.4"
+                    stroke="rgba(158,199,58,0.95)"
+                    strokeWidth="0.45"
                     strokeLinecap="round"
                     className="animate-svg-flow"
                     style={{ animationDelay: `${i * 0.45}s`, animationDuration: '5s' }}
                   />
+                  {/* Tiny accent dot where the line meets the spoke */}
+                  <circle cx={ex} cy={ey} r="0.7" fill="rgba(158,199,58,0.95)" />
                 </g>
               )
             })}
@@ -145,35 +148,52 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* RIGHT — 4 country spokes stacked vertically */}
-            <div className="col-span-12 md:col-span-7 flex flex-col gap-3 md:gap-4">
-              {offices.map((o) => {
+            {/* RIGHT — 4 country spokes: round circle + text BESIDE it,
+             *  matching the reference's "circle node + caption beside"
+             *  composition. Each spoke colour-cycles so they read as
+             *  distinct nodes on the connector tree. */}
+            <div className="col-span-12 md:col-span-7 flex flex-col gap-5 md:gap-7">
+              {offices.map((o, idx) => {
                 const isActive = o.code === activeCode
                 const isHQ = o.country.role === 'Headquarters'
+                const palette = [
+                  { ring: 'ring-amber-400',   ringActive: 'ring-amber-500',   text: 'text-amber-600'   },
+                  { ring: 'ring-rose-400',    ringActive: 'ring-rose-500',    text: 'text-rose-600'    },
+                  { ring: 'ring-sky-400',     ringActive: 'ring-sky-500',     text: 'text-sky-600'     },
+                  { ring: 'ring-violet-400',  ringActive: 'ring-violet-500',  text: 'text-violet-600'  },
+                ][idx % 4]
                 return (
                   <button
                     key={o.code}
                     type="button"
                     onClick={() => setActiveCode(o.code)}
-                    className={`group relative flex items-center gap-3 md:gap-4 text-left
-                                rounded-full pl-1 pr-4 py-1
-                                bg-white border-2 transition-all duration-300
-                                focus:outline-none focus:ring-4 focus:ring-brand-accent/25
-                                ${isActive
-                                  ? 'border-brand-accent shadow-[0_12px_28px_-10px_rgba(125,164,42,0.55)] scale-[1.02]'
-                                  : 'border-slate-200 hover:border-brand-accent/50 hover:-translate-y-0.5 hover:shadow-md'}`}
+                    className="group relative flex items-center gap-4 md:gap-5 text-left
+                               focus:outline-none rounded-2xl
+                               focus:ring-4 focus:ring-brand-accent/25"
                   >
-                    {/* Round flag medallion */}
+                    {/* Round flag node (circle) */}
                     <span
-                      className={`shrink-0 grid place-items-center w-14 h-14 md:w-16 md:h-16 rounded-full text-3xl
-                                  bg-white ring-4 transition-all duration-300
-                                  ${isActive ? 'ring-brand-accent' : 'ring-slate-100 group-hover:ring-brand-accent/50'}`}
+                      className={`relative shrink-0 grid place-items-center w-16 h-16 md:w-20 md:h-20 rounded-full text-3xl md:text-4xl
+                                  bg-white ring-[3px] transition-all duration-300
+                                  shadow-[0_8px_22px_-8px_rgba(15,58,35,0.30)]
+                                  ${isActive
+                                    ? `${palette.ringActive} scale-110 shadow-[0_12px_28px_-8px_rgba(125,164,42,0.55)]`
+                                    : `${palette.ring} group-hover:scale-105 group-hover:shadow-[0_14px_30px_-10px_rgba(125,164,42,0.40)]`}`}
                     >
                       {o.country.flag}
+                      {isActive && (
+                        <span
+                          aria-hidden="true"
+                          className={`absolute -inset-1 rounded-full ${palette.ringActive.replace('ring-', 'bg-')}/25 blur-md animate-pulse pointer-events-none -z-10`}
+                        />
+                      )}
                     </span>
+
+                    {/* Caption beside the circle */}
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
-                        <div className="font-serif text-base md:text-lg text-brand-deep leading-tight font-semibold">
+                        <div className={`font-serif text-base md:text-lg leading-tight font-semibold transition-colors
+                                         ${isActive ? palette.text : 'text-brand-deep'}`}>
                           {o.country.name}
                         </div>
                         {isHQ && (
@@ -185,6 +205,9 @@ export default function Contact() {
                       <div className={`text-[10px] uppercase tracking-[0.22em] mt-0.5 font-semibold
                                        ${isActive ? 'text-brand-accentDark' : 'text-slate-500'}`}>
                         {o.country.role}
+                      </div>
+                      <div className="text-[12px] text-slate-600 leading-snug mt-1.5 max-w-md">
+                        {o.legalName}
                       </div>
                     </div>
                   </button>
