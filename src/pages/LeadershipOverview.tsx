@@ -38,8 +38,8 @@ const BOARD: Person[] = [
 ]
 
 const FOUNDERS: Person[] = [
-  { name: 'Mohammed Rafiujjaman Sumon', role: 'Group CEO & Co-Founder',  image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80' },
-  { name: 'Ahmed Al-Yanabi',            role: 'Co-Founder & Chairman',   image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80' },
+  { name: 'Mohammed Rafiujjaman Sumon', role: 'Global CEO',     image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80' },
+  { name: 'Ahmed Al-Yanabi',            role: 'Vice Chairman',  image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80' },
 ]
 
 const EXECS: Person[] = [
@@ -160,7 +160,7 @@ export default function LeadershipOverview() {
           <TierHeader
             icon={Star}
             kicker="Tier 02"
-            title="Global CEO & Co-Founders"
+            title="Global CEO & Vice Chairman"
             subtitle="The vision-bearers behind the group — driving strategy across every market."
           />
           <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 justify-items-center">

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Crown, Star, Briefcase, Cpu, Globe2, type LucideIcon } from 'lucide-react'
+import { ArrowRight, Crown, Star, Briefcase, Globe2, type LucideIcon } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 
@@ -54,7 +54,7 @@ const TIERS: Tier[] = [
   },
   {
     step: '02',
-    title: 'Global CEO & Co-Founders',
+    title: 'Global CEO & Vice Chairman',
     blurb: 'The vision-bearers of the group.',
     icon: Star,
     href: '/leadership',
@@ -72,15 +72,6 @@ const TIERS: Tier[] = [
   },
   {
     step: '04',
-    title: 'High-Skill Execution Engine',
-    blurb: 'Engineers, operators, specialists.',
-    icon: Cpu,
-    href: '/leadership/execution-engine',
-    from: '#fde68a', to: '#d97706',
-    glow: 'rgba(217,119,6,0.35)',
-  },
-  {
-    step: '05',
     title: 'Country-Based Management',
     blurb: 'Local heads across four markets.',
     icon: Globe2,
@@ -119,7 +110,7 @@ export default function Leadership() {
         {/* FIVE HIERARCHICAL TIER CARDS — minimal: step + icon + title.
          *  Names/photos live on the dedicated detail pages. */}
         <div className="relative max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {TIERS.map((t, i) => (
               <Reveal key={t.step} delay={i * 90} className="w-full">
                 <Link
