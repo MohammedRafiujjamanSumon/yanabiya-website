@@ -109,21 +109,18 @@ export default function Community() {
               <Eyebrow>Community</Eyebrow>
             </Reveal>
             <Reveal delay={120}>
-              <h2 className="mt-3 font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
-                             leading-[1.15] tracking-tight text-brand-deep
-                             transition-colors duration-300
-                             hover:text-brand-accentDark focus-within:text-brand-accentDark
-                             active:text-brand-accentDark cursor-default">
-                Driven by Purpose
+              <h2 className="group relative inline-block mt-3 font-serif
+                             text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
+                             leading-[1.15] tracking-tight text-brand-deep cursor-default
+                             after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-2
+                             after:h-[3px] after:bg-brand-accent after:rounded-full
+                             after:scale-x-0 after:origin-center after:transition-transform after:duration-300
+                             hover:after:scale-x-100 focus-within:after:scale-x-100 active:after:scale-x-100">
+                Driven by Purpose,{' '}
+                <span className="italic text-brand-accentDark">
+                  Across Our Community
+                </span>
               </h2>
-              <div className="my-3 mx-auto h-px w-40 sm:w-56 md:w-72 bg-slate-300" />
-              <h3 className="font-serif italic text-xl sm:text-2xl md:text-3xl lg:text-[34px]
-                             leading-[1.15] tracking-tight text-brand-accentDark
-                             transition-colors duration-300
-                             hover:text-brand-accent focus-within:text-brand-accent
-                             active:text-brand-accent cursor-default">
-                Across Our Community
-              </h3>
             </Reveal>
           </div>
         </div>

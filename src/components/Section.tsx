@@ -32,12 +32,20 @@ export function Eyebrow({ children, tone = 'dark' }: { children: ReactNode; tone
 
 export function H2({ children, className = '' }: { children: ReactNode; className?: string }) {
   // Standard section heading scale used across the home flow.
-  // Mobile → desktop: 24 / 30 / 36 / 42 px. Keep all `<H2>` consumers
-  // on this scale unless a section needs a deliberate, documented exception.
+  // Mobile → desktop: 24 / 30 / 36 / 42 px.
+  // Brand-deep green colour + a horizontal-grow underline that scales in
+  // from the centre on hover / focus / touch — same accent treatment as
+  // Eyebrow so every section heading reads with one consistent voice.
   return (
     <h2
-      className={`font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
-                  leading-[1.15] tracking-tight text-slate-900 ${className}`}
+      className={`group inline-block relative font-serif
+                  text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
+                  leading-[1.15] tracking-tight text-brand-deep cursor-default
+                  after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-2
+                  after:h-[3px] after:bg-brand-accent after:rounded-full
+                  after:scale-x-0 after:origin-center after:transition-transform after:duration-300
+                  hover:after:scale-x-100 focus:after:scale-x-100 active:after:scale-x-100
+                  ${className}`}
     >
       {children}
     </h2>

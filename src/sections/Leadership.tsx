@@ -107,7 +107,13 @@ export default function Leadership() {
             <Eyebrow>{t('leadership.eyebrow', 'Leadership')}</Eyebrow>
           </Reveal>
           <Reveal delay={120}>
-            <h2 className="mt-3 font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-[1.15] tracking-tight text-brand-deep lg:whitespace-nowrap">
+            <h2 className="group relative inline-block mt-3 font-serif
+                           text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
+                           leading-[1.15] tracking-tight text-brand-deep lg:whitespace-nowrap cursor-default
+                           after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-2
+                           after:h-[3px] after:bg-brand-accent after:rounded-full
+                           after:scale-x-0 after:origin-center after:transition-transform after:duration-300
+                           hover:after:scale-x-100 focus-within:after:scale-x-100 active:after:scale-x-100">
               Distributed leadership across <span className="italic text-brand-accentDark">five pillars</span>.
             </h2>
           </Reveal>

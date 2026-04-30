@@ -48,8 +48,13 @@ export default function Contact() {
           <div className="inline-block text-brand-accentDark text-xs font-semibold tracking-[0.3em] uppercase mb-4">
             {t('contact.eyebrow', 'Contact')}
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
-                         leading-[1.15] tracking-tight text-slate-900">
+          <h2 className="group relative inline-block font-serif
+                         text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
+                         leading-[1.15] tracking-tight text-brand-deep cursor-default
+                         after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-2
+                         after:h-[3px] after:bg-brand-accent after:rounded-full
+                         after:scale-x-0 after:origin-center after:transition-transform after:duration-300
+                         hover:after:scale-x-100 focus-within:after:scale-x-100 active:after:scale-x-100">
             Contact Us
           </h2>
           <p className="mt-4 text-base md:text-lg text-slate-700 font-medium">

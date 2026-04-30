@@ -35,11 +35,19 @@ function Reveal({
  * silhouette card sits at its compass position (Oman·east, UK·north,
  * BD·south, USA·west) so the whole arrangement reads as the four
  * regions drawn together on a single round body. */
+// Pushed each flag a few % closer to the outermost orbit ring (the
+// 92%-diameter one) without crossing it. Positions are tuned against
+// the orbit's max radius minus half a flag, so the silhouettes graze
+// the outer ring but never bleed past it.
+//
+// Container is aspect-[5/4], so the orbit is an ellipse (wider than
+// tall). That's why we can push horizontal nodes (Oman / USA) further
+// out (18 / 82 %) than the vertical nodes (UK / Bangladesh, 20 / 80 %).
 const COUNTRY_NODES = [
-  { code: 'OM', flag: '🇴🇲', name: 'Oman',       capital: 'Muscat',  label: 'Muscat, Oman',      top: '50%', left: '78%' },
-  { code: 'GB', flag: '🇬🇧', name: 'UK',         capital: 'London',  label: 'London, UK',        top: '22%', left: '50%' },
-  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', capital: 'Dhaka',   label: 'Dhaka, Bangladesh', top: '78%', left: '50%' },
-  { code: 'US', flag: '🇺🇸', name: 'USA',        capital: 'Austin',  label: 'Austin, USA',       top: '50%', left: '22%' },
+  { code: 'OM', flag: '🇴🇲', name: 'Oman',       capital: 'Muscat',  label: 'Muscat, Oman',      top: '50%', left: '82%' },
+  { code: 'GB', flag: '🇬🇧', name: 'UK',         capital: 'London',  label: 'London, UK',        top: '20%', left: '50%' },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', capital: 'Dhaka',   label: 'Dhaka, Bangladesh', top: '80%', left: '50%' },
+  { code: 'US', flag: '🇺🇸', name: 'USA',        capital: 'Austin',  label: 'Austin, USA',       top: '50%', left: '18%' },
 ]
 
 const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
@@ -61,7 +69,13 @@ export default function Global() {
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-[34px] lg:text-[40px] leading-[1.15] tracking-tight text-slate-900 lg:whitespace-nowrap">
+            <h2 className="group relative inline-block font-serif
+                           text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
+                           leading-[1.15] tracking-tight text-brand-deep lg:whitespace-nowrap cursor-default
+                           after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-2
+                           after:h-[3px] after:bg-brand-accent after:rounded-full
+                           after:scale-x-0 after:origin-center after:transition-transform after:duration-300
+                           hover:after:scale-x-100 focus-within:after:scale-x-100 active:after:scale-x-100">
               Aligned across borders as{' '}
               <span className="text-brand-accentDark">one unified network.</span>
             </h2>
