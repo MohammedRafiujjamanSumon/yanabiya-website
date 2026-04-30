@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight } from 'lucide-react'
 import { assets } from '../data/assets'
@@ -46,7 +46,6 @@ const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
 
 export default function Global() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
   const [presenceOpen, setPresenceOpen] = useState(false)
   const [flippedCode, setFlippedCode] = useState<string | null>(null)
 
@@ -82,7 +81,7 @@ export default function Global() {
 
             {/* Concentric orbit rings — 5 rings so each office can sit on
              *  its own (Oman·2, UK·3, BD·4, USA·5/outermost). */}
-            <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
+            <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
               {[0.92, 0.74, 0.56, 0.38, 0.20].map((s, i) => (
                 <div
                   key={i}
@@ -96,7 +95,7 @@ export default function Global() {
             <svg
               aria-hidden="true"
               viewBox="0 0 100 80"
-              className="absolute inset-0 w-full h-full pointer-events-none"
+              className="absolute inset-0 w-full h-full"
               preserveAspectRatio="none"
             >
               {COUNTRY_NODES.map((d, i) => {
@@ -115,29 +114,20 @@ export default function Global() {
               })}
             </svg>
 
-            {/* CENTRE — Yanabiya logo medallion. Click opens the Global
-             *  Presence overview panel. */}
-            <div className="absolute inset-0 grid place-items-center z-20">
-              <button
-                type="button"
-                onClick={() => setPresenceOpen(true)}
-                aria-label="Explore Global Presence"
-                title="Explore Global Presence"
-                className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white shadow-xl
-                           ring-2 ring-brand-accentDark/60 overflow-hidden
-                           grid place-items-center
-                           transition-all duration-300
-                           hover:scale-105 hover:shadow-[0_0_22px_rgba(158,199,58,0.7)]
-                           hover:ring-brand-accent
-                           focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-accent"
-              >
+            {/* CENTRE — Yanabiya logo medallion, fixed (no spin). Sized
+             *  down from 80/96 to 56/64 so the whole orbit reads clean. */}
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white shadow-xl
+                              ring-2 ring-brand-accentDark/60 overflow-hidden
+                              grid place-items-center">
                 <img
                   src={assets.logo}
                   alt="Yanabiya Group"
-                  className="w-full h-full object-contain scale-[1.35] pointer-events-none"
+                  className="w-full h-full object-contain scale-[1.35]"
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                 />
-              </button>
+                {/* No spin — logo sits still in the centre. */}
+              </div>
             </div>
 
             {/* COUNTRY NODES — flag-filled silhouettes that flip on touch
@@ -148,67 +138,68 @@ export default function Global() {
               const flagUrl = `${MAP_BASE}flags/${d.code.toLowerCase()}.svg`
               const isFlipped = flippedCode === d.code
               return (
-                <div
+                <button
                   key={d.code}
-                  role="link"
-                  tabIndex={0}
-                  aria-label={`Explore ${d.label}`}
+                  type="button"
+                  onClick={() =>
+                    setFlippedCode((prev) => (prev === d.code ? null : d.code))
+                  }
+                  aria-label={`Toggle ${d.label} details`}
+                  aria-pressed={isFlipped ? 'true' : 'false'}
                   title={d.label}
-                  onMouseEnter={() => setFlippedCode(d.code)}
-                  onMouseLeave={() => setFlippedCode(null)}
-                  onTouchStart={() => setFlippedCode(d.code)}
-                  onClick={() => navigate(`/country/${d.code.toLowerCase()}`)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault()
-                      navigate(`/country/${d.code.toLowerCase()}`)
-                    }
-                  }}
                   className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20
-                             cursor-pointer
-                             focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded-full"
+                             [perspective:1200px] focus:outline-none"
                   style={{ top: d.top, left: d.left }}
                 >
-                  <div className="relative w-36 h-36 md:w-40 md:h-40">
-                    {/* Front — flag-filled country silhouette. Fades out
-                     *  on hover/active so the back card behind reads. */}
+                  <div
+                    className="relative w-40 h-40 md:w-44 md:h-44
+                               transition-transform duration-700 ease-out
+                               [transform-style:preserve-3d]"
+                    style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+                  >
+                    {/* Front — flag-filled country silhouette */}
                     <div
-                      className={`absolute inset-0 transition-all duration-500 ease-out
-                                  ${isFlipped ? 'opacity-0 scale-90' : 'opacity-100 scale-100 group-hover:scale-105'}`}
-                      style={{
-                        WebkitMaskImage: `url(${mapUrl})`,
-                        maskImage: `url(${mapUrl})`,
-                        WebkitMaskSize: 'contain',
-                        maskSize: 'contain',
-                        WebkitMaskRepeat: 'no-repeat',
-                        maskRepeat: 'no-repeat',
-                        WebkitMaskPosition: 'center',
-                        maskPosition: 'center',
-                        backgroundImage: `url(${flagUrl})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                      }}
-                    />
+                      className="absolute inset-0 [backface-visibility:hidden]
+                                 [-webkit-backface-visibility:hidden]"
+                    >
+                      <div
+                        className="w-full h-full transition-transform duration-300
+                                   group-hover:scale-105"
+                        style={{
+                          WebkitMaskImage: `url(${mapUrl})`,
+                          maskImage: `url(${mapUrl})`,
+                          WebkitMaskSize: 'contain',
+                          maskSize: 'contain',
+                          WebkitMaskRepeat: 'no-repeat',
+                          maskRepeat: 'no-repeat',
+                          WebkitMaskPosition: 'center',
+                          maskPosition: 'center',
+                          backgroundImage: `url(${flagUrl})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                        }}
+                      />
+                    </div>
 
-                    {/* Back — green rounded card with white text. Fades
-                     *  in on hover/active. */}
+                    {/* Back — green rounded card with white text */}
                     <div
-                      className={`absolute inset-0 rounded-3xl
-                                  bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800
-                                  ring-2 ring-emerald-300/50 shadow-[0_8px_24px_rgba(15,58,35,0.4)]
-                                  grid place-items-center text-center text-white
-                                  transition-all duration-500 ease-out
-                                  ${isFlipped ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'}`}
+                      className="absolute inset-0 rounded-3xl
+                                 bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800
+                                 ring-2 ring-emerald-300/50 shadow-[0_8px_24px_rgba(15,58,35,0.4)]
+                                 grid place-items-center text-center text-white
+                                 [backface-visibility:hidden]
+                                 [-webkit-backface-visibility:hidden]"
+                      style={{ transform: 'rotateY(180deg)' }}
                     >
                       <div className="px-3 py-3 flex flex-col items-center gap-1">
                         <span className="text-3xl leading-none drop-shadow-md">
                           {d.flag}
                         </span>
-                        <div className="text-[10px] uppercase tracking-[0.18em] text-emerald-100/85
+                        <div className="text-[11px] uppercase tracking-[0.18em] text-emerald-100/85
                                         font-semibold mt-1">
                           {d.capital}
                         </div>
-                        <div className="text-sm md:text-base font-bold leading-tight">
+                        <div className="text-base font-bold leading-tight">
                           {d.name}
                         </div>
                         <Link
@@ -219,12 +210,13 @@ export default function Global() {
                                      text-[9px] font-bold uppercase tracking-wider
                                      transition-colors"
                         >
-                          Explore <ArrowRight size={10} />
+                          Explore about {d.name}
+                          <ArrowRight size={10} />
                         </Link>
                       </div>
                     </div>
                   </div>
-                </div>
+                </button>
               )
             })}
           </div>
