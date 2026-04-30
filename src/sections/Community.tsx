@@ -1,9 +1,7 @@
-import { useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Newspaper, Leaf, HeartHandshake, Briefcase, type LucideIcon } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
-import { assets } from '../data/assets'
 
 function Reveal({
   children,
@@ -28,152 +26,58 @@ function Reveal({
   )
 }
 
-type Accent = {
-  ring: string         // ring color on hover (border)
-  iconBg: string       // icon chip background
-  iconText: string     // icon chip text
-  rope: string         // rope stroke color (rgba)
-  shadow: string       // hover shadow color (rgba)
-}
-
-type CommunityCard = {
-  id: string
-  href: string
+type Hub = {
+  to: string
+  icon: LucideIcon
   eyebrow: string
   title: string
-  desc: string
-  cta: string
-  accent: Accent
-  /** Real-life thumbnail rendered as the front of the flip card. */
-  photo: string
+  body: string
+  /** Tailwind background colour for the circle. */
+  bg: string
+  /** Vertical offset (Tailwind) — alternating to mirror the infographic. */
+  offset: string
 }
 
-const cards: CommunityCard[] = [
+const HUBS: Hub[] = [
   {
-    id: 'blog',
-    href: '/community/blog',
-    eyebrow: 'Insights',
+    to: '/community/blog',
+    icon: Newspaper,
+    eyebrow: 'Stories & Insights',
     title: 'Blog',
-    desc: 'Stories, market views and ideas from across our group and partner network.',
-    cta: 'Read articles',
-    accent: {
-      ring: 'hover:border-sky-400/60',
-      iconBg: 'bg-sky-100', iconText: 'text-sky-700',
-      rope: 'rgba(2,132,199,0.55)',
-      shadow: 'hover:shadow-[0_24px_60px_-24px_rgba(2,132,199,0.35)]',
-    },
-    photo: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=200&q=80',
+    body: 'Articles, case studies, and field notes from across the group.',
+    bg: 'bg-emerald-600',
+    offset: '',
   },
   {
-    id: 'sustainable-growth',
-    href: '/community/sustainable-growth',
-    eyebrow: 'Environment',
+    to: '/community/sustainable-growth',
+    icon: Leaf,
+    eyebrow: 'Long-term Value',
     title: 'Sustainable Growth',
-    desc: 'Greener operations, circular practices and climate commitments shaping how we work.',
-    cta: 'Explore initiatives',
-    accent: {
-      ring: 'hover:border-emerald-400/60',
-      iconBg: 'bg-emerald-100', iconText: 'text-emerald-700',
-      rope: 'rgba(5,150,105,0.55)',
-      shadow: 'hover:shadow-[0_24px_60px_-24px_rgba(5,150,105,0.35)]',
-    },
-    photo: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=200&q=80',
+    body: 'Our commitment to growth that benefits people, communities, and the planet.',
+    bg: 'bg-cyan-500',
+    offset: 'md:mt-14',
   },
   {
-    id: 'community-care',
-    href: '/community/community-care',
-    eyebrow: 'Welfare',
+    to: '/community/community-care',
+    icon: HeartHandshake,
+    eyebrow: 'Welfare Programmes',
     title: 'Community Care',
-    desc: 'Charitable donations and welfare programmes built on transparency and lasting impact.',
-    cta: 'See programmes',
-    accent: {
-      ring: 'hover:border-rose-400/60',
-      iconBg: 'bg-rose-100', iconText: 'text-rose-700',
-      rope: 'rgba(225,29,72,0.55)',
-      shadow: 'hover:shadow-[0_24px_60px_-24px_rgba(225,29,72,0.35)]',
-    },
-    photo: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=200&q=80',
+    body: 'Humanitarian aid, education, and healthcare initiatives across our regions.',
+    bg: 'bg-amber-500',
+    offset: '',
   },
   {
-    id: 'careers',
-    href: '/community/careers',
-    eyebrow: 'People',
+    to: '/community/careers',
+    icon: Briefcase,
+    eyebrow: 'Join the Team',
     title: 'Careers',
-    desc: 'Join a team that values craft, integrity and growth across the Gulf and beyond.',
-    cta: 'View openings',
-    accent: {
-      ring: 'hover:border-amber-400/60',
-      iconBg: 'bg-amber-100', iconText: 'text-amber-700',
-      rope: 'rgba(217,119,6,0.55)',
-      shadow: 'hover:shadow-[0_24px_60px_-24px_rgba(217,119,6,0.35)]',
-    },
-    photo: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=200&q=80',
+    body: 'Build your career with a global group across IT, trade, and operations.',
+    bg: 'bg-rose-500',
+    offset: 'md:mt-14',
   },
 ]
 
-type Geometry = {
-  width: number
-  height: number
-  handX: number
-  handY: number
-  hubX: number
-  hubY: number
-  ends: { x: number; y: number }[]
-}
-
 export default function Community() {
-  const wrapRef = useRef<HTMLDivElement>(null)
-  const handRef = useRef<HTMLDivElement>(null)
-  const cardRefs = useRef<(HTMLAnchorElement | null)[]>([])
-  const [geo, setGeo] = useState<Geometry | null>(null)
-
-  /* Measure hand-bottom + top-centre of each card relative to the wrap
-   * container, then derive a single hub point that sits between the hand
-   * and the top row of cards. Recompute on resize so the rope endpoints
-   * always land on the actual card edges. */
-  useLayoutEffect(() => {
-    const compute = () => {
-      const wrap = wrapRef.current
-      const hand = handRef.current
-      if (!wrap || !hand) return
-      const wRect = wrap.getBoundingClientRect()
-      const hRect = hand.getBoundingClientRect()
-      const handX = (hRect.left + hRect.right) / 2 - wRect.left
-      /* Lift the rope start up into the logo's visual bottom edge — the
-       * square container has whitespace below the object-contain logo, so
-       * starting at hRect.bottom looks detached. */
-      const handY = hRect.bottom - wRect.top - hRect.height * 0.22
-      const ends = cardRefs.current.map((el) => {
-        if (!el) return { x: 0, y: 0 }
-        const r = el.getBoundingClientRect()
-        return { x: (r.left + r.right) / 2 - wRect.left, y: r.top - wRect.top }
-      })
-      // Hub: horizontally centred, vertically halfway between hand bottom
-      // and the top of the upper card row.
-      const topRowY = Math.min(...ends.slice(0, 2).map((p) => p.y || Infinity))
-      const hubX = wRect.width / 2
-      const hubY = handY + Math.max(24, (topRowY - handY) * 0.45)
-      setGeo({
-        width: wRect.width,
-        height: wRect.height,
-        handX,
-        handY,
-        hubX,
-        hubY,
-        ends,
-      })
-    }
-    compute()
-    const ro = new ResizeObserver(compute)
-    if (wrapRef.current) ro.observe(wrapRef.current)
-    cardRefs.current.forEach((el) => el && ro.observe(el))
-    window.addEventListener('resize', compute)
-    return () => {
-      ro.disconnect()
-      window.removeEventListener('resize', compute)
-    }
-  }, [])
-
   return (
     <Section
       id="community"
@@ -193,163 +97,90 @@ export default function Community() {
             <Eyebrow>Community</Eyebrow>
           </Reveal>
           <Reveal delay={120}>
-            <h2 className="mt-3 font-serif text-xl sm:text-2xl md:text-[26px] lg:text-[30px] leading-[1.2] tracking-tight text-brand-deep lg:whitespace-nowrap">
+            <h2 className="mt-3 font-serif text-xl sm:text-2xl md:text-[26px] lg:text-[30px] leading-[1.2] tracking-tight text-brand-deep">
               Driven by <span className="italic text-brand-accentDark">purpose</span> across a connected ecosystem of people and initiatives.
             </h2>
           </Reveal>
         </div>
 
-        {/* CANVAS — hand at top, four ropes drawn from the hand directly
-         *  to each card (like /#businesses HQ → service nodes), then the
-         *  2×2 card grid. Endpoints are measured at runtime so the lines
-         *  always meet the actual card edges. */}
-        <div ref={wrapRef} className="relative mx-auto max-w-5xl">
+        {/* RAINBOW ARC + 4 COLOUR-CODED CIRCLE NODES */}
+        <div className="relative max-w-5xl mx-auto">
 
-          {/* Yanabiya logo at the top, centred — matches the section's
-           *  light background so it reads as the brand mark, not a chip. */}
-          <Reveal>
-            <div ref={handRef} className="relative z-20 mx-auto w-32 md:w-40 aspect-square">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 rounded-full bg-brand-accent/20 blur-2xl animate-pulse"
-              />
-              <div className="relative w-full h-full grid place-items-center">
-                <img
-                  src={assets.logo}
-                  alt="Yanabiya Group"
-                  loading="lazy"
-                  className="w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(15,58,35,0.18)]"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).style.display = 'none'
-                  }}
-                />
-              </div>
-            </div>
-          </Reveal>
+          {/* SVG arc + drop connectors. Hidden on small screens where
+           *  the geometry doesn't read; circles + descriptions still
+           *  stack in a 2-col grid. */}
+          <svg
+            viewBox="0 0 1000 240"
+            preserveAspectRatio="xMidYMid meet"
+            aria-hidden="true"
+            className="hidden md:block w-full h-auto -mb-16 lg:-mb-20"
+          >
+            <defs>
+              <linearGradient id="comm-rainbow-home" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#059669" />
+                <stop offset="33%" stopColor="#06b6d4" />
+                <stop offset="66%" stopColor="#f59e0b" />
+                <stop offset="100%" stopColor="#f43f5e" />
+              </linearGradient>
+            </defs>
+            {/* Curved arc along the top */}
+            <path
+              d="M 125 220 C 280 -40, 720 -40, 875 220"
+              stroke="url(#comm-rainbow-home)"
+              strokeWidth="14"
+              strokeLinecap="round"
+              fill="none"
+            />
+            {/* Drop connectors — same colour as the matching arc stop */}
+            <line x1="125" y1="220" x2="125" y2="240" stroke="#059669" strokeWidth="14" strokeLinecap="round" />
+            <line x1="375" y1="125" x2="375" y2="240" stroke="#06b6d4" strokeWidth="14" strokeLinecap="round" />
+            <line x1="625" y1="125" x2="625" y2="240" stroke="#f59e0b" strokeWidth="14" strokeLinecap="round" />
+            <line x1="875" y1="220" x2="875" y2="240" stroke="#f43f5e" strokeWidth="14" strokeLinecap="round" />
+          </svg>
 
-          {/* Rope SVG — pixel-coord viewBox tied to the actual measured
-           *  container size. One curved bezier per card from hand → card. */}
-          {geo && (
-            <svg
-              aria-hidden="true"
-              viewBox={`0 0 ${geo.width} ${geo.height}`}
-              preserveAspectRatio="none"
-              width="100%"
-              height="100%"
-              className="absolute inset-0 pointer-events-none z-0 overflow-visible"
-            >
-              {cards.map((c, i) => {
-                const end = geo.ends[i]
-                if (!end) return null
-                const sx = geo.handX
-                const sy = geo.handY
-                const ex = end.x
-                /* Rope tip sits right ON the card's top edge — the round
-                 * card itself is the terminator. */
-                const ey = end.y
-                const c1x = sx
-                const c1y = sy + (ey - sy) * 0.55
-                const c2x = ex
-                const c2y = ey - Math.min(70, (ey - sy) * 0.45)
-                const path = `M ${sx} ${sy} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${ex} ${ey}`
-                return (
-                  <g key={c.id}>
-                    {/* Under-shadow rope */}
-                    <path
-                      d={path}
-                      fill="none"
-                      stroke="rgba(15,58,35,0.28)"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    {/* Accent flow — sped up */}
-                    <path
-                      d={path}
-                      fill="none"
-                      stroke={c.accent.rope}
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      className="animate-svg-flow"
-                      style={{ animationDelay: `${i * 0.2}s`, animationDuration: '1.8s' }}
-                    />
-                    {/* Connection dot at the rope tip — sits on the card edge */}
-                    <circle cx={ex} cy={ey} r="3" fill={c.accent.rope} stroke="white" strokeWidth="1.4" />
-                  </g>
-                )
-              })}
-            </svg>
-          )}
-
-          {/* CARDS — 2×2 round pills. Each pill is fully rounded; the
-           *  rope tip sits exactly on the pill's top edge with the dot
-           *  marking the connection point. */}
-          <div className="relative z-10 mt-16 md:mt-24 grid grid-cols-2 gap-x-12 md:gap-x-24 gap-y-8 md:gap-y-10 max-w-2xl mx-auto">
-            {cards.map((c, i) => (
-              <Reveal key={c.id} delay={i * 90}>
+          {/* Four hub circles + descriptions */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6">
+            {HUBS.map((h, i) => (
+              <Reveal key={h.to} delay={i * 90} className={`text-center ${h.offset}`}>
                 <Link
-                  ref={(el) => { cardRefs.current[i] = el }}
-                  to={c.href}
-                  title={c.desc}
-                  aria-label={`${c.title} — ${c.eyebrow}`}
-                  className="group w-fit mx-auto flex flex-col items-center gap-2"
+                  to={h.to}
+                  aria-label={`Open ${h.title}`}
+                  className={`group inline-flex flex-col items-center justify-center
+                              w-32 h-32 md:w-36 md:h-36 rounded-full
+                              ${h.bg} text-white text-center px-3
+                              shadow-[0_12px_28px_-8px_rgba(15,23,42,0.35)]
+                              transition-all duration-300
+                              hover:scale-110 hover:shadow-[0_20px_40px_-10px_rgba(15,23,42,0.45)]
+                              focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60`}
                 >
-                  {/* Flip card — front = real-life photo, back = Read more */}
-                  <div className="relative w-20 h-20 md:w-24 md:h-24 [perspective:700px]">
-                    <div
-                      className="relative w-full h-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                                 [transform-style:preserve-3d]
-                                 group-hover:[transform:rotateY(180deg)]
-                                 group-focus-visible:[transform:rotateY(180deg)]"
-                    >
-                      {/* FRONT — photo */}
-                      <div className={`absolute inset-0 rounded-full overflow-hidden
-                                       ring-2 ring-slate-200
-                                       shadow-[0_8px_22px_-10px_rgba(15,58,35,0.30)]
-                                       transition-shadow duration-500
-                                       [backface-visibility:hidden]
-                                       group-hover:ring-transparent`}>
-                        <img
-                          src={c.photo}
-                          alt=""
-                          loading="lazy"
-                          className="absolute inset-0 w-full h-full object-cover"
-                          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                        />
-                      </div>
-                      {/* BACK — Read more pill (accent-coloured) */}
-                      <div
-                        className="absolute inset-0 rounded-full grid place-items-center text-center
-                                   bg-brand-deep text-white
-                                   shadow-[0_10px_24px_-10px_rgba(15,58,35,0.45)]
-                                   [backface-visibility:hidden]
-                                   [transform:rotateY(180deg)]"
-                        style={{ borderColor: c.accent.rope, borderWidth: '2px', borderStyle: 'solid' }}
-                      >
-                        <div className="flex flex-col items-center gap-1">
-                          <span className="text-[8.5px] font-bold uppercase tracking-[0.22em]"
-                                style={{ color: c.accent.rope }}>
-                            Read More
-                          </span>
-                          <ArrowRight size={14} className="text-white" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* TITLE — small, outside the card */}
-                  <div className="text-center w-24 md:w-28">
-                    <div className="text-[10px] font-semibold text-brand-deep leading-tight">
-                      {c.title}
-                    </div>
-                  </div>
+                  <h.icon size={24} strokeWidth={1.8} className="mb-1.5 opacity-90 transition-transform duration-300 group-hover:scale-110" />
+                  <span className="font-bold text-sm md:text-base leading-tight tracking-tight">
+                    {h.title}
+                  </span>
                 </Link>
+                <div className="mt-4 max-w-[220px] mx-auto">
+                  <div className="text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-1.5">
+                    {h.eyebrow}
+                  </div>
+                  <p className="text-xs md:text-sm text-slate-700 leading-snug">
+                    {h.body}
+                  </p>
+                  <Link
+                    to={h.to}
+                    className="mt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
+                               text-brand-accentDark hover:text-brand-deep
+                               transition-all"
+                  >
+                    Open <ArrowRight size={11} />
+                  </Link>
+                </div>
               </Reveal>
             ))}
           </div>
 
           {/* TAIL CTA */}
-          <Reveal delay={300}>
-            <div className="mt-12 md:mt-16 text-center">
+          <Reveal delay={400}>
+            <div className="mt-14 md:mt-20 text-center">
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 rounded-full px-7 py-3
