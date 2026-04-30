@@ -17,7 +17,7 @@ export default function Management() {
         subtitle="Messages from the founding leadership that shape every engagement at Yanabiya Group."
       />
 
-      <Section id="management-page" className="bg-stone-50">
+      <Section id="management-page" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
       <div className="container-x">
 
         <figure className="mb-12 overflow-hidden rounded-3xl border border-slate-200 shadow-sm">

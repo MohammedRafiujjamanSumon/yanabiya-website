@@ -51,7 +51,7 @@ export default function CareersPage() {
         subtitle="Join a global team across Oman, the United Kingdom, Bangladesh and the USA — and help shape the future of trade, technology and community."
       />
 
-      <Section id="careers" className="bg-stone-50">
+      <Section id="careers" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
       <div className="container-x">
 
         <div className="mb-16">

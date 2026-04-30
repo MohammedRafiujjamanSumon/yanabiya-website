@@ -54,7 +54,7 @@ export default function CommunityCare() {
         subtitle="Structured charitable donations and welfare programmes focused on transparency, dignity and lasting impact — delivered across every country where we operate."
       />
 
-      <Section id="community-care" className="bg-stone-50">
+      <Section id="community-care" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
       <div className="container-x">
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">

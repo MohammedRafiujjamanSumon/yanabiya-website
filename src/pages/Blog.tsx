@@ -66,7 +66,7 @@ export default function Blog() {
         subtitle="Stories, insights and updates from Yanabiya Group teams across Oman, the United Kingdom, Bangladesh and the USA."
       />
 
-      <Section id="blog" className="bg-stone-50">
+      <Section id="blog" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
       <div className="container-x">
 
         <div className="mb-16">

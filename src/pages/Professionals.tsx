@@ -16,7 +16,7 @@ export default function Professionals() {
         subtitle="The specialist team driving delivery, engineering, and strategy across Yanabiya Group."
       />
 
-      <Section id="professionals-page" className="bg-stone-50">
+      <Section id="professionals-page" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
       <div className="container-x">
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">

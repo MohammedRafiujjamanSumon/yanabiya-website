@@ -53,7 +53,7 @@ export default function SustainableGrowth() {
         subtitle="Building business practices that protect the environment and support long-term value for every stakeholder — in every country we operate."
       />
 
-      <Section id="sustainable-growth" className="bg-stone-50">
+      <Section id="sustainable-growth" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
       <div className="container-x">
 
         <div className="mb-16">

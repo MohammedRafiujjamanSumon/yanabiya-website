@@ -99,7 +99,7 @@ export default function Testimonials() {
         subtitle="Words from our partners, clients and beneficiaries — gathered across the four countries where Yanabiya Group operates."
       />
 
-      <Section id="testimonials" className="bg-stone-50">
+      <Section id="testimonials" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
       <div className="container-x">
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">

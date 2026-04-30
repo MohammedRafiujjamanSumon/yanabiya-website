@@ -297,7 +297,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
   }).activities
 
   return (
-    <main className="relative bg-[#fbfdfb] text-slate-900 overflow-hidden min-h-screen">
+    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
       {/* Shared About-Us style brand card — opens every country page
