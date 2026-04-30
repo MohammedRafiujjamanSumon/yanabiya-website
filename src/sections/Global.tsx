@@ -36,10 +36,10 @@ function Reveal({
  * BD·south, USA·west) so the whole arrangement reads as the four
  * regions drawn together on a single round body. */
 const COUNTRY_NODES = [
-  { code: 'OM', flag: '🇴🇲', name: 'Oman',       label: 'Muscat, Oman',      top: '50%', left: '82%' },
-  { code: 'GB', flag: '🇬🇧', name: 'UK',         label: 'London, UK',        top: '18%', left: '50%' },
-  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', label: 'Dhaka, Bangladesh', top: '82%', left: '50%' },
-  { code: 'US', flag: '🇺🇸', name: 'USA',        label: 'Austin, USA',       top: '50%', left: '18%' },
+  { code: 'OM', flag: '🇴🇲', name: 'Oman',       capital: 'Muscat',  label: 'Muscat, Oman',      top: '50%', left: '82%' },
+  { code: 'GB', flag: '🇬🇧', name: 'UK',         capital: 'London',  label: 'London, UK',        top: '18%', left: '50%' },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', capital: 'Dhaka',   label: 'Dhaka, Bangladesh', top: '82%', left: '50%' },
+  { code: 'US', flag: '🇺🇸', name: 'USA',        capital: 'Austin',  label: 'Austin, USA',       top: '50%', left: '18%' },
 ]
 
 const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
@@ -47,6 +47,7 @@ const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
 export default function Global() {
   const { t } = useTranslation()
   const [presenceOpen, setPresenceOpen] = useState(false)
+  const [flippedCode, setFlippedCode] = useState<string | null>(null)
 
   return (
     <Section id="global" className="relative overflow-hidden bg-white">
@@ -129,44 +130,93 @@ export default function Global() {
               </div>
             </div>
 
-            {/* COUNTRY NODES — flag-filled country silhouettes plotted at
-             *  N / E / S / W. The card itself is transparent: only the
-             *  silhouette (filled with that country's real flag via CSS
-             *  mask) sits on the orbit. Tapping any country still
-             *  navigates to its detail page. */}
+            {/* COUNTRY NODES — flag-filled silhouettes that flip on touch
+             *  to reveal a green card with flag + capital + country +
+             *  "Explore about <country>" link in white text. */}
             {COUNTRY_NODES.map((d) => {
               const mapUrl = `${MAP_BASE}${d.code.toLowerCase()}.svg`
               const flagUrl = `${MAP_BASE}flags/${d.code.toLowerCase()}.svg`
+              const isFlipped = flippedCode === d.code
               return (
-                <Link
+                <button
                   key={d.code}
-                  to={`/country/${d.code.toLowerCase()}`}
-                  aria-label={`Explore ${d.label}`}
+                  type="button"
+                  onClick={() =>
+                    setFlippedCode((prev) => (prev === d.code ? null : d.code))
+                  }
+                  aria-label={`Toggle ${d.label} details`}
+                  aria-pressed={isFlipped ? 'true' : 'false'}
                   title={d.label}
-                  className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20"
+                  className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20
+                             [perspective:1200px] focus:outline-none"
                   style={{ top: d.top, left: d.left }}
                 >
-                  <div className="relative grid place-items-center w-36 h-36 md:w-40 md:h-40">
-                    {/* Country silhouette filled with the real flag (mask) */}
+                  <div
+                    className="relative w-40 h-40 md:w-44 md:h-44
+                               transition-transform duration-700 ease-out
+                               [transform-style:preserve-3d]"
+                    style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+                  >
+                    {/* Front — flag-filled country silhouette */}
                     <div
-                      className="relative w-full h-full transition-transform duration-300
-                                 group-hover:scale-110"
-                      style={{
-                        WebkitMaskImage: `url(${mapUrl})`,
-                        maskImage: `url(${mapUrl})`,
-                        WebkitMaskSize: 'contain',
-                        maskSize: 'contain',
-                        WebkitMaskRepeat: 'no-repeat',
-                        maskRepeat: 'no-repeat',
-                        WebkitMaskPosition: 'center',
-                        maskPosition: 'center',
-                        backgroundImage: `url(${flagUrl})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                      }}
-                    />
+                      className="absolute inset-0 [backface-visibility:hidden]
+                                 [-webkit-backface-visibility:hidden]"
+                    >
+                      <div
+                        className="w-full h-full transition-transform duration-300
+                                   group-hover:scale-105"
+                        style={{
+                          WebkitMaskImage: `url(${mapUrl})`,
+                          maskImage: `url(${mapUrl})`,
+                          WebkitMaskSize: 'contain',
+                          maskSize: 'contain',
+                          WebkitMaskRepeat: 'no-repeat',
+                          maskRepeat: 'no-repeat',
+                          WebkitMaskPosition: 'center',
+                          maskPosition: 'center',
+                          backgroundImage: `url(${flagUrl})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                        }}
+                      />
+                    </div>
+
+                    {/* Back — green rounded card with white text */}
+                    <div
+                      className="absolute inset-0 rounded-3xl
+                                 bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800
+                                 ring-2 ring-emerald-300/50 shadow-[0_8px_24px_rgba(15,58,35,0.4)]
+                                 grid place-items-center text-center text-white
+                                 [backface-visibility:hidden]
+                                 [-webkit-backface-visibility:hidden]"
+                      style={{ transform: 'rotateY(180deg)' }}
+                    >
+                      <div className="px-3 py-3 flex flex-col items-center gap-1">
+                        <span className="text-3xl leading-none drop-shadow-md">
+                          {d.flag}
+                        </span>
+                        <div className="text-[11px] uppercase tracking-[0.18em] text-emerald-100/85
+                                        font-semibold mt-1">
+                          {d.capital}
+                        </div>
+                        <div className="text-base font-bold leading-tight">
+                          {d.name}
+                        </div>
+                        <Link
+                          to={`/country/${d.code.toLowerCase()}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="mt-2 inline-flex items-center gap-1 px-2 py-1 rounded-full
+                                     bg-white/15 hover:bg-white/25 ring-1 ring-white/40
+                                     text-[9px] font-bold uppercase tracking-wider
+                                     transition-colors"
+                        >
+                          Explore about {d.name}
+                          <ArrowRight size={10} />
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </Link>
+                </button>
               )
             })}
           </div>
