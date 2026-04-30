@@ -36,10 +36,10 @@ function Reveal({
  * BD·south, USA·west) so the whole arrangement reads as the four
  * regions drawn together on a single round body. */
 const COUNTRY_NODES = [
-  { code: 'OM', flag: '🇴🇲', name: 'Oman',       label: 'Muscat, Oman',      top: '50%', left: '78%' },
-  { code: 'GB', flag: '🇬🇧', name: 'UK',         label: 'London, UK',        top: '14%', left: '50%' },
-  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', label: 'Dhaka, Bangladesh', top: '88%', left: '50%' },
-  { code: 'US', flag: '🇺🇸', name: 'USA',        label: 'Austin, USA',       top: '45%', left: '12%' },
+  { code: 'OM', flag: '🇴🇲', name: 'Oman',       label: 'Muscat, Oman',      top: '50%', left: '82%' },
+  { code: 'GB', flag: '🇬🇧', name: 'UK',         label: 'London, UK',        top: '18%', left: '50%' },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', label: 'Dhaka, Bangladesh', top: '82%', left: '50%' },
+  { code: 'US', flag: '🇺🇸', name: 'USA',        label: 'Austin, USA',       top: '50%', left: '18%' },
 ]
 
 const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
@@ -146,7 +146,7 @@ export default function Global() {
                   className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20"
                   style={{ top: d.top, left: d.left }}
                 >
-                  <div className="relative grid place-items-center w-24 h-24 md:w-28 md:h-28">
+                  <div className="relative grid place-items-center w-36 h-36 md:w-40 md:h-40">
                     {/* Country silhouette filled with the real flag (mask) */}
                     <div
                       className="relative w-full h-full transition-transform duration-300
