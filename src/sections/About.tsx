@@ -225,27 +225,23 @@ function FlowchartHero() {
 
   return (
     <div className="relative rounded-3xl overflow-hidden
-                    aspect-[3/2]
-                    bg-gradient-to-br from-[#0a2818] via-[#0c3322] to-[#061a10]
-                    ring-1 ring-emerald-400/15
-                    shadow-[0_28px_60px_-20px_rgba(6,26,16,0.55)]">
+                    aspect-[3/2] bg-slate-900
+                    ring-1 ring-white/10
+                    shadow-[0_28px_60px_-20px_rgba(4,18,27,0.55)]">
 
-      {/* Faint Yanabiya logo watermark — sits behind the flowchart and
-       *  ties the panel to the brand without competing for attention. */}
+      {/* Background photo — businessman with laptop, dark city mood */}
       <img
-        src={assets.logo}
+        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2400&q=80"
         alt=""
         aria-hidden
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-                   w-[55%] max-w-[480px] opacity-[0.05] pointer-events-none select-none"
+        className="absolute inset-0 w-full h-full object-cover opacity-60"
         onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
       />
 
-      {/* Soft brand-accent halo so the panel reads as living/lit. */}
-      <div aria-hidden className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-24 -left-24 w-[360px] h-[360px] rounded-full bg-emerald-500/15 blur-[140px]" />
-        <div className="absolute -bottom-24 -right-24 w-[360px] h-[360px] rounded-full bg-amber-400/10 blur-[140px]" />
-      </div>
+      {/* Dark navy gradient over the photo so the boxes & text stay
+       *  legible without losing the photographic depth. */}
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-br
+                                  from-[#0a1f2c]/80 via-[#082233]/82 to-[#04121b]/92" />
 
       {/* Glowing amber data-points scattered (matches reference) */}
       <div aria-hidden className="absolute inset-0 pointer-events-none">
