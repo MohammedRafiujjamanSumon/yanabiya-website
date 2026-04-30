@@ -101,86 +101,74 @@ export default function Community() {
 
       <div className="container-x relative pt-2 md:pt-3 pb-4 md:pb-6">
 
-        {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-6 md:mb-8">
+        {/* HEADER — mirrors the reference infographic:
+         *    • Brand logo small in the top-left corner
+         *    • Centred two-line title with a thin horizontal divider
+         *      between the lines
+         */}
+        <div className="relative">
           <Reveal>
-            <Eyebrow>Community</Eyebrow>
+            <div className="absolute top-0 left-0 z-10">
+              <img
+                src={assets.logo}
+                alt="Yanabiya Group"
+                className="h-9 md:h-11 lg:h-12 w-auto object-contain drop-shadow-sm"
+              />
+            </div>
           </Reveal>
-          <Reveal delay={120}>
-            <h2 className="mt-3 font-serif text-xl sm:text-2xl md:text-[26px] lg:text-[30px] leading-[1.2] tracking-tight text-brand-deep">
-              Driven by <span className="italic text-brand-accentDark">purpose</span> across a connected ecosystem of people and initiatives.
-            </h2>
-          </Reveal>
+
+          <div className="text-center max-w-3xl mx-auto pt-4 md:pt-6 mb-2 md:mb-4">
+            <Reveal>
+              <Eyebrow>Community</Eyebrow>
+            </Reveal>
+            <Reveal delay={120}>
+              <h2 className="mt-3 font-serif text-2xl sm:text-3xl md:text-[34px] lg:text-[42px] leading-[1.1] tracking-tight text-brand-deep">
+                Driven by Purpose
+              </h2>
+              <div className="my-3 mx-auto h-px w-40 sm:w-56 md:w-72 bg-slate-300" />
+              <h3 className="font-serif text-xl sm:text-2xl md:text-[28px] lg:text-[34px] leading-[1.15] tracking-tight text-brand-accentDark italic">
+                Across Our Community
+              </h3>
+            </Reveal>
+          </div>
         </div>
 
-        {/* HANGER COMPOSITION:
-         *    [ logo ]            ← hook anchor at top
-         *       |                ← short vertical "string"
-         *    ╱ ‾‾‾‾‾‾ ╲          ← rainbow arc (the hanger bar)
-         *    │   │  │  │  │     ← drop connectors
-         *    ●   ●  ●  ●  ●     ← coloured circle nodes
+        {/* RAINBOW ARC + 5 COLOUR-CODED CIRCLE NODES
+         *  Visual hierarchy mirrors the user-supplied infographic:
+         *    • 5 PARALLEL coloured arcs (concentric, not a single
+         *      gradient stroke) form a rainbow band over the circles.
+         *    • Vertical drop connectors in matching colours descend
+         *      from the band to each circle below.
+         *    • Circles alternate heights: outer ones up, middle one
+         *      lowest — same stair pattern as the reference.
          */}
         <div className="relative max-w-5xl mx-auto">
 
-          {/* Logo on top — sits above the arc as the hanger's anchor */}
-          <div className="flex justify-center">
-            <img
-              src={assets.logo}
-              alt="Yanabiya Group"
-              className="h-14 md:h-16 lg:h-20 w-auto object-contain drop-shadow-sm"
-            />
-          </div>
-
-          {/* Hanger hook — half-U curve connecting logo to arc, like the
-           *  top of a coat hanger. Hidden on mobile where the SVG arc
-           *  itself is hidden. */}
+          {/* Hidden on small screens where the geometry doesn't read;
+           *  circles + descriptions still stack in a 2-col grid. */}
           <svg
-            aria-hidden="true"
-            viewBox="0 0 80 60"
-            preserveAspectRatio="xMidYMid meet"
-            className="hidden md:block mx-auto mt-1 h-10 lg:h-12 w-auto"
-          >
-            <path
-              d="M 40 0 Q 75 30, 40 60"
-              stroke="#0F3A23"
-              strokeWidth="5"
-              strokeLinecap="round"
-              fill="none"
-            />
-          </svg>
-
-          {/* SVG arc + drop connectors. Hidden on small screens where
-           *  the geometry doesn't read; circles + descriptions still
-           *  stack in a 2-col grid. */}
-          <svg
-            viewBox="0 0 1000 240"
+            viewBox="0 0 1000 280"
             preserveAspectRatio="xMidYMid meet"
             aria-hidden="true"
             className="hidden md:block w-full h-auto -mb-16 lg:-mb-20"
           >
-            <defs>
-              <linearGradient id="comm-rainbow-home" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%"   stopColor="#059669" />
-                <stop offset="25%"  stopColor="#06b6d4" />
-                <stop offset="50%"  stopColor="#f59e0b" />
-                <stop offset="75%"  stopColor="#f43f5e" />
-                <stop offset="100%" stopColor="#0f766e" />
-              </linearGradient>
-            </defs>
-            {/* Curved arc — apex meets the hanger string at top-centre */}
-            <path
-              d="M 100 220 C 260 -40, 740 -40, 900 220"
-              stroke="url(#comm-rainbow-home)"
-              strokeWidth="14"
-              strokeLinecap="round"
-              fill="none"
-            />
-            {/* Drop connectors — same colour as the matching arc stop */}
-            <line x1="100" y1="220" x2="100" y2="240" stroke="#059669" strokeWidth="14" strokeLinecap="round" />
-            <line x1="300" y1="155" x2="300" y2="240" stroke="#06b6d4" strokeWidth="14" strokeLinecap="round" />
-            <line x1="500" y1="100" x2="500" y2="240" stroke="#f59e0b" strokeWidth="14" strokeLinecap="round" />
-            <line x1="700" y1="155" x2="700" y2="240" stroke="#f43f5e" strokeWidth="14" strokeLinecap="round" />
-            <line x1="900" y1="220" x2="900" y2="240" stroke="#0f766e" strokeWidth="14" strokeLinecap="round" />
+            {/* 5 parallel rainbow bands — outermost (green) wraps the
+             *  widest arc, innermost (teal) the tightest */}
+            <path d="M 80  240 C 240 -60, 760 -60, 920 240" stroke="#059669" strokeWidth="11" fill="none" strokeLinecap="round" />
+            <path d="M 112 240 C 258 -30, 742 -30, 888 240" stroke="#06b6d4" strokeWidth="11" fill="none" strokeLinecap="round" />
+            <path d="M 144 240 C 276   0, 724   0, 856 240" stroke="#f59e0b" strokeWidth="11" fill="none" strokeLinecap="round" />
+            <path d="M 176 240 C 294  30, 706  30, 824 240" stroke="#f43f5e" strokeWidth="11" fill="none" strokeLinecap="round" />
+            <path d="M 208 240 C 312  60, 688  60, 792 240" stroke="#0f766e" strokeWidth="11" fill="none" strokeLinecap="round" />
+
+            {/* Drop connectors — vertical lines in matching colours.
+             *  y1 chosen so each drop visually emerges from the band
+             *  it shares a colour with; y2 lands at the SVG bottom
+             *  so the negative bottom-margin overlaps the circles. */}
+            <line x1="100" y1="240" x2="100" y2="280" stroke="#059669" strokeWidth="11" strokeLinecap="round" />
+            <line x1="300" y1="170" x2="300" y2="280" stroke="#06b6d4" strokeWidth="11" strokeLinecap="round" />
+            <line x1="500" y1="110" x2="500" y2="280" stroke="#f59e0b" strokeWidth="11" strokeLinecap="round" />
+            <line x1="700" y1="170" x2="700" y2="280" stroke="#f43f5e" strokeWidth="11" strokeLinecap="round" />
+            <line x1="900" y1="240" x2="900" y2="280" stroke="#0f766e" strokeWidth="11" strokeLinecap="round" />
           </svg>
 
           {/* Four hub circles with a description below each — mirrors the
@@ -211,27 +199,6 @@ export default function Community() {
               </Reveal>
             ))}
           </div>
-
-          {/* U-bracket — connects the outermost circles (Blog + Testimonials)
-           *  at the bottom, closing the hanger composition. The path
-           *  starts under the leftmost (Blog) column, sweeps down and
-           *  across, and rises back up under the rightmost (Testimonials)
-           *  column. Same rainbow gradient as the top arc. */}
-          <svg
-            viewBox="0 0 1000 120"
-            preserveAspectRatio="xMidYMid meet"
-            aria-hidden="true"
-            className="hidden md:block w-full h-auto -mt-2"
-          >
-            <path
-              d="M 100 0 L 100 60 Q 100 100, 160 100 L 840 100 Q 900 100, 900 60 L 900 0"
-              stroke="url(#comm-rainbow-home)"
-              strokeWidth="14"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-          </svg>
 
           {/* WHAT THE COMMUNITY DELIVERS — list */}
           <Reveal delay={350}>
