@@ -293,6 +293,25 @@ function GbsCircle({
           {item.title}
         </span>
       )}
+
+      {/* "Learn more" pill — slides up from the bottom on hover so the
+       *  click affordance is unmistakable while keeping idle state clean. */}
+      {!item.decorative && (
+        <span
+          aria-hidden
+          className="absolute left-1/2 -translate-x-1/2 bottom-2 z-20
+                     inline-flex items-center gap-1
+                     px-2.5 py-0.5 rounded-full
+                     bg-white/95 text-emerald-700
+                     text-[9px] font-bold uppercase tracking-[0.18em] shadow
+                     opacity-0 translate-y-1
+                     transition-all duration-300 ease-out
+                     group-hover:opacity-100 group-hover:translate-y-0
+                     group-focus-visible:opacity-100 group-focus-visible:translate-y-0"
+        >
+          Learn <ArrowRight size={9} />
+        </span>
+      )}
     </button>
   )
 }

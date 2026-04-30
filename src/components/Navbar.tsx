@@ -48,11 +48,13 @@ export default function Navbar() {
   }
   const handleHashClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault()
-    if (location.pathname === '/') {
+    if (location.pathname === '/' || location.pathname === '') {
+      // Already on home — just smooth-scroll.
       scrollToHash(id)
     } else {
-      navigate('/')
-      window.setTimeout(() => scrollToHash(id), 80)
+      // Navigate to /#id; the Home page reads `useLocation().hash` and
+      // smooth-scrolls to that section once it has mounted.
+      navigate(`/#${id}`)
     }
   }
 

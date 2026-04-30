@@ -23,8 +23,24 @@ export default function Home() {
   useEffect(() => {
     if (!hash) return
     const id = hash.replace('#', '')
-    const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    // The target section may not be mounted on the very first frame after
+    // a cross-page navigation. Poll briefly via rAF until it shows up
+    // (capped) so the smooth-scroll always fires.
+    let cancelled = false
+    let attempts = 0
+    const tryScroll = () => {
+      if (cancelled) return
+      const el = document.getElementById(id)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        return
+      }
+      if (attempts++ < 30) requestAnimationFrame(tryScroll)
+    }
+    requestAnimationFrame(tryScroll)
+    return () => {
+      cancelled = true
+    }
   }, [hash])
 
   return (
