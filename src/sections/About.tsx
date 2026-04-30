@@ -54,26 +54,24 @@ export default function About() {
     <Section
       id="about"
       className="relative overflow-hidden
-                 bg-gradient-to-br from-[#f4efe6] via-[#fbf7ed] to-[#ecf3ec]"
+                 bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]"
     >
       <div className="container-x py-4 md:py-6">
 
-        {/* Section-level eyebrow — sits OUTSIDE the dark panel so the
-         *  "About Us" label is the first thing a visitor sees when the
-         *  navbar link scrolls them to this section. Matches the eyebrow
-         *  style used by every other landing-page section. */}
+        {/* Section-level eyebrow — light-tone since the About section
+         *  itself now uses the dark forest-green background. */}
         <div className="mb-6 md:mb-8">
           <Reveal>
-            <Eyebrow>About Us</Eyebrow>
+            <Eyebrow tone="light">About Us</Eyebrow>
           </Reveal>
         </div>
 
+        {/* Content panel is fully transparent — the dark forest green
+         *  flows from the section bg straight through, so the layout
+         *  reads as one unified About section instead of a card sitting
+         *  on top of a contrasting page bg. */}
         <div
-          className="relative rounded-3xl overflow-hidden
-                     bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]
-                     ring-1 ring-emerald-500/15
-                     shadow-[0_28px_60px_-20px_rgba(4,16,10,0.55)]
-                     px-5 py-10 md:px-12 md:py-14
+          className="relative px-1 py-6 md:px-6 md:py-8
                      min-h-[520px] md:min-h-[600px]"
         >
 
