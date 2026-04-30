@@ -77,10 +77,11 @@ export default function GlobalOverviewPanel({
 
         <div className="relative p-7 md:p-9">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-brand-deep grid place-items-center
-                            ring-2 ring-brand-accent overflow-hidden shrink-0">
-              <img src={assets.logo} alt="" className="w-12 h-12 md:w-16 md:h-16 object-contain bg-white rounded p-0.5" />
-            </div>
+            <img
+              src={assets.logo}
+              alt="Yanabiya Group"
+              className="w-16 h-16 md:w-20 md:h-20 object-contain shrink-0"
+            />
             <div>
               <h3 className="font-serif text-2xl md:text-3xl text-brand-deep leading-tight">
                 Global Presence
