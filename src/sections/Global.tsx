@@ -168,6 +168,20 @@ export default function Global() {
                             'drop-shadow(0 0 6px rgba(158,199,58,0.7)) drop-shadow(0 0 2px rgba(158,199,58,0.5))',
                         }}
                       />
+                      {/* Bangladesh flag pin — small badge anchored to the
+                       *  top-right of the tile so the BD silhouette is
+                       *  identifiable at a glance. */}
+                      {c.code === 'BD' && (
+                        <span
+                          aria-hidden="true"
+                          className="absolute top-0.5 right-0.5 grid place-items-center
+                                     w-5 h-5 md:w-6 md:h-6 rounded-full bg-white
+                                     ring-2 ring-brand-accentDark/70 shadow-md
+                                     text-[11px] md:text-[13px] leading-none"
+                        >
+                          {c.flag}
+                        </span>
+                      )}
                     </Link>
                   )
                 })}
