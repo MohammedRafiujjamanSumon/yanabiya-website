@@ -158,17 +158,21 @@ export default function Community() {
 
           {/* Five hub circles, image-led, alternating heights to mirror the
            *  "Our Range of … Services" infographic style. */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-10 md:gap-x-4 lg:gap-x-6 justify-items-center">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-10 md:gap-x-4 lg:gap-x-6 justify-items-center [perspective:1400px]">
             {HUBS.map((h, i) => (
               <Reveal key={h.to} delay={i * 90} className={`${h.offset} flex flex-col items-center text-center max-w-[15rem]`}>
                 <Link
                   to={h.to}
                   aria-label={`Open ${h.title}`}
                   className="group relative w-28 h-28 md:w-32 md:h-32 rounded-full
+                             animate-float-3d will-change-transform
+                             [transform-style:preserve-3d]
                              shadow-[0_12px_28px_-8px_rgba(15,23,42,0.35)]
-                             transition-all duration-300
-                             hover:scale-110 hover:shadow-[0_20px_40px_-10px_rgba(15,23,42,0.45)]
+                             transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                             hover:[transform:rotateY(8deg)_rotateX(-5deg)_translateZ(16px)_scale(1.08)]
+                             hover:shadow-[0_22px_44px_-12px_rgba(15,23,42,0.45)]
                              focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+                  style={{ animationDelay: `${i * 0.6}s` }}
                 >
                   {/* Image background fills the circle */}
                   <span aria-hidden className={`absolute inset-0 rounded-full overflow-hidden ring-2 ring-white ${h.bg}`}>

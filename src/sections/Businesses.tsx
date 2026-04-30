@@ -182,14 +182,15 @@ function ServicesGBSModel({ onSelect }: { onSelect: (target: string) => void }) 
         ))}
       </div>
 
-      <div className="relative hidden md:flex md:items-center md:justify-center">
+      <div className="relative hidden md:flex md:items-center md:justify-center [perspective:1600px]">
         {GBS_ITEMS.map((item, i) => {
           const isUp = i % 2 === 0
           return (
             <div
               key={item.slug}
-              className={`relative ${isUp ? 'mb-10 lg:mb-12' : 'mt-10 lg:mt-12'} ${i > 0 ? '-ml-4 lg:-ml-5' : ''}`}
-              style={{ zIndex: GBS_ITEMS.length - i }}
+              className={`relative animate-float-3d will-change-transform
+                          ${isUp ? 'mb-10 lg:mb-12' : 'mt-10 lg:mt-12'} ${i > 0 ? '-ml-4 lg:-ml-5' : ''}`}
+              style={{ zIndex: GBS_ITEMS.length - i, animationDelay: `${i * 0.7}s` }}
             >
               <GbsCircle item={item} index={i} variant={isUp ? 'tall' : 'short'} onSelect={() => onSelect(resolve(item))} />
             </div>
@@ -223,7 +224,9 @@ function GbsCircle({
       onClick={onSelect}
       aria-label={`Open ${item.title}`}
       className={`group relative ${sizeCls} mx-auto rounded-full
-                  transition-transform duration-300 hover:scale-[1.04]
+                  [transform-style:preserve-3d]
+                  transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                  hover:[transform:rotateY(8deg)_rotateX(-5deg)_translateZ(14px)_scale(1.06)]
                   focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
       style={{
         filter:

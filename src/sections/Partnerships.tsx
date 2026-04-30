@@ -18,11 +18,11 @@ function LogoMarquee({
   const loop = [...half, ...half]
   const animClass = direction === 'left' ? 'animate-marquee' : 'animate-marquee-reverse'
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden [perspective:1400px]">
       {/* Strip keeps moving forever — no group-pause, so the chain never stops.
        *  Individual tiles react on their own when touched / hovered. */}
       <div
-        className={`flex ${animClass} gap-10 w-max py-4`}
+        className={`flex ${animClass} gap-10 w-max py-4 [transform-style:preserve-3d]`}
         style={{
           animationDuration: `${durationSec}s`,
           animationTimingFunction: 'linear',
@@ -37,11 +37,12 @@ function LogoMarquee({
                        bg-white border border-slate-200/70
                        shadow-[0_4px_10px_-4px_rgba(15,23,42,0.10)]
                        flex items-center justify-center
-                       transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                       hover:-translate-y-2 hover:scale-[1.04]
+                       [transform-style:preserve-3d]
+                       transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                       hover:[transform:rotateY(8deg)_rotateX(-5deg)_translateZ(20px)_scale(1.06)]
                        hover:shadow-[0_22px_44px_-14px_rgba(15,23,42,0.30)]
                        hover:border-brand-accent/50
-                       focus-visible:-translate-y-2 focus-visible:scale-[1.04]
+                       focus-visible:[transform:rotateY(8deg)_rotateX(-5deg)_translateZ(20px)_scale(1.06)]
                        focus-visible:shadow-[0_22px_44px_-14px_rgba(15,23,42,0.30)]
                        focus-visible:border-brand-accent/50
                        focus:outline-none"
