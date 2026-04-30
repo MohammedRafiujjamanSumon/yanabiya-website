@@ -133,7 +133,7 @@ export default function Global() {
              *  silhouette (filled with that country's real flag via CSS
              *  mask) sits on the orbit. Tapping any country still
              *  navigates to its detail page. */}
-            {COUNTRY_NODES.map((d, i) => {
+            {COUNTRY_NODES.map((d) => {
               const mapUrl = `${MAP_BASE}${d.code.toLowerCase()}.svg`
               const flagUrl = `${MAP_BASE}flags/${d.code.toLowerCase()}.svg`
               return (
@@ -146,15 +146,6 @@ export default function Global() {
                   style={{ top: d.top, left: d.left }}
                 >
                   <div className="relative grid place-items-center w-24 h-24 md:w-28 md:h-28">
-                    {/* Pulsing halo */}
-                    <span
-                      aria-hidden="true"
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                                 w-full h-full rounded-full bg-brand-accent/30
-                                 pointer-events-none -z-10"
-                      style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
-                    />
-
                     {/* Country silhouette filled with the real flag (mask) */}
                     <div
                       className="relative w-full h-full transition-transform duration-300
