@@ -62,7 +62,14 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-brand-deep text-white mt-24 overflow-hidden">
+    <footer className="bg-brand-deep text-white mt-24 pt-2 pb-2">
+      {/* Green-black-green sandwich for the entire footer:
+       *    pt-2  → top green strip   (footer bg shows through)
+       *    inner → ENTIRE black body (watermark + grid + copyright)
+       *    pb-2  → bottom green strip
+       */}
+      <div className="relative bg-black overflow-hidden">
+
       {/* Subtle Yanabiya logo watermark */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center select-none">
         <img
@@ -236,29 +243,27 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* BOTTOM BAR — green-black-green sandwich, same format as the
-       *  navbar at the top of the page. Green strips above + below
-       *  (from the section pt/pb), black bar edge-to-edge in the
-       *  middle, content centred in the standard container. */}
-      <div className="bg-brand-deep pt-2 pb-2 border-t border-white/10">
-        <div className="bg-black">
-          <div className="container-x py-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/70">
-            <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
-              <span>
-                © {year} Yanabiya Group · Since 2021 · All rights reserved.
-              </span>
-            </div>
-            <div className="flex items-center gap-5">
-              <Link to="/about-us" className={linkClass}>Group Profile</Link>
-              <a
-                href={`mailto:${contact.emails[0]}`}
-                className={linkClass}
-              >
-                {contact.emails[0]}
-              </a>
-            </div>
+      {/* BOTTOM BAR — copyright + legal. Lives inside the same black
+       *  body, divided from the main grid by a thin white/10 border. */}
+      <div className="relative border-t border-white/10">
+        <div className="container-x py-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/70">
+          <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
+            <span>
+              © {year} Yanabiya Group · Since 2021 · All rights reserved.
+            </span>
+          </div>
+          <div className="flex items-center gap-5">
+            <Link to="/about-us" className={linkClass}>Group Profile</Link>
+            <a
+              href={`mailto:${contact.emails[0]}`}
+              className={linkClass}
+            >
+              {contact.emails[0]}
+            </a>
           </div>
         </div>
+      </div>
+
       </div>
     </footer>
   )
