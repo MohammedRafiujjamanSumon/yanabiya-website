@@ -36,10 +36,10 @@ function Reveal({
  * BD·south, USA·west) so the whole arrangement reads as the four
  * regions drawn together on a single round body. */
 const COUNTRY_NODES = [
-  { code: 'OM', flag: '🇴🇲', name: 'Oman',       capital: 'Muscat',  label: 'Muscat, Oman',      top: '50%', left: '82%' },
-  { code: 'GB', flag: '🇬🇧', name: 'UK',         capital: 'London',  label: 'London, UK',        top: '18%', left: '50%' },
-  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', capital: 'Dhaka',   label: 'Dhaka, Bangladesh', top: '82%', left: '50%' },
-  { code: 'US', flag: '🇺🇸', name: 'USA',        capital: 'Austin',  label: 'Austin, USA',       top: '50%', left: '18%' },
+  { code: 'OM', flag: '🇴🇲', name: 'Oman',       capital: 'Muscat',  label: 'Muscat, Oman',      top: '50%', left: '78%' },
+  { code: 'GB', flag: '🇬🇧', name: 'UK',         capital: 'London',  label: 'London, UK',        top: '22%', left: '50%' },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', capital: 'Dhaka',   label: 'Dhaka, Bangladesh', top: '78%', left: '50%' },
+  { code: 'US', flag: '🇺🇸', name: 'USA',        capital: 'Austin',  label: 'Austin, USA',       top: '50%', left: '22%' },
 ]
 
 const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
