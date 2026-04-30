@@ -1,13 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import {
-  MapPin, Phone, Mail, Clock, Building2, Briefcase,
-  ArrowRight, ChevronRight, ExternalLink, Globe2, Smartphone,
+  MapPin, Phone, Mail, Clock, ArrowRight, Globe2, Send,
+  Briefcase, Cpu, Ship, Handshake, Building2, Users,
+  Trophy, TrendingUp, Sparkles, Plane, Boxes,
+  type LucideIcon,
 } from 'lucide-react'
 import BackButton from '../components/BackButton'
 import { countries } from '../data/countries'
 import { contactByCountry } from '../data/contact'
 import { useReveal } from '../hooks/useReveal'
+
+const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
 
 function Reveal({
   children,
@@ -32,11 +36,133 @@ function Reveal({
   )
 }
 
-const countryAccent: Record<string, string> = {
-  OM: 'from-emerald-500/20 via-brand-accent/15 to-transparent',
-  GB: 'from-indigo-500/20 via-brand-accent/15 to-transparent',
-  BD: 'from-rose-500/20 via-brand-accent/15 to-transparent',
-  US: 'from-amber-500/20 via-brand-accent/15 to-transparent',
+type Stat = { label: string; value: string; icon: LucideIcon }
+type Service = { label: string; desc: string; icon: LucideIcon }
+type Presence = { name: string; city: string; type: 'HQ' | 'Branch' | 'Network' | 'Partner' }
+type Achievement = { title: string; body: string; icon: LucideIcon }
+
+interface CountryDashboard {
+  subtitle: string
+  yearsActive: string
+  /** Hierarchy tier — used in the hero pill alongside the flag. */
+  tier: { rank: string; label: string }
+  stats: Stat[]
+  services: Service[]
+  presence: Presence[]
+  achievements: Achievement[]
+}
+
+const COUNTRY_DASHBOARDS: Record<string, CountryDashboard> = {
+  OM: {
+    subtitle: 'Global business presence in Oman — group headquarters & multi-sector operations.',
+    yearsActive: '4+',
+    tier: { rank: 'Tier 01', label: 'Group Headquarters' },
+    stats: [
+      { label: 'Years Active', value: '4+', icon: Clock },
+      { label: 'Active Projects', value: '50+', icon: Briefcase },
+      { label: 'Business Partners', value: '80+', icon: Handshake },
+      { label: 'Clients Served', value: '200+', icon: Users },
+    ],
+    services: [
+      { label: 'Trade', desc: 'Import / Export', icon: Boxes },
+      { label: 'Tech', desc: 'Software / AI', icon: Cpu },
+      { label: 'Shipping', desc: 'Cargo / Delivery', icon: Ship },
+      { label: 'Deals', desc: 'Partnerships', icon: Handshake },
+      { label: 'Office', desc: 'Support / Admin', icon: Building2 },
+      { label: 'Mobility', desc: 'Work / Visa help', icon: Plane },
+    ],
+    presence: [
+      { name: 'Muscat HQ', city: 'Al Gubrah, Muscat', type: 'HQ' },
+      { name: 'Business Operations Center', city: 'Al Khuwair, Muscat', type: 'Branch' },
+      { name: 'Partner Network', city: 'Across Oman', type: 'Network' },
+    ],
+    achievements: [
+      { title: 'First Overseas HQ', body: 'Group headquarters established 2021 in Muscat', icon: Trophy },
+      { title: '7 Partner Companies', body: 'Diversified portfolio across multiple sectors', icon: TrendingUp },
+      { title: 'Multi-Sector Reach', body: 'IT, trade, mobility, retail & construction', icon: Sparkles },
+    ],
+  },
+  GB: {
+    subtitle: 'Global business presence in the United Kingdom — European operations & strategic gateway.',
+    yearsActive: '2+',
+    tier: { rank: 'Tier 03', label: 'Strategic Hub' },
+    stats: [
+      { label: 'Years Active', value: '2+', icon: Clock },
+      { label: 'Active Projects', value: '15+', icon: Briefcase },
+      { label: 'Business Partners', value: '25+', icon: Handshake },
+      { label: 'Clients Served', value: '60+', icon: Users },
+    ],
+    services: [
+      { label: 'Tech', desc: 'Software / Consulting', icon: Cpu },
+      { label: 'Deals', desc: 'Partnerships', icon: Handshake },
+      { label: 'Office', desc: 'Support / Admin', icon: Building2 },
+      { label: 'Mobility', desc: 'Work / Student visa', icon: Plane },
+    ],
+    presence: [
+      { name: 'London HQ', city: 'Great Portland St, London', type: 'HQ' },
+      { name: 'EU/UK Partner Network', city: 'Across UK', type: 'Network' },
+    ],
+    achievements: [
+      { title: 'European Gateway', body: 'EU/UK operations live since June 2023', icon: Trophy },
+      { title: 'London HQ', body: 'Prime W1 Central London base', icon: TrendingUp },
+      { title: 'Cross-Border Deals', body: 'Bridging Gulf, EU & North America', icon: Sparkles },
+    ],
+  },
+  BD: {
+    subtitle: 'Global business presence in Bangladesh — group’s longest-running entity, full-spectrum operations since 1998.',
+    yearsActive: '27+',
+    tier: { rank: 'Tier 02', label: 'Established Hub' },
+    stats: [
+      { label: 'Years Active', value: '27+', icon: Clock },
+      { label: 'Active Projects', value: '50+', icon: Briefcase },
+      { label: 'Business Partners', value: '80+', icon: Handshake },
+      { label: 'Clients Served', value: '200+', icon: Users },
+    ],
+    services: [
+      { label: 'Trade', desc: 'Sourcing / Export', icon: Boxes },
+      { label: 'Tech', desc: 'Engineering / QA', icon: Cpu },
+      { label: 'Shipping', desc: 'Cargo / Logistics', icon: Ship },
+      { label: 'Deals', desc: 'Partnerships', icon: Handshake },
+      { label: 'Office', desc: 'Support / Admin', icon: Building2 },
+      { label: 'Mobility', desc: 'Recruitment / Training', icon: Plane },
+    ],
+    presence: [
+      { name: 'Dhaka HQ', city: 'Uttarkhan, Dhaka', type: 'HQ' },
+      { name: 'Operations Office', city: 'Dhaka', type: 'Branch' },
+      { name: 'Manufacturing Network', city: 'Across Bangladesh', type: 'Network' },
+    ],
+    achievements: [
+      { title: '27+ Years in Business', body: 'Group’s longest-running entity, since 1998', icon: Trophy },
+      { title: 'Manufacturing Hub', body: 'Garments, sourcing & QA at scale', icon: TrendingUp },
+      { title: 'Talent Engine', body: 'Engineering & recruitment for the group', icon: Sparkles },
+    ],
+  },
+  US: {
+    subtitle: 'Global business presence in the United States — North America operations.',
+    yearsActive: '<1',
+    tier: { rank: 'Tier 04', label: 'Emerging Hub' },
+    stats: [
+      { label: 'Years Active', value: '<1', icon: Clock },
+      { label: 'Active Projects', value: '5+', icon: Briefcase },
+      { label: 'Business Partners', value: '10+', icon: Handshake },
+      { label: 'Clients Served', value: '20+', icon: Users },
+    ],
+    services: [
+      { label: 'Tech', desc: 'Cloud / AI', icon: Cpu },
+      { label: 'Deals', desc: 'Partnerships', icon: Handshake },
+      { label: 'Office', desc: 'Support / Admin', icon: Building2 },
+      { label: 'Mobility', desc: 'Work-visa advisory', icon: Plane },
+    ],
+    presence: [
+      { name: 'Austin Office', city: 'Balcones Dr, Austin TX', type: 'HQ' },
+      { name: 'North America Network', city: 'Across USA', type: 'Network' },
+    ],
+    achievements: [
+      { title: 'Newest Hub', body: 'North America entity formed August 2025', icon: Trophy },
+      { title: 'Texas Base', body: 'Austin — fast-growing tech corridor', icon: TrendingUp },
+      { title: 'AI & Cloud Focus', body: 'Frontier-model & AWS engagements', icon: Sparkles },
+    ],
+  },
 }
 
 export default function CountryDetail() {
@@ -44,22 +170,23 @@ export default function CountryDetail() {
   const upper = (code ?? '').toUpperCase()
   const country = countries.find((c) => c.code === upper)
   const contact = contactByCountry.find((c) => c.code === upper)
+  const dash = COUNTRY_DASHBOARDS[upper]
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [code])
 
-  if (!country) {
+  if (!country || !dash) {
     return (
-      <main className="bg-[#fbfdfb] text-slate-900 min-h-screen grid place-items-center px-6">
+      <main className="bg-slate-950 text-slate-100 min-h-screen grid place-items-center px-6">
         <div className="text-center">
-          <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
+          <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-amber-300 mb-3">
             404
           </div>
-          <h2 className="font-serif text-3xl text-brand-deep mb-3">Country not found.</h2>
+          <h2 className="font-serif text-3xl text-white mb-3">Country not found.</h2>
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accentDark hover:text-brand-deep"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-amber-300 hover:text-amber-200"
           >
             Back to Home <ArrowRight size={14} />
           </Link>
@@ -69,401 +196,620 @@ export default function CountryDetail() {
   }
 
   const c = country
-  const parentCompany = (c as { parentCompany?: string }).parentCompany
-  const entitiesLabel = (c as { entitiesLabel?: string }).entitiesLabel ?? 'Operating Entities'
-  const activities = (c as { activities?: { code: string; name: string; icon?: string; image?: string }[] }).activities
-  const description = (c as { description?: string }).description
-  const accent = countryAccent[c.code] ?? countryAccent.OM
   const otherCountries = countries.filter((o) => o.code !== c.code)
+  const mapUrl = `${MAP_BASE}${c.code.toLowerCase()}.svg`
+  const flagUrl = `${MAP_BASE}flags/${c.code.toLowerCase()}.svg`
 
   return (
-    <main className="relative bg-[#fbfdfb] text-slate-900 overflow-hidden min-h-screen">
+    <main className="relative bg-slate-950 text-slate-100 overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
-      {/* Ambient glow */}
+      {/* Ambient glow blobs */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className={`absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-gradient-radial ${accent} blur-[160px]`} />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-blue-500/10 blur-[160px]" />
+        <div className="absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-amber-500/10 blur-[160px]" />
+        <div className="absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-emerald-500/10 blur-[160px]" />
       </div>
 
-      {/* HERO */}
-      <section className="relative">
-        <div className="container-x py-12 md:py-16 max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-7">
-              <Reveal>
-                <div className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
-                  <Globe2 size={12} />
-                  {c.role}
-                </div>
-              </Reveal>
-              <Reveal delay={120}>
-                <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-brand-deep">
-                  {c.name}
-                </h1>
-              </Reveal>
-              <Reveal delay={240}>
-                <p className="mt-5 text-base md:text-lg text-slate-600 leading-snug max-w-2xl">
-                  {description ??
-                    `Yanabiya Group's ${c.role.toLowerCase()} — a coordinated team operating under the wider international network.`}
-                </p>
-              </Reveal>
-              <Reveal delay={360}>
-                <div className="mt-6 inline-flex items-start gap-2 text-sm text-slate-700 max-w-xl">
-                  <MapPin size={16} className="mt-0.5 shrink-0 text-brand-accentDark" />
-                  <span className="leading-snug whitespace-pre-line">{c.address}</span>
-                </div>
-              </Reveal>
-            </div>
+      {/* ───────── 1. HERO ───────── */}
+      <Hero country={c} dash={dash} mapUrl={mapUrl} flagUrl={flagUrl} />
 
-            <Reveal delay={200} className="md:col-span-5">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-slate-200 shadow-[0_24px_60px_-30px_rgba(15,58,35,0.35)]">
-                <img
-                  src={c.heroImage}
-                  alt={c.name}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/70 via-brand-deep/15 to-transparent" />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5
-                                rounded-full bg-white/90 backdrop-blur px-3 py-1
-                                text-[11px] font-bold uppercase tracking-[0.22em] text-brand-deep">
-                  <span className="text-base leading-none">{c.flag}</span>
-                  {c.code}
-                </div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-white/85">
-                    Operating Hub
-                  </div>
-                  <div className="font-serif text-lg text-white leading-tight mt-1">
-                    {parentCompany ?? c.entities[0]}
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+      {/* ───────── 2. LIVE ACTIVITY CARDS ───────── */}
+      <LiveActivityCards stats={dash.stats} />
 
-      {/* AT A GLANCE STRIP */}
-      <section className="relative">
-        <div className="container-x max-w-6xl mx-auto">
-          <Reveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              <Stat icon={Building2} label="Entities" value={String(c.entities.length)} />
-              <Stat icon={Briefcase} label="Activities" value={activities ? String(activities.length) : '—'} />
-              <Stat icon={MapPin} label="Country Code" value={c.code} />
-              <Stat icon={Globe2} label="Role" value={c.role.split(' ')[0]} />
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* ───────── 3. WHAT WE DO — 3D SERVICE BLOCKS ───────── */}
+      <ServiceBlocks services={dash.services} countryName={c.name} />
 
-      {/* LEGAL ENTITY — registered company name + registration no + date */}
-      {contact && (
-        <section className="relative mt-12">
-          <div className="container-x max-w-6xl mx-auto">
-            <Reveal>
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 md:p-8
-                              flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-                <div className="min-w-0">
-                  <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark mb-1">
-                    Registered Entity
-                  </div>
-                  <div className="font-serif text-xl md:text-2xl text-brand-deep leading-tight">
-                    {contact.legalName}
-                  </div>
-                  <div className="mt-3 inline-flex items-center gap-1.5 text-[12px] text-slate-600">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
-                      Established
-                    </span>
-                    {contact.established}
-                  </div>
-                </div>
-                <Link
-                  to="/contact"
-                  className="self-start md:self-auto shrink-0 inline-flex items-center gap-1.5 rounded-full px-4 py-2
-                             border border-slate-300 text-slate-700 text-[11px] font-semibold uppercase tracking-wider
-                             hover:border-brand-accentDark hover:text-brand-accentDark transition-all"
-                >
-                  Contact this office <ArrowRight size={12} />
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
+      {/* ───────── 4. LOCAL PRESENCE ───────── */}
+      <LocalPresence presence={dash.presence} />
 
-      {/* PARENT COMPANY (Oman only — kept as a separate Group HQ note) */}
-      {parentCompany && c.code === 'OM' && (
-        <section className="relative mt-6">
-          <div className="container-x max-w-6xl mx-auto">
-            <Reveal>
-              <div className="rounded-2xl border border-brand-deep/15 bg-brand-deep/5 px-6 py-4
-                              flex items-start gap-3">
-                <span className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark shrink-0">
-                  Group HQ
-                </span>
-                <span className="text-sm text-brand-deep leading-snug">
-                  Parent · {parentCompany}
-                </span>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
+      {/* ───────── 5. 3D GLOBAL CONNECTION ───────── */}
+      <GlobalConnection
+        currentCode={c.code}
+        currentFlagUrl={flagUrl}
+        currentMapUrl={mapUrl}
+        otherCountries={otherCountries}
+      />
 
-      {/* ENTITIES */}
-      <section className="relative mt-14 md:mt-20">
-        <div className="container-x max-w-6xl mx-auto">
-          <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.32em] uppercase text-brand-accentDark mb-3">
-              {entitiesLabel}
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep leading-tight mb-8 max-w-2xl">
-              Companies operating under the {c.name} hub.
-            </h2>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {c.entities.map((e, i) => (
-              <Reveal key={e} delay={i * 60}>
-                <div className="group h-full rounded-2xl bg-white border border-slate-200
-                                p-5 transition-all duration-300
-                                hover:border-brand-deep/40 hover:-translate-y-0.5
-                                hover:shadow-[0_18px_40px_-20px_rgba(15,58,35,0.25)]">
-                  <div className="flex items-start gap-3">
-                    <span className="shrink-0 w-10 h-10 rounded-lg bg-brand-accent/15 text-brand-deep
-                                     grid place-items-center transition-colors duration-300
-                                     group-hover:bg-brand-accent group-hover:text-white">
-                      <Building2 size={18} strokeWidth={1.6} />
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-0.5">
-                        Entity · {String(i + 1).padStart(2, '0')}
-                      </div>
-                      <div className="text-[14px] font-semibold text-brand-deep leading-snug">
-                        {e}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ───────── 6. ACHIEVEMENTS ───────── */}
+      <Achievements achievements={dash.achievements} />
 
-      {/* ACTIVITIES (Oman) */}
-      {activities && (
-        <section className="relative mt-14 md:mt-20">
-          <div className="container-x max-w-6xl mx-auto">
-            <Reveal>
-              <div className="text-[11px] font-semibold tracking-[0.32em] uppercase text-brand-accentDark mb-3">
-                Commercial Activities
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="font-serif text-3xl md:text-4xl text-brand-deep leading-tight mb-8 max-w-2xl">
-                Licensed across {activities.length} commercial activities.
-              </h2>
-            </Reveal>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {activities.map((a, i) => (
-                <Reveal key={a.code + a.name} delay={Math.min(i, 8) * 40}>
-                  <div className="group h-full rounded-xl bg-white border border-slate-200
-                                  px-4 py-3 flex items-center gap-3
-                                  transition-all duration-300
-                                  hover:border-brand-accent/50 hover:-translate-y-0.5
-                                  hover:shadow-[0_12px_30px_-14px_rgba(158,199,58,0.4)]">
-                    <span className="text-xl leading-none shrink-0">{a.icon ?? '•'}</span>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[9px] font-bold uppercase tracking-[0.22em] text-slate-400">
-                        Code {a.code}
-                      </div>
-                      <div className="text-[13px] text-slate-700 leading-snug line-clamp-2">
-                        {a.name}
-                      </div>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* CONTACT BLOCK */}
-      {contact && (
-        <section className="relative mt-14 md:mt-20">
-          <div className="container-x max-w-6xl mx-auto">
-            <Reveal>
-              <div className="text-[11px] font-semibold tracking-[0.32em] uppercase text-brand-accentDark mb-3">
-                Reach this office
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="font-serif text-3xl md:text-4xl text-brand-deep leading-tight mb-8 max-w-2xl">
-                Office details & directions.
-              </h2>
-            </Reveal>
-
-            <div className="grid lg:grid-cols-12 gap-6">
-              <div className="lg:col-span-5 space-y-3">
-                {contact.phones.length > 0 && (
-                  <ContactRow icon={Phone} label="Phone" value={contact.phones.join(' · ')} href={`tel:${contact.phones[0].replace(/\s+/g, '')}`} />
-                )}
-                {contact.mobile && (
-                  <ContactRow icon={Smartphone} label="Mobile" value={contact.mobile} href={`tel:${contact.mobile.replace(/\s+/g, '')}`} />
-                )}
-                {contact.emails.map((e) => (
-                  <ContactRow key={e} icon={Mail} label="Email" value={e} href={`mailto:${e}`} />
-                ))}
-                {contact.websites.map((w) => (
-                  <ContactRow
-                    key={w}
-                    icon={Globe2}
-                    label="Website"
-                    value={w}
-                    href={w.startsWith('http') ? w : `https://${w}`}
-                  />
-                ))}
-                <ContactRow icon={Clock} label="Hours" value={contact.hours} />
-                {contact.poBox && (
-                  <ContactRow icon={MapPin} label="Postal" value={contact.poBox} />
-                )}
-              </div>
-
-              <div className="lg:col-span-7">
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.mapQuery)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block relative aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200
-                             shadow-[0_18px_40px_-20px_rgba(15,58,35,0.25)]"
-                >
-                  <iframe
-                    title={`Map of ${c.name}`}
-                    src={`https://www.google.com/maps?q=${encodeURIComponent(contact.mapQuery)}&output=embed`}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                  <div className="absolute top-3 right-3 inline-flex items-center gap-1.5
-                                  rounded-full bg-white/95 backdrop-blur px-3 py-1.5
-                                  text-[11px] font-bold uppercase tracking-[0.22em] text-brand-deep
-                                  opacity-0 group-hover:opacity-100 transition-opacity">
-                    Open in Maps <ExternalLink size={11} />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* OTHER COUNTRIES STRIP */}
-      <section className="relative mt-16 md:mt-24 pb-20 md:pb-28">
-        <div className="container-x max-w-6xl mx-auto">
-          <Reveal>
-            <div className="border-t border-slate-200 pt-10">
-              <div className="text-[11px] font-semibold tracking-[0.32em] uppercase text-brand-accentDark mb-3">
-                Across the Group
-              </div>
-              <h3 className="font-serif text-2xl md:text-3xl text-brand-deep leading-tight mb-6">
-                Explore other countries
-              </h3>
-              <div className="grid sm:grid-cols-3 gap-4">
-                {otherCountries.map((o) => (
-                  <Link
-                    key={o.code}
-                    to={`/global-presence/${o.code.toLowerCase()}`}
-                    className="group flex items-center gap-3 rounded-xl bg-white border border-slate-200
-                               p-4 transition-all duration-300
-                               hover:border-brand-accent/50 hover:-translate-y-0.5
-                               hover:shadow-[0_18px_40px_-20px_rgba(158,199,58,0.4)]"
-                  >
-                    <span className="text-2xl leading-none shrink-0">{o.flag}</span>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[14px] font-semibold text-brand-deep leading-tight">
-                        {o.name}
-                      </div>
-                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-accentDark mt-0.5">
-                        {o.role}
-                      </div>
-                    </div>
-                    <ChevronRight size={14} className="text-slate-300 group-hover:text-brand-accentDark transition-colors" />
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* ───────── 7. CONTACT ───────── */}
+      <ContactSection country={c} contact={contact} />
     </main>
   )
 }
 
-/* ───────────── helpers ───────────── */
+/* ────────────────────────────────────────────────────────────────────────── */
 
-function Stat({
-  icon: Icon,
-  label,
-  value,
+function Hero({
+  country,
+  dash,
+  mapUrl,
+  flagUrl,
 }: {
-  icon: typeof Building2
-  label: string
-  value: string
+  country: typeof countries[number]
+  dash: CountryDashboard
+  mapUrl: string
+  flagUrl: string
 }) {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white/80 backdrop-blur-sm p-4">
-      <div className="flex items-center gap-2 text-brand-accentDark">
-        <Icon size={14} strokeWidth={1.8} />
-        <span className="text-[10px] font-bold uppercase tracking-[0.22em]">{label}</span>
+    <section className="relative min-h-[80vh] flex items-center">
+      {/* Background — country silhouette filled with flag, blurred + low opacity */}
+      <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
+        <div
+          className="w-[80%] h-[80%] opacity-15 blur-sm"
+          style={{
+            WebkitMaskImage: `url(${mapUrl})`,
+            maskImage: `url(${mapUrl})`,
+            WebkitMaskSize: 'contain',
+            maskSize: 'contain',
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center',
+            maskPosition: 'center',
+            backgroundImage: `url(${flagUrl})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            animation: 'spin-slow 60s linear infinite',
+          }}
+        />
       </div>
-      <div className="mt-1 font-serif text-xl md:text-2xl text-brand-deep leading-tight">
-        {value}
+
+      {/* Floating orbit lines */}
+      <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
+        <div className="absolute w-[60%] aspect-square rounded-full border border-white/8 animate-spin-slow" />
+        <div className="absolute w-[80%] aspect-square rounded-full border border-amber-300/15"
+             style={{ animation: 'spin-slow 80s linear reverse infinite' }} />
       </div>
-    </div>
+
+      {/* Floating particles */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        {[
+          { top: '15%', left: '20%', size: 'w-1.5 h-1.5', delay: '0s' },
+          { top: '30%', left: '80%', size: 'w-1 h-1', delay: '0.6s' },
+          { top: '65%', left: '15%', size: 'w-1 h-1', delay: '1.2s' },
+          { top: '75%', left: '85%', size: 'w-1.5 h-1.5', delay: '1.8s' },
+          { top: '50%', left: '50%', size: 'w-1 h-1', delay: '2.4s' },
+          { top: '20%', left: '60%', size: 'w-1 h-1', delay: '3s' },
+        ].map((p, i) => (
+          <span
+            key={i}
+            className={`absolute rounded-full bg-amber-300 shadow-[0_0_8px_rgba(252,211,77,0.9)] ${p.size}`}
+            style={{ top: p.top, left: p.left, animation: `haloPulse 4s ease-in-out ${p.delay} infinite` }}
+          />
+        ))}
+      </div>
+
+      <div className="container-x relative z-10 max-w-5xl mx-auto text-center">
+        <Reveal>
+          <div className="inline-flex items-center gap-2 mb-6">
+            <span className="px-2.5 py-1 rounded-full
+                             bg-amber-300 text-slate-900
+                             text-[10px] font-black tracking-[0.28em] uppercase">
+              {dash.tier.rank}
+            </span>
+            <span className="px-3 py-1 rounded-full
+                             bg-white/[0.06] backdrop-blur-md ring-1 ring-white/15
+                             text-[11px] font-bold tracking-[0.32em] uppercase text-amber-200 inline-flex items-center gap-2">
+              <span className="text-base leading-none">{country.flag}</span>
+              {dash.tier.label}
+            </span>
+          </div>
+        </Reveal>
+        <Reveal delay={120}>
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.0] tracking-tight text-white">
+            {country.name.replace('Sultanate of ', '').replace('United States of America', 'USA')}
+            <span className="block text-2xl md:text-3xl mt-3 font-sans font-light text-slate-300">
+              Operations
+            </span>
+          </h1>
+        </Reveal>
+        <Reveal delay={260}>
+          <p className="mt-7 text-base md:text-lg text-slate-300 leading-snug max-w-2xl mx-auto">
+            {dash.subtitle}
+          </p>
+        </Reveal>
+      </div>
+    </section>
   )
 }
 
-function ContactRow({
-  icon: Icon,
-  label,
-  value,
-  href,
-}: {
-  icon: typeof Phone
-  label: string
-  value: string
-  href?: string
-}) {
-  const inner = (
-    <div className="group flex items-start gap-3 rounded-xl bg-white border border-slate-200
-                    p-4 transition-all duration-300
-                    hover:border-brand-deep/40 hover:-translate-y-0.5">
-      <span className="shrink-0 w-9 h-9 rounded-lg bg-brand-accent/15 text-brand-deep
-                       grid place-items-center transition-colors duration-300
-                       group-hover:bg-brand-accent group-hover:text-white">
-        <Icon size={16} strokeWidth={1.8} />
-      </span>
-      <div className="min-w-0 flex-1">
-        <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-0.5">
-          {label}
-        </div>
-        <div className="text-[14px] text-slate-700 leading-snug break-words">
-          {value}
+function LiveActivityCards({ stats }: { stats: Stat[] }) {
+  return (
+    <section className="relative py-16 md:py-20">
+      <div className="container-x max-w-6xl mx-auto">
+        <Reveal>
+          <div className="text-center mb-10">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+              Live Activity
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl text-white">By the numbers</h2>
+          </div>
+        </Reveal>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 80}>
+              <div className="group relative rounded-2xl
+                              bg-white/[0.04] backdrop-blur-md border border-white/10
+                              shadow-[0_8px_32px_rgba(0,0,0,0.35)]
+                              p-5 md:p-6
+                              transition-all duration-500
+                              hover:bg-white/[0.07] hover:border-amber-300/40
+                              hover:-translate-y-1
+                              hover:shadow-[0_16px_48px_rgba(212,175,55,0.18)]"
+                   style={{ animation: `floatY 6s ease-in-out ${i * 0.5}s infinite` }}>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-9 h-9 rounded-lg bg-amber-300/15 grid place-items-center text-amber-300
+                                  ring-1 ring-amber-300/30 transition-colors duration-300
+                                  group-hover:bg-amber-300/25">
+                    <s.icon size={16} />
+                  </div>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">
+                    {s.label}
+                  </div>
+                </div>
+                <div className="font-serif text-3xl md:text-4xl text-white leading-none">
+                  {s.value}
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   )
-  return href ? (
-    <a href={href} className="block">
-      {inner}
-    </a>
-  ) : (
-    inner
+}
+
+function ServiceBlocks({ services, countryName }: { services: Service[]; countryName: string }) {
+  return (
+    <section className="relative py-16 md:py-20">
+      <div className="container-x max-w-6xl mx-auto">
+        <Reveal>
+          <div className="text-center mb-10">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+              What we do
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl text-white">
+              Services in {countryName.replace('Sultanate of ', '').replace('United States of America', 'the US')}
+            </h2>
+          </div>
+        </Reveal>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+          {services.map((s, i) => (
+            <Reveal key={s.label} delay={i * 80}>
+              <div className="group relative rounded-2xl
+                              bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent
+                              backdrop-blur-md border border-white/10
+                              shadow-[0_8px_24px_rgba(0,0,0,0.35)]
+                              p-6 transition-all duration-500
+                              hover:border-amber-300/50 hover:-translate-y-1
+                              hover:shadow-[0_18px_42px_rgba(212,175,55,0.2)]">
+                {/* Decorative gradient sheen */}
+                <div aria-hidden="true"
+                     className="absolute inset-0 rounded-2xl bg-gradient-to-br from-amber-500/0 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="relative">
+                  <div className="w-12 h-12 rounded-xl bg-amber-300/15 grid place-items-center text-amber-300
+                                  ring-1 ring-amber-300/30 mb-4
+                                  transition-all duration-300
+                                  group-hover:scale-110 group-hover:bg-amber-300 group-hover:text-slate-900">
+                    <s.icon size={20} />
+                  </div>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-300 mb-1.5">
+                    {s.label}
+                  </div>
+                  <div className="text-base font-semibold text-white">
+                    {s.desc}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function LocalPresence({ presence }: { presence: Presence[] }) {
+  const typeStyle: Record<Presence['type'], string> = {
+    HQ: 'bg-amber-300 text-slate-900',
+    Branch: 'bg-blue-300 text-slate-900',
+    Network: 'bg-emerald-300 text-slate-900',
+    Partner: 'bg-rose-300 text-slate-900',
+  }
+  return (
+    <section className="relative py-16 md:py-20">
+      <div className="container-x max-w-6xl mx-auto">
+        <Reveal>
+          <div className="text-center mb-10">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+              Local Presence
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl text-white">Our offices &amp; partners</h2>
+          </div>
+        </Reveal>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {presence.map((p, i) => (
+            <Reveal key={p.name} delay={i * 80}>
+              <div className="group relative rounded-2xl
+                              bg-white/[0.04] backdrop-blur-md border border-white/10
+                              p-5 transition-all duration-500
+                              hover:border-amber-300/40 hover:-translate-y-1">
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-white/[0.06] grid place-items-center text-amber-300
+                                  ring-1 ring-white/10">
+                    <Building2 size={16} />
+                  </div>
+                  <span className={`text-[9px] font-bold uppercase tracking-[0.22em] px-2 py-0.5 rounded-full ${typeStyle[p.type]}`}>
+                    {p.type}
+                  </span>
+                </div>
+                <div className="font-serif text-lg text-white leading-tight">
+                  {p.name}
+                </div>
+                <div className="mt-1.5 inline-flex items-center gap-1.5 text-xs text-slate-400">
+                  <MapPin size={12} className="text-amber-300/80" />
+                  {p.city}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function GlobalConnection({
+  currentCode,
+  currentFlagUrl,
+  currentMapUrl,
+  otherCountries,
+}: {
+  currentCode: string
+  currentFlagUrl: string
+  currentMapUrl: string
+  otherCountries: typeof countries
+}) {
+  const positions = ['top-[14%] left-1/2 -translate-x-1/2', 'top-1/2 left-[12%] -translate-y-1/2', 'bottom-[14%] left-1/2 -translate-x-1/2']
+  return (
+    <section className="relative py-16 md:py-24">
+      <div className="container-x max-w-6xl mx-auto">
+        <Reveal>
+          <div className="text-center mb-10">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+              Global Connection
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl text-white">One unified network</h2>
+            <p className="mt-3 text-sm text-slate-400 max-w-xl mx-auto">
+              Linked to every other Yanabiya hub by daily collaboration, shared
+              clients, and a single delivery playbook.
+            </p>
+          </div>
+        </Reveal>
+        <Reveal delay={200}>
+          <div className="relative aspect-square w-full max-w-[560px] mx-auto
+                          rounded-full
+                          bg-gradient-to-br from-slate-900 via-blue-950/80 to-slate-900
+                          ring-1 ring-white/10 shadow-2xl
+                          overflow-hidden">
+            {/* Decorative orbit rings */}
+            <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
+              {[0.92, 0.7, 0.42].map((s, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full border border-white/10"
+                  style={{
+                    width: `${s * 100}%`,
+                    height: `${s * 100}%`,
+                    animation: `spin-slow ${30 + i * 20}s linear ${i % 2 === 0 ? 'normal' : 'reverse'} infinite`,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Connection lines from centre to each peripheral country */}
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 100 100"
+              className="absolute inset-0 w-full h-full pointer-events-none"
+            >
+              {[
+                { x: 50, y: 14 },
+                { x: 12, y: 50 },
+                { x: 50, y: 86 },
+              ].map((pos, i) => (
+                <line
+                  key={i}
+                  x1="50" y1="50" x2={pos.x} y2={pos.y}
+                  stroke="rgba(252,211,77,0.55)"
+                  strokeWidth="0.4"
+                  strokeDasharray="0.8 1.2"
+                  style={{ animation: `dividerGrow 5s ease-in-out ${i * 0.4}s infinite` }}
+                />
+              ))}
+            </svg>
+
+            {/* Centre — current country silhouette filled with flag */}
+            <div className="absolute inset-0 grid place-items-center pointer-events-none">
+              <div
+                className="w-32 h-32 md:w-36 md:h-36"
+                style={{
+                  WebkitMaskImage: `url(${currentMapUrl})`,
+                  maskImage: `url(${currentMapUrl})`,
+                  WebkitMaskSize: 'contain',
+                  maskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                  maskPosition: 'center',
+                  backgroundImage: `url(${currentFlagUrl})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  filter: 'drop-shadow(0 0 16px rgba(252,211,77,0.5))',
+                }}
+              />
+            </div>
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-[3.5rem] md:translate-y-[4rem] pointer-events-none">
+              <span className="px-2.5 py-1 rounded-full bg-amber-300/15 ring-1 ring-amber-300/40
+                               text-[9px] font-bold uppercase tracking-[0.3em] text-amber-200">
+                You are here
+              </span>
+            </div>
+
+            {/* Peripheral country nodes */}
+            {otherCountries.map((other, i) => {
+              const peerMap = `${MAP_BASE}${other.code.toLowerCase()}.svg`
+              const peerFlag = `${MAP_BASE}flags/${other.code.toLowerCase()}.svg`
+              const shortName = other.name
+                .replace('Sultanate of ', '')
+                .replace('United States of America', 'USA')
+                .replace('United Kingdom', 'UK')
+              return (
+                <Link
+                  key={other.code}
+                  to={`/country/${other.code.toLowerCase()}`}
+                  className={`group absolute z-10 ${positions[i]}`}
+                  aria-label={`Open ${other.name}`}
+                  title={other.name}
+                >
+                  <div className="flex flex-col items-center gap-1.5">
+                    <div
+                      className="w-16 h-16 md:w-20 md:h-20 transition-transform duration-300 group-hover:scale-110"
+                      style={{
+                        WebkitMaskImage: `url(${peerMap})`,
+                        maskImage: `url(${peerMap})`,
+                        WebkitMaskSize: 'contain',
+                        maskSize: 'contain',
+                        WebkitMaskRepeat: 'no-repeat',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskPosition: 'center',
+                        maskPosition: 'center',
+                        backgroundImage: `url(${peerFlag})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}
+                    />
+                    <span className="text-[10px] font-semibold text-slate-300
+                                     group-hover:text-amber-200 transition-colors">
+                      {shortName}
+                    </span>
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function Achievements({ achievements }: { achievements: Achievement[] }) {
+  return (
+    <section className="relative py-16 md:py-20">
+      <div className="container-x max-w-6xl mx-auto">
+        <Reveal>
+          <div className="text-center mb-10">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+              Achievements
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl text-white">Highlights &amp; milestones</h2>
+          </div>
+        </Reveal>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {achievements.map((a, i) => (
+            <Reveal key={a.title} delay={i * 80}>
+              <div className="group relative rounded-2xl
+                              bg-gradient-to-br from-amber-500/8 via-white/[0.03] to-transparent
+                              backdrop-blur-md border border-amber-300/20
+                              p-6 transition-all duration-500
+                              hover:border-amber-300/60 hover:-translate-y-1
+                              hover:shadow-[0_18px_42px_rgba(212,175,55,0.25)]">
+                <div className="w-12 h-12 rounded-xl bg-amber-300 text-slate-900 grid place-items-center
+                                shadow-[0_8px_24px_rgba(212,175,55,0.4)] mb-4
+                                transition-transform duration-300 group-hover:scale-110">
+                  <a.icon size={20} />
+                </div>
+                <div className="font-serif text-xl text-white leading-tight">
+                  {a.title}
+                </div>
+                <p className="mt-2 text-sm text-slate-400 leading-snug">
+                  {a.body}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ContactSection({
+  country,
+  contact,
+}: {
+  country: typeof countries[number]
+  contact: typeof contactByCountry[number] | undefined
+}) {
+  const [submitted, setSubmitted] = useState(false)
+  const mapEmbedQuery = encodeURIComponent(contact?.mapQuery ?? country.address.split('\n').pop() ?? country.name)
+
+  return (
+    <section className="relative py-16 md:py-24">
+      <div className="container-x max-w-6xl mx-auto">
+        <Reveal>
+          <div className="text-center mb-10">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+              Contact
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl text-white">
+              Reach our {country.name.replace('Sultanate of ', '').replace('United States of America', 'US')} team
+            </h2>
+          </div>
+        </Reveal>
+
+        <div className="grid lg:grid-cols-2 gap-5 md:gap-6">
+          {/* Address + map */}
+          <Reveal>
+            <div className="relative rounded-2xl
+                            bg-white/[0.04] backdrop-blur-md border border-white/10
+                            shadow-[0_12px_32px_rgba(0,0,0,0.4)]
+                            p-6 overflow-hidden h-full">
+              <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-300 mb-3">
+                Office
+              </div>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-start gap-2.5 text-slate-200">
+                  <MapPin size={14} className="mt-0.5 shrink-0 text-amber-300" />
+                  <span className="leading-snug whitespace-pre-line">{country.address}</span>
+                </div>
+                {contact?.phones.map((p) => (
+                  <a
+                    key={p}
+                    href={`tel:${p.replace(/\s+/g, '')}`}
+                    className="flex items-center gap-2.5 text-slate-200 hover:text-amber-200 transition-colors"
+                  >
+                    <Phone size={14} className="text-amber-300" />
+                    {p}
+                  </a>
+                ))}
+                {contact?.emails.map((e) => (
+                  <a
+                    key={e}
+                    href={`mailto:${e}`}
+                    className="flex items-center gap-2.5 text-slate-200 hover:text-amber-200 transition-colors break-all"
+                  >
+                    <Mail size={14} className="text-amber-300 shrink-0" />
+                    {e}
+                  </a>
+                ))}
+                {contact?.hours && (
+                  <div className="flex items-center gap-2.5 text-slate-300">
+                    <Clock size={14} className="text-amber-300" />
+                    {contact.hours}
+                  </div>
+                )}
+              </div>
+
+              {/* Map embed */}
+              <div className="mt-5 aspect-video w-full rounded-xl overflow-hidden border border-white/10">
+                <iframe
+                  title={`${country.name} map`}
+                  src={`https://www.google.com/maps?q=${mapEmbedQuery}&output=embed`}
+                  loading="lazy"
+                  className="w-full h-full"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Form */}
+          <Reveal delay={100}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                setSubmitted(true)
+              }}
+              className="relative rounded-2xl
+                         bg-white/[0.04] backdrop-blur-md border border-white/10
+                         shadow-[0_12px_32px_rgba(0,0,0,0.4)]
+                         p-6 grid gap-4 h-full"
+            >
+              <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-300">
+                Send a message
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-amber-200/80 mb-1.5">Name</label>
+                <input
+                  required type="text" placeholder="Full name"
+                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-300/60"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-amber-200/80 mb-1.5">Email</label>
+                <input
+                  required type="email" placeholder="you@company.com"
+                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-300/60"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-amber-200/80 mb-1.5">Message</label>
+                <textarea
+                  required rows={5} placeholder="How can we help?"
+                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-300/60 resize-none"
+                />
+              </div>
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center gap-2 mt-2 px-6 py-3 rounded-md
+                           bg-amber-300 text-slate-900 uppercase tracking-[0.2em] text-[11px] font-bold
+                           hover:bg-amber-200 transition-colors"
+              >
+                Send <Send size={14} />
+              </button>
+              {submitted && (
+                <div className="text-xs text-amber-200 text-center">
+                  Thanks — your message is on its way to the {country.name.replace('Sultanate of ', '').replace('United States of America', 'US')} team.
+                </div>
+              )}
+            </form>
+          </Reveal>
+        </div>
+
+        <Reveal delay={200} className="mt-10 text-center">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.32em]
+                       text-amber-200 hover:text-white transition-colors"
+          >
+            <Globe2 size={14} /> Back to global view
+          </Link>
+        </Reveal>
+      </div>
+    </section>
   )
 }
