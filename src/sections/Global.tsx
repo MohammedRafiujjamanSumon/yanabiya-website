@@ -190,12 +190,10 @@ export default function Global() {
                       }}
                     />
 
-                    {/* Back — green rounded card with white text. Fades
-                     *  in on hover/active. */}
+                    {/* Back — transparent rounded card with white text. */}
                     <div
                       className={`absolute inset-0 rounded-3xl
-                                  bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800
-                                  ring-2 ring-emerald-300/50 shadow-[0_8px_24px_rgba(15,58,35,0.4)]
+                                  bg-transparent
                                   grid place-items-center text-center text-white
                                   transition-all duration-500 ease-out
                                   ${isFlipped ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'}`}
