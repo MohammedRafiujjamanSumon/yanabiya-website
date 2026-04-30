@@ -82,7 +82,7 @@ export default function Global() {
 
             {/* Concentric orbit rings — 5 rings so each office can sit on
              *  its own (Oman·2, UK·3, BD·4, USA·5/outermost). */}
-            <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
+            <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
               {[0.92, 0.74, 0.56, 0.38, 0.20].map((s, i) => (
                 <div
                   key={i}
@@ -96,7 +96,7 @@ export default function Global() {
             <svg
               aria-hidden="true"
               viewBox="0 0 100 80"
-              className="absolute inset-0 w-full h-full"
+              className="absolute inset-0 w-full h-full pointer-events-none"
               preserveAspectRatio="none"
             >
               {COUNTRY_NODES.map((d, i) => {
