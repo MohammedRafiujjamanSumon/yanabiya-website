@@ -150,7 +150,10 @@ export default function BusinessDetail() {
             <ServiceForm sectorTitle={business.title} features={business.features} />
 
             {/* Related Divisions strip — cross-discovery into the rest of the group */}
-            <RelatedDivisions currentSlug={business.slug} />
+            <RelatedDivisions
+              currentSlug={business.slug}
+              excludeSlug={nextBusiness?.slug}
+            />
           </div>
         </div>
       </div>
@@ -159,9 +162,19 @@ export default function BusinessDetail() {
 }
 
 /* Related Divisions — shows every other division as a compact card so
- * visitors can quickly jump to the rest of the Yanabiya Group. */
-function RelatedDivisions({ currentSlug }: { currentSlug: string }) {
-  const others = businesses.filter((b) => b.slug !== currentSlug)
+ * visitors can quickly jump to the rest of the Yanabiya Group. The
+ * "next" division (already linked from the top Next chip) is filtered
+ * out to avoid duplication. */
+function RelatedDivisions({
+  currentSlug,
+  excludeSlug,
+}: {
+  currentSlug: string
+  excludeSlug?: string
+}) {
+  const others = businesses.filter(
+    (b) => b.slug !== currentSlug && b.slug !== excludeSlug,
+  )
   if (others.length === 0) return null
   return (
     <div className="mt-12 pt-10 border-t border-white/10">
@@ -172,7 +185,7 @@ function RelatedDivisions({ currentSlug }: { currentSlug: string }) {
         Explore other divisions
       </h3>
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
         {others.map((b) => (
           <Link
             key={b.slug}
