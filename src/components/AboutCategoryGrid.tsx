@@ -69,15 +69,15 @@ const categories: Category[] = [
       { id: 'g1', icon: MapPin,    title: 'International Market Expansion',           body: 'Expand into multiple global markets strategically, building a strong and sustainable international presence.', insight: 'Growth through structured and planned global expansion.' },
       { id: 'g2', icon: Server,    title: 'Scalable Business Platform Development',   body: 'Systems capable of managing and supporting multiple businesses efficiently under one ecosystem.', insight: 'Designed to scale without limitations.' },
       { id: 'g3', icon: Sparkles,  title: 'Technology Innovation Leadership',         body: 'Invest in advanced technologies, automation, and intelligent systems to lead in digital transformation.', insight: 'Technology is a key driver of our long-term success.' },
-      { id: 'g4', icon: Network,   title: 'Strong Operational Synergy',               body: 'All business units operate in coordination, maximizing efficiency and overall performance.', insight: 'Every part of our system works together as one unified structure.' },
+      { id: 'g4', icon: Network,   title: 'Strong Operational Synergy',               body: 'All business units operate in coordination, maximising efficiency and overall performance.', insight: 'Every part of our system works together as one unified structure.' },
       { id: 'g5', icon: BarChart3, title: 'Sustainable Revenue Growth',               body: 'Stable and long-term revenue systems that support continuous business expansion and financial strength.', insight: 'Consistent and sustainable financial growth.' },
-      { id: 'g6', icon: Award,     title: 'Global Brand Recognition',                 body: 'Establish Yanabiya Group as a trusted, respected, and recognized global business platform.', insight: 'Build a strong and reputable global identity.' },
+      { id: 'g6', icon: Award,     title: 'Global Brand Recognition',                 body: 'Establish Yanabiya Group as a trusted, respected, and recognised global business platform.', insight: 'Build a strong and reputable global identity.' },
     ],
   },
   {
     key: 'solutions',
     label: 'Our Solutions',
-    preview: 'End-to-end digital and enterprise solutions designed to help organizations grow together.',
+    preview: 'End-to-end digital and enterprise solutions designed to help organisations grow together.',
     cardImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
     cardIcon: Sparkles,
     items: [
@@ -95,7 +95,7 @@ const categories: Category[] = [
     cardImage: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80',
     cardIcon: Leaf,
     items: [
-      { id: 's1', icon: Leaf,           title: 'Eco-Friendly Operations',          body: 'Environmentally responsible practices across all business activities to minimize ecological impact.', insight: 'Sustainability is embedded in our operational structure.' },
+      { id: 's1', icon: Leaf,           title: 'Eco-Friendly Operations',          body: 'Environmentally responsible practices across all business activities to minimise ecological impact.', insight: 'Sustainability is embedded in our operational structure.' },
       { id: 's2', icon: HeartHandshake, title: 'Community Empowerment Programs',   body: 'Support communities through development initiatives, training programs, and opportunity creation.', insight: 'Empowering people at the local level.' },
       { id: 's3', icon: Scale,          title: 'Ethical Business Practices',       body: 'Transparency, fairness, and accountability in all business operations and decisions.', insight: 'Ethics and trust are fundamental to our operations.' },
       { id: 's4', icon: Recycle,        title: 'Resource Efficiency',              body: 'Optimize resources and reduce waste to ensure efficient and responsible business performance.', insight: 'We focus on doing more with less.' },

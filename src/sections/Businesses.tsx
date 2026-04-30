@@ -856,7 +856,7 @@ export default function Businesses() {
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-2xl sm:text-3xl md:text-[34px] lg:text-[42px] leading-[1.15] tracking-tight text-brand-deep lg:whitespace-nowrap">
-                Structured into specialized{' '}
+                Structured into specialised{' '}
                 <span className="text-brand-accentDark">divisions.</span>
               </h2>
             </Reveal>

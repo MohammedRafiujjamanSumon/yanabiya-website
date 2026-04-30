@@ -31,8 +31,14 @@ export function Eyebrow({ children, tone = 'dark' }: { children: ReactNode; tone
 }
 
 export function H2({ children, className = '' }: { children: ReactNode; className?: string }) {
+  // Standard section heading scale used across the home flow.
+  // Mobile → desktop: 24 / 30 / 36 / 42 px. Keep all `<H2>` consumers
+  // on this scale unless a section needs a deliberate, documented exception.
   return (
-    <h2 className={`font-serif text-4xl md:text-5xl text-slate-900 leading-tight ${className}`}>
+    <h2
+      className={`font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
+                  leading-[1.15] tracking-tight text-slate-900 ${className}`}
+    >
       {children}
     </h2>
   )

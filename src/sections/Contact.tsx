@@ -48,10 +48,11 @@ export default function Contact() {
           <div className="inline-block text-brand-accentDark text-xs font-semibold tracking-[0.3em] uppercase mb-4">
             {t('contact.eyebrow', 'Contact')}
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-slate-900 leading-tight tracking-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
+                         leading-[1.15] tracking-tight text-slate-900">
             Contact Us
           </h2>
-          <p className="mt-5 text-xl text-slate-700 font-medium">
+          <p className="mt-4 text-base md:text-lg text-slate-700 font-medium">
             Let&rsquo;s start the conversation.
           </p>
           <p className="mt-3 text-slate-600 leading-snug">
@@ -63,7 +64,7 @@ export default function Contact() {
         {/* OFFICE BANNERS — compact ribbons, one per country.
          *  Click a banner to jump to the dedicated /contact landing page
          *  with the network diagram + full per-office details. */}
-        <div className="mt-12 md:mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        <div className="mt-8 md:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           {offices.map((o) => (
             <OfficeBanner
               key={o.code}
@@ -78,7 +79,7 @@ export default function Contact() {
 
         {/* CONTACT FORM */}
         <div
-          className="mt-16 rounded-2xl bg-white border border-slate-200 p-8 md:p-10 shadow-sm fade-up"
+          className="mt-12 rounded-2xl bg-white border border-slate-200 p-8 md:p-10 shadow-sm fade-up"
           style={{ animationDelay: '420ms' }}
         >
           <div className="text-center max-w-2xl mx-auto mb-8">

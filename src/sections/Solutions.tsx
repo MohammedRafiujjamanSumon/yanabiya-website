@@ -60,7 +60,7 @@ const solutions: {
     teaser:
       'Meaningful sponsorships aligned with innovation, education, and sustainable development — creating visibility, value, and impact.',
     body: [
-      "Our sponsorship approach focuses on meaningful impact and strategic alignment. We support initiatives, projects, and organizations that align with our values of innovation, education, and sustainable development.",
+      "Our sponsorship approach focuses on meaningful impact and strategic alignment. We support initiatives, projects, and organisations that align with our values of innovation, education, and sustainable development.",
       "Every sponsorship is designed to create visibility, value, and long-term community benefit. We carefully select opportunities where our contribution drives measurable progress and shared purpose.",
       "Through our sponsorship engagements, we support emerging talent, research, and community-led programs — reinforcing our commitment to empowering people and advancing meaningful causes globally.",
     ],
@@ -88,7 +88,7 @@ const solutions: {
     teaser:
       'Structured quality assurance ensures reliability, security, and performance across every service we deliver.',
     body: [
-      "Every project we deliver goes through a structured quality assurance process to ensure reliability, security, and performance. We continuously monitor, optimize, and support our services to maintain excellence and client satisfaction.",
+      "Every project we deliver goes through a structured quality assurance process to ensure reliability, security, and performance. We continuously monitor, optimise, and support our services to maintain excellence and client satisfaction.",
       "Our quality framework combines industry best practices, rigorous testing, and continuous feedback — ensuring each solution meets the highest standards before and after delivery.",
       "We treat quality as a long-term commitment, not a one-time milestone. Ongoing reviews, audits, and improvements keep every service dependable, secure, and aligned with evolving business needs.",
     ],
@@ -120,7 +120,7 @@ export default function Solutions() {
         <Eyebrow>Our Solutions</Eyebrow>
 
         <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-snug text-sm text-justify [text-align-last:center]">
-          We deliver end-to-end digital and enterprise solutions designed to help organizations,
+          We deliver end-to-end digital and enterprise solutions designed to help organisations,
           partners, and communities grow together in a connected global ecosystem.
         </p>
       </div>

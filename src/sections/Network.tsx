@@ -22,7 +22,7 @@ const memberships = [
 const networkBody = [
   "Yanabiya Group operates a trusted, multi-regional network that connects clients, partners, and communities across Oman, the UK, Bangladesh, and the USA. Our presence in these markets enables us to identify opportunities, coordinate resources, and deliver services at a global scale.",
   "We maintain active memberships with chambers of commerce, trade bodies, and industry associations — ensuring our operations remain aligned with global standards, regulatory frameworks, and international best practices.",
-  "Our network is built on long-term relationships, not transactions. By collaborating with established organizations and reliable partners, we create strong, scalable global businesses that continue to generate value over time.",
+  "Our network is built on long-term relationships, not transactions. By collaborating with established organisations and reliable partners, we create strong, scalable global businesses that continue to generate value over time.",
 ]
 
 export default function NetworkSection() {
