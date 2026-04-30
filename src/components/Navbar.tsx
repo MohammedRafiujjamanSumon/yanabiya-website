@@ -90,6 +90,7 @@ export default function Navbar() {
             { id: 'sustainable-growth', label: 'Sustainable Growth', href: '/community/sustainable-growth' },
             { id: 'community-care',     label: 'Community Care',     href: '/community/community-care'     },
             { id: 'careers',            label: t('nav.careers'),     href: '/community/careers'            },
+            { id: 'testimonials',       label: 'Testimonials',       href: '/community/testimonials'       },
           ],
         },
         {

@@ -21,6 +21,7 @@ import OmanPresence from './pages/OmanPresence'
 import ContactGlobal from './pages/ContactGlobal'
 import LeadershipOverview from './pages/LeadershipOverview'
 import CommunityOverview from './pages/CommunityOverview'
+import Testimonials from './pages/Testimonials'
 
 export default function App() {
   return (
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="/community/sustainable-growth" element={<SustainableGrowth />} />
           <Route path="/community/community-care" element={<CommunityCare />} />
           <Route path="/community/careers" element={<CareersPage />} />
+          <Route path="/community/testimonials" element={<Testimonials />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/about/our-story" element={<OurStory />} />

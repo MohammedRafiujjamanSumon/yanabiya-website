@@ -152,7 +152,7 @@ export default function Global() {
                   style={{ top: d.top, left: d.left }}
                 >
                   <div
-                    className="relative w-40 h-40 md:w-44 md:h-44
+                    className="relative w-36 h-36 md:w-40 md:h-40
                                transition-transform duration-700 ease-out
                                [transform-style:preserve-3d]"
                     style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
@@ -195,17 +195,19 @@ export default function Global() {
                         <span className="text-3xl leading-none drop-shadow-md">
                           {d.flag}
                         </span>
+                        <div className="w-8 h-px bg-white/40 my-1" aria-hidden />
                         <div className="text-[11px] uppercase tracking-[0.18em] text-emerald-100/85
-                                        font-semibold mt-1">
+                                        font-semibold">
                           {d.capital}
                         </div>
                         <div className="text-base font-bold leading-tight">
                           {d.name}
                         </div>
+                        <div className="w-8 h-px bg-white/40 my-1" aria-hidden />
                         <Link
                           to={`/country/${d.code.toLowerCase()}`}
                           onClick={(e) => e.stopPropagation()}
-                          className="mt-2 inline-flex items-center gap-1 px-2 py-1 rounded-full
+                          className="inline-flex items-center gap-1 px-2 py-1 rounded-full
                                      bg-white/15 hover:bg-white/25 ring-1 ring-white/40
                                      text-[9px] font-bold uppercase tracking-wider
                                      transition-colors"

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Newspaper, Leaf, HeartHandshake, Briefcase, type LucideIcon } from 'lucide-react'
+import { ArrowRight, Newspaper, Leaf, HeartHandshake, Briefcase, CheckCircle2, Quote, type LucideIcon } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
+import { assets } from '../data/assets'
 
 function Reveal({
   children,
@@ -94,9 +95,18 @@ export default function Community() {
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
           <Reveal>
+            <div className="flex justify-center mb-4">
+              <img
+                src={assets.logo}
+                alt="Yanabiya Group"
+                className="h-14 md:h-16 w-auto object-contain drop-shadow-sm"
+              />
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
             <Eyebrow>Community</Eyebrow>
           </Reveal>
-          <Reveal delay={120}>
+          <Reveal delay={160}>
             <h2 className="mt-3 font-serif text-xl sm:text-2xl md:text-[26px] lg:text-[30px] leading-[1.2] tracking-tight text-brand-deep">
               Driven by <span className="italic text-brand-accentDark">purpose</span> across a connected ecosystem of people and initiatives.
             </h2>
@@ -162,9 +172,59 @@ export default function Community() {
             ))}
           </div>
 
+          {/* WHAT THE COMMUNITY DELIVERS — list */}
+          <Reveal delay={350}>
+            <div className="mt-16 md:mt-24 max-w-4xl mx-auto">
+              <div className="text-center mb-6 md:mb-8">
+                <h3 className="font-serif text-xl md:text-2xl text-brand-deep">
+                  Across the group, we focus on
+                </h3>
+                <div className="w-14 h-0.5 bg-brand-accent rounded-full mx-auto mt-3" />
+              </div>
+              <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm md:text-[15px] text-slate-700">
+                {COMMUNITY_HIGHLIGHTS.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5">
+                    <CheckCircle2 size={18} className="text-brand-accent shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+
+          {/* TESTIMONIALS CTA */}
+          <Reveal delay={420}>
+            <div className="mt-10 md:mt-14 max-w-3xl mx-auto">
+              <Link
+                to="/community/testimonials"
+                className="group flex items-center gap-4 rounded-2xl bg-white/80 backdrop-blur
+                           border border-brand-accent/30 px-5 py-4 md:px-6 md:py-5
+                           shadow-[0_8px_24px_-12px_rgba(15,23,42,0.25)]
+                           hover:border-brand-accent hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <span className="grid place-items-center w-11 h-11 md:w-12 md:h-12 rounded-full
+                                 bg-brand-accent/15 text-brand-accentDark shrink-0">
+                  <Quote size={20} />
+                </span>
+                <div className="flex-1 text-left">
+                  <div className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
+                    Voices from our community
+                  </div>
+                  <div className="font-serif text-base md:text-lg text-brand-deep leading-snug">
+                    Read testimonials from partners, employees, and beneficiaries
+                  </div>
+                </div>
+                <ArrowRight
+                  size={18}
+                  className="text-brand-deep shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
+            </div>
+          </Reveal>
+
           {/* TAIL CTA */}
-          <Reveal delay={400}>
-            <div className="mt-14 md:mt-20 text-center">
+          <Reveal delay={500}>
+            <div className="mt-10 md:mt-14 text-center">
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 rounded-full px-7 py-3
@@ -181,3 +241,12 @@ export default function Community() {
     </Section>
   )
 }
+
+const COMMUNITY_HIGHLIGHTS: string[] = [
+  'Education sponsorships, scholarships and youth mentorship',
+  'Healthcare drives and seasonal medical camps',
+  'Humanitarian aid in partnership with local NGOs',
+  'Sustainable growth — energy, water and waste programmes',
+  'Career development and graduate training pathways',
+  'Cultural and community events across all four regions',
+]
