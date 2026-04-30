@@ -158,10 +158,10 @@ export default function BusinessDetail() {
   )
 }
 
-/* Related Divisions — picks up to 3 other divisions and shows them as
- * compact cards so visitors discover the wider Yanabiya Group. */
+/* Related Divisions — shows every other division as a compact card so
+ * visitors can quickly jump to the rest of the Yanabiya Group. */
 function RelatedDivisions({ currentSlug }: { currentSlug: string }) {
-  const others = businesses.filter((b) => b.slug !== currentSlug).slice(0, 3)
+  const others = businesses.filter((b) => b.slug !== currentSlug)
   if (others.length === 0) return null
   return (
     <div className="mt-12 pt-10 border-t border-white/10">
@@ -172,7 +172,7 @@ function RelatedDivisions({ currentSlug }: { currentSlug: string }) {
         Explore other divisions
       </h3>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {others.map((b) => (
           <Link
             key={b.slug}
