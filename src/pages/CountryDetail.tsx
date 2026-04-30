@@ -97,34 +97,34 @@ interface CountryDashboard {
 const COUNTRY_BG: Record<string, { blobs: { className: string }[] }> = {
   OM: {
     blobs: [
-      { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-red-700/15 blur-[160px]' },
-      { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-emerald-600/15 blur-[160px]' },
+      { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-red-700/8 blur-[160px]' },
+      { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-emerald-600/8 blur-[160px]' },
       { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-white/8 blur-[160px]' },
     ],
   },
   GB: {
     blobs: [
-      { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-blue-800/20 blur-[160px]' },
-      { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-red-700/15 blur-[160px]' },
+      { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-blue-800/10 blur-[160px]' },
+      { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-red-700/8 blur-[160px]' },
       { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-slate-100/8 blur-[160px]' },
     ],
   },
   BD: {
     blobs: [
       // Green field — large blobs around the edges to dominate the canvas
-      { className: 'absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full bg-emerald-600/22 blur-[160px]' },
-      { className: 'absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-emerald-700/20 blur-[160px]' },
-      { className: 'absolute -bottom-40 -left-40 w-[640px] h-[640px] rounded-full bg-emerald-600/18 blur-[160px]' },
-      { className: 'absolute -bottom-40 -right-40 w-[560px] h-[560px] rounded-full bg-emerald-700/18 blur-[160px]' },
+      { className: 'absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full bg-emerald-600/7 blur-[160px]' },
+      { className: 'absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-emerald-700/10 blur-[160px]' },
+      { className: 'absolute -bottom-40 -left-40 w-[640px] h-[640px] rounded-full bg-emerald-600/9 blur-[160px]' },
+      { className: 'absolute -bottom-40 -right-40 w-[560px] h-[560px] rounded-full bg-emerald-700/9 blur-[160px]' },
       // Red roundel — centred, mirroring the flag's red disc
-      { className: 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] rounded-full bg-red-600/28 blur-[120px]' },
+      { className: 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] rounded-full bg-red-600/14 blur-[120px]' },
     ],
   },
   US: {
     blobs: [
-      { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-red-700/22 blur-[160px]' },
-      { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-slate-100/18 blur-[160px]' },
-      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-red-600/18 blur-[160px]' },
+      { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-red-700/7 blur-[160px]' },
+      { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-slate-100/9 blur-[160px]' },
+      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-red-600/9 blur-[160px]' },
     ],
   },
 }
@@ -255,12 +255,12 @@ export default function CountryDetail() {
 
   if (!country || !dash) {
     return (
-      <main className="bg-slate-950 text-slate-100 min-h-screen grid place-items-center px-6">
+      <main className="bg-[#fbfdfb] text-slate-900 min-h-screen grid place-items-center px-6">
         <div className="text-center">
           <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accent mb-3">
             404
           </div>
-          <h2 className="font-serif text-3xl text-white mb-3">Country not found.</h2>
+          <h2 className="font-serif text-3xl text-brand-deep mb-3">Country not found.</h2>
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accent hover:text-brand-accent"
@@ -283,7 +283,7 @@ export default function CountryDetail() {
   }).activities
 
   return (
-    <main className="relative bg-slate-950 text-slate-100 overflow-hidden min-h-screen">
+    <main className="relative bg-[#fbfdfb] text-slate-900 overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
       {/* Ambient glow blobs — coloured from the country's flag palette */}
@@ -346,7 +346,7 @@ function Hero({
       {/* Floating orbit lines (decorative — flag silhouette removed per
        *  user request) */}
       <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
-        <div className="absolute w-[60%] aspect-square rounded-full border border-white/8 animate-spin-slow" />
+        <div className="absolute w-[60%] aspect-square rounded-full border border-slate-200 animate-spin-slow" />
         <div className="absolute w-[80%] aspect-square rounded-full border border-brand-accent/20"
              style={{ animation: 'spin-slow 80s linear reverse infinite' }} />
       </div>
@@ -378,7 +378,7 @@ function Hero({
               {dash.tier.rank}
             </span>
             <span className="px-3 py-1 rounded-full
-                             bg-white/[0.06] backdrop-blur-md ring-1 ring-brand-accent/25
+                             bg-slate-100 backdrop-blur-md ring-1 ring-brand-accent/25
                              text-[11px] font-bold tracking-[0.32em] uppercase text-brand-accent inline-flex items-center gap-2">
               <span className="text-base leading-none">{country.flag}</span>
               {dash.tier.label}
@@ -386,13 +386,13 @@ function Hero({
           </div>
         </Reveal>
         <Reveal delay={120}>
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-white">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-brand-deep">
             {country.name.replace('Sultanate of ', '').replace('United States of America', 'USA')}
             <span className="text-brand-accent"> Operations</span>
           </h1>
         </Reveal>
         <Reveal delay={260}>
-          <p className="mt-7 text-base md:text-lg text-slate-300 leading-snug max-w-2xl mx-auto">
+          <p className="mt-7 text-base md:text-lg text-slate-600 leading-snug max-w-2xl mx-auto">
             {dash.subtitle}
           </p>
         </Reveal>
@@ -411,7 +411,7 @@ function ServiceBlocks({ services, countryName }: { services: Service[]; country
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               What we do
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-white">
+            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
               Services in {countryName.replace('Sultanate of ', '').replace('United States of America', 'the US')}
             </h2>
           </div>
@@ -421,8 +421,8 @@ function ServiceBlocks({ services, countryName }: { services: Service[]; country
             <Reveal key={s.label} delay={i * 80}>
               <div className="group relative rounded-2xl
                               bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent
-                              backdrop-blur-md border border-white/10
-                              shadow-[0_8px_24px_rgba(0,0,0,0.35)]
+                              backdrop-blur-md border border-slate-200
+                              shadow-[0_8px_24px_rgba(15,58,35,0.08)]
                               p-6 transition-all duration-500
                               hover:border-brand-accent/55 hover:-translate-y-1
                               hover:shadow-[0_18px_42px_rgba(158,199,58,0.2)]">
@@ -439,7 +439,7 @@ function ServiceBlocks({ services, countryName }: { services: Service[]; country
                   <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accent mb-1.5">
                     {s.label}
                   </div>
-                  <div className="text-base font-semibold text-white">
+                  <div className="text-base font-semibold text-brand-deep">
                     {s.desc}
                   </div>
                 </div>
@@ -475,7 +475,7 @@ function CorporateHierarchy({
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               Corporate Hierarchy
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-white">
+            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
               Group structure in {shortName}
             </h2>
           </div>
@@ -493,7 +493,7 @@ function CorporateHierarchy({
                             text-[9px] font-black tracking-[0.32em] uppercase">
               {hasParent ? 'Parent Company' : 'Registered Entity'}
             </div>
-            <div className="mt-4 font-serif text-xl md:text-2xl text-white leading-tight">
+            <div className="mt-4 font-serif text-xl md:text-2xl text-brand-deep leading-tight">
               {parentCompany}
             </div>
           </div>
@@ -531,7 +531,7 @@ function CorporateHierarchy({
                                   backdrop-blur-md border border-brand-accent/25
                                   p-4 transition-all duration-500
                                   hover:border-brand-accent/55 hover:-translate-y-0.5
-                                  hover:bg-white/[0.07]
+                                  hover:bg-slate-50
                                   hover:shadow-[0_12px_28px_rgba(158,199,58,0.18)]">
                     <div className="flex items-start gap-3">
                       <span className="shrink-0 grid place-items-center w-7 h-7 rounded-md
@@ -539,7 +539,7 @@ function CorporateHierarchy({
                                        font-mono text-[10px] font-bold">
                         {String(i + 1).padStart(2, '0')}
                       </span>
-                      <span className="text-sm font-semibold text-white leading-snug">
+                      <span className="text-sm font-semibold text-brand-deep leading-snug">
                         {entity}
                       </span>
                     </div>
@@ -567,7 +567,7 @@ function BusinessActivities({
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               Licensed Activities
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-white">
+            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
               {activities.length} business activities under our licence
             </h2>
           </div>
@@ -594,7 +594,7 @@ function BusinessActivities({
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
                   <div className="absolute top-2 right-2 inline-flex items-center gap-1
                                   px-1.5 py-0.5 rounded-full
-                                  bg-slate-950/70 backdrop-blur-sm
+                                  bg-white/70 backdrop-blur-sm
                                   ring-1 ring-brand-accent/30
                                   font-mono text-[9px] text-brand-accent/95">
                     {a.code}
@@ -605,7 +605,7 @@ function BusinessActivities({
                 </div>
                 {/* Activity name */}
                 <div className="p-3.5 flex items-start justify-between gap-2">
-                  <div className="text-[12px] font-semibold text-white leading-snug min-w-0 flex-1">
+                  <div className="text-[12px] font-semibold text-brand-deep leading-snug min-w-0 flex-1">
                     {a.name}
                   </div>
                   {linkTo && (
@@ -620,7 +620,7 @@ function BusinessActivities({
               </>
             )
             const cardClass = `group relative rounded-xl overflow-hidden
-                              bg-white/[0.04] backdrop-blur-md border border-white/10
+                              bg-white shadow-sm backdrop-blur-md border border-slate-200
                               transition-all duration-500
                               hover:border-brand-accent/55 hover:-translate-y-1
                               hover:shadow-[0_18px_42px_rgba(158,199,58,0.25)]
@@ -663,8 +663,8 @@ function GlobalConnection({
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               Global Connection
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-white">One unified network</h2>
-            <p className="mt-3 text-sm text-slate-400 max-w-xl mx-auto">
+            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">One unified network</h2>
+            <p className="mt-3 text-sm text-slate-500 max-w-xl mx-auto">
               Linked to every other Yanabiya hub by daily collaboration, shared
               clients, and a single delivery playbook.
             </p>
@@ -674,14 +674,14 @@ function GlobalConnection({
           <div className="relative aspect-square w-full max-w-[560px] mx-auto
                           rounded-full
                           bg-gradient-to-br from-slate-900 via-blue-950/80 to-slate-900
-                          ring-1 ring-white/10 shadow-2xl
+                          ring-1 ring-slate-200 shadow-2xl
                           overflow-hidden">
             {/* Decorative orbit rings */}
             <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
               {[0.92, 0.7, 0.42].map((s, i) => (
                 <div
                   key={i}
-                  className="absolute rounded-full border border-white/10"
+                  className="absolute rounded-full border border-slate-200"
                   style={{
                     width: `${s * 100}%`,
                     height: `${s * 100}%`,
@@ -773,7 +773,7 @@ function GlobalConnection({
                         backgroundPosition: 'center',
                       }}
                     />
-                    <span className="text-[10px] font-semibold text-slate-300
+                    <span className="text-[10px] font-semibold text-slate-600
                                      group-hover:text-brand-accent transition-colors">
                       {shortName}
                     </span>
@@ -797,7 +797,7 @@ function Achievements({ achievements }: { achievements: Achievement[] }) {
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               Achievements
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-white">Highlights &amp; milestones</h2>
+            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">Highlights &amp; milestones</h2>
           </div>
         </Reveal>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -814,10 +814,10 @@ function Achievements({ achievements }: { achievements: Achievement[] }) {
                                 transition-transform duration-300 group-hover:scale-110">
                   <a.icon size={20} />
                 </div>
-                <div className="font-serif text-xl text-white leading-tight">
+                <div className="font-serif text-xl text-brand-deep leading-tight">
                   {a.title}
                 </div>
-                <p className="mt-2 text-sm text-slate-400 leading-snug">
+                <p className="mt-2 text-sm text-slate-500 leading-snug">
                   {a.body}
                 </p>
               </div>
@@ -847,7 +847,7 @@ function ContactSection({
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               Contact
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-white">
+            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
               Reach our {country.name.replace('Sultanate of ', '').replace('United States of America', 'US')} team
             </h2>
           </div>
@@ -857,8 +857,8 @@ function ContactSection({
           {/* Address + map */}
           <Reveal>
             <div className="relative rounded-2xl
-                            bg-white/[0.04] backdrop-blur-md border border-white/10
-                            shadow-[0_12px_32px_rgba(0,0,0,0.4)]
+                            bg-white shadow-sm backdrop-blur-md border border-slate-200
+                            shadow-[0_12px_32px_rgba(15,58,35,0.10)]
                             p-6 overflow-hidden h-full">
               <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accent mb-3">
                 Office
@@ -889,7 +889,7 @@ function ContactSection({
                   </a>
                 ))}
                 {contact?.hours && (
-                  <div className="flex items-center gap-2.5 text-slate-300">
+                  <div className="flex items-center gap-2.5 text-slate-600">
                     <Clock size={14} className="text-brand-accent" />
                     {contact.hours}
                   </div>
@@ -897,7 +897,7 @@ function ContactSection({
               </div>
 
               {/* Map embed */}
-              <div className="mt-5 aspect-video w-full rounded-xl overflow-hidden border border-white/10">
+              <div className="mt-5 aspect-video w-full rounded-xl overflow-hidden border border-slate-200">
                 <iframe
                   title={`${country.name} map`}
                   src={`https://www.google.com/maps?q=${mapEmbedQuery}&output=embed`}
@@ -917,8 +917,8 @@ function ContactSection({
                 setSubmitted(true)
               }}
               className="relative rounded-2xl
-                         bg-white/[0.04] backdrop-blur-md border border-white/10
-                         shadow-[0_12px_32px_rgba(0,0,0,0.4)]
+                         bg-white shadow-sm backdrop-blur-md border border-slate-200
+                         shadow-[0_12px_32px_rgba(15,58,35,0.10)]
                          p-6 grid gap-4 h-full"
             >
               <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accent">
@@ -928,21 +928,21 @@ function ContactSection({
                 <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accent/85 mb-1.5">Name</label>
                 <input
                   required type="text" placeholder="Full name"
-                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65"
                 />
               </div>
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accent/85 mb-1.5">Email</label>
                 <input
                   required type="email" placeholder="you@company.com"
-                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65"
                 />
               </div>
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accent/85 mb-1.5">Message</label>
                 <textarea
                   required rows={5} placeholder="How can we help?"
-                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65 resize-none"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65 resize-none"
                 />
               </div>
               <button
@@ -966,7 +966,7 @@ function ContactSection({
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.32em]
-                       text-brand-accent hover:text-white transition-colors"
+                       text-brand-accent hover:text-brand-deep transition-colors"
           >
             <Globe2 size={14} /> Back to global view
           </Link>
