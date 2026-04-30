@@ -54,26 +54,25 @@ export default function About() {
     <Section
       id="about"
       className="relative overflow-hidden
-                 bg-gradient-to-br from-[#f4efe6] via-[#fbf7ed] to-[#ecf3ec]"
+                 bg-gradient-to-br from-[#13241b] via-[#162e21] to-[#0e1c14]"
     >
       <div className="container-x py-4 md:py-6">
 
-        {/* Section-level eyebrow on the cream section bg — default
-         *  brand-green tone matches every other section's eyebrow. */}
+        {/* Section-level eyebrow — light-tone since the section bg
+         *  is now a soft dark sage that blends into the inner card. */}
         <div className="mb-6 md:mb-8">
           <Reveal>
-            <Eyebrow>About Us</Eyebrow>
+            <Eyebrow tone="light">About Us</Eyebrow>
           </Reveal>
         </div>
 
-        {/* Dark forest-green hero card sits on the cream section bg,
-         *  scoped only to the About content (navbar + stats keep their
-         *  own green-black sandwich; the rest of the page stays light). */}
+        {/* Dark forest-green hero card. Section bg sits a few shades
+         *  lighter than the card, so the boundary softens into one
+         *  cohesive dark area instead of a hard "card on page" split.
+         *  Ring + shadow are minimised so the edge no longer pops. */}
         <div
           className="relative rounded-3xl overflow-hidden
                      bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]
-                     ring-1 ring-emerald-500/15
-                     shadow-[0_28px_60px_-20px_rgba(4,16,10,0.55)]
                      px-5 py-10 md:px-12 md:py-14
                      min-h-[520px] md:min-h-[600px]"
         >
