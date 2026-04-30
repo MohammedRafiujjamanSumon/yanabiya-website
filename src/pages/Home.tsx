@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import Hero from '../sections/Hero'
-import Showcase from '../sections/Showcase'
 import Stats from '../sections/Stats'
 import About from '../sections/About'
 import Businesses from '../sections/Businesses'
@@ -55,7 +54,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Showcase />
       <Stats />
       <About />
       <Businesses />
