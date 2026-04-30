@@ -37,10 +37,10 @@ type FeaturePill = {
 }
 
 const FEATURES: FeaturePill[] = [
-  { label: 'Our Mission',     to: '/about-us#mission',    tone: 'from-emerald-500/40 to-emerald-700/40' },
-  { label: 'Our Vision',      to: '/about-us#vision',     tone: 'from-cyan-500/40 to-sky-700/40'        },
-  { label: 'Founding Pillars', to: '/about-us#pillars',   tone: 'from-amber-500/40 to-orange-700/40'    },
-  { label: 'Our Heritage',    to: '/about/our-story',     tone: 'from-fuchsia-500/40 to-rose-700/40'    },
+  { label: 'Our Mission',  to: '/about-us#mission',  tone: 'from-emerald-500/40 to-emerald-700/40' },
+  { label: 'Our Vision',   to: '/about-us#vision',   tone: 'from-cyan-500/40 to-sky-700/40'        },
+  { label: 'Our Values',   to: '/about-us#values',   tone: 'from-amber-500/40 to-orange-700/40'    },
+  { label: 'Our Story',    to: '/about/our-story',   tone: 'from-fuchsia-500/40 to-rose-700/40'    },
 ]
 
 /* About — dark hero-style panel inspired by the user-supplied
@@ -149,16 +149,16 @@ export default function About() {
                 <div className="mt-5 flex justify-end">
                   <Link
                     to="/about-us"
-                    className="relative grid place-items-center w-20 h-20 rounded-full
+                    className="relative grid place-items-center w-24 h-24 rounded-full
                                bg-white/8 backdrop-blur-sm
                                border border-white/15 text-white/90
                                hover:bg-white/15 hover:border-amber-300/60 hover:-translate-y-0.5
                                transition-all duration-300"
-                    aria-label="Read more about Yanabiya Group"
+                    aria-label="Open Yanabiya Group company overview"
                   >
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em]
-                                     leading-tight text-center">
-                      Our<br />Story
+                    <span className="text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.18em]
+                                     leading-tight text-center px-2">
+                      Company<br />Overview
                     </span>
                     <ArrowUpRight size={14} className="absolute bottom-2 right-2 text-amber-300" />
                   </Link>
