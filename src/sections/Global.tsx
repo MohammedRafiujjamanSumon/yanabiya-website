@@ -69,7 +69,7 @@ export default function Global() {
           <Reveal delay={120}>
             <h2 className="font-serif text-[16px]
                            leading-snug tracking-tight text-brand-deep lg:whitespace-nowrap">
-              Four countries, nine entities,{' '}
+              Four countries, four offices,{' '}
               <span className="text-brand-accentDark">one unified Yanabiya team.</span>
             </h2>
           </Reveal>
