@@ -7,6 +7,7 @@ import Partnerships from '../sections/Partnerships'
 import Global from '../sections/Global'
 import Leadership from '../sections/Leadership'
 import Community from '../sections/Community'
+import Testimonials from '../sections/Testimonials'
 import Contact from '../sections/Contact'
 
 /**
@@ -35,6 +36,7 @@ export default function Home() {
       <Businesses />
       <Partnerships />
       <Community />
+      <Testimonials />
       <Leadership />
       <Contact />
     </>
