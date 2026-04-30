@@ -118,9 +118,9 @@ const COUNTRY_BG: Record<string, { blobs: { className: string }[] }> = {
   },
   US: {
     blobs: [
-      { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-blue-800/20 blur-[160px]' },
-      { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-red-700/18 blur-[160px]' },
-      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-slate-100/8 blur-[160px]' },
+      { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-red-700/22 blur-[160px]' },
+      { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-slate-100/18 blur-[160px]' },
+      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-red-600/18 blur-[160px]' },
     ],
   },
 }
