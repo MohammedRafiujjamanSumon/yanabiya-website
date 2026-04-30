@@ -42,11 +42,11 @@ function Reveal({
  * a continuation of the logo rather than another generic white card. */
 export default function Stats() {
   return (
-    <section id="stats" className="bg-brand-deep pt-2.5 pb-2.5">
+    <section id="stats" className="bg-brand-deep pt-2 pb-2">
       {/* Same green-black-green sandwich as the navbar:
-       *    pt-2.5 → top green strip (full viewport width)
-       *    inner  → black bar full edge-to-edge with the four stats
-       *    pb-2.5 → bottom green strip
+       *    pt-2 → top green strip (full viewport width)
+       *    inner → black bar full edge-to-edge with the four stats
+       *    pb-2 → bottom green strip
        */}
       <div className="bg-black">
         <div className="container-x px-2 md:px-4 py-2 md:py-2.5">

@@ -135,11 +135,11 @@ export default function Navbar() {
     }`
 
   return (
-    <header className="sticky top-0 z-40 bg-brand-deep pt-2.5 pb-2.5">
+    <header className="sticky top-0 z-40 bg-brand-deep pt-2 pb-2">
       {/* Three-layer sandwich:
-       *    pt-2.5 → top green strip   (header bg, full viewport width)
-       *    inner  → narrow black bar full edge-to-edge with the navigation
-       *    pb-2.5 → bottom green strip
+       *    pt-2 → top green strip   (header bg, full viewport width)
+       *    inner → narrow black bar full edge-to-edge with the navigation
+       *    pb-2 → bottom green strip
        */}
       <div className="bg-black">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
