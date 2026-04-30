@@ -135,12 +135,15 @@ export default function Navbar() {
     }`
 
   return (
-    <header className="sticky top-0 z-40 bg-black pt-1.5 pb-1.5">
-      <div className="container-x flex items-center gap-3 md:gap-4">
+    <header className="sticky top-0 z-40 bg-brand-deep pt-2 pb-2">
+      {/* Three-layer sandwich:
+       *    pt-2  → top green strip  (header bg shows through padding)
+       *    inner → black bar with the logo + nav links
+       *    pb-2  → bottom green strip
+       */}
+      <div className="container-x flex items-center gap-3 md:gap-4 bg-black px-2 md:px-4">
 
-        {/* LEFT — LOGO. Sits on the same black band as the nav cluster
-         *  so the whole header reads as one continuous bar (no visible
-         *  card-on-band split). */}
+        {/* LEFT — LOGO sits on the inner black bar. */}
         <Link to="/#home" className="flex items-center shrink-0 group">
           <img
             src={assets.logo}
@@ -152,8 +155,8 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* RIGHT — same black bg as the header, so the pill no longer
-         *  reads as a separate card. */}
+        {/* RIGHT — same black bg as the inner bar so logo + nav cluster
+         *  read as one black band sandwiched between two green strips. */}
       <div
         className={`flex flex-1 items-center gap-4 h-14 lg:h-14 ps-4 pe-5 lg:pe-8
                     bg-black transition-shadow duration-200 ${
