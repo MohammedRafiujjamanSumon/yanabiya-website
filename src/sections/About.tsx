@@ -4,6 +4,7 @@ import type { LucideIcon } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { company } from '../data/company'
+import { assets } from '../data/assets'
 
 function Reveal({
   children,
@@ -109,101 +110,159 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* BELOW — three founding pillars (People · Process · Clients).
-           *  Replaces the office photo with a real brand hierarchy
-           *  drawn from company.ts. Anchored by a small "FOUNDING
-           *  PILLARS" header so the section reads as a structure, not
-           *  three loose tiles. */}
-          <div className="w-full max-w-4xl mx-auto order-2">
+          {/* BELOW — flowchart-hierarchy on a dark navy panel.
+           *  Yanabiya logo lives as a giant faded watermark behind the
+           *  whole composition. SVG curves connect a top "Yanabiya Group"
+           *  node to the three founding pillars (People · Process ·
+           *  Clients), each rendered as a glassy 3D card. Glowing brand-
+           *  accent dots scatter the field for the same lit-up tech
+           *  diagram feel as the reference image. */}
+          <div className="w-full max-w-5xl mx-auto order-2">
             <Reveal>
-              <div className="text-center mb-5 md:mb-6">
-                <span className="inline-block text-[10px] md:text-[11px] font-semibold uppercase
-                                 tracking-[0.32em] text-brand-accentDark">
-                  Founding Pillars
-                </span>
+              <div className="relative rounded-3xl overflow-hidden
+                              bg-gradient-to-br from-[#0a1f2c] via-[#082233] to-[#04121b]
+                              ring-1 ring-emerald-500/15
+                              shadow-[0_28px_60px_-20px_rgba(4,18,27,0.55)]">
+
+                {/* Yanabiya logo watermark — huge, faded, centred. */}
+                <img
+                  src={assets.logo}
+                  alt=""
+                  aria-hidden
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                             w-[80%] max-w-[520px] opacity-[0.06] pointer-events-none
+                             select-none"
+                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                />
+
+                {/* Soft brand glows — top-left and bottom-right. */}
+                <div aria-hidden className="absolute -top-24 -left-24 w-[360px] h-[360px] rounded-full bg-emerald-500/10 blur-[120px] pointer-events-none" />
+                <div aria-hidden className="absolute -bottom-24 -right-24 w-[360px] h-[360px] rounded-full bg-amber-400/10 blur-[120px] pointer-events-none" />
+
+                {/* Drifting accent dots */}
+                <div aria-hidden className="absolute inset-0 pointer-events-none">
+                  {[
+                    { x: 12, y: 22 }, { x: 28, y: 68 }, { x: 44, y: 14 },
+                    { x: 58, y: 78 }, { x: 72, y: 30 }, { x: 88, y: 60 },
+                    { x: 36, y: 50 }, { x: 80, y: 18 },
+                  ].map((d, i) => (
+                    <span
+                      key={i}
+                      className="absolute w-1.5 h-1.5 rounded-full bg-amber-300/80 animate-float-3d
+                                 shadow-[0_0_8px_rgba(252,211,77,0.7)]"
+                      style={{ left: `${d.x}%`, top: `${d.y}%`, animationDelay: `${i * 0.6}s` }}
+                    />
+                  ))}
+                </div>
+
+                <div className="relative px-5 py-9 md:px-10 md:py-12">
+                  {/* Section label inside the panel */}
+                  <div className="text-center mb-7 md:mb-9">
+                    <span className="inline-block text-[10px] md:text-[11px] font-semibold uppercase
+                                     tracking-[0.32em] text-amber-300">
+                      Founding Pillars
+                    </span>
+                  </div>
+
+                  {/* SVG connector tree — root node at top, three pillars
+                   *  fanning down. Drawn at the same scale as the grid
+                   *  beneath so the curves land at each card's top. */}
+                  <svg
+                    aria-hidden
+                    viewBox="0 0 100 30"
+                    preserveAspectRatio="none"
+                    className="w-full h-16 md:h-20 mb-2"
+                  >
+                    <defs>
+                      <linearGradient id="pillarLine" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%"   stopColor="rgba(252,211,77,0.85)" />
+                        <stop offset="100%" stopColor="rgba(16,185,129,0.55)" />
+                      </linearGradient>
+                    </defs>
+                    {/* Root node circle */}
+                    <circle cx="50" cy="4" r="2.4" fill="rgba(252,211,77,0.95)" />
+                    <circle cx="50" cy="4" r="4.5" fill="rgba(252,211,77,0.18)" />
+
+                    {/* Three curves to the pillar tops at x = 18, 50, 82 */}
+                    {[18, 50, 82].map((x, i) => (
+                      <g key={i}>
+                        <path
+                          d={`M 50 4 Q 50 18 ${x} 28`}
+                          fill="none"
+                          stroke="url(#pillarLine)"
+                          strokeWidth="0.4"
+                          strokeLinecap="round"
+                        />
+                        <circle cx={x} cy="28" r="0.9" fill="rgba(252,211,77,0.95)" />
+                      </g>
+                    ))}
+                  </svg>
+
+                  {/* Three pillar nodes */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 [perspective:1400px]">
+                    {company.pillars.map((p, i) => {
+                      const meta = PILLAR_META[p.title] ?? {
+                        icon: Users,
+                        tint: 'bg-slate-50 text-slate-700',
+                        ring: 'ring-slate-200/70',
+                      }
+                      const Icon = meta.icon
+                      return (
+                        <Reveal key={p.title} delay={120 + i * 110}>
+                          <div
+                            className="group h-full animate-float-3d will-change-transform"
+                            style={{ animationDelay: `${i * 1.4}s` }}
+                          >
+                            <div
+                              className="relative h-full rounded-2xl
+                                         bg-white/[0.04] backdrop-blur-md
+                                         p-5 md:p-6 [transform-style:preserve-3d]
+                                         border border-white/15
+                                         shadow-[0_10px_24px_-12px_rgba(0,0,0,0.55)]
+                                         transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                                         group-hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(14px)_scale(1.02)]
+                                         group-hover:border-amber-300/40
+                                         group-hover:shadow-[0_16px_36px_-14px_rgba(252,211,77,0.35)]"
+                            >
+                              {/* Glossy highlight band */}
+                              <span
+                                aria-hidden
+                                className="pointer-events-none absolute inset-x-3 top-2 h-8 rounded-2xl
+                                           bg-gradient-to-b from-white/15 via-white/5 to-transparent
+                                           [transform:translateZ(18px)]"
+                              />
+
+                              <span className="absolute top-3 right-4 font-serif text-[12px] text-white/30
+                                               [transform:translateZ(8px)]">
+                                {String(i + 1).padStart(2, '0')}
+                              </span>
+
+                              <div
+                                className={`w-12 h-12 rounded-xl grid place-items-center
+                                            ${meta.tint} ring-1 ${meta.ring}
+                                            shadow-[0_6px_14px_-6px_rgba(0,0,0,0.4)]
+                                            [transform:translateZ(24px)]`}
+                              >
+                                <Icon size={22} strokeWidth={2} />
+                              </div>
+
+                              <div className="mt-4 font-serif text-[16px] text-amber-100 leading-tight
+                                              [transform:translateZ(12px)]">
+                                {p.title}
+                              </div>
+                              <p className="mt-1.5 text-[13px] text-white/70 leading-relaxed
+                                            [transform:translateZ(4px)]">
+                                {p.body}
+                              </p>
+                            </div>
+                          </div>
+                        </Reveal>
+                      )
+                    })}
+                  </div>
+                </div>
               </div>
             </Reveal>
-
-            <div className="grid sm:grid-cols-3 gap-5 md:gap-6 [perspective:1400px]">
-              {company.pillars.map((p, i) => {
-                const meta = PILLAR_META[p.title] ?? {
-                  icon: Users,
-                  tint: 'bg-slate-50 text-slate-700',
-                  ring: 'ring-slate-200/70',
-                }
-                const Icon = meta.icon
-                return (
-                  <Reveal key={p.title} delay={120 + i * 110}>
-                    {/* 3D pillar card.
-                     *   - Outer: perspective + a gentle Y-float loop (each
-                     *     card on a different delay so they breathe out
-                     *     of sync).
-                     *   - Card: preserve-3d + a tilt-on-hover that lifts
-                     *     the card forward in space (translateZ), with
-                     *     a slight rotateY/X for depth.
-                     *   - Inside: glossy top highlight + soft bottom
-                     *     under-shadow so the card reads as solid, not
-                     *     flat. */}
-                    <div
-                      className="group h-full animate-float-3d will-change-transform"
-                      style={{ animationDelay: `${i * 1.4}s` }}
-                    >
-                      <div
-                        className="relative h-full rounded-2xl bg-white/95 backdrop-blur-sm
-                                   p-5 md:p-6 [transform-style:preserve-3d]
-                                   border border-emerald-100
-                                   shadow-[0_10px_24px_-12px_rgba(15,58,35,0.20),0_4px_10px_-6px_rgba(15,58,35,0.12)]
-                                   transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                                   group-hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(14px)_scale(1.02)]"
-                      >
-                        {/* Glossy top highlight band — sits "in front" via
-                         *  translateZ so the 3D feel reads on hover. */}
-                        <span
-                          aria-hidden
-                          className="pointer-events-none absolute inset-x-3 top-2 h-8 rounded-2xl
-                                     bg-gradient-to-b from-white/70 via-white/20 to-transparent
-                                     [transform:translateZ(20px)]"
-                        />
-
-                        {/* Soft under-shadow plate — sits "behind" so the
-                         *  card looks lifted off the page. */}
-                        <span
-                          aria-hidden
-                          className="pointer-events-none absolute inset-x-4 bottom-2 h-6 rounded-full
-                                     bg-emerald-900/15 blur-md
-                                     [transform:translateZ(-25px)]"
-                        />
-
-                        {/* Step indicator — tiny serif numeral so the three
-                         *  cards visibly form a 1-2-3 hierarchy. */}
-                        <span className="absolute top-3 right-4 font-serif text-[12px] text-slate-300
-                                         [transform:translateZ(8px)]">
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
-
-                        <div
-                          className={`w-12 h-12 rounded-xl grid place-items-center
-                                      ${meta.tint} ring-1 ${meta.ring}
-                                      shadow-[0_6px_14px_-6px_rgba(15,58,35,0.25)]
-                                      [transform:translateZ(24px)]`}
-                        >
-                          <Icon size={22} strokeWidth={2} />
-                        </div>
-
-                        <div className="mt-4 font-serif text-[16px] text-brand-deep leading-tight
-                                        [transform:translateZ(12px)]">
-                          {p.title}
-                        </div>
-                        <p className="mt-1.5 text-[13px] text-slate-600 leading-relaxed
-                                      [transform:translateZ(4px)]">
-                          {p.body}
-                        </p>
-                      </div>
-                    </div>
-                  </Reveal>
-                )
-              })}
-            </div>
           </div>
 
           {/* PULL-QUOTE — brand promise under the picture. Replaces the
