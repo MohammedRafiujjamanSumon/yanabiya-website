@@ -511,19 +511,20 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         )}
       </SectionFrame>
 
-      {/* SECTION 3 — Company Information */}
+      {/* SECTION 3 — Company Information.
+       *  Registration number intentionally omitted (kept on the
+       *  CountryOps record but not surfaced publicly). */}
       <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored.">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          <InfoRow label="Established"        value={ops.established}                 icon={Calendar} />
-          <InfoRow label={ops.registration.label} value={ops.registration.value}      icon={FileBadge} />
-          <InfoRow label="Legal Entity"       value={ops.legalEntity}                 icon={Building2} />
+          <InfoRow label="Established"  value={ops.established} icon={Calendar} />
+          <InfoRow label="Legal Entity" value={ops.legalEntity} icon={Building2} />
           {ops.license && (
             <>
-              <InfoRow label="License Name"   value={ops.license.name}                 icon={FileBadge} />
-              <InfoRow label="Issuing Authority" value={ops.license.authority}         icon={Building2} />
+              <InfoRow label="License Name"      value={ops.license.name}      icon={FileBadge} />
+              <InfoRow label="Issuing Authority" value={ops.license.authority} icon={Building2} />
             </>
           )}
-          <InfoRow label="Office Address"     value={ops.address}                      icon={MapPin} />
+          <InfoRow label="Office Address" value={ops.address} icon={MapPin} />
         </div>
       </SectionFrame>
 
