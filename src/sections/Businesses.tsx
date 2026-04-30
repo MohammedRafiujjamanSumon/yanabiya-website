@@ -853,8 +853,8 @@ export default function Businesses() {
             <Reveal delay={120}>
               <h2 className="font-serif text-[16px]
                              leading-snug tracking-tight text-brand-deep lg:whitespace-nowrap">
-                Structured into specialised{' '}
-                <span className="text-brand-accentDark">divisions.</span>
+                Six specialised divisions,{' '}
+                <span className="text-brand-accentDark">delivering value across continents.</span>
               </h2>
             </Reveal>
           </div>

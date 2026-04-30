@@ -93,8 +93,8 @@ export default function About() {
             <Reveal delay={120}>
               <h2 className="font-serif text-[16px]
                              leading-snug tracking-tight text-brand-deep lg:whitespace-nowrap">
-                One group operating across{' '}
-                <span className="text-brand-accentDark">multiple futures.</span>
+                A trusted global group, headquartered in Muscat,{' '}
+                <span className="text-brand-accentDark">operating across four continents.</span>
               </h2>
             </Reveal>
           </div>

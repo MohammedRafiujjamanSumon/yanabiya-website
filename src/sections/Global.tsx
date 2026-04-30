@@ -69,8 +69,8 @@ export default function Global() {
           <Reveal delay={120}>
             <h2 className="font-serif text-[16px]
                            leading-snug tracking-tight text-brand-deep lg:whitespace-nowrap">
-              Aligned across borders as{' '}
-              <span className="text-brand-accentDark">one unified network.</span>
+              Four countries, nine entities,{' '}
+              <span className="text-brand-accentDark">one unified Yanabiya team.</span>
             </h2>
           </Reveal>
         </div>

@@ -111,7 +111,8 @@ export default function Community() {
             <Reveal delay={120}>
               <h2 className="font-serif text-[16px]
                              leading-snug tracking-tight text-brand-deep mt-1">
-                Driven by Purpose.
+                Driven by purpose — investing in people,{' '}
+                <span className="italic text-brand-accentDark">progress, and shared prosperity.</span>
               </h2>
             </Reveal>
           </div>

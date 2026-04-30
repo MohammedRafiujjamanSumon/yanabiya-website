@@ -109,7 +109,8 @@ export default function Leadership() {
           <Reveal delay={120}>
             <h2 className="font-serif text-[16px]
                            leading-snug tracking-tight text-brand-deep lg:whitespace-nowrap mt-1">
-              Distributed leadership across <span className="italic text-brand-accentDark">five pillars</span>.
+              Experienced leadership across four continents,{' '}
+              <span className="italic text-brand-accentDark">anchored by integrity and execution.</span>
             </h2>
           </Reveal>
         </div>
