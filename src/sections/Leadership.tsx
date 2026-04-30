@@ -1,9 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import {
-  ArrowRight, ShieldCheck, Crown, Briefcase, Globe2, Sparkles,
-} from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 
@@ -43,70 +40,45 @@ function Reveal({
  * scaffolded so the wiring works end-to-end). */
 
 type Pillar = {
-  num: string
-  title: string
-  body: string
-  icon: LucideIcon
   href: string
-  /** Card gradient + accent colour (uses Tailwind arbitrary values
-   *  so each card carries its own palette without hard-wiring brand
-   *  tokens). */
+  /** Real photo for the top half of the card. */
+  image: string
+  /** Card gradient (bottom half + outer glow). */
   from: string
   to: string
   glow: string
-  chip: string  // number-chip background (matches accent)
 }
 
 const PILLARS: Pillar[] = [
   {
-    num: '01',
-    title: 'Strategic Board & Advisory',
-    body: 'Board of Directors + Advisory Board — strategic control, investment approval, risk governance and industry guidance.',
-    icon: ShieldCheck,
     href: '/leadership/management',
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80',
     from: '#a7f3d0', to: '#059669',
     glow: 'rgba(5,150,105,0.35)',
-    chip: 'bg-emerald-600',
   },
   {
-    num: '02',
-    title: 'Global CEO & Co-Founders',
-    body: 'Global CEO and four founding partners — Product, Tech, Business and Operations — driving long-term strategy.',
-    icon: Crown,
     href: '/leadership/management',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80',
     from: '#bae6fd', to: '#0284c7',
     glow: 'rgba(2,132,199,0.35)',
-    chip: 'bg-sky-600',
   },
   {
-    num: '03',
-    title: 'Executive Management',
-    body: 'COO · CFO · CTO · CMO · CHRO — the C-suite running operations, finance, technology, marketing and people.',
-    icon: Briefcase,
     href: '/leadership/professionals',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80',
     from: '#e9d5ff', to: '#7e22ce',
     glow: 'rgba(126,34,206,0.35)',
-    chip: 'bg-purple-600',
   },
   {
-    num: '04',
-    title: 'Country Partners & Heads',
-    body: 'Regional founders and country management heads in Oman, the UK, Bangladesh and the USA — local execution + compliance.',
-    icon: Globe2,
     href: '/leadership/professionals',
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
     from: '#fde68a', to: '#d97706',
     glow: 'rgba(217,119,6,0.35)',
-    chip: 'bg-amber-600',
   },
   {
-    num: '05',
-    title: 'High-Skill Execution Engine',
-    body: 'AI & software engineering, growth & research, design & product, and global project squads — the global talent engine.',
-    icon: Sparkles,
     href: '/leadership/professionals',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
     from: '#fecdd3', to: '#e11d48',
     glow: 'rgba(225,29,72,0.35)',
-    chip: 'bg-rose-600',
   },
 ]
 
@@ -135,106 +107,45 @@ export default function Leadership() {
           </Reveal>
         </div>
 
-        {/* ZIGZAG CARDS — each pillar alternates left / right with a curvy
-         *  SVG line zig-zagging between them in the background. */}
+        {/* TINY CARDS — 5 in a row. Top half = real photo, bottom half =
+         *  solid gradient. No text or number chip. */}
         <div className="relative max-w-4xl mx-auto">
-
-          {/* Background zigzag connector — drawn behind the cards */}
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            className="absolute inset-0 w-full h-full pointer-events-none"
-          >
-            {PILLARS.slice(0, -1).map((_, i) => {
-              // Each card occupies 1/5 of the vertical space.
-              const yA = (i + 0.5) / PILLARS.length * 100      // current card centre
-              const yB = (i + 1.5) / PILLARS.length * 100      // next card centre
-              const xA = i % 2 === 0 ? 32 : 68                 // current card right/left edge
-              const xB = (i + 1) % 2 === 0 ? 32 : 68           // next card right/left edge
-              const mx = (xA + xB) / 2
-              const path = `M ${xA} ${yA} C ${xA} ${(yA + yB) / 2}, ${xB} ${(yA + yB) / 2}, ${xB} ${yB}`
-              return (
-                <g key={i}>
-                  <path
-                    d={path}
-                    fill="none"
-                    stroke="rgba(15,58,35,0.20)"
-                    strokeWidth="0.4"
-                    strokeDasharray="0.8 0.8"
-                  />
-                  <path
-                    d={path}
-                    fill="none"
-                    stroke="rgba(158,199,58,0.85)"
-                    strokeWidth="0.45"
-                    strokeLinecap="round"
-                    className="animate-svg-flow"
-                    style={{ animationDelay: `${i * 0.4}s`, animationDuration: '5s' }}
-                  />
-                  <circle cx={mx} cy={(yA + yB) / 2} r="0.6" fill="rgba(158,199,58,0.95)" />
-                </g>
-              )
-            })}
-          </svg>
-
-          {/* Cards */}
-          <div className="relative flex flex-col gap-5 md:gap-6">
-            {PILLARS.map((p, i) => {
-              const right = i % 2 === 1
-              const Icon = p.icon
-              return (
-                <Reveal key={p.num} delay={i * 110} className={`w-full md:w-[60%] ${right ? 'md:self-end' : 'md:self-start'}`}>
-                  <Link
-                    to={p.href}
-                    className="group relative block rounded-2xl
-                               border border-white/40
-                               shadow-[0_14px_36px_-16px_var(--tw-shadow-color)]
-                               transition-all duration-500
-                               hover:-translate-y-1
-                               hover:shadow-[0_20px_46px_-14px_var(--tw-shadow-color)]"
-                    style={{
-                      backgroundImage: `linear-gradient(135deg, ${p.from} 0%, ${p.to} 100%)`,
-                      ['--tw-shadow-color' as never]: p.glow,
-                    }}
-                  >
-                    <div className="relative flex items-center gap-4 p-5 md:p-6 pr-16 md:pr-20">
-                      {/* Icon chip */}
-                      <span className="shrink-0 grid place-items-center w-12 h-12 md:w-14 md:h-14 rounded-xl
-                                       bg-white/85 backdrop-blur-sm shadow-md">
-                        <Icon size={22} strokeWidth={1.8} className="text-brand-deep" />
-                      </span>
-
-                      {/* Title + body */}
-                      <div className="min-w-0 flex-1">
-                        <h3 className="font-serif text-lg md:text-xl text-white leading-tight
-                                       drop-shadow-[0_1px_4px_rgba(15,58,35,0.45)]">
-                          {p.title}
-                        </h3>
-                        <p className="mt-1.5 text-[12px] md:text-[13px] text-white/95 leading-snug
-                                      drop-shadow-[0_1px_3px_rgba(15,58,35,0.35)]">
-                          {p.body}
-                        </p>
-                        <div className="mt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
-                                        text-white/95 group-hover:gap-2 transition-all">
-                          Open page <ArrowRight size={11} />
-                        </div>
-                      </div>
-
-                      {/* Number chip — top-right corner */}
-                      <span
-                        className={`absolute top-4 right-4 inline-flex items-center justify-center
-                                    w-12 h-12 rounded-full ${p.chip} text-white
-                                    font-serif text-lg ring-4 ring-white/40
-                                    shadow-[0_4px_14px_rgba(0,0,0,0.20)]`}
-                      >
-                        {p.num}
-                      </span>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-5 justify-items-center">
+            {PILLARS.map((p, i) => (
+              <Reveal key={p.href + i} delay={i * 90} className="w-full max-w-[180px]">
+                <Link
+                  to={p.href}
+                  aria-label="Open leadership page"
+                  className="group relative block rounded-xl overflow-hidden
+                             border border-white/40
+                             shadow-[0_10px_24px_-12px_var(--tw-shadow-color)]
+                             transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                             hover:-translate-y-1
+                             hover:shadow-[0_16px_36px_-12px_var(--tw-shadow-color)]"
+                  style={{ ['--tw-shadow-color' as never]: p.glow }}
+                >
+                  <div className="aspect-[3/4] flex flex-col">
+                    {/* Top half — real photo */}
+                    <div className="relative h-1/2 w-full overflow-hidden bg-slate-200">
+                      <img
+                        src={p.image}
+                        alt=""
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover
+                                   transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                                   group-hover:scale-105"
+                        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                      />
                     </div>
-                  </Link>
-                </Reveal>
-              )
-            })}
+                    {/* Bottom half — solid gradient block, no text or number */}
+                    <div
+                      className="h-1/2 w-full"
+                      style={{ backgroundImage: `linear-gradient(135deg, ${p.from} 0%, ${p.to} 100%)` }}
+                    />
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
 

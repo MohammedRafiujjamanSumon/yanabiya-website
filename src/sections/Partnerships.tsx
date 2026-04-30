@@ -1,5 +1,5 @@
 import Section, { H2 } from '../components/Section'
-import { partners, valuableClients, memberships } from '../data/partners'
+import { partners, valuableClients, memberships, affiliations } from '../data/partners'
 
 type Item = { name: string; logo: string }
 
@@ -18,21 +18,39 @@ function LogoMarquee({
   const loop = [...half, ...half]
   const animClass = direction === 'left' ? 'animate-marquee' : 'animate-marquee-reverse'
   return (
-    <div className="group relative overflow-hidden">
+    <div className="relative overflow-hidden">
+      {/* Strip keeps moving forever — no group-pause, so the chain never stops.
+       *  Individual tiles react on their own when touched / hovered. */}
       <div
-        className={`flex ${animClass} marquee-pause gap-6 w-max py-2`}
-        style={{ animationDuration: `${durationSec}s` }}
+        className={`flex ${animClass} gap-10 w-max py-4`}
+        style={{
+          animationDuration: `${durationSec}s`,
+          animationTimingFunction: 'linear',
+          willChange: 'transform',
+        }}
       >
         {loop.map((p, i) => (
           <div
             key={`${p.name}-${i}`}
-            className="bg-white rounded-xl p-5 h-24 w-44 grid place-items-center shrink-0 shadow-lg hover:shadow-xl hover:-translate-y-1 transition"
+            tabIndex={0}
+            className="relative h-32 w-44 p-3 mx-1 shrink-0 rounded-lg
+                       bg-white border border-slate-200/70
+                       shadow-[0_4px_10px_-4px_rgba(15,23,42,0.10)]
+                       flex items-center justify-center
+                       transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                       hover:-translate-y-2 hover:scale-[1.04]
+                       hover:shadow-[0_22px_44px_-14px_rgba(15,23,42,0.30)]
+                       hover:border-brand-accent/50
+                       focus-visible:-translate-y-2 focus-visible:scale-[1.04]
+                       focus-visible:shadow-[0_22px_44px_-14px_rgba(15,23,42,0.30)]
+                       focus-visible:border-brand-accent/50
+                       focus:outline-none"
           >
             <img
               src={p.logo}
               alt={p.name}
               loading="lazy"
-              className="max-h-14 max-w-full object-contain"
+              className="block max-w-full max-h-full m-auto object-contain"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
           </div>
@@ -54,14 +72,6 @@ export default function Partnerships() {
         </p>
       </div>
 
-      {/* Technology Partners */}
-      <div id="partners" className="mb-12 scroll-mt-28">
-        <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
-          Our Partners
-        </h3>
-        <LogoMarquee items={partners} direction="left" durationSec={55} />
-      </div>
-
       {/* Valuable Clients */}
       <div id="clients" className="mb-12 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
@@ -71,11 +81,27 @@ export default function Partnerships() {
       </div>
 
       {/* Our Membership */}
-      <div id="sponsors" className="mb-4 scroll-mt-28">
+      <div id="sponsors" className="mb-12 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
           Our Membership
         </h3>
         <LogoMarquee items={memberships} direction="left" durationSec={45} />
+      </div>
+
+      {/* Technology Partners */}
+      <div id="partners" className="mb-12 scroll-mt-28">
+        <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
+          Our Partners
+        </h3>
+        <LogoMarquee items={partners} direction="left" durationSec={55} />
+      </div>
+
+      {/* Affiliations */}
+      <div id="affiliations" className="mb-4 scroll-mt-28">
+        <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
+          Affiliations
+        </h3>
+        <LogoMarquee items={affiliations} direction="right" durationSec={45} />
       </div>
     </Section>
   )

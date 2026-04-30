@@ -1,7 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Calendar, ArrowUpRight } from 'lucide-react'
 import Section, { Eyebrow, H2 } from '../components/Section'
+import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
+
+const blogCategories: CircleItem[] = [
+  { label: 'Group Update', description: 'Major announcements and milestones from across the four Yanabiya regions.', bg: 'bg-emerald-500' },
+  { label: 'Insights',     description: 'Market analysis, sector outlooks and commentary from our regional leadership.',   bg: 'bg-sky-500' },
+  { label: 'People',       description: 'Team stories, hiring spotlights and culture pieces from every office.',           bg: 'bg-amber-500' },
+  { label: 'Technology',   description: 'Product, cloud, AI and security updates from our engineering teams.',             bg: 'bg-rose-500' },
+  { label: 'Community',    description: 'CSR, sustainability and outreach reports across all four regions.',               bg: 'bg-teal-700' },
+]
 
 type CountryCode = 'OM' | 'GB' | 'BD' | 'US' | 'ALL'
 
@@ -58,6 +67,15 @@ export default function Blog() {
             Stories, insights and updates from Yanabiya Group teams across Oman,
             the United Kingdom, Bangladesh and the USA.
           </p>
+        </div>
+
+        <div className="mb-16">
+          <CircleInfographic
+            eyebrow="What we cover"
+            titleLine1="Our Range of"
+            titleLine2="Community Stories"
+            items={blogCategories}
+          />
         </div>
 
         <div className="flex flex-wrap gap-2 mb-8">

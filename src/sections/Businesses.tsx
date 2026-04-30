@@ -128,6 +128,175 @@ function ServicesFlowchart({ onSelect }: { onSelect: (slug: string) => void }) {
   )
 }
 
+/* ServicesGBSModel — eight-circle "Global Business Services" style layout
+ * (six in our case, one per division) on a dark navy panel. Each circle is
+ * numbered, solid-coloured, and surrounded by an overlapping outline ring
+ * that links it to its neighbour — producing the chain look from the
+ * reference infographic. Circles alternate up/down to create the
+ * characteristic zig-zag rhythm. */
+type GbsItem = {
+  slug: string
+  title: string
+  /** Real photo shown as the circle background. Pulled from `data/businesses.ts`
+   *  so the imagery stays in sync with the detail pages. The decorative HQ
+   *  centrepiece uses the company logo on a white background instead. */
+  image: string
+  /** Renders an image as the centre badge (used for the decorative logo tile). */
+  logoUrl?: string
+  /** Optional override route for clicks. Defaults to `/business/<slug>`. */
+  href?: string
+  /** Outline ring colour for the chain look. */
+  ring: string
+  /** Decorative tile — hides the number and title; shows only the logo. */
+  decorative?: boolean
+}
+
+const businessBySlug = Object.fromEntries(businesses.map((b) => [b.slug, b]))
+
+const GBS_ITEMS: GbsItem[] = [
+  { slug: 'it-software',       title: 'IT Software & Web Development', image: businessBySlug['it-software'].image,       ring: '#9a3412' },
+  { slug: 'export-import',     title: 'Export & Import Business',      image: businessBySlug['export-import'].image,     ring: '#7c2d12' },
+  { slug: 'clothing',          title: 'Clothing & Accessories',        image: businessBySlug['clothing'].image,          ring: '#831843' },
+  { slug: 'yanabiya-group',    title: 'Yanabiya Group HQ',             image: assets.logo, logoUrl: assets.logo, href: '/about-us', ring: '#9a3412', decorative: true },
+  { slug: 'office-management', title: 'Office Management Services',    image: businessBySlug['office-management'].image, ring: '#9f1239' },
+  { slug: 'manpower',          title: 'Manpower Supply Services',      image: businessBySlug['manpower'].image,          ring: '#500724' },
+  { slug: 'agents-brokerage',  title: 'Agents & Brokerage Business',   image: businessBySlug['agents-brokerage'].image,  ring: '#14532d' },
+]
+
+function ServicesGBSModel({ onSelect }: { onSelect: (target: string) => void }) {
+  // Resolve each item to its navigation target up-front.
+  const resolve = (item: GbsItem) => item.href ?? `/business/${item.slug}`
+
+  return (
+    <div className="relative">
+      {/* Mobile: 2-column grid. Desktop: zig-zag row, modest spacing. */}
+      <div className="relative grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:hidden">
+        {GBS_ITEMS.map((item, i) => (
+          <GbsCircle
+            key={item.slug}
+            item={item}
+            index={i}
+            variant={i % 2 === 0 ? 'tall' : 'short'}
+            onSelect={() => onSelect(resolve(item))}
+          />
+        ))}
+      </div>
+
+      <div className="relative hidden md:flex md:items-center md:justify-center">
+        {GBS_ITEMS.map((item, i) => {
+          const isUp = i % 2 === 0
+          return (
+            <div
+              key={item.slug}
+              className={`relative ${isUp ? 'mb-10 lg:mb-12' : 'mt-10 lg:mt-12'} ${i > 0 ? '-ml-4 lg:-ml-5' : ''}`}
+              style={{ zIndex: GBS_ITEMS.length - i }}
+            >
+              <GbsCircle item={item} index={i} variant={isUp ? 'tall' : 'short'} onSelect={() => onSelect(resolve(item))} />
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function GbsCircle({
+  item,
+  variant = 'tall',
+  onSelect,
+}: {
+  item: GbsItem
+  index: number
+  variant?: 'tall' | 'short'
+  onSelect: () => void
+}) {
+  const isLogoTile = !!item.logoUrl
+  // All tiles share the same compact size — the rhythm comes from zig-zag
+  // vertical offset, not from size variation. `variant` is kept on the type
+  // for future flexibility but no longer affects sizing.
+  void variant
+  const sizeCls = 'w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40'
+
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-label={`Open ${item.title}`}
+      className={`group relative ${sizeCls} mx-auto rounded-full
+                  transition-transform duration-300 hover:scale-[1.04]
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
+      style={{
+        filter:
+          'drop-shadow(0 14px 22px rgba(15,23,42,0.25)) drop-shadow(0 4px 6px rgba(15,23,42,0.18))',
+      }}
+    >
+      {/* Outer coloured ring — chain look */}
+      <span
+        aria-hidden
+        className="absolute -inset-[6px] rounded-full"
+        style={{
+          background: `linear-gradient(145deg, ${item.ring} 0%, ${item.ring}cc 60%, ${item.ring}66 100%)`,
+          boxShadow: `inset 0 2px 0 rgba(255,255,255,0.45), inset 0 -4px 8px rgba(0,0,0,0.28)`,
+        }}
+      />
+
+      {/* Inner sphere — 3D-shaded image */}
+      <span
+        aria-hidden
+        className={`absolute inset-0 rounded-full overflow-hidden ring-[3px] ring-white
+                    ${isLogoTile ? 'bg-white' : 'bg-slate-100'}`}
+        style={{
+          boxShadow: [
+            'inset 0 6px 12px rgba(255,255,255,0.45)',
+            'inset 0 -10px 20px rgba(0,0,0,0.35)',
+            'inset 0 0 0 1px rgba(255,255,255,0.18)',
+          ].join(', '),
+        }}
+      >
+        <img
+          src={item.image}
+          alt=""
+          loading="lazy"
+          className={`absolute inset-0 w-full h-full ${isLogoTile ? 'object-contain p-4' : 'object-cover'}
+                      transition-transform duration-500 group-hover:scale-105`}
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+        />
+
+        {/* Top glossy reflection */}
+        <span
+          aria-hidden
+          className="absolute inset-x-3 top-2 h-1/3 rounded-full
+                     bg-gradient-to-b from-white/40 via-white/10 to-transparent
+                     pointer-events-none blur-[1px]"
+        />
+
+        {/* Stronger lower-half emerald gradient — anchors the title */}
+        {!item.decorative && (
+          <span
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 h-1/2
+                       bg-gradient-to-t from-emerald-950/95 via-emerald-900/70 to-transparent
+                       pointer-events-none"
+          />
+        )}
+      </span>
+
+      {/* Title plate — sits well inside the round, centred horizontally,
+       *  vertically pinned to ~60% from top so it never clips the rim. */}
+      {!item.decorative && (
+        <span className="absolute left-1/2 top-[62%] -translate-x-1/2 z-10
+                         w-[78%] text-center text-white
+                         font-semibold leading-snug
+                         text-[11px] md:text-[12px] lg:text-[13px]
+                         tracking-tight
+                         drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
+          {item.title}
+        </span>
+      )}
+    </button>
+  )
+}
+
 function FlowCardTile({ card, onSelect }: { card: FlowCard; onSelect: (slug: string) => void }) {
   return (
     <button
@@ -674,9 +843,9 @@ export default function Businesses() {
             </Reveal>
           </div>
 
-          {/* MIDDLE — distributed-leadership-style flowchart */}
+          {/* MIDDLE — GBS-Model numbered-circle chain */}
           <Reveal delay={200} className="w-full order-2">
-            <ServicesFlowchart onSelect={(s) => navigate(`/business/${s}`)} />
+            <ServicesGBSModel onSelect={(target) => navigate(target)} />
           </Reveal>
 
           {/* BOTTOM — Get a Quote CTA + Live signal pill */}

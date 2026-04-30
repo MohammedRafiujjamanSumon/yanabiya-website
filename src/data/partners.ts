@@ -17,12 +17,18 @@ export const valuableClients = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1
   logo: `https://yanabiyagroup.com/img/par/${n}.jpg`,
 }))
 
-// Memberships / Sponsors — sourced from yanabiyagroup.com (img/mb/1-6)
+// Memberships — sourced from yanabiyagroup.com (img/mb/1-3)
 export const memberships = [
   { name: 'Membership 1', logo: 'https://yanabiyagroup.com/img/mb/1.jpg' },
   { name: 'Membership 2', logo: 'https://yanabiyagroup.com/img/mb/2.png' },
   { name: 'Membership 3', logo: 'https://yanabiyagroup.com/img/mb/3.jpg' },
-  { name: 'Membership 4', logo: 'https://yanabiyagroup.com/img/mb/4.png' },
-  { name: 'Membership 5', logo: 'https://yanabiyagroup.com/img/mb/5.png' },
-  { name: 'Membership 6', logo: 'https://yanabiyagroup.com/img/mb/6.png' },
+]
+
+// Affiliations — sourced from yanabiyagroup.com (img/mb/4-6). Split out of the
+// original combined "Memberships & Affiliations" set so the home page can
+// surface them in their own marquee.
+export const affiliations = [
+  { name: 'Affiliation 1', logo: 'https://yanabiyagroup.com/img/mb/4.png' },
+  { name: 'Affiliation 2', logo: 'https://yanabiyagroup.com/img/mb/5.png' },
+  { name: 'Affiliation 3', logo: 'https://yanabiyagroup.com/img/mb/6.png' },
 ]

@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
-import { Heart, BookOpen, Stethoscope, Sprout } from 'lucide-react'
 import Section, { Eyebrow, H2 } from '../components/Section'
+import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
 
-const pillars = [
-  { icon: Heart,       title: 'Welfare',     desc: 'Structured charitable drives supporting families in need with dignity and transparency.' },
-  { icon: BookOpen,    title: 'Education',   desc: 'Scholarships, school programmes and learning resources for underserved communities.' },
-  { icon: Stethoscope, title: 'Health',      desc: 'Free health camps, medical support and awareness programmes across regions.' },
-  { icon: Sprout,      title: 'Empowerment', desc: 'Skills training and livelihood programmes that build long-term independence.' },
+const pillars: CircleItem[] = [
+  { label: 'Welfare',     description: 'Structured charitable drives supporting families in need with dignity and transparency.', bg: 'bg-emerald-500' },
+  { label: 'Education',   description: 'Scholarships, school programmes and learning resources for underserved communities.',     bg: 'bg-sky-500' },
+  { label: 'Health',      description: 'Free health camps, medical support and awareness programmes across regions.',             bg: 'bg-amber-500' },
+  { label: 'Empowerment', description: 'Skills training and livelihood programmes that build long-term independence.',            bg: 'bg-rose-500' },
 ]
 
 const countryPrograms: Record<string, string[]> = {
@@ -67,21 +67,12 @@ export default function CommunityCare() {
         </div>
 
         <div className="mb-16">
-          <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-widest text-brand-accent mb-2">Our Commitment</div>
-            <h3 className="font-serif text-3xl text-slate-900">Four Pillars of Community Care</h3>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {pillars.map((p) => (
-              <div key={p.title} className="card-panel">
-                <div className="w-12 h-12 rounded-lg bg-brand-accent/10 text-brand-accent grid place-items-center mb-4">
-                  <p.icon size={22} />
-                </div>
-                <h4 className="text-slate-900 text-lg mb-1">{p.title}</h4>
-                <p className="text-sm text-slate-600 leading-snug">{p.desc}</p>
-              </div>
-            ))}
-          </div>
+          <CircleInfographic
+            eyebrow="Our Commitment"
+            titleLine1="Our Pillars of"
+            titleLine2="Community Care"
+            items={pillars}
+          />
         </div>
 
         <div>

@@ -8,14 +8,23 @@ export const contact = {
   hours: 'Sunday – Thursday, 8:00 AM – 6:00 PM',
 }
 
-// Per-country contact details. Addresses/flags/names come from `data/countries.ts`
-// (shared source of truth). This file layers in phones, emails, hours, websites,
-// and registration metadata per country, keyed by ISO code.
+// Per-country contact details. Addresses are split into three structured
+// pieces — office address, post address (P.O. Box / postal code line), and
+// the region/country line — so the Contact banner can render them as three
+// distinct stacked rows. `mapQuery` is the canonical full-string variant
+// fed to Google Maps.
 export type CountryContact = {
   code: 'OM' | 'GB' | 'BD' | 'US'
   legalName: string
   registration: { label: string; value: string }
   established: string
+  /** Physical office address — building / floor / street / area. */
+  officeAddress: string
+  /** Postal / P.O. Box address. Empty string if the office address doubles
+   *  as the postal address. */
+  postAddress: string
+  /** Country or wider region line, shown as the last address row. */
+  region: string
   phones: string[]
   mobile?: string
   /** Active WhatsApp endpoint, when different from `mobile`. */
@@ -33,6 +42,9 @@ export const contactByCountry: CountryContact[] = [
     legalName: 'Yanabiya Gulf International Business and Trade SPC',
     registration: { label: 'Commercial Registration', value: '1395664' },
     established: '19 September 2021',
+    officeAddress: 'Office-41, 4th Floor, Building-846, Way-4011, Complex-240, Al Gubrah, Bushar, Muscat',
+    postAddress: 'P.O. Box 1432, PC-133, Al Khuwair, Muscat',
+    region: 'Sultanate of Oman',
     phones: ['+968 2249 5566'],
     mobile: '+968 9116 1677',
     whatsapp: '+968 9116 1677',
@@ -47,6 +59,9 @@ export const contactByCountry: CountryContact[] = [
     legalName: 'Yanabiya Gulf International UK Ltd',
     registration: { label: 'Company No', value: '14907791' },
     established: '1 June 2023',
+    officeAddress: '167-169 Great Portland Street, 5th Floor',
+    postAddress: 'London W1W 5PF',
+    region: 'United Kingdom',
     phones: ['+44 7988 518877'],
     mobile: '+44 7988 518877',
     emails: ['info@yanabiya.com', 'info@yanabiyagibt.com'],
@@ -59,6 +74,9 @@ export const contactByCountry: CountryContact[] = [
     legalName: 'Yanabiya Gulf International BD Trade',
     registration: { label: 'Trade License', value: 'TRAD/DNCC/100677/1998' },
     established: '17 November 1998',
+    officeAddress: 'Office #211, Plot #322/B, Block-Kanchkura, Uttarkhan',
+    postAddress: 'Dhaka-1230',
+    region: 'Bangladesh',
     phones: ['+880 1711 030489'],
     mobile: '+880 1971 161677',
     emails: ['info@yanabiyabd.com'],
@@ -71,6 +89,9 @@ export const contactByCountry: CountryContact[] = [
     legalName: 'Yanabiya Gulf International US LLC',
     registration: { label: 'File No', value: '806163411' },
     established: '11 August 2025',
+    officeAddress: '5900 Balcones Drive #18651',
+    postAddress: 'Austin, TX 78731',
+    region: 'United States of America',
     phones: ['+1 512 355 5715'],
     mobile: '+1 512 355 5715',
     emails: ['info@yanabiyaus.com', 'info@ygiusllc.com'],

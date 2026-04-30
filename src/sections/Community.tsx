@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Newspaper, Leaf, HeartHandshake, Briefcase, MessageSquareQuote, CheckCircle2, type LucideIcon } from 'lucide-react'
+import { ArrowRight, Newspaper, Leaf, HeartHandshake, Briefcase, MessageSquareQuote, type LucideIcon } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
-import { assets } from '../data/assets'
 
 function Reveal({
   children,
@@ -32,9 +31,10 @@ type Hub = {
   icon: LucideIcon
   eyebrow: string
   title: string
-  body: string
-  /** Tailwind background colour for the circle. */
+  /** Tailwind background colour used as fallback / outer ring tint. */
   bg: string
+  /** Real photo for the circle. */
+  image: string
   /** Vertical offset (Tailwind) — alternating to mirror the infographic. */
   offset: string
 }
@@ -45,8 +45,8 @@ const HUBS: Hub[] = [
     icon: Newspaper,
     eyebrow: 'Stories & Insights',
     title: 'Blog',
-    body: 'Articles, case studies, and field notes from across the group.',
     bg: 'bg-emerald-600',
+    image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80',
     offset: '',
   },
   {
@@ -54,8 +54,8 @@ const HUBS: Hub[] = [
     icon: Leaf,
     eyebrow: 'Long-term Value',
     title: 'Sustainable Growth',
-    body: 'Our commitment to growth that benefits people, communities, and the planet.',
     bg: 'bg-cyan-500',
+    image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80',
     offset: 'md:mt-10',
   },
   {
@@ -63,8 +63,8 @@ const HUBS: Hub[] = [
     icon: HeartHandshake,
     eyebrow: 'Welfare Programmes',
     title: 'Community Care',
-    body: 'Humanitarian aid, education, and healthcare initiatives across our regions.',
     bg: 'bg-amber-500',
+    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80',
     offset: 'md:mt-20',
   },
   {
@@ -72,8 +72,8 @@ const HUBS: Hub[] = [
     icon: Briefcase,
     eyebrow: 'Join the Team',
     title: 'Careers',
-    body: 'Build your career with a global group across IT, trade, and operations.',
     bg: 'bg-rose-500',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80',
     offset: 'md:mt-10',
   },
   {
@@ -81,8 +81,8 @@ const HUBS: Hub[] = [
     icon: MessageSquareQuote,
     eyebrow: 'Voices & Stories',
     title: 'Testimonials',
-    body: 'Words from clients, partners, and beneficiaries across our four regions.',
     bg: 'bg-teal-700',
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
     offset: '',
   },
 ]
@@ -101,32 +101,27 @@ export default function Community() {
 
       <div className="container-x relative pt-2 md:pt-3 pb-4 md:pb-6">
 
-        {/* HEADER — mirrors the reference infographic:
-         *    • Brand logo small in the top-left corner
-         *    • Centred two-line title with a thin horizontal divider
-         *      between the lines
-         */}
+        {/* HEADER — centred two-line title with a thin horizontal divider.
+         *  Headings turn brand-green on hover/touch. */}
         <div className="relative">
-          <Reveal>
-            <div className="absolute top-0 left-0 z-10">
-              <img
-                src={assets.logo}
-                alt="Yanabiya Group"
-                className="h-9 md:h-11 lg:h-12 w-auto object-contain drop-shadow-sm"
-              />
-            </div>
-          </Reveal>
-
           <div className="text-center max-w-3xl mx-auto pt-4 md:pt-6 mb-2 md:mb-4">
             <Reveal>
               <Eyebrow>Community</Eyebrow>
             </Reveal>
             <Reveal delay={120}>
-              <h2 className="mt-3 font-serif text-2xl sm:text-3xl md:text-[34px] lg:text-[42px] leading-[1.1] tracking-tight text-brand-deep">
+              <h2 className="mt-3 font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[52px]
+                             leading-[1.1] tracking-tight text-brand-deep
+                             transition-colors duration-300
+                             hover:text-brand-accentDark focus-within:text-brand-accentDark
+                             active:text-brand-accentDark cursor-default">
                 Driven by Purpose
               </h2>
-              <div className="my-3 mx-auto h-px w-40 sm:w-56 md:w-72 bg-slate-300" />
-              <h3 className="font-serif text-xl sm:text-2xl md:text-[28px] lg:text-[34px] leading-[1.15] tracking-tight text-brand-accentDark italic">
+              <div className="my-3 md:my-4 mx-auto h-px w-40 sm:w-56 md:w-72 bg-slate-300" />
+              <h3 className="font-serif italic text-2xl sm:text-3xl md:text-[34px] lg:text-[40px]
+                             leading-[1.15] tracking-tight text-brand-accentDark
+                             transition-colors duration-300
+                             hover:text-brand-accent focus-within:text-brand-accent
+                             active:text-brand-accent cursor-default">
                 Across Our Community
               </h3>
             </Reveal>
@@ -171,54 +166,43 @@ export default function Community() {
             <line x1="900" y1="240" x2="900" y2="280" stroke="#0f766e" strokeWidth="11" strokeLinecap="round" />
           </svg>
 
-          {/* Four hub circles with a description below each — mirrors the
-           *  "Our Range of … Services" infographic style: alternating
-           *  heights, coloured drop-line, body copy under the circle. */}
+          {/* Five hub circles, image-led, alternating heights to mirror the
+           *  "Our Range of … Services" infographic style. */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-10 md:gap-x-4 lg:gap-x-6 justify-items-center">
             {HUBS.map((h, i) => (
               <Reveal key={h.to} delay={i * 90} className={`${h.offset} flex flex-col items-center text-center max-w-[15rem]`}>
                 <Link
                   to={h.to}
                   aria-label={`Open ${h.title}`}
-                  className={`group inline-flex flex-col items-center justify-center
-                              w-28 h-28 md:w-32 md:h-32 rounded-full
-                              ${h.bg} text-white text-center px-3
-                              shadow-[0_12px_28px_-8px_rgba(15,23,42,0.35)]
-                              transition-all duration-300
-                              hover:scale-110 hover:shadow-[0_20px_40px_-10px_rgba(15,23,42,0.45)]
-                              focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60`}
+                  className="group relative w-28 h-28 md:w-32 md:h-32 rounded-full
+                             shadow-[0_12px_28px_-8px_rgba(15,23,42,0.35)]
+                             transition-all duration-300
+                             hover:scale-110 hover:shadow-[0_20px_40px_-10px_rgba(15,23,42,0.45)]
+                             focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
                 >
-                  <h.icon size={24} strokeWidth={1.8} className="mb-1.5 opacity-90 transition-transform duration-300 group-hover:scale-110" />
-                  <span className="font-bold text-sm md:text-base leading-tight tracking-tight">
-                    {h.title}
+                  {/* Image background fills the circle */}
+                  <span aria-hidden className={`absolute inset-0 rounded-full overflow-hidden ring-2 ring-white ${h.bg}`}>
+                    <img
+                      src={h.image}
+                      alt=""
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                    />
+                    {/* Lower gradient anchors the title */}
+                    <span aria-hidden className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  </span>
+                  {/* Content */}
+                  <span className="relative z-10 flex flex-col items-center justify-end h-full pb-3 px-2 text-white">
+                    <h.icon size={20} strokeWidth={1.8} className="mb-1 opacity-90 drop-shadow" />
+                    <span className="font-bold text-sm md:text-[15px] leading-tight tracking-tight drop-shadow">
+                      {h.title}
+                    </span>
                   </span>
                 </Link>
-                <p className="mt-4 px-2 text-[13px] md:text-sm text-slate-700 leading-relaxed">
-                  {h.body}
-                </p>
               </Reveal>
             ))}
           </div>
-
-          {/* WHAT THE COMMUNITY DELIVERS — list */}
-          <Reveal delay={350}>
-            <div className="mt-16 md:mt-24 max-w-4xl mx-auto">
-              <div className="text-center mb-6 md:mb-8">
-                <h3 className="font-serif text-xl md:text-2xl text-brand-deep">
-                  Across the group, we focus on
-                </h3>
-                <div className="w-14 h-0.5 bg-brand-accent rounded-full mx-auto mt-3" />
-              </div>
-              <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm md:text-[15px] text-slate-700">
-                {COMMUNITY_HIGHLIGHTS.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5">
-                    <CheckCircle2 size={18} className="text-brand-accent shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
 
           {/* TAIL CTA */}
           <Reveal delay={500}>
@@ -240,11 +224,3 @@ export default function Community() {
   )
 }
 
-const COMMUNITY_HIGHLIGHTS: string[] = [
-  'Education sponsorships, scholarships and youth mentorship',
-  'Healthcare drives and seasonal medical camps',
-  'Humanitarian aid in partnership with local NGOs',
-  'Sustainable growth — energy, water and waste programmes',
-  'Career development and graduate training pathways',
-  'Cultural and community events across all four regions',
-]

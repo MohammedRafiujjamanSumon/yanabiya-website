@@ -436,6 +436,10 @@ export default function ContactGlobal() {
         </div>
       </section>
 
+      {/* GLOBAL NETWORK MAP — 4 branches as nodes on a world-shape with
+       *  full-mesh animated connector lines. */}
+      <GlobalNetworkMap />
+
       {/* COUNTRY CARDS */}
       <section className="relative">
         <div className="container-x pb-20 md:pb-28">
@@ -459,5 +463,181 @@ export default function ContactGlobal() {
         onClose={() => setSelected(null)}
       />
     </main>
+  )
+}
+
+/* ───────────────────────── Global Network Map ─────────────────────────
+ *
+ *  4 branch offices plotted on a stylised world silhouette, with full-mesh
+ *  connectors (6 lines) animating between every pair of nodes. Coordinates
+ *  are hand-tuned so the dots sit roughly over their continents on the
+ *  decorative SVG world. Designed as a self-contained section that can be
+ *  dropped between the hero and the country-card grid.
+ */
+
+type MapNode = {
+  code: 'OM' | 'GB' | 'BD' | 'US'
+  flag: string
+  name: string
+  city: string
+  /** Hand-tuned position on the 100×56 viewBox (matches the continent
+   *  paths below). */
+  x: number
+  y: number
+  color: string
+}
+
+const MAP_NODES: MapNode[] = [
+  { code: 'US', flag: '🇺🇸', name: 'USA',         city: 'Austin',  x: 18, y: 22, color: '#0e7490' },
+  { code: 'GB', flag: '🇬🇧', name: 'UK',          city: 'London',  x: 46, y: 14, color: '#ea580c' },
+  { code: 'OM', flag: '🇴🇲', name: 'Oman (HQ)',   city: 'Muscat',  x: 58, y: 24, color: '#b91c1c' },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh',  city: 'Dhaka',   x: 70, y: 22, color: '#d97706' },
+]
+
+function GlobalNetworkMap() {
+  // Build the full mesh of pair-wise connectors once.
+  const pairs: Array<[MapNode, MapNode]> = []
+  for (let i = 0; i < MAP_NODES.length; i++) {
+    for (let j = i + 1; j < MAP_NODES.length; j++) {
+      pairs.push([MAP_NODES[i], MAP_NODES[j]])
+    }
+  }
+
+  return (
+    <section className="relative">
+      <div className="container-x pb-12 md:pb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
+          <Reveal>
+            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
+              Branches Connected
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-brand-deep leading-tight">
+              Our Global Network
+            </h2>
+          </Reveal>
+        </div>
+
+        <Reveal delay={200}>
+          <div className="relative max-w-5xl mx-auto rounded-2xl
+                          bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900
+                          shadow-[0_24px_60px_-20px_rgba(15,23,42,0.55)]
+                          ring-1 ring-white/10 overflow-hidden">
+            {/* Soft brand glow */}
+            <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+              <div className="absolute -top-24 left-1/3 w-[420px] h-[420px] rounded-full bg-brand-accent/20 blur-[140px]" />
+              <div className="absolute -bottom-24 right-1/4 w-[360px] h-[360px] rounded-full bg-amber-400/10 blur-[140px]" />
+            </div>
+
+            <svg
+              viewBox="0 0 100 56"
+              preserveAspectRatio="xMidYMid meet"
+              className="relative w-full h-auto"
+              role="img"
+              aria-label="World map showing Yanabiya Group's branch offices in Oman, the UK, Bangladesh and the USA, all interconnected"
+            >
+              {/* Faint lat/long grid */}
+              <g stroke="rgba(255,255,255,0.04)" strokeWidth="0.05">
+                {Array.from({ length: 9 }).map((_, i) => (
+                  <line key={`h${i}`} x1="0" y1={i * 7} x2="100" y2={i * 7} />
+                ))}
+                {Array.from({ length: 11 }).map((_, i) => (
+                  <line key={`v${i}`} x1={i * 10} y1="0" x2={i * 10} y2="56" />
+                ))}
+              </g>
+
+              {/* Stylised continent silhouettes */}
+              <g
+                fill="rgba(255,255,255,0.05)"
+                stroke="rgba(158,199,58,0.32)"
+                strokeWidth="0.14"
+                strokeLinejoin="round"
+              >
+                <path d="M 6 14 Q 16 9 26 12 L 30 18 Q 32 22 28 26 L 22 30 Q 16 32 12 30 L 8 26 Q 5 20 6 14 Z" />
+                <path d="M 24 32 L 30 32 L 32 38 L 30 46 L 26 50 L 22 46 L 22 38 Z" />
+                <path d="M 44 14 Q 50 12 54 14 L 56 18 Q 54 22 50 22 L 44 22 L 42 18 Z" />
+                <path d="M 47 24 L 56 24 L 58 30 L 58 38 L 54 46 L 50 50 L 46 46 L 44 38 L 45 30 Z" />
+                <path d="M 58 26 L 64 26 L 66 32 L 64 36 L 60 36 L 58 32 Z" />
+                <path d="M 56 10 Q 70 8 84 10 L 88 14 L 86 18 L 70 18 L 60 16 L 56 14 Z" />
+                <path d="M 70 20 L 82 20 L 84 26 L 80 30 L 74 30 L 72 26 Z" />
+                <path d="M 70 28 L 76 28 L 78 34 L 74 38 L 71 36 Z" />
+                <path d="M 82 40 L 92 40 L 94 46 L 90 48 L 84 46 Z" />
+              </g>
+
+              {/* Connector lines — full mesh */}
+              {pairs.map(([a, b], i) => {
+                // Curve via a midpoint that's pulled slightly upward so
+                // long routes arc instead of cutting through other nodes.
+                const mx = (a.x + b.x) / 2
+                const my = Math.min(a.y, b.y) - Math.abs(a.x - b.x) * 0.25
+                const path = `M ${a.x} ${a.y} Q ${mx} ${my}, ${b.x} ${b.y}`
+                return (
+                  <g key={`${a.code}-${b.code}`}>
+                    <path d={path} fill="none" stroke="rgba(158,199,58,0.30)" strokeWidth="0.18" />
+                    <path
+                      d={path}
+                      fill="none"
+                      stroke="rgba(158,199,58,0.95)"
+                      strokeWidth="0.32"
+                      strokeLinecap="round"
+                      className="animate-svg-flow"
+                      style={{ animationDelay: `${i * 0.45}s`, animationDuration: '5s' }}
+                    />
+                  </g>
+                )
+              })}
+
+              {/* Nodes — pulse + flag dot + label */}
+              {MAP_NODES.map((n) => (
+                <g key={n.code}>
+                  <circle cx={n.x} cy={n.y} r="2.6" fill={n.color} fillOpacity="0.25">
+                    <animate attributeName="r" values="1.6;3.4;1.6" dur="2.2s" repeatCount="indefinite" />
+                    <animate attributeName="fill-opacity" values="0.5;0.05;0.5" dur="2.2s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx={n.x} cy={n.y} r="1.1" fill={n.color} stroke="white" strokeWidth="0.18" />
+                  <text
+                    x={n.x}
+                    y={n.y - 2.4}
+                    textAnchor="middle"
+                    fontSize="2.0"
+                    fontWeight="700"
+                    fill="white"
+                    style={{ filter: 'drop-shadow(0 0 1.5px rgba(0,0,0,0.6))' }}
+                  >
+                    {n.name}
+                  </text>
+                  <text
+                    x={n.x}
+                    y={n.y + 4.2}
+                    textAnchor="middle"
+                    fontSize="1.5"
+                    fill="rgba(255,255,255,0.7)"
+                  >
+                    {n.city}
+                  </text>
+                </g>
+              ))}
+            </svg>
+
+            {/* Legend chips */}
+            <div className="relative flex flex-wrap items-center justify-center gap-2 md:gap-3 px-5 pb-5">
+              {MAP_NODES.map((n) => (
+                <span
+                  key={n.code}
+                  className="inline-flex items-center gap-2 rounded-full px-3 py-1
+                             bg-white/5 border border-white/10 text-[11px] font-semibold
+                             tracking-wide text-white/90"
+                >
+                  <span aria-hidden className="text-base leading-none">{n.flag}</span>
+                  {n.name} <span className="text-white/50">·</span>{' '}
+                  <span className="text-white/60">{n.city}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
   )
 }

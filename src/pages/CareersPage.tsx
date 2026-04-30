@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
-import { Globe2, Sparkles, GraduationCap, Briefcase, MapPin, Mail } from 'lucide-react'
+import { MapPin, Mail } from 'lucide-react'
 import Section, { Eyebrow, H2 } from '../components/Section'
+import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
 
-const reasons = [
-  { icon: Globe2,        title: 'Global Exposure',     desc: 'Work across four countries and dozens of industries.' },
-  { icon: Sparkles,      title: 'Modern Stack',        desc: 'Cloud, AI, security and full-stack engineering.' },
-  { icon: GraduationCap, title: 'Career Growth',       desc: 'Flexible, rewarding paths with real ownership.' },
-  { icon: Briefcase,     title: 'Performance Culture', desc: 'Teamwork-first with recognition for individual impact.' },
+const reasons: CircleItem[] = [
+  { label: 'Global Exposure',     description: 'Work across four countries and dozens of industries.',          bg: 'bg-emerald-500' },
+  { label: 'Modern Stack',        description: 'Cloud, AI, security and full-stack engineering.',                bg: 'bg-sky-500' },
+  { label: 'Career Growth',       description: 'Flexible, rewarding paths with real ownership.',                 bg: 'bg-amber-500' },
+  { label: 'Performance Culture', description: 'Teamwork-first with recognition for individual impact.',         bg: 'bg-rose-500' },
 ]
 
 const countryRoles: Record<string, string[]> = {
@@ -54,21 +55,12 @@ export default function CareersPage() {
         </div>
 
         <div className="mb-16">
-          <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-widest text-brand-accent mb-2">Why Yanabiya</div>
-            <h3 className="font-serif text-3xl text-slate-900">What you'll find here</h3>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {reasons.map((r) => (
-              <div key={r.title} className="card-panel">
-                <div className="w-12 h-12 rounded-lg bg-brand-accent/10 text-brand-accent grid place-items-center mb-4">
-                  <r.icon size={22} />
-                </div>
-                <h4 className="text-slate-900 text-lg mb-1">{r.title}</h4>
-                <p className="text-sm text-slate-600 leading-snug">{r.desc}</p>
-              </div>
-            ))}
-          </div>
+          <CircleInfographic
+            eyebrow="Why Yanabiya"
+            titleLine1="Our Range of"
+            titleLine2="Career Opportunities"
+            items={reasons}
+          />
         </div>
 
         <div className="mb-16">

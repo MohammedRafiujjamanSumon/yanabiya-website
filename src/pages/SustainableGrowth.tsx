@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
-import { Leaf, Recycle, TreePine, Users } from 'lucide-react'
 import Section, { Eyebrow, H2 } from '../components/Section'
+import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
 
-const pillars = [
-  { icon: Leaf,     title: 'Green Operations',    desc: 'Energy-efficient offices and responsible resource usage across all branches.' },
-  { icon: Recycle,  title: 'Circular Practices',  desc: 'Reuse, recycle and minimise waste across procurement, packaging and logistics.' },
-  { icon: TreePine, title: 'Climate Commitment',  desc: 'Tree plantation drives and lower-emission business models for long-term impact.' },
-  { icon: Users,    title: 'Inclusive Growth',    desc: 'Fair employment, local hiring, and supplier partnerships that strengthen communities.' },
+const pillars: CircleItem[] = [
+  { label: 'Green Operations',   description: 'Energy-efficient offices and responsible resource usage across all branches.',           bg: 'bg-emerald-500' },
+  { label: 'Circular Practices', description: 'Reuse, recycle and minimise waste across procurement, packaging and logistics.',         bg: 'bg-sky-500' },
+  { label: 'Climate Commitment', description: 'Tree plantation drives and lower-emission business models for long-term impact.',        bg: 'bg-amber-500' },
+  { label: 'Inclusive Growth',   description: 'Fair employment, local hiring, and supplier partnerships that strengthen communities.',  bg: 'bg-rose-500' },
 ]
 
 const countryInitiatives: Record<string, { title: string; body: string }[]> = {
@@ -57,21 +57,12 @@ export default function SustainableGrowth() {
         </div>
 
         <div className="mb-16">
-          <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-widest text-brand-accent mb-2">Our Pillars</div>
-            <h3 className="font-serif text-3xl text-slate-900">How We Grow Responsibly</h3>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {pillars.map((p) => (
-              <div key={p.title} className="card-panel">
-                <div className="w-12 h-12 rounded-lg bg-brand-accent/10 text-brand-accent grid place-items-center mb-4">
-                  <p.icon size={22} />
-                </div>
-                <h4 className="text-slate-900 text-lg mb-1">{p.title}</h4>
-                <p className="text-sm text-slate-600 leading-snug">{p.desc}</p>
-              </div>
-            ))}
-          </div>
+          <CircleInfographic
+            eyebrow="Our Pillars"
+            titleLine1="Our Range of"
+            titleLine2="Sustainable Practices"
+            items={pillars}
+          />
         </div>
 
         <div className="mb-16">
