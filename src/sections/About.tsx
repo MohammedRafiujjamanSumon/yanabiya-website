@@ -37,10 +37,10 @@ type FeaturePill = {
 }
 
 const FEATURES: FeaturePill[] = [
-  { label: 'IT, Software & Cloud',           to: '/business/it-software',      tone: 'from-emerald-500/40 to-emerald-700/40' },
-  { label: 'Global Trade & Supply Chain',    to: '/business/export-import',    tone: 'from-cyan-500/40 to-sky-700/40'        },
-  { label: 'Manpower & Mobility',            to: '/business/manpower',         tone: 'from-amber-500/40 to-orange-700/40'    },
-  { label: 'Office Management & Admin',      to: '/business/office-management', tone: 'from-fuchsia-500/40 to-rose-700/40'   },
+  { label: 'Our Mission',     to: '/about-us#mission',    tone: 'from-emerald-500/40 to-emerald-700/40' },
+  { label: 'Our Vision',      to: '/about-us#vision',     tone: 'from-cyan-500/40 to-sky-700/40'        },
+  { label: 'Founding Pillars', to: '/about-us#pillars',   tone: 'from-amber-500/40 to-orange-700/40'    },
+  { label: 'Our Heritage',    to: '/about/our-story',     tone: 'from-fuchsia-500/40 to-rose-700/40'    },
 ]
 
 /* About — dark hero-style panel inspired by the user-supplied
@@ -96,18 +96,19 @@ export default function About() {
                 </span>
                 <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
                                leading-[1.1] tracking-tight text-white">
-                  Everything you need to{' '}
-                  <span className="text-amber-300">build &amp; scale</span> your business.
+                  A trusted multinational group,{' '}
+                  <span className="text-amber-300">built on integrity</span> and excellence.
                 </h2>
                 <p className="mt-4 text-sm md:text-base text-white/70 leading-snug max-w-sm">
-                  Four countries, six divisions, one unified Yanabiya team — engineered
-                  to power enterprises across IT, trade, mobility and beyond.
+                  Headquartered in Muscat and operating across the United Kingdom,
+                  Bangladesh, and the United States — Yanabiya unites four cultures
+                  under one shared standard of trust, professionalism, and long-term vision.
                 </p>
 
-                {/* Demo CTA — pill matching the reference */}
+                {/* CTA — read our story */}
                 <div className="mt-7">
                   <Link
-                    to="/about-us"
+                    to="/about/our-story"
                     className="group inline-flex items-center gap-3 rounded-full
                                pl-2 pr-5 py-2 bg-white/8 backdrop-blur-sm
                                border border-white/15 text-white/90
@@ -120,7 +121,7 @@ export default function About() {
                       <Play size={14} fill="currentColor" />
                     </span>
                     <span className="text-[12px] font-semibold leading-tight text-left">
-                      Explore About<br className="hidden sm:block" />
+                      Read Our Story<br className="hidden sm:block" />
                       <span className="text-white/60 sm:ml-0 ml-1">Yanabiya Group</span>
                     </span>
                   </Link>
@@ -128,29 +129,29 @@ export default function About() {
               </div>
             </Reveal>
 
-            {/* ─── Right: caption + "View Services" circular CTA ─── */}
+            {/* ─── Right: caption + "Our Story" circular CTA ─── */}
             <Reveal delay={140} className="hidden md:block">
               <div className="text-right">
                 <div className="text-white/95 font-semibold text-base lg:text-lg leading-snug">
-                  The ideas that<br />improve your products
+                  The values that<br />shape who we are
                 </div>
                 <p className="mt-2 text-[12px] text-white/55 leading-snug max-w-[18rem] ml-auto">
-                  Be among the founders who experience the easiest way to start
-                  and run a business across four continents.
+                  Built on morals, ethics, honesty, and customer satisfaction —
+                  the Stamp of Quality and Professionalism that defines every decision.
                 </p>
                 <div className="mt-5 flex justify-end">
                   <Link
-                    to="/#businesses"
+                    to="/about-us"
                     className="relative grid place-items-center w-20 h-20 rounded-full
                                bg-white/8 backdrop-blur-sm
                                border border-white/15 text-white/90
                                hover:bg-white/15 hover:border-amber-300/60 hover:-translate-y-0.5
                                transition-all duration-300"
-                    aria-label="View Services"
+                    aria-label="Read more about Yanabiya Group"
                   >
                     <span className="text-[10px] font-semibold uppercase tracking-[0.18em]
                                      leading-tight text-center">
-                      View<br />Services
+                      Our<br />Story
                     </span>
                     <ArrowUpRight size={14} className="absolute bottom-2 right-2 text-amber-300" />
                   </Link>
