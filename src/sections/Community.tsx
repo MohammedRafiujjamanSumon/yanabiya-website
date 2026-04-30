@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Newspaper, Leaf, HeartHandshake, Briefcase, CheckCircle2, Quote, type LucideIcon } from 'lucide-react'
+import { ArrowRight, Newspaper, Leaf, HeartHandshake, Briefcase, MessageSquareQuote, CheckCircle2, type LucideIcon } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { assets } from '../data/assets'
@@ -56,7 +56,7 @@ const HUBS: Hub[] = [
     title: 'Sustainable Growth',
     body: 'Our commitment to growth that benefits people, communities, and the planet.',
     bg: 'bg-cyan-500',
-    offset: 'md:mt-14',
+    offset: 'md:mt-10',
   },
   {
     to: '/community/community-care',
@@ -65,7 +65,7 @@ const HUBS: Hub[] = [
     title: 'Community Care',
     body: 'Humanitarian aid, education, and healthcare initiatives across our regions.',
     bg: 'bg-amber-500',
-    offset: '',
+    offset: 'md:mt-20',
   },
   {
     to: '/community/careers',
@@ -74,7 +74,16 @@ const HUBS: Hub[] = [
     title: 'Careers',
     body: 'Build your career with a global group across IT, trade, and operations.',
     bg: 'bg-rose-500',
-    offset: 'md:mt-14',
+    offset: 'md:mt-10',
+  },
+  {
+    to: '/community/testimonials',
+    icon: MessageSquareQuote,
+    eyebrow: 'Voices & Stories',
+    title: 'Testimonials',
+    body: 'Words from clients, partners, and beneficiaries across our four regions.',
+    bg: 'bg-teal-700',
+    offset: '',
   },
 ]
 
@@ -93,65 +102,81 @@ export default function Community() {
       <div className="container-x relative pt-2 md:pt-3 pb-4 md:pb-6">
 
         {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-6 md:mb-8">
           <Reveal>
-            <div className="flex justify-center mb-4">
-              <img
-                src={assets.logo}
-                alt="Yanabiya Group"
-                className="h-14 md:h-16 w-auto object-contain drop-shadow-sm"
-              />
-            </div>
-          </Reveal>
-          <Reveal delay={80}>
             <Eyebrow>Community</Eyebrow>
           </Reveal>
-          <Reveal delay={160}>
+          <Reveal delay={120}>
             <h2 className="mt-3 font-serif text-xl sm:text-2xl md:text-[26px] lg:text-[30px] leading-[1.2] tracking-tight text-brand-deep">
               Driven by <span className="italic text-brand-accentDark">purpose</span> across a connected ecosystem of people and initiatives.
             </h2>
           </Reveal>
         </div>
 
-        {/* RAINBOW ARC + 4 COLOUR-CODED CIRCLE NODES */}
+        {/* RAINBOW U-ARC with logo in the middle + 5 COLOUR-CODED CIRCLE NODES */}
         <div className="relative max-w-5xl mx-auto">
 
           {/* SVG arc + drop connectors. Hidden on small screens where
            *  the geometry doesn't read; circles + descriptions still
            *  stack in a 2-col grid. */}
-          <svg
-            viewBox="0 0 1000 240"
-            preserveAspectRatio="xMidYMid meet"
-            aria-hidden="true"
-            className="hidden md:block w-full h-auto -mb-16 lg:-mb-20"
-          >
-            <defs>
-              <linearGradient id="comm-rainbow-home" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#059669" />
-                <stop offset="33%" stopColor="#06b6d4" />
-                <stop offset="66%" stopColor="#f59e0b" />
-                <stop offset="100%" stopColor="#f43f5e" />
-              </linearGradient>
-            </defs>
-            {/* Curved arc along the top */}
-            <path
-              d="M 125 220 C 280 -40, 720 -40, 875 220"
-              stroke="url(#comm-rainbow-home)"
-              strokeWidth="14"
-              strokeLinecap="round"
-              fill="none"
+          <div className="relative hidden md:block">
+            <svg
+              viewBox="0 0 1000 240"
+              preserveAspectRatio="xMidYMid meet"
+              aria-hidden="true"
+              className="w-full h-auto -mb-16 lg:-mb-20"
+            >
+              <defs>
+                <linearGradient id="comm-rainbow-home" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%"   stopColor="#059669" />
+                  <stop offset="25%"  stopColor="#06b6d4" />
+                  <stop offset="50%"  stopColor="#f59e0b" />
+                  <stop offset="75%"  stopColor="#f43f5e" />
+                  <stop offset="100%" stopColor="#0f766e" />
+                </linearGradient>
+              </defs>
+              {/* Curved arc along the top */}
+              <path
+                d="M 100 220 C 260 -40, 740 -40, 900 220"
+                stroke="url(#comm-rainbow-home)"
+                strokeWidth="14"
+                strokeLinecap="round"
+                fill="none"
+              />
+              {/* Drop connectors — same colour as the matching arc stop */}
+              <line x1="100" y1="220" x2="100" y2="240" stroke="#059669" strokeWidth="14" strokeLinecap="round" />
+              <line x1="300" y1="155" x2="300" y2="240" stroke="#06b6d4" strokeWidth="14" strokeLinecap="round" />
+              <line x1="500" y1="100" x2="500" y2="240" stroke="#f59e0b" strokeWidth="14" strokeLinecap="round" />
+              <line x1="700" y1="155" x2="700" y2="240" stroke="#f43f5e" strokeWidth="14" strokeLinecap="round" />
+              <line x1="900" y1="220" x2="900" y2="240" stroke="#0f766e" strokeWidth="14" strokeLinecap="round" />
+            </svg>
+
+            {/* Yanabiya logo nested inside the U-arc — sits in the empty
+             *  space between the two ends of the rainbow curve. */}
+            <div className="absolute inset-x-0 top-[18%] flex justify-center pointer-events-none">
+              <img
+                src={assets.logo}
+                alt="Yanabiya Group"
+                className="h-16 lg:h-20 w-auto object-contain drop-shadow-md"
+              />
+            </div>
+          </div>
+
+          {/* On mobile we don't render the arc, but still show the logo
+           *  at the top of the circle stack so the section keeps its
+           *  brand anchor. */}
+          <div className="md:hidden flex justify-center mb-6">
+            <img
+              src={assets.logo}
+              alt="Yanabiya Group"
+              className="h-14 w-auto object-contain drop-shadow-sm"
             />
-            {/* Drop connectors — same colour as the matching arc stop */}
-            <line x1="125" y1="220" x2="125" y2="240" stroke="#059669" strokeWidth="14" strokeLinecap="round" />
-            <line x1="375" y1="125" x2="375" y2="240" stroke="#06b6d4" strokeWidth="14" strokeLinecap="round" />
-            <line x1="625" y1="125" x2="625" y2="240" stroke="#f59e0b" strokeWidth="14" strokeLinecap="round" />
-            <line x1="875" y1="220" x2="875" y2="240" stroke="#f43f5e" strokeWidth="14" strokeLinecap="round" />
-          </svg>
+          </div>
 
           {/* Four hub circles with a description below each — mirrors the
            *  "Our Range of … Services" infographic style: alternating
            *  heights, coloured drop-line, body copy under the circle. */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6 justify-items-center">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-10 md:gap-x-4 lg:gap-x-6 justify-items-center">
             {HUBS.map((h, i) => (
               <Reveal key={h.to} delay={i * 90} className={`${h.offset} flex flex-col items-center text-center max-w-[15rem]`}>
                 <Link
@@ -194,36 +219,6 @@ export default function Community() {
                   </li>
                 ))}
               </ul>
-            </div>
-          </Reveal>
-
-          {/* TESTIMONIALS CTA */}
-          <Reveal delay={420}>
-            <div className="mt-10 md:mt-14 max-w-3xl mx-auto">
-              <Link
-                to="/community/testimonials"
-                className="group flex items-center gap-4 rounded-2xl bg-white/80 backdrop-blur
-                           border border-brand-accent/30 px-5 py-4 md:px-6 md:py-5
-                           shadow-[0_8px_24px_-12px_rgba(15,23,42,0.25)]
-                           hover:border-brand-accent hover:-translate-y-0.5 transition-all duration-300"
-              >
-                <span className="grid place-items-center w-11 h-11 md:w-12 md:h-12 rounded-full
-                                 bg-brand-accent/15 text-brand-accentDark shrink-0">
-                  <Quote size={20} />
-                </span>
-                <div className="flex-1 text-left">
-                  <div className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
-                    Voices from our community
-                  </div>
-                  <div className="font-serif text-base md:text-lg text-brand-deep leading-snug">
-                    Read testimonials from partners, employees, and beneficiaries
-                  </div>
-                </div>
-                <ArrowRight
-                  size={18}
-                  className="text-brand-deep shrink-0 transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </Link>
             </div>
           </Reveal>
 
