@@ -199,6 +199,11 @@ export default function CountryDetail() {
   const otherCountries = countries.filter((o) => o.code !== c.code)
   const mapUrl = `${MAP_BASE}${c.code.toLowerCase()}.svg`
   const flagUrl = `${MAP_BASE}flags/${c.code.toLowerCase()}.svg`
+  const parentCompany = (c as { parentCompany?: string }).parentCompany
+  const entitiesLabel = (c as { entitiesLabel?: string }).entitiesLabel ?? 'Operating Entities'
+  const activities = (c as {
+    activities?: { code: string; name: string; icon?: string; image?: string }[]
+  }).activities
 
   return (
     <main className="relative bg-slate-950 text-slate-100 overflow-hidden min-h-screen">
@@ -222,6 +227,20 @@ export default function CountryDetail() {
 
       {/* ───────── 4. LOCAL PRESENCE ───────── */}
       <LocalPresence presence={dash.presence} />
+
+      {/* ───────── 4b. CORPORATE HIERARCHY (parent + partner companies) ───────── */}
+      <CorporateHierarchy
+        countryName={c.name}
+        parentCompany={parentCompany ?? c.entities[0]}
+        entities={c.entities}
+        entitiesLabel={entitiesLabel}
+        hasParent={Boolean(parentCompany)}
+      />
+
+      {/* ───────── 4c. BUSINESS ACTIVITIES (only for entities with activities) ───────── */}
+      {activities && activities.length > 0 && (
+        <BusinessActivities activities={activities} />
+      )}
 
       {/* ───────── 5. 3D GLOBAL CONNECTION ───────── */}
       <GlobalConnection
@@ -471,6 +490,145 @@ function LocalPresence({ presence }: { presence: Presence[] }) {
                 <div className="mt-1.5 inline-flex items-center gap-1.5 text-xs text-slate-400">
                   <MapPin size={12} className="text-amber-300/80" />
                   {p.city}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function CorporateHierarchy({
+  countryName,
+  parentCompany,
+  entities,
+  entitiesLabel,
+  hasParent,
+}: {
+  countryName: string
+  parentCompany: string
+  entities: string[]
+  entitiesLabel: string
+  hasParent: boolean
+}) {
+  const partners = hasParent ? entities : []
+  const shortName = countryName.replace('Sultanate of ', '').replace('United States of America', 'USA')
+  return (
+    <section className="relative py-16 md:py-20">
+      <div className="container-x max-w-6xl mx-auto">
+        <Reveal>
+          <div className="text-center mb-10">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+              Corporate Hierarchy
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl text-white">
+              Group structure in {shortName}
+            </h2>
+          </div>
+        </Reveal>
+
+        {/* Parent / registered entity */}
+        <Reveal>
+          <div className="relative mx-auto max-w-2xl rounded-2xl
+                          bg-gradient-to-br from-amber-300/15 via-white/[0.05] to-transparent
+                          backdrop-blur-md border border-amber-300/40
+                          p-6 md:p-7 text-center
+                          shadow-[0_18px_42px_rgba(212,175,55,0.18)]">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full
+                            bg-amber-300 text-slate-900
+                            text-[9px] font-black tracking-[0.32em] uppercase">
+              {hasParent ? 'Parent Company' : 'Registered Entity'}
+            </div>
+            <div className="mt-4 font-serif text-xl md:text-2xl text-white leading-tight">
+              {parentCompany}
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Connecting tree lines + partner companies */}
+        {partners.length > 0 && (
+          <>
+            <div aria-hidden="true" className="mx-auto w-px h-10 bg-amber-300/40 mt-2" />
+            <Reveal delay={120}>
+              <div className="text-center mb-5">
+                <span className="text-[10px] font-bold tracking-[0.32em] uppercase text-amber-300/85">
+                  {entitiesLabel} · {partners.length}
+                </span>
+              </div>
+            </Reveal>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+              {partners.map((entity, i) => (
+                <Reveal key={entity} delay={i * 60}>
+                  <div className="relative rounded-xl
+                                  bg-white/[0.04] backdrop-blur-md border border-white/10
+                                  p-4 transition-all duration-500
+                                  hover:border-amber-300/40 hover:-translate-y-0.5
+                                  hover:bg-white/[0.07]">
+                    <div className="flex items-start gap-3">
+                      <span className="shrink-0 grid place-items-center w-7 h-7 rounded-md
+                                       bg-amber-300/15 text-amber-300 ring-1 ring-amber-300/30
+                                       font-mono text-[10px] font-bold">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className="text-sm font-semibold text-white leading-snug">
+                        {entity}
+                      </span>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </section>
+  )
+}
+
+function BusinessActivities({
+  activities,
+}: {
+  activities: { code: string; name: string; icon?: string; image?: string }[]
+}) {
+  return (
+    <section className="relative py-16 md:py-20">
+      <div className="container-x max-w-6xl mx-auto">
+        <Reveal>
+          <div className="text-center mb-10">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+              Licensed Activities
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl text-white">
+              {activities.length} business activities under our licence
+            </h2>
+            <p className="mt-3 text-sm text-slate-400 max-w-xl mx-auto">
+              The full set of trade-classification codes our entity is
+              authorised to operate under.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+          {activities.map((a, i) => (
+            <Reveal key={a.code} delay={i * 30}>
+              <div className="group relative rounded-xl overflow-hidden
+                              bg-white/[0.04] backdrop-blur-md border border-white/10
+                              transition-all duration-500
+                              hover:border-amber-300/40 hover:-translate-y-1
+                              hover:shadow-[0_14px_32px_rgba(212,175,55,0.18)]">
+                <div className="p-4 flex items-start gap-3">
+                  <span className="shrink-0 text-2xl leading-none">{a.icon ?? '•'}</span>
+                  <div className="min-w-0 flex-1">
+                    <div className="font-mono text-[9px] text-amber-300/80 mb-1">
+                      {a.code}
+                    </div>
+                    <div className="text-[12px] font-semibold text-white leading-snug">
+                      {a.name}
+                    </div>
+                  </div>
                 </div>
               </div>
             </Reveal>
