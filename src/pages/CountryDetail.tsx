@@ -92,6 +92,39 @@ interface CountryDashboard {
   achievements: Achievement[]
 }
 
+/** Flag-derived accent palette for the page background. Each country
+ *  gets its own ambient blob colours pulled from its national flag. */
+const COUNTRY_BG: Record<string, { blobs: { className: string }[] }> = {
+  OM: {
+    blobs: [
+      { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-red-700/15 blur-[160px]' },
+      { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-emerald-600/15 blur-[160px]' },
+      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-white/8 blur-[160px]' },
+    ],
+  },
+  GB: {
+    blobs: [
+      { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-blue-800/20 blur-[160px]' },
+      { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-red-700/15 blur-[160px]' },
+      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-slate-100/8 blur-[160px]' },
+    ],
+  },
+  BD: {
+    blobs: [
+      { className: 'absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full bg-emerald-600/20 blur-[160px]' },
+      { className: 'absolute top-1/4 -right-40 w-[520px] h-[520px] rounded-full bg-red-600/18 blur-[160px]' },
+      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-emerald-700/12 blur-[160px]' },
+    ],
+  },
+  US: {
+    blobs: [
+      { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-blue-800/20 blur-[160px]' },
+      { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-red-700/18 blur-[160px]' },
+      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-slate-100/8 blur-[160px]' },
+    ],
+  },
+}
+
 const COUNTRY_DASHBOARDS: Record<string, CountryDashboard> = {
   OM: {
     subtitle: 'Global business presence in Oman — group headquarters & multi-sector operations.',
@@ -220,13 +253,13 @@ export default function CountryDetail() {
     return (
       <main className="bg-slate-950 text-slate-100 min-h-screen grid place-items-center px-6">
         <div className="text-center">
-          <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-amber-300 mb-3">
+          <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accent mb-3">
             404
           </div>
           <h2 className="font-serif text-3xl text-white mb-3">Country not found.</h2>
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-amber-300 hover:text-amber-200"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accent hover:text-brand-accent"
           >
             Back to Home <ArrowRight size={14} />
           </Link>
@@ -249,18 +282,15 @@ export default function CountryDetail() {
     <main className="relative bg-slate-950 text-slate-100 overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
-      {/* Ambient glow blobs */}
+      {/* Ambient glow blobs — coloured from the country's flag palette */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-blue-500/10 blur-[160px]" />
-        <div className="absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-amber-500/10 blur-[160px]" />
-        <div className="absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-emerald-500/10 blur-[160px]" />
+        {(COUNTRY_BG[c.code]?.blobs ?? COUNTRY_BG.OM.blobs).map((b, i) => (
+          <div key={i} className={b.className} />
+        ))}
       </div>
 
       {/* ───────── 1. HERO ───────── */}
       <Hero country={c} dash={dash} mapUrl={mapUrl} flagUrl={flagUrl} />
-
-      {/* ───────── 2. LIVE ACTIVITY CARDS ───────── */}
-      <LiveActivityCards stats={dash.stats} />
 
       {/* ───────── 3. WHAT WE DO — 3D SERVICE BLOCKS ───────── */}
       <ServiceBlocks services={dash.services} countryName={c.name} />
@@ -301,8 +331,6 @@ export default function CountryDetail() {
 function Hero({
   country,
   dash,
-  mapUrl,
-  flagUrl,
 }: {
   country: typeof countries[number]
   dash: CountryDashboard
@@ -310,32 +338,12 @@ function Hero({
   flagUrl: string
 }) {
   return (
-    <section className="relative min-h-[80vh] flex items-center">
-      {/* Background — country silhouette filled with flag, blurred + low opacity */}
-      <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
-        <div
-          className="w-[80%] h-[80%] opacity-15 blur-sm"
-          style={{
-            WebkitMaskImage: `url(${mapUrl})`,
-            maskImage: `url(${mapUrl})`,
-            WebkitMaskSize: 'contain',
-            maskSize: 'contain',
-            WebkitMaskRepeat: 'no-repeat',
-            maskRepeat: 'no-repeat',
-            WebkitMaskPosition: 'center',
-            maskPosition: 'center',
-            backgroundImage: `url(${flagUrl})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            animation: 'spin-slow 60s linear infinite',
-          }}
-        />
-      </div>
-
-      {/* Floating orbit lines */}
+    <section className="relative min-h-[70vh] flex items-center">
+      {/* Floating orbit lines (decorative — flag silhouette removed per
+       *  user request) */}
       <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
         <div className="absolute w-[60%] aspect-square rounded-full border border-white/8 animate-spin-slow" />
-        <div className="absolute w-[80%] aspect-square rounded-full border border-amber-300/15"
+        <div className="absolute w-[80%] aspect-square rounded-full border border-brand-accent/20"
              style={{ animation: 'spin-slow 80s linear reverse infinite' }} />
       </div>
 
@@ -351,7 +359,7 @@ function Hero({
         ].map((p, i) => (
           <span
             key={i}
-            className={`absolute rounded-full bg-amber-300 shadow-[0_0_8px_rgba(252,211,77,0.9)] ${p.size}`}
+            className={`absolute rounded-full bg-brand-accent shadow-[0_0_8px_rgba(158,199,58,0.9)] ${p.size}`}
             style={{ top: p.top, left: p.left, animation: `haloPulse 4s ease-in-out ${p.delay} infinite` }}
           />
         ))}
@@ -361,13 +369,13 @@ function Hero({
         <Reveal>
           <div className="inline-flex items-center gap-2 mb-6">
             <span className="px-2.5 py-1 rounded-full
-                             bg-amber-300 text-slate-900
+                             bg-brand-accent text-brand-deep
                              text-[10px] font-black tracking-[0.28em] uppercase">
               {dash.tier.rank}
             </span>
             <span className="px-3 py-1 rounded-full
-                             bg-white/[0.06] backdrop-blur-md ring-1 ring-white/15
-                             text-[11px] font-bold tracking-[0.32em] uppercase text-amber-200 inline-flex items-center gap-2">
+                             bg-white/[0.06] backdrop-blur-md ring-1 ring-brand-accent/25
+                             text-[11px] font-bold tracking-[0.32em] uppercase text-brand-accent inline-flex items-center gap-2">
               <span className="text-base leading-none">{country.flag}</span>
               {dash.tier.label}
             </span>
@@ -376,6 +384,9 @@ function Hero({
         <Reveal delay={120}>
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.0] tracking-tight text-white">
             {country.name.replace('Sultanate of ', '').replace('United States of America', 'USA')}
+            <span className="block text-2xl md:text-3xl mt-3 font-sans font-light text-brand-accent/85 tracking-wider">
+              Operations
+            </span>
           </h1>
         </Reveal>
         <Reveal delay={260}>
@@ -388,51 +399,6 @@ function Hero({
   )
 }
 
-function LiveActivityCards({ stats }: { stats: Stat[] }) {
-  return (
-    <section className="relative py-16 md:py-20">
-      <div className="container-x max-w-6xl mx-auto">
-        <Reveal>
-          <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
-              Live Activity
-            </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-white">By the numbers</h2>
-          </div>
-        </Reveal>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 80}>
-              <div className="group relative rounded-2xl
-                              bg-white/[0.04] backdrop-blur-md border border-white/10
-                              shadow-[0_8px_32px_rgba(0,0,0,0.35)]
-                              p-5 md:p-6
-                              transition-all duration-500
-                              hover:bg-white/[0.07] hover:border-amber-300/40
-                              hover:-translate-y-1
-                              hover:shadow-[0_16px_48px_rgba(212,175,55,0.18)]"
-                   style={{ animation: `floatY 6s ease-in-out ${i * 0.5}s infinite` }}>
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-lg bg-amber-300/15 grid place-items-center text-amber-300
-                                  ring-1 ring-amber-300/30 transition-colors duration-300
-                                  group-hover:bg-amber-300/25">
-                    <s.icon size={16} />
-                  </div>
-                  <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">
-                    {s.label}
-                  </div>
-                </div>
-                <div className="font-serif text-3xl md:text-4xl text-white leading-none">
-                  {s.value}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
 
 function ServiceBlocks({ services, countryName }: { services: Service[]; countryName: string }) {
   return (
@@ -440,7 +406,7 @@ function ServiceBlocks({ services, countryName }: { services: Service[]; country
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               What we do
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-white">
@@ -456,19 +422,19 @@ function ServiceBlocks({ services, countryName }: { services: Service[]; country
                               backdrop-blur-md border border-white/10
                               shadow-[0_8px_24px_rgba(0,0,0,0.35)]
                               p-6 transition-all duration-500
-                              hover:border-amber-300/50 hover:-translate-y-1
-                              hover:shadow-[0_18px_42px_rgba(212,175,55,0.2)]">
+                              hover:border-brand-accent/55 hover:-translate-y-1
+                              hover:shadow-[0_18px_42px_rgba(158,199,58,0.2)]">
                 {/* Decorative gradient sheen */}
                 <div aria-hidden="true"
-                     className="absolute inset-0 rounded-2xl bg-gradient-to-br from-amber-500/0 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                     className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-accent/0 via-transparent to-brand-deep/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 <div className="relative">
-                  <div className="w-12 h-12 rounded-xl bg-amber-300/15 grid place-items-center text-amber-300
-                                  ring-1 ring-amber-300/30 mb-4
+                  <div className="w-12 h-12 rounded-xl bg-brand-accent/15 grid place-items-center text-brand-accent
+                                  ring-1 ring-brand-accent/30 mb-4
                                   transition-all duration-300
-                                  group-hover:scale-110 group-hover:bg-amber-300 group-hover:text-slate-900">
+                                  group-hover:scale-110 group-hover:bg-brand-accent group-hover:text-slate-900">
                     <s.icon size={20} />
                   </div>
-                  <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-300 mb-1.5">
+                  <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accent mb-1.5">
                     {s.label}
                   </div>
                   <div className="text-base font-semibold text-white">
@@ -504,7 +470,7 @@ function CorporateHierarchy({
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               Corporate Hierarchy
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-white">
@@ -516,12 +482,12 @@ function CorporateHierarchy({
         {/* Parent / registered entity */}
         <Reveal>
           <div className="relative mx-auto max-w-2xl rounded-2xl
-                          bg-gradient-to-br from-amber-300/15 via-white/[0.05] to-transparent
-                          backdrop-blur-md border border-amber-300/40
+                          bg-gradient-to-br from-brand-accent/15 via-white/[0.05] to-transparent
+                          backdrop-blur-md border border-brand-accent/45
                           p-6 md:p-7 text-center
-                          shadow-[0_18px_42px_rgba(212,175,55,0.18)]">
+                          shadow-[0_18px_42px_rgba(158,199,58,0.18)]">
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full
-                            bg-amber-300 text-slate-900
+                            bg-brand-accent text-slate-900
                             text-[9px] font-black tracking-[0.32em] uppercase">
               {hasParent ? 'Parent Company' : 'Registered Entity'}
             </div>
@@ -534,11 +500,23 @@ function CorporateHierarchy({
         {/* Connecting tree lines + partner companies */}
         {partners.length > 0 && (
           <>
-            <div aria-hidden="true" className="mx-auto w-px h-10 bg-amber-300/40 mt-2" />
+            {/* Trunk + horizontal branch — visual tree connector from
+             *  parent card down to the top row of partner cards. */}
+            <div aria-hidden="true" className="relative mx-auto max-w-2xl mt-2 mb-3">
+              <div className="mx-auto w-px h-8 bg-brand-accent/50" />
+              <div className="mx-auto w-[60%] h-px bg-brand-accent/40" />
+              <div className="absolute left-[20%] top-8 w-px h-4 bg-brand-accent/40" />
+              <div className="absolute left-[50%] top-8 w-px h-4 bg-brand-accent/40" />
+              <div className="absolute left-[80%] top-8 w-px h-4 bg-brand-accent/40" />
+            </div>
             <Reveal delay={120}>
-              <div className="text-center mb-5">
-                <span className="text-[10px] font-bold tracking-[0.32em] uppercase text-amber-300/85">
-                  {entitiesLabel} · {partners.length}
+              <div className="text-center mb-5 inline-flex items-center justify-center gap-2 w-full">
+                <span className="px-2 py-0.5 rounded-full bg-brand-accent text-brand-deep
+                                 text-[11px] font-black tracking-wider">
+                  {String(partners.length).padStart(2, '0')}
+                </span>
+                <span className="text-[10px] font-bold tracking-[0.32em] uppercase text-brand-accent/90">
+                  {entitiesLabel}
                 </span>
               </div>
             </Reveal>
@@ -547,13 +525,15 @@ function CorporateHierarchy({
               {partners.map((entity, i) => (
                 <Reveal key={entity} delay={i * 60}>
                   <div className="relative rounded-xl
-                                  bg-white/[0.04] backdrop-blur-md border border-white/10
+                                  bg-gradient-to-br from-brand-accent/10 via-white/[0.03] to-transparent
+                                  backdrop-blur-md border border-brand-accent/25
                                   p-4 transition-all duration-500
-                                  hover:border-amber-300/40 hover:-translate-y-0.5
-                                  hover:bg-white/[0.07]">
+                                  hover:border-brand-accent/55 hover:-translate-y-0.5
+                                  hover:bg-white/[0.07]
+                                  hover:shadow-[0_12px_28px_rgba(158,199,58,0.18)]">
                     <div className="flex items-start gap-3">
                       <span className="shrink-0 grid place-items-center w-7 h-7 rounded-md
-                                       bg-amber-300/15 text-amber-300 ring-1 ring-amber-300/30
+                                       bg-brand-accent text-brand-deep
                                        font-mono text-[10px] font-bold">
                         {String(i + 1).padStart(2, '0')}
                       </span>
@@ -582,7 +562,7 @@ function BusinessActivities({
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               Licensed Activities
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-white">
@@ -613,8 +593,8 @@ function BusinessActivities({
                   <div className="absolute top-2 right-2 inline-flex items-center gap-1
                                   px-1.5 py-0.5 rounded-full
                                   bg-slate-950/70 backdrop-blur-sm
-                                  ring-1 ring-amber-300/30
-                                  font-mono text-[9px] text-amber-300/95">
+                                  ring-1 ring-brand-accent/30
+                                  font-mono text-[9px] text-brand-accent/95">
                     {a.code}
                   </div>
                   <span className="absolute bottom-2 left-2 text-2xl leading-none drop-shadow-md">
@@ -629,9 +609,9 @@ function BusinessActivities({
                   {linkTo && (
                     <ArrowRight
                       size={12}
-                      className="shrink-0 mt-1 text-amber-300/80
+                      className="shrink-0 mt-1 text-brand-accent/80
                                  transition-all duration-300
-                                 group-hover:translate-x-1 group-hover:text-amber-200"
+                                 group-hover:translate-x-1 group-hover:text-brand-accent"
                     />
                   )}
                 </div>
@@ -640,8 +620,8 @@ function BusinessActivities({
             const cardClass = `group relative rounded-xl overflow-hidden
                               bg-white/[0.04] backdrop-blur-md border border-white/10
                               transition-all duration-500
-                              hover:border-amber-300/50 hover:-translate-y-1
-                              hover:shadow-[0_18px_42px_rgba(212,175,55,0.25)]
+                              hover:border-brand-accent/55 hover:-translate-y-1
+                              hover:shadow-[0_18px_42px_rgba(158,199,58,0.25)]
                               ${linkTo ? 'cursor-pointer' : ''}`
             return (
               <Reveal key={a.code} delay={i * 30}>
@@ -678,7 +658,7 @@ function GlobalConnection({
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               Global Connection
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-white">One unified network</h2>
@@ -723,7 +703,7 @@ function GlobalConnection({
                 <line
                   key={i}
                   x1="50" y1="50" x2={pos.x} y2={pos.y}
-                  stroke="rgba(252,211,77,0.55)"
+                  stroke="rgba(158,199,58,0.55)"
                   strokeWidth="0.4"
                   strokeDasharray="0.8 1.2"
                   style={{ animation: `dividerGrow 5s ease-in-out ${i * 0.4}s infinite` }}
@@ -747,13 +727,13 @@ function GlobalConnection({
                   backgroundImage: `url(${currentFlagUrl})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  filter: 'drop-shadow(0 0 16px rgba(252,211,77,0.5))',
+                  filter: 'drop-shadow(0 0 16px rgba(158,199,58,0.5))',
                 }}
               />
             </div>
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-[3.5rem] md:translate-y-[4rem] pointer-events-none">
-              <span className="px-2.5 py-1 rounded-full bg-amber-300/15 ring-1 ring-amber-300/40
-                               text-[9px] font-bold uppercase tracking-[0.3em] text-amber-200">
+              <span className="px-2.5 py-1 rounded-full bg-brand-accent/15 ring-1 ring-brand-accent/40
+                               text-[9px] font-bold uppercase tracking-[0.3em] text-brand-accent">
                 You are here
               </span>
             </div>
@@ -792,7 +772,7 @@ function GlobalConnection({
                       }}
                     />
                     <span className="text-[10px] font-semibold text-slate-300
-                                     group-hover:text-amber-200 transition-colors">
+                                     group-hover:text-brand-accent transition-colors">
                       {shortName}
                     </span>
                   </div>
@@ -812,7 +792,7 @@ function Achievements({ achievements }: { achievements: Achievement[] }) {
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               Achievements
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-white">Highlights &amp; milestones</h2>
@@ -822,13 +802,13 @@ function Achievements({ achievements }: { achievements: Achievement[] }) {
           {achievements.map((a, i) => (
             <Reveal key={a.title} delay={i * 80}>
               <div className="group relative rounded-2xl
-                              bg-gradient-to-br from-amber-500/8 via-white/[0.03] to-transparent
-                              backdrop-blur-md border border-amber-300/20
+                              bg-gradient-to-br from-brand-accent/12 via-white/[0.03] to-transparent
+                              backdrop-blur-md border border-brand-accent/30
                               p-6 transition-all duration-500
-                              hover:border-amber-300/60 hover:-translate-y-1
-                              hover:shadow-[0_18px_42px_rgba(212,175,55,0.25)]">
-                <div className="w-12 h-12 rounded-xl bg-amber-300 text-slate-900 grid place-items-center
-                                shadow-[0_8px_24px_rgba(212,175,55,0.4)] mb-4
+                              hover:border-brand-accent/65 hover:-translate-y-1
+                              hover:shadow-[0_18px_42px_rgba(158,199,58,0.25)]">
+                <div className="w-12 h-12 rounded-xl bg-brand-accent text-slate-900 grid place-items-center
+                                shadow-[0_8px_24px_rgba(158,199,58,0.4)] mb-4
                                 transition-transform duration-300 group-hover:scale-110">
                   <a.icon size={20} />
                 </div>
@@ -862,7 +842,7 @@ function ContactSection({
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
               Contact
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-white">
@@ -878,21 +858,21 @@ function ContactSection({
                             bg-white/[0.04] backdrop-blur-md border border-white/10
                             shadow-[0_12px_32px_rgba(0,0,0,0.4)]
                             p-6 overflow-hidden h-full">
-              <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-300 mb-3">
+              <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accent mb-3">
                 Office
               </div>
               <div className="space-y-3 text-sm">
                 <div className="flex items-start gap-2.5 text-slate-200">
-                  <MapPin size={14} className="mt-0.5 shrink-0 text-amber-300" />
+                  <MapPin size={14} className="mt-0.5 shrink-0 text-brand-accent" />
                   <span className="leading-snug whitespace-pre-line">{country.address}</span>
                 </div>
                 {contact?.phones.map((p) => (
                   <a
                     key={p}
                     href={`tel:${p.replace(/\s+/g, '')}`}
-                    className="flex items-center gap-2.5 text-slate-200 hover:text-amber-200 transition-colors"
+                    className="flex items-center gap-2.5 text-slate-200 hover:text-brand-accent transition-colors"
                   >
-                    <Phone size={14} className="text-amber-300" />
+                    <Phone size={14} className="text-brand-accent" />
                     {p}
                   </a>
                 ))}
@@ -900,15 +880,15 @@ function ContactSection({
                   <a
                     key={e}
                     href={`mailto:${e}`}
-                    className="flex items-center gap-2.5 text-slate-200 hover:text-amber-200 transition-colors break-all"
+                    className="flex items-center gap-2.5 text-slate-200 hover:text-brand-accent transition-colors break-all"
                   >
-                    <Mail size={14} className="text-amber-300 shrink-0" />
+                    <Mail size={14} className="text-brand-accent shrink-0" />
                     {e}
                   </a>
                 ))}
                 {contact?.hours && (
                   <div className="flex items-center gap-2.5 text-slate-300">
-                    <Clock size={14} className="text-amber-300" />
+                    <Clock size={14} className="text-brand-accent" />
                     {contact.hours}
                   </div>
                 )}
@@ -939,40 +919,40 @@ function ContactSection({
                          shadow-[0_12px_32px_rgba(0,0,0,0.4)]
                          p-6 grid gap-4 h-full"
             >
-              <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-300">
+              <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accent">
                 Send a message
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-amber-200/80 mb-1.5">Name</label>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accent/85 mb-1.5">Name</label>
                 <input
                   required type="text" placeholder="Full name"
-                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-300/60"
+                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65"
                 />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-amber-200/80 mb-1.5">Email</label>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accent/85 mb-1.5">Email</label>
                 <input
                   required type="email" placeholder="you@company.com"
-                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-300/60"
+                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65"
                 />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-amber-200/80 mb-1.5">Message</label>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accent/85 mb-1.5">Message</label>
                 <textarea
                   required rows={5} placeholder="How can we help?"
-                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-300/60 resize-none"
+                  className="w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65 resize-none"
                 />
               </div>
               <button
                 type="submit"
                 className="inline-flex items-center justify-center gap-2 mt-2 px-6 py-3 rounded-md
-                           bg-amber-300 text-slate-900 uppercase tracking-[0.2em] text-[11px] font-bold
-                           hover:bg-amber-200 transition-colors"
+                           bg-brand-accent text-slate-900 uppercase tracking-[0.2em] text-[11px] font-bold
+                           hover:bg-brand-accent/85 transition-colors"
               >
                 Send <Send size={14} />
               </button>
               {submitted && (
-                <div className="text-xs text-amber-200 text-center">
+                <div className="text-xs text-brand-accent text-center">
                   Thanks — your message is on its way to the {country.name.replace('Sultanate of ', '').replace('United States of America', 'US')} team.
                 </div>
               )}
@@ -984,7 +964,7 @@ function ContactSection({
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.32em]
-                       text-amber-200 hover:text-white transition-colors"
+                       text-brand-accent hover:text-white transition-colors"
           >
             <Globe2 size={14} /> Back to global view
           </Link>
