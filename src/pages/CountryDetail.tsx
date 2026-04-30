@@ -13,6 +13,46 @@ import { useReveal } from '../hooks/useReveal'
 
 const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
 
+/* Maps each licensed activity (by trade-classification code) to the
+ * matching division / sub-service page under /business/. Lets a
+ * visitor jump from "Cyber Security Consulting" on the country page
+ * straight to the IT Software → Cyber Security sub-page. */
+const ACTIVITY_TO_BUSINESS: Record<string, string> = {
+  // Office Management & facilities
+  '701001': '/business/office-management',
+  '812901': '/business/office-management',
+  '410001': '/business/office-management',
+  '422002': '/business/office-management',
+  '433003': '/business/office-management',
+  '439008': '/business/office-management',
+  '475207': '/business/office-management',
+  '561007': '/business/office-management',
+  '563001': '/business/office-management',
+  '562901': '/business/office-management',
+  // Export-Import & logistics
+  '522401': '/business/export-import',
+  '829201': '/business/export-import',
+  '461003': '/business/export-import',
+  '501201': '/business/export-import/freight-forwarding',
+  '521001': '/business/export-import/cold-chain-cargo',
+  // Clothing
+  '464102': '/business/clothing',
+  '475101': '/business/clothing',
+  // Agents & Brokerage
+  '461001': '/business/agents-brokerage',
+  // IT Software
+  '474105': '/business/it-software',
+  '951100': '/business/it-software',
+  '620902': '/business/it-software/custom-software-development',
+  '620903': '/business/it-software',
+  '631103': '/business/it-software/aws-services',
+  '620101': '/business/it-software/data-analytics',
+  '620103': '/business/it-software/web-design-development',
+  '620204': '/business/it-software/cyber-security',
+  '631101': '/business/it-software',
+  '951201': '/business/it-software',
+}
+
 function Reveal({
   children,
   delay = 0,
@@ -552,13 +592,10 @@ function BusinessActivities({
         </Reveal>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-          {activities.map((a, i) => (
-            <Reveal key={a.code} delay={i * 30}>
-              <div className="group relative rounded-xl overflow-hidden
-                              bg-white/[0.04] backdrop-blur-md border border-white/10
-                              transition-all duration-500
-                              hover:border-amber-300/50 hover:-translate-y-1
-                              hover:shadow-[0_18px_42px_rgba(212,175,55,0.25)]">
+          {activities.map((a, i) => {
+            const linkTo = ACTIVITY_TO_BUSINESS[a.code]
+            const cardInner = (
+              <>
                 {/* Real-life photo banner */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-slate-900">
                   {a.image && (
@@ -585,14 +622,39 @@ function BusinessActivities({
                   </span>
                 </div>
                 {/* Activity name */}
-                <div className="p-3.5">
-                  <div className="text-[12px] font-semibold text-white leading-snug">
+                <div className="p-3.5 flex items-start justify-between gap-2">
+                  <div className="text-[12px] font-semibold text-white leading-snug min-w-0 flex-1">
                     {a.name}
                   </div>
+                  {linkTo && (
+                    <ArrowRight
+                      size={12}
+                      className="shrink-0 mt-1 text-amber-300/80
+                                 transition-all duration-300
+                                 group-hover:translate-x-1 group-hover:text-amber-200"
+                    />
+                  )}
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </>
+            )
+            const cardClass = `group relative rounded-xl overflow-hidden
+                              bg-white/[0.04] backdrop-blur-md border border-white/10
+                              transition-all duration-500
+                              hover:border-amber-300/50 hover:-translate-y-1
+                              hover:shadow-[0_18px_42px_rgba(212,175,55,0.25)]
+                              ${linkTo ? 'cursor-pointer' : ''}`
+            return (
+              <Reveal key={a.code} delay={i * 30}>
+                {linkTo ? (
+                  <Link to={linkTo} aria-label={`Open ${a.name}`} className={`${cardClass} block`}>
+                    {cardInner}
+                  </Link>
+                ) : (
+                  <div className={cardClass}>{cardInner}</div>
+                )}
+              </Reveal>
+            )
+          })}
         </div>
       </div>
     </section>
