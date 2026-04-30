@@ -62,11 +62,13 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-brand-deep text-white mt-24 pt-2">
-      {/* Footer pattern:
-       *    pt-2     → top green strip   (footer bg shows through)
+    <footer className="bg-brand-deep text-white mt-24 pt-3">
+      {/* Footer pattern (top + bottom green strips equal in thickness):
+       *    pt-3     → top green strip
        *    bg-black → main body (links, contact, newsletter, watermark)
-       *    bottom   → green strip carrying the copyright row
+       *               — internal padding reduced so the black band is
+       *               visually compact rather than a tall slab.
+       *    bottom   → green strip carrying the copyright row (py-3)
        */}
       <div className="relative bg-black overflow-hidden">
 
@@ -80,7 +82,7 @@ export default function Footer() {
       </div>
 
       {/* MAIN GRID — Brand + Group + Corporate + Contact */}
-      <div className="container-x py-14 relative grid gap-12 md:grid-cols-12">
+      <div className="container-x py-9 md:py-10 relative grid gap-8 md:gap-10 md:grid-cols-12">
 
         {/* Brand + about + newsletter */}
         <div className="md:col-span-12 lg:col-span-4">
