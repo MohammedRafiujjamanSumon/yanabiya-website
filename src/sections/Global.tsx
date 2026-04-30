@@ -165,20 +165,26 @@ export default function Global() {
                     }
                   }}
                   className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20
-                             [perspective:1200px] cursor-pointer
+                             cursor-pointer
                              focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded-full"
-                  style={{ top: d.top, left: d.left }}
+                  style={{ top: d.top, left: d.left, perspective: '1200px' }}
                 >
                   <div
                     className="relative w-40 h-40 md:w-44 md:h-44
-                               transition-transform duration-700 ease-out
-                               [transform-style:preserve-3d]"
-                    style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+                               transition-transform duration-700 ease-out"
+                    style={{
+                      transformStyle: 'preserve-3d',
+                      WebkitTransformStyle: 'preserve-3d',
+                      transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                    }}
                   >
                     {/* Front — flag-filled country silhouette */}
                     <div
-                      className="absolute inset-0 [backface-visibility:hidden]
-                                 [-webkit-backface-visibility:hidden]"
+                      className="absolute inset-0"
+                      style={{
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                      }}
                     >
                       <div
                         className="w-full h-full transition-transform duration-300
@@ -204,10 +210,12 @@ export default function Global() {
                       className="absolute inset-0 rounded-3xl
                                  bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800
                                  ring-2 ring-emerald-300/50 shadow-[0_8px_24px_rgba(15,58,35,0.4)]
-                                 grid place-items-center text-center text-white
-                                 [backface-visibility:hidden]
-                                 [-webkit-backface-visibility:hidden]"
-                      style={{ transform: 'rotateY(180deg)' }}
+                                 grid place-items-center text-center text-white"
+                      style={{
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)',
+                      }}
                     >
                       <div className="px-3 py-3 flex flex-col items-center gap-1">
                         <span className="text-3xl leading-none drop-shadow-md">
