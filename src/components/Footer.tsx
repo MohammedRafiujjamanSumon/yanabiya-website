@@ -239,8 +239,11 @@ export default function Footer() {
       {/* BOTTOM BAR — copyright + legal */}
       <div className="relative border-t border-white/10 bg-black/15">
         <div className="container-x py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/60">
-          <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start">
-            <span>© {year} Yanabiya Group. All Rights Reserved.</span>
+          <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
+            <span>
+              © {year} Yanabiya Gulf International Business &amp; Trade SPC,
+              Sultanate of Oman · CR No. 1395664 · All rights reserved.
+            </span>
           </div>
           <div className="flex items-center gap-5">
             <Link to="/about-us" className={linkClass}>Group Profile</Link>
