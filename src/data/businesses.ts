@@ -306,7 +306,7 @@ export const businesses: Business[] = [
   {
     slug: 'export-import',
     icon: Ship,
-    title: 'Global Trade & Supply Chain Solutions',
+    title: 'Export & Import Business',
     body: 'International trade across multiple regions — sourcing, logistics, and end-to-end fulfilment.',
     details:
       'Yanabiya Gulf facilitates seamless international trade across multiple regions through a trusted network of logistics partners and deep expertise in local compliance. We manage the entire end-to-end value chain — from sourcing and consolidation to shipping, customs clearance, and final delivery — enabling our clients to focus on expanding their markets while we handle operational complexity.',
@@ -803,7 +803,7 @@ export const businesses: Business[] = [
   {
     slug: 'agents-brokerage',
     icon: Handshake,
-    title: '🤝 Agents & Brokerage',
+    title: 'Agents & Brokerage Business',
     body: 'Commercial agency, representation, and brokerage services connecting global suppliers and buyers.',
     details:
       'Through our professional brokerage network, we represent suppliers, manufacturers, and institutions across key markets — connecting buyers with the right partners, structuring deals, and supporting transactions from initial engagement to successful closure.',
@@ -1177,7 +1177,7 @@ export const businesses: Business[] = [
   {
     slug: 'manpower',
     icon: Users,
-    title: 'Global Mobility & Workforce Services',
+    title: 'Manpower Supply Services',
     body: 'Overseas employment, recruitment, student placements, aviation, and end-to-end mobility solutions.',
     details:
       'We provide comprehensive overseas employment, recruitment, and mobility solutions for individuals and organizations. From workforce sourcing and employer hiring to immigration guidance, student placements, and travel coordination, we manage the entire journey for working, studying, and relocating abroad. Our services cover compliance, mobilisation, settlement support, and aviation coordination aligned with destination-country regulations.',

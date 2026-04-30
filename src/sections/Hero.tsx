@@ -199,7 +199,7 @@ function SceneAbout() {
 function SceneServices() {
   const SERVICE_ICONS = [
     { Icon: Cpu,       label: 'Tech & Software', angle: -90 },
-    { Icon: Globe2,    label: 'Global Trade',     angle: -30 },
+    { Icon: Globe2,    label: 'Export & Import Business',     angle: -30 },
     { Icon: Truck,     label: 'Logistics',        angle: 30  },
     { Icon: Briefcase, label: 'Consulting',       angle: 90  },
     { Icon: Building2, label: 'Office Services',  angle: 150 },

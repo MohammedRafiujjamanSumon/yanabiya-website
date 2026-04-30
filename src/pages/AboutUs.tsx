@@ -54,11 +54,11 @@ const triptych = [
 
 const capabilities = [
   { slug: 'it-software',       icon: Cpu,        label: 'IT & Software',          desc: 'Custom software, ERP, cloud, and AI engineering.' },
-  { slug: 'export-import',     icon: Globe2,     label: 'Global Trade',           desc: 'Sourcing, freight, customs, and end-to-end fulfilment.' },
+  { slug: 'export-import',     icon: Globe2,     label: 'Export & Import Business',           desc: 'Sourcing, freight, customs, and end-to-end fulfilment.' },
   { slug: 'clothing',          icon: Shirt,      label: 'Clothing & Accessories', desc: 'Private-label, bulk garment sourcing, and brand support.' },
   { slug: 'agents-brokerage',  icon: Handshake,  label: 'Agents & Brokerage',     desc: 'Cross-border deals, market entry, and partnerships.' },
   { slug: 'office-management', icon: Building2,  label: 'Office Management',      desc: 'Serviced offices, PRO, accounting, and admin.' },
-  { slug: 'manpower',          icon: Users,      label: 'Global Mobility',        desc: 'Workforce, student, and aviation services.' },
+  { slug: 'manpower',          icon: Users,      label: 'Manpower Supply Services',        desc: 'Workforce, student, and aviation services.' },
 ]
 
 const presence = [

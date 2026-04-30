@@ -39,12 +39,12 @@ const BUSINESS_DISPLAY: Record<
   string,
   { title: string; tag: string; sample: string[] }
 > = {
-  'it-software':       { title: 'Tech & Software',  tag: 'Custom software, cloud, AI.',         sample: ['Software', 'Cloud', 'Cyber Security'] },
-  'export-import':     { title: 'Global Trade',     tag: 'Sourcing, freight, fulfilment.',      sample: ['Freight', 'Customs', 'Warehousing'] },
-  'clothing':          { title: 'Apparel',          tag: 'Private label, sourcing, retail.',    sample: ['Private Label', 'Sourcing', 'QA'] },
-  'agents-brokerage':  { title: 'Brokerage',        tag: 'Cross-border deals & partnerships.',  sample: ['Deals', 'Market Entry', 'Tenders'] },
-  'office-management': { title: 'Office Services',  tag: 'Serviced offices, PRO, admin.',       sample: ['Workspace', 'Accounting', 'PRO'] },
-  'manpower':          { title: 'Global Mobility',  tag: 'Workforce, students, aviation.',      sample: ['Recruitment', 'Student Visa', 'Aviation'] },
+  'it-software':       { title: 'IT Software & Web Development',  tag: 'Custom software, cloud, AI.',         sample: ['Software', 'Cloud', 'Cyber Security'] },
+  'export-import':     { title: 'Export & Import Business',       tag: 'Sourcing, freight, fulfilment.',      sample: ['Freight', 'Customs', 'Warehousing'] },
+  'clothing':          { title: 'Clothing & Accessories',         tag: 'Private label, sourcing, retail.',    sample: ['Private Label', 'Sourcing', 'QA'] },
+  'agents-brokerage':  { title: 'Agents & Brokerage Business',    tag: 'Cross-border deals & partnerships.',  sample: ['Deals', 'Market Entry', 'Tenders'] },
+  'office-management': { title: 'Office Management Services',     tag: 'Serviced offices, PRO, admin.',       sample: ['Workspace', 'Accounting', 'PRO'] },
+  'manpower':          { title: 'Manpower Supply Services',       tag: 'Workforce, students, aviation.',      sample: ['Recruitment', 'Student Visa', 'Aviation'] },
 }
 
 /* Bottom-up gradient palette per pyramid layer. Bottom is the broad
@@ -61,12 +61,12 @@ type PyramidLayer = {
 }
 
 const PYRAMID_LAYERS: PyramidLayer[] = [
-  { slug: 'it-software',       label: 'Tech & Software', icon: Cpu,       from: '#7dd3fc', to: '#0369a1', glow: 'rgba(56,189,248,0.55)' },
-  { slug: 'export-import',     label: 'Global Trade',    icon: Globe2,    from: '#6ee7b7', to: '#047857', glow: 'rgba(52,211,153,0.55)' },
-  { slug: 'clothing',          label: 'Apparel',         icon: Shirt,     from: '#fcd34d', to: '#b45309', glow: 'rgba(251,191,36,0.55)' },
-  { slug: 'agents-brokerage',  label: 'Brokerage',       icon: Handshake, from: '#d8b4fe', to: '#7e22ce', glow: 'rgba(192,132,252,0.55)' },
-  { slug: 'office-management', label: 'Office Services', icon: Building2, from: '#fda4af', to: '#be123c', glow: 'rgba(251,113,133,0.55)' },
-  { slug: 'manpower',          label: 'Global Mobility', icon: Users,     from: '#67e8f9', to: '#0e7490', glow: 'rgba(34,211,238,0.55)' },
+  { slug: 'it-software',       label: 'IT Software & Web Development', icon: Cpu,       from: '#7dd3fc', to: '#0369a1', glow: 'rgba(56,189,248,0.55)' },
+  { slug: 'export-import',     label: 'Export & Import Business',      icon: Globe2,    from: '#6ee7b7', to: '#047857', glow: 'rgba(52,211,153,0.55)' },
+  { slug: 'clothing',          label: 'Clothing & Accessories',        icon: Shirt,     from: '#fcd34d', to: '#b45309', glow: 'rgba(251,191,36,0.55)' },
+  { slug: 'agents-brokerage',  label: 'Agents & Brokerage Business',   icon: Handshake, from: '#d8b4fe', to: '#7e22ce', glow: 'rgba(192,132,252,0.55)' },
+  { slug: 'office-management', label: 'Office Management Services',    icon: Building2, from: '#fda4af', to: '#be123c', glow: 'rgba(251,113,133,0.55)' },
+  { slug: 'manpower',          label: 'Manpower Supply Services',      icon: Users,     from: '#67e8f9', to: '#0e7490', glow: 'rgba(34,211,238,0.55)' },
 ]
 
 /* ServicesPyramid — six-layer 3D rotating "turntable" pyramid.
