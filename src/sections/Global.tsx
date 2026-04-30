@@ -113,17 +113,18 @@ export default function Global() {
               })}
             </svg>
 
-            {/* CENTRE — Yanabiya spinning logo medallion (restored). */}
+            {/* CENTRE — Yanabiya logo medallion, fixed (no spin). */}
             <div className="absolute inset-0 grid place-items-center">
               <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white shadow-xl
                               ring-2 ring-brand-accentDark/60 overflow-hidden
-                              grid place-items-center animate-spin-slow">
+                              grid place-items-center">
                 <img
                   src={assets.logo}
                   alt="Yanabiya Group"
                   className="w-full h-full object-contain scale-[1.35]"
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                 />
+                {/* No spin — logo sits still in the centre. */}
               </div>
             </div>
 
@@ -170,8 +171,6 @@ export default function Global() {
                         backgroundImage: `url(${flagUrl})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
-                        filter:
-                          'drop-shadow(0 4px 12px rgba(15,58,35,0.35)) drop-shadow(0 0 8px rgba(158,199,58,0.5))',
                       }}
                     />
                   </div>
