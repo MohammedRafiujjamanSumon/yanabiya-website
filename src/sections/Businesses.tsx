@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   Sparkles, X as CloseIcon, ExternalLink, ArrowRight,
   Cpu, Globe2, Shirt, Handshake, Building2, Users,
@@ -535,6 +535,7 @@ function NodeDetailPanel({
 }
 
 export default function Businesses() {
+  const navigate = useNavigate()
   const [selected, setSelected] = useState<string | 'overview' | null>(null)
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -593,7 +594,7 @@ export default function Businesses() {
               setActive={setActive}
               paused={paused}
               setPaused={setPaused}
-              onSelect={(s) => setSelected(s)}
+              onSelect={(s) => navigate(`/business/${s}`)}
               onSelectHub={() => setSelected('overview')}
             />
           </Reveal>
