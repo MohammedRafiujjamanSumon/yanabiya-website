@@ -69,6 +69,93 @@ const PYRAMID_LAYERS: PyramidLayer[] = [
   { slug: 'manpower',          label: 'Manpower Supply Services',      icon: Users,     from: '#67e8f9', to: '#0e7490', glow: 'rgba(34,211,238,0.55)' },
 ]
 
+/* ServicesFlowchart — six division cards in a distributed-leadership
+ * style flowchart layout: 3 cards on top, central "Our Services" pill,
+ * 3 cards on the bottom, with subtle SVG arrow connectors. Each card
+ * navigates to /business/<slug>. Inspired by the user-provided
+ * "Distributed Leadership" infographic. */
+type FlowCard = {
+  slug: string
+  title: string
+  body: string
+  /** Tailwind background colour for the card itself. */
+  bg: string
+  /** SVG hex for the matching connector arrow. */
+  stroke: string
+}
+
+const FLOW_CARDS: FlowCard[] = [
+  { slug: 'it-software',       title: 'IT Software & Web Development', body: 'Custom software, web platforms, ERP, and AI solutions.', bg: 'bg-emerald-500',  stroke: '#10b981' },
+  { slug: 'export-import',     title: 'Export & Import Business',      body: 'Sourcing, freight, customs, and end-to-end fulfilment.', bg: 'bg-teal-500',     stroke: '#14b8a6' },
+  { slug: 'clothing',          title: 'Clothing & Accessories',        body: 'Private label, garment sourcing, QA, and retail supply.', bg: 'bg-sky-500',       stroke: '#0ea5e9' },
+  { slug: 'agents-brokerage',  title: 'Agents & Brokerage Business',   body: 'Cross-border deals, partnerships, and tender support.',   bg: 'bg-slate-500',     stroke: '#64748b' },
+  { slug: 'office-management', title: 'Office Management Services',    body: 'Serviced offices, PRO services, accounting, and admin.',  bg: 'bg-violet-500',    stroke: '#8b5cf6' },
+  { slug: 'manpower',          title: 'Manpower Supply Services',      body: 'Workforce, student placement, visa, and aviation.',       bg: 'bg-indigo-700',    stroke: '#4338ca' },
+]
+
+function ServicesFlowchart({ onSelect }: { onSelect: (slug: string) => void }) {
+  return (
+    <div className="relative max-w-5xl mx-auto">
+      {/* Top row */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+        {FLOW_CARDS.slice(0, 3).map((card) => (
+          <FlowCardTile key={card.slug} card={card} onSelect={onSelect} />
+        ))}
+      </div>
+
+      {/* Centre divider — "Our Services" pill on a subtle bar */}
+      <div className="relative my-8 md:my-10">
+        <div aria-hidden="true" className="absolute inset-x-6 top-1/2 -translate-y-1/2 h-px bg-slate-200" />
+        <div className="relative mx-auto max-w-md">
+          <div className="rounded-xl bg-gradient-to-r from-slate-700 via-slate-800 to-slate-700
+                          text-white text-center py-3 px-6 shadow-md
+                          ring-1 ring-slate-700/30">
+            <div className="text-[10px] font-bold tracking-[0.32em] uppercase text-brand-accent mb-0.5">
+              Yanabiya Group
+            </div>
+            <div className="font-serif text-xl tracking-tight">Our Services</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom row */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+        {FLOW_CARDS.slice(3, 6).map((card) => (
+          <FlowCardTile key={card.slug} card={card} onSelect={onSelect} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function FlowCardTile({ card, onSelect }: { card: FlowCard; onSelect: (slug: string) => void }) {
+  return (
+    <button
+      type="button"
+      onClick={() => onSelect(card.slug)}
+      aria-label={`Open ${card.title}`}
+      className={`group relative text-left rounded-2xl ${card.bg}
+                  text-white p-5 md:p-6
+                  shadow-[0_10px_24px_-8px_rgba(15,23,42,0.45)]
+                  transition-all duration-300
+                  hover:-translate-y-1
+                  hover:shadow-[0_18px_36px_-10px_rgba(15,23,42,0.55)]
+                  focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60`}
+    >
+      <div className="font-bold text-sm md:text-base leading-tight mb-2">
+        {card.title}
+      </div>
+      <div className="text-[11px] md:text-xs opacity-90 leading-snug">
+        {card.body}
+      </div>
+      <div className="mt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
+                      opacity-90 group-hover:gap-1.5 transition-all">
+        Read More <ArrowRight size={11} />
+      </div>
+    </button>
+  )
+}
+
 /* ServicesPyramid — six-layer 3D rotating "turntable" pyramid.
  *
  * Each layer is an elliptical disc of decreasing width going up. The
@@ -587,16 +674,9 @@ export default function Businesses() {
             </Reveal>
           </div>
 
-          {/* MIDDLE — rotating Services Pyramid */}
+          {/* MIDDLE — distributed-leadership-style flowchart */}
           <Reveal delay={200} className="w-full order-2">
-            <ServicesPyramid
-              active={active}
-              setActive={setActive}
-              paused={paused}
-              setPaused={setPaused}
-              onSelect={(s) => navigate(`/business/${s}`)}
-              onSelectHub={() => setSelected('overview')}
-            />
+            <ServicesFlowchart onSelect={(s) => navigate(`/business/${s}`)} />
           </Reveal>
 
           {/* BOTTOM — Get a Quote CTA + Live signal pill */}
