@@ -225,10 +225,7 @@ export default function CountryDetail() {
       {/* ───────── 3. WHAT WE DO — 3D SERVICE BLOCKS ───────── */}
       <ServiceBlocks services={dash.services} countryName={c.name} />
 
-      {/* ───────── 4. LOCAL PRESENCE ───────── */}
-      <LocalPresence presence={dash.presence} />
-
-      {/* ───────── 4b. CORPORATE HIERARCHY (parent + partner companies) ───────── */}
+      {/* ───────── 4. CORPORATE HIERARCHY (parent + partner companies) ───────── */}
       <CorporateHierarchy
         countryName={c.name}
         parentCompany={parentCompany ?? c.entities[0]}
@@ -339,9 +336,6 @@ function Hero({
         <Reveal delay={120}>
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.0] tracking-tight text-white">
             {country.name.replace('Sultanate of ', '').replace('United States of America', 'USA')}
-            <span className="block text-2xl md:text-3xl mt-3 font-sans font-light text-slate-300">
-              Operations
-            </span>
           </h1>
         </Reveal>
         <Reveal delay={260}>
@@ -440,56 +434,6 @@ function ServiceBlocks({ services, countryName }: { services: Service[]; country
                   <div className="text-base font-semibold text-white">
                     {s.desc}
                   </div>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function LocalPresence({ presence }: { presence: Presence[] }) {
-  const typeStyle: Record<Presence['type'], string> = {
-    HQ: 'bg-amber-300 text-slate-900',
-    Branch: 'bg-blue-300 text-slate-900',
-    Network: 'bg-emerald-300 text-slate-900',
-    Partner: 'bg-rose-300 text-slate-900',
-  }
-  return (
-    <section className="relative py-16 md:py-20">
-      <div className="container-x max-w-6xl mx-auto">
-        <Reveal>
-          <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-amber-300 mb-3">
-              Local Presence
-            </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-white">Our offices &amp; partners</h2>
-          </div>
-        </Reveal>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {presence.map((p, i) => (
-            <Reveal key={p.name} delay={i * 80}>
-              <div className="group relative rounded-2xl
-                              bg-white/[0.04] backdrop-blur-md border border-white/10
-                              p-5 transition-all duration-500
-                              hover:border-amber-300/40 hover:-translate-y-1">
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-white/[0.06] grid place-items-center text-amber-300
-                                  ring-1 ring-white/10">
-                    <Building2 size={16} />
-                  </div>
-                  <span className={`text-[9px] font-bold uppercase tracking-[0.22em] px-2 py-0.5 rounded-full ${typeStyle[p.type]}`}>
-                    {p.type}
-                  </span>
-                </div>
-                <div className="font-serif text-lg text-white leading-tight">
-                  {p.name}
-                </div>
-                <div className="mt-1.5 inline-flex items-center gap-1.5 text-xs text-slate-400">
-                  <MapPin size={12} className="text-amber-300/80" />
-                  {p.city}
                 </div>
               </div>
             </Reveal>
@@ -605,29 +549,49 @@ function BusinessActivities({
               {activities.length} business activities under our licence
             </h2>
             <p className="mt-3 text-sm text-slate-400 max-w-xl mx-auto">
-              The full set of trade-classification codes our entity is
-              authorised to operate under.
+              Real-world scenarios our entity is authorised to operate
+              under, each backed by its trade-classification code.
             </p>
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
           {activities.map((a, i) => (
             <Reveal key={a.code} delay={i * 30}>
               <div className="group relative rounded-xl overflow-hidden
                               bg-white/[0.04] backdrop-blur-md border border-white/10
                               transition-all duration-500
-                              hover:border-amber-300/40 hover:-translate-y-1
-                              hover:shadow-[0_14px_32px_rgba(212,175,55,0.18)]">
-                <div className="p-4 flex items-start gap-3">
-                  <span className="shrink-0 text-2xl leading-none">{a.icon ?? '•'}</span>
-                  <div className="min-w-0 flex-1">
-                    <div className="font-mono text-[9px] text-amber-300/80 mb-1">
-                      {a.code}
-                    </div>
-                    <div className="text-[12px] font-semibold text-white leading-snug">
-                      {a.name}
-                    </div>
+                              hover:border-amber-300/50 hover:-translate-y-1
+                              hover:shadow-[0_18px_42px_rgba(212,175,55,0.25)]">
+                {/* Real-life photo banner */}
+                <div className="relative aspect-[4/3] overflow-hidden bg-slate-900">
+                  {a.image && (
+                    <img
+                      src={a.image}
+                      alt={a.name}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover
+                                 transition-transform duration-700
+                                 group-hover:scale-110"
+                      onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                  <div className="absolute top-2 right-2 inline-flex items-center gap-1
+                                  px-1.5 py-0.5 rounded-full
+                                  bg-slate-950/70 backdrop-blur-sm
+                                  ring-1 ring-amber-300/30
+                                  font-mono text-[9px] text-amber-300/95">
+                    {a.code}
+                  </div>
+                  <span className="absolute bottom-2 left-2 text-2xl leading-none drop-shadow-md">
+                    {a.icon ?? '•'}
+                  </span>
+                </div>
+                {/* Activity name */}
+                <div className="p-3.5">
+                  <div className="text-[12px] font-semibold text-white leading-snug">
+                    {a.name}
                   </div>
                 </div>
               </div>
