@@ -154,35 +154,20 @@ export default function SubServiceDetail() {
           </div>
         </div>
 
-        {/* Hero */}
+        {/* Header (no hero image) */}
         <div className="fade-up max-w-5xl mx-auto">
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-12 border-2 border-brand-accent/30 shadow-2xl bg-brand-deep">
-            <img
-              src={sub.image}
-              alt={sub.title}
-              className="absolute inset-0 w-full h-full object-cover"
-              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-ink via-brand-ink/40 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 flex items-end gap-4">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-blue-100 text-blue-600 grid place-items-center ring-2 ring-white/20 shrink-0 shadow-lg">
-                <sub.icon size={28} />
-              </div>
-              <div className="min-w-0">
-                <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-brand-accent mb-1">
-                  {business.title.replace('🤝 ', '')}
-                </p>
-                <h1 className="font-serif text-2xl md:text-4xl text-white leading-tight">
-                  {sub.title}
-                </h1>
-              </div>
+          <div className="flex flex-col items-center text-center gap-5 mb-10">
+            <div className="w-20 h-20 rounded-full bg-blue-100 text-blue-600 grid place-items-center ring-4 ring-white/10 shadow-lg">
+              <sub.icon size={36} />
             </div>
-          </div>
-
-          {/* Body */}
-          <div className="text-center mb-10">
+            <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-brand-accent">
+              {business.title.replace('🤝 ', '')}
+            </p>
+            <h1 className="font-serif text-3xl md:text-4xl text-white leading-tight">
+              {sub.title}
+            </h1>
+            <div className="w-16 h-0.5 bg-brand-accent rounded-full" />
             <p className="text-slate-200 leading-relaxed max-w-3xl mx-auto">{sub.body}</p>
-            <div className="w-16 h-0.5 bg-brand-accent rounded-full mx-auto mt-6" />
           </div>
 
           {/* Features list — numbered, mirroring the live site's style but in our brand */}
