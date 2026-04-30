@@ -83,18 +83,6 @@ export default function Global() {
                 backgroundSize: '36px 36px',
               }}
             />
-            {/* Composite-map watermark — the four flags inside their
-             *  country outlines + Yanabiya gold medallion. Sits behind
-             *  the silhouette nodes at low opacity for a finished feel.
-             *  Image lives at public/maps/composite-watermark.png. */}
-            <img
-              src={`${MAP_BASE}composite-watermark.png`}
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-contain opacity-20
-                         pointer-events-none select-none"
-              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-            />
             {/* Soft halo behind the whole composition */}
             <div
               aria-hidden="true"
