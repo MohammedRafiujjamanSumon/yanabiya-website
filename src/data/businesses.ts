@@ -309,6 +309,12 @@ export const businesses: Business[] = [
           'Supplier coordination & communication',
           'Lead time management & scheduling',
         ],
+        countries: [
+          { code: 'OM', note: 'Gulf corridor planning & supplier vetting.' },
+          { code: 'GB', note: 'EU/UK supplier sourcing & qualification.' },
+          { code: 'BD', note: 'Origin corridor analysis & vendor scout.' },
+          { code: 'US', note: 'North-America carrier benchmarking.' },
+        ],
       },
       {
         slug: 'freight-forwarding',
@@ -323,6 +329,12 @@ export const businesses: Business[] = [
           'Port-to-port & door-to-door services',
           'Freight rate negotiation & booking management',
           'Shipment scheduling & transit management',
+        ],
+        countries: [
+          { code: 'OM', note: 'Sea-air bookings via Oman ports.' },
+          { code: 'GB', note: 'EU/UK port-to-door coordination.' },
+          { code: 'BD', note: 'Origin freight booking & dispatch.' },
+          { code: 'US', note: 'Trans-Atlantic & Pacific freight booking.' },
         ],
       },
       {
@@ -339,6 +351,12 @@ export const businesses: Business[] = [
           'Certificate of origin & documentation',
           'Liaison with customs authorities',
         ],
+        countries: [
+          { code: 'OM', note: 'Royal Oman Customs liaison & duty filings.' },
+          { code: 'GB', note: 'HMRC declarations & UK import compliance.' },
+          { code: 'BD', note: 'Bangladesh customs & NBR liaison.' },
+          { code: 'US', note: 'US CBP filings & tariff classification.' },
+        ],
       },
       {
         slug: 'warehousing-delivery',
@@ -353,6 +371,12 @@ export const businesses: Business[] = [
           'Last-mile delivery coordination',
           'Cross-docking & consolidation services',
           'Real-time stock visibility & reporting',
+        ],
+        countries: [
+          { code: 'OM', note: 'Bonded warehousing in Sohar / Muscat.' },
+          { code: 'GB', note: '3PL warehousing for EU distribution.' },
+          { code: 'BD', note: 'Dhaka & Chittagong inventory hubs.' },
+          { code: 'US', note: 'Last-mile delivery across CONUS.' },
         ],
       },
       {
@@ -369,6 +393,12 @@ export const businesses: Business[] = [
           'Bank guarantee coordination',
           'Working capital optimization support',
         ],
+        countries: [
+          { code: 'OM', note: 'LC advisory through Gulf banks.' },
+          { code: 'GB', note: 'Trade-credit & invoice-finance partners.' },
+          { code: 'BD', note: 'Bank guarantee & FX hedging support.' },
+          { code: 'US', note: 'USD-LC structuring & wire compliance.' },
+        ],
       },
       {
         slug: 'regulatory-compliance',
@@ -383,6 +413,12 @@ export const businesses: Business[] = [
           'Controlled goods & restricted item advisory',
           'Document preparation & verification',
           'Regulatory update monitoring',
+        ],
+        countries: [
+          { code: 'OM', note: 'GSO & GCC standards compliance.' },
+          { code: 'GB', note: 'UKCA / CE-UKNI documentation.' },
+          { code: 'BD', note: 'BSTI & EPB documentation handling.' },
+          { code: 'US', note: 'FDA / FCC / USDA import compliance.' },
         ],
       },
       {
@@ -399,6 +435,12 @@ export const businesses: Business[] = [
           'Cost-to-serve analysis',
           'Resilience & contingency planning',
         ],
+        countries: [
+          { code: 'OM', note: 'SCM redesign for Gulf operations.' },
+          { code: 'GB', note: 'EU-network resilience & demand modelling.' },
+          { code: 'BD', note: 'Lean manufacturing & supplier scoring.' },
+          { code: 'US', note: 'Cost-to-serve & inventory optimisation.' },
+        ],
       },
       {
         slug: 'cargo-consolidation',
@@ -413,6 +455,12 @@ export const businesses: Business[] = [
           'Co-loading & shared container solutions',
           'Deconsolidation at destination',
           'Documentation for consolidated shipments',
+        ],
+        countries: [
+          { code: 'OM', note: 'Gulf-bound LCL consolidation hub.' },
+          { code: 'GB', note: 'Co-loading from EU/UK feeders.' },
+          { code: 'BD', note: 'Origin LCL groupage from Chattogram.' },
+          { code: 'US', note: 'West-coast deconsolidation services.' },
         ],
       },
       {
@@ -429,6 +477,12 @@ export const businesses: Business[] = [
           'Exception management & alerts',
           'Post-shipment performance reporting',
         ],
+        countries: [
+          { code: 'OM', note: 'Cargo insurance & Gulf-route risk advisory.' },
+          { code: 'GB', note: 'EU/UK shipment visibility platforms.' },
+          { code: 'BD', note: 'Origin tracking & exception alerts.' },
+          { code: 'US', note: 'Real-time CONUS tracking integrations.' },
+        ],
       },
       {
         slug: 'vendor-sourcing',
@@ -443,6 +497,12 @@ export const businesses: Business[] = [
           'Price negotiation & contract support',
           'Procurement process outsourcing',
           'Ongoing vendor relationship management',
+        ],
+        countries: [
+          { code: 'OM', note: 'Gulf supplier qualification & audits.' },
+          { code: 'GB', note: 'EU/UK vendor relationship management.' },
+          { code: 'BD', note: 'Manufacturer audit & RFQ management.' },
+          { code: 'US', note: 'North-America procurement support.' },
         ],
       },
       {
@@ -459,6 +519,12 @@ export const businesses: Business[] = [
           'Packaging & branded fulfillment',
           'International shipping for online sellers',
         ],
+        countries: [
+          { code: 'OM', note: 'Noon & Amazon ME marketplace fulfilment.' },
+          { code: 'GB', note: 'UK/EU e-commerce dispatch & returns.' },
+          { code: 'BD', note: 'Dropshipping supplier coordination.' },
+          { code: 'US', note: 'Amazon US FBA prep & fulfilment.' },
+        ],
       },
       {
         slug: 'cold-chain-cargo',
@@ -474,6 +540,12 @@ export const businesses: Business[] = [
           'Hazardous materials (HAZMAT) coordination',
           'Oversized & project cargo solutions',
         ],
+        countries: [
+          { code: 'OM', note: 'Reefer booking via Sohar & Salalah.' },
+          { code: 'GB', note: 'EU pharma cold-chain compliance.' },
+          { code: 'BD', note: 'Origin reefer & perishable export.' },
+          { code: 'US', note: 'USDA-compliant cold-chain transport.' },
+        ],
       },
       {
         slug: 'order-fulfillment',
@@ -488,6 +560,12 @@ export const businesses: Business[] = [
           'Packing, labeling & shipping preparation',
           'Customs & delivery management',
           'End-to-end status reporting & communication',
+        ],
+        countries: [
+          { code: 'OM', note: 'Gulf PO management & QC oversight.' },
+          { code: 'GB', note: 'EU/UK final-mile fulfilment.' },
+          { code: 'BD', note: 'Factory follow-up & QC inspections.' },
+          { code: 'US', note: 'Buyer-side delivery & status reporting.' },
         ],
       },
     ],
@@ -543,6 +621,12 @@ export const businesses: Business[] = [
           'Product range development & planning',
           'Retail-ready brand launch support',
         ],
+        countries: [
+          { code: 'OM', note: 'GCC private-label retail partners.' },
+          { code: 'GB', note: 'UK/EU brand partnership management.' },
+          { code: 'BD', note: 'Private-label production & QA at source.' },
+          { code: 'US', note: 'US-market brand development & pilots.' },
+        ],
       },
       {
         slug: 'bulk-garment-sourcing',
@@ -557,6 +641,12 @@ export const businesses: Business[] = [
           'Lead time management & scheduling',
           'Capacity planning & allocation',
           'Pre-shipment inspection coordination',
+        ],
+        countries: [
+          { code: 'OM', note: 'GCC retail bulk-order coordination.' },
+          { code: 'GB', note: 'UK/EU buyer-side sourcing support.' },
+          { code: 'BD', note: 'Manufacturing hub — bulk garment supply.' },
+          { code: 'US', note: 'US wholesale bulk sourcing.' },
         ],
       },
       {
@@ -573,6 +663,12 @@ export const businesses: Business[] = [
           'Product compliance & safety testing',
           'Seasonal trend sourcing & planning',
         ],
+        countries: [
+          { code: 'OM', note: 'GCC accessories distribution.' },
+          { code: 'GB', note: 'UK/EU fashion accessories sourcing.' },
+          { code: 'BD', note: 'Origin manufacturing of accessories.' },
+          { code: 'US', note: 'Wholesale fashion-accessories distribution.' },
+        ],
       },
       {
         slug: 'quality-assurance',
@@ -587,6 +683,12 @@ export const businesses: Business[] = [
           'AQL-based defect classification',
           'Ethical sourcing & social compliance audits',
           'Corrective action & re-inspection follow-up',
+        ],
+        countries: [
+          { code: 'OM', note: 'Pre-shipment QC at GCC ports.' },
+          { code: 'GB', note: 'EU/UK retail buyer QC standards.' },
+          { code: 'BD', note: 'On-site factory QC & inspection.' },
+          { code: 'US', note: 'AQL inspection & retailer compliance.' },
         ],
       },
       {
@@ -603,6 +705,12 @@ export const businesses: Business[] = [
           'Multi-factory production coordination',
           'Mass production management & QC',
         ],
+        countries: [
+          { code: 'OM', note: 'Regional OEM order coordination.' },
+          { code: 'GB', note: 'EU brand spec & design transfer.' },
+          { code: 'BD', note: 'OEM/ODM manufacturing at source.' },
+          { code: 'US', note: 'US-spec ODM development.' },
+        ],
       },
       {
         slug: 'packaging-export',
@@ -618,6 +726,12 @@ export const businesses: Business[] = [
           'Export documentation preparation',
           'Logistics coordination to port of export',
         ],
+        countries: [
+          { code: 'OM', note: 'GCC retail packaging & labelling.' },
+          { code: 'GB', note: 'UK/EU compliant packaging design.' },
+          { code: 'BD', note: 'Origin packaging, labelling & export prep.' },
+          { code: 'US', note: 'US-retailer packaging compliance.' },
+        ],
       },
       {
         slug: 'seasonal-inventory',
@@ -632,6 +746,12 @@ export const businesses: Business[] = [
           'Inventory forecasting & replenishment',
           'Clearance & carry-over stock management',
           'Market-specific assortment planning',
+        ],
+        countries: [
+          { code: 'OM', note: 'GCC seasonal range planning.' },
+          { code: 'GB', note: 'UK/EU trend & seasonal sourcing.' },
+          { code: 'BD', note: 'Pre-production planning & inventory.' },
+          { code: 'US', note: 'US seasonal collection sourcing.' },
         ],
       },
     ],
@@ -688,6 +808,12 @@ export const businesses: Business[] = [
           'Sales follow-up & performance reporting',
           'Local regulatory & compliance representation',
         ],
+        countries: [
+          { code: 'OM', note: 'GCC commercial agency representation.' },
+          { code: 'GB', note: 'UK/EU brand & supplier representation.' },
+          { code: 'BD', note: 'South-Asia agency partnerships.' },
+          { code: 'US', note: 'North-America agency engagements.' },
+        ],
       },
       {
         slug: 'deal-brokerage',
@@ -702,6 +828,12 @@ export const businesses: Business[] = [
           'Cross-border trade intermediary services',
           'Multi-party deal coordination',
           'Deal closure & documentation support',
+        ],
+        countries: [
+          { code: 'OM', note: 'Gulf cross-border deal brokerage.' },
+          { code: 'GB', note: 'EU/UK deal sourcing & negotiation.' },
+          { code: 'BD', note: 'South-Asia deal facilitation.' },
+          { code: 'US', note: 'North-America transaction brokerage.' },
         ],
       },
       {
@@ -718,6 +850,12 @@ export const businesses: Business[] = [
           'Go-to-market strategy support',
           'Entry mode selection (JV, agency, branch)',
         ],
+        countries: [
+          { code: 'OM', note: 'GCC market-entry advisory.' },
+          { code: 'GB', note: 'UK/EU market entry & partner sourcing.' },
+          { code: 'BD', note: 'South-Asia entry & licensing.' },
+          { code: 'US', note: 'US-market entry & launch consulting.' },
+        ],
       },
       {
         slug: 'contract-deal-structuring',
@@ -732,6 +870,12 @@ export const businesses: Business[] = [
           'Due diligence coordination & verification',
           'Risk allocation & deal protection advisory',
           'Closing conditions & transaction management',
+        ],
+        countries: [
+          { code: 'OM', note: 'Gulf contract drafting & negotiation.' },
+          { code: 'GB', note: 'UK/EU commercial contract advisory.' },
+          { code: 'BD', note: 'Local contract structuring & legal liaison.' },
+          { code: 'US', note: 'US-style commercial deal structuring.' },
         ],
       },
       {
@@ -748,6 +892,12 @@ export const businesses: Business[] = [
           'Joint venture facilitation',
           'Long-term partnership development support',
         ],
+        countries: [
+          { code: 'OM', note: 'GCC strategic partner matchmaking.' },
+          { code: 'GB', note: 'UK/EU joint-venture facilitation.' },
+          { code: 'BD', note: 'Origin supplier-partner matchmaking.' },
+          { code: 'US', note: 'North-America JV & alliance brokerage.' },
+        ],
       },
       {
         slug: 'tender-bid-facilitation',
@@ -763,6 +913,12 @@ export const businesses: Business[] = [
           'Bid bond & guarantee facilitation',
           'Post-award contract support',
         ],
+        countries: [
+          { code: 'OM', note: 'Government & private tenders in Oman.' },
+          { code: 'GB', note: 'UK/EU public-sector bid support.' },
+          { code: 'BD', note: 'South-Asia tender participation.' },
+          { code: 'US', note: 'US federal & state bid facilitation.' },
+        ],
       },
       {
         slug: 'business-development',
@@ -777,6 +933,12 @@ export const businesses: Business[] = [
           'Territory expansion & new market outreach',
           'Trade mission & exhibition representation',
           'Business development reporting & KPI tracking',
+        ],
+        countries: [
+          { code: 'OM', note: 'Gulf business-development & lead-gen.' },
+          { code: 'GB', note: 'UK/EU corporate BD & MoU support.' },
+          { code: 'BD', note: 'South-Asia BD & key-account growth.' },
+          { code: 'US', note: 'North-America BD & enterprise outreach.' },
         ],
       },
     ],
@@ -833,6 +995,12 @@ export const businesses: Business[] = [
           'Mail handling & courier services',
           'Flexible short & long-term lease options',
         ],
+        countries: [
+          { code: 'OM', note: 'Serviced offices in Muscat (HQ).' },
+          { code: 'GB', note: 'London serviced & flexible workspace.' },
+          { code: 'BD', note: 'Dhaka co-working & operations base.' },
+          { code: 'US', note: 'Austin registered offices.' },
+        ],
       },
       {
         slug: 'secretarial-admin-support',
@@ -847,6 +1015,12 @@ export const businesses: Business[] = [
           'Document preparation & filing',
           'Travel coordination & executive assistance',
           'Office supplies procurement & coordination',
+        ],
+        countries: [
+          { code: 'OM', note: 'Reception & PRO support in Muscat.' },
+          { code: 'GB', note: 'UK secretarial & corporate filings.' },
+          { code: 'BD', note: 'Back-office secretarial assistance.' },
+          { code: 'US', note: 'US corporate administrative support.' },
         ],
       },
       {
@@ -863,6 +1037,12 @@ export const businesses: Business[] = [
           'Financial statement preparation',
           'Audit preparation & documentation',
         ],
+        countries: [
+          { code: 'OM', note: 'Gulf bookkeeping & payroll processing.' },
+          { code: 'GB', note: 'UK accounting & HMRC compliance.' },
+          { code: 'BD', note: 'Outsourced bookkeeping & payroll hub.' },
+          { code: 'US', note: 'US accounting & 1099/W-2 management.' },
+        ],
       },
       {
         slug: 'visa-pro-services',
@@ -877,6 +1057,12 @@ export const businesses: Business[] = [
           'MOMP & Ministry liaison services',
           'Trade license renewal & company documents',
           'Government document translation & attestation',
+        ],
+        countries: [
+          { code: 'OM', note: 'Oman visas, ROP & MOMP liaison.' },
+          { code: 'GB', note: 'UK Skilled-Worker visa support.' },
+          { code: 'BD', note: 'BD visa documentation & legalisation.' },
+          { code: 'US', note: 'US business-visitor & B-1 visa advisory.' },
         ],
       },
       {
@@ -893,6 +1079,12 @@ export const businesses: Business[] = [
           'Annual compliance filing & renewal tracking',
           'Company restructuring & amendment support',
         ],
+        countries: [
+          { code: 'OM', note: 'Oman LLC, SPC & free-zone formation.' },
+          { code: 'GB', note: 'UK Ltd company incorporation.' },
+          { code: 'BD', note: 'BD private-limited company formation.' },
+          { code: 'US', note: 'Delaware/Texas LLC & C-corp formation.' },
+        ],
       },
       {
         slug: 'hr-administration',
@@ -908,6 +1100,12 @@ export const businesses: Business[] = [
           'Labour law compliance advisory',
           'Employee offboarding & final settlement support',
         ],
+        countries: [
+          { code: 'OM', note: 'Onboarding & Omanisation tracking.' },
+          { code: 'GB', note: 'UK HR & employment-law compliance.' },
+          { code: 'BD', note: 'HR admin & local labour-law liaison.' },
+          { code: 'US', note: 'US HR & benefits administration.' },
+        ],
       },
       {
         slug: 'virtual-office',
@@ -922,6 +1120,12 @@ export const businesses: Business[] = [
           'Remote document processing & filing',
           'Online meeting & virtual PA support',
           'Company secretarial services',
+        ],
+        countries: [
+          { code: 'OM', note: 'Virtual addresses in Muscat.' },
+          { code: 'GB', note: 'London virtual office & mail handling.' },
+          { code: 'BD', note: 'Dhaka virtual office for local presence.' },
+          { code: 'US', note: 'Austin virtual address & registered agent.' },
         ],
       },
     ],
@@ -977,6 +1181,12 @@ export const businesses: Business[] = [
           'Overseas employment contract management',
           'Post-placement follow-up & welfare monitoring',
         ],
+        countries: [
+          { code: 'OM', note: 'Gulf employer hiring & deployment.' },
+          { code: 'GB', note: 'UK skilled-worker recruitment.' },
+          { code: 'BD', note: 'Source-market recruitment & screening.' },
+          { code: 'US', note: 'US professional recruitment & placement.' },
+        ],
       },
       {
         slug: 'student-placement-education',
@@ -991,6 +1201,12 @@ export const businesses: Business[] = [
           'Admission documentation preparation',
           'Pre-departure orientation & guidance',
           'Accommodation & settlement support',
+        ],
+        countries: [
+          { code: 'OM', note: 'GCC counselling & destination guidance.' },
+          { code: 'GB', note: 'UK university placements & CAS support.' },
+          { code: 'BD', note: 'Origin student counselling & test prep.' },
+          { code: 'US', note: 'US university admissions & I-20 support.' },
         ],
       },
       {
@@ -1007,6 +1223,12 @@ export const businesses: Business[] = [
           'Appeal & refusal case advisory',
           'Dependent & family visa coordination',
         ],
+        countries: [
+          { code: 'OM', note: 'Oman work-visa & residency guidance.' },
+          { code: 'GB', note: 'UK Skilled Worker / Student visa support.' },
+          { code: 'BD', note: 'BD outbound visa documentation.' },
+          { code: 'US', note: 'US H-1B / O-1 / EB advisory.' },
+        ],
       },
       {
         slug: 'worker-mobilisation',
@@ -1021,6 +1243,12 @@ export const businesses: Business[] = [
           'Accommodation arrangement at destination',
           'Induction & on-site orientation support',
           'Contract-based workforce supply management',
+        ],
+        countries: [
+          { code: 'OM', note: 'Gulf worker mobilisation & onboarding.' },
+          { code: 'GB', note: 'UK arrival, settlement & induction.' },
+          { code: 'BD', note: 'Pre-departure orientation & dispatch.' },
+          { code: 'US', note: 'US arrival, SSN & onboarding logistics.' },
         ],
       },
       {
@@ -1037,6 +1265,12 @@ export const businesses: Business[] = [
           'Travel insurance advisory',
           'Corporate travel management services',
         ],
+        countries: [
+          { code: 'OM', note: 'Gulf flight bookings & travel coordination.' },
+          { code: 'GB', note: 'UK arrival & onward travel logistics.' },
+          { code: 'BD', note: 'International ticketing & group travel.' },
+          { code: 'US', note: 'US travel coordination & domestic transfers.' },
+        ],
       },
       {
         slug: 'labour-compliance-welfare',
@@ -1052,6 +1286,12 @@ export const businesses: Business[] = [
           'Repatriation coordination & support',
           'Post-deployment assistance & welfare follow-up',
         ],
+        countries: [
+          { code: 'OM', note: 'Omani labour-law & welfare compliance.' },
+          { code: 'GB', note: 'UK employment-law & welfare standards.' },
+          { code: 'BD', note: 'Origin contract compliance & welfare.' },
+          { code: 'US', note: 'US labour-law & worker-welfare oversight.' },
+        ],
       },
       {
         slug: 'contract-workforce-supply',
@@ -1066,6 +1306,12 @@ export const businesses: Business[] = [
           'Multi-discipline workforce packages',
           'Replacement & backup worker coordination',
           'End-of-contract settlement & clearance',
+        ],
+        countries: [
+          { code: 'OM', note: 'Gulf contract-based workforce supply.' },
+          { code: 'GB', note: 'UK contract & temp staffing.' },
+          { code: 'BD', note: 'Source-market contract workforce.' },
+          { code: 'US', note: 'US contract / 1099 workforce supply.' },
         ],
       },
     ],

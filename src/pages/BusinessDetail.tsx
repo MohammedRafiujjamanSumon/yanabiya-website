@@ -2,10 +2,66 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { CheckCircle2, Send, ArrowRight, ArrowLeft } from 'lucide-react'
 import Section from '../components/Section'
-import { businesses, type SubService } from '../data/businesses'
+import { businesses, type SubService, type CountryPresence } from '../data/businesses'
+import { countries as countryList } from '../data/countries'
 
 const DEFAULT_VIDEO =
   'https://videos.pexels.com/video-files/8084618/8084618-uhd_2560_1440_25fps.mp4'
+
+function CountryPresenceGrid({
+  entries,
+  compact = false,
+}: {
+  entries: CountryPresence[]
+  compact?: boolean
+}) {
+  return (
+    <div className={compact ? 'mt-6' : 'mt-12'}>
+      <h4 className="text-brand-accent uppercase tracking-[0.22em] text-xs font-bold mb-4 text-center">
+        Our Global Presence
+      </h4>
+      <div
+        className={`grid gap-3 ${
+          compact ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-4'
+        }`}
+      >
+        {entries.map((entry) => {
+          const country = countryList.find((c) => c.code === entry.code)
+          if (!country) return null
+          const isHQ = entry.code === 'OM'
+          return (
+            <div
+              key={entry.code}
+              className="rounded-xl border border-white/15 bg-white/[0.04] p-4
+                         hover:border-brand-accent/40 transition text-left"
+            >
+              <div className="flex items-start gap-3">
+                <span className="text-2xl leading-none shrink-0">{country.flag}</span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h5 className="text-sm font-semibold text-white leading-tight">
+                      {country.name}
+                    </h5>
+                    {isHQ && (
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded
+                                       bg-brand-accent/20 text-brand-accent border border-brand-accent/30">
+                        HQ
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[10px] uppercase tracking-[0.14em] text-slate-400 mt-0.5">
+                    {country.role}
+                  </p>
+                  <p className="text-xs text-slate-200 mt-2 leading-relaxed">{entry.note}</p>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
 
 export default function BusinessDetail() {
   const { slug } = useParams<{ slug: string }>()
@@ -127,6 +183,10 @@ export default function BusinessDetail() {
               </div>
             )}
 
+            {!hasSubServices && business.countries && business.countries.length > 0 && (
+              <CountryPresenceGrid entries={business.countries} />
+            )}
+
             {!hasSubServices && business.footer && (
               <div className="mt-10 overflow-hidden">
                 <p
@@ -136,6 +196,10 @@ export default function BusinessDetail() {
                   {business.footer}
                 </p>
               </div>
+            )}
+
+            {hasSubServices && business.countries && business.countries.length > 0 && (
+              <CountryPresenceGrid entries={business.countries} />
             )}
 
             {hasSubServices && (
@@ -246,6 +310,22 @@ function SubServicesSection({ subServices, heading }: { subServices: SubService[
                         {s.title}
                       </h3>
                     </div>
+                    {s.countries && s.countries.length > 0 && (
+                      <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5 pointer-events-none">
+                        {s.countries.map((c) => {
+                          const cc = countryList.find((x) => x.code === c.code)
+                          return cc ? (
+                            <span
+                              key={c.code}
+                              className="text-base leading-none drop-shadow-md"
+                              title={cc.name}
+                            >
+                              {cc.flag}
+                            </span>
+                          ) : null
+                        })}
+                      </div>
+                    )}
                   </div>
 
                   <button
@@ -328,6 +408,9 @@ function SubServiceModal({ sub, onClose }: { sub: SubService; onClose: () => voi
               </li>
             ))}
           </ul>
+          {sub.countries && sub.countries.length > 0 && (
+            <CountryPresenceGrid entries={sub.countries} compact />
+          )}
         </div>
       </div>
     </div>
