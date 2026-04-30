@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Send, ArrowRight, ArrowLeft } from 'lucide-react'
 import Section from '../components/Section'
-import PageHero from '../components/PageHero'
 import { businesses, type SubService } from '../data/businesses'
 
 export default function SubServiceDetail() {
@@ -37,21 +36,16 @@ export default function SubServiceDetail() {
   const others = subs.filter((s) => s.slug !== sub.slug).slice(0, 6)
 
   return (
-    <>
-      <PageHero
-        eyebrow={business.title}
-        title={sub.title}
-        subtitle={sub.body}
-        cta={{ label: 'Back to', sublabel: business.title, to: `/business/${business.slug}` }}
-        rightCaption={{
-          caption: <>Built for{<br />}global delivery</>,
-          body: 'Engineered, executed and supported by Yanabiya teams across four continents.',
-          cta: { label: 'About Us', to: '/#about' },
-        }}
-      />
-
-      <Section id="sub-service-detail" className="bg-brand-ink">
-      <div className="container-x">
+    <Section
+      id="sub-service-detail"
+      className="relative overflow-hidden
+                 bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]"
+    >
+      <div aria-hidden className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-32 -left-24 w-[460px] h-[460px] rounded-full bg-emerald-500/15 blur-[150px]" />
+        <div className="absolute -bottom-32 -right-24 w-[460px] h-[460px] rounded-full bg-amber-400/10 blur-[150px]" />
+      </div>
+      <div className="container-x relative">
         {/* Breadcrumb + prev/next */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-6 border-b border-white/10">
           <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300 flex-wrap">
@@ -196,7 +190,6 @@ export default function SubServiceDetail() {
         </div>
       </div>
     </Section>
-    </>
   )
 }
 
