@@ -41,13 +41,15 @@ export default function App() {
            *  so React-Router matches the more specific path first. */}
           <Route path="/country/bd" element={<CountryOperations codeOverride="BD" />} />
           <Route path="/global-presence/bd" element={<CountryOperations codeOverride="BD" />} />
+          <Route path="/country/om" element={<CountryOperations codeOverride="OM" />} />
+          <Route path="/global-presence/om" element={<CountryOperations codeOverride="OM" />} />
 
           <Route path="/country/:code" element={<CountryDetail />} />
           <Route path="/global-presence/scroll" element={<OmanPresence />} />
           <Route path="/global-presence/:code" element={<CountryDetail />} />
 
           {/* Clean country aliases — same page, prettier URLs. */}
-          <Route path="/oman"       element={<CountryDetail codeOverride="OM" />} />
+          <Route path="/oman"       element={<CountryOperations codeOverride="OM" />} />
           <Route path="/uk"         element={<CountryDetail codeOverride="GB" />} />
           <Route path="/bangladesh" element={<CountryOperations codeOverride="BD" />} />
           <Route path="/usa"        element={<CountryDetail codeOverride="US" />} />
