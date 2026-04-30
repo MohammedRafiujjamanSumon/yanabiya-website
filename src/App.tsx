@@ -35,6 +35,13 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/business/:slug" element={<BusinessDetail />} />
           <Route path="/business/:slug/:subSlug" element={<SubServiceDetail />} />
+
+          {/* Country-specific operations pages — listed before the
+           *  generic /country/:code and /global-presence/:code routes
+           *  so React-Router matches the more specific path first. */}
+          <Route path="/country/bd" element={<CountryOperations codeOverride="BD" />} />
+          <Route path="/global-presence/bd" element={<CountryOperations codeOverride="BD" />} />
+
           <Route path="/country/:code" element={<CountryDetail />} />
           <Route path="/global-presence/scroll" element={<OmanPresence />} />
           <Route path="/global-presence/:code" element={<CountryDetail />} />
