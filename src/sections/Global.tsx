@@ -30,36 +30,42 @@ function Reveal({
   )
 }
 
-/* The circle is divided into four pie-slice segments by two diagonals
- * from the centre — N (top), E (right), S (bottom), W (left). Each
- * map is positioned at the centroid of its triangle (~17% in from
- * the outer edge) at a size that fits inside the slice so the FULL
- * country map stays visible (object-contain). No text labels — the
- * maps are the segments. */
+/* The circle is divided into four pie-slice segments. Each segment is
+ * a 3D flip card — front face shows the country's full map (object
+ * contain, anchored at the triangle's centroid) and the back face is
+ * a light-green tile revealing the flag + capital, country on touch. */
 const SEGMENTS = [
   {
     code: 'GB',
+    flag: '🇬🇧',
     name: 'United Kingdom',
+    capital: 'London',
     /** Pie-slice triangle: centre → top-left corner → top-right corner */
     clip: 'polygon(50% 50%, 0% 0%, 100% 0%)',
-    /** Map placement inside the slice (centroid-anchored). */
+    /** Map / back-face content placement inside the slice (centroid-anchored). */
     mapStyle: { top: '16%', left: '50%', transform: 'translate(-50%, -50%)', width: '32%', height: '30%' },
   },
   {
     code: 'OM',
+    flag: '🇴🇲',
     name: 'Sultanate of Oman',
+    capital: 'Muscat',
     clip: 'polygon(50% 50%, 100% 0%, 100% 100%)',
     mapStyle: { top: '50%', left: '84%', transform: 'translate(-50%, -50%)', width: '30%', height: '32%' },
   },
   {
     code: 'BD',
+    flag: '🇧🇩',
     name: 'Bangladesh',
+    capital: 'Dhaka',
     clip: 'polygon(50% 50%, 100% 100%, 0% 100%)',
     mapStyle: { top: '84%', left: '50%', transform: 'translate(-50%, -50%)', width: '24%', height: '30%' },
   },
   {
     code: 'US',
+    flag: '🇺🇸',
     name: 'United States of America',
+    capital: 'Austin',
     clip: 'polygon(50% 50%, 0% 100%, 0% 0%)',
     mapStyle: { top: '50%', left: '16%', transform: 'translate(-50%, -50%)', width: '32%', height: '30%' },
   },
@@ -116,49 +122,81 @@ export default function Global() {
             <div aria-hidden="true" className="absolute inset-[5%] rounded-full border border-white/10 pointer-events-none" />
             <div aria-hidden="true" className="absolute inset-[28%] rounded-full border border-amber-300/20 pointer-events-none" />
 
-            {/* Four pie-slice segments — each links to its country page,
-             *  brightens on hover, dims when another slice is active. The
-             *  country map fills the slice via object-cover (no labels). */}
+            {/* Four pie-slice flip-cards. Tap/click flips the slice to
+             *  reveal a light-green back face with flag + capital,
+             *  country. Other slices fade while one is flipped. */}
             {SEGMENTS.map((s) => {
-              const isActive = activeCode === s.code
-              const isOther = activeCode !== null && !isActive
-              const isBD = s.code === 'BD'
-              const mapUrl = isBD
-                ? `${MAP_BASE}bd-regional.jpg`
-                : `${MAP_BASE}${s.code.toLowerCase()}.svg`
+              const isFlipped = activeCode === s.code
+              const isOther = activeCode !== null && !isFlipped
+              const mapUrl = `${MAP_BASE}${s.code.toLowerCase()}.svg`
               return (
-                <Link
+                <button
                   key={s.code}
-                  to={`/country/${s.code.toLowerCase()}`}
-                  aria-label={`Explore ${s.name}`}
-                  onMouseEnter={() => setActiveCode(s.code)}
-                  onMouseLeave={() => setActiveCode(null)}
-                  className={`absolute inset-0 z-10 transition-all duration-500
-                              ${isActive ? 'z-20 scale-[1.03]' : ''}
+                  type="button"
+                  onClick={() =>
+                    setActiveCode((prev) => (prev === s.code ? null : s.code))
+                  }
+                  aria-label={`Toggle ${s.name} details`}
+                  aria-pressed={isFlipped ? 'true' : 'false'}
+                  className={`absolute inset-0 z-10 [perspective:1200px]
+                              transition-all duration-500
+                              ${isFlipped ? 'z-20 scale-[1.03]' : ''}
                               ${isOther ? 'opacity-30' : 'opacity-100'}`}
                   style={{ clipPath: s.clip, WebkitClipPath: s.clip }}
                 >
-                  {/* Country map — full silhouette / regional map kept
-                   *  visible via object-contain, centred on each
-                   *  triangle's centroid. */}
-                  <img
-                    src={mapUrl}
-                    alt=""
-                    aria-hidden="true"
-                    className={`absolute object-contain transition-all duration-500
-                                ${isActive ? 'opacity-100 scale-110' : 'opacity-70'}
-                                ${isBD ? 'rounded-md' : ''}`}
-                    style={{
-                      ...s.mapStyle,
-                      filter: isBD
-                        ? 'drop-shadow(0 0 16px rgba(252,211,77,0.4))'
-                        : 'drop-shadow(0 0 14px rgba(255,255,255,0.35)) drop-shadow(0 0 6px rgba(252,211,77,0.4))',
-                    }}
-                    onError={(e) =>
-                      ((e.currentTarget as HTMLImageElement).style.display = 'none')
-                    }
-                  />
-                </Link>
+                  <div
+                    className="relative w-full h-full transition-transform duration-700 ease-out [transform-style:preserve-3d]"
+                    style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+                  >
+                    {/* Front — country silhouette (consistent style across
+                     *  all four; transparent SVG so it blends into the
+                     *  dark theme like the central logo). */}
+                    <div className="absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden]">
+                      <img
+                        src={mapUrl}
+                        alt=""
+                        aria-hidden="true"
+                        className="absolute object-contain transition-all duration-500"
+                        style={{
+                          ...s.mapStyle,
+                          filter:
+                            'drop-shadow(0 0 14px rgba(255,255,255,0.35)) drop-shadow(0 0 6px rgba(252,211,77,0.4))',
+                        }}
+                        onError={(e) =>
+                          ((e.currentTarget as HTMLImageElement).style.display = 'none')
+                        }
+                      />
+                    </div>
+
+                    {/* Back — light green card with flag + capital, country */}
+                    <div
+                      className="absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden]
+                                 bg-gradient-to-br from-emerald-100 via-emerald-50 to-emerald-200"
+                      style={{ transform: 'rotateY(180deg)' }}
+                    >
+                      <div
+                        className="absolute flex flex-col items-center justify-center text-center"
+                        style={s.mapStyle}
+                      >
+                        <span className="text-3xl md:text-4xl drop-shadow-md leading-none">
+                          {s.flag}
+                        </span>
+                        <div className="text-[11px] md:text-xs font-bold text-emerald-900 mt-2 leading-tight whitespace-nowrap">
+                          {s.capital}, {s.name}
+                        </div>
+                        <Link
+                          to={`/country/${s.code.toLowerCase()}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="mt-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full
+                                     bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wider
+                                     hover:bg-emerald-700 transition-colors"
+                        >
+                          Explore <ArrowRight size={10} />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </button>
               )
             })}
 
