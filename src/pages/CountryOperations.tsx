@@ -528,9 +528,11 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         </div>
       </SectionFrame>
 
-      {/* SECTION 4 — What We Offer */}
+      {/* SECTION 4 — What We Offer.
+       *  3 cards per row from sm and up so each tile stays compact
+       *  even on tablet/mobile-landscape. */}
       <SectionFrame eyebrow="What We Offer" title="Services delivered locally, scaled globally.">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 [perspective:1400px]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 max-w-5xl mx-auto [perspective:1400px]">
           {ops.services.map((s, i) => (
             <ServiceCard key={s.slug} service={s} index={i} />
           ))}
@@ -860,11 +862,11 @@ function ServiceCard({
                    bg-white/5 backdrop-blur-md border border-white/15
                    [transform-style:preserve-3d]
                    transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                   hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(12px)_scale(1.02)]
+                   hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)]
                    hover:border-amber-300/60"
       >
-        {/* Real photo header — top of the card */}
-        <div className="relative aspect-[3/2] overflow-hidden bg-slate-900">
+        {/* Real photo header — wider/shorter so tiles stay compact at 3-up */}
+        <div className="relative aspect-[16/9] overflow-hidden bg-slate-900">
           <img
             src={service.image}
             alt=""
@@ -875,25 +877,25 @@ function ServiceCard({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
           {/* Floating icon chip on top of the image */}
-          <div className="absolute top-1.5 left-1.5 w-6 h-6 rounded
+          <div className="absolute top-1 left-1 w-5 h-5 rounded
                           bg-amber-300/95 text-[#0a1410]
                           grid place-items-center shadow-sm
                           [transform:translateZ(22px)]">
-            <service.icon size={11} strokeWidth={2.4} />
+            <service.icon size={10} strokeWidth={2.4} />
           </div>
         </div>
 
         {/* Body */}
-        <div className="p-2.5 md:p-3">
-          <div className="font-serif text-[13px] md:text-sm text-white leading-tight [transform:translateZ(12px)]">
+        <div className="p-2 md:p-2.5">
+          <div className="font-serif text-[12px] md:text-[13px] text-white leading-tight [transform:translateZ(12px)]">
             {service.label}
           </div>
-          <p className="mt-0.5 text-[11px] text-white/70 leading-snug [transform:translateZ(4px)]">
+          <p className="mt-0.5 text-[10px] md:text-[11px] text-white/70 leading-snug [transform:translateZ(4px)]">
             {service.desc}
           </p>
-          <div className="mt-2 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.22em]
+          <div className="mt-1.5 inline-flex items-center gap-1 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.22em]
                           text-amber-300 group-hover:gap-2 transition-all">
-            Learn more <ArrowRight size={10} />
+            Learn more <ArrowRight size={9} />
           </div>
         </div>
       </Link>
