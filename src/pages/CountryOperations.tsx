@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ArrowRight, ArrowUpRight, Building2, FileBadge, Calendar, MapPin,
@@ -56,19 +56,27 @@ type CountryOps = {
   license?: { name: string; authority: string }
   address: string
   /** Section 4 — Our Services / What We Offer */
-  services: { label: string; desc: string; icon: LucideIcon; slug: string }[]
+  services: { label: string; desc: string; icon: LucideIcon; slug: string; image: string }[]
   /** Section 5 — Our Network */
-  strategicPartners: { name: string; logo?: string }[]
-  operationalPartners: { name: string; logo?: string }[]
+  strategicPartners: PartnerItem[]
+  operationalPartners: PartnerItem[]
   /** Section 6 — Business Domains */
   categories: { label: string; icon: LucideIcon; tone: string }[]
   /** Section 7 — Licensed Activities */
   licensedActivities: string[]
   /** Section 8 — Current Operations */
-  currentProjects: { title: string; body: string }[]
+  currentProjects: { title: string; body: string; image?: string }[]
   activeSectors: string[]
   /** Section 9 — Future Roadmap */
-  futurePlans: { title: string; body: string; icon: LucideIcon }[]
+  futurePlans: { title: string; body: string; icon: LucideIcon; image?: string }[]
+}
+
+type PartnerItem = {
+  name: string
+  /** Direct logo URL. If absent, the renderer tries Clearbit using `domain`. */
+  logo?: string
+  /** Fallback domain used to fetch the logo via Clearbit (logo.clearbit.com). */
+  domain?: string
 }
 
 const OPS: Record<string, CountryOps> = {
@@ -88,34 +96,38 @@ const OPS: Record<string, CountryOps> = {
     license: { name: 'Trade License — General Trading & IT', authority: 'Dhaka North City Corporation' },
     address: 'Office #211, Plot #322/B, Block-Kanchkura, Uttarkhan, Dhaka-1230, Bangladesh',
     services: [
-      { label: 'IT Software & Web Development',     desc: 'Custom software, cloud platforms, and AI solutions.',                icon: Cpu,       slug: 'it-software' },
-      { label: 'Global Trade & Supply Chain',       desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import' },
-      { label: 'Clothing & Accessories',            desc: 'Private-label apparel sourcing, manufacturing, and retail supply.',  icon: Briefcase, slug: 'clothing' },
-      { label: 'Agents & Brokerage Business',       desc: 'Cross-border commercial agency, deals, and partnership matchmaking.', icon: Handshake, slug: 'agents-brokerage' },
-      { label: 'Office Management Services',        desc: 'Serviced offices, PRO services, accounting, and administration.',   icon: Building2, slug: 'office-management' },
-      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane, slug: 'manpower' },
+      { label: 'IT Software & Web Development',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Clothing & Accessories',               desc: 'Private-label apparel sourcing, manufacturing, and retail supply.',    icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane,     slug: 'manpower',          image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
     ],
     // Group of partner companies operating in Bangladesh under the
     // Yanabiya umbrella. Strategic = long-term partners that anchor
     // core categories (internet, cloud, aviation); Operational =
     // service partners delivering connectivity, comms and tech.
+    // Bangladesh group of partner companies. Logo URLs are loaded
+    // via Clearbit (logo.clearbit.com/<domain>) where a domain is
+    // available; the renderer falls back to a coloured monogram if
+    // Clearbit returns nothing.
     strategicPartners: [
-      { name: 'Connet Online' },
-      { name: 'Plexus Cloud' },
-      { name: 'Gtech Aviation' },
-      { name: 'Idea Tec' },
-      { name: 'Citylink Communication' },
-      { name: 'Trust Innovation Limited Company' },
-      { name: 'Business Zone Limited Company' },
+      { name: 'Connet Online',                    domain: 'connetbd.net' },
+      { name: 'Plexus Cloud',                     domain: 'plexuscloud.com' },
+      { name: 'Gtech Aviation',                   domain: 'gtech.aero' },
+      { name: 'Idea Tec',                         domain: 'ideatec.io' },
+      { name: 'Citylink Communication',           domain: 'citylinkcommunication.com' },
+      { name: 'Trust Innovation Limited Company', domain: 'trustinnovation.io' },
+      { name: 'Business Zone Limited Company',    domain: 'businesszone.com.bd' },
     ],
     operationalPartners: [
-      { name: 'Eham WiFi' },
-      { name: 'Xlink Limited Company' },
-      { name: 'Dot Internet' },
-      { name: 'Zero Link' },
-      { name: 'Global Communication Limited' },
-      { name: 'Dot Exploration Ltd' },
-      { name: 'Bongo WiFi' },
+      { name: 'Eham WiFi',                  domain: 'ehamwifi.com' },
+      { name: 'Xlink Limited Company',      domain: 'xlinkbd.net' },
+      { name: 'Dot Internet',               domain: 'dotinternet.com.bd' },
+      { name: 'Zero Link',                  domain: 'zerolink.com.bd' },
+      { name: 'Global Communication Ltd',   domain: 'globalcommunication.com.bd' },
+      { name: 'Dot Exploration Ltd',        domain: 'dotexploration.com' },
+      { name: 'Bongo WiFi',                 domain: 'bongowifi.com' },
     ],
     categories: [
       { label: 'Internet Services & Connectivity',           icon: Globe2,    tone: 'from-emerald-500/40 to-emerald-700/40' },
@@ -494,39 +506,84 @@ function ServiceCard({
   service,
   index,
 }: {
-  service: { label: string; desc: string; icon: LucideIcon; slug: string }
+  service: { label: string; desc: string; icon: LucideIcon; slug: string; image: string }
   index: number
 }) {
   return (
     <Reveal delay={index * 80}>
       <Link
         to={`/business/${service.slug}`}
-        className="group relative block h-full rounded-2xl
+        className="group relative block h-full overflow-hidden rounded-2xl
                    bg-white/5 backdrop-blur-md border border-white/15
-                   p-5 md:p-6
                    [transform-style:preserve-3d]
                    transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                    hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(14px)_scale(1.03)]
                    hover:border-amber-300/60"
       >
-        <div className="w-11 h-11 rounded-xl bg-amber-300/15 text-amber-200
-                        ring-1 ring-amber-300/40 grid place-items-center shadow-md
-                        [transform:translateZ(20px)]">
-          <service.icon size={20} strokeWidth={2} />
+        {/* Real photo header — top half of the card */}
+        <div className="relative aspect-[16/9] overflow-hidden bg-slate-900">
+          <img
+            src={service.image}
+            alt=""
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover
+                       transition-transform duration-500 group-hover:scale-105"
+            onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
+          {/* Floating icon chip on top of the image */}
+          <div className="absolute top-3 left-3 w-10 h-10 rounded-xl
+                          bg-amber-300/95 text-[#0a1410]
+                          grid place-items-center shadow-md
+                          [transform:translateZ(22px)]">
+            <service.icon size={18} strokeWidth={2.2} />
+          </div>
         </div>
-        <div className="mt-4 font-serif text-base md:text-lg text-white leading-tight [transform:translateZ(12px)]">
-          {service.label}
-        </div>
-        <p className="mt-1.5 text-[13px] text-white/75 leading-relaxed [transform:translateZ(4px)]">
-          {service.desc}
-        </p>
-        <div className="mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
-                        text-amber-300 group-hover:gap-2 transition-all">
-          Learn more <ArrowRight size={11} />
+
+        {/* Body */}
+        <div className="p-5 md:p-6">
+          <div className="font-serif text-base md:text-lg text-white leading-tight [transform:translateZ(12px)]">
+            {service.label}
+          </div>
+          <p className="mt-1.5 text-[13px] text-white/75 leading-relaxed [transform:translateZ(4px)]">
+            {service.desc}
+          </p>
+          <div className="mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
+                          text-amber-300 group-hover:gap-2 transition-all">
+            Learn more <ArrowRight size={11} />
+          </div>
         </div>
       </Link>
     </Reveal>
   )
+}
+
+/* Coloured initials fallback when no logo is available. The colour is
+ * derived from a quick hash of the name so each partner gets a stable
+ * unique tile. */
+const MONOGRAM_TONES = [
+  'from-emerald-500/70 to-emerald-700/70',
+  'from-cyan-500/70 to-sky-700/70',
+  'from-amber-500/70 to-orange-700/70',
+  'from-rose-500/70 to-pink-700/70',
+  'from-fuchsia-500/70 to-purple-700/70',
+  'from-violet-500/70 to-indigo-700/70',
+  'from-teal-500/70 to-emerald-700/70',
+]
+
+function monogramOf(name: string): string {
+  return name
+    .split(' ')
+    .filter((w) => w[0] && /[A-Za-z0-9]/.test(w[0]))
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join('')
+}
+
+function toneFor(name: string): string {
+  let h = 0
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0
+  return MONOGRAM_TONES[h % MONOGRAM_TONES.length]
 }
 
 function PartnerGroup({
@@ -537,7 +594,7 @@ function PartnerGroup({
 }: {
   title: string
   subtitle: string
-  items: { name: string; logo?: string }[]
+  items: PartnerItem[]
   className?: string
 }) {
   return (
@@ -551,25 +608,57 @@ function PartnerGroup({
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
         {items.map((p, i) => (
           <Reveal key={p.name} delay={i * 60}>
-            <div className="relative h-24 rounded-xl bg-white border border-white/15
-                            grid place-items-center p-3
-                            transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.04]">
-              {p.logo ? (
-                <img
-                  src={p.logo}
-                  alt={p.name}
-                  className="max-w-full max-h-full object-contain"
-                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                />
-              ) : (
-                <span className="text-xs font-semibold text-slate-700 text-center px-1">
-                  {p.name}
-                </span>
-              )}
-            </div>
+            <PartnerLogo item={p} />
           </Reveal>
         ))}
       </div>
+    </div>
+  )
+}
+
+/* Individual partner tile. Tries the explicit logo URL first,
+ * then Clearbit (logo.clearbit.com/<domain>), and finally falls
+ * back to a coloured monogram with the partner's initials + name
+ * underneath. */
+function PartnerLogo({ item }: { item: PartnerItem }) {
+  type Stage = 'logo' | 'clearbit' | 'fallback'
+  const [stage, setStage] = useState<Stage>(
+    item.logo ? 'logo' : item.domain ? 'clearbit' : 'fallback',
+  )
+
+  const src =
+    stage === 'logo'     ? item.logo :
+    stage === 'clearbit' ? `https://logo.clearbit.com/${item.domain}` :
+                           undefined
+
+  return (
+    <div className="group relative h-28 rounded-xl bg-white border border-white/15
+                    grid place-items-center p-3 overflow-hidden
+                    transition-all duration-300 hover:-translate-y-1 hover:scale-[1.04]
+                    hover:shadow-[0_18px_36px_-14px_rgba(0,0,0,0.45)]">
+      {src ? (
+        <img
+          src={src}
+          alt={item.name}
+          loading="lazy"
+          className="max-w-[80%] max-h-[60%] object-contain"
+          onError={() => {
+            setStage((s: Stage) => (s === 'logo' ? (item.domain ? 'clearbit' : 'fallback') : 'fallback'))
+          }}
+        />
+      ) : (
+        <div
+          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${toneFor(item.name)}
+                      grid place-items-center text-white font-serif text-lg
+                      shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_4px_10px_rgba(0,0,0,0.18)]`}
+        >
+          {monogramOf(item.name)}
+        </div>
+      )}
+      <span className="absolute inset-x-2 bottom-1.5 text-[10px] font-semibold text-slate-700
+                       text-center leading-tight truncate">
+        {item.name}
+      </span>
     </div>
   )
 }
