@@ -32,35 +32,36 @@ function Reveal({
 
 /* The circle is divided into four pie-slice segments by two diagonals
  * from the centre — N (top), E (right), S (bottom), W (left). Each
- * segment is clipped to a triangle and filled by its country map
- * (object-cover) so the map covers the entire slice. No text labels —
- * the maps are the segments. */
+ * map is positioned at the centroid of its triangle (~17% in from
+ * the outer edge) at a size that fits inside the slice so the FULL
+ * country map stays visible (object-contain). No text labels — the
+ * maps are the segments. */
 const SEGMENTS = [
   {
     code: 'GB',
     name: 'United Kingdom',
     /** Pie-slice triangle: centre → top-left corner → top-right corner */
     clip: 'polygon(50% 50%, 0% 0%, 100% 0%)',
-    /** Bounding box of the slice — the country map fills this with object-cover. */
-    mapStyle: { top: 0, left: 0, width: '100%', height: '50%' },
+    /** Map placement inside the slice (centroid-anchored). */
+    mapStyle: { top: '16%', left: '50%', transform: 'translate(-50%, -50%)', width: '32%', height: '30%' },
   },
   {
     code: 'OM',
     name: 'Sultanate of Oman',
     clip: 'polygon(50% 50%, 100% 0%, 100% 100%)',
-    mapStyle: { top: 0, right: 0, width: '50%', height: '100%' },
+    mapStyle: { top: '50%', left: '84%', transform: 'translate(-50%, -50%)', width: '30%', height: '32%' },
   },
   {
     code: 'BD',
     name: 'Bangladesh',
     clip: 'polygon(50% 50%, 100% 100%, 0% 100%)',
-    mapStyle: { bottom: 0, left: 0, width: '100%', height: '50%' },
+    mapStyle: { top: '84%', left: '50%', transform: 'translate(-50%, -50%)', width: '24%', height: '30%' },
   },
   {
     code: 'US',
     name: 'United States of America',
     clip: 'polygon(50% 50%, 0% 100%, 0% 0%)',
-    mapStyle: { top: 0, left: 0, width: '50%', height: '100%' },
+    mapStyle: { top: '50%', left: '16%', transform: 'translate(-50%, -50%)', width: '32%', height: '30%' },
   },
 ]
 
@@ -137,14 +138,16 @@ export default function Global() {
                               ${isOther ? 'opacity-30' : 'opacity-100'}`}
                   style={{ clipPath: s.clip, WebkitClipPath: s.clip }}
                 >
-                  {/* Country map fills the slice's bounding box and gets
-                   *  cropped to the triangle by the parent's clip-path. */}
+                  {/* Country map — full silhouette / regional map kept
+                   *  visible via object-contain, centred on each
+                   *  triangle's centroid. */}
                   <img
                     src={mapUrl}
                     alt=""
                     aria-hidden="true"
-                    className={`absolute object-cover transition-all duration-500
-                                ${isActive ? 'opacity-100' : 'opacity-60'}`}
+                    className={`absolute object-contain transition-all duration-500
+                                ${isActive ? 'opacity-100 scale-110' : 'opacity-70'}
+                                ${isBD ? 'rounded-md' : ''}`}
                     style={{
                       ...s.mapStyle,
                       filter: isBD
