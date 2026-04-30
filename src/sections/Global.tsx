@@ -32,46 +32,35 @@ function Reveal({
 
 /* The circle is divided into four pie-slice segments by two diagonals
  * from the centre — N (top), E (right), S (bottom), W (left). Each
- * segment carries one country map blended into its quadrant. */
+ * segment is clipped to a triangle and filled by its country map
+ * (object-cover) so the map covers the entire slice. No text labels —
+ * the maps are the segments. */
 const SEGMENTS = [
   {
     code: 'GB',
-    flag: '🇬🇧',
     name: 'United Kingdom',
-    role: 'European Operations',
     /** Pie-slice triangle: centre → top-left corner → top-right corner */
     clip: 'polygon(50% 50%, 0% 0%, 100% 0%)',
-    /** Where the country map sits inside its slice. */
-    mapStyle: { top: '14%', left: '50%', transform: 'translateX(-50%)', width: '22%' },
-    /** Where the flag + name label sits. */
-    labelPos: 'top-[7%] left-1/2 -translate-x-1/2',
+    /** Bounding box of the slice — the country map fills this with object-cover. */
+    mapStyle: { top: 0, left: 0, width: '100%', height: '50%' },
   },
   {
     code: 'OM',
-    flag: '🇴🇲',
     name: 'Sultanate of Oman',
-    role: 'Headquarters',
     clip: 'polygon(50% 50%, 100% 0%, 100% 100%)',
-    mapStyle: { top: '50%', left: '85%', transform: 'translate(-100%, -50%)', width: '18%' },
-    labelPos: 'top-1/2 right-[3%] -translate-y-1/2',
+    mapStyle: { top: 0, right: 0, width: '50%', height: '100%' },
   },
   {
     code: 'BD',
-    flag: '🇧🇩',
     name: 'Bangladesh',
-    role: 'South Asia Operations',
     clip: 'polygon(50% 50%, 100% 100%, 0% 100%)',
-    mapStyle: { top: '85%', left: '50%', transform: 'translate(-50%, -100%)', width: '20%' },
-    labelPos: 'bottom-[7%] left-1/2 -translate-x-1/2',
+    mapStyle: { bottom: 0, left: 0, width: '100%', height: '50%' },
   },
   {
     code: 'US',
-    flag: '🇺🇸',
     name: 'United States of America',
-    role: 'North America Operations',
     clip: 'polygon(50% 50%, 0% 100%, 0% 0%)',
-    mapStyle: { top: '50%', left: '15%', transform: 'translate(0, -50%)', width: '24%' },
-    labelPos: 'top-1/2 left-[3%] -translate-y-1/2',
+    mapStyle: { top: 0, left: 0, width: '50%', height: '100%' },
   },
 ]
 
@@ -127,8 +116,8 @@ export default function Global() {
             <div aria-hidden="true" className="absolute inset-[28%] rounded-full border border-amber-300/20 pointer-events-none" />
 
             {/* Four pie-slice segments — each links to its country page,
-             *  brightens its country map on hover, and dims when another
-             *  segment is active. */}
+             *  brightens on hover, dims when another slice is active. The
+             *  country map fills the slice via object-cover (no labels). */}
             {SEGMENTS.map((s) => {
               const isActive = activeCode === s.code
               const isOther = activeCode !== null && !isActive
@@ -136,7 +125,6 @@ export default function Global() {
               const mapUrl = isBD
                 ? `${MAP_BASE}bd-regional.jpg`
                 : `${MAP_BASE}${s.code.toLowerCase()}.svg`
-              const isHQ = s.code === 'OM'
               return (
                 <Link
                   key={s.code}
@@ -144,66 +132,29 @@ export default function Global() {
                   aria-label={`Explore ${s.name}`}
                   onMouseEnter={() => setActiveCode(s.code)}
                   onMouseLeave={() => setActiveCode(null)}
-                  className={`group absolute inset-0 z-10 transition-all duration-500
-                              ${isActive ? 'z-20 scale-[1.02]' : ''}
+                  className={`absolute inset-0 z-10 transition-all duration-500
+                              ${isActive ? 'z-20 scale-[1.03]' : ''}
                               ${isOther ? 'opacity-30' : 'opacity-100'}`}
                   style={{ clipPath: s.clip, WebkitClipPath: s.clip }}
                 >
-                  {/* Slice tint — brightens when active. The radial origin
-                   *  matches the slice's outer-edge bias so the highlight
-                   *  feels rooted in that quadrant, not at the centre. */}
-                  <div
-                    aria-hidden="true"
-                    className={`absolute inset-0 transition-opacity duration-500
-                                ${isActive ? 'opacity-100' : 'opacity-50'}`}
-                    style={{
-                      background:
-                        'radial-gradient(circle at center, rgba(252,211,77,0.14) 0%, rgba(96,165,250,0.06) 35%, transparent 65%)',
-                    }}
-                  />
-
-                  {/* Country map — softly blended via opacity + drop-shadow
-                   *  glow. BD uses the colourful regional map; the other
-                   *  three use white silhouettes. */}
+                  {/* Country map fills the slice's bounding box and gets
+                   *  cropped to the triangle by the parent's clip-path. */}
                   <img
                     src={mapUrl}
                     alt=""
                     aria-hidden="true"
-                    className={`absolute object-contain transition-all duration-500
-                                ${isActive ? 'opacity-95 scale-110' : 'opacity-45'}
-                                ${isBD ? 'rounded-lg' : ''}`}
+                    className={`absolute object-cover transition-all duration-500
+                                ${isActive ? 'opacity-100' : 'opacity-60'}`}
                     style={{
                       ...s.mapStyle,
                       filter: isBD
-                        ? 'drop-shadow(0 0 16px rgba(252,211,77,0.45))'
-                        : 'drop-shadow(0 0 18px rgba(255,255,255,0.4)) drop-shadow(0 0 8px rgba(252,211,77,0.45))',
+                        ? 'drop-shadow(0 0 16px rgba(252,211,77,0.4))'
+                        : 'drop-shadow(0 0 14px rgba(255,255,255,0.35)) drop-shadow(0 0 6px rgba(252,211,77,0.4))',
                     }}
                     onError={(e) =>
                       ((e.currentTarget as HTMLImageElement).style.display = 'none')
                     }
                   />
-
-                  {/* Flag + name + role label */}
-                  <div className={`absolute ${s.labelPos} text-center
-                                   transition-all duration-500
-                                   ${isActive ? 'translate-y-0' : 'translate-y-0.5 opacity-90'}`}>
-                    <div className="flex items-center justify-center gap-1.5">
-                      <span className="text-lg leading-none drop-shadow-md">{s.flag}</span>
-                      <span className="text-xs md:text-sm font-semibold text-white whitespace-nowrap">
-                        {s.name}
-                      </span>
-                      {isHQ && (
-                        <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded
-                                         bg-amber-300/15 text-amber-200 border border-amber-300/40">
-                          HQ
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.2em]
-                                  text-amber-200/75 mt-1">
-                      {s.role}
-                    </p>
-                  </div>
                 </Link>
               )
             })}
