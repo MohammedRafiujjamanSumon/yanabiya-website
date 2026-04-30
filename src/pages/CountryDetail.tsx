@@ -548,10 +548,6 @@ function BusinessActivities({
             <h2 className="font-serif text-3xl md:text-4xl text-white">
               {activities.length} business activities under our licence
             </h2>
-            <p className="mt-3 text-sm text-slate-400 max-w-xl mx-auto">
-              Real-world scenarios our entity is authorised to operate
-              under, each backed by its trade-classification code.
-            </p>
           </div>
         </Reveal>
 
