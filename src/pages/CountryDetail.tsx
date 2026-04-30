@@ -382,11 +382,9 @@ function Hero({
           </div>
         </Reveal>
         <Reveal delay={120}>
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.0] tracking-tight text-white">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-white">
             {country.name.replace('Sultanate of ', '').replace('United States of America', 'USA')}
-            <span className="block text-2xl md:text-3xl mt-3 font-sans font-light text-brand-accent/85 tracking-wider">
-              Operations
-            </span>
+            <span className="text-brand-accent"> Operations</span>
           </h1>
         </Reveal>
         <Reveal delay={260}>
