@@ -44,13 +44,13 @@ function Reveal({
 export default function Stats() {
   return (
     <Section id="stats" className="bg-[#fbfdfb]">
-      <div className="container-x py-4 md:py-6">
+      <div className="container-x py-3 md:py-4">
         <div
-          className="relative max-w-5xl mx-auto rounded-2xl overflow-hidden
+          className="relative max-w-3xl mx-auto rounded-2xl overflow-hidden
                      bg-gradient-to-br from-[#0c2c1d] via-[#0e3a26] to-[#06231a]
                      ring-1 ring-emerald-400/20
-                     shadow-[0_18px_44px_-18px_rgba(6,26,16,0.55)]
-                     px-5 py-7 md:px-10 md:py-9"
+                     shadow-[0_14px_32px_-16px_rgba(6,26,16,0.50)]
+                     px-4 py-5 md:px-7 md:py-6"
         >
           {/* Soft brand-accent halos so the green panel reads as lit. */}
           <div aria-hidden className="absolute inset-0 pointer-events-none">
@@ -74,23 +74,23 @@ export default function Stats() {
                                  group-hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(12px)_scale(1.04)]"
                     >
                       <div
-                        className="w-11 h-11 rounded-full bg-white/10 text-amber-200
-                                   grid place-items-center mb-2
-                                   shadow-[0_6px_14px_-6px_rgba(0,0,0,0.45)]
+                        className="w-9 h-9 rounded-full bg-white/10 text-amber-200
+                                   grid place-items-center mb-1.5
+                                   shadow-[0_4px_10px_-4px_rgba(0,0,0,0.45)]
                                    ring-1 ring-amber-300/40 backdrop-blur-sm
                                    [transform:translateZ(20px)]"
                       >
-                        <Icon size={18} strokeWidth={2} />
+                        <Icon size={15} strokeWidth={2} />
                       </div>
                       <div
-                        className="font-serif text-3xl md:text-4xl text-white leading-none
+                        className="font-serif text-2xl md:text-3xl text-white leading-none
                                    drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)]
                                    [transform:translateZ(14px)]"
                       >
                         {s.value}
                       </div>
                       <div
-                        className="mt-1.5 text-[11px] md:text-xs uppercase tracking-[0.22em]
+                        className="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.22em]
                                    font-semibold text-amber-200/95
                                    [transform:translateZ(6px)]"
                       >

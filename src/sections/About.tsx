@@ -51,7 +51,11 @@ const FEATURES: FeaturePill[] = [
  * so navbar links resolve correctly. */
 export default function About() {
   return (
-    <Section id="about" className="bg-[#fbfdfb]">
+    <Section
+      id="about"
+      className="relative overflow-hidden
+                 bg-gradient-to-br from-[#f4efe6] via-[#fbf7ed] to-[#ecf3ec]"
+    >
       <div className="container-x py-4 md:py-6">
 
         {/* Section-level eyebrow — sits OUTSIDE the dark panel so the
