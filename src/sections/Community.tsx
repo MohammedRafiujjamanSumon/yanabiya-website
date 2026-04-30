@@ -212,6 +212,27 @@ export default function Community() {
             ))}
           </div>
 
+          {/* U-bracket — connects the outermost circles (Blog + Testimonials)
+           *  at the bottom, closing the hanger composition. The path
+           *  starts under the leftmost (Blog) column, sweeps down and
+           *  across, and rises back up under the rightmost (Testimonials)
+           *  column. Same rainbow gradient as the top arc. */}
+          <svg
+            viewBox="0 0 1000 120"
+            preserveAspectRatio="xMidYMid meet"
+            aria-hidden="true"
+            className="hidden md:block w-full h-auto -mt-2"
+          >
+            <path
+              d="M 100 0 L 100 60 Q 100 100, 160 100 L 840 100 Q 900 100, 900 60 L 900 0"
+              stroke="url(#comm-rainbow-home)"
+              strokeWidth="14"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+          </svg>
+
           {/* WHAT THE COMMUNITY DELIVERS — list */}
           <Reveal delay={350}>
             <div className="mt-16 md:mt-24 max-w-4xl mx-auto">
