@@ -113,65 +113,64 @@ export default function Community() {
           </Reveal>
         </div>
 
-        {/* RAINBOW U-ARC with logo in the middle + 5 COLOUR-CODED CIRCLE NODES */}
+        {/* HANGER COMPOSITION:
+         *    [ logo ]            ← hook anchor at top
+         *       |                ← short vertical "string"
+         *    ╱ ‾‾‾‾‾‾ ╲          ← rainbow arc (the hanger bar)
+         *    │   │  │  │  │     ← drop connectors
+         *    ●   ●  ●  ●  ●     ← coloured circle nodes
+         */}
         <div className="relative max-w-5xl mx-auto">
+
+          {/* Logo on top — sits above the arc as the hanger's anchor */}
+          <div className="flex justify-center">
+            <img
+              src={assets.logo}
+              alt="Yanabiya Group"
+              className="h-14 md:h-16 lg:h-20 w-auto object-contain drop-shadow-sm"
+            />
+          </div>
+
+          {/* Hanger "string" — short vertical line connecting logo to arc.
+           *  Hidden on mobile where the SVG arc itself is hidden. */}
+          <div
+            aria-hidden="true"
+            className="hidden md:block mx-auto mt-1 w-[3px] h-6 lg:h-8 bg-brand-accentDark rounded-full"
+          />
 
           {/* SVG arc + drop connectors. Hidden on small screens where
            *  the geometry doesn't read; circles + descriptions still
            *  stack in a 2-col grid. */}
-          <div className="relative hidden md:block">
-            <svg
-              viewBox="0 0 1000 240"
-              preserveAspectRatio="xMidYMid meet"
-              aria-hidden="true"
-              className="w-full h-auto -mb-16 lg:-mb-20"
-            >
-              <defs>
-                <linearGradient id="comm-rainbow-home" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%"   stopColor="#059669" />
-                  <stop offset="25%"  stopColor="#06b6d4" />
-                  <stop offset="50%"  stopColor="#f59e0b" />
-                  <stop offset="75%"  stopColor="#f43f5e" />
-                  <stop offset="100%" stopColor="#0f766e" />
-                </linearGradient>
-              </defs>
-              {/* Curved arc along the top */}
-              <path
-                d="M 100 220 C 260 -40, 740 -40, 900 220"
-                stroke="url(#comm-rainbow-home)"
-                strokeWidth="14"
-                strokeLinecap="round"
-                fill="none"
-              />
-              {/* Drop connectors — same colour as the matching arc stop */}
-              <line x1="100" y1="220" x2="100" y2="240" stroke="#059669" strokeWidth="14" strokeLinecap="round" />
-              <line x1="300" y1="155" x2="300" y2="240" stroke="#06b6d4" strokeWidth="14" strokeLinecap="round" />
-              <line x1="500" y1="100" x2="500" y2="240" stroke="#f59e0b" strokeWidth="14" strokeLinecap="round" />
-              <line x1="700" y1="155" x2="700" y2="240" stroke="#f43f5e" strokeWidth="14" strokeLinecap="round" />
-              <line x1="900" y1="220" x2="900" y2="240" stroke="#0f766e" strokeWidth="14" strokeLinecap="round" />
-            </svg>
-
-            {/* Yanabiya logo nested inside the U-arc — sits in the empty
-             *  space between the two ends of the rainbow curve. */}
-            <div className="absolute inset-x-0 top-[18%] flex justify-center pointer-events-none">
-              <img
-                src={assets.logo}
-                alt="Yanabiya Group"
-                className="h-16 lg:h-20 w-auto object-contain drop-shadow-md"
-              />
-            </div>
-          </div>
-
-          {/* On mobile we don't render the arc, but still show the logo
-           *  at the top of the circle stack so the section keeps its
-           *  brand anchor. */}
-          <div className="md:hidden flex justify-center mb-6">
-            <img
-              src={assets.logo}
-              alt="Yanabiya Group"
-              className="h-14 w-auto object-contain drop-shadow-sm"
+          <svg
+            viewBox="0 0 1000 240"
+            preserveAspectRatio="xMidYMid meet"
+            aria-hidden="true"
+            className="hidden md:block w-full h-auto -mb-16 lg:-mb-20"
+          >
+            <defs>
+              <linearGradient id="comm-rainbow-home" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stopColor="#059669" />
+                <stop offset="25%"  stopColor="#06b6d4" />
+                <stop offset="50%"  stopColor="#f59e0b" />
+                <stop offset="75%"  stopColor="#f43f5e" />
+                <stop offset="100%" stopColor="#0f766e" />
+              </linearGradient>
+            </defs>
+            {/* Curved arc — apex meets the hanger string at top-centre */}
+            <path
+              d="M 100 220 C 260 -40, 740 -40, 900 220"
+              stroke="url(#comm-rainbow-home)"
+              strokeWidth="14"
+              strokeLinecap="round"
+              fill="none"
             />
-          </div>
+            {/* Drop connectors — same colour as the matching arc stop */}
+            <line x1="100" y1="220" x2="100" y2="240" stroke="#059669" strokeWidth="14" strokeLinecap="round" />
+            <line x1="300" y1="155" x2="300" y2="240" stroke="#06b6d4" strokeWidth="14" strokeLinecap="round" />
+            <line x1="500" y1="100" x2="500" y2="240" stroke="#f59e0b" strokeWidth="14" strokeLinecap="round" />
+            <line x1="700" y1="155" x2="700" y2="240" stroke="#f43f5e" strokeWidth="14" strokeLinecap="round" />
+            <line x1="900" y1="220" x2="900" y2="240" stroke="#0f766e" strokeWidth="14" strokeLinecap="round" />
+          </svg>
 
           {/* Four hub circles with a description below each — mirrors the
            *  "Our Range of … Services" infographic style: alternating
