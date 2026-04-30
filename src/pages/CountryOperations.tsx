@@ -287,11 +287,11 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
 
       {/* SECTION 6 — Business Domains */}
       <SectionFrame eyebrow="Business Domains" title="The verticals we operate in.">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-5xl mx-auto justify-items-center [perspective:1400px]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 md:gap-3 max-w-4xl mx-auto justify-items-center [perspective:1400px]">
           {ops.categories.map((c, i) => (
             <Reveal key={c.label} delay={i * 80}>
               <div
-                className="group relative w-full max-w-[180px] rounded-xl overflow-hidden
+                className="group relative w-full max-w-[140px] rounded-lg overflow-hidden
                            border border-white/15 bg-slate-900
                            [transform-style:preserve-3d]
                            transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
@@ -497,16 +497,16 @@ function Card3D({
   return (
     <Reveal delay={delay}>
       <div
-        className={`group relative h-full overflow-hidden rounded-xl
+        className={`group relative h-full overflow-hidden rounded-lg
                     bg-white/5 backdrop-blur-md
                     border ${accent ? 'border-amber-300/40' : 'border-white/15'}
                     [transform-style:preserve-3d]
                     transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                    hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(12px)_scale(1.02)]
+                    hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)]
                     hover:border-amber-300/60`}
       >
         {image && (
-          <div className="relative aspect-[16/9] overflow-hidden bg-slate-900">
+          <div className="relative aspect-[3/2] overflow-hidden bg-slate-900">
             <img
               src={image}
               alt=""
@@ -517,31 +517,31 @@ function Card3D({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
             <div
-              className={`absolute top-2 left-2 w-8 h-8 rounded-md grid place-items-center
+              className={`absolute top-1.5 left-1.5 w-6 h-6 rounded grid place-items-center
                           ${accent ? 'bg-amber-300/95 text-[#0a1410]' : 'bg-white/95 text-[#0a1410]'}
-                          shadow-md [transform:translateZ(20px)]`}
+                          shadow-sm [transform:translateZ(20px)]`}
             >
-              <Icon size={14} strokeWidth={2.2} />
+              <Icon size={11} strokeWidth={2.4} />
             </div>
           </div>
         )}
 
-        <div className="p-3.5 md:p-4">
+        <div className="p-2.5 md:p-3">
           {!image && (
             <div
-              className={`w-9 h-9 rounded-lg grid place-items-center mb-3
+              className={`w-7 h-7 rounded grid place-items-center mb-2
                           ${accent ? 'bg-amber-300/20 text-amber-200' : 'bg-white/10 text-white'}
                           ring-1 ${accent ? 'ring-amber-300/40' : 'ring-white/15'}
-                          shadow-md [transform:translateZ(18px)]`}
+                          shadow-sm [transform:translateZ(18px)]`}
             >
-              <Icon size={16} strokeWidth={2} />
+              <Icon size={13} strokeWidth={2} />
             </div>
           )}
-          <div className="font-serif text-sm md:text-base text-white leading-tight
+          <div className="font-serif text-[13px] md:text-sm text-white leading-tight
                           [transform:translateZ(10px)]">
             {title}
           </div>
-          <p className="mt-1 text-[12px] text-white/75 leading-snug
+          <p className="mt-0.5 text-[11px] text-white/70 leading-snug
                         [transform:translateZ(4px)]">
             {body}
           </p>
@@ -554,18 +554,18 @@ function Card3D({
 function InfoRow({ label, value, icon: Icon }: { label: string; value: string; icon: LucideIcon }) {
   return (
     <Reveal>
-      <div className="flex items-start gap-2.5 rounded-xl bg-white/5 backdrop-blur-md
-                      border border-white/10 p-3 md:p-3.5
+      <div className="flex items-start gap-2 rounded-lg bg-white/5 backdrop-blur-md
+                      border border-white/10 p-2.5 md:p-3
                       transition-colors duration-300 hover:border-amber-300/40">
-        <div className="shrink-0 w-8 h-8 rounded-md bg-amber-300/15 text-amber-200
+        <div className="shrink-0 w-7 h-7 rounded bg-amber-300/15 text-amber-200
                         ring-1 ring-amber-300/30 grid place-items-center">
-          <Icon size={14} strokeWidth={2} />
+          <Icon size={12} strokeWidth={2} />
         </div>
         <div className="min-w-0 flex-1">
           <div className="text-[9px] uppercase tracking-[0.22em] font-semibold text-amber-300/90 mb-0.5">
             {label}
           </div>
-          <div className="text-[13px] text-white/90 leading-snug break-words">
+          <div className="text-[12px] text-white/90 leading-snug break-words">
             {value}
           </div>
         </div>
@@ -585,15 +585,15 @@ function ServiceCard({
     <Reveal delay={index * 80}>
       <Link
         to={`/business/${service.slug}`}
-        className="group relative block h-full overflow-hidden rounded-2xl
+        className="group relative block h-full overflow-hidden rounded-lg
                    bg-white/5 backdrop-blur-md border border-white/15
                    [transform-style:preserve-3d]
                    transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                   hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(14px)_scale(1.03)]
+                   hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(12px)_scale(1.02)]
                    hover:border-amber-300/60"
       >
         {/* Real photo header — top of the card */}
-        <div className="relative aspect-[16/9] overflow-hidden bg-slate-900">
+        <div className="relative aspect-[3/2] overflow-hidden bg-slate-900">
           <img
             src={service.image}
             alt=""
@@ -604,23 +604,23 @@ function ServiceCard({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
           {/* Floating icon chip on top of the image */}
-          <div className="absolute top-2.5 left-2.5 w-8 h-8 rounded-lg
+          <div className="absolute top-1.5 left-1.5 w-6 h-6 rounded
                           bg-amber-300/95 text-[#0a1410]
-                          grid place-items-center shadow-md
+                          grid place-items-center shadow-sm
                           [transform:translateZ(22px)]">
-            <service.icon size={15} strokeWidth={2.2} />
+            <service.icon size={11} strokeWidth={2.4} />
           </div>
         </div>
 
         {/* Body */}
-        <div className="p-3.5 md:p-4">
-          <div className="font-serif text-sm md:text-base text-white leading-tight [transform:translateZ(12px)]">
+        <div className="p-2.5 md:p-3">
+          <div className="font-serif text-[13px] md:text-sm text-white leading-tight [transform:translateZ(12px)]">
             {service.label}
           </div>
-          <p className="mt-1 text-[12px] text-white/75 leading-snug [transform:translateZ(4px)]">
+          <p className="mt-0.5 text-[11px] text-white/70 leading-snug [transform:translateZ(4px)]">
             {service.desc}
           </p>
-          <div className="mt-2.5 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.22em]
+          <div className="mt-2 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.22em]
                           text-amber-300 group-hover:gap-2 transition-all">
             Learn more <ArrowRight size={10} />
           </div>
