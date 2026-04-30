@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import BusinessDetail from './pages/BusinessDetail'
 import SubServiceDetail from './pages/SubServiceDetail'
 import CountryDetail from './pages/CountryDetail'
+import CountryOperations from './pages/CountryOperations'
 import Management from './pages/Management'
 import Professionals from './pages/Professionals'
 import Blog from './pages/Blog'
@@ -41,7 +42,7 @@ export default function App() {
           {/* Clean country aliases — same page, prettier URLs. */}
           <Route path="/oman"       element={<CountryDetail codeOverride="OM" />} />
           <Route path="/uk"         element={<CountryDetail codeOverride="GB" />} />
-          <Route path="/bangladesh" element={<CountryDetail codeOverride="BD" />} />
+          <Route path="/bangladesh" element={<CountryOperations codeOverride="BD" />} />
           <Route path="/usa"        element={<CountryDetail codeOverride="US" />} />
           <Route path="/contact" element={<ContactGlobal />} />
           <Route path="/leadership" element={<LeadershipOverview />} />
