@@ -113,9 +113,10 @@ export default function Global() {
               })}
             </svg>
 
-            {/* CENTRE — Yanabiya logo medallion, fixed (no spin). */}
+            {/* CENTRE — Yanabiya logo medallion, fixed (no spin). Sized
+             *  down from 80/96 to 56/64 so the whole orbit reads clean. */}
             <div className="absolute inset-0 grid place-items-center">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white shadow-xl
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white shadow-xl
                               ring-2 ring-brand-accentDark/60 overflow-hidden
                               grid place-items-center">
                 <img
