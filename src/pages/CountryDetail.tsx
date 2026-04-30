@@ -547,7 +547,7 @@ function CorporateHierarchy({
                                  text-[11px] font-black tracking-wider">
                   {String(partners.length).padStart(2, '0')}
                 </span>
-                <span className="text-[10px] font-bold tracking-[0.32em] uppercase text-brand-accent/90">
+                <span className="text-[10px] font-bold tracking-[0.32em] uppercase text-brand-accentDark">
                   {entitiesLabel}
                 </span>
               </div>
@@ -626,7 +626,7 @@ function BusinessActivities({
                                   px-1.5 py-0.5 rounded-full
                                   bg-white/70 backdrop-blur-sm
                                   ring-1 ring-brand-accent/30
-                                  font-mono text-[9px] text-brand-accent/95">
+                                  font-mono text-[9px] text-brand-accentDark">
                     {a.code}
                   </div>
                   <span className="absolute bottom-2 left-2 text-2xl leading-none drop-shadow-md">
@@ -694,7 +694,7 @@ function GlobalConnection({
               Global Connection
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">One unified network</h2>
-            <p className="mt-3 text-sm text-slate-500 max-w-xl mx-auto">
+            <p className="mt-3 text-sm text-slate-700 max-w-xl mx-auto">
               Linked to every other Yanabiya hub by daily collaboration, shared
               clients, and a single delivery playbook.
             </p>
@@ -803,7 +803,7 @@ function GlobalConnection({
                         backgroundPosition: 'center',
                       }}
                     />
-                    <span className="text-[10px] font-semibold text-slate-600
+                    <span className="text-[10px] font-semibold text-slate-800
                                      group-hover:text-brand-accent transition-colors">
                       {shortName}
                     </span>
@@ -847,7 +847,7 @@ function Achievements({ achievements }: { achievements: Achievement[] }) {
                 <div className="font-serif text-xl text-brand-deep leading-tight">
                   {a.title}
                 </div>
-                <p className="mt-2 text-sm text-slate-500 leading-snug">
+                <p className="mt-2 text-sm text-slate-700 leading-snug">
                   {a.body}
                 </p>
               </div>
@@ -919,7 +919,7 @@ function ContactSection({
                   </a>
                 ))}
                 {contact?.hours && (
-                  <div className="flex items-center gap-2.5 text-slate-600">
+                  <div className="flex items-center gap-2.5 text-slate-800">
                     <Clock size={14} className="text-brand-accent" />
                     {contact.hours}
                   </div>
@@ -955,24 +955,24 @@ function ContactSection({
                 Send a message
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accent/85 mb-1.5">Name</label>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accentDark mb-1.5">Name</label>
                 <input
                   required type="text" placeholder="Full name"
-                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-700 focus:outline-none focus:border-brand-accent/65"
                 />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accent/85 mb-1.5">Email</label>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accentDark mb-1.5">Email</label>
                 <input
                   required type="email" placeholder="you@company.com"
-                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-700 focus:outline-none focus:border-brand-accent/65"
                 />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accent/85 mb-1.5">Message</label>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accentDark mb-1.5">Message</label>
                 <textarea
                   required rows={5} placeholder="How can we help?"
-                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-500 focus:outline-none focus:border-brand-accent/65 resize-none"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-700 focus:outline-none focus:border-brand-accent/65 resize-none"
                 />
               </div>
               <button
