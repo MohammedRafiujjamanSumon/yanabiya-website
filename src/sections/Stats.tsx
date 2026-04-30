@@ -44,21 +44,21 @@ function Reveal({
 export default function Stats() {
   return (
     <Section id="stats" className="bg-[#fbfdfb]">
-      <div className="container-x py-3 md:py-4">
+      <div className="container-x py-2 md:py-3">
         <div
-          className="relative max-w-3xl mx-auto rounded-2xl overflow-hidden
-                     bg-gradient-to-br from-[#0c2c1d] via-[#0e3a26] to-[#06231a]
-                     ring-1 ring-emerald-400/20
-                     shadow-[0_14px_32px_-16px_rgba(6,26,16,0.50)]
-                     px-4 py-5 md:px-7 md:py-6"
+          className="relative max-w-2xl mx-auto rounded-2xl overflow-hidden
+                     bg-gradient-to-br from-[#fdf6e7] via-[#fbf5e3] to-[#f7ecd0]
+                     ring-1 ring-amber-200/50
+                     shadow-[0_12px_28px_-14px_rgba(176,128,38,0.22)]
+                     px-3 py-4 md:px-5 md:py-5"
         >
-          {/* Soft brand-accent halos so the green panel reads as lit. */}
+          {/* Warm champagne halos so the strip reads as lit, not flat. */}
           <div aria-hidden className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-20 -left-20 w-[280px] h-[280px] rounded-full bg-emerald-300/15 blur-[100px]" />
-            <div className="absolute -bottom-20 -right-20 w-[280px] h-[280px] rounded-full bg-amber-300/10 blur-[100px]" />
+            <div className="absolute -top-20 -left-20 w-[280px] h-[280px] rounded-full bg-amber-200/35 blur-[100px]" />
+            <div className="absolute -bottom-20 -right-20 w-[280px] h-[280px] rounded-full bg-emerald-200/25 blur-[100px]" />
           </div>
 
-          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 [perspective:1400px]">
+          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 [perspective:1400px]">
             {company.stats.map((s, i) => {
               const Icon = STAT_ICONS[s.label] ?? Globe2
               return (
@@ -68,30 +68,29 @@ export default function Stats() {
                     style={{ animationDelay: `${i * 0.9}s` }}
                   >
                     <div
-                      className="relative h-full flex flex-col items-center text-center px-2 py-3
+                      className="relative h-full flex flex-col items-center text-center px-1.5 py-2
                                  [transform-style:preserve-3d]
                                  transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                                 group-hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(12px)_scale(1.04)]"
+                                 group-hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.03)]"
                     >
                       <div
-                        className="w-9 h-9 rounded-full bg-white/10 text-amber-200
-                                   grid place-items-center mb-1.5
-                                   shadow-[0_4px_10px_-4px_rgba(0,0,0,0.45)]
-                                   ring-1 ring-amber-300/40 backdrop-blur-sm
-                                   [transform:translateZ(20px)]"
+                        className="w-8 h-8 rounded-full bg-amber-100 text-amber-800
+                                   grid place-items-center mb-1
+                                   shadow-[0_3px_8px_-3px_rgba(176,128,38,0.30)]
+                                   ring-1 ring-amber-300/60
+                                   [transform:translateZ(18px)]"
                       >
-                        <Icon size={15} strokeWidth={2} />
+                        <Icon size={13} strokeWidth={2} />
                       </div>
                       <div
-                        className="font-serif text-2xl md:text-3xl text-white leading-none
-                                   drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)]
-                                   [transform:translateZ(14px)]"
+                        className="font-serif text-xl md:text-2xl text-brand-deep leading-none
+                                   [transform:translateZ(12px)]"
                       >
                         {s.value}
                       </div>
                       <div
-                        className="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.22em]
-                                   font-semibold text-amber-200/95
+                        className="mt-0.5 text-[9px] md:text-[10px] uppercase tracking-[0.22em]
+                                   font-semibold text-amber-800/90
                                    [transform:translateZ(6px)]"
                       >
                         {s.label}
