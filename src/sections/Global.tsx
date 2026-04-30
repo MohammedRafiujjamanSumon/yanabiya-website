@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight } from 'lucide-react'
 import { assets } from '../data/assets'
@@ -46,6 +46,7 @@ const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
 
 export default function Global() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [presenceOpen, setPresenceOpen] = useState(false)
   const [flippedCode, setFlippedCode] = useState<string | null>(null)
 
@@ -149,14 +150,23 @@ export default function Global() {
               return (
                 <div
                   key={d.code}
-                  role="group"
-                  aria-label={`${d.label} details`}
+                  role="link"
+                  tabIndex={0}
+                  aria-label={`Explore ${d.label}`}
                   title={d.label}
                   onMouseEnter={() => setFlippedCode(d.code)}
                   onMouseLeave={() => setFlippedCode(null)}
                   onTouchStart={() => setFlippedCode(d.code)}
+                  onClick={() => navigate(`/country/${d.code.toLowerCase()}`)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      navigate(`/country/${d.code.toLowerCase()}`)
+                    }
+                  }}
                   className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20
-                             [perspective:1200px] cursor-pointer"
+                             [perspective:1200px] cursor-pointer
+                             focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded-full"
                   style={{ top: d.top, left: d.left }}
                 >
                   <div
@@ -212,6 +222,7 @@ export default function Global() {
                         </div>
                         <Link
                           to={`/country/${d.code.toLowerCase()}`}
+                          onClick={(e) => e.stopPropagation()}
                           className="mt-2 inline-flex items-center gap-1 px-2 py-1 rounded-full
                                      bg-white/15 hover:bg-white/25 ring-1 ring-white/40
                                      text-[9px] font-bold uppercase tracking-wider
