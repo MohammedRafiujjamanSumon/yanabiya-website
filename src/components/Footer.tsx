@@ -241,8 +241,7 @@ export default function Footer() {
         <div className="container-x py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/60">
           <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
             <span>
-              © 2021{year > 2021 ? `–${year}` : ''} Yanabiya Group · Sultanate of Oman ·
-              CR No. 1395664 · All rights reserved.
+              © {year} Yanabiya Group · Since 2021 · All rights reserved.
             </span>
           </div>
           <div className="flex items-center gap-5">
