@@ -38,8 +38,8 @@ const BOARD: Person[] = [
 ]
 
 const FOUNDERS: Person[] = [
-  { name: 'Mohammed Rafiujjaman Sumon', role: 'Global CEO',     image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80' },
-  { name: 'Ahmed Al-Yanabi',            role: 'Vice Chairman',  image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80' },
+  { name: 'S M Shamim Ahmed',     role: 'Global CEO',    image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80' },
+  { name: 'Mohammad Abu Jaheed',  role: 'Vice Chairman', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80' },
 ]
 
 const EXECS: Person[] = [
@@ -166,9 +166,21 @@ export default function LeadershipOverview() {
           <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 justify-items-center">
             {FOUNDERS.map((p, i) => (
               <Reveal key={p.name} delay={i * 120}>
-                <PersonTile p={p} size="lg" />
+                <Link to="/leadership/management" className="block hover:opacity-95 transition-opacity">
+                  <PersonTile p={p} size="lg" />
+                </Link>
               </Reveal>
             ))}
+          </div>
+          <div className="text-center mt-6">
+            <Link
+              to="/leadership/management"
+              className="inline-flex items-center gap-2 rounded-full px-5 py-2.5
+                         bg-brand-accent text-brand-deep text-[11px] font-bold uppercase tracking-[0.22em]
+                         hover:gap-3 transition-all duration-300"
+            >
+              Read their messages <ArrowRight size={13} />
+            </Link>
           </div>
         </div>
 

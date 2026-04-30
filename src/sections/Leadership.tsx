@@ -57,7 +57,7 @@ const TIERS: Tier[] = [
     title: 'Global CEO & Vice Chairman',
     blurb: 'The vision-bearers of the group.',
     icon: Star,
-    href: '/leadership',
+    href: '/leadership/management',
     from: '#bae6fd', to: '#0284c7',
     glow: 'rgba(2,132,199,0.35)',
   },
