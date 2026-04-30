@@ -46,7 +46,7 @@ export default function CareersPage() {
     <Section id="careers" className="bg-stone-50">
       <div className="container-x">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <Eyebrow>Our community</Eyebrow>
+          <Eyebrow>Our Community</Eyebrow>
           <H2 className="text-center">Careers</H2>
           <p className="mt-5 text-slate-600 leading-snug">
             Join a global team across Oman, the United Kingdom, Bangladesh and the USA —

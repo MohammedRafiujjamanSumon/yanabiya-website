@@ -106,7 +106,7 @@ export default function Community() {
         <div className="relative">
           <div className="text-center max-w-3xl mx-auto pt-4 md:pt-6 mb-2 md:mb-4">
             <Reveal>
-              <Eyebrow>Our community</Eyebrow>
+              <Eyebrow>Our Community</Eyebrow>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="group relative inline-block mt-3 font-serif

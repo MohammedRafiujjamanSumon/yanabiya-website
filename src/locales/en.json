@@ -26,7 +26,7 @@
     "stats": { "countries": "Countries", "industries": "Industries", "experience": "Experience", "clients": "Clients" }
   },
   "about": {
-    "eyebrow": "About us",
+    "eyebrow": "About Us",
     "title": "A versatile group, headquartered in Muscat, working across four continents.",
     "lead": "Yanabiya Gulf International Business & Trade delivers internet services, software solutions, IT consulting, trade and business automation across the Gulf, Asia, Europe and North America.",
     "missionLabel": "Mission",
@@ -38,7 +38,7 @@
     "valuesTitle": "Our Core Values"
   },
   "businesses": {
-    "eyebrow": "Our service",
+    "eyebrow": "Our Service",
     "title": "Six divisions powering enterprises and trade across continents.",
     "sub": "From enterprise software to international trade — built end-to-end."
   },
@@ -75,7 +75,7 @@
   },
   "network": {
     "eyebrow": "Network",
-    "title": "Trusted network",
+    "title": "Trusted Network",
     "sub": "Connecting Opportunities Worldwide to Build Strong, Scalable Global Businesses.",
     "readMore": "Read More",
     "memberships": "Memberships & Affiliations",
@@ -92,7 +92,7 @@
     "viceChairmanMsg": "Our website introduces our vision, mission, infrastructure, expertise, and future plans. We invite prospective clients and partners to explore our divisions and connect with us."
   },
   "strategy": {
-    "eyebrow": "Strategy & innovation",
+    "eyebrow": "Strategy & Innovation",
     "title": "Where strategy meets execution.",
     "sub": "Our innovation roadmap is built on four pillars that align technology, talent and process with measurable client outcomes.",
     "focus": "Innovation Focus Areas",

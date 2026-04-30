@@ -66,7 +66,7 @@ export default function Partnerships() {
   return (
     <Section id="partnerships" className="bg-stone-50">
       <div className="container-x text-center mx-auto pt-2 md:pt-3 pb-4 md:pb-6 mb-10">
-        <Eyebrow>Trusted network</Eyebrow>
+        <Eyebrow>Trusted Network</Eyebrow>
         <H2 className="text-center">Connecting opportunities worldwide.</H2>
         <p className="mt-4 text-slate-600">
           Building strong, scalable global businesses.
@@ -76,7 +76,7 @@ export default function Partnerships() {
       {/* Valuable Clients */}
       <div id="clients" className="mb-12 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
-          Valuable clients
+          Valuable Clients
         </h3>
         <LogoMarquee items={valuableClients} direction="right" durationSec={75} />
       </div>
@@ -84,7 +84,7 @@ export default function Partnerships() {
       {/* Our Membership */}
       <div id="sponsors" className="mb-12 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
-          Our membership
+          Our Membership
         </h3>
         <LogoMarquee items={memberships} direction="left" durationSec={45} />
       </div>
@@ -92,7 +92,7 @@ export default function Partnerships() {
       {/* Technology Partners */}
       <div id="partners" className="mb-12 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
-          Our partners
+          Our Partners
         </h3>
         <LogoMarquee items={partners} direction="left" durationSec={55} />
       </div>

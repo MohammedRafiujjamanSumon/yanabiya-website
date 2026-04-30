@@ -88,7 +88,7 @@ export default function About() {
           {/* TOP — eyebrow + serif title + subtitle + CTAs (centered) */}
           <div className="w-full max-w-3xl mx-auto text-center order-1">
             <Reveal>
-              <Eyebrow>About us</Eyebrow>
+              <Eyebrow>About Us</Eyebrow>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="group relative inline-block font-serif
