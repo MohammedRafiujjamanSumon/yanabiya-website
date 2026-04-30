@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight, Play } from 'lucide-react'
-import Section from '../components/Section'
+import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { assets } from '../data/assets'
 
@@ -53,6 +53,17 @@ export default function About() {
   return (
     <Section id="about" className="bg-[#fbfdfb]">
       <div className="container-x py-4 md:py-6">
+
+        {/* Section-level eyebrow — sits OUTSIDE the dark panel so the
+         *  "About Us" label is the first thing a visitor sees when the
+         *  navbar link scrolls them to this section. Matches the eyebrow
+         *  style used by every other landing-page section. */}
+        <div className="mb-6 md:mb-8">
+          <Reveal>
+            <Eyebrow>About Us</Eyebrow>
+          </Reveal>
+        </div>
+
         <div
           className="relative rounded-3xl overflow-hidden
                      bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]
@@ -90,10 +101,6 @@ export default function About() {
           <div className="relative grid md:grid-cols-2 gap-8 md:gap-10 items-center">
             <Reveal>
               <div className="max-w-md">
-                <span className="inline-block text-[10px] md:text-[11px] font-semibold uppercase
-                                 tracking-[0.32em] text-amber-300 mb-4">
-                  About Us
-                </span>
                 <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
                                leading-[1.1] tracking-tight text-white">
                   A trusted multinational group,{' '}
