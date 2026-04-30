@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { MapPin, Send, ArrowRight } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
@@ -23,7 +22,6 @@ const PALETTES: Record<string, Palette> = {
 }
 
 export default function Contact() {
-  const { t } = useTranslation()
   const [submitted, setSubmitted] = useState(false)
 
   const offices = useMemo(
@@ -45,11 +43,7 @@ export default function Contact() {
 
         {/* HERO */}
         <div className="text-center max-w-3xl mx-auto fade-up" style={{ animationDelay: '60ms' }}>
-          <Eyebrow>{t('contact.eyebrow', 'Contact')}</Eyebrow>
-          <h2 className="font-serif text-[16px]
-                         leading-snug tracking-tight text-brand-deep">
-            Contact Us
-          </h2>
+          <Eyebrow>Contact Us</Eyebrow>
           <p className="mt-4 text-base md:text-lg text-slate-700 font-medium">
             Let&rsquo;s start the conversation.
           </p>
