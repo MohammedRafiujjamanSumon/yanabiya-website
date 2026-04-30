@@ -62,11 +62,11 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-brand-deep text-white mt-24 pt-2 pb-2">
-      {/* Green-black-green sandwich for the entire footer:
-       *    pt-2  → top green strip   (footer bg shows through)
-       *    inner → ENTIRE black body (watermark + grid + copyright)
-       *    pb-2  → bottom green strip
+    <footer className="bg-brand-deep text-white mt-24 pt-2">
+      {/* Footer pattern:
+       *    pt-2     → top green strip   (footer bg shows through)
+       *    bg-black → main body (links, contact, newsletter, watermark)
+       *    bottom   → green strip carrying the copyright row
        */}
       <div className="relative bg-black overflow-hidden">
 
@@ -243,27 +243,26 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* BOTTOM BAR — copyright + legal. Lives inside the same black
-       *  body, divided from the main grid by a thin white/10 border. */}
-      <div className="relative border-t border-white/10">
-        <div className="container-x py-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/70">
-          <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
-            <span>
-              © {year} Yanabiya Group · Since 2021 · All rights reserved.
-            </span>
-          </div>
-          <div className="flex items-center gap-5">
-            <Link to="/about-us" className={linkClass}>Group Profile</Link>
-            <a
-              href={`mailto:${contact.emails[0]}`}
-              className={linkClass}
-            >
-              {contact.emails[0]}
-            </a>
-          </div>
-        </div>
       </div>
 
+      {/* BOTTOM GREEN STRIP — copyright + legal. Sits ON the green
+       *  margin so the row reads as the closing band of the page,
+       *  separated from the black footer body above. */}
+      <div className="container-x py-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/85">
+        <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
+          <span>
+            © {year} Yanabiya Group · Since 2021 · All rights reserved.
+          </span>
+        </div>
+        <div className="flex items-center gap-5">
+          <Link to="/about-us" className={linkClass}>Group Profile</Link>
+          <a
+            href={`mailto:${contact.emails[0]}`}
+            className={linkClass}
+          >
+            {contact.emails[0]}
+          </a>
+        </div>
       </div>
     </footer>
   )
