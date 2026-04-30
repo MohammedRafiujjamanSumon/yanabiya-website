@@ -137,11 +137,12 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-brand-deep pt-2 pb-2">
       {/* Three-layer sandwich:
-       *    pt-2  → top green strip  (header bg shows through padding)
-       *    inner → black bar with the logo + nav links
+       *    pt-2  → top green strip   (header bg, full viewport width)
+       *    inner → black bar full edge-to-edge with the navigation
        *    pb-2  → bottom green strip
        */}
-      <div className="container-x flex items-center gap-3 md:gap-4 bg-black px-2 md:px-4">
+      <div className="bg-black">
+        <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
 
         {/* LEFT — LOGO sits on the inner black bar. */}
         <Link to="/#home" className="flex items-center shrink-0 group">
@@ -417,6 +418,7 @@ export default function Navbar() {
           </button>
         </div>
       </div>
+        </div>
       </div>
 
       {/* Mobile drawer — mirrors desktop nav: all groups + dropdown items as accordions */}
