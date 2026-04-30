@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Quote } from 'lucide-react'
+import { ArrowRight, Quote, Users, Workflow, Handshake } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
-import { assets } from '../data/assets'
+import { company } from '../data/company'
 
 function Reveal({
   children,
@@ -31,6 +32,15 @@ const PROMISE = {
   quote:
     'We deliver what we promise and place customer satisfaction above all — built on trust, integrity, and service excellence across every market we operate in.',
   attribution: 'Yanabiya Group · Built on Trust, Driven by Excellence',
+}
+
+// Map the three founding pillars (data lives in company.ts) to icons
+// + an accent palette so each card has visual identity without
+// drifting from the brand.
+const PILLAR_META: Record<string, { icon: LucideIcon; tint: string; ring: string }> = {
+  People:  { icon: Users,     tint: 'bg-emerald-50 text-emerald-700', ring: 'ring-emerald-200/70' },
+  Process: { icon: Workflow,  tint: 'bg-amber-50 text-amber-700',     ring: 'ring-amber-200/70'   },
+  Clients: { icon: Handshake, tint: 'bg-sky-50 text-sky-700',         ring: 'ring-sky-200/70'     },
 }
 
 export default function About() {
@@ -99,29 +109,60 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* BELOW — full-width office photo. Counts moved to the home
-           *  Stats strip; this card now leads cleanly with imagery
-           *  (no side panel competing for attention). */}
+          {/* BELOW — three founding pillars (People · Process · Clients).
+           *  Replaces the office photo with a real brand hierarchy
+           *  drawn from company.ts. Anchored by a small "FOUNDING
+           *  PILLARS" header so the section reads as a structure, not
+           *  three loose tiles. */}
           <div className="w-full max-w-4xl mx-auto order-2">
             <Reveal>
-              <div className="relative rounded-2xl overflow-hidden
-                              border border-brand-accent/30
-                              shadow-[0_18px_44px_-14px_rgba(15,58,35,0.30)]
-                              aspect-[16/9] bg-slate-900">
-                <img
-                  src={assets.office}
-                  alt="Yanabiya Group office"
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                />
-                {/* Soft bottom shade so any potential caption stays legible */}
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/35 via-black/10 to-transparent"
-                />
+              <div className="text-center mb-5 md:mb-6">
+                <span className="inline-block text-[10px] md:text-[11px] font-semibold uppercase
+                                 tracking-[0.32em] text-brand-accentDark">
+                  Founding Pillars
+                </span>
               </div>
             </Reveal>
+
+            <div className="grid sm:grid-cols-3 gap-4 md:gap-5">
+              {company.pillars.map((p, i) => {
+                const meta = PILLAR_META[p.title] ?? {
+                  icon: Users,
+                  tint: 'bg-slate-50 text-slate-700',
+                  ring: 'ring-slate-200/70',
+                }
+                const Icon = meta.icon
+                return (
+                  <Reveal key={p.title} delay={120 + i * 110}>
+                    <div className="relative h-full rounded-2xl bg-white p-5 md:p-6
+                                    border border-emerald-100
+                                    shadow-[0_8px_22px_-12px_rgba(15,58,35,0.18)]
+                                    transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                                    hover:-translate-y-1
+                                    hover:shadow-[0_18px_36px_-14px_rgba(15,58,35,0.28)]
+                                    hover:border-brand-accent/40">
+                      {/* Step indicator — tiny serif numeral so the three
+                       *  cards visibly form a 1-2-3 hierarchy. */}
+                      <span className="absolute top-3 right-4 font-serif text-[12px] text-slate-300">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+
+                      <div className={`w-10 h-10 rounded-xl grid place-items-center
+                                       ${meta.tint} ring-1 ${meta.ring}`}>
+                        <Icon size={20} strokeWidth={2} />
+                      </div>
+
+                      <div className="mt-4 font-serif text-[16px] text-brand-deep leading-tight">
+                        {p.title}
+                      </div>
+                      <p className="mt-1.5 text-[13px] text-slate-600 leading-relaxed">
+                        {p.body}
+                      </p>
+                    </div>
+                  </Reveal>
+                )
+              })}
+            </div>
           </div>
 
           {/* PULL-QUOTE — brand promise under the picture. Replaces the
