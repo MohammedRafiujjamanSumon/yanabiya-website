@@ -34,6 +34,11 @@ const HUBS = [
     eyebrow: 'Stories & Insights',
     title: 'Blog',
     body: 'Articles, case studies, and field notes from across the group.',
+    /** Tailwind background colour for the circle and the SVG drop line. */
+    bg: 'bg-emerald-600',
+    stop: '#059669',
+    /** Vertical offset (Tailwind) — alternating to mirror the infographic. */
+    offset: '',
   },
   {
     to: '/community/sustainable-growth',
@@ -41,6 +46,9 @@ const HUBS = [
     eyebrow: 'Long-term Value',
     title: 'Sustainable Growth',
     body: 'Our commitment to growth that benefits people, communities, and the planet.',
+    bg: 'bg-cyan-500',
+    stop: '#06b6d4',
+    offset: 'md:mt-14',
   },
   {
     to: '/community/community-care',
@@ -48,6 +56,9 @@ const HUBS = [
     eyebrow: 'Welfare Programmes',
     title: 'Community Care',
     body: 'Humanitarian aid, education, and healthcare initiatives across our regions.',
+    bg: 'bg-amber-500',
+    stop: '#f59e0b',
+    offset: '',
   },
   {
     to: '/community/careers',
@@ -55,6 +66,9 @@ const HUBS = [
     eyebrow: 'Join the Team',
     title: 'Careers',
     body: 'Build your career with a global group across IT, trade, and operations.',
+    bg: 'bg-rose-500',
+    stop: '#f43f5e',
+    offset: 'md:mt-14',
   },
 ]
 
@@ -94,48 +108,83 @@ export default function CommunityOverview() {
         </div>
       </section>
 
-      {/* HUB CARDS */}
+      {/* HUB CARDS — rainbow arc + four colour-coded circles */}
       <section className="relative">
         <div className="container-x pb-20 md:pb-28">
-          <div className="grid sm:grid-cols-2 gap-5 max-w-5xl mx-auto">
-            {HUBS.map((h, i) => (
-              <Reveal key={h.to} delay={i * 90}>
-                <Link
-                  to={h.to}
-                  className="group block h-full rounded-2xl bg-white border border-slate-200
-                             p-6 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
-                             transition-all duration-500
-                             hover:border-brand-deep/40 hover:-translate-y-1
-                             hover:shadow-[0_24px_60px_-20px_rgba(15,58,35,0.25)]"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="shrink-0 w-12 h-12 rounded-xl bg-brand-accent/15
-                                    grid place-items-center text-brand-deep
-                                    transition-all duration-300
-                                    group-hover:bg-brand-accent group-hover:text-white
-                                    group-hover:scale-110">
-                      <h.icon size={20} strokeWidth={1.6} />
+          <div className="relative max-w-5xl mx-auto">
+
+            {/* SVG arc + drop connectors. Hides on small screens where
+             *  the arc geometry doesn't read; the circles + descriptions
+             *  still stack in a 2-col grid. */}
+            <svg
+              viewBox="0 0 1000 240"
+              preserveAspectRatio="xMidYMid meet"
+              aria-hidden="true"
+              className="hidden md:block w-full h-auto -mb-16 lg:-mb-20"
+            >
+              <defs>
+                <linearGradient id="comm-rainbow" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#059669" />
+                  <stop offset="33%" stopColor="#06b6d4" />
+                  <stop offset="66%" stopColor="#f59e0b" />
+                  <stop offset="100%" stopColor="#f43f5e" />
+                </linearGradient>
+              </defs>
+              {/* Curved arc along the top */}
+              <path
+                d="M 125 220 C 280 -40, 720 -40, 875 220"
+                stroke="url(#comm-rainbow)"
+                strokeWidth="14"
+                strokeLinecap="round"
+                fill="none"
+              />
+              {/* Drop connectors — same colour as the matching arc stop */}
+              <line x1="125" y1="220" x2="125" y2="240" stroke="#059669" strokeWidth="14" strokeLinecap="round" />
+              <line x1="375" y1="125" x2="375" y2="240" stroke="#06b6d4" strokeWidth="14" strokeLinecap="round" />
+              <line x1="625" y1="125" x2="625" y2="240" stroke="#f59e0b" strokeWidth="14" strokeLinecap="round" />
+              <line x1="875" y1="220" x2="875" y2="240" stroke="#f43f5e" strokeWidth="14" strokeLinecap="round" />
+            </svg>
+
+            {/* Four hub circles + descriptions */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6">
+              {HUBS.map((h, i) => (
+                <Reveal key={h.to} delay={i * 90} className={`text-center ${h.offset}`}>
+                  <Link
+                    to={h.to}
+                    aria-label={`Open ${h.title}`}
+                    className={`group inline-flex flex-col items-center justify-center
+                                w-32 h-32 md:w-36 md:h-36 rounded-full
+                                ${h.bg} text-white text-center px-3
+                                shadow-[0_12px_28px_-8px_rgba(15,23,42,0.35)]
+                                transition-all duration-300
+                                hover:scale-110 hover:shadow-[0_20px_40px_-10px_rgba(15,23,42,0.45)]
+                                focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60`}
+                  >
+                    <h.icon size={24} strokeWidth={1.8} className="mb-1.5 opacity-90 transition-transform duration-300 group-hover:scale-110" />
+                    <span className="font-bold text-sm md:text-base leading-tight tracking-tight">
+                      {h.title}
+                    </span>
+                  </Link>
+                  <div className="mt-4 max-w-[220px] mx-auto">
+                    <div className="text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-1.5">
+                      {h.eyebrow}
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-1">
-                        {h.eyebrow}
-                      </div>
-                      <h3 className="font-serif text-xl font-bold text-brand-deep leading-tight">
-                        {h.title}
-                      </h3>
-                    </div>
+                    <p className="text-xs md:text-sm text-slate-600 leading-snug">
+                      {h.body}
+                    </p>
+                    <Link
+                      to={h.to}
+                      className="mt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
+                                 text-brand-accentDark hover:text-brand-deep
+                                 transition-all"
+                    >
+                      Open <ArrowRight size={11} />
+                    </Link>
                   </div>
-                  <p className="mt-4 text-sm text-slate-600 leading-snug">
-                    {h.body}
-                  </p>
-                  <div className="mt-5 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
-                                  text-brand-accentDark group-hover:text-brand-deep group-hover:gap-2
-                                  transition-all duration-300">
-                    Open <ArrowRight size={12} />
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
