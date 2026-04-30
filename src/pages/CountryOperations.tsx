@@ -268,8 +268,21 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
 
       {/* SECTION 5 — Our Network */}
       <SectionFrame eyebrow="Our Network" title="Strategic + operational partners working alongside us.">
-        <PartnerGroup title="Strategic Partners"   subtitle="Long-term relationships powering core delivery." items={ops.strategicPartners} />
-        <PartnerGroup title="Operational Partners" subtitle="Service partners we collaborate with day to day."  items={ops.operationalPartners} className="mt-8" />
+        <PartnerMarquee
+          title="Strategic Partners"
+          subtitle="Long-term relationships powering core delivery."
+          items={ops.strategicPartners}
+          direction="left"
+          durationSec={50}
+        />
+        <PartnerMarquee
+          title="Operational Partners"
+          subtitle="Service partners we collaborate with day to day."
+          items={ops.operationalPartners}
+          direction="right"
+          durationSec={55}
+          className="mt-8"
+        />
       </SectionFrame>
 
       {/* SECTION 6 — Business Domains */}
@@ -415,14 +428,14 @@ function SectionFrame({
 }) {
   return (
     <section className="relative">
-      <div className="container-x py-10 md:py-12">
+      <div className="container-x py-6 md:py-8">
         <Reveal>
-          <div className="text-center mb-7 md:mb-8 max-w-2xl mx-auto">
-            <span className="inline-block text-[10px] md:text-[11px] font-semibold uppercase
-                             tracking-[0.32em] text-amber-300 mb-2">
+          <div className="text-center mb-5 md:mb-6 max-w-2xl mx-auto">
+            <span className="inline-block text-[10px] font-semibold uppercase
+                             tracking-[0.32em] text-amber-300 mb-1.5">
               {eyebrow}
             </span>
-            <h2 className="font-serif text-xl sm:text-2xl md:text-3xl text-white leading-tight">
+            <h2 className="font-serif text-lg sm:text-xl md:text-2xl text-white leading-tight">
               {title}
             </h2>
           </div>
@@ -449,28 +462,28 @@ function Card3D({
   return (
     <Reveal delay={delay}>
       <div
-        className={`group relative h-full rounded-2xl
+        className={`group relative h-full rounded-xl
                     bg-white/5 backdrop-blur-md
                     border ${accent ? 'border-amber-300/40' : 'border-white/15'}
-                    p-5 md:p-6
+                    p-3.5 md:p-4
                     [transform-style:preserve-3d]
                     transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                     hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(12px)_scale(1.02)]
                     hover:border-amber-300/60`}
       >
         <div
-          className={`w-11 h-11 rounded-xl grid place-items-center
+          className={`w-9 h-9 rounded-lg grid place-items-center
                       ${accent ? 'bg-amber-300/20 text-amber-200' : 'bg-white/10 text-white'}
                       ring-1 ${accent ? 'ring-amber-300/40' : 'ring-white/15'}
-                      shadow-md [transform:translateZ(20px)]`}
+                      shadow-md [transform:translateZ(18px)]`}
         >
-          <Icon size={20} strokeWidth={2} />
+          <Icon size={16} strokeWidth={2} />
         </div>
-        <div className="mt-4 font-serif text-base md:text-lg text-white leading-tight
-                        [transform:translateZ(12px)]">
+        <div className="mt-3 font-serif text-sm md:text-base text-white leading-tight
+                        [transform:translateZ(10px)]">
           {title}
         </div>
-        <p className="mt-2 text-[13px] text-white/75 leading-relaxed
+        <p className="mt-1 text-[12px] text-white/75 leading-snug
                       [transform:translateZ(4px)]">
           {body}
         </p>
@@ -482,18 +495,18 @@ function Card3D({
 function InfoRow({ label, value, icon: Icon }: { label: string; value: string; icon: LucideIcon }) {
   return (
     <Reveal>
-      <div className="flex items-start gap-3 rounded-2xl bg-white/5 backdrop-blur-md
-                      border border-white/10 p-4 md:p-5
+      <div className="flex items-start gap-2.5 rounded-xl bg-white/5 backdrop-blur-md
+                      border border-white/10 p-3 md:p-3.5
                       transition-colors duration-300 hover:border-amber-300/40">
-        <div className="shrink-0 w-9 h-9 rounded-lg bg-amber-300/15 text-amber-200
+        <div className="shrink-0 w-8 h-8 rounded-md bg-amber-300/15 text-amber-200
                         ring-1 ring-amber-300/30 grid place-items-center">
-          <Icon size={16} strokeWidth={2} />
+          <Icon size={14} strokeWidth={2} />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="text-[10px] uppercase tracking-[0.22em] font-semibold text-amber-300/90 mb-1">
+          <div className="text-[9px] uppercase tracking-[0.22em] font-semibold text-amber-300/90 mb-0.5">
             {label}
           </div>
-          <div className="text-sm text-white/90 leading-snug break-words">
+          <div className="text-[13px] text-white/90 leading-snug break-words">
             {value}
           </div>
         </div>
@@ -520,7 +533,7 @@ function ServiceCard({
                    hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(14px)_scale(1.03)]
                    hover:border-amber-300/60"
       >
-        {/* Real photo header — top half of the card */}
+        {/* Real photo header — top of the card */}
         <div className="relative aspect-[16/9] overflow-hidden bg-slate-900">
           <img
             src={service.image}
@@ -532,25 +545,25 @@ function ServiceCard({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
           {/* Floating icon chip on top of the image */}
-          <div className="absolute top-3 left-3 w-10 h-10 rounded-xl
+          <div className="absolute top-2.5 left-2.5 w-8 h-8 rounded-lg
                           bg-amber-300/95 text-[#0a1410]
                           grid place-items-center shadow-md
                           [transform:translateZ(22px)]">
-            <service.icon size={18} strokeWidth={2.2} />
+            <service.icon size={15} strokeWidth={2.2} />
           </div>
         </div>
 
         {/* Body */}
-        <div className="p-5 md:p-6">
-          <div className="font-serif text-base md:text-lg text-white leading-tight [transform:translateZ(12px)]">
+        <div className="p-3.5 md:p-4">
+          <div className="font-serif text-sm md:text-base text-white leading-tight [transform:translateZ(12px)]">
             {service.label}
           </div>
-          <p className="mt-1.5 text-[13px] text-white/75 leading-relaxed [transform:translateZ(4px)]">
+          <p className="mt-1 text-[12px] text-white/75 leading-snug [transform:translateZ(4px)]">
             {service.desc}
           </p>
-          <div className="mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
+          <div className="mt-2.5 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.22em]
                           text-amber-300 group-hover:gap-2 transition-all">
-            Learn more <ArrowRight size={11} />
+            Learn more <ArrowRight size={10} />
           </div>
         </div>
       </Link>
@@ -586,17 +599,32 @@ function toneFor(name: string): string {
   return MONOGRAM_TONES[h % MONOGRAM_TONES.length]
 }
 
-function PartnerGroup({
+/* Partner row with continuous horizontal marquee — same chain feel
+ * as the home Partnerships section. The strip is duplicated so the
+ * scroll loops seamlessly. */
+function PartnerMarquee({
   title,
   subtitle,
   items,
+  direction = 'left',
+  durationSec = 50,
   className = '',
 }: {
   title: string
   subtitle: string
   items: PartnerItem[]
+  direction?: 'left' | 'right'
+  durationSec?: number
   className?: string
 }) {
+  // Repeat enough tiles so the strip fills the viewport even with
+  // small partner counts.
+  const minTiles = 12
+  const repeats = Math.max(1, Math.ceil(minTiles / Math.max(items.length, 1)))
+  const half = Array(repeats).fill(items).flat() as PartnerItem[]
+  const loop = [...half, ...half]
+  const animClass = direction === 'left' ? 'animate-marquee' : 'animate-marquee-reverse'
+
   return (
     <div className={className}>
       <div className="mb-4">
@@ -605,12 +633,25 @@ function PartnerGroup({
         </div>
         <div className="text-sm text-white/65">{subtitle}</div>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
-        {items.map((p, i) => (
-          <Reveal key={p.name} delay={i * 60}>
-            <PartnerLogo item={p} />
-          </Reveal>
-        ))}
+
+      <div className="relative overflow-hidden [perspective:1400px]">
+        <div
+          className={`flex ${animClass} gap-6 w-max py-3 [transform-style:preserve-3d]`}
+          style={{
+            animationDuration: `${durationSec}s`,
+            animationTimingFunction: 'linear',
+            willChange: 'transform',
+          }}
+        >
+          {loop.map((p, i) => (
+            <div key={`${p.name}-${i}`} className="shrink-0 w-36">
+              <PartnerLogo item={p} />
+            </div>
+          ))}
+        </div>
+        {/* Edge fades — let the strip dissolve into the dark page bg */}
+        <div className="absolute inset-y-0 start-0 w-24 bg-gradient-to-r from-[#0a1410] to-transparent pointer-events-none" />
+        <div className="absolute inset-y-0 end-0 w-24 bg-gradient-to-l from-[#0a1410] to-transparent pointer-events-none" />
       </div>
     </div>
   )
@@ -632,8 +673,8 @@ function PartnerLogo({ item }: { item: PartnerItem }) {
                            undefined
 
   return (
-    <div className="group relative h-28 rounded-xl bg-white border border-white/15
-                    grid place-items-center p-3 overflow-hidden
+    <div className="group relative h-20 rounded-lg bg-white border border-white/15
+                    grid place-items-center p-2 overflow-hidden
                     transition-all duration-300 hover:-translate-y-1 hover:scale-[1.04]
                     hover:shadow-[0_18px_36px_-14px_rgba(0,0,0,0.45)]">
       {src ? (
@@ -641,21 +682,21 @@ function PartnerLogo({ item }: { item: PartnerItem }) {
           src={src}
           alt={item.name}
           loading="lazy"
-          className="max-w-[80%] max-h-[60%] object-contain"
+          className="max-w-[78%] max-h-[55%] object-contain"
           onError={() => {
             setStage((s: Stage) => (s === 'logo' ? (item.domain ? 'clearbit' : 'fallback') : 'fallback'))
           }}
         />
       ) : (
         <div
-          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${toneFor(item.name)}
-                      grid place-items-center text-white font-serif text-lg
-                      shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_4px_10px_rgba(0,0,0,0.18)]`}
+          className={`w-9 h-9 rounded-lg bg-gradient-to-br ${toneFor(item.name)}
+                      grid place-items-center text-white font-serif text-sm
+                      shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_3px_8px_rgba(0,0,0,0.18)]`}
         >
           {monogramOf(item.name)}
         </div>
       )}
-      <span className="absolute inset-x-2 bottom-1.5 text-[10px] font-semibold text-slate-700
+      <span className="absolute inset-x-1.5 bottom-1 text-[9px] font-semibold text-slate-700
                        text-center leading-tight truncate">
         {item.name}
       </span>
