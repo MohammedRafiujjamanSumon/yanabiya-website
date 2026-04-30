@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import Section from '../components/Section'
+import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { assets } from '../data/assets'
 
@@ -88,9 +88,7 @@ export default function About() {
           {/* TOP — eyebrow + serif title + subtitle + CTAs (centered) */}
           <div className="w-full max-w-3xl mx-auto text-center order-1">
             <Reveal>
-              <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-5">
-                About Us
-              </div>
+              <Eyebrow>About Us</Eyebrow>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="group relative inline-block font-serif
@@ -103,11 +101,6 @@ export default function About() {
                 One group operating across{' '}
                 <span className="text-brand-accentDark">multiple futures.</span>
               </h2>
-            </Reveal>
-            <Reveal delay={220}>
-              <p className="mt-5 font-serif italic text-base sm:text-lg md:text-xl lg:text-2xl text-brand-accentDark leading-snug mx-auto lg:whitespace-nowrap">
-                Built on trust, scaled with purpose, and proven over time.
-              </p>
             </Reveal>
           </div>
 

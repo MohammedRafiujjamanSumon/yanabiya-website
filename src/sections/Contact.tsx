@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { MapPin, Send, ArrowRight } from 'lucide-react'
-import Section from '../components/Section'
+import Section, { Eyebrow } from '../components/Section'
 import { contactByCountry } from '../data/contact'
 import { countries } from '../data/countries'
 
@@ -45,9 +45,7 @@ export default function Contact() {
 
         {/* HERO */}
         <div className="text-center max-w-3xl mx-auto fade-up" style={{ animationDelay: '60ms' }}>
-          <div className="inline-block text-brand-accentDark text-xs font-semibold tracking-[0.3em] uppercase mb-4">
-            {t('contact.eyebrow', 'Contact')}
-          </div>
+          <Eyebrow>{t('contact.eyebrow', 'Contact')}</Eyebrow>
           <h2 className="group relative inline-block font-serif
                          text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
                          leading-[1.15] tracking-tight text-brand-deep cursor-default

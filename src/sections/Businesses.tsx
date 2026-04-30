@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
-  Sparkles, X as CloseIcon, ExternalLink, ArrowRight,
+  X as CloseIcon, ExternalLink, ArrowRight,
   Cpu, Globe2, Shirt, Handshake, Building2, Users,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import Section from '../components/Section'
+import Section, { Eyebrow } from '../components/Section'
 import { businesses } from '../data/businesses'
 import { useReveal } from '../hooks/useReveal'
 import { assets } from '../data/assets'
@@ -848,11 +848,7 @@ export default function Businesses() {
           {/* TOP — Our Service text, centered */}
           <div className="w-full max-w-3xl mx-auto text-center order-1">
             <Reveal>
-              <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4 inline-flex items-center gap-2">
-                <Sparkles size={12} className="text-brand-accent" />
-                Our Service
-                <Sparkles size={12} className="text-brand-accent" />
-              </div>
+              <Eyebrow>Our Service</Eyebrow>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="group relative inline-block font-serif

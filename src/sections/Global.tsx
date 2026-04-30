@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight } from 'lucide-react'
 import { assets } from '../data/assets'
-import Section from '../components/Section'
+import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import GlobalOverviewPanel from '../components/GlobalOverviewPanel'
 
@@ -64,9 +64,7 @@ export default function Global() {
         {/* ───────── TEXT FIRST ───────── */}
         <div className="max-w-5xl mx-auto text-center">
           <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
-              {t('global.eyebrow', 'Global Presence')}
-            </div>
+            <Eyebrow>{t('global.eyebrow', 'Global Presence')}</Eyebrow>
           </Reveal>
           <Reveal delay={120}>
             <h2 className="group relative inline-block font-serif
@@ -159,7 +157,7 @@ export default function Global() {
                     setFlippedCode((prev) => (prev === d.code ? null : d.code))
                   }
                   aria-label={`Toggle ${d.label} details`}
-                  aria-pressed={isFlipped ? 'true' : 'false'}
+                  aria-pressed={isFlipped}
                   title={d.label}
                   className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20
                              [perspective:1200px] focus:outline-none"
