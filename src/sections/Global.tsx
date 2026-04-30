@@ -30,54 +30,23 @@ function Reveal({
   )
 }
 
-/* The circle is divided into four pie-slice segments. Each segment is
- * a 3D flip card — front face shows the country's full map (object
- * contain, anchored at the triangle's centroid) and the back face is
- * a light-green tile revealing the flag + capital, country on touch. */
-const SEGMENTS = [
-  {
-    code: 'GB',
-    flag: '🇬🇧',
-    name: 'United Kingdom',
-    capital: 'London',
-    /** Pie-slice triangle: centre → top-left corner → top-right corner */
-    clip: 'polygon(50% 50%, 0% 0%, 100% 0%)',
-    /** Map / back-face content placement inside the slice (centroid-anchored). */
-    mapStyle: { top: '16%', left: '50%', transform: 'translate(-50%, -50%)', width: '32%', height: '30%' },
-  },
-  {
-    code: 'OM',
-    flag: '🇴🇲',
-    name: 'Sultanate of Oman',
-    capital: 'Muscat',
-    clip: 'polygon(50% 50%, 100% 0%, 100% 100%)',
-    mapStyle: { top: '50%', left: '84%', transform: 'translate(-50%, -50%)', width: '30%', height: '32%' },
-  },
-  {
-    code: 'BD',
-    flag: '🇧🇩',
-    name: 'Bangladesh',
-    capital: 'Dhaka',
-    clip: 'polygon(50% 50%, 100% 100%, 0% 100%)',
-    mapStyle: { top: '84%', left: '50%', transform: 'translate(-50%, -50%)', width: '24%', height: '30%' },
-  },
-  {
-    code: 'US',
-    flag: '🇺🇸',
-    name: 'United States of America',
-    capital: 'Austin',
-    clip: 'polygon(50% 50%, 0% 100%, 0% 0%)',
-    mapStyle: { top: '50%', left: '16%', transform: 'translate(-50%, -50%)', width: '32%', height: '30%' },
-  },
+/* The four offices, plotted around the orbit pyramid like points on a
+ * globe — Yanabiya logo medallion sits at the centre, each country
+ * silhouette card sits at its compass position (Oman·east, UK·north,
+ * BD·south, USA·west) so the whole arrangement reads as the four
+ * regions drawn together on a single round body. */
+const COUNTRY_NODES = [
+  { code: 'OM', flag: '🇴🇲', name: 'Oman',       label: 'Muscat, Oman',      top: '50%', left: '78%' },
+  { code: 'GB', flag: '🇬🇧', name: 'UK',         label: 'London, UK',        top: '14%', left: '50%' },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', label: 'Dhaka, Bangladesh', top: '88%', left: '50%' },
+  { code: 'US', flag: '🇺🇸', name: 'USA',        label: 'Austin, USA',       top: '45%', left: '12%' },
 ]
 
 const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
 
-
 export default function Global() {
   const { t } = useTranslation()
   const [presenceOpen, setPresenceOpen] = useState(false)
-  const [activeCode, setActiveCode] = useState<string | null>(null)
 
   return (
     <Section id="global" className="relative overflow-hidden bg-white">
@@ -98,158 +67,138 @@ export default function Global() {
           </Reveal>
         </div>
 
-        {/* ───────── GEOMAP — circle divided into 4 country segments ───────── */}
+        {/* ───────── GEOMAP — orbit rings + central 2×2 silhouettes ───────── */}
         <Reveal delay={1080}>
-          <div className="relative aspect-square w-full max-w-[640px] mx-auto mt-12 md:mt-16
-                          rounded-full
-                          bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900
-                          ring-1 ring-white/10 shadow-2xl
-                          overflow-hidden">
-
-            {/* Ambient blobs */}
+          <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto mt-12 md:mt-16">
+            {/* Soft halo */}
             <div
               aria-hidden="true"
-              className="absolute -top-20 -left-20 w-72 h-72 rounded-full
-                         bg-blue-500/20 blur-3xl pointer-events-none"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute -bottom-24 -right-20 w-80 h-80 rounded-full
-                         bg-amber-500/15 blur-3xl pointer-events-none"
-            />
+              className="absolute inset-0 grid place-items-center pointer-events-none"
+            >
+              <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/30 blur-[80px] animate-gradient" />
+            </div>
 
-            {/* Subtle outer + inner guide rings to keep the unity of the circle */}
-            <div aria-hidden="true" className="absolute inset-[5%] rounded-full border border-white/10 pointer-events-none" />
-            <div aria-hidden="true" className="absolute inset-[28%] rounded-full border border-amber-300/20 pointer-events-none" />
+            {/* Concentric orbit rings — 5 rings so each office can sit on
+             *  its own (Oman·2, UK·3, BD·4, USA·5/outermost). */}
+            <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
+              {[0.92, 0.74, 0.56, 0.38, 0.20].map((s, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full border border-brand-accentDark/40"
+                  style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
+                />
+              ))}
+            </div>
 
-            {/* Four pie-slice flip-cards. Tap/click flips the slice to
-             *  reveal a light-green back face with flag + capital,
-             *  country. Other slices fade while one is flipped. */}
-            {SEGMENTS.map((s) => {
-              const isFlipped = activeCode === s.code
-              const isOther = activeCode !== null && !isFlipped
-              const mapUrl = `${MAP_BASE}${s.code.toLowerCase()}.svg`
-              return (
-                <button
-                  key={s.code}
-                  type="button"
-                  onClick={() =>
-                    setActiveCode((prev) => (prev === s.code ? null : s.code))
-                  }
-                  aria-label={`Toggle ${s.name} details`}
-                  aria-pressed={isFlipped ? 'true' : 'false'}
-                  className={`absolute inset-0 z-10 [perspective:1200px]
-                              transition-all duration-500
-                              ${isFlipped ? 'z-20 scale-[1.03]' : ''}
-                              ${isOther ? 'opacity-30' : 'opacity-100'}`}
-                  style={{ clipPath: s.clip, WebkitClipPath: s.clip }}
-                >
-                  <div
-                    className="relative w-full h-full transition-transform duration-700 ease-out [transform-style:preserve-3d]"
-                    style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
-                  >
-                    {/* Front — country silhouette (consistent style across
-                     *  all four; transparent SVG so it blends into the
-                     *  dark theme like the central logo). */}
-                    <div className="absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden]">
-                      <img
-                        src={mapUrl}
-                        alt=""
-                        aria-hidden="true"
-                        className="absolute object-contain transition-all duration-500"
-                        style={{
-                          ...s.mapStyle,
-                          filter:
-                            'drop-shadow(0 0 14px rgba(255,255,255,0.35)) drop-shadow(0 0 6px rgba(252,211,77,0.4))',
-                        }}
-                        onError={(e) =>
-                          ((e.currentTarget as HTMLImageElement).style.display = 'none')
-                        }
-                      />
-                    </div>
-
-                    {/* Back — light green card with flag + capital, country */}
-                    <div
-                      className="absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden]
-                                 bg-gradient-to-br from-emerald-100 via-emerald-50 to-emerald-200"
-                      style={{ transform: 'rotateY(180deg)' }}
-                    >
-                      <div
-                        className="absolute flex flex-col items-center justify-center text-center"
-                        style={s.mapStyle}
-                      >
-                        <span className="text-3xl md:text-4xl drop-shadow-md leading-none">
-                          {s.flag}
-                        </span>
-                        <div className="text-[11px] md:text-xs font-bold text-emerald-900 mt-2 leading-tight whitespace-nowrap">
-                          {s.capital}, {s.name}
-                        </div>
-                        <Link
-                          to={`/country/${s.code.toLowerCase()}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="mt-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full
-                                     bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wider
-                                     hover:bg-emerald-700 transition-colors"
-                        >
-                          Explore <ArrowRight size={10} />
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </button>
-              )
-            })}
-
-            {/* Caret-style radial dividers — four glowing diagonals from
-             *  the centre to the corners. They give a sense of
-             *  segmentation without breaking the circle's unity. */}
+            {/* Connecting lines from each country card to the centre logo */}
             <svg
               aria-hidden="true"
-              viewBox="0 0 100 100"
+              viewBox="0 0 100 80"
+              className="absolute inset-0 w-full h-full"
               preserveAspectRatio="none"
-              className="absolute inset-0 w-full h-full pointer-events-none z-30"
             >
-              <defs>
-                <linearGradient id="caret-glow" x1="50%" y1="50%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgba(252,211,77,0)" />
-                  <stop offset="20%" stopColor="rgba(252,211,77,0.8)" />
-                  <stop offset="100%" stopColor="rgba(252,211,77,0)" />
-                </linearGradient>
-              </defs>
-              {/* NE */}
-              <line x1="50" y1="50" x2="100" y2="0"
-                    stroke="url(#caret-glow)" strokeWidth="0.4"
-                    style={{ filter: 'drop-shadow(0 0 1px rgba(252,211,77,0.6))' }} />
-              {/* SE */}
-              <line x1="50" y1="50" x2="100" y2="100"
-                    stroke="url(#caret-glow)" strokeWidth="0.4"
-                    style={{ filter: 'drop-shadow(0 0 1px rgba(252,211,77,0.6))' }} />
-              {/* SW */}
-              <line x1="50" y1="50" x2="0" y2="100"
-                    stroke="url(#caret-glow)" strokeWidth="0.4"
-                    style={{ filter: 'drop-shadow(0 0 1px rgba(252,211,77,0.6))' }} />
-              {/* NW */}
-              <line x1="50" y1="50" x2="0" y2="0"
-                    stroke="url(#caret-glow)" strokeWidth="0.4"
-                    style={{ filter: 'drop-shadow(0 0 1px rgba(252,211,77,0.6))' }} />
+              {COUNTRY_NODES.map((d, i) => {
+                const x = parseFloat(d.left)
+                const y = parseFloat(d.top) * 0.8
+                return (
+                  <line
+                    key={d.code}
+                    x1="50" y1="40" x2={x} y2={y}
+                    stroke="rgba(15,58,35,0.55)"
+                    strokeWidth="0.28"
+                    strokeDasharray="0.8 0.6"
+                    style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
+                  />
+                )
+              })}
             </svg>
 
-            {/* Centre — Yanabiya hub. Sits above the slices so it always
-             *  reads cleanly even when a quadrant is hovered. */}
-            <div className="absolute inset-0 grid place-items-center pointer-events-none z-40">
-              <div className="relative grid place-items-center
-                              w-24 h-24 md:w-28 md:h-28 rounded-full
-                              bg-gradient-to-br from-white/25 via-white/10 to-white/5
-                              backdrop-blur-xl ring-2 ring-amber-300/40
-                              shadow-[0_0_40px_rgba(252,211,77,0.35)]">
+            {/* CENTRE — Yanabiya spinning logo medallion (restored). */}
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white shadow-xl
+                              ring-2 ring-brand-accentDark/60 overflow-hidden
+                              grid place-items-center animate-spin-slow">
                 <img
                   src={assets.logo}
                   alt="Yanabiya Group"
-                  className="w-3/4 h-3/4 object-contain animate-spin-slow"
+                  className="w-full h-full object-contain scale-[1.35]"
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                 />
               </div>
             </div>
+
+            {/* COUNTRY NODES — silhouette cards plotted around the orbit at
+             *  N / E / S / W like four regions drawn on a globe. Each card
+             *  shows the country shape (glowing brand-accent gradient) +
+             *  flag + name and links through to the country detail page. */}
+            {COUNTRY_NODES.map((d, i) => {
+              const mapUrl = `${MAP_BASE}${d.code.toLowerCase()}.svg`
+              return (
+                <Link
+                  key={d.code}
+                  to={`/country/${d.code.toLowerCase()}`}
+                  aria-label={`Explore ${d.label}`}
+                  title={d.label}
+                  className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20"
+                  style={{ top: d.top, left: d.left }}
+                >
+                  <div className="relative flex flex-col items-center gap-1.5 px-3 pt-3 pb-2
+                                  w-[110px] md:w-[120px]
+                                  rounded-2xl bg-white ring-2 ring-brand-accent/60 shadow-md
+                                  transition-all duration-300
+                                  group-hover:-translate-y-0.5 group-hover:ring-brand-accent
+                                  group-hover:shadow-[0_0_24px_rgba(158,199,58,0.7)]">
+                    {/* Pulsing halo behind the silhouette */}
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%]
+                                 w-14 h-14 rounded-full bg-brand-accent/40 pointer-events-none -z-10"
+                      style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
+                    />
+
+                    {/* Country silhouette */}
+                    <div className="relative w-12 h-12 md:w-14 md:h-14">
+                      <div
+                        aria-hidden="true"
+                        className="absolute inset-0 opacity-70 group-hover:opacity-100
+                                   transition-opacity duration-300 pointer-events-none"
+                        style={{
+                          background:
+                            'radial-gradient(ellipse at center, rgba(158,199,58,0.55) 0%, transparent 70%)',
+                          filter: 'blur(10px)',
+                        }}
+                      />
+                      <div
+                        className="relative w-full h-full transition-transform duration-300
+                                   group-hover:scale-110"
+                        style={{
+                          WebkitMaskImage: `url(${mapUrl})`,
+                          maskImage: `url(${mapUrl})`,
+                          WebkitMaskSize: 'contain',
+                          maskSize: 'contain',
+                          WebkitMaskRepeat: 'no-repeat',
+                          maskRepeat: 'no-repeat',
+                          WebkitMaskPosition: 'center',
+                          maskPosition: 'center',
+                          backgroundImage:
+                            'linear-gradient(135deg, #b8d75a 0%, #9ec73a 50%, #6f9526 100%)',
+                          filter:
+                            'drop-shadow(0 0 8px rgba(158,199,58,0.7)) drop-shadow(0 0 2px rgba(158,199,58,0.5))',
+                        }}
+                      />
+                    </div>
+
+                    {/* Flag + name */}
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-base leading-none">{d.flag}</span>
+                      <span className="text-[11px] md:text-xs font-semibold text-brand-deep leading-tight">
+                        {d.name}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         </Reveal>
 
