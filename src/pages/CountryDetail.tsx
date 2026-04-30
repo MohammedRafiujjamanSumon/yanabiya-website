@@ -77,7 +77,19 @@ function Reveal({
 }
 
 type Stat = { label: string; value: string; icon: LucideIcon }
-type Service = { label: string; desc: string; icon: LucideIcon }
+type Service = { label: string; desc: string; icon: LucideIcon; image?: string }
+
+/** Shared real-life photo per service category. Used on every country
+ *  card so the service blocks read as real-world scenery instead of
+ *  abstract icons. */
+const SERVICE_IMAGE: Record<string, string> = {
+  Trade: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=600&q=80',
+  Tech: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80',
+  Shipping: 'https://images.unsplash.com/photo-1494412574745-e1e7c8faa40d?auto=format&fit=crop&w=600&q=80',
+  Deals: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
+  Office: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80',
+  Mobility: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80',
+}
 type Presence = { name: string; city: string; type: 'HQ' | 'Branch' | 'Network' | 'Partner' }
 type Achievement = { title: string; body: string; icon: LucideIcon }
 
@@ -392,7 +404,7 @@ function Hero({
           </h1>
         </Reveal>
         <Reveal delay={260}>
-          <p className="mt-7 text-base md:text-lg text-slate-600 leading-snug max-w-2xl mx-auto">
+          <p className="mt-7 text-base md:text-lg text-brand-accentDark leading-snug max-w-2xl mx-auto text-justify">
             {dash.subtitle}
           </p>
         </Reveal>
@@ -417,35 +429,53 @@ function ServiceBlocks({ services, countryName }: { services: Service[]; country
           </div>
         </Reveal>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
-          {services.map((s, i) => (
-            <Reveal key={s.label} delay={i * 80}>
-              <div className="group relative rounded-2xl
-                              bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent
-                              backdrop-blur-md border border-slate-200
-                              shadow-[0_8px_24px_rgba(15,58,35,0.08)]
-                              p-6 transition-all duration-500
-                              hover:border-brand-accent/55 hover:-translate-y-1
-                              hover:shadow-[0_18px_42px_rgba(158,199,58,0.2)]">
-                {/* Decorative gradient sheen */}
-                <div aria-hidden="true"
-                     className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-accent/0 via-transparent to-brand-deep/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                <div className="relative">
-                  <div className="w-12 h-12 rounded-xl bg-brand-accent/15 grid place-items-center text-brand-accent
-                                  ring-1 ring-brand-accent/30 mb-4
-                                  transition-all duration-300
-                                  group-hover:scale-110 group-hover:bg-brand-accent group-hover:text-slate-900">
-                    <s.icon size={20} />
+          {services.map((s, i) => {
+            const photo = s.image ?? SERVICE_IMAGE[s.label]
+            return (
+              <Reveal key={s.label} delay={i * 80}>
+                <div className="group relative rounded-2xl overflow-hidden
+                                bg-white border border-slate-200
+                                shadow-[0_8px_24px_rgba(15,58,35,0.08)]
+                                transition-all duration-500
+                                hover:border-brand-accent/55 hover:-translate-y-1
+                                hover:shadow-[0_18px_42px_rgba(158,199,58,0.2)]">
+                  {/* Real-life photo banner */}
+                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                    {photo && (
+                      <img
+                        src={photo}
+                        alt={s.label}
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover
+                                   transition-transform duration-700
+                                   group-hover:scale-110"
+                        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/55 via-brand-deep/10 to-transparent" />
+                    <div className="absolute top-2 left-2 inline-flex items-center
+                                    px-2 py-0.5 rounded-full
+                                    bg-white/90 ring-1 ring-brand-accent/35
+                                    text-[9px] font-bold uppercase tracking-[0.22em] text-brand-deep">
+                      {s.label}
+                    </div>
                   </div>
-                  <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accent mb-1.5">
-                    {s.label}
-                  </div>
-                  <div className="text-base font-semibold text-brand-deep">
-                    {s.desc}
+                  {/* Description */}
+                  <div className="p-4 flex items-center gap-3">
+                    <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-accent/15 grid place-items-center text-brand-accent
+                                    ring-1 ring-brand-accent/30
+                                    transition-all duration-300
+                                    group-hover:scale-110 group-hover:bg-brand-accent group-hover:text-brand-deep">
+                      <s.icon size={16} />
+                    </div>
+                    <div className="text-sm md:text-base font-semibold text-brand-deep leading-snug">
+                      {s.desc}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            )
+          })}
         </div>
       </div>
     </section>
