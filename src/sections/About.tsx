@@ -110,158 +110,15 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* BELOW — flowchart-hierarchy on a dark navy panel.
-           *  Yanabiya logo lives as a giant faded watermark behind the
-           *  whole composition. SVG curves connect a top "Yanabiya Group"
-           *  node to the three founding pillars (People · Process ·
-           *  Clients), each rendered as a glassy 3D card. Glowing brand-
-           *  accent dots scatter the field for the same lit-up tech
-           *  diagram feel as the reference image. */}
+          {/* BELOW — flowchart hierarchy on top of a real businessman /
+           *  laptop hero photo (dark cityscape mood, matches reference).
+           *  Eight nodes float over the photo like a holographic data
+           *  diagram; the largest box on the right holds the Yanabiya
+           *  logo, the rest are short brand tags. White connector lines
+           *  + glowing amber data-points complete the look. */}
           <div className="w-full max-w-5xl mx-auto order-2">
             <Reveal>
-              <div className="relative rounded-3xl overflow-hidden
-                              bg-gradient-to-br from-[#0a1f2c] via-[#082233] to-[#04121b]
-                              ring-1 ring-emerald-500/15
-                              shadow-[0_28px_60px_-20px_rgba(4,18,27,0.55)]">
-
-                {/* Yanabiya logo watermark — huge, faded, centred. */}
-                <img
-                  src={assets.logo}
-                  alt=""
-                  aria-hidden
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-                             w-[80%] max-w-[520px] opacity-[0.06] pointer-events-none
-                             select-none"
-                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                />
-
-                {/* Soft brand glows — top-left and bottom-right. */}
-                <div aria-hidden className="absolute -top-24 -left-24 w-[360px] h-[360px] rounded-full bg-emerald-500/10 blur-[120px] pointer-events-none" />
-                <div aria-hidden className="absolute -bottom-24 -right-24 w-[360px] h-[360px] rounded-full bg-amber-400/10 blur-[120px] pointer-events-none" />
-
-                {/* Drifting accent dots */}
-                <div aria-hidden className="absolute inset-0 pointer-events-none">
-                  {[
-                    { x: 12, y: 22 }, { x: 28, y: 68 }, { x: 44, y: 14 },
-                    { x: 58, y: 78 }, { x: 72, y: 30 }, { x: 88, y: 60 },
-                    { x: 36, y: 50 }, { x: 80, y: 18 },
-                  ].map((d, i) => (
-                    <span
-                      key={i}
-                      className="absolute w-1.5 h-1.5 rounded-full bg-amber-300/80 animate-float-3d
-                                 shadow-[0_0_8px_rgba(252,211,77,0.7)]"
-                      style={{ left: `${d.x}%`, top: `${d.y}%`, animationDelay: `${i * 0.6}s` }}
-                    />
-                  ))}
-                </div>
-
-                <div className="relative px-5 py-9 md:px-10 md:py-12">
-                  {/* Section label inside the panel */}
-                  <div className="text-center mb-7 md:mb-9">
-                    <span className="inline-block text-[10px] md:text-[11px] font-semibold uppercase
-                                     tracking-[0.32em] text-amber-300">
-                      Founding Pillars
-                    </span>
-                  </div>
-
-                  {/* SVG connector tree — root node at top, three pillars
-                   *  fanning down. Drawn at the same scale as the grid
-                   *  beneath so the curves land at each card's top. */}
-                  <svg
-                    aria-hidden
-                    viewBox="0 0 100 30"
-                    preserveAspectRatio="none"
-                    className="w-full h-16 md:h-20 mb-2"
-                  >
-                    <defs>
-                      <linearGradient id="pillarLine" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%"   stopColor="rgba(252,211,77,0.85)" />
-                        <stop offset="100%" stopColor="rgba(16,185,129,0.55)" />
-                      </linearGradient>
-                    </defs>
-                    {/* Root node circle */}
-                    <circle cx="50" cy="4" r="2.4" fill="rgba(252,211,77,0.95)" />
-                    <circle cx="50" cy="4" r="4.5" fill="rgba(252,211,77,0.18)" />
-
-                    {/* Three curves to the pillar tops at x = 18, 50, 82 */}
-                    {[18, 50, 82].map((x, i) => (
-                      <g key={i}>
-                        <path
-                          d={`M 50 4 Q 50 18 ${x} 28`}
-                          fill="none"
-                          stroke="url(#pillarLine)"
-                          strokeWidth="0.4"
-                          strokeLinecap="round"
-                        />
-                        <circle cx={x} cy="28" r="0.9" fill="rgba(252,211,77,0.95)" />
-                      </g>
-                    ))}
-                  </svg>
-
-                  {/* Three pillar nodes */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 [perspective:1400px]">
-                    {company.pillars.map((p, i) => {
-                      const meta = PILLAR_META[p.title] ?? {
-                        icon: Users,
-                        tint: 'bg-slate-50 text-slate-700',
-                        ring: 'ring-slate-200/70',
-                      }
-                      const Icon = meta.icon
-                      return (
-                        <Reveal key={p.title} delay={120 + i * 110}>
-                          <div
-                            className="group h-full animate-float-3d will-change-transform"
-                            style={{ animationDelay: `${i * 1.4}s` }}
-                          >
-                            <div
-                              className="relative h-full rounded-2xl
-                                         bg-white/[0.04] backdrop-blur-md
-                                         p-5 md:p-6 [transform-style:preserve-3d]
-                                         border border-white/15
-                                         shadow-[0_10px_24px_-12px_rgba(0,0,0,0.55)]
-                                         transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                                         group-hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(14px)_scale(1.02)]
-                                         group-hover:border-amber-300/40
-                                         group-hover:shadow-[0_16px_36px_-14px_rgba(252,211,77,0.35)]"
-                            >
-                              {/* Glossy highlight band */}
-                              <span
-                                aria-hidden
-                                className="pointer-events-none absolute inset-x-3 top-2 h-8 rounded-2xl
-                                           bg-gradient-to-b from-white/15 via-white/5 to-transparent
-                                           [transform:translateZ(18px)]"
-                              />
-
-                              <span className="absolute top-3 right-4 font-serif text-[12px] text-white/30
-                                               [transform:translateZ(8px)]">
-                                {String(i + 1).padStart(2, '0')}
-                              </span>
-
-                              <div
-                                className={`w-12 h-12 rounded-xl grid place-items-center
-                                            ${meta.tint} ring-1 ${meta.ring}
-                                            shadow-[0_6px_14px_-6px_rgba(0,0,0,0.4)]
-                                            [transform:translateZ(24px)]`}
-                              >
-                                <Icon size={22} strokeWidth={2} />
-                              </div>
-
-                              <div className="mt-4 font-serif text-[16px] text-amber-100 leading-tight
-                                              [transform:translateZ(12px)]">
-                                {p.title}
-                              </div>
-                              <p className="mt-1.5 text-[13px] text-white/70 leading-relaxed
-                                            [transform:translateZ(4px)]">
-                                {p.body}
-                              </p>
-                            </div>
-                          </div>
-                        </Reveal>
-                      )
-                    })}
-                  </div>
-                </div>
-              </div>
+              <FlowchartHero />
             </Reveal>
           </div>
 
@@ -316,5 +173,182 @@ export default function About() {
         </div>
       </div>
     </Section>
+  )
+}
+
+/* ────────────────────────────────────────────────────────────
+ *  Flowchart hero — 8 floating nodes layered over a real
+ *  businessman/laptop photo. Boxes are positioned in % so the
+ *  whole composition scales cleanly between mobile and desktop.
+ * ────────────────────────────────────────────────────────── */
+
+type Node = {
+  /** id used to wire SVG connectors */
+  id: 'mission' | 'vision' | 'people' | 'process' | 'clients' | 'trust' | 'logo' | 'excellence'
+  label: string
+  /** Bounds in % of the panel — origin top-left of each box. */
+  x: number
+  y: number
+  w: number
+  h: number
+}
+
+const FLOW_NODES: Node[] = [
+  { id: 'mission',    label: 'Mission',    x: 26, y: 8,  w: 14, h: 13 },
+  { id: 'vision',     label: 'Vision',     x: 46, y: 8,  w: 14, h: 13 },
+  { id: 'people',     label: 'People',     x: 12, y: 36, w: 14, h: 13 },
+  { id: 'process',    label: 'Process',    x: 30, y: 40, w: 12, h: 12 },
+  { id: 'clients',    label: 'Clients',    x: 44, y: 40, w: 12, h: 12 },
+  { id: 'trust',      label: 'Trust',      x: 58, y: 36, w: 14, h: 14 },
+  { id: 'logo',       label: 'Yanabiya',   x: 74, y: 22, w: 22, h: 44 },
+  { id: 'excellence', label: 'Excellence', x: 30, y: 70, w: 12, h: 12 },
+]
+
+// Connector edges between nodes — drawn as orthogonal lines with
+// arrow heads, mirroring the reference flowchart.
+const FLOW_EDGES: Array<{ from: Node['id']; to: Node['id'] }> = [
+  { from: 'mission', to: 'vision'     },  // top horizontal
+  { from: 'people',  to: 'mission'    },  // up
+  { from: 'people',  to: 'process'    },  // mid horizontal
+  { from: 'process', to: 'clients'    },  // mid horizontal
+  { from: 'clients', to: 'trust'      },  // mid horizontal
+  { from: 'trust',   to: 'logo'       },  // into the big box
+  { from: 'process', to: 'excellence' },  // down
+]
+
+function FlowchartHero() {
+  const nodeById = (id: Node['id']) => FLOW_NODES.find((n) => n.id === id)!
+
+  return (
+    <div className="relative rounded-3xl overflow-hidden
+                    aspect-[3/2] bg-slate-900
+                    ring-1 ring-emerald-500/15
+                    shadow-[0_28px_60px_-20px_rgba(4,18,27,0.55)]">
+
+      {/* Background photo — businessman with laptop, dark city mood */}
+      <img
+        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2400&q=80"
+        alt=""
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover opacity-60"
+        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+      />
+
+      {/* Dark navy gradient over the photo so the boxes & text stay
+       *  legible without losing the photographic depth. */}
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-br
+                                  from-[#0a1f2c]/80 via-[#082233]/82 to-[#04121b]/92" />
+
+      {/* Glowing amber data-points scattered (matches reference) */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none">
+        {[
+          { x: 14, y: 26 }, { x: 22, y: 60 }, { x: 38, y: 18 },
+          { x: 50, y: 28 }, { x: 64, y: 70 }, { x: 70, y: 40 },
+          { x: 80, y: 18 }, { x: 92, y: 64 }, { x: 6, y: 50 },
+        ].map((d, i) => (
+          <span
+            key={i}
+            className="absolute w-1.5 h-1.5 rounded-full bg-amber-300 animate-float-3d
+                       shadow-[0_0_10px_rgba(252,211,77,0.85)]"
+            style={{ left: `${d.x}%`, top: `${d.y}%`, animationDelay: `${i * 0.5}s` }}
+          />
+        ))}
+      </div>
+
+      {/* SVG connectors — drawn first so the boxes sit on top */}
+      <svg
+        aria-hidden
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        className="absolute inset-0 w-full h-full pointer-events-none"
+      >
+        <defs>
+          <marker id="flowArrow" markerWidth="6" markerHeight="6" refX="5" refY="3"
+                  orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L6,3 z" fill="rgba(255,255,255,0.85)" />
+          </marker>
+        </defs>
+        {FLOW_EDGES.map((e, i) => {
+          const a = nodeById(e.from)
+          const b = nodeById(e.to)
+          // Pick anchor edges based on relative position so the
+          // line exits one box and enters the other cleanly.
+          const aCx = a.x + a.w / 2
+          const aCy = a.y + a.h / 2
+          const bCx = b.x + b.w / 2
+          const bCy = b.y + b.h / 2
+
+          let x1, y1, x2, y2
+          if (Math.abs(aCx - bCx) >= Math.abs(aCy - bCy)) {
+            // primarily horizontal
+            if (aCx < bCx) { x1 = a.x + a.w; y1 = aCy; x2 = b.x;       y2 = bCy }
+            else            { x1 = a.x;       y1 = aCy; x2 = b.x + b.w; y2 = bCy }
+          } else {
+            // primarily vertical
+            if (aCy < bCy) { x1 = aCx; y1 = a.y + a.h; x2 = bCx; y2 = b.y       }
+            else            { x1 = aCx; y1 = a.y;       x2 = bCx; y2 = b.y + b.h }
+          }
+          return (
+            <line
+              key={i}
+              x1={x1} y1={y1} x2={x2} y2={y2}
+              stroke="rgba(255,255,255,0.85)"
+              strokeWidth="0.35"
+              markerEnd="url(#flowArrow)"
+            />
+          )
+        })}
+      </svg>
+
+      {/* Boxes — absolutely positioned. The "logo" node is rendered
+       *  bigger and contains the Yanabiya logo; the rest carry short
+       *  brand tags. */}
+      {FLOW_NODES.map((n) => {
+        const isLogo = n.id === 'logo'
+        return (
+          <div
+            key={n.id}
+            className={`absolute rounded-md backdrop-blur-sm
+                        border border-white/70
+                        ${isLogo
+                          ? 'bg-white/15 ring-1 ring-amber-300/40 shadow-[0_0_24px_rgba(252,211,77,0.20)]'
+                          : 'bg-white/8 ring-1 ring-white/20'}
+                        flex items-center justify-center text-center
+                        transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                        hover:bg-white/20 hover:border-amber-200/90 hover:scale-[1.04]`}
+            style={{
+              left:   `${n.x}%`,
+              top:    `${n.y}%`,
+              width:  `${n.w}%`,
+              height: `${n.h}%`,
+            }}
+          >
+            {isLogo ? (
+              <img
+                src={assets.logo}
+                alt="Yanabiya Group"
+                className="max-w-[80%] max-h-[80%] object-contain
+                           drop-shadow-[0_0_12px_rgba(252,211,77,0.45)]"
+                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+              />
+            ) : (
+              <span className="font-semibold uppercase tracking-[0.18em]
+                               text-[10px] sm:text-[11px] md:text-[12px]
+                               text-white/95 drop-shadow-md px-2 leading-tight">
+                {n.label}
+              </span>
+            )}
+          </div>
+        )
+      })}
+
+      {/* Section label inside the panel — bottom-left */}
+      <div className="absolute bottom-4 left-4 md:bottom-5 md:left-6">
+        <span className="inline-block text-[9px] md:text-[10px] font-semibold uppercase
+                         tracking-[0.32em] text-amber-300/80">
+          The Yanabiya hierarchy
+        </span>
+      </div>
+    </div>
   )
 }
