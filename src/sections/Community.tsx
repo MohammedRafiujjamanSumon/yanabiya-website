@@ -148,26 +148,31 @@ export default function Community() {
             <line x1="875" y1="220" x2="875" y2="240" stroke="#f43f5e" strokeWidth="14" strokeLinecap="round" />
           </svg>
 
-          {/* Four hub circles — name only, click navigates to the page */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 md:gap-x-6 justify-items-center">
+          {/* Four hub circles with a description below each — mirrors the
+           *  "Our Range of … Services" infographic style: alternating
+           *  heights, coloured drop-line, body copy under the circle. */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6 justify-items-center">
             {HUBS.map((h, i) => (
-              <Reveal key={h.to} delay={i * 90} className={h.offset}>
+              <Reveal key={h.to} delay={i * 90} className={`${h.offset} flex flex-col items-center text-center max-w-[15rem]`}>
                 <Link
                   to={h.to}
                   aria-label={`Open ${h.title}`}
                   className={`group inline-flex flex-col items-center justify-center
-                              w-32 h-32 md:w-36 md:h-36 rounded-full
+                              w-28 h-28 md:w-32 md:h-32 rounded-full
                               ${h.bg} text-white text-center px-3
                               shadow-[0_12px_28px_-8px_rgba(15,23,42,0.35)]
                               transition-all duration-300
                               hover:scale-110 hover:shadow-[0_20px_40px_-10px_rgba(15,23,42,0.45)]
                               focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60`}
                 >
-                  <h.icon size={26} strokeWidth={1.8} className="mb-1.5 opacity-90 transition-transform duration-300 group-hover:scale-110" />
+                  <h.icon size={24} strokeWidth={1.8} className="mb-1.5 opacity-90 transition-transform duration-300 group-hover:scale-110" />
                   <span className="font-bold text-sm md:text-base leading-tight tracking-tight">
                     {h.title}
                   </span>
                 </Link>
+                <p className="mt-4 px-2 text-[13px] md:text-sm text-slate-700 leading-relaxed">
+                  {h.body}
+                </p>
               </Reveal>
             ))}
           </div>
