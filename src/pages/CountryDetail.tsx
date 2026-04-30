@@ -96,7 +96,7 @@ type Achievement = { title: string; body: string; icon: LucideIcon }
 interface CountryDashboard {
   subtitle: string
   yearsActive: string
-  /** Hierarchy tier — used in the hero pill alongside the flag. */
+  /** Hierarchy tier ,used in the hero pill alongside the flag. */
   tier: { rank: string; label: string }
   stats: Stat[]
   services: Service[]
@@ -123,12 +123,12 @@ const COUNTRY_BG: Record<string, { blobs: { className: string }[] }> = {
   },
   BD: {
     blobs: [
-      // Green field — large blobs around the edges to dominate the canvas
+      // Green field ,large blobs around the edges to dominate the canvas
       { className: 'absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full bg-emerald-600/7 blur-[160px]' },
       { className: 'absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-emerald-700/10 blur-[160px]' },
       { className: 'absolute -bottom-40 -left-40 w-[640px] h-[640px] rounded-full bg-emerald-600/9 blur-[160px]' },
       { className: 'absolute -bottom-40 -right-40 w-[560px] h-[560px] rounded-full bg-emerald-700/9 blur-[160px]' },
-      // Red roundel — centred, mirroring the flag's red disc
+      // Red roundel ,centred, mirroring the flag's red disc
       { className: 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] rounded-full bg-red-600/14 blur-[120px]' },
     ],
   },
@@ -143,7 +143,7 @@ const COUNTRY_BG: Record<string, { blobs: { className: string }[] }> = {
 
 const COUNTRY_DASHBOARDS: Record<string, CountryDashboard> = {
   OM: {
-    subtitle: 'Global business presence in Oman — group headquarters & multi-sector operations.',
+    subtitle: 'Global business presence in Oman ,group headquarters & multi-sector operations.',
     yearsActive: '4+',
     tier: { rank: 'Tier 01', label: 'Group Headquarters' },
     stats: [
@@ -172,7 +172,7 @@ const COUNTRY_DASHBOARDS: Record<string, CountryDashboard> = {
     ],
   },
   GB: {
-    subtitle: 'Global business presence in the United Kingdom — European operations & strategic gateway.',
+    subtitle: 'Global business presence in the United Kingdom ,European operations & strategic gateway.',
     yearsActive: '2+',
     tier: { rank: 'Tier 03', label: 'Strategic Hub' },
     stats: [
@@ -198,7 +198,7 @@ const COUNTRY_DASHBOARDS: Record<string, CountryDashboard> = {
     ],
   },
   BD: {
-    subtitle: 'Global business presence in Bangladesh — group’s longest-running entity, full-spectrum operations since 1998.',
+    subtitle: 'Global business presence in Bangladesh ,group’s longest-running entity, full-spectrum operations since 1998.',
     yearsActive: '27+',
     tier: { rank: 'Tier 02', label: 'Established Hub' },
     stats: [
@@ -227,7 +227,7 @@ const COUNTRY_DASHBOARDS: Record<string, CountryDashboard> = {
     ],
   },
   US: {
-    subtitle: 'Global business presence in the United States — North America operations.',
+    subtitle: 'Global business presence in the United States ,North America operations.',
     yearsActive: '<1',
     tier: { rank: 'Tier 04', label: 'Emerging Hub' },
     stats: [
@@ -248,7 +248,7 @@ const COUNTRY_DASHBOARDS: Record<string, CountryDashboard> = {
     ],
     achievements: [
       { title: 'Newest Hub', body: 'North America entity formed August 2025', icon: Trophy },
-      { title: 'Texas Base', body: 'Austin — fast-growing tech corridor', icon: TrendingUp },
+      { title: 'Texas Base', body: 'Austin ,fast-growing tech corridor', icon: TrendingUp },
       { title: 'AI & Cloud Focus', body: 'Frontier-model & AWS engagements', icon: Sparkles },
     ],
   },
@@ -298,7 +298,7 @@ export default function CountryDetail() {
     <main className="relative bg-[#fbfdfb] text-slate-900 overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
-      {/* Ambient glow blobs — coloured from the country's flag palette */}
+      {/* Ambient glow blobs ,coloured from the country's flag palette */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         {(COUNTRY_BG[c.code]?.blobs ?? COUNTRY_BG.OM.blobs).map((b, i) => (
           <div key={i} className={b.className} />
@@ -308,7 +308,7 @@ export default function CountryDetail() {
       {/* ───────── 1. HERO ───────── */}
       <Hero country={c} dash={dash} mapUrl={mapUrl} flagUrl={flagUrl} />
 
-      {/* ───────── 3. WHAT WE DO — 3D SERVICE BLOCKS ───────── */}
+      {/* ───────── 3. WHAT WE DO ,3D SERVICE BLOCKS ───────── */}
       <ServiceBlocks services={dash.services} countryName={c.name} />
 
       {/* ───────── 4. CORPORATE HIERARCHY (parent + partner companies) ───────── */}
@@ -355,7 +355,7 @@ function Hero({
 }) {
   return (
     <section className="relative min-h-[70vh] flex items-center">
-      {/* Floating orbit lines (decorative — flag silhouette removed per
+      {/* Floating orbit lines (decorative ,flag silhouette removed per
        *  user request) */}
       <div aria-hidden="true" className="absolute inset-0 grid place-items-center pointer-events-none">
         <div className="absolute w-[60%] aspect-square rounded-full border border-slate-200 animate-spin-slow" />
@@ -532,7 +532,7 @@ function CorporateHierarchy({
         {/* Connecting tree lines + partner companies */}
         {partners.length > 0 && (
           <>
-            {/* Trunk + horizontal branch — visual tree connector from
+            {/* Trunk + horizontal branch ,visual tree connector from
              *  parent card down to the top row of partner cards. */}
             <div aria-hidden="true" className="relative mx-auto max-w-2xl mt-2 mb-3">
               <div className="mx-auto w-px h-8 bg-brand-accent/50" />
@@ -743,7 +743,7 @@ function GlobalConnection({
               ))}
             </svg>
 
-            {/* Centre — current country silhouette filled with flag */}
+            {/* Centre ,current country silhouette filled with flag */}
             <div className="absolute inset-0 grid place-items-center pointer-events-none">
               <div
                 className="w-32 h-32 md:w-36 md:h-36"
@@ -985,7 +985,7 @@ function ContactSection({
               </button>
               {submitted && (
                 <div className="text-xs text-brand-accent text-center">
-                  Thanks — your message is on its way to the {country.name.replace('Sultanate of ', '').replace('United States of America', 'US')} team.
+                  Thanks ,your message is on its way to the {country.name.replace('Sultanate of ', '').replace('United States of America', 'US')} team.
                 </div>
               )}
             </form>
