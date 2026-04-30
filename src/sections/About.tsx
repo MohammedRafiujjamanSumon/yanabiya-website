@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Quote } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { assets } from '../data/assets'
@@ -27,11 +27,11 @@ function Reveal({
   )
 }
 
-const stats = [
-  { value: '10+', label: 'Years of Experience' },
-  { value: '6',   label: 'Business Units'      },
-  { value: '4',   label: 'Continents Reached'  },
-]
+const PROMISE = {
+  quote:
+    'We deliver what we promise and place customer satisfaction above all — built on trust, integrity, and service excellence across every market we operate in.',
+  attribution: 'Yanabiya Group · Built on Trust, Driven by Excellence',
+}
 
 export default function About() {
   return (
@@ -99,57 +99,58 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* BELOW — composition card: clean office photo on the left,
-           *  brand-deep stats panel on the right (matches the supplied
-           *  design reference). No overlay on the photo — the two halves
-           *  sit side-by-side under one mint-bordered wrapper. */}
+          {/* BELOW — full-width office photo. Counts moved to the home
+           *  Stats strip; this card now leads cleanly with imagery
+           *  (no side panel competing for attention). */}
           <div className="w-full max-w-4xl mx-auto order-2">
             <Reveal>
-              <div className="grid grid-cols-12 rounded-2xl overflow-hidden
+              <div className="relative rounded-2xl overflow-hidden
                               border border-brand-accent/30
-                              shadow-[0_18px_44px_-14px_rgba(15,58,35,0.30)]">
-
-                {/* LEFT — clean office photo */}
-                <div className="col-span-12 md:col-span-8 relative bg-slate-900 aspect-[5/3] md:aspect-auto md:min-h-[300px]">
-                  <img
-                    src={assets.office}
-                    alt="Yanabiya Group office"
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover"
-                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                  />
-                </div>
-
-                {/* RIGHT — light stats panel (no dark background) */}
-                <div className="col-span-12 md:col-span-4 relative bg-white p-3 md:p-4">
-                  <div
-                    aria-hidden="true"
-                    className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-brand-accent/15 blur-3xl pointer-events-none"
-                  />
-                  <div className="relative flex md:flex-col h-full md:divide-y divide-slate-200">
-                    {stats.map((s, i) => (
-                      <Reveal key={s.label} delay={120 + i * 110} className="flex-1">
-                        <div className="h-full px-4 py-5 md:py-6 grid place-items-center text-center">
-                          <div>
-                            <div className="font-serif text-3xl md:text-4xl text-brand-accentDark leading-none">
-                              {s.value}
-                            </div>
-                            <div className="mt-2 text-[9px] md:text-[10px] uppercase tracking-[0.32em]
-                                            font-semibold text-slate-600 leading-tight">
-                              {s.label}
-                            </div>
-                          </div>
-                        </div>
-                      </Reveal>
-                    ))}
-                  </div>
-                </div>
+                              shadow-[0_18px_44px_-14px_rgba(15,58,35,0.30)]
+                              aspect-[16/9] bg-slate-900">
+                <img
+                  src={assets.office}
+                  alt="Yanabiya Group office"
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                />
+                {/* Soft bottom shade so any potential caption stays legible */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/35 via-black/10 to-transparent"
+                />
               </div>
             </Reveal>
           </div>
 
-          {/* BOTTOM — CTAs (centered, below the office card) */}
-          <Reveal delay={340} className="order-3">
+          {/* PULL-QUOTE — brand promise under the picture. Replaces the
+           *  redundant side-stats panel; gives the section a clear voice
+           *  and links the visual to the brand line. */}
+          <Reveal delay={200} className="order-3 w-full max-w-3xl mx-auto -mt-2">
+            <figure className="relative rounded-2xl bg-white px-6 py-7 md:px-10 md:py-9
+                              border border-emerald-100
+                              shadow-[0_10px_28px_-14px_rgba(15,58,35,0.18)]">
+              {/* Vertical brand-accent bar on the left */}
+              <span aria-hidden className="absolute left-0 top-6 bottom-6 w-1 rounded-r-full bg-brand-accent" />
+              <Quote
+                aria-hidden
+                size={26}
+                className="absolute -top-3 -left-3 md:-top-4 md:-left-4 text-brand-accent
+                           bg-white rounded-full p-1 ring-1 ring-emerald-100"
+              />
+              <blockquote className="font-serif italic text-slate-800 leading-relaxed text-[15px] md:text-base">
+                &ldquo;{PROMISE.quote}&rdquo;
+              </blockquote>
+              <figcaption className="mt-4 text-[10px] md:text-[11px] uppercase tracking-[0.28em]
+                                     font-semibold text-brand-accentDark">
+                {PROMISE.attribution}
+              </figcaption>
+            </figure>
+          </Reveal>
+
+          {/* BOTTOM — CTAs (centered, below the pull-quote) */}
+          <Reveal delay={340} className="order-4">
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Link
                 to="/about-us"
