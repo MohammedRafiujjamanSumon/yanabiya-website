@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight } from 'lucide-react'
-import { assets } from '../data/assets'
 import Section from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import GlobalOverviewPanel from '../components/GlobalOverviewPanel'
@@ -30,25 +29,17 @@ function Reveal({
   )
 }
 
-/* Orbit ring assignments (innermost → outermost):
- *   Oman  → ring 1 (scale 0.35), placed east of centre
- *   UK    → ring 2 (scale 0.55), placed north
- *   BD    → ring 3 (scale 0.75), placed south-east
- *   USA   → ring 4 (scale 0.95), placed north-west
- * Position formula: left% = 50 + scale*50·cos(θ), top% = 50 + scale*50·sin(θ). */
-/* Orbit ring assignments (innermost ring is 1, outermost is 5):
- *   Oman → ring 2, east
- *   UK   → ring 3, north
- *   BD   → ring 4, south
- *   USA  → ring 5 (outermost), west
- * `name` shows on the right of the flag on hover, "Read more" on
- * the left — both inside one continuous pill. */
-const orbitDots = [
-  { code: 'OM', flag: '🇴🇲', name: 'Oman',       label: 'Muscat, Oman',       top: '50%', left: '69%' },
-  { code: 'GB', flag: '🇬🇧', name: 'UK',         label: 'London, UK',         top: '22%', left: '50%' },
-  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', label: 'Dhaka, Bangladesh',  top: '85%', left: '50%' },
-  { code: 'US', flag: '🇺🇸', name: 'USA',        label: 'Austin, USA',        top: '45%', left: '5%'  },
+/* Country map silhouettes — Oman (HQ), UK, Bangladesh, USA — rendered
+ * as a 2×2 grid. Each card uses CSS mask-image to colour the SVG
+ * outline in the brand-accent gradient and applies a soft halo so the
+ * shape "lights up" on hover. */
+const COUNTRY_MAPS = [
+  { code: 'OM', flag: '🇴🇲', name: 'Sultanate of Oman',       role: 'Headquarters'        },
+  { code: 'GB', flag: '🇬🇧', name: 'United Kingdom',          role: 'European Operations' },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh',              role: 'South Asia Operations' },
+  { code: 'US', flag: '🇺🇸', name: 'United States of America', role: 'North America Operations' },
 ]
+const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
 
 export default function Global() {
   const { t } = useTranslation()
@@ -73,120 +64,85 @@ export default function Global() {
           </Reveal>
         </div>
 
-        {/* ───────── GEOMAP — sits BELOW the text ───────── */}
+        {/* ───────── GEOMAP — 2×2 country map silhouettes ───────── */}
         <Reveal delay={1080}>
-          <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto mt-12 md:mt-16">
-            {/* Soft halo */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 grid place-items-center pointer-events-none"
-            >
-              <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/30 blur-[80px] animate-gradient" />
-            </div>
-
-            {/* Concentric orbit rings — 5 rings so each office can sit
-             *  on its own (Oman·2, UK·3, BD·4, USA·5/outermost). */}
-            <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
-              {[0.92, 0.74, 0.56, 0.38, 0.20].map((s, i) => (
-                <div
-                  key={i}
-                  className="absolute rounded-full border border-brand-accentDark/40"
-                  style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
-                />
-              ))}
-            </div>
-
-            {/* Centre — spinning Yanabiya logo medallion. Same circle
-             *  size as before; the logo is scaled up inside it to fill
-             *  the disc instead of sitting with padding around it. */}
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white shadow-xl
-                              ring-2 ring-brand-accentDark/60 overflow-hidden
-                              grid place-items-center animate-spin-slow">
-                <img
-                  src={assets.logo}
-                  alt="Yanabiya Group"
-                  className="w-full h-full object-contain scale-[1.35]"
-                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                />
-              </div>
-            </div>
-
-            {/* Connecting lines from each dot to the centre */}
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 100 80"
-              className="absolute inset-0 w-full h-full"
-              preserveAspectRatio="none"
-            >
-              {orbitDots.map((d, i) => {
-                const x = parseFloat(d.left)
-                const y = parseFloat(d.top) * 0.8
-                return (
-                  <line
-                    key={d.code}
-                    x1="50" y1="40" x2={x} y2={y}
-                    stroke="rgba(15,58,35,0.55)"
-                    strokeWidth="0.28"
-                    strokeDasharray="0.8 0.6"
-                    style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
-                  />
-                )
-              })}
-            </svg>
-
-            {/* Outer city pins — flag medallion in the centre of one
-             *  continuous pill that expands BOTH sides on hover/tap:
-             *  "Read more" slides out to the left, country name slides
-             *  out to the right. Symmetric growth keeps the flag (and
-             *  the pin's coordinate) anchored. */}
-            {orbitDots.map((d, i) => (
-              <Link
-                key={d.code}
-                to={`/country/${d.code.toLowerCase()}`}
-                aria-label={`Explore ${d.label}`}
-                title={d.label}
-                className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20"
-                style={{ top: d.top, left: d.left }}
-              >
-                <div className="relative inline-flex items-center
-                                bg-white rounded-full ring-2 ring-brand-accent/60 shadow-md
-                                transition-shadow duration-300
-                                group-hover:ring-brand-accent
-                                group-hover:shadow-[0_0_20px_rgba(158,199,58,0.7)]">
-                  {/* Halo behind the flag medallion (stays a circle, doesn't grow with the pill) */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                               w-10 h-10 rounded-full bg-brand-accent/40 pointer-events-none -z-10"
-                    style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
-                  />
-
-                  {/* LEFT — "Read more" slides in from the left on hover */}
-                  <div className="overflow-hidden max-w-0 group-hover:max-w-[110px]
-                                  transition-all duration-300 ease-out">
-                    <span className="block whitespace-nowrap pl-3 pr-1
-                                     text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
-                      Read more
-                    </span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-3xl mx-auto mt-12 md:mt-16">
+            {COUNTRY_MAPS.map((c) => {
+              const mapUrl = `${MAP_BASE}${c.code.toLowerCase()}.svg`
+              const isHQ = c.code === 'OM'
+              return (
+                <Link
+                  key={c.code}
+                  to={`/country/${c.code.toLowerCase()}`}
+                  aria-label={`Explore ${c.name}`}
+                  className="group relative rounded-2xl border border-brand-accent/30 bg-white
+                             p-4 md:p-6 transition-all duration-500 overflow-hidden
+                             hover:-translate-y-1 hover:border-brand-accentDark
+                             hover:shadow-[0_20px_40px_rgba(158,199,58,0.25)]"
+                >
+                  {/* Map silhouette area */}
+                  <div className="relative aspect-[5/4] flex items-center justify-center">
+                    {/* Pulsing halo behind the silhouette */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 opacity-60 group-hover:opacity-100
+                                 transition-opacity duration-500 pointer-events-none"
+                      style={{
+                        background:
+                          'radial-gradient(ellipse at center, rgba(158,199,58,0.45) 0%, transparent 65%)',
+                        filter: 'blur(24px)',
+                      }}
+                    />
+                    {/* The country silhouette — coloured via CSS mask so we
+                     *  can light it with the brand accent gradient + glow. */}
+                    <div
+                      className="relative w-full h-full transition-transform duration-500
+                                 group-hover:scale-[1.04]"
+                      style={{
+                        WebkitMaskImage: `url(${mapUrl})`,
+                        maskImage: `url(${mapUrl})`,
+                        WebkitMaskSize: 'contain',
+                        maskSize: 'contain',
+                        WebkitMaskRepeat: 'no-repeat',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskPosition: 'center',
+                        maskPosition: 'center',
+                        backgroundImage:
+                          'linear-gradient(135deg, #b8d75a 0%, #9ec73a 50%, #6f9526 100%)',
+                        filter:
+                          'drop-shadow(0 0 18px rgba(158,199,58,0.65)) drop-shadow(0 0 4px rgba(158,199,58,0.5))',
+                      }}
+                    />
                   </div>
 
-                  {/* CENTRE — flag medallion (always visible, anchor of the pin) */}
-                  <span className="relative grid place-items-center w-10 h-10 text-lg shrink-0">
-                    {d.flag}
-                  </span>
-
-                  {/* RIGHT — country name slides in from the right on hover */}
-                  <div className="overflow-hidden max-w-0 group-hover:max-w-[140px]
-                                  transition-all duration-300 ease-out">
-                    <span className="block whitespace-nowrap pr-3 pl-1
-                                     text-[11px] font-semibold text-brand-deep">
-                      {d.name}
-                    </span>
+                  {/* Card footer */}
+                  <div className="mt-3 md:mt-4 flex items-center gap-3 border-t border-brand-accent/20 pt-3 md:pt-4">
+                    <span className="text-2xl shrink-0">{c.flag}</span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-sm md:text-base font-semibold text-brand-deep leading-tight">
+                          {c.name}
+                        </span>
+                        {isHQ && (
+                          <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded
+                                           bg-brand-accentDark text-white">
+                            HQ
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-slate-500 mt-0.5">
+                        {c.role}
+                      </p>
+                    </div>
+                    <ArrowRight
+                      size={16}
+                      className="text-brand-accent shrink-0 transition-transform duration-300
+                                 group-hover:translate-x-1 group-hover:text-brand-accentDark"
+                    />
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              )
+            })}
           </div>
         </Reveal>
 
