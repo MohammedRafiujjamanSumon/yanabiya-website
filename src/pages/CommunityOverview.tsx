@@ -145,10 +145,10 @@ export default function CommunityOverview() {
               <line x1="875" y1="220" x2="875" y2="240" stroke="#f43f5e" strokeWidth="14" strokeLinecap="round" />
             </svg>
 
-            {/* Four hub circles + descriptions */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6">
+            {/* Four hub circles — name only, click navigates to the page */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 md:gap-x-6 justify-items-center">
               {HUBS.map((h, i) => (
-                <Reveal key={h.to} delay={i * 90} className={`text-center ${h.offset}`}>
+                <Reveal key={h.to} delay={i * 90} className={h.offset}>
                   <Link
                     to={h.to}
                     aria-label={`Open ${h.title}`}
@@ -160,27 +160,11 @@ export default function CommunityOverview() {
                                 hover:scale-110 hover:shadow-[0_20px_40px_-10px_rgba(15,23,42,0.45)]
                                 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60`}
                   >
-                    <h.icon size={24} strokeWidth={1.8} className="mb-1.5 opacity-90 transition-transform duration-300 group-hover:scale-110" />
+                    <h.icon size={26} strokeWidth={1.8} className="mb-1.5 opacity-90 transition-transform duration-300 group-hover:scale-110" />
                     <span className="font-bold text-sm md:text-base leading-tight tracking-tight">
                       {h.title}
                     </span>
                   </Link>
-                  <div className="mt-4 max-w-[220px] mx-auto">
-                    <div className="text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-1.5">
-                      {h.eyebrow}
-                    </div>
-                    <p className="text-xs md:text-sm text-slate-600 leading-snug">
-                      {h.body}
-                    </p>
-                    <Link
-                      to={h.to}
-                      className="mt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
-                                 text-brand-accentDark hover:text-brand-deep
-                                 transition-all"
-                    >
-                      Open <ArrowRight size={11} />
-                    </Link>
-                  </div>
                 </Reveal>
               ))}
             </div>
