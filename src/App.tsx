@@ -43,6 +43,10 @@ export default function App() {
           <Route path="/global-presence/bd" element={<CountryOperations codeOverride="BD" />} />
           <Route path="/country/om" element={<CountryOperations codeOverride="OM" />} />
           <Route path="/global-presence/om" element={<CountryOperations codeOverride="OM" />} />
+          <Route path="/country/gb" element={<CountryOperations codeOverride="GB" />} />
+          <Route path="/global-presence/gb" element={<CountryOperations codeOverride="GB" />} />
+          <Route path="/country/us" element={<CountryOperations codeOverride="US" />} />
+          <Route path="/global-presence/us" element={<CountryOperations codeOverride="US" />} />
 
           <Route path="/country/:code" element={<CountryDetail />} />
           <Route path="/global-presence/scroll" element={<OmanPresence />} />
@@ -50,9 +54,9 @@ export default function App() {
 
           {/* Clean country aliases — same page, prettier URLs. */}
           <Route path="/oman"       element={<CountryOperations codeOverride="OM" />} />
-          <Route path="/uk"         element={<CountryDetail codeOverride="GB" />} />
+          <Route path="/uk"         element={<CountryOperations codeOverride="GB" />} />
           <Route path="/bangladesh" element={<CountryOperations codeOverride="BD" />} />
-          <Route path="/usa"        element={<CountryDetail codeOverride="US" />} />
+          <Route path="/usa"        element={<CountryOperations codeOverride="US" />} />
           <Route path="/contact" element={<ContactGlobal />} />
           <Route path="/leadership" element={<LeadershipOverview />} />
           <Route path="/leadership/management" element={<Management />} />

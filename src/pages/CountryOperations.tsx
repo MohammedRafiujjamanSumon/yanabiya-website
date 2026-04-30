@@ -280,8 +280,176 @@ const OPS: Record<string, CountryOps> = {
       { title: 'Vision 2040 Alignment',          body: 'Active participation in Oman Vision 2040 initiatives across IT, trade and infrastructure.',     icon: Globe2,      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
     ],
   },
-  // Other countries can be filled in later — the page falls back to a
-  // light "coming soon" stub for any country code not in this map.
+  GB: {
+    intro:
+      'Yanabiya Gulf International UK Ltd is the Group\'s European operations hub — bridging Gulf and Asian capability into the British and EU markets through 21+ trusted partners across IT, retail and hospitality.',
+    branchIntro:
+      'Operating from London since 2023, our UK office handles European-market business development, cross-border trade representation, and IT delivery into UK enterprises and SMEs.',
+    parentCompany: 'Yanabiya Gulf International Business & Trade SPC, Sultanate of Oman',
+    mission:
+      'Connect Gulf and South-Asian capability with British and European demand — delivered with UK governance and enterprise-grade compliance.',
+    vision:
+      'A trusted European partner for Gulf-rooted enterprises — and the UK gateway for Yanabiya Group\'s global network.',
+    established: '1 June 2023',
+    registration: { label: 'Company Number', value: '14907791' },
+    legalEntity: 'Yanabiya Gulf International UK Ltd',
+    license: { name: 'Companies House Registration — Private Limited Company', authority: 'Companies House, United Kingdom' },
+    address: '167-169 Great Portland Street, 5th Floor, London W1W 5PF, United Kingdom',
+    services: [
+      { label: 'IT Software & Web Development',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Clothing & Accessories',               desc: 'Wholesale clothing, retail textiles, and accessories trade.',          icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane,     slug: 'manpower',          image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+    ],
+    // UK group of partner companies (real names from the existing
+    // global-presence dataset). Domain best-guesses fed to Clearbit
+    // with monogram fallback.
+    strategicPartners: [
+      { name: 'Tata Consultancy Services', domain: 'tcs.com' },
+      { name: 'Infosys',                   domain: 'infosys.com' },
+      { name: 'Wipro',                     domain: 'wipro.com' },
+      { name: 'HCLTech',                   domain: 'hcltech.com' },
+      { name: 'Tech Mahindra',             domain: 'techmahindra.com' },
+      { name: '10Pearls',                  domain: '10pearls.com' },
+      { name: 'Systems Limited',           domain: 'systemsltd.com' },
+      { name: 'Brain Station 23',          domain: 'brainstation-23.com' },
+    ],
+    operationalPartners: [
+      { name: 'Arpatech',                domain: 'arpatech.com' },
+      { name: 'DataSoft Systems',        domain: 'datasoft-bd.com' },
+      { name: 'REVE Systems',            domain: 'revesoft.com' },
+      { name: 'Bestway Group',           domain: 'bestway.co.uk' },
+      { name: 'Taj Stores',              domain: 'tajstores.co.uk' },
+      { name: 'East End Foods',          domain: 'eastendfoods.co.uk' },
+      { name: 'Dishoom',                 domain: 'dishoom.com' },
+      { name: 'Tayyabs',                 domain: 'tayyabs.co.uk' },
+    ],
+    categories: [
+      { label: 'IT, Software & Cloud Services',         icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Wholesale Trade & Retail Distribution', icon: Boxes,     tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Hospitality, Restaurants & Foodservice', icon: Megaphone, tone: 'from-amber-500/40 to-orange-700/40',   image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Cross-Border Trade & Brokerage',        icon: Handshake, tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
+      { label: 'European Market Entry Advisory',        icon: Globe2,    tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Office, Compliance & Admin Services',   icon: Briefcase, tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+    ],
+    licensedActivities: [
+      'Information technology consultancy and software development',
+      'Computer programming, web design and systems integration',
+      'Cloud hosting, data analytics and AI services',
+      'Cyber security advisory and compliance support',
+      'Wholesale of food, beverages and consumer goods',
+      'Retail trade in supermarkets, cash-and-carry and specialised stores',
+      'Licensed restaurant operations and foodservice',
+      'Commercial agency, brokerage and import/export representation',
+      'European market-entry advisory and partner identification',
+      'Cross-border trade representation and contract negotiation',
+      'Business administration, accounting and PRO services',
+      'Recruitment, immigration support and overseas placement coordination',
+    ],
+    currentProjects: [
+      { title: 'European Market-Entry Advisory',  body: 'Guiding Gulf-rooted enterprises into the UK & EU markets — from registration to compliance.',     image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80' },
+      { title: 'IT Delivery Into UK SMEs',         body: 'Software, cloud and AI engagements with UK financial-services and retail clients.',                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Wholesale & Retail Network',       body: 'Active relationships with UK supermarkets, cash-and-carry and ethnic-grocery distributors.',         image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Hospitality Partnerships',         body: 'Sourcing, supply and operational support for London restaurant groups.',                            image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
+    ],
+    activeSectors: [
+      'Information Technology & Software Engineering',
+      'Wholesale & Retail Distribution',
+      'Hospitality, Restaurants & Foodservice',
+      'Cross-Border Trade & Brokerage',
+      'European Market-Entry Advisory',
+      'Workforce Mobility & Student Placement',
+    ],
+    futurePlans: [
+      { title: 'Continental Europe Expansion',      body: 'Open representation in Frankfurt and Amsterdam to extend EU market coverage from London.',          icon: TrendingUp,  image: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=80' },
+      { title: 'UK Cloud & AI Practice',            body: 'Build a London-anchored cloud-and-AI practice serving financial-services and public-sector clients.', icon: Sparkles,    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
+      { title: 'ESG-Aligned Trade',                  body: 'Strengthen ethical-sourcing, carbon-reporting and supplier-code commitments across UK trade.',         icon: Lightbulb,   image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Hospitality Brand Investments',      body: 'Strategic investment in London restaurant groups bridging South-Asian and Middle-Eastern cuisine.',     icon: Globe2,      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
+    ],
+  },
+
+  US: {
+    intro:
+      'Yanabiya Gulf International US LLC is the Group\'s North America operations entity — anchored in Austin, Texas, with a partner network onboarding through 2026 to serve enterprise clients across the US market.',
+    branchIntro:
+      'Established in 2025, our US LLC is in active onboarding — building cloud, AI and partnership-network engagements with North-American clients while preparing to scale through Austin into the wider Texas tech corridor.',
+    parentCompany: 'Yanabiya Gulf International Business & Trade SPC, Sultanate of Oman',
+    mission:
+      'Bring Gulf and South-Asian delivery capability to North-American enterprises — under US governance, with US-based account leadership.',
+    vision:
+      'A trusted Texas-anchored bridge between Yanabiya Group\'s global delivery network and the US technology economy.',
+    established: '11 August 2025',
+    registration: { label: 'File Number', value: '806163411' },
+    legalEntity: 'Yanabiya Gulf International US LLC',
+    license: { name: 'LLC Registration — Limited Liability Company', authority: 'Texas Secretary of State, USA' },
+    address: '5900 Balcones Drive #18651, Austin, TX 78731, United States of America',
+    services: [
+      { label: 'IT Software & Web Development',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane,     slug: 'manpower',          image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+    ],
+    // US partner network is still onboarding — show the global tech
+    // partners that anchor early engagements as 'strategic' and a
+    // few US-leaning advisory partners as 'operational'.
+    strategicPartners: [
+      { name: 'Amazon Web Services',  domain: 'aws.amazon.com' },
+      { name: 'Microsoft',            domain: 'microsoft.com' },
+      { name: 'Google Cloud',         domain: 'cloud.google.com' },
+      { name: 'Oracle',               domain: 'oracle.com' },
+      { name: 'NVIDIA',               domain: 'nvidia.com' },
+    ],
+    operationalPartners: [
+      { name: 'GitHub',               domain: 'github.com' },
+      { name: 'Salesforce',           domain: 'salesforce.com' },
+      { name: 'HubSpot',              domain: 'hubspot.com' },
+      { name: 'Atlassian',            domain: 'atlassian.com' },
+      { name: 'Okta',                 domain: 'okta.com' },
+    ],
+    categories: [
+      { label: 'Cloud & AI Advisory',               icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Technology Partnership Network',    icon: Handshake, tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
+      { label: 'North American Market Entry',       icon: Globe2,    tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Strategic & Boardroom Consulting',  icon: Briefcase, tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Workforce Mobility (US-bound)',     icon: Plane,     tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Cross-Border Trade Representation', icon: Boxes,     tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
+    ],
+    licensedActivities: [
+      'Cloud computing, AI and frontier-technology consulting',
+      'Custom software development and systems integration',
+      'Cyber-security advisory and compliance support',
+      'Information technology managed services',
+      'Cross-border trade representation and brokerage',
+      'Strategic and management consulting services',
+      'Partnership development and joint-venture facilitation',
+      'Workforce mobility, immigration and US-bound placement',
+      'Office administration, accounting and back-office services',
+      'Market research and US market-entry advisory',
+    ],
+    currentProjects: [
+      { title: 'Texas Operations Onboarding',     body: 'Standing up the Austin entity, partner contracts, and US banking/compliance setup.',           image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Cloud & AI Advisory Pilots',      body: 'Early pilot engagements with North-American enterprises around AWS, Azure and AI rollouts.',  image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Partner Network Build-Out',       body: 'Onboarding US-side technology, services and advisory partners for early-2026 launch.',         image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Strategic Account Programme',     body: 'Identifying anchor accounts across financial services, retail and government tech.',             image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+    ],
+    activeSectors: [
+      'Cloud, AI & Frontier Technology Advisory',
+      'Strategic & Management Consulting',
+      'North American Market Entry',
+      'Cross-Border Trade & Brokerage',
+      'Workforce Mobility & Student Placement',
+      'Partnership Network Development',
+    ],
+    futurePlans: [
+      { title: 'Full US Launch — 2026',           body: 'Public launch of the US LLC after partner network closes; first Austin-based engagement live.',  icon: TrendingUp,  image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80' },
+      { title: 'AI Centre of Excellence',         body: 'Stand up an Austin-anchored AI centre of excellence delivering frontier-tech engagements.',     icon: Sparkles,    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
+      { title: 'East-Coast Expansion',             body: 'Open New York representation in 2027 to anchor financial-services and corporate clients.',     icon: Globe2,      image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Investor & Advisory Programme',    body: 'Build a US investor-and-advisor circle around Yanabiya Group\'s global growth roadmap.',        icon: Lightbulb,   image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+    ],
+  },
 }
 
 export default function CountryOperations({ codeOverride }: { codeOverride: string }) {
