@@ -29,16 +29,26 @@ function Reveal({
   )
 }
 
-/* Country map silhouettes — Oman (HQ), UK, Bangladesh, USA — rendered
- * as a 2×2 grid. Each card uses CSS mask-image to colour the SVG
- * outline in the brand-accent gradient and applies a soft halo so the
- * shape "lights up" on hover. */
+/* Country map silhouettes — Oman (HQ), UK, Bangladesh, USA — used as
+ * the centrepiece of the orbit-rings geomap. Each silhouette is masked
+ * out of an SVG outline (mapsicon) so we can fill it with the brand
+ * accent gradient and apply a soft glow halo. */
 const COUNTRY_MAPS = [
-  { code: 'OM', flag: '🇴🇲', name: 'Sultanate of Oman',       role: 'Headquarters'        },
-  { code: 'GB', flag: '🇬🇧', name: 'United Kingdom',          role: 'European Operations' },
-  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh',              role: 'South Asia Operations' },
-  { code: 'US', flag: '🇺🇸', name: 'United States of America', role: 'North America Operations' },
+  { code: 'OM', flag: '🇴🇲', name: 'Oman',       label: 'Muscat, Oman'        },
+  { code: 'GB', flag: '🇬🇧', name: 'UK',         label: 'London, UK'          },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', label: 'Dhaka, Bangladesh'   },
+  { code: 'US', flag: '🇺🇸', name: 'USA',        label: 'Austin, USA'         },
 ]
+
+/* Orbit positions for the flag pins — same coordinates as before so the
+ * outer pyramid + connecting lines line up correctly. */
+const orbitDots = [
+  { code: 'OM', flag: '🇴🇲', name: 'Oman',       label: 'Muscat, Oman',       top: '50%', left: '69%' },
+  { code: 'GB', flag: '🇬🇧', name: 'UK',         label: 'London, UK',         top: '22%', left: '50%' },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh', label: 'Dhaka, Bangladesh',  top: '85%', left: '50%' },
+  { code: 'US', flag: '🇺🇸', name: 'USA',        label: 'Austin, USA',        top: '45%', left: '5%'  },
+]
+
 const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
 
 export default function Global() {
@@ -64,85 +74,155 @@ export default function Global() {
           </Reveal>
         </div>
 
-        {/* ───────── GEOMAP — 2×2 country map silhouettes ───────── */}
+        {/* ───────── GEOMAP — orbit rings + central 2×2 silhouettes ───────── */}
         <Reveal delay={1080}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-3xl mx-auto mt-12 md:mt-16">
-            {COUNTRY_MAPS.map((c) => {
-              const mapUrl = `${MAP_BASE}${c.code.toLowerCase()}.svg`
-              const isHQ = c.code === 'OM'
-              return (
-                <Link
-                  key={c.code}
-                  to={`/country/${c.code.toLowerCase()}`}
-                  aria-label={`Explore ${c.name}`}
-                  className="group relative rounded-2xl border border-brand-accent/30 bg-white
-                             p-4 md:p-6 transition-all duration-500 overflow-hidden
-                             hover:-translate-y-1 hover:border-brand-accentDark
-                             hover:shadow-[0_20px_40px_rgba(158,199,58,0.25)]"
-                >
-                  {/* Map silhouette area */}
-                  <div className="relative aspect-[5/4] flex items-center justify-center">
-                    {/* Pulsing halo behind the silhouette */}
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 opacity-60 group-hover:opacity-100
-                                 transition-opacity duration-500 pointer-events-none"
-                      style={{
-                        background:
-                          'radial-gradient(ellipse at center, rgba(158,199,58,0.45) 0%, transparent 65%)',
-                        filter: 'blur(24px)',
-                      }}
-                    />
-                    {/* The country silhouette — coloured via CSS mask so we
-                     *  can light it with the brand accent gradient + glow. */}
-                    <div
-                      className="relative w-full h-full transition-transform duration-500
-                                 group-hover:scale-[1.04]"
-                      style={{
-                        WebkitMaskImage: `url(${mapUrl})`,
-                        maskImage: `url(${mapUrl})`,
-                        WebkitMaskSize: 'contain',
-                        maskSize: 'contain',
-                        WebkitMaskRepeat: 'no-repeat',
-                        maskRepeat: 'no-repeat',
-                        WebkitMaskPosition: 'center',
-                        maskPosition: 'center',
-                        backgroundImage:
-                          'linear-gradient(135deg, #b8d75a 0%, #9ec73a 50%, #6f9526 100%)',
-                        filter:
-                          'drop-shadow(0 0 18px rgba(158,199,58,0.65)) drop-shadow(0 0 4px rgba(158,199,58,0.5))',
-                      }}
-                    />
+          <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto mt-12 md:mt-16">
+            {/* Soft halo */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 grid place-items-center pointer-events-none"
+            >
+              <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/30 blur-[80px] animate-gradient" />
+            </div>
+
+            {/* Concentric orbit rings — 5 rings so each office can sit on
+             *  its own (Oman·2, UK·3, BD·4, USA·5/outermost). */}
+            <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
+              {[0.92, 0.74, 0.56, 0.38, 0.20].map((s, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full border border-brand-accentDark/40"
+                  style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
+                />
+              ))}
+            </div>
+
+            {/* Connecting lines from each flag pin to the centre */}
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 100 80"
+              className="absolute inset-0 w-full h-full"
+              preserveAspectRatio="none"
+            >
+              {orbitDots.map((d, i) => {
+                const x = parseFloat(d.left)
+                const y = parseFloat(d.top) * 0.8
+                return (
+                  <line
+                    key={d.code}
+                    x1="50" y1="40" x2={x} y2={y}
+                    stroke="rgba(15,58,35,0.55)"
+                    strokeWidth="0.28"
+                    strokeDasharray="0.8 0.6"
+                    style={{ animation: `dividerGrow 4s ease-in-out ${i * 0.3}s infinite` }}
+                  />
+                )
+              })}
+            </svg>
+
+            {/* CENTRE — 2×2 country silhouettes inside the innermost ring,
+             *  replacing the previous spinning logo medallion. Each
+             *  silhouette is a small Link with a glow halo. */}
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="relative grid grid-cols-2 gap-1.5 md:gap-2 p-2.5 md:p-3
+                              w-[24%] aspect-square rounded-2xl bg-white/95
+                              ring-2 ring-brand-accentDark/60 shadow-xl
+                              backdrop-blur-sm">
+                {COUNTRY_MAPS.map((c) => {
+                  const mapUrl = `${MAP_BASE}${c.code.toLowerCase()}.svg`
+                  return (
+                    <Link
+                      key={c.code}
+                      to={`/country/${c.code.toLowerCase()}`}
+                      aria-label={`Explore ${c.label}`}
+                      title={c.label}
+                      className="group relative grid place-items-center rounded-md
+                                 bg-brand-accent/5 hover:bg-brand-accent/15
+                                 transition-colors duration-300"
+                    >
+                      <div
+                        aria-hidden="true"
+                        className="absolute inset-0 opacity-70 group-hover:opacity-100
+                                   transition-opacity duration-300 pointer-events-none"
+                        style={{
+                          background:
+                            'radial-gradient(ellipse at center, rgba(158,199,58,0.55) 0%, transparent 70%)',
+                          filter: 'blur(8px)',
+                        }}
+                      />
+                      <div
+                        className="relative w-[80%] h-[80%] transition-transform duration-300
+                                   group-hover:scale-110"
+                        style={{
+                          WebkitMaskImage: `url(${mapUrl})`,
+                          maskImage: `url(${mapUrl})`,
+                          WebkitMaskSize: 'contain',
+                          maskSize: 'contain',
+                          WebkitMaskRepeat: 'no-repeat',
+                          maskRepeat: 'no-repeat',
+                          WebkitMaskPosition: 'center',
+                          maskPosition: 'center',
+                          backgroundImage:
+                            'linear-gradient(135deg, #b8d75a 0%, #9ec73a 50%, #6f9526 100%)',
+                          filter:
+                            'drop-shadow(0 0 6px rgba(158,199,58,0.7)) drop-shadow(0 0 2px rgba(158,199,58,0.5))',
+                        }}
+                      />
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Outer city pins — flag medallion in the centre of one
+             *  continuous pill that expands BOTH sides on hover/tap:
+             *  "Read more" slides out to the left, country name slides
+             *  out to the right. Symmetric growth keeps the flag (and
+             *  the pin's coordinate) anchored. */}
+            {orbitDots.map((d, i) => (
+              <Link
+                key={d.code}
+                to={`/country/${d.code.toLowerCase()}`}
+                aria-label={`Explore ${d.label}`}
+                title={d.label}
+                className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20"
+                style={{ top: d.top, left: d.left }}
+              >
+                <div className="relative inline-flex items-center
+                                bg-white rounded-full ring-2 ring-brand-accent/60 shadow-md
+                                transition-shadow duration-300
+                                group-hover:ring-brand-accent
+                                group-hover:shadow-[0_0_20px_rgba(158,199,58,0.7)]">
+                  {/* Halo behind the flag medallion */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                               w-10 h-10 rounded-full bg-brand-accent/40 pointer-events-none -z-10"
+                    style={{ animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite` }}
+                  />
+
+                  <div className="overflow-hidden max-w-0 group-hover:max-w-[110px]
+                                  transition-all duration-300 ease-out">
+                    <span className="block whitespace-nowrap pl-3 pr-1
+                                     text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark">
+                      Read more
+                    </span>
                   </div>
 
-                  {/* Card footer */}
-                  <div className="mt-3 md:mt-4 flex items-center gap-3 border-t border-brand-accent/20 pt-3 md:pt-4">
-                    <span className="text-2xl shrink-0">{c.flag}</span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-sm md:text-base font-semibold text-brand-deep leading-tight">
-                          {c.name}
-                        </span>
-                        {isHQ && (
-                          <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded
-                                           bg-brand-accentDark text-white">
-                            HQ
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-slate-500 mt-0.5">
-                        {c.role}
-                      </p>
-                    </div>
-                    <ArrowRight
-                      size={16}
-                      className="text-brand-accent shrink-0 transition-transform duration-300
-                                 group-hover:translate-x-1 group-hover:text-brand-accentDark"
-                    />
+                  <span className="relative grid place-items-center w-10 h-10 text-lg shrink-0">
+                    {d.flag}
+                  </span>
+
+                  <div className="overflow-hidden max-w-0 group-hover:max-w-[140px]
+                                  transition-all duration-300 ease-out">
+                    <span className="block whitespace-nowrap pr-3 pl-1
+                                     text-[11px] font-semibold text-brand-deep">
+                      {d.name}
+                    </span>
                   </div>
-                </Link>
-              )
-            })}
+                </div>
+              </Link>
+            ))}
           </div>
         </Reveal>
 
