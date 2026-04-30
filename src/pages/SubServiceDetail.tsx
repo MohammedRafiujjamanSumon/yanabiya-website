@@ -141,9 +141,6 @@ export default function SubServiceDetail() {
           {/* Other services in this division */}
           {others.length > 0 && (
             <div className="mt-16 pt-10 border-t border-white/10">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-brand-accent mb-2 text-center">
-                {business.title.replace('🤝 ', '')}
-              </div>
               <h3 className="font-serif text-2xl md:text-3xl text-white leading-tight mb-6 text-center">
                 More services in this division
               </h3>
