@@ -167,65 +167,48 @@ export default function Global() {
                   className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20
                              cursor-pointer
                              focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded-full"
-                  style={{ top: d.top, left: d.left, perspective: '1200px' }}
+                  style={{ top: d.top, left: d.left }}
                 >
-                  <div
-                    className="relative w-40 h-40 md:w-44 md:h-44
-                               transition-transform duration-700 ease-out"
-                    style={{
-                      transformStyle: 'preserve-3d',
-                      WebkitTransformStyle: 'preserve-3d',
-                      transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-                    }}
-                  >
-                    {/* Front — flag-filled country silhouette */}
+                  <div className="relative w-36 h-36 md:w-40 md:h-40">
+                    {/* Front — flag-filled country silhouette. Fades out
+                     *  on hover/active so the back card behind reads. */}
                     <div
-                      className="absolute inset-0"
+                      className={`absolute inset-0 transition-all duration-500 ease-out
+                                  ${isFlipped ? 'opacity-0 scale-90' : 'opacity-100 scale-100 group-hover:scale-105'}`}
                       style={{
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden',
+                        WebkitMaskImage: `url(${mapUrl})`,
+                        maskImage: `url(${mapUrl})`,
+                        WebkitMaskSize: 'contain',
+                        maskSize: 'contain',
+                        WebkitMaskRepeat: 'no-repeat',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskPosition: 'center',
+                        maskPosition: 'center',
+                        backgroundImage: `url(${flagUrl})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
                       }}
-                    >
-                      <div
-                        className="w-full h-full transition-transform duration-300
-                                   group-hover:scale-105"
-                        style={{
-                          WebkitMaskImage: `url(${mapUrl})`,
-                          maskImage: `url(${mapUrl})`,
-                          WebkitMaskSize: 'contain',
-                          maskSize: 'contain',
-                          WebkitMaskRepeat: 'no-repeat',
-                          maskRepeat: 'no-repeat',
-                          WebkitMaskPosition: 'center',
-                          maskPosition: 'center',
-                          backgroundImage: `url(${flagUrl})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center',
-                        }}
-                      />
-                    </div>
+                    />
 
-                    {/* Back — green rounded card with white text */}
+                    {/* Back — green rounded card with white text. Fades
+                     *  in on hover/active. */}
                     <div
-                      className="absolute inset-0 rounded-3xl
-                                 bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800
-                                 ring-2 ring-emerald-300/50 shadow-[0_8px_24px_rgba(15,58,35,0.4)]
-                                 grid place-items-center text-center text-white"
-                      style={{
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden',
-                        transform: 'rotateY(180deg)',
-                      }}
+                      className={`absolute inset-0 rounded-3xl
+                                  bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800
+                                  ring-2 ring-emerald-300/50 shadow-[0_8px_24px_rgba(15,58,35,0.4)]
+                                  grid place-items-center text-center text-white
+                                  transition-all duration-500 ease-out
+                                  ${isFlipped ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'}`}
                     >
                       <div className="px-3 py-3 flex flex-col items-center gap-1">
                         <span className="text-3xl leading-none drop-shadow-md">
                           {d.flag}
                         </span>
-                        <div className="text-[11px] uppercase tracking-[0.18em] text-emerald-100/85
+                        <div className="text-[10px] uppercase tracking-[0.18em] text-emerald-100/85
                                         font-semibold mt-1">
                           {d.capital}
                         </div>
-                        <div className="text-base font-bold leading-tight">
+                        <div className="text-sm md:text-base font-bold leading-tight">
                           {d.name}
                         </div>
                         <Link
@@ -236,8 +219,7 @@ export default function Global() {
                                      text-[9px] font-bold uppercase tracking-wider
                                      transition-colors"
                         >
-                          Explore about {d.name}
-                          <ArrowRight size={10} />
+                          Explore <ArrowRight size={10} />
                         </Link>
                       </div>
                     </div>
