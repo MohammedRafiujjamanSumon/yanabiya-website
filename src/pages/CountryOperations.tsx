@@ -61,7 +61,7 @@ type CountryOps = {
   strategicPartners: PartnerItem[]
   operationalPartners: PartnerItem[]
   /** Section 6 — Business Domains */
-  categories: { label: string; icon: LucideIcon; tone: string }[]
+  categories: { label: string; icon: LucideIcon; tone: string; image: string }[]
   /** Section 7 — Licensed Activities */
   licensedActivities: string[]
   /** Section 8 — Current Operations */
@@ -130,12 +130,12 @@ const OPS: Record<string, CountryOps> = {
       { name: 'Bongo WiFi',                 domain: 'bongowifi.com' },
     ],
     categories: [
-      { label: 'Internet Services & Connectivity',           icon: Globe2,    tone: 'from-emerald-500/40 to-emerald-700/40' },
-      { label: 'Cloud Computing & Technology Services',      icon: Cpu,       tone: 'from-cyan-500/40 to-sky-700/40'        },
-      { label: 'Aviation & Workforce Mobility',              icon: Plane,     tone: 'from-amber-500/40 to-orange-700/40'    },
-      { label: 'Communications & Telecommunications',        icon: Megaphone, tone: 'from-fuchsia-500/40 to-rose-700/40'    },
-      { label: 'Trading & International Logistics',          icon: Boxes,     tone: 'from-violet-500/40 to-indigo-700/40'   },
-      { label: 'Construction & Civil Infrastructure Works',  icon: Building2, tone: 'from-rose-500/40 to-red-700/40'        },
+      { label: 'Internet Services & Connectivity',          icon: Globe2,    tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Cloud Computing & Technology Services',     icon: Cpu,       tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Aviation & Workforce Mobility',             icon: Plane,     tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Communications & Telecommunications',       icon: Megaphone, tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Trading & International Logistics',         icon: Boxes,     tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Construction & Civil Infrastructure Works', icon: Building2, tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
     ],
     // Activities aggregated across the entire group of partner
     // companies in Bangladesh — covers everything the umbrella runs
@@ -158,10 +158,10 @@ const OPS: Record<string, CountryOps> = {
       'Wholesale & retail trade in technology products',
     ],
     currentProjects: [
-      { title: 'Regional Delivery Centre', body: '24×7 engineering & QA support for clients across the four-country group.' },
-      { title: 'Apparel Sourcing Network', body: 'Active relationships with vetted RMG factories supplying private-label clients.' },
-      { title: 'Workforce Mobility Pipeline', body: 'Skilled & semi-skilled placement into the Gulf, UK and US under group employer.' },
-      { title: 'Government IT Engagements', body: 'Public-sector digitalisation pilots in coordination with local partners.' },
+      { title: 'Regional Delivery Centre',     body: '24×7 engineering & QA support for clients across the four-country group.',  image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Apparel Sourcing Network',     body: 'Active relationships with vetted RMG factories supplying private-label clients.', image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Workforce Mobility Pipeline',  body: 'Skilled & semi-skilled placement into the Gulf, UK and US under group employer.', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Government IT Engagements',    body: 'Public-sector digitalisation pilots in coordination with local partners.',    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
     ],
     activeSectors: [
       'Information Technology, Software Development & Cloud Services',
@@ -172,10 +172,10 @@ const OPS: Record<string, CountryOps> = {
       'Office Administration & Business Support Services',
     ],
     futurePlans: [
-      { title: 'Green Data Centre',          body: 'Investment in a sustainable Tier-III data-centre facility serving regional cloud workloads.', icon: Sparkles },
-      { title: 'Global Digital Infrastructure', body: 'Expand the Dhaka delivery centre into a 500+ engineer hub serving all four group countries.', icon: TrendingUp },
-      { title: 'Innovation-Driven Services',  body: 'Productised AI, security & analytics offerings exported under the Yanabiya brand.', icon: Lightbulb },
-      { title: 'New Country Entry — KSA',     body: 'Saudi Arabia entity in 2027 to extend Gulf-wide trade & manpower coverage.',                  icon: Globe2 },
+      { title: 'Green Data Centre',             body: 'Investment in a sustainable Tier-III data-centre facility serving regional cloud workloads.', icon: Sparkles,    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Global Digital Infrastructure', body: 'Expand the Dhaka delivery centre into a 500+ engineer hub serving all four group countries.', icon: TrendingUp,  image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Innovation-Driven Services',    body: 'Productised AI, security & analytics offerings exported under the Yanabiya brand.',           icon: Lightbulb,   image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
+      { title: 'New Country Entry — KSA',       body: 'Saudi Arabia entity in 2027 to extend Gulf-wide trade & manpower coverage.',                  icon: Globe2,      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
     ],
   },
   // Other countries can be filled in later — the page falls back to a
@@ -287,23 +287,41 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
 
       {/* SECTION 6 — Business Domains */}
       <SectionFrame eyebrow="Business Domains" title="The verticals we operate in.">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 [perspective:1400px]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-5xl mx-auto justify-items-center [perspective:1400px]">
           {ops.categories.map((c, i) => (
-            <Reveal key={c.label} delay={i * 90}>
+            <Reveal key={c.label} delay={i * 80}>
               <div
-                className={`group relative rounded-2xl bg-gradient-to-br ${c.tone}
-                            border border-white/15 backdrop-blur-md
-                            p-5 md:p-6 text-center
-                            [transform-style:preserve-3d]
-                            transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                            hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(12px)_scale(1.03)]`}
+                className="group relative w-full max-w-[180px] rounded-xl overflow-hidden
+                           border border-white/15 bg-slate-900
+                           [transform-style:preserve-3d]
+                           transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                           hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.04)]
+                           hover:border-amber-300/60"
               >
-                <div className="w-11 h-11 mx-auto rounded-xl bg-white/15 ring-1 ring-white/20
-                                grid place-items-center text-white shadow-md">
-                  <c.icon size={20} strokeWidth={2} />
-                </div>
-                <div className="mt-3 font-serif text-base md:text-lg text-white leading-tight">
-                  {c.label}
+                {/* Real photo top */}
+                <div className="relative aspect-square overflow-hidden">
+                  <img
+                    src={c.image}
+                    alt=""
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover
+                               transition-transform duration-500 group-hover:scale-105"
+                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/85" />
+                  {/* Floating icon chip */}
+                  <div className={`absolute top-2 left-2 w-7 h-7 rounded-md
+                                  bg-gradient-to-br ${c.tone} ring-1 ring-white/30
+                                  grid place-items-center text-white shadow-md`}>
+                    <c.icon size={13} strokeWidth={2.2} />
+                  </div>
+                  {/* Label sitting on the image bottom */}
+                  <div className="absolute inset-x-0 bottom-0 p-2 text-center">
+                    <span className="font-semibold text-white text-[10px] md:text-[11px] leading-tight
+                                     drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] block">
+                      {c.label}
+                    </span>
+                  </div>
                 </div>
               </div>
             </Reveal>
@@ -329,7 +347,14 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
       <SectionFrame eyebrow="Current Operations" title="What's running on the ground today.">
         <div className="grid sm:grid-cols-2 gap-4 md:gap-5 mb-7 [perspective:1400px]">
           {ops.currentProjects.map((p, i) => (
-            <Card3D key={p.title} title={p.title} body={p.body} icon={Briefcase} delay={i * 110} />
+            <Card3D
+              key={p.title}
+              title={p.title}
+              body={p.body}
+              icon={Briefcase}
+              delay={i * 110}
+              image={p.image}
+            />
           ))}
         </div>
         <div className="rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm p-5 md:p-6">
@@ -354,7 +379,15 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
       <SectionFrame eyebrow="Future Roadmap" title="Where we're heading next.">
         <div className="grid sm:grid-cols-2 gap-4 md:gap-5 [perspective:1400px]">
           {ops.futurePlans.map((p, i) => (
-            <Card3D key={p.title} title={p.title} body={p.body} icon={p.icon} delay={i * 110} accent />
+            <Card3D
+              key={p.title}
+              title={p.title}
+              body={p.body}
+              icon={p.icon}
+              delay={i * 110}
+              accent
+              image={p.image}
+            />
           ))}
         </div>
       </SectionFrame>
@@ -452,41 +485,67 @@ function Card3D({
   icon: Icon,
   delay = 0,
   accent = false,
+  image,
 }: {
   title: string
   body: string
   icon: LucideIcon
   delay?: number
   accent?: boolean
+  image?: string
 }) {
   return (
     <Reveal delay={delay}>
       <div
-        className={`group relative h-full rounded-xl
+        className={`group relative h-full overflow-hidden rounded-xl
                     bg-white/5 backdrop-blur-md
                     border ${accent ? 'border-amber-300/40' : 'border-white/15'}
-                    p-3.5 md:p-4
                     [transform-style:preserve-3d]
                     transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                     hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(12px)_scale(1.02)]
                     hover:border-amber-300/60`}
       >
-        <div
-          className={`w-9 h-9 rounded-lg grid place-items-center
-                      ${accent ? 'bg-amber-300/20 text-amber-200' : 'bg-white/10 text-white'}
-                      ring-1 ${accent ? 'ring-amber-300/40' : 'ring-white/15'}
-                      shadow-md [transform:translateZ(18px)]`}
-        >
-          <Icon size={16} strokeWidth={2} />
+        {image && (
+          <div className="relative aspect-[16/9] overflow-hidden bg-slate-900">
+            <img
+              src={image}
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover
+                         transition-transform duration-500 group-hover:scale-105"
+              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
+            <div
+              className={`absolute top-2 left-2 w-8 h-8 rounded-md grid place-items-center
+                          ${accent ? 'bg-amber-300/95 text-[#0a1410]' : 'bg-white/95 text-[#0a1410]'}
+                          shadow-md [transform:translateZ(20px)]`}
+            >
+              <Icon size={14} strokeWidth={2.2} />
+            </div>
+          </div>
+        )}
+
+        <div className="p-3.5 md:p-4">
+          {!image && (
+            <div
+              className={`w-9 h-9 rounded-lg grid place-items-center mb-3
+                          ${accent ? 'bg-amber-300/20 text-amber-200' : 'bg-white/10 text-white'}
+                          ring-1 ${accent ? 'ring-amber-300/40' : 'ring-white/15'}
+                          shadow-md [transform:translateZ(18px)]`}
+            >
+              <Icon size={16} strokeWidth={2} />
+            </div>
+          )}
+          <div className="font-serif text-sm md:text-base text-white leading-tight
+                          [transform:translateZ(10px)]">
+            {title}
+          </div>
+          <p className="mt-1 text-[12px] text-white/75 leading-snug
+                        [transform:translateZ(4px)]">
+            {body}
+          </p>
         </div>
-        <div className="mt-3 font-serif text-sm md:text-base text-white leading-tight
-                        [transform:translateZ(10px)]">
-          {title}
-        </div>
-        <p className="mt-1 text-[12px] text-white/75 leading-snug
-                      [transform:translateZ(4px)]">
-          {body}
-        </p>
       </div>
     </Reveal>
   )
