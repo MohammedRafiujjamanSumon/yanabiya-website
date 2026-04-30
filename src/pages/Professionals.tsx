@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import Section, { H2 } from '../components/Section'
+import Section from '../components/Section'
+import PageHero from '../components/PageHero'
 import { team } from '../data/leadership'
 
 export default function Professionals() {
@@ -8,14 +9,15 @@ export default function Professionals() {
   }, [])
 
   return (
-    <Section id="professionals-page" className="bg-stone-50">
+    <>
+      <PageHero
+        eyebrow="Leadership"
+        title="High Skilled Professionals"
+        subtitle="The specialist team driving delivery, engineering, and strategy across Yanabiya Group."
+      />
+
+      <Section id="professionals-page" className="bg-stone-50">
       <div className="container-x">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <H2 className="text-center">High Skilled Professionals</H2>
-          <p className="mt-5 text-slate-600">
-            The specialist team driving delivery, engineering, and strategy across Yanabiya Group.
-          </p>
-        </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
           {team.map((m) => (
@@ -38,5 +40,6 @@ export default function Professionals() {
         </div>
       </div>
     </Section>
+    </>
   )
 }

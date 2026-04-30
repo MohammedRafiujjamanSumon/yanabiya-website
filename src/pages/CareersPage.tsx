@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { MapPin, Mail } from 'lucide-react'
-import Section, { Eyebrow, H2 } from '../components/Section'
+import Section from '../components/Section'
+import PageHero from '../components/PageHero'
 import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
 
@@ -43,16 +44,15 @@ export default function CareersPage() {
   }, [])
 
   return (
-    <Section id="careers" className="bg-stone-50">
+    <>
+      <PageHero
+        eyebrow="Our Community"
+        title="Careers"
+        subtitle="Join a global team across Oman, the United Kingdom, Bangladesh and the USA — and help shape the future of trade, technology and community."
+      />
+
+      <Section id="careers" className="bg-stone-50">
       <div className="container-x">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <Eyebrow>Our Community</Eyebrow>
-          <H2 className="text-center">Careers</H2>
-          <p className="mt-5 text-slate-600 leading-snug">
-            Join a global team across Oman, the United Kingdom, Bangladesh and the USA —
-            and help shape the future of trade, technology and community.
-          </p>
-        </div>
 
         <div className="mb-16">
           <CircleInfographic
@@ -116,5 +116,6 @@ export default function CareersPage() {
         </div>
       </div>
     </Section>
+    </>
   )
 }

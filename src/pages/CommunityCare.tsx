@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import Section, { Eyebrow, H2 } from '../components/Section'
+import Section from '../components/Section'
+import PageHero from '../components/PageHero'
 import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
 
@@ -46,16 +47,15 @@ export default function CommunityCare() {
   }, [])
 
   return (
-    <Section id="community-care" className="bg-stone-50">
+    <>
+      <PageHero
+        eyebrow="Our Community"
+        title="Community Care"
+        subtitle="Structured charitable donations and welfare programmes focused on transparency, dignity and lasting impact — delivered across every country where we operate."
+      />
+
+      <Section id="community-care" className="bg-stone-50">
       <div className="container-x">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <Eyebrow>Our Community</Eyebrow>
-          <H2 className="text-center">Community Care</H2>
-          <p className="mt-5 text-slate-600 leading-snug">
-            Structured charitable donations and welfare programmes focused on transparency,
-            dignity and lasting impact — delivered across every country where we operate.
-          </p>
-        </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">
           {stats.map((s) => (
@@ -107,5 +107,6 @@ export default function CommunityCare() {
         </div>
       </div>
     </Section>
+    </>
   )
 }

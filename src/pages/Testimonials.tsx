@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Quote, Star } from 'lucide-react'
-import Section, { Eyebrow, H2 } from '../components/Section'
+import Section from '../components/Section'
+import PageHero from '../components/PageHero'
 import { countries } from '../data/countries'
 import { assets } from '../data/assets'
 
@@ -91,23 +92,15 @@ export default function Testimonials() {
   }, [])
 
   return (
-    <Section id="testimonials" className="bg-stone-50">
+    <>
+      <PageHero
+        eyebrow="Our Community"
+        title="Testimonials"
+        subtitle="Words from our partners, clients and beneficiaries — gathered across the four countries where Yanabiya Group operates."
+      />
+
+      <Section id="testimonials" className="bg-stone-50">
       <div className="container-x">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="flex justify-center mb-4">
-            <img
-              src={assets.logo}
-              alt="Yanabiya Group"
-              className="h-14 md:h-16 w-auto object-contain drop-shadow-sm"
-            />
-          </div>
-          <Eyebrow>Our Community</Eyebrow>
-          <H2 className="text-center">Testimonials</H2>
-          <p className="mt-5 text-slate-600 leading-snug">
-            Words from our partners, clients and beneficiaries — gathered across the
-            four countries where Yanabiya Group operates.
-          </p>
-        </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">
           {stats.map((s) => (
@@ -167,5 +160,6 @@ export default function Testimonials() {
         </div>
       </div>
     </Section>
+    </>
   )
 }

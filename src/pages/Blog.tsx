@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Calendar, ArrowUpRight } from 'lucide-react'
-import Section, { Eyebrow, H2 } from '../components/Section'
+import Section from '../components/Section'
+import PageHero from '../components/PageHero'
 import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
 
@@ -58,16 +59,15 @@ export default function Blog() {
   const [feature, ...rest] = visible
 
   return (
-    <Section id="blog" className="bg-stone-50">
+    <>
+      <PageHero
+        eyebrow="Our Community"
+        title="Blog"
+        subtitle="Stories, insights and updates from Yanabiya Group teams across Oman, the United Kingdom, Bangladesh and the USA."
+      />
+
+      <Section id="blog" className="bg-stone-50">
       <div className="container-x">
-        <div className="max-w-3xl mb-10">
-          <Eyebrow>Our Community</Eyebrow>
-          <H2>Blog</H2>
-          <p className="mt-5 text-slate-600">
-            Stories, insights and updates from Yanabiya Group teams across Oman,
-            the United Kingdom, Bangladesh and the USA.
-          </p>
-        </div>
 
         <div className="mb-16">
           <CircleInfographic
@@ -145,5 +145,6 @@ export default function Blog() {
         )}
       </div>
     </Section>
+    </>
   )
 }

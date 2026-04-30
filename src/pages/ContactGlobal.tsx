@@ -5,6 +5,7 @@ import {
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import BackButton from '../components/BackButton'
+import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
 
 /* ───────────────────────── Reveal helper ───────────────────────── */
@@ -414,27 +415,12 @@ export default function ContactGlobal() {
         <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
       </div>
 
-      {/* HERO */}
-      <section className="relative">
-        <div className="container-x py-14 md:py-20 text-center max-w-3xl mx-auto">
-          <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
-              Global Contact Network
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-brand-deep">
-              Contact Yanabiya Group
-            </h1>
-          </Reveal>
-          <Reveal delay={260}>
-            <p className="mt-5 text-base md:text-lg text-slate-600 leading-snug">
-              Choose any country office below to preview its address, phone, email, and office hours.
-              Open the page for full details.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      {/* HERO — shared brand strip */}
+      <PageHero
+        eyebrow="Global Contact Network"
+        title="Contact Yanabiya Group"
+        subtitle="Choose any country office below to preview its address, phone, email, and office hours. Open the page for full details."
+      />
 
       {/* GLOBAL NETWORK MAP — 4 branches as nodes on a world-shape with
        *  full-mesh animated connector lines. */}

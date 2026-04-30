@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Quote } from 'lucide-react'
-import Section, { H2 } from '../components/Section'
+import Section from '../components/Section'
+import PageHero from '../components/PageHero'
 import { board, chairmanMessage, viceChairmanMessage } from '../data/leadership'
 
 export default function Management() {
@@ -9,14 +10,15 @@ export default function Management() {
   }, [])
 
   return (
-    <Section id="management-page" className="bg-stone-50">
+    <>
+      <PageHero
+        eyebrow="Leadership"
+        title="Our Management"
+        subtitle="Messages from the founding leadership that shape every engagement at Yanabiya Group."
+      />
+
+      <Section id="management-page" className="bg-stone-50">
       <div className="container-x">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <H2 className="text-center">Our Management</H2>
-          <p className="mt-5 text-slate-600">
-            Messages from the founding leadership that shape every engagement at Yanabiya Group.
-          </p>
-        </div>
 
         <figure className="mb-12 overflow-hidden rounded-3xl border border-slate-200 shadow-sm">
           <img
@@ -96,5 +98,6 @@ export default function Management() {
         </article>
       </div>
     </Section>
+    </>
   )
 }
