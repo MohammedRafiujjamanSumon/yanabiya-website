@@ -21,6 +21,8 @@ import OurStory from './pages/OurStory'
 import OmanPresence from './pages/OmanPresence'
 import ContactGlobal from './pages/ContactGlobal'
 import LeadershipOverview from './pages/LeadershipOverview'
+import ExecutionEngine from './pages/ExecutionEngine'
+import CountryManagement from './pages/CountryManagement'
 import CommunityOverview from './pages/CommunityOverview'
 import Testimonials from './pages/Testimonials'
 
@@ -59,6 +61,8 @@ export default function App() {
           <Route path="/usa"        element={<CountryOperations codeOverride="US" />} />
           <Route path="/contact" element={<ContactGlobal />} />
           <Route path="/leadership" element={<LeadershipOverview />} />
+          <Route path="/leadership/execution-engine" element={<ExecutionEngine />} />
+          <Route path="/leadership/country/:code" element={<CountryManagement />} />
           <Route path="/leadership/management" element={<Management />} />
           <Route path="/leadership/professionals" element={<Professionals />} />
           <Route path="/community" element={<CommunityOverview />} />
