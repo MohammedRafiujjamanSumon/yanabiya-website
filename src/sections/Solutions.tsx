@@ -117,7 +117,7 @@ export default function Solutions() {
   return (
     <Section id="solutions">
       <div className="container-x">
-        <Eyebrow>Our Solutions</Eyebrow>
+        <Eyebrow>Our solutions</Eyebrow>
 
         <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-snug text-sm text-justify [text-align-last:center]">
           We deliver end-to-end digital and enterprise solutions designed to help organisations,

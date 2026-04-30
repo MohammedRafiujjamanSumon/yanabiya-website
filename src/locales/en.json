@@ -26,7 +26,7 @@
     "stats": { "countries": "Countries", "industries": "Industries", "experience": "Experience", "clients": "Clients" }
   },
   "about": {
-    "eyebrow": "About Us",
+    "eyebrow": "About us",
     "title": "A versatile group, headquartered in Muscat, working across four continents.",
     "lead": "Yanabiya Gulf International Business & Trade delivers internet services, software solutions, IT consulting, trade and business automation across the Gulf, Asia, Europe and North America.",
     "missionLabel": "Mission",
@@ -38,7 +38,7 @@
     "valuesTitle": "Our Core Values"
   },
   "businesses": {
-    "eyebrow": "Our Service",
+    "eyebrow": "Our service",
     "title": "Six divisions powering enterprises and trade across continents.",
     "sub": "From enterprise software to international trade — built end-to-end."
   },
@@ -53,7 +53,7 @@
     "sub": "We partner with global technology leaders to deliver enterprise-grade solutions across cloud, software, hardware and security."
   },
   "global": {
-    "eyebrow": "Global Presence of Yanabiya Group",
+    "eyebrow": "Global Presence",
     "title": "Operating across four countries with nine entities.",
     "sub": "Our Yanabiya Group company currently operates in four countries, and we plan to gradually expand by entering more markets in the future. In each country, we are continuously upgrading and expanding our business categories day by day.",
     "entities": "Entities",
@@ -75,7 +75,7 @@
   },
   "network": {
     "eyebrow": "Network",
-    "title": "Trusted Network",
+    "title": "Trusted network",
     "sub": "Connecting Opportunities Worldwide to Build Strong, Scalable Global Businesses.",
     "readMore": "Read More",
     "memberships": "Memberships & Affiliations",
@@ -92,7 +92,7 @@
     "viceChairmanMsg": "Our website introduces our vision, mission, infrastructure, expertise, and future plans. We invite prospective clients and partners to explore our divisions and connect with us."
   },
   "strategy": {
-    "eyebrow": "Strategy & Innovation",
+    "eyebrow": "Strategy & innovation",
     "title": "Where strategy meets execution.",
     "sub": "Our innovation roadmap is built on four pillars that align technology, talent and process with measurable client outcomes.",
     "focus": "Innovation Focus Areas",

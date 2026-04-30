@@ -48,7 +48,7 @@ export default function SustainableGrowth() {
     <Section id="sustainable-growth" className="bg-stone-50">
       <div className="container-x">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <Eyebrow>Community</Eyebrow>
+          <Eyebrow>Our community</Eyebrow>
           <H2 className="text-center">Sustainable Growth</H2>
           <p className="mt-5 text-slate-600 leading-snug">
             Building business practices that protect the environment and support long-term

@@ -49,7 +49,7 @@ export default function CommunityCare() {
     <Section id="community-care" className="bg-stone-50">
       <div className="container-x">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <Eyebrow>Community</Eyebrow>
+          <Eyebrow>Our community</Eyebrow>
           <H2 className="text-center">Community Care</H2>
           <p className="mt-5 text-slate-600 leading-snug">
             Structured charitable donations and welfare programmes focused on transparency,

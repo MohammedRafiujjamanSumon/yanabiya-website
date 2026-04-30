@@ -18,7 +18,7 @@ export function Eyebrow({ children, tone = 'dark' }: { children: ReactNode; tone
   const color = tone === 'light' ? 'text-white' : 'text-brand-accentDark'
   return (
     <div className="text-center mb-5">
-      <h2 className={`group inline-block relative font-serif uppercase tracking-[0.18em]
+      <h2 className={`group inline-block relative font-serif tracking-[0.18em]
                      text-2xl md:text-3xl lg:text-4xl font-bold ${color} cursor-default
                      after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-2
                      after:h-[3px] after:bg-brand-accent after:rounded-full

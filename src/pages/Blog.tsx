@@ -61,7 +61,7 @@ export default function Blog() {
     <Section id="blog" className="bg-stone-50">
       <div className="container-x">
         <div className="max-w-3xl mb-10">
-          <Eyebrow>Community</Eyebrow>
+          <Eyebrow>Our community</Eyebrow>
           <H2>Blog</H2>
           <p className="mt-5 text-slate-600">
             Stories, insights and updates from Yanabiya Group teams across Oman,

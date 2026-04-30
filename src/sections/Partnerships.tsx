@@ -1,4 +1,4 @@
-import Section, { H2 } from '../components/Section'
+import Section, { Eyebrow, H2 } from '../components/Section'
 import { partners, valuableClients, memberships, affiliations } from '../data/partners'
 
 type Item = { name: string; logo: string }
@@ -65,40 +65,41 @@ function LogoMarquee({
 export default function Partnerships() {
   return (
     <Section id="partnerships" className="bg-stone-50">
-      <div className="container-x text-center mx-auto pt-2 md:pt-3 pb-4 md:pb-6 mb-12">
-        <H2 className="text-center">Trusted Network</H2>
-        <p className="mt-5 text-slate-600">
-          Connecting Opportunities Worldwide to Build Strong, Scalable Global Businesses.
+      <div className="container-x text-center mx-auto pt-2 md:pt-3 pb-4 md:pb-6 mb-10">
+        <Eyebrow>Trusted network</Eyebrow>
+        <H2 className="text-center">Connecting opportunities worldwide.</H2>
+        <p className="mt-4 text-slate-600">
+          Building strong, scalable global businesses.
         </p>
       </div>
 
       {/* Valuable Clients */}
       <div id="clients" className="mb-12 scroll-mt-28">
-        <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
-          Valuable Clients
+        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
+          Valuable clients
         </h3>
         <LogoMarquee items={valuableClients} direction="right" durationSec={75} />
       </div>
 
       {/* Our Membership */}
       <div id="sponsors" className="mb-12 scroll-mt-28">
-        <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
-          Our Membership
+        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
+          Our membership
         </h3>
         <LogoMarquee items={memberships} direction="left" durationSec={45} />
       </div>
 
       {/* Technology Partners */}
       <div id="partners" className="mb-12 scroll-mt-28">
-        <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
-          Our Partners
+        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
+          Our partners
         </h3>
         <LogoMarquee items={partners} direction="left" durationSec={55} />
       </div>
 
       {/* Affiliations */}
       <div id="affiliations" className="mb-4 scroll-mt-28">
-        <h3 className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6">
+        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
           Affiliations
         </h3>
         <LogoMarquee items={affiliations} direction="right" durationSec={45} />

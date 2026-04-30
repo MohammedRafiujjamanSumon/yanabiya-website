@@ -101,7 +101,7 @@ export default function Testimonials() {
               className="h-14 md:h-16 w-auto object-contain drop-shadow-sm"
             />
           </div>
-          <Eyebrow>Community</Eyebrow>
+          <Eyebrow>Our community</Eyebrow>
           <H2 className="text-center">Testimonials</H2>
           <p className="mt-5 text-slate-600 leading-snug">
             Words from our partners, clients and beneficiaries — gathered across the
