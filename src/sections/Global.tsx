@@ -114,20 +114,29 @@ export default function Global() {
               })}
             </svg>
 
-            {/* CENTRE — Yanabiya logo medallion, fixed (no spin). Sized
-             *  down from 80/96 to 56/64 so the whole orbit reads clean. */}
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white shadow-xl
-                              ring-2 ring-brand-accentDark/60 overflow-hidden
-                              grid place-items-center">
+            {/* CENTRE — Yanabiya logo medallion. Click opens the Global
+             *  Presence overview panel. */}
+            <div className="absolute inset-0 grid place-items-center z-20">
+              <button
+                type="button"
+                onClick={() => setPresenceOpen(true)}
+                aria-label="Explore Global Presence"
+                title="Explore Global Presence"
+                className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white shadow-xl
+                           ring-2 ring-brand-accentDark/60 overflow-hidden
+                           grid place-items-center
+                           transition-all duration-300
+                           hover:scale-105 hover:shadow-[0_0_22px_rgba(158,199,58,0.7)]
+                           hover:ring-brand-accent
+                           focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-accent"
+              >
                 <img
                   src={assets.logo}
                   alt="Yanabiya Group"
-                  className="w-full h-full object-contain scale-[1.35]"
+                  className="w-full h-full object-contain scale-[1.35] pointer-events-none"
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                 />
-                {/* No spin — logo sits still in the centre. */}
-              </div>
+              </button>
             </div>
 
             {/* COUNTRY NODES — flag-filled silhouettes that flip on touch
@@ -138,17 +147,16 @@ export default function Global() {
               const flagUrl = `${MAP_BASE}flags/${d.code.toLowerCase()}.svg`
               const isFlipped = flippedCode === d.code
               return (
-                <button
+                <div
                   key={d.code}
-                  type="button"
-                  onClick={() =>
-                    setFlippedCode((prev) => (prev === d.code ? null : d.code))
-                  }
-                  aria-label={`Toggle ${d.label} details`}
-                  aria-pressed={isFlipped ? 'true' : 'false'}
+                  role="group"
+                  aria-label={`${d.label} details`}
                   title={d.label}
+                  onMouseEnter={() => setFlippedCode(d.code)}
+                  onMouseLeave={() => setFlippedCode(null)}
+                  onTouchStart={() => setFlippedCode(d.code)}
                   className="group absolute -translate-x-1/2 -translate-y-1/2 z-10 hover:z-20
-                             [perspective:1200px] focus:outline-none"
+                             [perspective:1200px] cursor-pointer"
                   style={{ top: d.top, left: d.left }}
                 >
                   <div
@@ -204,7 +212,6 @@ export default function Global() {
                         </div>
                         <Link
                           to={`/country/${d.code.toLowerCase()}`}
-                          onClick={(e) => e.stopPropagation()}
                           className="mt-2 inline-flex items-center gap-1 px-2 py-1 rounded-full
                                      bg-white/15 hover:bg-white/25 ring-1 ring-white/40
                                      text-[9px] font-bold uppercase tracking-wider
@@ -216,7 +223,7 @@ export default function Global() {
                       </div>
                     </div>
                   </div>
-                </button>
+                </div>
               )
             })}
           </div>
