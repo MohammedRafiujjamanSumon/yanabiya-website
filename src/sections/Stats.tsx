@@ -66,19 +66,19 @@ export default function Stats() {
                                  group-hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.03)]"
                     >
                       <div
-                        className="shrink-0 w-7 h-7 rounded-full bg-white/10 text-white
+                        className="shrink-0 w-7 h-7 rounded-full bg-brand-accent/15 text-brand-accent
                                    grid place-items-center
-                                   ring-1 ring-white/15 backdrop-blur-sm
+                                   ring-1 ring-brand-accent/25 backdrop-blur-sm
                                    [transform:translateZ(18px)]"
                       >
                         <Icon size={12} strokeWidth={2} />
                       </div>
                       <div className="flex flex-col items-start [transform:translateZ(10px)]">
-                        <span className="font-serif text-base md:text-lg text-white leading-none">
+                        <span className="font-serif text-base md:text-lg text-brand-accent leading-none">
                           {s.value}
                         </span>
                         <span className="mt-0.5 text-[8px] md:text-[9px] uppercase tracking-[0.22em]
-                                         font-semibold text-white/90 leading-tight">
+                                         font-semibold text-brand-accent leading-tight">
                           {s.label}
                         </span>
                       </div>
