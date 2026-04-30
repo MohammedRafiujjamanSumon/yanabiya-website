@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Quote, Users, Workflow, Handshake } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -186,6 +187,8 @@ type Node = {
   /** id used to wire SVG connectors */
   id: 'mission' | 'vision' | 'people' | 'process' | 'clients' | 'trust' | 'logo' | 'excellence'
   label: string
+  /** Short read-more line shown when the card is flipped. */
+  body?: string
   /** Bounds in % of the panel — origin top-left of each box. */
   x: number
   y: number
@@ -194,14 +197,14 @@ type Node = {
 }
 
 const FLOW_NODES: Node[] = [
-  { id: 'mission',    label: 'Mission',    x: 26, y: 8,  w: 14, h: 13 },
-  { id: 'vision',     label: 'Vision',     x: 46, y: 8,  w: 14, h: 13 },
-  { id: 'people',     label: 'People',     x: 12, y: 36, w: 14, h: 13 },
-  { id: 'process',    label: 'Process',    x: 30, y: 40, w: 12, h: 12 },
-  { id: 'clients',    label: 'Clients',    x: 44, y: 40, w: 12, h: 12 },
-  { id: 'trust',      label: 'Trust',      x: 58, y: 36, w: 14, h: 14 },
-  { id: 'logo',       label: 'Yanabiya',   x: 74, y: 22, w: 22, h: 44 },
-  { id: 'excellence', label: 'Excellence', x: 30, y: 70, w: 12, h: 12 },
+  { id: 'mission',    label: 'Mission',    body: 'Top-class IT, software & trade services delivered globally.', x: 27, y: 9,  w: 12, h: 11 },
+  { id: 'vision',     label: 'Vision',     body: 'A leading global performer in technology and trade.',          x: 46, y: 9,  w: 12, h: 11 },
+  { id: 'people',     label: 'People',     body: 'Skilled multinational teams across four continents.',           x: 13, y: 37, w: 12, h: 11 },
+  { id: 'process',    label: 'Process',    body: 'Quality and efficiency in every engagement.',                   x: 30, y: 41, w: 11, h: 10 },
+  { id: 'clients',    label: 'Clients',    body: 'Long-term partnerships built on trust.',                        x: 44, y: 41, w: 11, h: 10 },
+  { id: 'trust',      label: 'Trust',      body: 'Built on ethics, honesty and customer satisfaction.',           x: 58, y: 37, w: 12, h: 12 },
+  { id: 'logo',       label: 'Yanabiya',                                                                          x: 74, y: 24, w: 22, h: 40 },
+  { id: 'excellence', label: 'Excellence', body: 'Industry-leading standards in every market.',                   x: 30, y: 69, w: 11, h: 10 },
 ]
 
 // Connector edges between nodes — drawn as orthogonal lines with
@@ -217,27 +220,32 @@ const FLOW_EDGES: Array<{ from: Node['id']; to: Node['id'] }> = [
 ]
 
 function FlowchartHero() {
+  const [flippedId, setFlippedId] = useState<Node['id'] | null>(null)
   const nodeById = (id: Node['id']) => FLOW_NODES.find((n) => n.id === id)!
 
   return (
     <div className="relative rounded-3xl overflow-hidden
-                    aspect-[3/2] bg-slate-900
-                    ring-1 ring-emerald-500/15
-                    shadow-[0_28px_60px_-20px_rgba(4,18,27,0.55)]">
+                    aspect-[3/2]
+                    bg-gradient-to-br from-[#0a2818] via-[#0c3322] to-[#061a10]
+                    ring-1 ring-emerald-400/15
+                    shadow-[0_28px_60px_-20px_rgba(6,26,16,0.55)]">
 
-      {/* Background photo — businessman with laptop, dark city mood */}
+      {/* Faint Yanabiya logo watermark — sits behind the flowchart and
+       *  ties the panel to the brand without competing for attention. */}
       <img
-        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2400&q=80"
+        src={assets.logo}
         alt=""
         aria-hidden
-        className="absolute inset-0 w-full h-full object-cover opacity-60"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                   w-[55%] max-w-[480px] opacity-[0.05] pointer-events-none select-none"
         onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
       />
 
-      {/* Dark navy gradient over the photo so the boxes & text stay
-       *  legible without losing the photographic depth. */}
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-br
-                                  from-[#0a1f2c]/80 via-[#082233]/82 to-[#04121b]/92" />
+      {/* Soft brand-accent halo so the panel reads as living/lit. */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-24 -left-24 w-[360px] h-[360px] rounded-full bg-emerald-500/15 blur-[140px]" />
+        <div className="absolute -bottom-24 -right-24 w-[360px] h-[360px] rounded-full bg-amber-400/10 blur-[140px]" />
+      </div>
 
       {/* Glowing amber data-points scattered (matches reference) */}
       <div aria-hidden className="absolute inset-0 pointer-events-none">
@@ -300,22 +308,24 @@ function FlowchartHero() {
         })}
       </svg>
 
-      {/* Boxes — absolutely positioned. The "logo" node is rendered
-       *  bigger and contains the Yanabiya logo; the rest carry short
-       *  brand tags. */}
+      {/* Floating nodes. Logo is the central black anchor; the rest are
+       *  click-to-flip cards revealing a one-line "read more" on the
+       *  back side. */}
       {FLOW_NODES.map((n) => {
         const isLogo = n.id === 'logo'
+        const isFlipped = flippedId === n.id
         return (
-          <div
+          <button
             key={n.id}
-            className={`absolute rounded-md backdrop-blur-sm
-                        border border-white/70
-                        ${isLogo
-                          ? 'bg-white/15 ring-1 ring-amber-300/40 shadow-[0_0_24px_rgba(252,211,77,0.20)]'
-                          : 'bg-white/8 ring-1 ring-white/20'}
-                        flex items-center justify-center text-center
-                        transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                        hover:bg-white/20 hover:border-amber-200/90 hover:scale-[1.04]`}
+            type="button"
+            onClick={() => {
+              if (isLogo) return
+              setFlippedId((prev) => (prev === n.id ? null : n.id))
+            }}
+            aria-pressed={isFlipped}
+            aria-label={isLogo ? 'Yanabiya Group' : `Show details about ${n.label}`}
+            className={`absolute [perspective:900px] focus:outline-none
+                        ${isLogo ? 'cursor-default' : 'cursor-pointer'}`}
             style={{
               left:   `${n.x}%`,
               top:    `${n.y}%`,
@@ -323,30 +333,64 @@ function FlowchartHero() {
               height: `${n.h}%`,
             }}
           >
-            {isLogo ? (
-              <img
-                src={assets.logo}
-                alt="Yanabiya Group"
-                className="max-w-[80%] max-h-[80%] object-contain
-                           drop-shadow-[0_0_12px_rgba(252,211,77,0.45)]"
-                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-              />
-            ) : (
-              <span className="font-semibold uppercase tracking-[0.18em]
-                               text-[10px] sm:text-[11px] md:text-[12px]
-                               text-white/95 drop-shadow-md px-2 leading-tight">
-                {n.label}
+            <span
+              className={`relative block w-full h-full [transform-style:preserve-3d]
+                          transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
+                          ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`}
+            >
+              {/* FRONT */}
+              <span
+                className={`absolute inset-0 [backface-visibility:hidden]
+                            rounded-2xl flex items-center justify-center text-center
+                            transition-colors duration-300
+                            ${isLogo
+                              ? 'bg-black ring-2 ring-amber-300/50 shadow-[0_0_24px_rgba(252,211,77,0.25)]'
+                              : 'bg-transparent border border-white/45 hover:border-amber-200/90 hover:bg-white/5'}`}
+              >
+                {isLogo ? (
+                  <img
+                    src={assets.logo}
+                    alt="Yanabiya Group"
+                    className="max-w-[78%] max-h-[78%] object-contain
+                               drop-shadow-[0_0_12px_rgba(252,211,77,0.45)]"
+                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                  />
+                ) : (
+                  <span className="font-semibold uppercase tracking-[0.18em]
+                                   text-[9px] sm:text-[10px] md:text-[11px]
+                                   text-white/95 drop-shadow-md px-2 leading-tight">
+                    {n.label}
+                  </span>
+                )}
               </span>
-            )}
-          </div>
+
+              {/* BACK — only for non-logo cards. Shows a one-line read-more
+               *  on a slightly darker, amber-bordered face. */}
+              {!isLogo && (
+                <span
+                  className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]
+                             rounded-2xl flex flex-col items-center justify-center text-center px-2
+                             bg-slate-950/80 backdrop-blur-sm border border-amber-300/60
+                             shadow-[0_0_18px_rgba(252,211,77,0.25)]"
+                >
+                  <span className="text-[8px] sm:text-[9px] md:text-[10px] text-white/90 leading-tight">
+                    {n.body}
+                  </span>
+                  <span className="mt-1 text-[7px] sm:text-[8px] uppercase tracking-[0.25em] text-amber-300/90">
+                    Tap to close
+                  </span>
+                </span>
+              )}
+            </span>
+          </button>
         )
       })}
 
-      {/* Section label inside the panel — bottom-left */}
-      <div className="absolute bottom-4 left-4 md:bottom-5 md:left-6">
-        <span className="inline-block text-[9px] md:text-[10px] font-semibold uppercase
-                         tracking-[0.32em] text-amber-300/80">
-          The Yanabiya hierarchy
+      {/* Bottom-centre label */}
+      <div className="absolute inset-x-0 bottom-4 md:bottom-5 text-center pointer-events-none">
+        <span className="inline-block text-[10px] md:text-[11px] font-semibold uppercase
+                         tracking-[0.32em] text-amber-300/90">
+          Yanabiya Group
         </span>
       </div>
     </div>
