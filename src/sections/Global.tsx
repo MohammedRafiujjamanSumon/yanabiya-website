@@ -163,24 +163,22 @@ export default function Global() {
                         animation: `haloPulse 3s ease-in-out ${i * 0.4}s infinite`,
                       }}
                     />
-                    {/* Country silhouette */}
-                    <div
-                      className="relative w-full h-full transition-transform duration-300
+                    {/* Country silhouette — SVG already filled in
+                     *  brand-accent green so we render it as a plain
+                     *  <img> and add a drop-shadow glow on top. */}
+                    <img
+                      src={mapUrl}
+                      alt={`${d.name} map`}
+                      className="relative w-full h-full object-contain
+                                 transition-transform duration-300
                                  group-hover:scale-110"
                       style={{
-                        WebkitMaskImage: `url(${mapUrl})`,
-                        maskImage: `url(${mapUrl})`,
-                        WebkitMaskSize: 'contain',
-                        maskSize: 'contain',
-                        WebkitMaskRepeat: 'no-repeat',
-                        maskRepeat: 'no-repeat',
-                        WebkitMaskPosition: 'center',
-                        maskPosition: 'center',
-                        backgroundImage:
-                          'linear-gradient(135deg, #b8d75a 0%, #9ec73a 50%, #6f9526 100%)',
                         filter:
-                          'drop-shadow(0 0 10px rgba(158,199,58,0.75)) drop-shadow(0 0 3px rgba(158,199,58,0.5))',
+                          'drop-shadow(0 0 10px rgba(158,199,58,0.85)) drop-shadow(0 0 3px rgba(158,199,58,0.6))',
                       }}
+                      onError={(e) =>
+                        ((e.currentTarget as HTMLImageElement).style.display = 'none')
+                      }
                     />
                     {/* Pin badge — small white tag with flag + name, sits
                      *  just above the silhouette so each country is
