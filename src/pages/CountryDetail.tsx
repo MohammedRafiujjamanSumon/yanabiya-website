@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import {
-  MapPin, Phone, Mail, Clock, ArrowRight, Globe2, Send,
+  Clock, ArrowRight, Globe2,
   Briefcase, Cpu, Ship, Handshake, Building2, Users,
   Trophy, TrendingUp, Sparkles, Plane, Boxes,
   type LucideIcon,
@@ -9,7 +9,6 @@ import {
 import BackButton from '../components/BackButton'
 import PageHero from '../components/PageHero'
 import { countries } from '../data/countries'
-import { contactByCountry } from '../data/contact'
 import { useReveal } from '../hooks/useReveal'
 
 const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
@@ -260,7 +259,6 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
   const code = codeOverride ?? paramCode
   const upper = (code ?? '').toUpperCase()
   const country = countries.find((c) => c.code === upper)
-  const contact = contactByCountry.find((c) => c.code === upper)
   const dash = COUNTRY_DASHBOARDS[upper]
 
   useEffect(() => {
@@ -352,8 +350,26 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
       {/* ───────── 6. ACHIEVEMENTS ───────── */}
       <Achievements achievements={dash.achievements} />
 
-      {/* ───────── 7. CONTACT ───────── */}
-      <ContactSection country={c} contact={contact} />
+      {/* ───────── 7. CONTACT — single CTA, full details on /contact ───────── */}
+      <section className="relative">
+        <div className="container-x py-10 md:py-14 text-center">
+          <Reveal>
+            <p className="text-sm md:text-base text-white/70 max-w-md mx-auto mb-5 leading-snug">
+              Want to reach the {c.name} office? Our full contact directory lives on the
+              global Contact page.
+            </p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3
+                         bg-brand-accent text-brand-ink text-xs font-bold uppercase tracking-[0.22em]
+                         shadow-md hover:bg-white hover:shadow-lg hover:-translate-y-0.5
+                         transition-all duration-300"
+            >
+              Contact Us <ArrowRight size={14} />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
     </main>
   )
 }
@@ -432,7 +448,7 @@ function Hero({
 
 function ServiceBlocks({ services, countryName }: { services: Service[]; countryName: string }) {
   return (
-    <section className="relative py-16 md:py-20">
+    <section className="relative py-10 md:py-12">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
@@ -514,7 +530,7 @@ function CorporateHierarchy({
   const partners = hasParent ? entities : []
   const shortName = countryName.replace('Sultanate of ', '').replace('United States of America', 'USA')
   return (
-    <section className="relative py-16 md:py-20">
+    <section className="relative py-10 md:py-12">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
@@ -606,7 +622,7 @@ function BusinessActivities({
   activities: { code: string; name: string; icon?: string; image?: string }[]
 }) {
   return (
-    <section className="relative py-16 md:py-20">
+    <section className="relative py-10 md:py-12">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
@@ -702,7 +718,7 @@ function GlobalConnection({
 }) {
   const positions = ['top-[14%] left-1/2 -translate-x-1/2', 'top-1/2 left-[12%] -translate-y-1/2', 'bottom-[14%] left-1/2 -translate-x-1/2']
   return (
-    <section className="relative py-16 md:py-24">
+    <section className="relative py-10 md:py-14">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
@@ -836,7 +852,7 @@ function GlobalConnection({
 
 function Achievements({ achievements }: { achievements: Achievement[] }) {
   return (
-    <section className="relative py-16 md:py-20">
+    <section className="relative py-10 md:py-12">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
@@ -875,149 +891,3 @@ function Achievements({ achievements }: { achievements: Achievement[] }) {
   )
 }
 
-function ContactSection({
-  country,
-  contact,
-}: {
-  country: typeof countries[number]
-  contact: typeof contactByCountry[number] | undefined
-}) {
-  const [submitted, setSubmitted] = useState(false)
-  const mapEmbedQuery = encodeURIComponent(contact?.mapQuery ?? country.address.split('\n').pop() ?? country.name)
-
-  return (
-    <section className="relative py-16 md:py-24">
-      <div className="container-x max-w-6xl mx-auto">
-        <Reveal>
-          <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
-              Contact
-            </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
-              Reach our {country.name.replace('Sultanate of ', '').replace('United States of America', 'US')} team
-            </h2>
-          </div>
-        </Reveal>
-
-        <div className="grid lg:grid-cols-2 gap-5 md:gap-6">
-          {/* Address + map */}
-          <Reveal>
-            <div className="relative rounded-2xl
-                            bg-white shadow-sm backdrop-blur-md border border-slate-200
-                            shadow-[0_12px_32px_rgba(15,58,35,0.10)]
-                            p-6 overflow-hidden h-full">
-              <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accent mb-3">
-                Office
-              </div>
-              <div className="space-y-3 text-sm">
-                <div className="flex items-start gap-2.5 text-slate-200">
-                  <MapPin size={14} className="mt-0.5 shrink-0 text-brand-accent" />
-                  <span className="leading-snug whitespace-pre-line">{country.address}</span>
-                </div>
-                {contact?.phones.map((p) => (
-                  <a
-                    key={p}
-                    href={`tel:${p.replace(/\s+/g, '')}`}
-                    className="flex items-center gap-2.5 text-slate-200 hover:text-brand-accent transition-colors"
-                  >
-                    <Phone size={14} className="text-brand-accent" />
-                    {p}
-                  </a>
-                ))}
-                {contact?.emails.map((e) => (
-                  <a
-                    key={e}
-                    href={`mailto:${e}`}
-                    className="flex items-center gap-2.5 text-slate-200 hover:text-brand-accent transition-colors break-all"
-                  >
-                    <Mail size={14} className="text-brand-accent shrink-0" />
-                    {e}
-                  </a>
-                ))}
-                {contact?.hours && (
-                  <div className="flex items-center gap-2.5 text-slate-800">
-                    <Clock size={14} className="text-brand-accent" />
-                    {contact.hours}
-                  </div>
-                )}
-              </div>
-
-              {/* Map embed */}
-              <div className="mt-5 aspect-video w-full rounded-xl overflow-hidden border border-slate-200">
-                <iframe
-                  title={`${country.name} map`}
-                  src={`https://www.google.com/maps?q=${mapEmbedQuery}&output=embed`}
-                  loading="lazy"
-                  className="w-full h-full"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Form */}
-          <Reveal delay={100}>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault()
-                setSubmitted(true)
-              }}
-              className="relative rounded-2xl
-                         bg-white shadow-sm backdrop-blur-md border border-slate-200
-                         shadow-[0_12px_32px_rgba(15,58,35,0.10)]
-                         p-6 grid gap-4 h-full"
-            >
-              <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accent">
-                Send a message
-              </div>
-              <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accentDark mb-1.5">Name</label>
-                <input
-                  required type="text" placeholder="Full name"
-                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-700 focus:outline-none focus:border-brand-accent/65"
-                />
-              </div>
-              <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accentDark mb-1.5">Email</label>
-                <input
-                  required type="email" placeholder="you@company.com"
-                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-700 focus:outline-none focus:border-brand-accent/65"
-                />
-              </div>
-              <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-brand-accentDark mb-1.5">Message</label>
-                <textarea
-                  required rows={5} placeholder="How can we help?"
-                  className="w-full bg-slate-50 border border-slate-300 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-700 focus:outline-none focus:border-brand-accent/65 resize-none"
-                />
-              </div>
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center gap-2 mt-2 px-6 py-3 rounded-md
-                           bg-brand-accent text-slate-900 uppercase tracking-[0.2em] text-[11px] font-bold
-                           hover:bg-brand-accent/85 transition-colors"
-              >
-                Send <Send size={14} />
-              </button>
-              {submitted && (
-                <div className="text-xs text-brand-accent text-center">
-                  Thanks ,your message is on its way to the {country.name.replace('Sultanate of ', '').replace('United States of America', 'US')} team.
-                </div>
-              )}
-            </form>
-          </Reveal>
-        </div>
-
-        <Reveal delay={200} className="mt-10 text-center">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.32em]
-                       text-brand-accent hover:text-brand-deep transition-colors"
-          >
-            <Globe2 size={14} /> Back to global view
-          </Link>
-        </Reveal>
-      </div>
-    </section>
-  )
-}
