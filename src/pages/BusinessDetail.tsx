@@ -204,6 +204,7 @@ export default function BusinessDetail() {
 
             {hasSubServices && (
               <SubServicesSection
+                businessSlug={business.slug}
                 subServices={business.subServices!}
                 heading={business.subServicesHeading ?? 'Explore Our IT & Development Service'}
               />
@@ -267,8 +268,15 @@ function RelatedDivisions({ currentSlug }: { currentSlug: string }) {
   )
 }
 
-function SubServicesSection({ subServices, heading }: { subServices: SubService[]; heading: string }) {
-  const [active, setActive] = useState<SubService | null>(null)
+function SubServicesSection({
+  businessSlug,
+  subServices,
+  heading,
+}: {
+  businessSlug: string
+  subServices: SubService[]
+  heading: string
+}) {
   const [flippedSlug, setFlippedSlug] = useState<string | null>(null)
 
   return (
@@ -328,12 +336,9 @@ function SubServicesSection({ subServices, heading }: { subServices: SubService[
                     )}
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setActive(s)
-                    }}
+                  <Link
+                    to={`/business/${businessSlug}/${s.slug}`}
+                    onClick={(e) => e.stopPropagation()}
                     className="flip-card-face flip-card-back bg-gradient-to-br from-emerald-500 via-emerald-600 to-green-700 flex items-center justify-center text-center cursor-pointer"
                   >
                     <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full
@@ -342,76 +347,12 @@ function SubServicesSection({ subServices, heading }: { subServices: SubService[
                       Read More
                       <ArrowRight size={12} />
                     </span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
           )
         })}
-      </div>
-
-      {active && <SubServiceModal sub={active} onClose={() => setActive(null)} />}
-    </div>
-  )
-}
-
-function SubServiceModal({ sub, onClose }: { sub: SubService; onClose: () => void }) {
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
-    document.addEventListener('keydown', onKey)
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-    }
-  }, [onClose])
-
-  return (
-    <div
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-      onClick={onClose}
-    >
-      <div
-        className="relative bg-brand-ink border border-brand-accent/30 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white grid place-items-center text-xl"
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
-          <img src={sub.image} alt={sub.title} className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-ink via-brand-ink/60 to-transparent" />
-          <div className="absolute bottom-4 left-5 right-5 flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-blue-100 text-blue-600 grid place-items-center ring-2 ring-white/20 shrink-0">
-              <sub.icon size={22} />
-            </div>
-            <h3 className="font-serif text-2xl md:text-3xl text-white leading-tight">
-              {sub.title}
-            </h3>
-          </div>
-        </div>
-        <div className="p-6 md:p-8">
-          <p className="text-slate-200 leading-snug mb-6">{sub.body}</p>
-          <h4 className="text-brand-accent uppercase tracking-[0.22em] text-xs font-bold mb-4">
-            What We Offer
-          </h4>
-          <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
-            {sub.features.map((f) => (
-              <li key={f} className="flex items-start gap-2 text-sm text-slate-200">
-                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" />
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-          {sub.countries && sub.countries.length > 0 && (
-            <CountryPresenceGrid entries={sub.countries} compact />
-          )}
-        </div>
       </div>
     </div>
   )

@@ -7,6 +7,7 @@ import SocialFloat from './components/SocialFloat'
 
 import Home from './pages/Home'
 import BusinessDetail from './pages/BusinessDetail'
+import SubServiceDetail from './pages/SubServiceDetail'
 import CountryDetail from './pages/CountryDetail'
 import Management from './pages/Management'
 import Professionals from './pages/Professionals'
@@ -31,6 +32,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/business/:slug" element={<BusinessDetail />} />
+          <Route path="/business/:slug/:subSlug" element={<SubServiceDetail />} />
           <Route path="/country/:code" element={<CountryDetail />} />
           <Route path="/global-presence/scroll" element={<OmanPresence />} />
           <Route path="/global-presence/:code" element={<CountryDetail />} />
