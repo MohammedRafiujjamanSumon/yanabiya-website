@@ -111,9 +111,13 @@ const COUNTRY_BG: Record<string, { blobs: { className: string }[] }> = {
   },
   BD: {
     blobs: [
-      { className: 'absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full bg-emerald-600/20 blur-[160px]' },
-      { className: 'absolute top-1/4 -right-40 w-[520px] h-[520px] rounded-full bg-red-600/18 blur-[160px]' },
-      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-emerald-700/12 blur-[160px]' },
+      // Green field — large blobs around the edges to dominate the canvas
+      { className: 'absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full bg-emerald-600/22 blur-[160px]' },
+      { className: 'absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-emerald-700/20 blur-[160px]' },
+      { className: 'absolute -bottom-40 -left-40 w-[640px] h-[640px] rounded-full bg-emerald-600/18 blur-[160px]' },
+      { className: 'absolute -bottom-40 -right-40 w-[560px] h-[560px] rounded-full bg-emerald-700/18 blur-[160px]' },
+      // Red roundel — centred, mirroring the flag's red disc
+      { className: 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] rounded-full bg-red-600/28 blur-[120px]' },
     ],
   },
   US: {
