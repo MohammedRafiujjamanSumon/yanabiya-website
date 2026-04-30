@@ -2,67 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Send, ArrowRight, ArrowLeft } from 'lucide-react'
 import Section from '../components/Section'
-import {
-  businesses,
-  type SubService,
-  type CountryPresence,
-} from '../data/businesses'
-import { countries as countryList } from '../data/countries'
-
-function CountryPresenceGrid({
-  entries,
-  compact = false,
-}: {
-  entries: CountryPresence[]
-  compact?: boolean
-}) {
-  return (
-    <div className={compact ? 'mt-6' : 'mt-12'}>
-      <h4 className="text-brand-accent uppercase tracking-[0.22em] text-xs font-bold mb-4 text-center">
-        Our Global Presence
-      </h4>
-      <div
-        className={`grid gap-3 ${
-          compact ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-4'
-        }`}
-      >
-        {entries.map((entry) => {
-          const country = countryList.find((c) => c.code === entry.code)
-          if (!country) return null
-          const isHQ = entry.code === 'OM'
-          return (
-            <div
-              key={entry.code}
-              className="rounded-xl border border-white/15 bg-white/[0.04] p-4
-                         hover:border-brand-accent/40 transition text-left"
-            >
-              <div className="flex items-start gap-3">
-                <span className="text-2xl leading-none shrink-0">{country.flag}</span>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h5 className="text-sm font-semibold text-white leading-tight">
-                      {country.name}
-                    </h5>
-                    {isHQ && (
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded
-                                       bg-brand-accent/20 text-brand-accent border border-brand-accent/30">
-                        HQ
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-[10px] uppercase tracking-[0.14em] text-slate-400 mt-0.5">
-                    {country.role}
-                  </p>
-                  <p className="text-xs text-slate-200 mt-2 leading-relaxed">{entry.note}</p>
-                </div>
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
+import { businesses, type SubService } from '../data/businesses'
 
 export default function SubServiceDetail() {
   const { slug, subSlug } = useParams<{ slug: string; subSlug: string }>()
@@ -194,11 +134,6 @@ export default function SubServiceDetail() {
               ))}
             </ol>
           </div>
-
-          {/* Country grid */}
-          {sub.countries && sub.countries.length > 0 && (
-            <CountryPresenceGrid entries={sub.countries} />
-          )}
 
           {/* CTA form */}
           <SubServiceForm sub={sub} businessTitle={business.title} />
