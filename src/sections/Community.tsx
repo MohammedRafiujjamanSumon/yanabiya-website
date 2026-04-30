@@ -131,12 +131,23 @@ export default function Community() {
             />
           </div>
 
-          {/* Hanger "string" — short vertical line connecting logo to arc.
-           *  Hidden on mobile where the SVG arc itself is hidden. */}
-          <div
+          {/* Hanger hook — half-U curve connecting logo to arc, like the
+           *  top of a coat hanger. Hidden on mobile where the SVG arc
+           *  itself is hidden. */}
+          <svg
             aria-hidden="true"
-            className="hidden md:block mx-auto mt-1 w-[3px] h-6 lg:h-8 bg-brand-accentDark rounded-full"
-          />
+            viewBox="0 0 80 60"
+            preserveAspectRatio="xMidYMid meet"
+            className="hidden md:block mx-auto mt-1 h-10 lg:h-12 w-auto"
+          >
+            <path
+              d="M 40 0 Q 75 30, 40 60"
+              stroke="#0F3A23"
+              strokeWidth="5"
+              strokeLinecap="round"
+              fill="none"
+            />
+          </svg>
 
           {/* SVG arc + drop connectors. Hidden on small screens where
            *  the geometry doesn't read; circles + descriptions still
