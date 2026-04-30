@@ -7,6 +7,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import BackButton from '../components/BackButton'
+import PageHero from '../components/PageHero'
 import { countries } from '../data/countries'
 import { contactByCountry } from '../data/contact'
 import { useReveal } from '../hooks/useReveal'
@@ -299,6 +300,20 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
     <main className="relative bg-[#fbfdfb] text-slate-900 overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
+      {/* Shared About-Us style brand card — opens every country page
+       *  with the same forest-green / 3D-logo language as the home
+       *  About section. Below this, the country's specific dashboard
+       *  (services, hierarchy, leadership, contact) continues. */}
+      <PageHero
+        eyebrow="Global Presence"
+        title={
+          <>
+            {c.flag} {c.name}
+          </>
+        }
+        subtitle={`${c.role} — ${c.address}`}
+      />
+
       {/* Ambient glow blobs ,coloured from the country's flag palette */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         {(COUNTRY_BG[c.code]?.blobs ?? COUNTRY_BG.OM.blobs).map((b, i) => (
@@ -306,7 +321,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
         ))}
       </div>
 
-      {/* ───────── 1. HERO ───────── */}
+      {/* ───────── 1. HERO (country-specific dashboard banner) ───────── */}
       <Hero country={c} dash={dash} mapUrl={mapUrl} flagUrl={flagUrl} />
 
       {/* ───────── 3. WHAT WE DO ,3D SERVICE BLOCKS ───────── */}

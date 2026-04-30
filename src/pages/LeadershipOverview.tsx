@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Users, Briefcase } from 'lucide-react'
 import BackButton from '../components/BackButton'
+import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
 
 function Reveal({
@@ -63,26 +64,12 @@ export default function LeadershipOverview() {
         <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
       </div>
 
-      {/* HERO */}
-      <section className="relative">
-        <div className="container-x py-14 md:py-20 text-center max-w-3xl mx-auto">
-          <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
-              Leadership
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-brand-deep">
-              The people behind the group.
-            </h1>
-          </Reveal>
-          <Reveal delay={260}>
-            <p className="mt-5 text-base md:text-lg text-slate-600 leading-snug">
-              Founding chairs and a cross-country professional bench. Pick a hub to dive in.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      {/* HERO — shared brand card */}
+      <PageHero
+        eyebrow="Leadership"
+        title="The people behind the group."
+        subtitle="Founding chairs and a cross-country professional bench. Pick a hub to dive in."
+      />
 
       {/* HUB CARDS */}
       <section className="relative">

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Newspaper, Leaf, HeartHandshake, Briefcase } from 'lucide-react'
 import BackButton from '../components/BackButton'
+import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
 
 function Reveal({
@@ -87,26 +88,12 @@ export default function CommunityOverview() {
         <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
       </div>
 
-      {/* HERO */}
-      <section className="relative">
-        <div className="container-x py-14 md:py-20 text-center max-w-3xl mx-auto">
-          <Reveal>
-            <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-4">
-              Community
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-brand-deep">
-              Beyond the balance sheet.
-            </h1>
-          </Reveal>
-          <Reveal delay={260}>
-            <p className="mt-5 text-base md:text-lg text-slate-600 leading-snug">
-              Stories, sustainability, welfare, careers — four ways into the group beyond business.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      {/* HERO — shared brand card */}
+      <PageHero
+        eyebrow="Our Community"
+        title="Beyond the balance sheet."
+        subtitle="Stories, sustainability, welfare, careers — four ways into the group beyond business."
+      />
 
       {/* HUB CARDS — rainbow arc + four colour-coded circles */}
       <section className="relative">
