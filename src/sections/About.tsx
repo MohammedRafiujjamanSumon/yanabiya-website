@@ -124,7 +124,7 @@ export default function About() {
               </div>
             </Reveal>
 
-            <div className="grid sm:grid-cols-3 gap-4 md:gap-5">
+            <div className="grid sm:grid-cols-3 gap-5 md:gap-6 [perspective:1400px]">
               {company.pillars.map((p, i) => {
                 const meta = PILLAR_META[p.title] ?? {
                   icon: Users,
@@ -134,30 +134,71 @@ export default function About() {
                 const Icon = meta.icon
                 return (
                   <Reveal key={p.title} delay={120 + i * 110}>
-                    <div className="relative h-full rounded-2xl bg-white p-5 md:p-6
-                                    border border-emerald-100
-                                    shadow-[0_8px_22px_-12px_rgba(15,58,35,0.18)]
-                                    transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                                    hover:-translate-y-1
-                                    hover:shadow-[0_18px_36px_-14px_rgba(15,58,35,0.28)]
-                                    hover:border-brand-accent/40">
-                      {/* Step indicator — tiny serif numeral so the three
-                       *  cards visibly form a 1-2-3 hierarchy. */}
-                      <span className="absolute top-3 right-4 font-serif text-[12px] text-slate-300">
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
+                    {/* 3D pillar card.
+                     *   - Outer: perspective + a gentle Y-float loop (each
+                     *     card on a different delay so they breathe out
+                     *     of sync).
+                     *   - Card: preserve-3d + a tilt-on-hover that lifts
+                     *     the card forward in space (translateZ), with
+                     *     a slight rotateY/X for depth.
+                     *   - Inside: glossy top highlight + soft bottom
+                     *     under-shadow so the card reads as solid, not
+                     *     flat. */}
+                    <div
+                      className="group h-full animate-float-3d will-change-transform"
+                      style={{ animationDelay: `${i * 1.4}s` }}
+                    >
+                      <div
+                        className="relative h-full rounded-2xl bg-white/95 backdrop-blur-sm
+                                   p-5 md:p-6 [transform-style:preserve-3d]
+                                   border border-emerald-100
+                                   shadow-[0_10px_24px_-12px_rgba(15,58,35,0.20),0_4px_10px_-6px_rgba(15,58,35,0.12)]
+                                   transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                                   group-hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(14px)_scale(1.02)]"
+                      >
+                        {/* Glossy top highlight band — sits "in front" via
+                         *  translateZ so the 3D feel reads on hover. */}
+                        <span
+                          aria-hidden
+                          className="pointer-events-none absolute inset-x-3 top-2 h-8 rounded-2xl
+                                     bg-gradient-to-b from-white/70 via-white/20 to-transparent
+                                     [transform:translateZ(20px)]"
+                        />
 
-                      <div className={`w-10 h-10 rounded-xl grid place-items-center
-                                       ${meta.tint} ring-1 ${meta.ring}`}>
-                        <Icon size={20} strokeWidth={2} />
-                      </div>
+                        {/* Soft under-shadow plate — sits "behind" so the
+                         *  card looks lifted off the page. */}
+                        <span
+                          aria-hidden
+                          className="pointer-events-none absolute inset-x-4 bottom-2 h-6 rounded-full
+                                     bg-emerald-900/15 blur-md
+                                     [transform:translateZ(-25px)]"
+                        />
 
-                      <div className="mt-4 font-serif text-[16px] text-brand-deep leading-tight">
-                        {p.title}
+                        {/* Step indicator — tiny serif numeral so the three
+                         *  cards visibly form a 1-2-3 hierarchy. */}
+                        <span className="absolute top-3 right-4 font-serif text-[12px] text-slate-300
+                                         [transform:translateZ(8px)]">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+
+                        <div
+                          className={`w-12 h-12 rounded-xl grid place-items-center
+                                      ${meta.tint} ring-1 ${meta.ring}
+                                      shadow-[0_6px_14px_-6px_rgba(15,58,35,0.25)]
+                                      [transform:translateZ(24px)]`}
+                        >
+                          <Icon size={22} strokeWidth={2} />
+                        </div>
+
+                        <div className="mt-4 font-serif text-[16px] text-brand-deep leading-tight
+                                        [transform:translateZ(12px)]">
+                          {p.title}
+                        </div>
+                        <p className="mt-1.5 text-[13px] text-slate-600 leading-relaxed
+                                      [transform:translateZ(4px)]">
+                          {p.body}
+                        </p>
                       </div>
-                      <p className="mt-1.5 text-[13px] text-slate-600 leading-relaxed">
-                        {p.body}
-                      </p>
                     </div>
                   </Reveal>
                 )

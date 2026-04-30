@@ -144,6 +144,15 @@
 }
 .animate-float { animation: float 6s ease-in-out infinite; }
 
+/* Subtle 3D-lift loop — used by the About pillar cards. Pure Y
+ * translate, no rotation, so the card silhouette stays steady while
+ * gently breathing. Three cards stagger via animation-delay. */
+@keyframes float-3d {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.animate-float-3d { animation: float-3d 7s ease-in-out infinite; }
+
 @keyframes dividerGrow {
   0%, 100% { transform: scaleX(1);   opacity: 1;   }
   50%      { transform: scaleX(1.4); opacity: 0.8; }
