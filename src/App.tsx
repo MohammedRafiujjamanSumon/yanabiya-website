@@ -37,6 +37,12 @@ export default function App() {
           <Route path="/country/:code" element={<CountryDetail />} />
           <Route path="/global-presence/scroll" element={<OmanPresence />} />
           <Route path="/global-presence/:code" element={<CountryDetail />} />
+
+          {/* Clean country aliases — same page, prettier URLs. */}
+          <Route path="/oman"       element={<CountryDetail codeOverride="OM" />} />
+          <Route path="/uk"         element={<CountryDetail codeOverride="GB" />} />
+          <Route path="/bangladesh" element={<CountryDetail codeOverride="BD" />} />
+          <Route path="/usa"        element={<CountryDetail codeOverride="US" />} />
           <Route path="/contact" element={<ContactGlobal />} />
           <Route path="/leadership" element={<LeadershipOverview />} />
           <Route path="/leadership/management" element={<Management />} />

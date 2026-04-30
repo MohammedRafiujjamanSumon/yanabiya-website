@@ -40,6 +40,7 @@ function Reveal({
  * scaffolded so the wiring works end-to-end). */
 
 type Pillar = {
+  name: string
   href: string
   /** Real photo for the top half of the card. */
   image: string
@@ -51,30 +52,35 @@ type Pillar = {
 
 const PILLARS: Pillar[] = [
   {
+    name: 'Strategic Board & Advisory',
     href: '/leadership/management',
     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80',
     from: '#a7f3d0', to: '#059669',
     glow: 'rgba(5,150,105,0.35)',
   },
   {
+    name: 'Global CEO & Co-Founders',
     href: '/leadership/management',
     image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80',
     from: '#bae6fd', to: '#0284c7',
     glow: 'rgba(2,132,199,0.35)',
   },
   {
+    name: 'Executive Management',
     href: '/leadership/professionals',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80',
     from: '#e9d5ff', to: '#7e22ce',
     glow: 'rgba(126,34,206,0.35)',
   },
   {
+    name: 'Country Partners & Heads',
     href: '/leadership/professionals',
     image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
     from: '#fde68a', to: '#d97706',
     glow: 'rgba(217,119,6,0.35)',
   },
   {
+    name: 'High-Skill Execution Engine',
     href: '/leadership/professionals',
     image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
     from: '#fecdd3', to: '#e11d48',
@@ -115,7 +121,7 @@ export default function Leadership() {
               <Reveal key={p.href + i} delay={i * 90} className="w-full max-w-[180px]">
                 <Link
                   to={p.href}
-                  aria-label="Open leadership page"
+                  aria-label={`Open ${p.name} page`}
                   className="group relative block rounded-xl overflow-hidden
                              border border-white/40
                              shadow-[0_10px_24px_-12px_var(--tw-shadow-color)]
@@ -137,11 +143,17 @@ export default function Leadership() {
                         onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                       />
                     </div>
-                    {/* Bottom half — solid gradient block, no text or number */}
+                    {/* Bottom half — solid gradient block with the pillar name */}
                     <div
-                      className="h-1/2 w-full"
+                      className="relative h-1/2 w-full grid place-items-center px-2 text-center"
                       style={{ backgroundImage: `linear-gradient(135deg, ${p.from} 0%, ${p.to} 100%)` }}
-                    />
+                    >
+                      <span className="font-semibold text-white text-[12px] md:text-[13px]
+                                       leading-tight tracking-tight
+                                       drop-shadow-[0_1px_3px_rgba(0,0,0,0.45)]">
+                        {p.name}
+                      </span>
+                    </div>
                   </div>
                 </Link>
               </Reveal>

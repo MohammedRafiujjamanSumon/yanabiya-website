@@ -254,8 +254,9 @@ const COUNTRY_DASHBOARDS: Record<string, CountryDashboard> = {
   },
 }
 
-export default function CountryDetail() {
-  const { code } = useParams<{ code: string }>()
+export default function CountryDetail({ codeOverride }: { codeOverride?: string } = {}) {
+  const { code: paramCode } = useParams<{ code: string }>()
+  const code = codeOverride ?? paramCode
   const upper = (code ?? '').toUpperCase()
   const country = countries.find((c) => c.code === upper)
   const contact = contactByCountry.find((c) => c.code === upper)
