@@ -186,7 +186,7 @@ export default function Leadership() {
             subtitle="The vision-bearers behind the group — driving strategy across every market."
             href="/leadership/management"
           />
-          <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 justify-items-center">
+          <div className="max-w-3xl mx-auto grid grid-cols-2 gap-6 sm:gap-8 md:gap-10 justify-items-center">
             {FOUNDERS.map((p, i) => (
               <Reveal key={p.name} delay={i * 120}>
                 <PersonTile p={p} size="lg" href="/leadership/management" />
@@ -204,7 +204,7 @@ export default function Leadership() {
             subtitle="Senior leaders running operations, finance, technology, marketing, and people."
             href="/leadership/executive"
           />
-          <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5 md:gap-6">
+          <div className="max-w-5xl mx-auto grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-5 md:gap-6">
             {EXECS.map((p, i) => (
               <Reveal key={p.name} delay={i * 60}>
                 <PersonTile p={p} size="sm" href="/leadership/executive" />

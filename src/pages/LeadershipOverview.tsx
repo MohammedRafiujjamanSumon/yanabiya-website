@@ -164,7 +164,7 @@ export default function LeadershipOverview() {
             title="Global CEO & Vice Chairman"
             subtitle="The vision-bearers behind the group — driving strategy across every market."
           />
-          <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 justify-items-center">
+          <div className="max-w-3xl mx-auto grid grid-cols-2 gap-6 sm:gap-8 md:gap-10 justify-items-center">
             {FOUNDERS.map((p, i) => (
               <Reveal key={p.name} delay={i * 120}>
                 <Link to="/leadership/management" className="block hover:opacity-95 transition-opacity">
@@ -193,7 +193,7 @@ export default function LeadershipOverview() {
             title="Global Executive Management"
             subtitle="Senior leaders running operations, finance, technology, marketing, and people."
           />
-          <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5 md:gap-6">
+          <div className="max-w-5xl mx-auto grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-5 md:gap-6">
             {EXECS.map((p, i) => (
               <Reveal key={p.name} delay={i * 60}>
                 <PersonTile p={p} size="sm" />

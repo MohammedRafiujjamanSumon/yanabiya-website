@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useParams, Navigate, Link } from 'react-router-dom'
-import { Crown, Users, ArrowRight, MapPin } from 'lucide-react'
+import { Crown, Users, ArrowRight, MapPin, Phone, Mail, Clock, Smartphone } from 'lucide-react'
 import BackButton from '../components/BackButton'
 import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
@@ -39,6 +39,14 @@ type CountryTeam = {
   head: Person
   leadership: Person[]
   team: Person[]
+  contact: {
+    address: string[]
+    phones: string[]
+    mobile?: string
+    emails: string[]
+    hours: string
+    mapUrl?: string
+  }
 }
 
 const TEAMS: Record<string, CountryTeam> = {
@@ -65,6 +73,18 @@ const TEAMS: Record<string, CountryTeam> = {
       { name: 'Nadia Al-Wahaibi',  role: 'Marketing Lead',             image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80' },
       { name: 'Tariq Al-Habsi',    role: 'Logistics Coordinator',      image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80' },
     ],
+    contact: {
+      address: [
+        'Office-41, 4th Floor, Building-846',
+        'Way-4011, Complex-240',
+        'Al Gubrah, Bushar, Muscat, Oman',
+      ],
+      phones: ['+968 2249 5566'],
+      mobile: '+968 9116 1677',
+      emails: ['info@yanabiyagroup.com', 'admin@yanabiyagroup.com'],
+      hours: 'Sunday – Thursday, 8:00 AM – 6:00 PM (GST)',
+      mapUrl: 'https://maps.app.goo.gl/8kfKBHGkBEZ7ExsT9',
+    },
   },
   gb: {
     code: 'GB',
@@ -89,6 +109,16 @@ const TEAMS: Record<string, CountryTeam> = {
       { name: 'Owen Harris',     role: 'Senior Consultant',    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80' },
       { name: 'Zara Ahmed',      role: 'UK Marketing Lead',    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=400&q=80' },
     ],
+    contact: {
+      address: [
+        '167-169 Great Portland Street',
+        '5th Floor, London, W1W 5PF',
+        'United Kingdom',
+      ],
+      phones: [],
+      emails: ['info@yanabiyagroup.com'],
+      hours: 'Monday – Friday, 9:00 AM – 6:00 PM (GMT)',
+    },
   },
   bd: {
     code: 'BD',
@@ -113,12 +143,22 @@ const TEAMS: Record<string, CountryTeam> = {
       { name: 'Faruk Ahmed',     role: 'Operations Manager',  image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80' },
       { name: 'Sumi Begum',      role: 'Customer Success',    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=400&q=80' },
     ],
+    contact: {
+      address: [
+        'Office #211, Plot #322/B',
+        'Block #Kanchkura, Uttarkhan',
+        'Dhaka-1230, Bangladesh',
+      ],
+      phones: [],
+      emails: ['info@yanabiyagroup.com'],
+      hours: 'Sunday – Thursday, 9:00 AM – 6:00 PM (BST)',
+    },
   },
   us: {
     code: 'US',
     name: 'United States',
     flag: '🇺🇸',
-    city: 'New York',
+    city: 'Austin',
     blurb: 'North American office — enterprise partnerships, advisory, and growth.',
     head: {
       name: 'Michael Reeves',
@@ -137,6 +177,16 @@ const TEAMS: Record<string, CountryTeam> = {
       { name: 'Priya Iyer',      role: 'Marketing Director',     image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=400&q=80' },
       { name: 'Daniel Smith',    role: 'Operations Lead',        image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80' },
     ],
+    contact: {
+      address: [
+        '5900 Balcones Drive #18651',
+        'Austin, TX 78731',
+        'United States of America',
+      ],
+      phones: [],
+      emails: ['info@yanabiyagroup.com'],
+      hours: 'Monday – Friday, 9:00 AM – 5:00 PM (CT)',
+    },
   },
 }
 
@@ -317,8 +367,110 @@ export default function CountryManagement() {
             ))}
           </div>
 
+          {/* CONTACT — phone, email, address, hours */}
+          <div className="mt-12 md:mt-16 max-w-5xl mx-auto">
+            <Reveal>
+              <div className="text-center mb-6 md:mb-8">
+                <div className="inline-flex items-center gap-1.5 rounded-full
+                                bg-white/5 border border-white/10
+                                px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-white/70">
+                  <Phone size={11} /> Office Contact
+                </div>
+                <h3 className="mt-3 font-serif text-xl md:text-2xl text-white leading-tight">
+                  Reach our {team.name} office.
+                </h3>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {/* Address */}
+                <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-5">
+                  <div className="flex items-center gap-2 text-brand-accent mb-2">
+                    <MapPin size={14} />
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Address</span>
+                  </div>
+                  <div className="text-[13px] text-white/80 leading-snug space-y-0.5">
+                    {team.contact.address.map((line) => (
+                      <div key={line}>{line}</div>
+                    ))}
+                  </div>
+                  {team.contact.mapUrl && (
+                    <a
+                      href={team.contact.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase
+                                 tracking-[0.2em] text-brand-accent hover:gap-1.5 transition-all"
+                    >
+                      Open in Maps <ArrowRight size={10} />
+                    </a>
+                  )}
+                </div>
+
+                {/* Phone + Mobile */}
+                <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-5">
+                  <div className="flex items-center gap-2 text-brand-accent mb-2">
+                    <Phone size={14} />
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Phone</span>
+                  </div>
+                  {team.contact.phones.length > 0 ? (
+                    <div className="space-y-1">
+                      {team.contact.phones.map((p) => (
+                        <a key={p} href={`tel:${p.replace(/\s+/g, '')}`}
+                           className="block text-[13px] text-white/80 hover:text-brand-accent transition-colors">
+                          {p}
+                        </a>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-[12px] text-white/50 italic">Not yet listed</div>
+                  )}
+                  {team.contact.mobile && (
+                    <>
+                      <div className="flex items-center gap-2 text-brand-accent mt-4 mb-2">
+                        <Smartphone size={14} />
+                        <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Mobile</span>
+                      </div>
+                      <a href={`tel:${team.contact.mobile.replace(/\s+/g, '')}`}
+                         className="block text-[13px] text-white/80 hover:text-brand-accent transition-colors">
+                        {team.contact.mobile}
+                      </a>
+                    </>
+                  )}
+                </div>
+
+                {/* Email */}
+                <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-5">
+                  <div className="flex items-center gap-2 text-brand-accent mb-2">
+                    <Mail size={14} />
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Email</span>
+                  </div>
+                  <div className="space-y-1">
+                    {team.contact.emails.map((e) => (
+                      <a key={e} href={`mailto:${e}`}
+                         className="block text-[13px] text-white/80 hover:text-brand-accent transition-colors break-all">
+                        {e}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Hours */}
+                <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-5">
+                  <div className="flex items-center gap-2 text-brand-accent mb-2">
+                    <Clock size={14} />
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Office Hours</span>
+                  </div>
+                  <div className="text-[13px] text-white/80 leading-snug">
+                    {team.contact.hours}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
           {/* Closing CTA */}
-          <div className="mt-12 md:mt-16 text-center">
+          <div className="mt-10 md:mt-12 text-center">
             <Reveal>
               <Link
                 to="/contact"
