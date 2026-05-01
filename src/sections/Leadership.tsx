@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Crown, Star, Briefcase, Globe2, type LucideIcon } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
+import { board } from '../data/leadership'
 
 function Reveal({
   children,
@@ -26,60 +27,111 @@ function Reveal({
   )
 }
 
-/* Four tier cards on landing — step number + icon + name only.
- *  Each card is a clickable hub to its dedicated detail page. */
+/* ─────────── DATA ───────────
+ *  Four-tier leadership hierarchy displayed on the landing page.
+ *  01 Board & Advisory   |  02 CEO + Vice Chairman
+ *  03 Executive Mgmt     |  04 Country-Based Management
+ */
 
-type Tier = {
-  step: string
-  title: string
-  blurb: string
+type Person = { name: string; role: string; image: string }
+
+const BOARD: Person[] = [
+  { name: 'H.E. Khalifa Al-Hinai',  role: 'Chairman of the Board',    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80' },
+  { name: 'Sir Anthony Whitfield',  role: 'Senior Strategic Advisor', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80' },
+  { name: 'Dr. Amina Rahman',       role: 'Independent Director',     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80' },
+  { name: 'Tariq Al-Balushi',       role: 'Audit & Risk Advisor',     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80' },
+]
+
+const FOUNDERS: Person[] = [
+  { name: 'S M Shamim Ahmed',     role: 'Global CEO',    image: board[0].photo },
+  { name: 'Mohammad Abu Jaheed',  role: 'Vice Chairman', image: board[1].photo },
+]
+
+const EXECS: Person[] = [
+  { name: 'Sara Al-Mahrouqi', role: 'Chief Operating Officer',  image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80' },
+  { name: 'Daniel Whitmore',  role: 'Chief Financial Officer',  image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80' },
+  { name: 'Priya Iyer',       role: 'Chief Technology Officer', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80' },
+  { name: 'Nasser Al-Rawahi', role: 'Chief Marketing Officer',  image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80' },
+  { name: 'Layla Hossain',    role: 'Chief People Officer',     image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80' },
+  { name: "James O'Connor",   role: 'Chief Strategy Officer',   image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=400&q=80' },
+]
+
+const COUNTRIES = [
+  { code: 'om', name: 'Oman',       flag: '🇴🇲', head: 'Yousuf Al-Lawati', role: 'Country Head — Oman',       image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&q=80' },
+  { code: 'gb', name: 'UK',         flag: '🇬🇧', head: 'Eleanor Hayward',  role: 'Country Head — UK',         image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=600&q=80' },
+  { code: 'bd', name: 'Bangladesh', flag: '🇧🇩', head: 'Imran Chowdhury',  role: 'Country Head — Bangladesh', image: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=600&q=80' },
+  { code: 'us', name: 'USA',        flag: '🇺🇸', head: 'Michael Reeves',   role: 'Country Head — USA',        image: 'https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=600&q=80' },
+]
+
+/* ─────────── SHARED PIECES ─────────── */
+
+function TierHeader({
+  icon: Icon, kicker, title, subtitle, href,
+}: {
   icon: LucideIcon
+  kicker: string
+  title: string
+  subtitle?: string
   href: string
-  /** Solid bottom-half gradient. */
-  from: string
-  to: string
-  /** Outer hover glow. */
-  glow: string
+}) {
+  return (
+    <Reveal className="text-center max-w-2xl mx-auto mb-5 md:mb-7">
+      <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-accent/15 px-3 py-1
+                      border border-brand-accentDark/30 mb-2">
+        <Icon size={11} className="text-brand-accentDark" />
+        <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-brand-deep">
+          {kicker}
+        </span>
+      </div>
+      <Link to={href} className="group inline-block">
+        <h3 className="font-serif text-xl md:text-2xl text-brand-deep leading-tight
+                       group-hover:text-brand-accentDark transition-colors duration-300">
+          {title}
+        </h3>
+      </Link>
+      {subtitle && (
+        <p className="mt-1.5 text-[12px] md:text-[13px] text-slate-500 leading-snug">
+          {subtitle}
+        </p>
+      )}
+    </Reveal>
+  )
 }
 
-const TIERS: Tier[] = [
-  {
-    step: '01',
-    title: 'Global Board & Advisory',
-    blurb: 'Strategic oversight & counsel.',
-    icon: Crown,
-    href: '/leadership/board',
-    from: '#a7f3d0', to: '#059669',
-    glow: 'rgba(5,150,105,0.35)',
-  },
-  {
-    step: '02',
-    title: 'Global CEO & Vice Chairman',
-    blurb: 'The vision-bearers of the group.',
-    icon: Star,
-    href: '/leadership/management',
-    from: '#bae6fd', to: '#0284c7',
-    glow: 'rgba(2,132,199,0.35)',
-  },
-  {
-    step: '03',
-    title: 'Global Executive Management',
-    blurb: 'Senior operating leadership.',
-    icon: Briefcase,
-    href: '/leadership/executive',
-    from: '#e9d5ff', to: '#7e22ce',
-    glow: 'rgba(126,34,206,0.35)',
-  },
-  {
-    step: '04',
-    title: 'Country-Based Management',
-    blurb: 'Local heads across four markets.',
-    icon: Globe2,
-    href: '/leadership/countries',
-    from: '#fecdd3', to: '#e11d48',
-    glow: 'rgba(225,29,72,0.35)',
-  },
-]
+function PersonTile({ p, size = 'sm', href }: { p: Person; size?: 'sm' | 'lg'; href?: string }) {
+  const ringSize = size === 'lg' ? 'w-32 h-32 md:w-40 md:h-40' : 'w-20 h-20 md:w-24 md:h-24'
+  const nameClass = size === 'lg'
+    ? 'text-base md:text-lg font-serif text-brand-deep'
+    : 'text-[12px] md:text-[13px] font-semibold text-brand-deep'
+  const roleClass = size === 'lg'
+    ? 'text-[11px] md:text-[12px] text-brand-accentDark uppercase tracking-[0.18em]'
+    : 'text-[10px] md:text-[11px] text-slate-500'
+
+  const content = (
+    <div className="text-center">
+      <div className={`relative mx-auto ${ringSize} rounded-full overflow-hidden
+                       ring-1 ring-brand-deep/10
+                       shadow-[0_8px_20px_-10px_rgba(15,58,35,0.35)]
+                       transition-all duration-500
+                       hover:shadow-[0_16px_32px_-12px_rgba(15,58,35,0.45)]
+                       hover:ring-brand-accent/60`}>
+        <img
+          src={p.image}
+          alt={p.name}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+        />
+      </div>
+      <div className={`mt-2.5 ${nameClass} leading-tight`}>{p.name}</div>
+      <div className={`mt-0.5 ${roleClass} leading-tight`}>{p.role}</div>
+    </div>
+  )
+
+  return href ? <Link to={href} className="block">{content}</Link> : content
+}
+
+/* ─────────── SECTION ─────────── */
 
 export default function Leadership() {
   return (
@@ -91,10 +143,10 @@ export default function Leadership() {
         <div className="absolute bottom-0 -right-40 w-[520px] h-[520px] rounded-full bg-brand-accentDark/6 blur-[140px]" />
       </div>
 
-      <div className="container-x relative pt-2 md:pt-3 pb-4 md:pb-6">
+      <div className="container-x relative pt-2 md:pt-3 pb-8 md:pb-12">
 
         {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
           <Reveal>
             <Eyebrow>Global Leadership</Eyebrow>
           </Reveal>
@@ -107,50 +159,113 @@ export default function Leadership() {
           </Reveal>
         </div>
 
-        {/* FOUR HIERARCHICAL TIER CARDS — minimal: step + icon + title.
-         *  Names/photos live on the dedicated detail pages. */}
-        <div className="relative max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-            {TIERS.map((t, i) => (
-              <Reveal key={t.step} delay={i * 90} className="w-full">
+        {/* TIER 01 — BOARD */}
+        <div className="mb-12 md:mb-16">
+          <TierHeader
+            icon={Crown}
+            kicker="Tier 01"
+            title="Global Board & Advisory"
+            subtitle="Strategic oversight from independent directors and senior advisors."
+            href="/leadership/board"
+          />
+          <div className="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
+            {BOARD.map((p, i) => (
+              <Reveal key={p.name} delay={i * 80}>
+                <PersonTile p={p} size="sm" href="/leadership/board" />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* TIER 02 — CEO + VICE CHAIRMAN */}
+        <div className="mb-12 md:mb-16">
+          <TierHeader
+            icon={Star}
+            kicker="Tier 02"
+            title="Global CEO & Vice Chairman"
+            subtitle="The vision-bearers behind the group — driving strategy across every market."
+            href="/leadership/management"
+          />
+          <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 justify-items-center">
+            {FOUNDERS.map((p, i) => (
+              <Reveal key={p.name} delay={i * 120}>
+                <PersonTile p={p} size="lg" href="/leadership/management" />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* TIER 03 — EXEC */}
+        <div className="mb-14 md:mb-20">
+          <TierHeader
+            icon={Briefcase}
+            kicker="Tier 03"
+            title="Global Executive Management"
+            subtitle="Senior leaders running operations, finance, technology, marketing, and people."
+            href="/leadership/executive"
+          />
+          <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5 md:gap-6">
+            {EXECS.map((p, i) => (
+              <Reveal key={p.name} delay={i * 60}>
+                <PersonTile p={p} size="sm" href="/leadership/executive" />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* TIER 04 — COUNTRIES */}
+        <div>
+          <TierHeader
+            icon={Globe2}
+            kicker="Tier 04"
+            title="Country-Based Management"
+            subtitle="Country heads and local leadership teams across our four operating markets."
+            href="/leadership/countries"
+          />
+          <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+            {COUNTRIES.map((c, i) => (
+              <Reveal key={c.code} delay={i * 90}>
                 <Link
-                  to={t.href}
-                  aria-label={`Open ${t.title} page`}
+                  to={`/leadership/country/${c.code}`}
+                  aria-label={`Open ${c.name} management team`}
                   className="group relative block rounded-xl overflow-hidden
-                             border border-white/40 bg-white
-                             shadow-[0_10px_24px_-12px_var(--tw-shadow-color)]
-                             transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                             hover:-translate-y-1
-                             hover:shadow-[0_16px_36px_-12px_var(--tw-shadow-color)]"
-                  style={{ ['--tw-shadow-color' as never]: t.glow }}
+                             bg-white border border-slate-200
+                             shadow-[0_8px_22px_-14px_rgba(15,58,35,0.25)]
+                             transition-all duration-500
+                             hover:-translate-y-1 hover:border-brand-accent/60
+                             hover:shadow-[0_18px_36px_-14px_rgba(15,58,35,0.35)]"
                 >
-                  <div className="aspect-[3/4] flex flex-col">
-                    {/* Top half — soft gradient with step number + icon */}
-                    <div
-                      className="relative h-1/2 w-full grid place-items-center"
-                      style={{ backgroundImage: `linear-gradient(135deg, ${t.from} 0%, ${t.to} 100%)` }}
-                    >
-                      <div className="text-center text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.45)]">
-                        <div className="font-serif italic text-[11px] opacity-80 leading-none">
-                          Tier
-                        </div>
-                        <div className="font-serif text-3xl md:text-4xl leading-none mt-0.5">
-                          {t.step}
-                        </div>
-                        <t.icon size={18} className="mx-auto mt-2 opacity-90" />
+                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                    <img
+                      src={c.image}
+                      alt=""
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover
+                                 transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/85 via-brand-deep/30 to-transparent" />
+                    <div className="absolute top-2 left-2 inline-flex items-center gap-1.5
+                                    rounded-full bg-white/95 backdrop-blur px-2.5 py-1
+                                    text-[10px] font-bold uppercase tracking-[0.2em] text-brand-deep">
+                      <span className="text-sm leading-none">{c.flag}</span>
+                      {c.name}
+                    </div>
+                    <div className="absolute bottom-0 inset-x-0 px-3 py-2.5">
+                      <div className="text-white font-serif text-[14px] md:text-[15px] leading-tight">
+                        {c.head}
+                      </div>
+                      <div className="text-white/70 text-[10px] md:text-[11px] mt-0.5">
+                        {c.role}
                       </div>
                     </div>
-                    {/* Bottom half — name + tiny blurb */}
-                    <div className="relative h-1/2 w-full flex flex-col items-center justify-center
-                                    text-center px-2.5">
-                      <span className="font-semibold text-brand-deep text-[12px] md:text-[13px]
-                                       leading-tight tracking-tight">
-                        {t.title}
-                      </span>
-                      <span className="mt-1 text-[10px] md:text-[11px] text-slate-500 leading-snug">
-                        {t.blurb}
-                      </span>
-                    </div>
+                  </div>
+                  <div className="px-3 py-2.5 flex items-center justify-between border-t border-slate-100">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500
+                                     group-hover:text-brand-accentDark transition-colors duration-300">
+                      View Team
+                    </span>
+                    <ArrowRight size={12} className="text-brand-accentDark
+                                                     group-hover:translate-x-0.5 transition-transform duration-300" />
                   </div>
                 </Link>
               </Reveal>
@@ -159,7 +274,7 @@ export default function Leadership() {
         </div>
 
         {/* CTA — opens the full leadership overview */}
-        <div className="text-center mt-8 md:mt-10">
+        <div className="text-center mt-10 md:mt-14">
           <Reveal>
             <Link
               to="/leadership"
