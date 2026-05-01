@@ -26,6 +26,7 @@ import CountryManagement from './pages/CountryManagement'
 import Board from './pages/Board'
 import Executive from './pages/Executive'
 import CountriesOverview from './pages/CountriesOverview'
+import DistributionDetail from './pages/DistributionDetail'
 import CommunityOverview from './pages/CommunityOverview'
 import Testimonials from './pages/Testimonials'
 
@@ -67,6 +68,7 @@ export default function App() {
           <Route path="/leadership/board" element={<Board />} />
           <Route path="/leadership/executive" element={<Executive />} />
           <Route path="/leadership/countries" element={<CountriesOverview />} />
+          <Route path="/leadership/distributed/:slug" element={<DistributionDetail />} />
           <Route path="/leadership/execution-engine" element={<ExecutionEngine />} />
           <Route path="/leadership/country/:code" element={<CountryManagement />} />
           <Route path="/leadership/management" element={<Management />} />
