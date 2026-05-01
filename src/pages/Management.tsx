@@ -45,6 +45,7 @@ const BLOCKS: MessageBlock[] = [
     icon: Crown,
     name: 'S M Shamim Ahmed',
     role: 'Global CEO',
+    photo: board[0].photo,
     greeting: 'Greetings from YANABIYA GROUP,',
     paragraphs: chairmanMessage,
     signOffRole: 'Global CEO — Yanabiya Group',
