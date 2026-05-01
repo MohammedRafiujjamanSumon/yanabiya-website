@@ -23,6 +23,9 @@ import ContactGlobal from './pages/ContactGlobal'
 import LeadershipOverview from './pages/LeadershipOverview'
 import ExecutionEngine from './pages/ExecutionEngine'
 import CountryManagement from './pages/CountryManagement'
+import Board from './pages/Board'
+import Executive from './pages/Executive'
+import CountriesOverview from './pages/CountriesOverview'
 import CommunityOverview from './pages/CommunityOverview'
 import Testimonials from './pages/Testimonials'
 
@@ -61,6 +64,9 @@ export default function App() {
           <Route path="/usa"        element={<CountryOperations codeOverride="US" />} />
           <Route path="/contact" element={<ContactGlobal />} />
           <Route path="/leadership" element={<LeadershipOverview />} />
+          <Route path="/leadership/board" element={<Board />} />
+          <Route path="/leadership/executive" element={<Executive />} />
+          <Route path="/leadership/countries" element={<CountriesOverview />} />
           <Route path="/leadership/execution-engine" element={<ExecutionEngine />} />
           <Route path="/leadership/country/:code" element={<CountryManagement />} />
           <Route path="/leadership/management" element={<Management />} />
