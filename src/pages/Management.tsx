@@ -33,7 +33,7 @@ type MessageBlock = {
   icon: typeof Crown
   name: string
   role: string
-  photo: string
+  photo?: string
   greeting: string
   paragraphs: string[]
   signOffRole: string
@@ -45,7 +45,6 @@ const BLOCKS: MessageBlock[] = [
     icon: Crown,
     name: 'S M Shamim Ahmed',
     role: 'Global CEO',
-    photo: board[0].photo,
     greeting: 'Greetings from YANABIYA GROUP,',
     paragraphs: chairmanMessage,
     signOffRole: 'Global CEO — Yanabiya Group',
@@ -80,6 +79,7 @@ export default function Management() {
         eyebrow="Global CEO & Vice Chairman"
         title={<>Messages from <span className="italic text-brand-accent">our leadership.</span></>}
         subtitle="The voices behind Yanabiya Group's strategy, culture, and long-term vision."
+        centered
       />
 
       <section className="relative">
@@ -96,37 +96,56 @@ export default function Management() {
                   strokeWidth={1}
                 />
 
-                <div className="relative grid md:grid-cols-[280px_1fr] gap-0">
-                  {/* Portrait column */}
-                  <div className="relative bg-gradient-to-br from-brand-deep/60 to-[#04100a]
-                                  p-6 md:p-8 flex flex-col items-center md:items-start text-center md:text-left">
-                    <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden
-                                    ring-2 ring-brand-accent/40
-                                    shadow-[0_12px_32px_-12px_rgba(0,0,0,0.6)]">
-                      <img
-                        src={b.photo}
-                        alt={b.name}
-                        loading="lazy"
-                        className="absolute inset-0 w-full h-full object-cover"
-                        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                      />
+                <div className={`relative grid gap-0 ${b.photo ? 'md:grid-cols-[280px_1fr]' : 'md:grid-cols-1'}`}>
+                  {/* Portrait column — only when a photo is provided */}
+                  {b.photo && (
+                    <div className="relative bg-gradient-to-br from-brand-deep/60 to-[#04100a]
+                                    p-6 md:p-8 flex flex-col items-center md:items-start text-center md:text-left">
+                      <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden
+                                      ring-2 ring-brand-accent/40
+                                      shadow-[0_12px_32px_-12px_rgba(0,0,0,0.6)]">
+                        <img
+                          src={b.photo}
+                          alt={b.name}
+                          loading="lazy"
+                          className="absolute inset-0 w-full h-full object-cover"
+                          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                        />
+                      </div>
+                      <span className="mt-5 inline-flex items-center gap-1.5 rounded-full
+                                       bg-brand-accent/15 border border-brand-accent/30
+                                       px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em]
+                                       text-brand-accent">
+                        <b.icon size={11} /> {b.kicker}
+                      </span>
+                      <div className="mt-3 font-serif text-xl md:text-2xl text-white leading-tight">
+                        {b.name}
+                      </div>
+                      <div className="mt-1 text-[11px] md:text-[12px] uppercase tracking-[0.2em] text-brand-accent">
+                        {b.role}
+                      </div>
                     </div>
-                    <span className="mt-5 inline-flex items-center gap-1.5 rounded-full
-                                     bg-brand-accent/15 border border-brand-accent/30
-                                     px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em]
-                                     text-brand-accent">
-                      <b.icon size={11} /> {b.kicker}
-                    </span>
-                    <div className="mt-3 font-serif text-xl md:text-2xl text-white leading-tight">
-                      {b.name}
-                    </div>
-                    <div className="mt-1 text-[11px] md:text-[12px] uppercase tracking-[0.2em] text-brand-accent">
-                      {b.role}
-                    </div>
-                  </div>
+                  )}
 
                   {/* Message column */}
                   <div className="p-6 md:p-10">
+                    {/* Inline header for photoless blocks */}
+                    {!b.photo && (
+                      <div className="mb-6">
+                        <span className="inline-flex items-center gap-1.5 rounded-full
+                                         bg-brand-accent/15 border border-brand-accent/30
+                                         px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em]
+                                         text-brand-accent">
+                          <b.icon size={11} /> {b.kicker}
+                        </span>
+                        <div className="mt-3 font-serif text-2xl md:text-3xl text-white leading-tight">
+                          {b.name}
+                        </div>
+                        <div className="mt-1 text-[11px] md:text-[12px] uppercase tracking-[0.2em] text-brand-accent">
+                          {b.role}
+                        </div>
+                      </div>
+                    )}
                     <p className="text-white/85 mb-5 text-[14px] md:text-[15px]">{b.greeting}</p>
                     <div className="space-y-4 text-[13px] md:text-[14px] text-white/70 leading-relaxed text-justify">
                       {b.paragraphs.map((para, i) => (

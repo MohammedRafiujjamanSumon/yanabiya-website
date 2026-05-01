@@ -40,6 +40,8 @@ type PageHeroProps = {
   cta?: { label: string; sublabel?: string; to: string }
   /** Optional secondary caption + circular CTA on the right. */
   rightCaption?: { caption: ReactNode; body?: string; cta: { label: string; to: string } }
+  /** Centre the eyebrow/title/subtitle column instead of left-aligning. */
+  centered?: boolean
 }
 
 /**
@@ -56,6 +58,7 @@ export default function PageHero({
   ghostText = 'YANABIYA',
   cta,
   rightCaption,
+  centered = false,
 }: PageHeroProps) {
   return (
     <section className="relative overflow-hidden
@@ -85,9 +88,10 @@ export default function PageHero({
         </div>
 
         {/* Top-left content + optional right caption */}
-        <div className="relative grid md:grid-cols-2 gap-8 md:gap-10 items-center">
-          <Reveal>
-            <div className="max-w-md">
+        <div className={`relative grid gap-8 md:gap-10 items-center
+                        ${centered ? '' : 'md:grid-cols-2'}`}>
+          <Reveal className={centered ? 'mx-auto text-center' : ''}>
+            <div className={centered ? 'max-w-2xl mx-auto' : 'max-w-md'}>
               {eyebrow && (
                 <span className="inline-block text-[10px] md:text-[11px] font-semibold uppercase
                                  tracking-[0.32em] text-amber-300 mb-4">
@@ -99,7 +103,8 @@ export default function PageHero({
                 {title}
               </h1>
               {subtitle && (
-                <p className="mt-4 text-sm md:text-base text-white/70 leading-snug max-w-sm">
+                <p className={`mt-4 text-sm md:text-base text-white/70 leading-snug
+                              ${centered ? 'max-w-xl mx-auto text-justify md:text-center' : 'max-w-sm'}`}>
                   {subtitle}
                 </p>
               )}
