@@ -119,7 +119,7 @@ export default function Management() {
                                        text-brand-accent">
                         <b.icon size={11} /> {b.kicker}
                       </span>
-                      <div className="mt-3 font-serif text-xl md:text-2xl text-white leading-tight">
+                      <div className="mt-3 font-serif text-lg md:text-xl text-white leading-tight whitespace-nowrap">
                         {b.name}
                       </div>
                       <div className="mt-1 text-[11px] md:text-[12px] uppercase tracking-[0.2em] text-brand-accent">
