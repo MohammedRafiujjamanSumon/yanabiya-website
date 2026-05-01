@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Crown, Star, Briefcase, Globe2, type LucideIcon } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
-import { board } from '../data/leadership'
 
 function Reveal({
   children,
@@ -27,60 +26,58 @@ function Reveal({
   )
 }
 
-/* Four tier cards — each one half real photo, half coloured gradient
- *  with the tier name. Zigzag (alternate md:mt-10) for visual rhythm. */
+/* Four tier cards on landing — step number + icon + name only.
+ *  Each card is a clickable hub to its dedicated detail page. */
 
 type Tier = {
   step: string
   title: string
+  blurb: string
+  icon: LucideIcon
   href: string
-  /** Real photo for the top half of the card. */
-  image: string
   /** Solid bottom-half gradient. */
   from: string
   to: string
   /** Outer hover glow. */
   glow: string
-  /** Vertical offset to create the zigzag rhythm. */
-  offset?: string
 }
 
 const TIERS: Tier[] = [
   {
     step: '01',
     title: 'Global Board & Advisory',
+    blurb: 'Strategic oversight & counsel.',
+    icon: Crown,
     href: '/leadership/board',
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80',
     from: '#a7f3d0', to: '#059669',
     glow: 'rgba(5,150,105,0.35)',
-    offset: '',
   },
   {
     step: '02',
     title: 'Global CEO & Vice Chairman',
+    blurb: 'The vision-bearers of the group.',
+    icon: Star,
     href: '/leadership/management',
-    image: board[0].photo,
     from: '#bae6fd', to: '#0284c7',
     glow: 'rgba(2,132,199,0.35)',
-    offset: 'md:mt-10',
   },
   {
     step: '03',
     title: 'Global Executive Management',
+    blurb: 'Senior operating leadership.',
+    icon: Briefcase,
     href: '/leadership/executive',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80',
     from: '#e9d5ff', to: '#7e22ce',
     glow: 'rgba(126,34,206,0.35)',
-    offset: '',
   },
   {
     step: '04',
     title: 'Country-Based Management',
+    blurb: 'Local heads across four markets.',
+    icon: Globe2,
     href: '/leadership/countries',
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
     from: '#fecdd3', to: '#e11d48',
     glow: 'rgba(225,29,72,0.35)',
-    offset: 'md:mt-10',
   },
 ]
 
@@ -110,17 +107,17 @@ export default function Leadership() {
           </Reveal>
         </div>
 
-        {/* FOUR TIER CARDS — top half photo, bottom half coloured gradient.
-         *  Zigzag rhythm via alternating md:mt-10 offsets. */}
-        <div className="relative max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 justify-items-center">
+        {/* FOUR HIERARCHICAL TIER CARDS — minimal: step + icon + title.
+         *  Names/photos live on the dedicated detail pages. */}
+        <div className="relative max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {TIERS.map((t, i) => (
-              <Reveal key={t.step} delay={i * 90} className={`w-full max-w-[200px] ${t.offset ?? ''}`}>
+              <Reveal key={t.step} delay={i * 90} className="w-full">
                 <Link
                   to={t.href}
                   aria-label={`Open ${t.title} page`}
                   className="group relative block rounded-xl overflow-hidden
-                             border border-white/40
+                             border border-white/40 bg-white
                              shadow-[0_10px_24px_-12px_var(--tw-shadow-color)]
                              transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                              hover:-translate-y-1
@@ -128,34 +125,30 @@ export default function Leadership() {
                   style={{ ['--tw-shadow-color' as never]: t.glow }}
                 >
                   <div className="aspect-[3/4] flex flex-col">
-                    {/* Top half — real photo */}
-                    <div className="relative h-1/2 w-full overflow-hidden bg-slate-200">
-                      <img
-                        src={t.image}
-                        alt=""
-                        loading="lazy"
-                        className="absolute inset-0 w-full h-full object-cover
-                                   transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                                   group-hover:scale-105"
-                        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                      />
-                      {/* Step badge top-left */}
-                      <div className="absolute top-2 left-2 w-7 h-7 rounded-full
-                                      bg-white/90 backdrop-blur grid place-items-center
-                                      font-serif text-[12px] text-brand-deep font-bold
-                                      shadow-[0_4px_10px_rgba(0,0,0,0.15)]">
-                        {t.step}
-                      </div>
-                    </div>
-                    {/* Bottom half — solid gradient block with the tier name */}
+                    {/* Top half — soft gradient with step number + icon */}
                     <div
-                      className="relative h-1/2 w-full grid place-items-center px-2 text-center"
+                      className="relative h-1/2 w-full grid place-items-center"
                       style={{ backgroundImage: `linear-gradient(135deg, ${t.from} 0%, ${t.to} 100%)` }}
                     >
-                      <span className="font-semibold text-white text-[12px] md:text-[13px]
-                                       leading-tight tracking-tight
-                                       drop-shadow-[0_1px_3px_rgba(0,0,0,0.45)]">
+                      <div className="text-center text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.45)]">
+                        <div className="font-serif italic text-[11px] opacity-80 leading-none">
+                          Tier
+                        </div>
+                        <div className="font-serif text-3xl md:text-4xl leading-none mt-0.5">
+                          {t.step}
+                        </div>
+                        <t.icon size={18} className="mx-auto mt-2 opacity-90" />
+                      </div>
+                    </div>
+                    {/* Bottom half — name + tiny blurb */}
+                    <div className="relative h-1/2 w-full flex flex-col items-center justify-center
+                                    text-center px-2.5">
+                      <span className="font-semibold text-brand-deep text-[12px] md:text-[13px]
+                                       leading-tight tracking-tight">
                         {t.title}
+                      </span>
+                      <span className="mt-1 text-[10px] md:text-[11px] text-slate-500 leading-snug">
+                        {t.blurb}
                       </span>
                     </div>
                   </div>
