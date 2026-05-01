@@ -4,6 +4,7 @@ import { ArrowRight, Crown, Star, Briefcase, Cpu, Globe2, type LucideIcon } from
 import BackButton from '../components/BackButton'
 import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
+import { board } from '../data/leadership'
 
 function Reveal({
   children,
@@ -38,8 +39,8 @@ const BOARD: Person[] = [
 ]
 
 const FOUNDERS: Person[] = [
-  { name: 'S M Shamim Ahmed',     role: 'Global CEO',    image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80' },
-  { name: 'Mohammad Abu Jaheed',  role: 'Vice Chairman', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80' },
+  { name: 'S M Shamim Ahmed',     role: 'Global CEO',    image: board[0].photo },
+  { name: 'Mohammad Abu Jaheed',  role: 'Vice Chairman', image: board[1].photo },
 ]
 
 const EXECS: Person[] = [
