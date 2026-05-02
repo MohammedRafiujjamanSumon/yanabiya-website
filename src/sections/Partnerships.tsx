@@ -67,44 +67,44 @@ function LogoMarquee({
 export default function Partnerships() {
   return (
     <Section id="partnerships" className="bg-lime-100">
-      <div className="container-x text-center mx-auto pt-2 md:pt-3 pb-4 md:pb-6 mb-10">
+      <div className="container-x text-center mx-auto pt-1 pb-2 mb-4">
         <Eyebrow>Trusted Network</Eyebrow>
         <H2 className="!text-[18px] md:!text-[20px] text-center">
           Connecting opportunities worldwide. Building strong, scalable global businesses.
         </H2>
       </div>
 
-      <div id="valuable-clients" className="mb-12 scroll-mt-28">
-        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
+      <div id="valuable-clients" className="mb-5 scroll-mt-28">
+        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-3">
           Our Valuable Clients
         </h3>
         <LogoMarquee items={ukValuableClients} direction="left" durationSec={60} />
       </div>
 
-      <div id="clients" className="mb-12 scroll-mt-28">
-        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
+      <div id="clients" className="mb-5 scroll-mt-28">
+        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-3">
           Our Clients
         </h3>
         <LogoMarquee items={valuableClients} direction="right" durationSec={70} />
       </div>
 
-      <div id="sponsors" className="mb-12 scroll-mt-28">
-        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
+      <div id="sponsors" className="mb-5 scroll-mt-28">
+        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-3">
           Our Membership
         </h3>
         <LogoMarquee items={memberships} direction="left" durationSec={70} />
       </div>
 
-      <div id="partners" className="mb-12 scroll-mt-28">
-        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
+      <div id="partners" className="mb-5 scroll-mt-28">
+        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-3">
           Our Partners
         </h3>
         <LogoMarquee items={partners} direction="left" durationSec={70} />
       </div>
 
-      <div id="affiliations" className="mb-4 scroll-mt-28">
-        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
-          Affiliations
+      <div id="affiliations" className="mb-2 scroll-mt-28">
+        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-3">
+          Our Affiliations
         </h3>
         <LogoMarquee items={affiliations} direction="right" durationSec={70} />
       </div>
