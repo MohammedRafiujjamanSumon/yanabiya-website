@@ -133,8 +133,8 @@ export default function Navbar() {
     }`
 
   return (
-    <header className="sticky top-0 z-40 bg-brand-deep">
-      <div className="bg-brand-deep">
+    <header className="absolute top-0 left-0 right-0 z-40 bg-transparent">
+      <div className="bg-transparent">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
 
         {/* LEFT — LOGO sits on the inner black bar. */}
@@ -152,7 +152,7 @@ export default function Navbar() {
         {/* RIGHT — same black bg as the inner bar so logo + nav cluster
          *  read as one black band sandwiched between two green strips. */}
       <div
-        className="flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8 bg-brand-deep"
+        className="flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8 bg-transparent"
       >
 
         {/* NAV + CTA — clustered on the right */}
