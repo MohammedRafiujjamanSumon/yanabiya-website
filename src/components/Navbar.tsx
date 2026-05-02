@@ -137,14 +137,21 @@ export default function Navbar() {
       <div className="bg-transparent">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
 
-        {/* LEFT — LOGO sits on the inner black bar. */}
-        <Link to="/#home" className="flex items-center shrink-0 group">
+        {/* LEFT — LOGO. Larger, brighter, retina-friendly. */}
+        <Link to="/#home" className="flex items-center shrink-0 group py-1">
           <img
             src={assets.logo}
             alt="Yanabiya Group"
-            className="h-11 md:h-12 w-auto object-contain
-                       drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]
-                       group-hover:opacity-95 transition"
+            width={1024}
+            height={765}
+            decoding="async"
+            // @ts-expect-error - fetchpriority is a valid HTML attr but not yet in React types
+            fetchpriority="high"
+            className="h-16 md:h-20 lg:h-24 w-auto object-contain
+                       brightness-110 contrast-110 saturate-110
+                       drop-shadow-[0_4px_10px_rgba(0,0,0,0.45)]
+                       drop-shadow-[0_2px_4px_rgba(15,58,35,0.35)]
+                       transition-transform duration-300 group-hover:scale-105"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
         </Link>
