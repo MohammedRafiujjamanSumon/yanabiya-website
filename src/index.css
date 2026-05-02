@@ -7,12 +7,12 @@
   body {
     background:
       radial-gradient(
-        ellipse 80% 60% at 50% 40%,
-        #b8e040 0%,
-        #cfe5a4 22%,
-        #e8f3d4 46%,
-        #f5faec 70%,
-        #fafef8 100%
+        ellipse 65% 45% at 50% 38%,
+        #dff2a4 0%,
+        #ecf8d6 28%,
+        #f5fbec 55%,
+        #fafef6 78%,
+        #ffffff 100%
       );
     background-attachment: fixed;
     color: #1e5c38;
