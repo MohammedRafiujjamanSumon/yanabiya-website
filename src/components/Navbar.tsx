@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { sections } from '../data/contact'
 import { assets } from '../data/assets'
+import { useScrollHeader } from '../hooks/useScrollHeader'
 import LanguageSwitcher from './LanguageSwitcher'
 
 type NavItem = { id: string; label: string; desc?: string; icon?: LucideIcon; href?: string }
@@ -33,6 +34,11 @@ export default function Navbar() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
+  const { scrolled } = useScrollHeader(8, 80)
+  /* Transparent only on the home page hero (top, not scrolled). Anywhere
+   * else — inner pages or scrolled past the hero — show the solid green band. */
+  const isHome = location.pathname === '/' || location.pathname === ''
+  const transparent = isHome && !scrolled
   const [open, setOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [mobileOpenGroup, setMobileOpenGroup] = useState<string | null>(null)
@@ -133,8 +139,13 @@ export default function Navbar() {
     }`
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-40 bg-transparent">
-      <div className="bg-transparent">
+    <header
+      className={`left-0 right-0 z-40 transition-all duration-300
+                  ${transparent
+                    ? 'absolute top-0 bg-transparent'
+                    : 'sticky top-0 bg-brand-deep shadow-md shadow-slate-900/10'}`}
+    >
+      <div className={transparent ? 'bg-transparent' : 'bg-brand-deep'}>
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
 
         {/* LEFT — LOGO. Larger, brighter, retina-friendly. */}
@@ -159,7 +170,8 @@ export default function Navbar() {
         {/* RIGHT — same black bg as the inner bar so logo + nav cluster
          *  read as one black band sandwiched between two green strips. */}
       <div
-        className="flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8 bg-transparent"
+        className={`flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8
+                    ${transparent ? 'bg-transparent' : 'bg-brand-deep'}`}
       >
 
         {/* NAV + CTA — clustered on the right */}
