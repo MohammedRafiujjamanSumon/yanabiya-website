@@ -42,46 +42,36 @@ function LogoMarquee({
         {loop.map((p, i) => (
           <div
             key={`${p.name}-${i}`}
-            className="group relative shrink-0 w-36 h-24 rounded-3xl overflow-hidden
-                       bg-brand-accent/10 hover:bg-brand-deep
-                       flex items-center justify-center p-2
-                       transition-all duration-300 ease-out cursor-pointer
-                       hover:-translate-y-1
-                       hover:shadow-[0_8px_24px_rgba(15,58,35,0.20)]"
+            className="group shrink-0 flex flex-col items-center justify-center gap-2 px-6
+                       transition-all duration-300 ease-out cursor-pointer"
           >
-            {/* Logo — visible while moving, fades out on hover */}
             <img
               src={p.logo}
               alt={p.name}
               loading="lazy"
-              className="absolute inset-0 w-full h-full object-contain p-3
-                         brightness-110 mix-blend-multiply
-                         opacity-100 group-hover:opacity-0
-                         transition-opacity duration-300"
+              className="h-12 max-w-[110px] object-contain
+                         scale-100 group-hover:scale-110
+                         transition-all duration-300"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
-
-            {/* Company name — shows on hover only */}
-            <span className="relative z-10 text-[11px] font-bold tracking-widest
-                             text-center text-brand-accent uppercase px-2 leading-tight
-                             opacity-0 scale-90
-                             group-hover:opacity-100 group-hover:scale-100
-                             transition-all duration-300">
+            <span className="text-[10px] font-semibold text-brand-deep/70
+                             tracking-wide uppercase text-center leading-tight
+                             group-hover:text-brand-accentDark transition-colors duration-300">
               {p.name}
             </span>
           </div>
         ))}
       </div>
 
-      <div className="absolute inset-y-0 left-0  w-24 bg-gradient-to-r from-stone-50 to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-stone-50 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 left-0  w-24 bg-gradient-to-r from-lime-100 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-lime-100 to-transparent pointer-events-none z-10" />
     </div>
   )
 }
 
 export default function Partnerships() {
   return (
-    <Section id="partnerships" className="bg-stone-50">
+    <Section id="partnerships" className="bg-lime-100">
       <div className="container-x text-center mx-auto pt-2 md:pt-3 pb-4 md:pb-6 mb-10">
         <Eyebrow>Trusted Network</Eyebrow>
         <H2 className="!text-[18px] md:!text-[20px] text-center">

@@ -61,7 +61,7 @@ type CountryOps = {
   strategicPartners: PartnerItem[]
   operationalPartners: PartnerItem[]
   /** Section 6 — Business Domains */
-  categories: { label: string; icon: LucideIcon; tone: string; image: string }[]
+  categories: { label: string; icon: LucideIcon; tone: string; image: string; href?: string }[]
   /** Section 7 — Licensed Activities */
   licensedActivities: string[]
   /** Section 8 — Current Operations */
@@ -327,7 +327,7 @@ const OPS: Record<string, CountryOps> = {
       { name: 'Tayyabs',                 domain: 'tayyabs.co.uk' },
     ],
     categories: [
-      { label: 'IT, Software & Cloud Services',         icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
+      { label: 'IT, Software & Cloud Services',         icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80', href: 'https://yanabiyagibt.com/' },
       { label: 'Wholesale Trade & Retail Distribution', icon: Boxes,     tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
       { label: 'Hospitality, Restaurants & Foodservice', icon: Megaphone, tone: 'from-amber-500/40 to-orange-700/40',   image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
       { label: 'Cross-Border Trade & Brokerage',        icon: Handshake, tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
@@ -558,6 +558,61 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         />
       </SectionFrame>
 
+
+      {/* SECTION 6 — Business Domains */}
+      <SectionFrame eyebrow="Business Domains" title="The verticals we operate in.">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 md:gap-3 max-w-4xl mx-auto justify-items-center [perspective:1400px]">
+          {ops.categories.map((c, i) => {
+            const inner = (
+              <div
+                className="group relative w-full max-w-[140px] rounded-lg overflow-hidden
+                           border border-slate-200 bg-slate-100
+                           [transform-style:preserve-3d]
+                           transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                           hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.04)]
+                           hover:border-brand-accent"
+              >
+                <div className="relative aspect-square overflow-hidden">
+                  <img
+                    src={c.image}
+                    alt=""
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover
+                               transition-transform duration-500 group-hover:scale-105"
+                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/85" />
+                  <div className={`absolute top-2 left-2 w-7 h-7 rounded-md
+                                  bg-gradient-to-br ${c.tone} ring-1 ring-white/30
+                                  grid place-items-center text-brand-deep shadow-md`}>
+                    <c.icon size={13} strokeWidth={2.2} />
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 p-2 text-center">
+                    <span className="font-semibold text-white text-[10px] md:text-[11px] leading-tight
+                                     drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] block">
+                      {c.label}
+                    </span>
+                    {c.href && (
+                      <span className="text-brand-accent text-[9px] font-bold tracking-wide
+                                       opacity-0 group-hover:opacity-100 transition-opacity duration-300 block mt-0.5">
+                        Visit Site ↗
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+            return (
+              <Reveal key={c.label} delay={i * 80}>
+                {c.href
+                  ? <a href={c.href} target="_blank" rel="noopener noreferrer">{inner}</a>
+                  : inner
+                }
+              </Reveal>
+            )
+          })}
+        </div>
+      </SectionFrame>
 
       {/* SECTION 7 — Licensed Activities */}
       <SectionFrame eyebrow="Approved Activities Under License" title="Government-approved scope of operations.">

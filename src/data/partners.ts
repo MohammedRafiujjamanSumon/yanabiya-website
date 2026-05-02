@@ -1,34 +1,29 @@
 export const partners = [
-  { name: 'Amazon Web Services', logo: 'https://yanabiyagroup.com/img/par/aws.jpg' },
-  { name: 'Microsoft', logo: 'https://yanabiyagroup.com/img/par/mslogo.jpg' },
-  { name: 'Oracle', logo: 'https://yanabiyagroup.com/img/par/orcl.jpg' },
-  { name: 'SAP', logo: 'https://yanabiyagroup.com/img/par/sap.jpg' },
-  { name: 'Adobe', logo: 'https://yanabiyagroup.com/img/par/Adobe.jpg' },
-  { name: 'Dell', logo: 'https://yanabiyagroup.com/img/par/dell.jpg' },
-  { name: 'HP', logo: 'https://yanabiyagroup.com/img/par/hp.jpg' },
-  { name: 'Huawei', logo: 'https://yanabiyagroup.com/img/par/Hu.jpg' },
-  { name: 'Cisco', logo: 'https://yanabiyagroup.com/img/par/cis.jpg' },
-  { name: 'Google Cloud', logo: 'https://yanabiyagroup.com/img/par/gc.jpg' },
+  { name: 'Amazon Web Services', logo: '/logos/partners/aws.png' },
+  { name: 'Microsoft',           logo: '/logos/partners/ms.png'  },
+  { name: 'Oracle',              logo: '/logos/partners/oracle.png' },
+  { name: 'SAP',                 logo: '/logos/partners/sap.png' },
+  { name: 'Adobe',               logo: '/logos/partners/adobe.png' },
+  { name: 'Dell',                logo: '/logos/partners/dell.png' },
+  { name: 'HP',                  logo: '/logos/partners/hp.png'  },
+  { name: 'Huawei',              logo: '/logos/partners/huawei.png' },
+  { name: 'Cisco',               logo: '/logos/partners/cisco.png' },
+  { name: 'Google Cloud',        logo: '/logos/partners/gc.png'  },
 ]
 
-// Valuable Clients — sourced from yanabiyagroup.com (img/par/1-18, 16 missing)
 export const valuableClients = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18].map((n) => ({
   name: `Client ${n}`,
-  logo: `https://yanabiyagroup.com/img/par/${n}.jpg`,
+  logo: `/logos/clients/${n}.png`,
 }))
 
-// Memberships — sourced from yanabiyagroup.com (img/mb/1-3)
 export const memberships = [
-  { name: 'Membership 1', logo: 'https://yanabiyagroup.com/img/mb/1.jpg' },
-  { name: 'Membership 2', logo: 'https://yanabiyagroup.com/img/mb/2.png' },
-  { name: 'Membership 3', logo: 'https://yanabiyagroup.com/img/mb/3.jpg' },
+  { name: 'Membership 1', logo: '/logos/mb/1.png' },
+  { name: 'Membership 2', logo: '/logos/mb/2.png' },
+  { name: 'Membership 3', logo: '/logos/mb/3.png' },
 ]
 
-// Affiliations — sourced from yanabiyagroup.com (img/mb/4-6). Split out of the
-// original combined "Memberships & Affiliations" set so the home page can
-// surface them in their own marquee.
 export const affiliations = [
-  { name: 'Affiliation 1', logo: 'https://yanabiyagroup.com/img/mb/4.png' },
-  { name: 'Affiliation 2', logo: 'https://yanabiyagroup.com/img/mb/5.png' },
-  { name: 'Affiliation 3', logo: 'https://yanabiyagroup.com/img/mb/6.png' },
+  { name: 'Affiliation 1', logo: '/logos/mb/4.png' },
+  { name: 'Affiliation 2', logo: '/logos/mb/5.png' },
+  { name: 'Affiliation 3', logo: '/logos/mb/6.png' },
 ]
