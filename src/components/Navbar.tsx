@@ -36,6 +36,8 @@ export default function Navbar() {
   const location = useLocation()
   const { scrolled } = useScrollHeader(8, 80)
   const isHome = location.pathname === '/' || location.pathname === ''
+  // Home top = fully hidden; scrolled or inner pages = visible glass navbar
+  const hidden = isHome && !scrolled
   const transparent = true
   const [open, setOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
@@ -92,18 +94,19 @@ export default function Navbar() {
 
   const baseLinkCls = (isActive: boolean) =>
     `relative text-base font-medium whitespace-nowrap py-1.5 px-3
-     transition-colors duration-200 ${
-      transparent
-        ? `hover:text-white ${isActive ? 'text-white underline underline-offset-4 decoration-brand-accent/70' : 'text-brand-accent'}`
-        : `hover:text-brand-accentDark ${isActive ? 'text-brand-accentDark underline underline-offset-4 decoration-brand-accentDark/70' : 'text-brand-deep'}`
+     transition-colors duration-200
+     hover:text-brand-accentDark ${
+      isActive
+        ? 'text-brand-accentDark underline underline-offset-4 decoration-brand-accentDark/70'
+        : 'text-brand-deep'
     }`
 
   return (
     <header
-      className={`left-0 right-0 z-40 transition-all duration-300 sticky top-0
-                  ${scrolled
-                    ? 'bg-white/10 backdrop-blur-md shadow-sm shadow-black/5'
-                    : 'bg-transparent'}`}
+      className={`left-0 right-0 z-40 transition-all duration-500 sticky top-0
+                  ${hidden
+                    ? 'opacity-0 pointer-events-none'
+                    : 'opacity-100 bg-white/15 backdrop-blur-md shadow-sm shadow-black/5'}`}
     >
       <div className="bg-transparent">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
@@ -386,13 +389,13 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — Language switcher (desktop) */}
-        <div className={`shrink-0 ${transparent ? 'text-brand-accent' : 'text-brand-deep'}`}>
+        <div className="shrink-0 text-brand-deep">
           <LanguageSwitcher />
         </div>
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className={`flex lg:hidden items-center ms-auto gap-1 ${transparent ? 'text-brand-accent' : 'text-brand-deep'}`}>
+        <div className="flex lg:hidden items-center ms-auto gap-1 text-brand-deep">
           <LanguageSwitcher />
           <button
             type="button"
