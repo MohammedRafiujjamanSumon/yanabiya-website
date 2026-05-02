@@ -74,8 +74,8 @@ export default function Navbar() {
         { id: 'leadership-link', label: 'Leadership',    href: '/leadership/management' },
       ],
     },
-    { label: t('nav.global'),       id: 'global'       },
     { label: t('nav.businesses'),   id: 'businesses'   },
+    { label: t('nav.global'),       id: 'global'       },
     {
       label: 'Trusted Network',
       parentSection: 'partnerships',
