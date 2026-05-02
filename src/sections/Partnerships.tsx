@@ -58,15 +58,15 @@ function LogoMarquee({
         ))}
       </div>
 
-      <div className="absolute inset-y-0 left-0  w-24 bg-gradient-to-r from-lime-100 to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-lime-100 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 left-0  w-24 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
     </div>
   )
 }
 
 export default function Partnerships() {
   return (
-    <Section id="partnerships" className="bg-lime-100">
+    <Section id="partnerships" className="bg-white">
       <div className="container-x text-center mx-auto pt-1 pb-2 mb-4">
         <Eyebrow>Trusted Network</Eyebrow>
         <H2 className="!text-[18px] md:!text-[20px] text-center">
