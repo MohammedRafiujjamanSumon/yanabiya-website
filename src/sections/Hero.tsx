@@ -565,16 +565,19 @@ export default function Hero() {
                      bg-brand-accentDark/10 blur-[160px]"
         />
 
-        {/* ──────── Scene layers (stacked, fade in/out)
-         *
-         *  Each layer:
-         *    1. Real-life Unsplash background photo (full-bleed object-cover,
-         *       very subtle Ken-Burns scale-in via animate-pulse on the img
-         *       wrapper to give the photo motion across the scene).
-         *    2. Dark brand-deep gradient over the photo so the text + motion
-         *       overlay still read clearly.
-         *    3. The SVG/icon motion overlay (continents, beams, icons, etc.).
-         */}
+        {/* ──────── Video background (autoplay, muted, loop) ──────── */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+        >
+          <source src="https://yanabiyagibt.com/wp-content/uploads/2025/06/92c5824627d14617fd0a0fa0c06b7eb2.mp4" type="video/mp4" />
+        </video>
+
+        {/* ──────── Scene layers (stacked, fade in/out) ──────── */}
         {SCENES.map((s, i) => {
           const isActive = i === scene
           const SceneViz = s.Visual
@@ -619,54 +622,60 @@ export default function Hero() {
           }}
         />
 
-        {/* ──────── Left-anchored content: welcome text + CTAs ──────── */}
-        <div className="relative h-full container-x flex flex-col justify-center
-                        items-start text-left">
+        {/* ──────── Fixed centered content ──────── */}
+        <div className="relative h-full container-x flex flex-col justify-center items-center text-center">
 
-          <div key={`txt-${scene}`} className="max-w-xl">
-            <h1
-              className="font-serif text-white drop-shadow-lg fade-up
-                         text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.05] mb-5 md:mb-6
-                         tracking-tight uppercase"
-              style={{ animationDelay: '120ms' }}
-            >
-              Welcome to <span className="text-brand-accent">Yanabiya Group</span>
+          <div className="max-w-3xl w-full">
+            {/* Line 1 */}
+            <p className="text-white/80 text-sm sm:text-lg md:text-2xl font-light
+                          tracking-[0.14em] sm:tracking-[0.18em] uppercase drop-shadow mb-2">
+              Welcome to
+            </p>
+
+            {/* Line 2 — company name */}
+            <h1 className="font-bold text-white drop-shadow-lg uppercase
+                           text-2xl sm:text-4xl md:text-5xl lg:text-[58px]
+                           leading-[1.1] tracking-tight mb-4">
+              <span className="text-brand-accent">Yanabiya</span> Group
             </h1>
-            <p
-              className="text-white/90 text-base md:text-lg leading-snug max-w-md
-                         drop-shadow-lg fade-up"
-              style={{ animationDelay: '260ms' }}
-            >
-              Firstly thank you for visiting our website. Click the download button for the company profile.
+
+            {/* Line 3 & 4 — subtext */}
+            <p className="text-white/85 text-xs sm:text-base md:text-lg drop-shadow leading-relaxed px-2">
+              Firstly thank you for visiting our website.
+            </p>
+            <p className="text-white/85 text-xs sm:text-base md:text-lg drop-shadow leading-relaxed px-2">
+              Click the download button for the company profile.
             </p>
           </div>
 
-          {/* CTAs — left-aligned under the welcome text */}
-          <div
-            key={`cta-${scene}`}
-            className="mt-9 flex flex-col sm:flex-row gap-3 fade-up"
-            style={{ animationDelay: '500ms' }}
-          >
+          {/* CTAs */}
+          <div className="mt-7 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 items-center w-full sm:w-auto px-4 sm:px-0">
             <a
               href="/yanabiya-profile.pdf"
               download
               className="inline-flex items-center justify-center gap-2 rounded-full
-                         px-7 py-3.5 bg-brand-accent text-brand-deep font-bold text-sm
+                         px-8 py-3.5 bg-brand-accent text-brand-deep font-bold text-sm
                          shadow-lg hover:bg-brand-accentDark hover:text-white
                          hover:-translate-y-0.5 transition-all duration-300"
             >
-              <Download size={16} /> Company Profile Download
+              <Download size={16} /> Download
             </a>
             <Link
               to="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-full
-                         px-7 py-3.5 border border-white/50 text-white font-bold text-sm
+                         px-8 py-3.5 border-2 border-white/60 text-white font-bold text-sm
                          backdrop-blur-sm
                          hover:bg-white hover:text-brand-deep hover:-translate-y-0.5
                          transition-all duration-300"
             >
-              <Handshake size={16} /> Partner With Us
+              <Handshake size={16} /> Get Free Consultancy from Us
             </Link>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-60">
+            <div className="w-[1px] h-8 bg-white/50 animate-bounce" />
+            <span className="text-white/50 text-[10px] tracking-widest uppercase">Scroll</span>
           </div>
         </div>
 

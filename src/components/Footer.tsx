@@ -62,7 +62,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-brand-deep text-white mt-24 pt-3">
+    <footer className="bg-brand-accentDark text-white mt-24 pt-3">
       {/* Footer pattern (top + bottom green strips equal in thickness):
        *    pt-3     → top green strip
        *    bg-black → main body (links, contact, newsletter, watermark)
@@ -70,7 +70,7 @@ export default function Footer() {
        *               visually compact rather than a tall slab.
        *    bottom   → green strip carrying the copyright row (py-3)
        */}
-      <div className="relative bg-black overflow-hidden">
+      <div className="relative bg-brand-deep overflow-hidden">
 
       {/* Subtle Yanabiya logo watermark */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center select-none">
@@ -253,7 +253,7 @@ export default function Footer() {
       <div className="container-x py-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/85">
         <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
           <span>
-            © {year} Yanabiya Group · Since 2021 · All rights reserved.
+            © Yanabiya Group · Since 2021 · All rights reserved.
           </span>
         </div>
         <div className="flex items-center gap-5">

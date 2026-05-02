@@ -540,7 +540,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
       </SectionFrame>
 
       {/* SECTION 5 — Our Network */}
-      <SectionFrame eyebrow="Our Network" title="Strategic + operational partners working alongside us.">
+      <SectionFrame eyebrow="Our Network" title="Strategic & Operational Partners Working Alongside Us.">
         <PartnerMarquee
           title="Strategic Partners"
           subtitle="Long-term relationships powering core delivery."
@@ -558,49 +558,6 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         />
       </SectionFrame>
 
-      {/* SECTION 6 — Business Domains */}
-      <SectionFrame eyebrow="Business Domains" title="The verticals we operate in.">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 md:gap-3 max-w-4xl mx-auto justify-items-center [perspective:1400px]">
-          {ops.categories.map((c, i) => (
-            <Reveal key={c.label} delay={i * 80}>
-              <div
-                className="group relative w-full max-w-[140px] rounded-lg overflow-hidden
-                           border border-slate-200 bg-slate-100
-                           [transform-style:preserve-3d]
-                           transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                           hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.04)]
-                           hover:border-brand-accent"
-              >
-                {/* Real photo top */}
-                <div className="relative aspect-square overflow-hidden">
-                  <img
-                    src={c.image}
-                    alt=""
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover
-                               transition-transform duration-500 group-hover:scale-105"
-                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/85" />
-                  {/* Floating icon chip */}
-                  <div className={`absolute top-2 left-2 w-7 h-7 rounded-md
-                                  bg-gradient-to-br ${c.tone} ring-1 ring-white/30
-                                  grid place-items-center text-brand-deep shadow-md`}>
-                    <c.icon size={13} strokeWidth={2.2} />
-                  </div>
-                  {/* Label sitting on the image bottom */}
-                  <div className="absolute inset-x-0 bottom-0 p-2 text-center">
-                    <span className="font-semibold text-brand-deep text-[10px] md:text-[11px] leading-tight
-                                     drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] block">
-                      {c.label}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </SectionFrame>
 
       {/* SECTION 7 — Licensed Activities */}
       <SectionFrame eyebrow="Approved Activities Under License" title="Government-approved scope of operations.">
@@ -616,37 +573,6 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         </ul>
       </SectionFrame>
 
-      {/* SECTION 8 — Current Operations */}
-      <SectionFrame eyebrow="Current Operations" title="What's running on the ground today.">
-        <div className="grid sm:grid-cols-2 gap-4 md:gap-5 mb-7 [perspective:1400px]">
-          {ops.currentProjects.map((p, i) => (
-            <Card3D
-              key={p.title}
-              title={p.title}
-              body={p.body}
-              icon={Briefcase}
-              delay={i * 110}
-              image={p.image}
-            />
-          ))}
-        </div>
-        <div className="rounded-2xl bg-brand-50 border border-brand-deep/15 backdrop-blur-sm p-5 md:p-6">
-          <div className="text-[10px] md:text-[11px] uppercase tracking-[0.28em] font-semibold text-brand-accentDark mb-3">
-            Active sectors
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {ops.activeSectors.map((s) => (
-              <span
-                key={s}
-                className="inline-block px-3 py-1.5 rounded-full bg-brand-50 border border-brand-deep/15
-                           text-xs text-brand-deep/80"
-              >
-                {s}
-              </span>
-            ))}
-          </div>
-        </div>
-      </SectionFrame>
 
       {/* SECTION 9 — Future Roadmap */}
       <SectionFrame eyebrow="Future Roadmap" title="Where we're heading next.">
