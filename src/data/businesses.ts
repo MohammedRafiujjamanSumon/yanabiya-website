@@ -78,6 +78,7 @@ export const businesses: Business[] = [
       { code: 'BD', note: 'Engineering centre — development, QA and 24×7 support.' },
       { code: 'US', note: 'North-America partnerships & cloud/AI advisory.' },
     ],
+    subServicesHeading: 'Explore Our IT & Development Services',
     subServices: [
       {
         slug: 'custom-software-development',

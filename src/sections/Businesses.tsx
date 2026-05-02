@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {
   X as CloseIcon, ExternalLink, ArrowRight,
   Cpu, Globe2, Shirt, Handshake, Building2, Users,
@@ -157,16 +157,12 @@ const GBS_ITEMS: GbsItem[] = [
   { slug: 'it-software',       title: 'IT Software & Web Development', image: businessBySlug['it-software'].image,       ring: '#9a3412' },
   { slug: 'export-import',     title: 'Export & Import Business',      image: businessBySlug['export-import'].image,     ring: '#7c2d12' },
   { slug: 'clothing',          title: 'Clothing & Accessories',        image: businessBySlug['clothing'].image,          ring: '#831843' },
-  { slug: 'yanabiya-group',    title: 'Yanabiya Group HQ',             image: assets.logo, logoUrl: assets.logo, href: '/about-us', ring: '#9a3412', decorative: true },
   { slug: 'office-management', title: 'Office Management Services',    image: businessBySlug['office-management'].image, ring: '#9f1239' },
   { slug: 'manpower',          title: 'Manpower Supply Services',      image: businessBySlug['manpower'].image,          ring: '#500724' },
   { slug: 'agents-brokerage',  title: 'Agents & Brokerage Business',   image: businessBySlug['agents-brokerage'].image,  ring: '#14532d' },
 ]
 
-function ServicesGBSModel({ onSelect }: { onSelect: (target: string) => void }) {
-  // Resolve each item to its navigation target up-front.
-  const resolve = (item: GbsItem) => item.href ?? `/business/${item.slug}`
-
+function ServicesGBSModel({ onSelect }: { onSelect: (slug: string) => void }) {
   return (
     <div className="relative">
       {/* Mobile: 2-column grid. Desktop: zig-zag row, modest spacing. */}
@@ -177,7 +173,7 @@ function ServicesGBSModel({ onSelect }: { onSelect: (target: string) => void }) 
             item={item}
             index={i}
             variant={i % 2 === 0 ? 'tall' : 'short'}
-            onSelect={() => onSelect(resolve(item))}
+            onSelect={() => onSelect(item.slug)}
           />
         ))}
       </div>
@@ -192,7 +188,7 @@ function ServicesGBSModel({ onSelect }: { onSelect: (target: string) => void }) 
                           ${isUp ? 'mb-10 lg:mb-12' : 'mt-10 lg:mt-12'} ${i > 0 ? '-ml-4 lg:-ml-5' : ''}`}
               style={{ zIndex: GBS_ITEMS.length - i, animationDelay: `${i * 0.7}s` }}
             >
-              <GbsCircle item={item} index={i} variant={isUp ? 'tall' : 'short'} onSelect={() => onSelect(resolve(item))} />
+              <GbsCircle item={item} index={i} variant={isUp ? 'tall' : 'short'} onSelect={() => onSelect(item.slug)} />
             </div>
           )
         })}
@@ -710,6 +706,7 @@ function NodeDetailPanel({
   if (!b) return null
   const display = BUSINESS_DISPLAY[slug] ?? { title: b.title, tag: '', sample: [] }
   const Icon = b.icon
+  const previewSubs = (b.subServices ?? []).slice(0, 6)
 
   return (
     <div
@@ -722,7 +719,7 @@ function NodeDetailPanel({
       <div className="absolute inset-0 bg-slate-900/55 backdrop-blur-sm animate-[fadeUp_0.3s_ease-out_both]" />
       <aside
         onClick={(e) => e.stopPropagation()}
-        className="absolute top-0 right-0 h-full w-full sm:w-[440px] md:w-[500px]
+        className="absolute top-0 right-0 h-full w-full sm:w-[480px] md:w-[540px]
                    bg-brand-50 shadow-[0_0_60px_rgba(0,0,0,0.35)]
                    border-l border-brand-accent/30
                    overflow-y-auto"
@@ -735,76 +732,93 @@ function NodeDetailPanel({
           onClick={onClose}
           aria-label="Close"
           className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full
-                     bg-slate-100 hover:bg-slate-200 border border-slate-200
-                     grid place-items-center text-slate-700 hover:text-brand-deep transition-colors"
+                     bg-white/80 hover:bg-white border border-brand-deep/10
+                     grid place-items-center text-brand-deep hover:text-brand-accentDark transition-colors"
         >
           <CloseIcon size={16} />
         </button>
 
-        <div className="relative p-7 md:p-9">
+        <div className="relative p-6 md:p-8">
           {/* Header */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 mb-4">
             <div className="w-12 h-12 rounded-xl bg-brand-accent/15 grid place-items-center text-brand-deep
-                            ring-1 ring-brand-accent/30">
+                            ring-1 ring-brand-accent/30 shrink-0">
               <Icon size={22} strokeWidth={1.6} />
             </div>
             <div>
               <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark">
                 Division
               </div>
-              <h3 className="font-serif text-2xl text-brand-deep leading-tight mt-0.5">
+              <h3 className="font-serif text-xl text-brand-deep leading-tight mt-0.5">
                 {display.title}
               </h3>
             </div>
           </div>
 
-          <p className="mt-5 text-sm text-slate-600 leading-snug">
-            {display.tag}
+          <p className="text-sm text-brand-deep/60 leading-snug mb-6">
+            {b.body}
           </p>
 
-          {/* Sub-services */}
-          {display.sample.length > 0 && (
+          {/* Sub-service image cards grid */}
+          {previewSubs.length > 0 && (
             <>
-              <div className="mt-7 text-[10px] font-bold uppercase tracking-[0.28em] text-brand-accentDark mb-3">
-                What's Inside
+              <div className="text-[10px] font-bold uppercase tracking-[0.28em] text-brand-accentDark mb-3">
+                Services — {b.subServices?.length} total
               </div>
-              <ul className="space-y-2">
-                {display.sample.map((s) => (
-                  <li
-                    key={s}
-                    className="rounded-lg bg-slate-50 border border-slate-200 px-3 py-2
-                               text-sm text-slate-700 flex items-baseline gap-2"
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {previewSubs.map((s) => (
+                  <Link
+                    key={s.slug}
+                    to={`/business/${b.slug}/${s.slug}`}
+                    onClick={onClose}
+                    className="group flex flex-col rounded-xl overflow-hidden
+                               bg-white/70 border border-white/90 shadow-sm
+                               hover:shadow-md hover:border-brand-accent/40
+                               hover:-translate-y-0.5 transition-all duration-200"
                   >
-                    <span className="block w-1 h-1 rounded-full bg-brand-accent shrink-0 translate-y-[-2px]" />
-                    {s}
-                  </li>
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <img
+                        src={s.image}
+                        alt={s.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400"
+                        onError={(e) => {
+                          const img = e.currentTarget as HTMLImageElement
+                          img.style.display = 'none'
+                        }}
+                      />
+                    </div>
+                    <div className="px-2.5 py-2">
+                      <p className="text-[11px] font-semibold text-brand-deep leading-snug line-clamp-2">
+                        {s.title}
+                      </p>
+                      <span className="mt-1 inline-flex items-center gap-0.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-accentDark
+                                       group-hover:gap-1 transition-all">
+                        View <ArrowRight size={9} />
+                      </span>
+                    </div>
+                  </Link>
                 ))}
-              </ul>
+              </div>
             </>
           )}
 
-          {/* Sub-services count from real data */}
-          {b.subServices && b.subServices.length > 0 && (
-            <div className="mt-6 inline-flex items-center gap-2 rounded-full
-                            bg-brand-deep/5 border border-brand-deep/15 px-3 py-1
-                            text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep">
-              <span className="font-mono">{b.subServices.length.toString().padStart(2, '0')}</span>
-              Total Services
-            </div>
-          )}
-
-          {/* CTA out to detail page */}
-          <div className="mt-8">
+          {/* CTA out to full detail page */}
+          <div className="mt-7 flex items-center gap-3">
             <Link
               to={`/business/${slug}`}
               onClick={onClose}
               className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                         bg-brand-deep text-white text-xs font-bold uppercase tracking-[0.22em]
-                         hover:bg-brand-accentDark transition-colors"
+                         bg-brand-accent text-white text-xs font-bold uppercase tracking-[0.22em]
+                         shadow-md hover:bg-brand-accentDark hover:-translate-y-0.5 hover:shadow-lg
+                         transition-all"
             >
               Open Full Page
               <ExternalLink size={14} />
             </Link>
+            <span className="text-[10px] text-brand-deep/40 font-semibold uppercase tracking-widest">
+              {b.subServices?.length} services
+            </span>
           </div>
         </div>
       </aside>
@@ -813,7 +827,6 @@ function NodeDetailPanel({
 }
 
 export default function Businesses() {
-  const navigate = useNavigate()
   const [selected, setSelected] = useState<string | 'overview' | null>(null)
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -837,10 +850,8 @@ export default function Businesses() {
 
   return (
     <Section id="businesses" className="relative overflow-hidden bg-brand-50">
-      {/* Soft ambient mint glow on the white surface */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 right-1/3 w-[520px] h-[520px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute -bottom-40 left-1/3 w-[460px] h-[460px] rounded-full bg-brand-accentDark/6 blur-[140px]" />
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none flex items-center justify-center">
+        <img src={assets.logo} alt="" className="w-[70%] max-w-[600px] object-contain opacity-[0.45]" />
       </div>
 
       <div className="container-x pt-2 md:pt-3 pb-4 md:pb-6 relative">
@@ -864,7 +875,7 @@ export default function Businesses() {
 
           {/* MIDDLE — GBS-Model numbered-circle chain */}
           <Reveal delay={200} className="w-full order-2">
-            <ServicesGBSModel onSelect={(target) => navigate(target)} />
+            <ServicesGBSModel onSelect={(slug) => setSelected(slug)} />
           </Reveal>
 
           {/* BOTTOM — Get a Quote CTA + Live signal pill */}
