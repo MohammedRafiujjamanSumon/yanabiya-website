@@ -296,7 +296,7 @@ export default function CountryManagement() {
                                  bg-brand-accent/20 border border-brand-accentDark/40
                                  px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em]
                                  text-brand-accentDark w-fit">
-                  <Crown size={11} /> Country Head
+                  <Crown size={11} /> Country Co-Founder
                 </span>
                 <h2 className="mt-3 font-serif text-2xl md:text-3xl text-brand-deep leading-tight">
                   {team.head.name}
@@ -325,10 +325,10 @@ export default function CountryManagement() {
               <div className="inline-flex items-center gap-1.5 rounded-full
                               bg-brand-50 border border-brand-deep/15
                               px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-deep/70">
-                <Users size={11} /> Local Leadership
+                <Users size={11} /> Executive Management
               </div>
               <h3 className="mt-3 font-serif text-xl md:text-2xl text-brand-deep leading-tight">
-                The senior bench in {team.name}.
+                {team.name} executive bench.
               </h3>
             </div>
           </Reveal>
@@ -350,10 +350,10 @@ export default function CountryManagement() {
               <div className="inline-flex items-center gap-1.5 rounded-full
                               bg-brand-50 border border-brand-deep/15
                               px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-deep/70">
-                Team Members
+                High-Skill Professionals
               </div>
               <h3 className="mt-3 font-serif text-xl md:text-2xl text-brand-deep leading-tight">
-                The wider {team.name} team.
+                The {team.name} delivery bench.
               </h3>
             </div>
           </Reveal>
