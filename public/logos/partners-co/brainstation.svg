@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60">
+  <rect width="220" height="60" fill="none"/>
+  <rect x="4" y="8" width="52" height="44" rx="8" fill="#003087"/>
+  <text x="30" y="28" font-family="Arial,sans-serif" font-size="14" font-weight="900" fill="white" text-anchor="middle">Brain</text>
+  <text x="30" y="46" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#4FC3F7" text-anchor="middle">Station 23</text>
+  <text x="140" y="37" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#003087" text-anchor="middle">Brain Station 23</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <rect width="200" height="60" fill="none"/>
+  <rect x="4" y="12" width="36" height="36" rx="4" fill="#003087"/>
+  <text x="22" y="35" font-family="Arial,sans-serif" font-size="13" font-weight="900" fill="white" text-anchor="middle">BW</text>
+  <text x="120" y="38" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#003087" text-anchor="middle">Bestway Group</text>
+</svg>
