@@ -136,24 +136,23 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* Bottom-right 3D Yanabiya logo — anchored inside the card so the
-           *  float animation never lets it bleed out. Lifted slightly off
-           *  the bottom so the shadow has room to breathe. */}
+          {/* Bottom-right 3D Yanabiya logo — bigger and pushed further to
+           *  the right & down. Animation still keeps it inside the section. */}
           <div
             aria-hidden
-            className="absolute right-4 md:right-8 bottom-16 md:bottom-20
-                       w-[40%] max-w-[260px] aspect-square pointer-events-none animate-float-3d
+            className="absolute -right-4 md:-right-6 bottom-2 md:bottom-4
+                       w-[58%] max-w-[420px] aspect-square pointer-events-none animate-float-3d
                        [perspective:1200px]"
           >
-            <div className="absolute inset-0 rounded-full bg-brand-accent/30 blur-[60px]" />
-            <div className="absolute inset-[10%] rounded-full bg-brand-accentDark/20 blur-[40px]" />
+            <div className="absolute inset-0 rounded-full bg-brand-accent/30 blur-[80px]" />
+            <div className="absolute inset-[10%] rounded-full bg-brand-accentDark/20 blur-[55px]" />
 
             <img
               src={assets.logo}
               alt=""
               className="relative w-full h-full object-contain
-                         drop-shadow-[0_18px_36px_rgba(15,58,35,0.20)]
-                         drop-shadow-[0_8px_18px_rgba(15,58,35,0.14)]"
+                         drop-shadow-[0_22px_44px_rgba(15,58,35,0.22)]
+                         drop-shadow-[0_10px_22px_rgba(15,58,35,0.16)]"
               style={{
                 transform: 'rotateY(-12deg) rotateX(8deg)',
               }}
