@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import type React from 'react'
 import Section, { Eyebrow, H2 } from '../components/Section'
-import { partners, valuableClients, memberships, affiliations } from '../data/partners'
+import { partners, valuableClients, ukValuableClients, memberships, affiliations } from '../data/partners'
 
 type Item = { name: string; logo: string }
 
@@ -78,9 +78,16 @@ export default function Partnerships() {
         </H2>
       </div>
 
+      <div id="valuable-clients" className="mb-12 scroll-mt-28">
+        <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
+          Our Valuable Clients
+        </h3>
+        <LogoMarquee items={ukValuableClients} direction="left" durationSec={60} showBg />
+      </div>
+
       <div id="clients" className="mb-12 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
-          Valuable Clients
+          Our Clients
         </h3>
         <LogoMarquee items={valuableClients} direction="right" durationSec={70} showBg />
       </div>

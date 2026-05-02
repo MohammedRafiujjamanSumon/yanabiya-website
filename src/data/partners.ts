@@ -16,6 +16,11 @@ export const valuableClients = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1
   logo: `/logos/clients/${n}.png`,
 }))
 
+export const ukValuableClients = [1, 2, 3, 4, 5, 6, 7].map((n) => ({
+  name: `Valuable Client ${n}`,
+  logo: `/logos/uk-clients/${n}.png`,
+}))
+
 export const memberships = [
   { name: 'Membership 1', logo: '/logos/mb/1.png' },
   { name: 'Membership 2', logo: '/logos/mb/2.png' },
