@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowUpRight, Play } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { assets } from '../data/assets'
@@ -65,7 +65,7 @@ export default function About() {
             <div className="absolute -bottom-32 -right-24 w-[460px] h-[460px] rounded-full bg-brand-accentDark/15 blur-[150px]" />
           </div>
 
-          {/* Top-left: heading + subtitle + CTA */}
+          {/* Heading + subtitle (left column) */}
           <div className="relative grid md:grid-cols-2 gap-8 md:gap-10 items-center">
             <Reveal>
               <div className="max-w-md">
@@ -79,69 +79,18 @@ export default function About() {
                   Bangladesh, and the United States — Yanabiya unites four cultures
                   under one shared standard of trust, professionalism, and long-term vision.
                 </p>
-
-                <div className="mt-7">
-                  <Link
-                    to="/about/our-story"
-                    className="group inline-flex items-center gap-3 rounded-full
-                               pl-2 pr-5 py-2 bg-brand-50
-                               border border-brand-deep/15 text-brand-deep
-                               shadow-[0_4px_16px_rgba(15,58,35,0.06)]
-                               hover:border-brand-accent hover:shadow-[0_8px_24px_rgba(15,58,35,0.12)]
-                               transition-all duration-300"
-                  >
-                    <span className="grid place-items-center w-9 h-9 rounded-full
-                                     bg-gradient-to-br from-brand-accent to-brand-accentDark
-                                     text-white shadow-md">
-                      <Play size={14} fill="currentColor" />
-                    </span>
-                    <span className="text-[12px] font-semibold leading-tight text-left">
-                      Read Our Story<br className="hidden sm:block" />
-                      <span className="text-brand-deep/60 sm:ml-0 ml-1">Yanabiya Group</span>
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Right: caption + circular CTA */}
-            <Reveal delay={140} className="hidden md:block">
-              <div className="text-right">
-                <div className="text-brand-deep font-semibold text-base lg:text-lg leading-snug">
-                  The values that<br />shape who we are
-                </div>
-                <p className="mt-2 text-[12px] text-brand-deep/60 leading-snug max-w-[18rem] ml-auto">
-                  Built on morals, ethics, honesty, and customer satisfaction —
-                  the Stamp of Quality and Professionalism that defines every decision.
-                </p>
-                <div className="mt-5 flex justify-end">
-                  <Link
-                    to="/about-us"
-                    className="relative grid place-items-center w-24 h-24 rounded-full
-                               bg-brand-50 border border-brand-deep/15 text-brand-deep
-                               shadow-[0_4px_16px_rgba(15,58,35,0.06)]
-                               hover:border-brand-accent hover:-translate-y-0.5
-                               hover:shadow-[0_8px_24px_rgba(15,58,35,0.12)]
-                               transition-all duration-300"
-                    aria-label="Open Yanabiya Group company overview"
-                  >
-                    <span className="text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.18em]
-                                     leading-tight text-center px-2">
-                      Company<br />Overview
-                    </span>
-                    <ArrowUpRight size={14} className="absolute bottom-2 right-2 text-brand-accentDark" />
-                  </Link>
-                </div>
               </div>
             </Reveal>
           </div>
 
-          {/* Bottom-right 3D Yanabiya logo — bigger and pushed further to
-           *  the right & down. Animation still keeps it inside the section. */}
+          {/* Bottom-right 3D Yanabiya logo — sized so its bottom edge lands
+           *  just above the feature pills (where the Read Our Story card
+           *  used to sit). */}
           <div
             aria-hidden
-            className="absolute -right-4 md:-right-6 bottom-2 md:bottom-4
-                       w-[58%] max-w-[420px] aspect-square pointer-events-none animate-float-3d
+            className="absolute right-0 md:right-2
+                       top-2 md:top-4
+                       w-[44%] max-w-[320px] aspect-square pointer-events-none animate-float-3d
                        [perspective:1200px]"
           >
             <div className="absolute inset-0 rounded-full bg-brand-accent/30 blur-[80px]" />
