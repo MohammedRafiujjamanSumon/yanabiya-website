@@ -9,10 +9,12 @@ function LogoMarquee({
   items,
   direction = 'left',
   durationSec = 70,
+  showBg = false,
 }: {
   items: Item[]
   direction?: 'left' | 'right'
   durationSec?: number
+  showBg?: boolean
 }) {
   const trackRef = useRef<HTMLDivElement>(null)
 
@@ -36,23 +38,27 @@ function LogoMarquee({
     >
       <div
         ref={trackRef}
-        className={`flex ${animClass} w-max py-4 gap-2 [animation-timing-function:linear] [will-change:transform]`}
+        className={`flex ${animClass} w-max py-4 gap-3 [animation-timing-function:linear] [will-change:transform]`}
         style={{ animationDuration: `${durationSec}s` } as React.CSSProperties}
       >
         {loop.map((p, i) => (
           <div
             key={`${p.name}-${i}`}
-            className="group shrink-0 flex items-center justify-center px-8
-                       transition-all duration-300 ease-out cursor-pointer"
+            className={`group shrink-0 flex items-center justify-center cursor-pointer transition-all duration-300 ease-out
+              ${showBg
+                ? 'px-6 py-4 rounded-2xl bg-lime-50 border border-lime-200 shadow-sm hover:bg-white hover:shadow-md hover:border-lime-300'
+                : 'px-8'
+              }`}
           >
             <img
               src={p.logo}
               alt={p.name}
               loading="lazy"
-              className="h-16 max-w-[140px] object-contain
-                         opacity-80 group-hover:opacity-100
-                         scale-100 group-hover:scale-125
-                         transition-all duration-300"
+              className={`object-contain transition-all duration-300
+                ${showBg
+                  ? 'h-20 max-w-[160px] opacity-100 group-hover:scale-110'
+                  : 'h-16 max-w-[140px] opacity-80 group-hover:opacity-100 scale-100 group-hover:scale-125'
+                }`}
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
           </div>
@@ -79,21 +85,21 @@ export default function Partnerships() {
         <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
           Valuable Clients
         </h3>
-        <LogoMarquee items={valuableClients} direction="right" durationSec={70} />
+        <LogoMarquee items={valuableClients} direction="right" durationSec={70} showBg />
       </div>
 
       <div id="sponsors" className="mb-12 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
           Our Membership
         </h3>
-        <LogoMarquee items={memberships} direction="left" durationSec={70} />
+        <LogoMarquee items={memberships} direction="left" durationSec={70} showBg />
       </div>
 
       <div id="partners" className="mb-12 scroll-mt-28">
         <h3 className="text-center text-brand-accentDark tracking-[0.18em] text-sm md:text-base font-bold mb-6">
           Our Partners
         </h3>
-        <LogoMarquee items={partners} direction="left" durationSec={70} />
+        <LogoMarquee items={partners} direction="left" durationSec={70} showBg />
       </div>
 
       <div id="affiliations" className="mb-4 scroll-mt-28">
