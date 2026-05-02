@@ -34,10 +34,18 @@ export default function Navbar() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  const { scrolled } = useScrollHeader(8, 80)
+  useScrollHeader(8, 80)
   const isHome = location.pathname === '/' || location.pathname === ''
-  // Home top = fully hidden; scrolled or inner pages = visible glass navbar
-  const hidden = isHome && !scrolled
+  const [scrollY, setScrollY] = useState(0)
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+  // Hero is 78svh — past 60% of viewport height = scrolled past hero
+  const pastHero = scrollY > window.innerHeight * 0.6
+  // Dark mode: on home page while still over the dark hero video
+  const darkMode = isHome && !pastHero
   const transparent = true
   const [open, setOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
@@ -94,19 +102,18 @@ export default function Navbar() {
 
   const baseLinkCls = (isActive: boolean) =>
     `relative text-sm font-semibold whitespace-nowrap py-1.5 px-4 rounded-full
-     transition-all duration-200
-     hover:bg-brand-deep hover:text-white ${
-      isActive
-        ? 'bg-brand-deep text-white'
-        : 'text-brand-deep'
+     transition-all duration-200 ${
+      darkMode
+        ? `hover:bg-white/20 ${isActive ? 'bg-white/25 text-white' : 'text-white/90'}`
+        : `hover:bg-brand-deep/10 ${isActive ? 'bg-brand-deep/15 text-brand-deep' : 'text-brand-deep'}`
     }`
 
   return (
     <header
       className={`left-0 right-0 z-40 transition-all duration-500 sticky top-0
-                  ${hidden
-                    ? 'opacity-0 pointer-events-none'
-                    : 'opacity-100 bg-white/15 backdrop-blur-md shadow-sm shadow-black/5'}`}
+                  ${darkMode
+                    ? 'bg-brand-deep/20 backdrop-blur-sm'
+                    : 'bg-white/20 backdrop-blur-md shadow-sm shadow-black/5'}`}
     >
       <div className="bg-transparent">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
@@ -389,13 +396,13 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — Language switcher (desktop) */}
-        <div className="shrink-0 text-brand-deep">
+        <div className={`shrink-0 ${darkMode ? 'text-white' : 'text-brand-deep'}`}>
           <LanguageSwitcher />
         </div>
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className="flex lg:hidden items-center ms-auto gap-1 text-brand-deep">
+        <div className={`flex lg:hidden items-center ms-auto gap-1 ${darkMode ? 'text-white' : 'text-brand-deep'}`}>
           <LanguageSwitcher />
           <button
             type="button"
