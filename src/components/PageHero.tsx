@@ -172,24 +172,26 @@ export default function PageHero({
           )}
         </div>
 
-        {/* Big floating 3D Yanabiya logo — centerpiece */}
+        {/* Big floating 3D Yanabiya logo — sits above the heading row so
+         *  it stays fully visible (was centred and overlapped the title). */}
         <div
           aria-hidden
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-                     w-[55%] max-w-[380px] aspect-square pointer-events-none animate-float-3d
+          className="absolute left-1/2 -translate-x-1/2 top-4 md:top-6
+                     w-[40%] max-w-[260px] aspect-square pointer-events-none animate-float-3d
                      [perspective:1200px]"
         >
-          <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-[80px]" />
-          <div className="absolute inset-[10%] rounded-full bg-amber-300/15 blur-[60px]" />
+          <div className="absolute inset-0 rounded-full bg-emerald-400/25 blur-[70px]" />
+          <div className="absolute inset-[10%] rounded-full bg-amber-300/20 blur-[50px]" />
           <img
             src={assets.logo}
             alt=""
-            className="relative w-full h-full object-contain opacity-80
-                       drop-shadow-[0_30px_60px_rgba(252,211,77,0.25)]
-                       drop-shadow-[0_12px_24px_rgba(15,58,35,0.35)]"
+            className="relative w-full h-full object-contain opacity-95
+                       brightness-110
+                       drop-shadow-[0_24px_48px_rgba(252,211,77,0.30)]
+                       drop-shadow-[0_8px_16px_rgba(15,58,35,0.45)]"
             style={{
               transform: 'rotateY(-12deg) rotateX(8deg)',
-              filter: 'drop-shadow(0 24px 48px rgba(0,0,0,0.5))',
+              filter: 'drop-shadow(0 18px 36px rgba(0,0,0,0.45))',
             }}
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />

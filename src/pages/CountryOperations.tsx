@@ -483,7 +483,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
 
   return (
     <main className="relative bg-brand-50
-                     text-white overflow-hidden min-h-screen">
+                     text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
       {/* SECTION 1 — Country Overview / Local Presence */}
