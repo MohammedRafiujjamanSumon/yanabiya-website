@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import TopBar from './components/TopBar'
 import Footer from './components/Footer'
 import PageWatermark from './components/PageWatermark'
 import SocialFloat from './components/SocialFloat'
@@ -34,7 +33,6 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <PageWatermark />
-      <TopBar />
       <Navbar />
       <main className="flex-1 relative">
         <Routes>

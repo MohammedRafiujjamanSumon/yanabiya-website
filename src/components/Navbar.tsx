@@ -5,7 +5,6 @@ import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { sections } from '../data/contact'
 import { assets } from '../data/assets'
-import { useScrollHeader } from '../hooks/useScrollHeader'
 import LanguageSwitcher from './LanguageSwitcher'
 
 type NavItem = { id: string; label: string; desc?: string; icon?: LucideIcon; href?: string }
@@ -32,7 +31,6 @@ type NavGroup = {
  */
 export default function Navbar() {
   const { t } = useTranslation()
-  const { scrolled } = useScrollHeader(8, 80)
   const navigate = useNavigate()
   const location = useLocation()
   const [open, setOpen] = useState(false)
@@ -128,15 +126,15 @@ export default function Navbar() {
   }
 
   const baseLinkCls = (isActive: boolean) =>
-    `relative text-base font-medium whitespace-nowrap py-1.5 px-4 rounded-full
+    `relative text-base font-medium whitespace-nowrap py-1.5 px-3
      transition-colors duration-200
-     hover:bg-brand-deep hover:text-white ${
-      isActive ? 'text-brand-deep underline underline-offset-4 decoration-brand-deep/70' : 'text-brand-deep'
+     hover:text-amber-300 ${
+      isActive ? 'text-amber-300 underline underline-offset-4 decoration-amber-300/70' : 'text-white'
     }`
 
   return (
-    <header className="sticky top-0 z-40 bg-brand-50 border-b border-brand-deep/10">
-      <div className="bg-brand-50">
+    <header className="absolute top-0 left-0 right-0 z-40 bg-transparent">
+      <div className="bg-transparent">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
 
         {/* LEFT — LOGO sits on the inner black bar. */}
@@ -154,11 +152,7 @@ export default function Navbar() {
         {/* RIGHT — same black bg as the inner bar so logo + nav cluster
          *  read as one black band sandwiched between two green strips. */}
       <div
-        className={`flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8
-                    bg-brand-50 transition-shadow duration-200 ${
-          scrolled ? 'shadow-md shadow-slate-900/10'
-                   : 'shadow-sm shadow-slate-900/5'
-        }`}
+        className="flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8 bg-transparent"
       >
 
         {/* NAV + CTA — clustered on the right */}
@@ -395,17 +389,17 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — Language switcher (desktop) */}
-        <div className="shrink-0 text-brand-deep">
+        <div className="shrink-0 text-white">
           <LanguageSwitcher />
         </div>
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className="flex lg:hidden items-center ms-auto gap-1 text-brand-deep">
+        <div className="flex lg:hidden items-center ms-auto gap-1 text-white">
           <LanguageSwitcher />
           <button
             type="button"
-            className="text-brand-deep p-1"
+            className="text-white p-1"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
           >

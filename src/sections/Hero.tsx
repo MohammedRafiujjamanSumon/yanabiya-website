@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   ArrowRight, Handshake, Building2, Cpu, Globe2, Truck, Briefcase, Users,
-  HeartHandshake, Sparkles, Compass,
+  HeartHandshake, Sparkles, Compass, Download,
 } from 'lucide-react'
 import GlobalOverviewPanel from '../components/GlobalOverviewPanel'
 import { assets } from '../data/assets'
@@ -666,6 +666,14 @@ export default function Hero() {
             >
               {active.cta.label} <ArrowRight size={18} className="ltr-flip" />
             </button>
+            <a
+              href="/yanabiya-profile.pdf"
+              download
+              className="btn-ghost !px-8 !py-3.5 !rounded-full !border-amber-300/60 !text-amber-200
+                         hover:!bg-amber-300 hover:!text-brand-ink hover:!border-amber-300"
+            >
+              <Download size={18} /> {t('topbar.downloadPdf', 'Download Profile')}
+            </a>
             <Link
               to="/contact"
               className="btn-ghost !px-8 !py-3.5 !rounded-full !border-white/50 !text-white
