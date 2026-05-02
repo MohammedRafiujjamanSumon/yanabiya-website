@@ -67,28 +67,15 @@ export default function Navbar() {
     { label: t('nav.about'), id: 'about' },
     { label: t('nav.businesses'),   id: 'businesses'   },
     { label: t('nav.global'),       id: 'global'       },
-    {
-      label: 'Trusted Network',
-      parentSection: 'partnerships',
-      items: [
-        { id: 'partners',  label: 'Our Partners',     href: '/#partners'  },
-        { id: 'sponsors',  label: 'Our Membership',   href: '/#sponsors'  },
-        { id: 'clients',   label: 'Valuable Clients', href: '/#clients'   },
-      ],
-    },
+    { label: 'Trusted Network', id: 'partnerships' },
     {
       label: 'More',
       subGroups: [
         {
           label: 'Community',
           parentSection: 'community',
-          items: [
-            { id: 'blog',               label: 'Blog',               href: '/community/blog'               },
-            { id: 'sustainable-growth', label: 'Sustainable Growth', href: '/community/sustainable-growth' },
-            { id: 'community-care',     label: 'Community Care',     href: '/community/community-care'     },
-            { id: 'careers',            label: t('nav.careers'),     href: '/community/careers'            },
-            { id: 'testimonials',       label: 'Testimonials',       href: '/community/testimonials'       },
-          ],
+          parentRoute: '/community',
+          items: [],
         },
         {
           label: 'Leadership',
@@ -268,7 +255,16 @@ export default function Navbar() {
                   >
                     {g.subGroups.map((sg) => (
                       <div key={sg.label} className="flex flex-col gap-1">
-                        {sg.parentSection ? (
+                        {sg.parentRoute ? (
+                          <Link
+                            to={sg.parentRoute}
+                            onClick={() => setOpenMenu(null)}
+                            className="px-3 pt-1 pb-2 text-[11px] font-semibold uppercase tracking-wider
+                                       text-slate-400 hover:text-brand-accentDark transition"
+                          >
+                            {sg.label}
+                          </Link>
+                        ) : sg.parentSection ? (
                           <Link
                             to={`/#${sg.parentSection}`}
                             onClick={(e) => { setOpenMenu(null); handleHashClick(e, sg.parentSection!) }}
@@ -527,7 +523,17 @@ export default function Navbar() {
                         return (
                           <div key={sg.label} className="rounded-lg">
                             <div className="flex items-stretch">
-                              {sg.parentSection ? (
+                              {sg.parentRoute ? (
+                                <Link
+                                  to={sg.parentRoute}
+                                  onClick={() => { setOpen(false); setMobileOpenGroup(null); setMobileOpenSubGroup(null) }}
+                                  className={`flex-1 py-2.5 px-3 text-[14px] font-semibold transition ${
+                                    subActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
+                                  }`}
+                                >
+                                  {sg.label}
+                                </Link>
+                              ) : sg.parentSection ? (
                                 <Link
                                   to={`/#${sg.parentSection}`}
                                   onClick={(e) => { setOpen(false); setMobileOpenGroup(null); setMobileOpenSubGroup(null); handleHashClick(e, sg.parentSection!) }}
@@ -548,18 +554,20 @@ export default function Navbar() {
                                   {sg.label}
                                 </button>
                               )}
-                              <button
-                                type="button"
-                                onClick={() => setMobileOpenSubGroup(isOpenSub ? null : `${g.label}:${sg.label}`)}
-                                aria-label={`Toggle ${sg.label} submenu`}
-                                aria-expanded={isOpenSub}
-                                className="px-3 text-slate-400 hover:text-brand-accentDark transition"
-                              >
-                                <ChevronDown
-                                  size={14}
-                                  className={`transition-transform duration-200 ${isOpenSub ? 'rotate-180' : ''}`}
-                                />
-                              </button>
+                              {sg.items.length > 0 && (
+                                <button
+                                  type="button"
+                                  onClick={() => setMobileOpenSubGroup(isOpenSub ? null : `${g.label}:${sg.label}`)}
+                                  aria-label={`Toggle ${sg.label} submenu`}
+                                  aria-expanded={isOpenSub}
+                                  className="px-3 text-slate-400 hover:text-brand-accentDark transition"
+                                >
+                                  <ChevronDown
+                                    size={14}
+                                    className={`transition-transform duration-200 ${isOpenSub ? 'rotate-180' : ''}`}
+                                  />
+                                </button>
+                              )}
                             </div>
                             {isOpenSub && (
                               <div className="pb-2 pl-3 flex flex-col gap-0.5">
