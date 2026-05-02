@@ -63,30 +63,13 @@ export default function Navbar() {
   }
 
   const navGroups: NavGroup[] = [
-    { label: t('nav.home'),         id: 'home'         },
-    { label: t('nav.about'), id: 'about' },
-    { label: t('nav.businesses'),   id: 'businesses'   },
-    { label: t('nav.global'),       id: 'global'       },
-    { label: 'Trusted Network', id: 'partnerships' },
-    {
-      label: 'More',
-      subGroups: [
-        {
-          label: 'Community',
-          parentSection: 'community',
-          parentRoute: '/community',
-          items: [],
-        },
-        {
-          label: 'Leadership',
-          parentSection: 'leadership',
-          items: [
-            { id: 'management',    label: 'Our Management',             href: '/leadership/management'    },
-            { id: 'professionals', label: 'High Skilled Professionals', href: '/leadership/professionals' },
-          ],
-        },
-      ],
-    },
+    { label: t('nav.home'),       id: 'home'         },
+    { label: t('nav.about'),      id: 'about'        },
+    { label: t('nav.businesses'), id: 'businesses'   },
+    { label: t('nav.global'),     id: 'global'       },
+    { label: 'Trusted Network',   id: 'partnerships' },
+    { label: 'Community',         parentRoute: '/community'   },
+    { label: 'Leadership',        parentRoute: '/leadership'  },
   ]
 
   useEffect(() => {
@@ -165,14 +148,23 @@ export default function Navbar() {
                     key={g.label}
                     to="/"
                     onClick={(e) => {
-                      // Already on home? Just smooth-scroll to top.
-                      // Anywhere else? Let the Link navigate to '/'.
                       if (location.pathname === '/' || location.pathname === '') {
                         e.preventDefault()
                         window.scrollTo({ top: 0, behavior: 'smooth' })
                       }
                     }}
                     className={baseLinkCls(isActive)}
+                  >
+                    {g.label}
+                  </Link>
+                )
+              }
+              if (g.parentRoute) {
+                return (
+                  <Link
+                    key={g.label}
+                    to={g.parentRoute}
+                    className={baseLinkCls(location.pathname.startsWith(g.parentRoute))}
                   >
                     {g.label}
                   </Link>
@@ -438,6 +430,20 @@ export default function Navbar() {
                       }}
                       className={`py-3 px-2 text-[15px] font-medium transition ${
                         isActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
+                      }`}
+                    >
+                      {g.label}
+                    </Link>
+                  )
+                }
+                if (g.parentRoute) {
+                  return (
+                    <Link
+                      key={g.label}
+                      to={g.parentRoute}
+                      onClick={() => setOpen(false)}
+                      className={`py-3 px-2 text-[15px] font-medium transition ${
+                        location.pathname.startsWith(g.parentRoute) ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
                       }`}
                     >
                       {g.label}
