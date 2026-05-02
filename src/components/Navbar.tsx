@@ -75,10 +75,11 @@ export default function Navbar() {
     { label: t('nav.about'),      id: 'about'        },
     { label: t('nav.businesses'), id: 'businesses'   },
     { label: t('nav.global'),     id: 'global'       },
-    { label: 'Our Network',        id: 'partnerships' },
-    { label: 'Our Community',     parentRoute: '/community'   },
-    { label: 'Our Leadership',    parentRoute: '/leadership'  },
+    { label: 'Our Network',       id: 'partnerships' },
+    { label: 'Our Community',     parentRoute: '/community'  },
+    { label: 'Our Leadership',    parentRoute: '/leadership' },
   ]
+  const ctaRoute = '/contact'
 
   useEffect(() => {
     const onScroll = () => {
@@ -100,20 +101,25 @@ export default function Navbar() {
     closeTimer.current = window.setTimeout(() => setOpenMenu(null), 120)
   }
 
+  // Like yanabiyagibt.com: white text always; active = solid white pill (dark text);
+  // on light sections (past hero) switch active pill to brand-deep
   const baseLinkCls = (isActive: boolean) =>
-    `relative text-sm font-semibold whitespace-nowrap py-1.5 px-4 rounded-full
-     transition-all duration-200 ${
+    `relative text-sm font-semibold whitespace-nowrap py-[6px] px-[18px] rounded-xl
+     transition-all duration-200 tracking-wide ${
       darkMode
-        ? `hover:bg-white/20 ${isActive ? 'bg-white/25 text-white' : 'text-white/90'}`
-        : `hover:bg-brand-deep/10 ${isActive ? 'bg-brand-deep/15 text-brand-deep' : 'text-brand-deep'}`
+        ? `text-white/90 hover:text-white hover:bg-white/15
+           ${isActive ? 'bg-white text-brand-deep! hover:bg-white hover:text-brand-deep!' : ''}`
+        : `text-brand-deep hover:bg-brand-deep/10
+           ${isActive ? 'bg-brand-deep text-white! hover:bg-brand-deep hover:text-white!' : ''}`
     }`
 
   return (
     <header
       className={`left-0 right-0 z-40 transition-all duration-500 sticky top-0
+                  backdrop-blur-md
                   ${darkMode
-                    ? 'bg-brand-deep/20 backdrop-blur-sm'
-                    : 'bg-white/20 backdrop-blur-md shadow-sm shadow-black/5'}`}
+                    ? 'bg-transparent'
+                    : 'bg-white/20 shadow-sm shadow-black/5'}`}
     >
       <div className="bg-transparent">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
@@ -394,6 +400,17 @@ export default function Navbar() {
             )
           })}
         </nav>
+
+        {/* CTA — Contact Us green gradient pill (like yanabiyagibt.com) */}
+        <Link
+          to={ctaRoute}
+          className="shrink-0 ml-5 text-sm font-semibold text-white px-5 py-2 rounded
+                     transition-all duration-300 whitespace-nowrap tracking-wide
+                     shadow-md hover:-translate-y-0.5 hover:shadow-lg"
+          style={{ background: 'linear-gradient(to right, #28a745, #218838)' }}
+        >
+          {t('nav.contact')}
+        </Link>
 
         {/* RIGHT — Language switcher (desktop) */}
         <div className={`shrink-0 ${darkMode ? 'text-white' : 'text-brand-deep'}`}>
