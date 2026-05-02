@@ -836,7 +836,7 @@ export default function Businesses() {
   }, [paused])
 
   return (
-    <Section id="businesses" className="relative overflow-hidden bg-white">
+    <Section id="businesses" className="relative overflow-hidden bg-brand-50">
       {/* Soft ambient mint glow on the white surface */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 right-1/3 w-[520px] h-[520px] rounded-full bg-brand-accent/8 blur-[160px]" />

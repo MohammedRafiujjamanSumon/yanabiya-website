@@ -58,7 +58,7 @@ export default function Global() {
   const [flippedCode, setFlippedCode] = useState<string | null>(null)
 
   return (
-    <Section id="global" className="relative overflow-hidden bg-white">
+    <Section id="global" className="relative overflow-hidden bg-brand-50">
       <div className="container-x pt-2 md:pt-3 pb-4 md:pb-6">
 
         {/* ───────── TEXT FIRST ───────── */}

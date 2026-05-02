@@ -5,7 +5,7 @@
 @layer base {
   html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
   body {
-    background: #ffffff;
+    background: #f5faec;
     color: #1f2937;
     min-height: 100vh;
     -webkit-tap-highlight-color: transparent;

@@ -85,7 +85,7 @@ export default function AboutUs() {
   }, [hash])
 
   return (
-    <main className="bg-[#fbfdfb] text-slate-900">
+    <main className="bg-brand-50 text-slate-900">
       <BackButton to="/#about" label="Back to Home" />
 
       {/* ───────── 1. HERO ───────── */}

@@ -38,7 +38,7 @@ export default function Contact() {
     'focus:outline-none focus:border-brand-accent focus:ring-4 focus:ring-brand-accent/15 transition-all'
 
   return (
-    <Section id="contact" className="bg-[#fbfdfb]">
+    <Section id="contact" className="bg-brand-50">
       <div className="container-x pt-2 md:pt-3 pb-4 md:pb-6">
 
         {/* HERO */}

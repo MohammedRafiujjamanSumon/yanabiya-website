@@ -930,7 +930,7 @@ export default function OmanPresence() {
   }, [])
 
   return (
-    <main className="relative bg-white text-slate-900 overflow-hidden">
+    <main className="relative bg-brand-50 text-slate-900 overflow-hidden">
       <BackButton to="/#global" label="Back to Global" />
 
       {/* GLOBAL HERO */}
@@ -972,7 +972,7 @@ export default function OmanPresence() {
       ))}
 
       {/* CONTACT CTA — link out to the centralised /contact page */}
-      <section className="border-t-2 border-slate-200 bg-[#fbfdfb]">
+      <section className="border-t-2 border-slate-200 bg-brand-50">
         <div className="container-x py-12 md:py-16 text-center">
           <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
             Get in Touch

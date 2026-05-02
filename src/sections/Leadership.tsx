@@ -135,7 +135,7 @@ function PersonTile({ p, size = 'sm', href }: { p: Person; size?: 'sm' | 'lg'; h
 
 export default function Leadership() {
   return (
-    <Section id="leadership" className="relative overflow-hidden bg-[#fbfdfb]">
+    <Section id="leadership" className="relative overflow-hidden bg-brand-50">
 
       {/* Ambient brand glows */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">

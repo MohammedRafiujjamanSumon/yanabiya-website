@@ -129,7 +129,7 @@ export default function OurStory() {
   }, [])
 
   return (
-    <main className="bg-[#fbfdfb] text-slate-900">
+    <main className="bg-brand-50 text-slate-900">
       <BackButton to="/about-us" label="Back to About Us" />
 
       {/* ───────── 1. CINEMATIC HERO ───────── */}
@@ -256,7 +256,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 4. VISION FOR THE FUTURE ───────── */}
-      <section className="relative py-12 md:py-14 overflow-hidden bg-[#fbfdfb]">
+      <section className="relative py-12 md:py-14 overflow-hidden bg-brand-50">
         {/* Floating particles */}
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
           {Array.from({ length: 18 }).map((_, i) => (
@@ -355,7 +355,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 6. GLOBAL STRATEGY — Region Chapters ───────── */}
-      <section className="relative bg-[#fbfdfb]">
+      <section className="relative bg-brand-50">
         <div className="container-x py-12 md:py-16">
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
@@ -434,7 +434,7 @@ export default function OurStory() {
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {leaders.map((l, i) => (
               <Reveal key={l.name} delay={i * 120}>
-                <div className="group relative rounded-2xl overflow-hidden bg-[#fbfdfb] border border-slate-200
+                <div className="group relative rounded-2xl overflow-hidden bg-brand-50 border border-slate-200
                                 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
@@ -470,7 +470,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 8. SUSTAINABILITY & COMMUNITY ───────── */}
-      <section className="relative py-14 md:py-20 bg-[#fbfdfb]">
+      <section className="relative py-14 md:py-20 bg-brand-50">
         <div className="container-x grid lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-6">
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">

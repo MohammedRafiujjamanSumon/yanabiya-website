@@ -41,7 +41,7 @@ function Reveal({
 
 export default function DistributedLeadership() {
   return (
-    <Section id="distributed-leadership" className="relative overflow-hidden bg-[#fbfdfb]">
+    <Section id="distributed-leadership" className="relative overflow-hidden bg-brand-50">
 
       {/* Ambient glows */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">

@@ -267,7 +267,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
 
   if (!country || !dash) {
     return (
-      <main className="bg-[#fbfdfb] text-slate-900 min-h-screen grid place-items-center px-6">
+      <main className="bg-brand-50 text-slate-900 min-h-screen grid place-items-center px-6">
         <div className="text-center">
           <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accent mb-3">
             404
