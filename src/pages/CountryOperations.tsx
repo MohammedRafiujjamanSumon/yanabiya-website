@@ -107,24 +107,8 @@ const OPS: Record<string, CountryOps> = {
     // Yanabiya umbrella. Strategic = long-term partners that anchor
     // core categories (internet, cloud, aviation); Operational =
     // service partners delivering connectivity, comms and tech.
-    strategicPartners: [
-      { name: 'Connet Online',                    logo: '/logos/partners-co/connetonline.svg' },
-      { name: 'Plexus Cloud',                     logo: '/logos/partners-co/plexuscloud.svg' },
-      { name: 'Gtech Aviation',                   logo: '/logos/partners-co/gtechaviation.svg' },
-      { name: 'Idea Tec',                         logo: '/logos/partners-co/ideatec.svg' },
-      { name: 'Citylink Communication',           logo: '/logos/partners-co/citylink.svg' },
-      { name: 'Trust Innovation Limited Company', logo: '/logos/partners-co/trustinno.svg' },
-      { name: 'Business Zone Limited Company',    logo: '/logos/partners-co/businesszone.svg' },
-    ],
-    operationalPartners: [
-      { name: 'Eham WiFi',                  logo: '/logos/partners-co/ehamwifi.svg' },
-      { name: 'Xlink Limited Company',      logo: '/logos/partners-co/xlinkltd.svg' },
-      { name: 'Dot Internet',               logo: '/logos/partners-co/dotinternet.svg' },
-      { name: 'Zero Link',                  logo: '/logos/partners-co/zerolink.svg' },
-      { name: 'Global Communication Ltd',   logo: '/logos/partners-co/globalcomm.svg' },
-      { name: 'Dot Exploration Ltd',        logo: '/logos/partners-co/dotexploration.svg' },
-      { name: 'Bongo WiFi',                 logo: '/logos/partners-co/bongowifi.svg' },
-    ],
+    strategicPartners: [],
+    operationalPartners: [],
     categories: [
       { label: 'Internet Services & Connectivity',          icon: Globe2,    tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80' },
       { label: 'Cloud Computing & Technology Services',     icon: Cpu,       tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
