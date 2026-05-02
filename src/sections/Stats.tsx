@@ -42,13 +42,8 @@ function Reveal({
  * a continuation of the logo rather than another generic white card. */
 export default function Stats() {
   return (
-    <section id="stats" className="bg-brand-deep pt-2 pb-2">
-      {/* Same green-black-green sandwich as the navbar:
-       *    pt-2 → top green strip (full viewport width)
-       *    inner → black bar full edge-to-edge with the four stats
-       *    pb-2 → bottom green strip
-       */}
-      <div className="bg-black">
+    <section id="stats" className="bg-brand-50 border-y border-brand-deep/10">
+      <div className="bg-brand-50">
         <div className="container-x px-2 md:px-4 py-2 md:py-2.5">
           <div className="grid grid-cols-4 gap-3 md:gap-4 [perspective:1400px]">
             {company.stats.map((s, i) => {
@@ -66,19 +61,19 @@ export default function Stats() {
                                  group-hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.03)]"
                     >
                       <div
-                        className="shrink-0 w-7 h-7 rounded-full bg-brand-accent/15 text-brand-accent
+                        className="shrink-0 w-7 h-7 rounded-full bg-brand-deep/10 text-brand-deep
                                    grid place-items-center
-                                   ring-1 ring-brand-accent/25 backdrop-blur-sm
+                                   ring-1 ring-brand-deep/20
                                    [transform:translateZ(18px)]"
                       >
                         <Icon size={12} strokeWidth={2} />
                       </div>
                       <div className="flex flex-col items-start [transform:translateZ(10px)]">
-                        <span className="font-serif text-base md:text-lg text-brand-accent leading-none">
+                        <span className="font-serif text-base md:text-lg text-brand-deep leading-none">
                           {s.value}
                         </span>
                         <span className="mt-0.5 text-[8px] md:text-[9px] uppercase tracking-[0.22em]
-                                         font-semibold text-brand-accent leading-tight">
+                                         font-semibold text-brand-accentDark leading-tight">
                           {s.label}
                         </span>
                       </div>

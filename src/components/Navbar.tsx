@@ -130,18 +130,13 @@ export default function Navbar() {
   const baseLinkCls = (isActive: boolean) =>
     `relative text-base font-medium whitespace-nowrap py-1.5 px-4 rounded-full
      transition-colors duration-200
-     hover:bg-white hover:text-brand-deep ${
-      isActive ? 'text-white underline underline-offset-4 decoration-white/70' : 'text-white'
+     hover:bg-brand-deep hover:text-white ${
+      isActive ? 'text-brand-deep underline underline-offset-4 decoration-brand-deep/70' : 'text-brand-deep'
     }`
 
   return (
-    <header className="sticky top-0 z-40 bg-brand-deep pt-2 pb-2">
-      {/* Three-layer sandwich:
-       *    pt-2 → top green strip   (header bg, full viewport width)
-       *    inner → narrow black bar full edge-to-edge with the navigation
-       *    pb-2 → bottom green strip
-       */}
-      <div className="bg-black">
+    <header className="sticky top-0 z-40 bg-brand-50 border-b border-brand-deep/10">
+      <div className="bg-brand-50">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
 
         {/* LEFT — LOGO sits on the inner black bar. */}
@@ -160,7 +155,7 @@ export default function Navbar() {
          *  read as one black band sandwiched between two green strips. */}
       <div
         className={`flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8
-                    bg-black transition-shadow duration-200 ${
+                    bg-brand-50 transition-shadow duration-200 ${
           scrolled ? 'shadow-md shadow-slate-900/10'
                    : 'shadow-sm shadow-slate-900/5'
         }`}
@@ -400,17 +395,17 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — Language switcher (desktop) */}
-        <div className="shrink-0 text-white">
+        <div className="shrink-0 text-brand-deep">
           <LanguageSwitcher />
         </div>
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className="flex lg:hidden items-center ms-auto gap-1 text-white">
+        <div className="flex lg:hidden items-center ms-auto gap-1 text-brand-deep">
           <LanguageSwitcher />
           <button
             type="button"
-            className="text-white p-1"
+            className="text-brand-deep p-1"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
           >
