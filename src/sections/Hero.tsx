@@ -672,7 +672,7 @@ export default function Hero() {
               className="btn-ghost !px-8 !py-3.5 !rounded-full !border-amber-300/60 !text-amber-200
                          hover:!bg-amber-300 hover:!text-brand-ink hover:!border-amber-300"
             >
-              <Download size={18} /> {t('topbar.downloadPdf', 'Download Profile')}
+              <Download size={18} /> Company Profile Download
             </a>
             <Link
               to="/contact"
