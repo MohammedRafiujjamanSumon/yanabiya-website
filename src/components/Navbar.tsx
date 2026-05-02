@@ -5,7 +5,6 @@ import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { sections } from '../data/contact'
 import { assets } from '../data/assets'
-import { useScrollHeader } from '../hooks/useScrollHeader'
 import LanguageSwitcher from './LanguageSwitcher'
 
 type NavItem = { id: string; label: string; desc?: string; icon?: LucideIcon; href?: string }
@@ -34,11 +33,6 @@ export default function Navbar() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  const { scrolled } = useScrollHeader(8, 80)
-  /* Transparent only on the home page hero (top, not scrolled). Anywhere
-   * else — inner pages or scrolled past the hero — show the solid green band. */
-  const isHome = location.pathname === '/' || location.pathname === ''
-  const transparent = isHome && !scrolled
   const [open, setOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [mobileOpenGroup, setMobileOpenGroup] = useState<string | null>(null)
@@ -132,20 +126,16 @@ export default function Navbar() {
   }
 
   const baseLinkCls = (isActive: boolean) =>
-    `relative text-base font-medium whitespace-nowrap py-1.5 px-3
+    `relative text-base font-semibold whitespace-nowrap py-1.5 px-3
      transition-colors duration-200
-     hover:text-white ${
-      isActive ? 'text-white underline underline-offset-4 decoration-brand-accent/70' : 'text-brand-accent'
+     [text-shadow:0_2px_6px_rgba(0,0,0,0.55)]
+     hover:text-amber-200 ${
+      isActive ? 'text-amber-200 underline underline-offset-4 decoration-amber-200/70' : 'text-white'
     }`
 
   return (
-    <header
-      className={`left-0 right-0 z-40 transition-all duration-300
-                  ${transparent
-                    ? 'absolute top-0 bg-transparent'
-                    : 'sticky top-0 bg-brand-deep shadow-md shadow-slate-900/10'}`}
-    >
-      <div className={transparent ? 'bg-transparent' : 'bg-brand-deep'}>
+    <header className="sticky top-0 left-0 right-0 z-40 bg-transparent backdrop-blur-[2px]">
+      <div className="bg-transparent">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
 
         {/* LEFT — LOGO. Larger, brighter, retina-friendly. */}
@@ -159,9 +149,10 @@ export default function Navbar() {
             // @ts-expect-error - fetchpriority is a valid HTML attr but not yet in React types
             fetchpriority="high"
             className="h-16 md:h-20 lg:h-24 w-auto object-contain
-                       brightness-110 contrast-110 saturate-110
-                       drop-shadow-[0_4px_10px_rgba(0,0,0,0.45)]
-                       drop-shadow-[0_2px_4px_rgba(15,58,35,0.35)]
+                       brightness-115 contrast-110 saturate-110
+                       drop-shadow-[0_6px_14px_rgba(0,0,0,0.55)]
+                       drop-shadow-[0_3px_6px_rgba(0,0,0,0.40)]
+                       drop-shadow-[0_1px_2px_rgba(15,58,35,0.45)]
                        transition-transform duration-300 group-hover:scale-105"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
@@ -170,8 +161,7 @@ export default function Navbar() {
         {/* RIGHT — same black bg as the inner bar so logo + nav cluster
          *  read as one black band sandwiched between two green strips. */}
       <div
-        className={`flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8
-                    ${transparent ? 'bg-transparent' : 'bg-brand-deep'}`}
+        className="flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8 bg-transparent"
       >
 
         {/* NAV + CTA — clustered on the right */}
@@ -408,17 +398,18 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — Language switcher (desktop) */}
-        <div className="shrink-0 text-brand-accent">
+        <div className="shrink-0 text-white [&_*]:[text-shadow:0_2px_6px_rgba(0,0,0,0.55)]">
           <LanguageSwitcher />
         </div>
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className="flex lg:hidden items-center ms-auto gap-1 text-brand-accent">
+        <div className="flex lg:hidden items-center ms-auto gap-1 text-white">
           <LanguageSwitcher />
           <button
             type="button"
-            className="text-brand-accent p-1"
+            className="text-white p-1
+                       drop-shadow-[0_2px_6px_rgba(0,0,0,0.55)]"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
           >
