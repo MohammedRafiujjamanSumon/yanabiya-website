@@ -133,9 +133,10 @@ export default function Navbar() {
 
   const baseLinkCls = (isActive: boolean) =>
     `relative text-base font-medium whitespace-nowrap py-1.5 px-3
-     transition-colors duration-200
-     hover:text-white ${
-      isActive ? 'text-white underline underline-offset-4 decoration-brand-accent/70' : 'text-brand-accent'
+     transition-colors duration-200 ${
+      transparent
+        ? `hover:text-white ${isActive ? 'text-white underline underline-offset-4 decoration-brand-accent/70' : 'text-brand-accent'}`
+        : `hover:text-brand-accentDark ${isActive ? 'text-brand-accentDark underline underline-offset-4 decoration-brand-accentDark/70' : 'text-brand-deep'}`
     }`
 
   return (
@@ -143,9 +144,9 @@ export default function Navbar() {
       className={`left-0 right-0 z-40 transition-all duration-300
                   ${transparent
                     ? 'absolute top-0 bg-transparent'
-                    : 'sticky top-0 bg-brand-deep shadow-md shadow-slate-900/10'}`}
+                    : 'sticky top-0 bg-brand-100 shadow-md shadow-black/5'}`}
     >
-      <div className={transparent ? 'bg-transparent' : 'bg-brand-deep'}>
+      <div className={transparent ? 'bg-transparent' : 'bg-brand-100'}>
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
 
         {/* LEFT — LOGO. Larger, brighter, retina-friendly. */}
@@ -171,7 +172,7 @@ export default function Navbar() {
          *  read as one black band sandwiched between two green strips. */}
       <div
         className={`flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8
-                    ${transparent ? 'bg-transparent' : 'bg-brand-deep'}`}
+                    ${transparent ? 'bg-transparent' : 'bg-brand-100'}`}
       >
 
         {/* NAV + CTA — clustered on the right */}
@@ -408,13 +409,13 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — Language switcher (desktop) */}
-        <div className="shrink-0 text-brand-accent">
+        <div className={`shrink-0 ${transparent ? 'text-brand-accent' : 'text-brand-deep'}`}>
           <LanguageSwitcher />
         </div>
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className="flex lg:hidden items-center ms-auto gap-1 text-brand-accent">
+        <div className={`flex lg:hidden items-center ms-auto gap-1 ${transparent ? 'text-brand-accent' : 'text-brand-deep'}`}>
           <LanguageSwitcher />
           <button
             type="button"
