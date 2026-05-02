@@ -91,13 +91,8 @@ export default function Community() {
   return (
     <Section
       id="community"
-      className="relative overflow-hidden bg-gradient-to-b from-[#fbfaf6] via-[#fbfdfb] to-[#f6f8f3]"
+      className="bg-brand-50"
     >
-      {/* Ambient glows */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-accent/10 blur-[160px]" />
-        <div className="absolute bottom-0 right-1/4 w-[480px] h-[480px] rounded-full bg-amber-200/20 blur-[140px]" />
-      </div>
 
       <div className="container-x relative pt-2 md:pt-3 pb-4 md:pb-6">
 
