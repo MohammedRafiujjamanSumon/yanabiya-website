@@ -619,67 +619,53 @@ export default function Hero() {
           }}
         />
 
-        {/* ──────── Centre content (per-scene text + persistent CTAs) ──────── */}
-        <div className="relative h-full container-x flex flex-col items-center justify-center text-center">
+        {/* ──────── Left-anchored content: welcome text + CTAs ──────── */}
+        <div className="relative h-full container-x flex flex-col justify-center
+                        items-start text-left">
 
-          {/* Scene-specific eyebrow + headline + body
-           *  `key={scene}` forces a re-mount so the fade-up replays each cycle. */}
-          <div key={`txt-${scene}`} className="max-w-3xl mx-auto">
-            <div
-              className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.32em] uppercase
-                         text-brand-accent/85 mb-5 fade-up"
-              style={{ animationDelay: '60ms' }}
-            >
-              <Sparkles size={10} className="text-brand-accent" />
-              {active.eyebrow}
-            </div>
+          <div key={`txt-${scene}`} className="max-w-xl">
             <h1
               className="font-serif text-white drop-shadow-lg fade-up
-                         text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight mb-4 md:mb-5
-                         tracking-tight"
-              style={{ animationDelay: '180ms' }}
+                         text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.05] mb-5 md:mb-6
+                         tracking-tight uppercase"
+              style={{ animationDelay: '120ms' }}
             >
-              {active.headline}
+              Welcome to <span className="text-brand-accent">Yanabiya Group</span>
             </h1>
             <p
-              className="text-white text-base md:text-lg leading-snug mx-auto max-w-2xl
+              className="text-white/90 text-base md:text-lg leading-snug max-w-md
                          drop-shadow-lg fade-up"
-              style={{ animationDelay: '300ms' }}
+              style={{ animationDelay: '260ms' }}
             >
-              {active.body}
+              Firstly thank you for visiting our website. Click the download button for the company profile.
             </p>
           </div>
 
-          {/* Per-scene primary CTA + persistent "Get in touch" secondary.
-           *  The primary CTA's label, href and icon swap per scene so the
-           *  hero becomes navigation: each scene = one section/page link.
-           *  Re-keyed on scene index so the fade-up replays each cycle. */}
+          {/* CTAs — left-aligned under the welcome text */}
           <div
             key={`cta-${scene}`}
-            className="mt-9 flex flex-col sm:flex-row gap-4 justify-center items-center fade-up"
+            className="mt-9 flex flex-col sm:flex-row gap-3 fade-up"
             style={{ animationDelay: '500ms' }}
           >
-            <button
-              type="button"
-              onClick={() => onSceneCta(active)}
-              className="btn-primary !px-8 !py-3.5 !rounded-full"
-            >
-              {active.cta.label} <ArrowRight size={18} className="ltr-flip" />
-            </button>
             <a
               href="/yanabiya-profile.pdf"
               download
-              className="btn-ghost !px-8 !py-3.5 !rounded-full !border-amber-300/60 !text-amber-200
-                         hover:!bg-amber-300 hover:!text-brand-ink hover:!border-amber-300"
+              className="inline-flex items-center justify-center gap-2 rounded-full
+                         px-7 py-3.5 bg-brand-accent text-brand-deep font-bold text-sm
+                         shadow-lg hover:bg-brand-accentDark hover:text-white
+                         hover:-translate-y-0.5 transition-all duration-300"
             >
-              <Download size={18} /> Company Profile Download
+              <Download size={16} /> Company Profile Download
             </a>
             <Link
               to="/contact"
-              className="btn-ghost !px-8 !py-3.5 !rounded-full !border-white/50 !text-white
-                         hover:!bg-white hover:!text-brand-ink hover:!border-white"
+              className="inline-flex items-center justify-center gap-2 rounded-full
+                         px-7 py-3.5 border border-white/50 text-white font-bold text-sm
+                         backdrop-blur-sm
+                         hover:bg-white hover:text-brand-deep hover:-translate-y-0.5
+                         transition-all duration-300"
             >
-              <Handshake size={18} /> {t('hero.cta2')}
+              <Handshake size={16} /> Partner With Us
             </Link>
           </div>
         </div>
