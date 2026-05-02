@@ -165,7 +165,6 @@ export default function Leadership() {
             icon={Crown}
             kicker="Tier 01"
             title="Global Board & Advisory"
-            subtitle="Strategic oversight from independent directors and senior advisors."
             href="/leadership/board"
           />
           <div className="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
@@ -183,7 +182,6 @@ export default function Leadership() {
             icon={Star}
             kicker="Tier 02"
             title="Global CEO & Vice Chairman"
-            subtitle="The vision-bearers behind the group — driving strategy across every market."
             href="/leadership/management"
           />
           <div className="max-w-3xl mx-auto grid grid-cols-2 gap-6 sm:gap-8 md:gap-10 justify-items-center">
@@ -201,7 +199,6 @@ export default function Leadership() {
             icon={Briefcase}
             kicker="Tier 03"
             title="Global Executive Management"
-            subtitle="Senior leaders running operations, finance, technology, marketing, and people."
             href="/leadership/executive"
           />
           <div className="max-w-5xl mx-auto grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-5 md:gap-6">
@@ -219,7 +216,6 @@ export default function Leadership() {
             icon={Globe2}
             kicker="Tier 04"
             title="Country-Based Management"
-            subtitle="Country heads and local leadership teams across our four operating markets."
             href="/leadership/countries"
           />
           <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
