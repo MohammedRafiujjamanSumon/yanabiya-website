@@ -15,7 +15,7 @@
         #fafef8 100%
       );
     background-attachment: fixed;
-    color: #1f2937;
+    color: #0f3a23;
     min-height: 100vh;
     -webkit-tap-highlight-color: transparent;
   }
@@ -27,7 +27,12 @@
   main.bg-brand-50 {
     background-color: transparent !important;
   }
-  h1, h2, h3, h4 { @apply font-serif tracking-tight text-slate-900; }
+
+  /* Default paragraph + label text → dark green for readability on lime bg */
+  p, li, label, td, th, figcaption, blockquote {
+    color: #0f3a23;
+  }
+  h1, h2, h3, h4 { @apply font-serif tracking-tight text-brand-deep; }
   html[dir='rtl'] body { font-family: 'Noto Naskh Arabic', 'Cairo', system-ui, sans-serif; }
   html[lang='bn'] body { font-family: 'Noto Sans Bengali', 'Hind Siliguri', Inter, sans-serif; }
   html[dir='rtl'] .ltr-flip { transform: scaleX(-1); }
