@@ -49,7 +49,7 @@ function LogoMarquee({
               alt={p.name}
               loading="lazy"
               className="h-16 max-w-[140px] object-contain
-                         opacity-50 group-hover:opacity-100
+                         opacity-85 group-hover:opacity-100
                          scale-100 group-hover:scale-125
                          transition-all duration-300"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
