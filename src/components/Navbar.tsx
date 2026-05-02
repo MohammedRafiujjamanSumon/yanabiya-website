@@ -128,13 +128,13 @@ export default function Navbar() {
   const baseLinkCls = (isActive: boolean) =>
     `relative text-base font-medium whitespace-nowrap py-1.5 px-3
      transition-colors duration-200
-     hover:text-amber-300 ${
-      isActive ? 'text-amber-300 underline underline-offset-4 decoration-amber-300/70' : 'text-white'
+     hover:text-white ${
+      isActive ? 'text-white underline underline-offset-4 decoration-brand-accent/70' : 'text-brand-accent'
     }`
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-40 bg-transparent">
-      <div className="bg-transparent">
+    <header className="sticky top-0 z-40 bg-brand-deep">
+      <div className="bg-brand-deep">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
 
         {/* LEFT — LOGO sits on the inner black bar. */}
@@ -152,7 +152,7 @@ export default function Navbar() {
         {/* RIGHT — same black bg as the inner bar so logo + nav cluster
          *  read as one black band sandwiched between two green strips. */}
       <div
-        className="flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8 bg-transparent"
+        className="flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8 bg-brand-deep"
       >
 
         {/* NAV + CTA — clustered on the right */}
@@ -389,17 +389,17 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — Language switcher (desktop) */}
-        <div className="shrink-0 text-white">
+        <div className="shrink-0 text-brand-accent">
           <LanguageSwitcher />
         </div>
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className="flex lg:hidden items-center ms-auto gap-1 text-white">
+        <div className="flex lg:hidden items-center ms-auto gap-1 text-brand-accent">
           <LanguageSwitcher />
           <button
             type="button"
-            className="text-white p-1"
+            className="text-brand-accent p-1"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
           >
