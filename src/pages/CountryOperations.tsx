@@ -464,16 +464,16 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
   if (!country || !ops) {
     return (
       <main className="relative bg-brand-50
-                       text-white overflow-hidden min-h-screen grid place-items-center px-6">
+                       text-brand-deep overflow-hidden min-h-screen grid place-items-center px-6">
         <BackButton to="/" label="Back to Home" />
         <div className="text-center">
-          <div className="text-[11px] uppercase tracking-[0.32em] text-amber-300 mb-3">
+          <div className="text-[11px] uppercase tracking-[0.32em] text-brand-accentDark mb-3">
             Coming soon
           </div>
-          <h1 className="font-serif text-3xl md:text-4xl text-white mb-3">
+          <h1 className="font-serif text-3xl md:text-4xl text-brand-deep mb-3">
             Operations page launching for this region
           </h1>
-          <Link to="/contact" className="inline-flex items-center gap-2 mt-4 text-brand-accentDark hover:text-white">
+          <Link to="/contact" className="inline-flex items-center gap-2 mt-4 text-brand-accentDark hover:text-brand-deep">
             Talk to us → <ArrowRight size={14} />
           </Link>
         </div>
@@ -565,11 +565,11 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             <Reveal key={c.label} delay={i * 80}>
               <div
                 className="group relative w-full max-w-[140px] rounded-lg overflow-hidden
-                           border border-slate-200 bg-slate-900
+                           border border-slate-200 bg-slate-100
                            [transform-style:preserve-3d]
                            transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                            hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.04)]
-                           hover:border-amber-300/60"
+                           hover:border-brand-accent"
               >
                 {/* Real photo top */}
                 <div className="relative aspect-square overflow-hidden">
@@ -631,7 +631,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
           ))}
         </div>
         <div className="rounded-2xl bg-white border border-slate-200 backdrop-blur-sm p-5 md:p-6">
-          <div className="text-[10px] md:text-[11px] uppercase tracking-[0.28em] font-semibold text-amber-300 mb-3">
+          <div className="text-[10px] md:text-[11px] uppercase tracking-[0.28em] font-semibold text-brand-accentDark mb-3">
             Active sectors
           </div>
           <div className="flex flex-wrap gap-2">
@@ -705,8 +705,9 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                       border border-white/30 text-white text-xs font-bold uppercase tracking-[0.22em]
-                       hover:bg-white hover:-translate-y-0.5
+                       border border-brand-deep/20 text-brand-deep text-xs font-bold uppercase tracking-[0.22em]
+                       bg-white shadow-sm
+                       hover:bg-brand-deep hover:text-white hover:-translate-y-0.5
                        transition-all duration-300"
           >
             Become a Sponsor <ArrowUpRight size={14} />
@@ -738,10 +739,10 @@ function SectionFrame({
         <Reveal>
           <div className="text-center mb-5 md:mb-6 max-w-2xl mx-auto">
             <span className="inline-block text-[10px] font-semibold uppercase
-                             tracking-[0.32em] text-amber-300 mb-1.5">
+                             tracking-[0.32em] text-brand-accentDark mb-1.5">
               {eyebrow}
             </span>
-            <h2 className="font-serif text-lg sm:text-xl md:text-2xl text-white leading-tight">
+            <h2 className="font-serif text-lg sm:text-xl md:text-2xl text-brand-deep leading-tight">
               {title}
             </h2>
           </div>
@@ -771,15 +772,15 @@ function Card3D({
     <Reveal delay={delay}>
       <div
         className={`group relative h-full overflow-hidden rounded-lg
-                    bg-white-md
+                    bg-white
                     border ${accent ? 'border-amber-300/40' : 'border-slate-200'}
                     [transform-style:preserve-3d]
                     transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                     hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)]
-                    hover:border-amber-300/60`}
+                    hover:border-brand-accent`}
       >
         {image && (
-          <div className="relative aspect-[3/2] overflow-hidden bg-slate-900">
+          <div className="relative aspect-[3/2] overflow-hidden bg-slate-100">
             <img
               src={image}
               alt=""
@@ -791,7 +792,7 @@ function Card3D({
             <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
             <div
               className={`absolute top-1.5 left-1.5 w-6 h-6 rounded grid place-items-center
-                          ${accent ? 'bg-amber-300/95 text-[#0a1410]' : 'bg-white/95 text-[#0a1410]'}
+                          ${accent ? 'bg-brand-deep text-[#0a1410]' : 'bg-white/95 text-[#0a1410]'}
                           shadow-sm [transform:translateZ(20px)]`}
             >
               <Icon size={11} strokeWidth={2.4} />
@@ -803,14 +804,14 @@ function Card3D({
           {!image && (
             <div
               className={`w-7 h-7 rounded grid place-items-center mb-2
-                          ${accent ? 'bg-amber-300/20 text-amber-200' : 'bg-white text-white'}
-                          ring-1 ${accent ? 'ring-amber-300/40' : 'ring-white/15'}
+                          ${accent ? 'bg-brand-accent/25 text-brand-accentDark' : 'bg-brand-deep text-white'}
+                          ring-1 ${accent ? 'ring-brand-accentDark/40' : 'ring-slate-200'}
                           shadow-sm [transform:translateZ(18px)]`}
             >
               <Icon size={13} strokeWidth={2} />
             </div>
           )}
-          <div className="font-serif text-[13px] md:text-sm text-white leading-tight
+          <div className="font-serif text-[13px] md:text-sm text-brand-deep leading-tight
                           [transform:translateZ(10px)]">
             {title}
           </div>
@@ -827,15 +828,15 @@ function Card3D({
 function InfoRow({ label, value, icon: Icon }: { label: string; value: string; icon: LucideIcon }) {
   return (
     <Reveal>
-      <div className="flex items-start gap-2 rounded-lg bg-white-md
+      <div className="flex items-start gap-2 rounded-lg bg-white
                       border border-slate-200 p-2.5 md:p-3
-                      transition-colors duration-300 hover:border-amber-300/40">
-        <div className="shrink-0 w-7 h-7 rounded bg-amber-300/15 text-amber-200
-                        ring-1 ring-amber-300/30 grid place-items-center">
+                      transition-colors duration-300 hover:border-brand-accent">
+        <div className="shrink-0 w-7 h-7 rounded bg-brand-accent/20 text-brand-accentDark
+                        ring-1 ring-brand-accentDark/35 grid place-items-center">
           <Icon size={12} strokeWidth={2} />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="text-[9px] uppercase tracking-[0.22em] font-semibold text-amber-300/90 mb-0.5">
+          <div className="text-[9px] uppercase tracking-[0.22em] font-semibold text-brand-accentDark/90 mb-0.5">
             {label}
           </div>
           <div className="text-[12px] text-brand-deep/85 leading-snug break-words">
@@ -859,14 +860,14 @@ function ServiceCard({
       <Link
         to={`/business/${service.slug}`}
         className="group relative block h-full overflow-hidden rounded-lg
-                   bg-white-md border border-slate-200
+                   bg-white border border-slate-200
                    [transform-style:preserve-3d]
                    transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                    hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)]
-                   hover:border-amber-300/60"
+                   hover:border-brand-accent"
       >
         {/* Real photo header — wider/shorter so tiles stay compact at 3-up */}
-        <div className="relative aspect-[16/9] overflow-hidden bg-slate-900">
+        <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
           <img
             src={service.image}
             alt=""
@@ -878,7 +879,7 @@ function ServiceCard({
           <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
           {/* Floating icon chip on top of the image */}
           <div className="absolute top-1 left-1 w-5 h-5 rounded
-                          bg-amber-300/95 text-[#0a1410]
+                          bg-brand-deep text-[#0a1410]
                           grid place-items-center shadow-sm
                           [transform:translateZ(22px)]">
             <service.icon size={10} strokeWidth={2.4} />
@@ -887,14 +888,14 @@ function ServiceCard({
 
         {/* Body */}
         <div className="p-2 md:p-2.5">
-          <div className="font-serif text-[12px] md:text-[13px] text-white leading-tight [transform:translateZ(12px)]">
+          <div className="font-serif text-[12px] md:text-[13px] text-brand-deep leading-tight [transform:translateZ(12px)]">
             {service.label}
           </div>
           <p className="mt-0.5 text-[10px] md:text-[11px] text-brand-deep/70 leading-snug [transform:translateZ(4px)]">
             {service.desc}
           </p>
           <div className="mt-1.5 inline-flex items-center gap-1 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.22em]
-                          text-amber-300 group-hover:gap-2 transition-all">
+                          text-brand-accentDark group-hover:gap-2 transition-all">
             Learn more <ArrowRight size={9} />
           </div>
         </div>
@@ -960,7 +961,7 @@ function PartnerMarquee({
   return (
     <div className={className}>
       <div className="mb-4">
-        <div className="text-[10px] uppercase tracking-[0.28em] font-semibold text-amber-300 mb-1">
+        <div className="text-[10px] uppercase tracking-[0.28em] font-semibold text-brand-accentDark mb-1">
           {title}
         </div>
         <div className="text-sm text-brand-deep/65">{subtitle}</div>
