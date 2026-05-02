@@ -406,13 +406,13 @@ export default function ContactGlobal() {
   }, [])
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
       {/* Ambient mint glow on the white surface */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/20 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/12 blur-[160px]" />
       </div>
 
       {/* HERO — shared brand strip */}
@@ -612,12 +612,12 @@ function GlobalNetworkMap() {
                 <span
                   key={n.code}
                   className="inline-flex items-center gap-2 rounded-full px-3 py-1
-                             bg-white/5 border border-white/10 text-[11px] font-semibold
-                             tracking-wide text-white/90"
+                             bg-white border border-slate-200 text-[11px] font-semibold
+                             tracking-wide text-brand-deep/85"
                 >
                   <span aria-hidden className="text-base leading-none">{n.flag}</span>
-                  {n.name} <span className="text-white/50">·</span>{' '}
-                  <span className="text-white/60">{n.city}</span>
+                  {n.name} <span className="text-brand-deep/50">·</span>{' '}
+                  <span className="text-brand-deep/60">{n.city}</span>
                 </span>
               ))}
             </div>

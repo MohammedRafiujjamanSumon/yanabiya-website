@@ -463,7 +463,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
 
   if (!country || !ops) {
     return (
-      <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]
+      <main className="relative bg-brand-50
                        text-white overflow-hidden min-h-screen grid place-items-center px-6">
         <BackButton to="/" label="Back to Home" />
         <div className="text-center">
@@ -473,7 +473,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
           <h1 className="font-serif text-3xl md:text-4xl text-white mb-3">
             Operations page launching for this region
           </h1>
-          <Link to="/contact" className="inline-flex items-center gap-2 mt-4 text-brand-accent hover:text-white">
+          <Link to="/contact" className="inline-flex items-center gap-2 mt-4 text-brand-accentDark hover:text-white">
             Talk to us → <ArrowRight size={14} />
           </Link>
         </div>
@@ -482,7 +482,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
   }
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]
+    <main className="relative bg-brand-50
                      text-white overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
@@ -565,7 +565,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             <Reveal key={c.label} delay={i * 80}>
               <div
                 className="group relative w-full max-w-[140px] rounded-lg overflow-hidden
-                           border border-white/15 bg-slate-900
+                           border border-slate-200 bg-slate-900
                            [transform-style:preserve-3d]
                            transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                            hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.04)]
@@ -604,7 +604,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
 
       {/* SECTION 7 — Licensed Activities */}
       <SectionFrame eyebrow="Approved Activities Under License" title="Government-approved scope of operations.">
-        <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm text-white/85">
+        <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm text-brand-deep/80">
           {ops.licensedActivities.map((a, i) => (
             <Reveal key={a} delay={i * 40}>
               <li className="flex items-start gap-2.5">
@@ -630,7 +630,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             />
           ))}
         </div>
-        <div className="rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm p-5 md:p-6">
+        <div className="rounded-2xl bg-white border border-slate-200 backdrop-blur-sm p-5 md:p-6">
           <div className="text-[10px] md:text-[11px] uppercase tracking-[0.28em] font-semibold text-amber-300 mb-3">
             Active sectors
           </div>
@@ -638,8 +638,8 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             {ops.activeSectors.map((s) => (
               <span
                 key={s}
-                className="inline-block px-3 py-1.5 rounded-full bg-white/8 border border-white/15
-                           text-xs text-white/85"
+                className="inline-block px-3 py-1.5 rounded-full bg-white border border-slate-200
+                           text-xs text-brand-deep/80"
               >
                 {s}
               </span>
@@ -706,7 +706,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             to="/contact"
             className="inline-flex items-center gap-2 rounded-full px-6 py-3
                        border border-white/30 text-white text-xs font-bold uppercase tracking-[0.22em]
-                       hover:bg-white/10 hover:-translate-y-0.5
+                       hover:bg-white hover:-translate-y-0.5
                        transition-all duration-300"
           >
             Become a Sponsor <ArrowUpRight size={14} />
@@ -771,8 +771,8 @@ function Card3D({
     <Reveal delay={delay}>
       <div
         className={`group relative h-full overflow-hidden rounded-lg
-                    bg-white/5 backdrop-blur-md
-                    border ${accent ? 'border-amber-300/40' : 'border-white/15'}
+                    bg-white-md
+                    border ${accent ? 'border-amber-300/40' : 'border-slate-200'}
                     [transform-style:preserve-3d]
                     transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                     hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)]
@@ -803,7 +803,7 @@ function Card3D({
           {!image && (
             <div
               className={`w-7 h-7 rounded grid place-items-center mb-2
-                          ${accent ? 'bg-amber-300/20 text-amber-200' : 'bg-white/10 text-white'}
+                          ${accent ? 'bg-amber-300/20 text-amber-200' : 'bg-white text-white'}
                           ring-1 ${accent ? 'ring-amber-300/40' : 'ring-white/15'}
                           shadow-sm [transform:translateZ(18px)]`}
             >
@@ -814,7 +814,7 @@ function Card3D({
                           [transform:translateZ(10px)]">
             {title}
           </div>
-          <p className="mt-0.5 text-[11px] text-white/70 leading-snug
+          <p className="mt-0.5 text-[11px] text-brand-deep/70 leading-snug
                         [transform:translateZ(4px)]">
             {body}
           </p>
@@ -827,8 +827,8 @@ function Card3D({
 function InfoRow({ label, value, icon: Icon }: { label: string; value: string; icon: LucideIcon }) {
   return (
     <Reveal>
-      <div className="flex items-start gap-2 rounded-lg bg-white/5 backdrop-blur-md
-                      border border-white/10 p-2.5 md:p-3
+      <div className="flex items-start gap-2 rounded-lg bg-white-md
+                      border border-slate-200 p-2.5 md:p-3
                       transition-colors duration-300 hover:border-amber-300/40">
         <div className="shrink-0 w-7 h-7 rounded bg-amber-300/15 text-amber-200
                         ring-1 ring-amber-300/30 grid place-items-center">
@@ -838,7 +838,7 @@ function InfoRow({ label, value, icon: Icon }: { label: string; value: string; i
           <div className="text-[9px] uppercase tracking-[0.22em] font-semibold text-amber-300/90 mb-0.5">
             {label}
           </div>
-          <div className="text-[12px] text-white/90 leading-snug break-words">
+          <div className="text-[12px] text-brand-deep/85 leading-snug break-words">
             {value}
           </div>
         </div>
@@ -859,7 +859,7 @@ function ServiceCard({
       <Link
         to={`/business/${service.slug}`}
         className="group relative block h-full overflow-hidden rounded-lg
-                   bg-white/5 backdrop-blur-md border border-white/15
+                   bg-white-md border border-slate-200
                    [transform-style:preserve-3d]
                    transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                    hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)]
@@ -890,7 +890,7 @@ function ServiceCard({
           <div className="font-serif text-[12px] md:text-[13px] text-white leading-tight [transform:translateZ(12px)]">
             {service.label}
           </div>
-          <p className="mt-0.5 text-[10px] md:text-[11px] text-white/70 leading-snug [transform:translateZ(4px)]">
+          <p className="mt-0.5 text-[10px] md:text-[11px] text-brand-deep/70 leading-snug [transform:translateZ(4px)]">
             {service.desc}
           </p>
           <div className="mt-1.5 inline-flex items-center gap-1 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.22em]
@@ -963,7 +963,7 @@ function PartnerMarquee({
         <div className="text-[10px] uppercase tracking-[0.28em] font-semibold text-amber-300 mb-1">
           {title}
         </div>
-        <div className="text-sm text-white/65">{subtitle}</div>
+        <div className="text-sm text-brand-deep/65">{subtitle}</div>
       </div>
 
       <div className="relative overflow-hidden [perspective:1400px]">
@@ -1005,7 +1005,7 @@ function PartnerLogo({ item }: { item: PartnerItem }) {
                            undefined
 
   return (
-    <div className="group relative h-20 rounded-lg bg-white border border-white/15
+    <div className="group relative h-20 rounded-lg bg-white border border-slate-200
                     grid place-items-center p-2 overflow-hidden
                     transition-all duration-300 hover:-translate-y-1 hover:scale-[1.04]
                     hover:shadow-[0_18px_36px_-14px_rgba(0,0,0,0.45)]">

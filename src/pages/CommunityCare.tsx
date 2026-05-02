@@ -54,13 +54,13 @@ export default function CommunityCare() {
         subtitle="Structured charitable donations and welfare programmes focused on transparency, dignity and lasting impact — delivered across every country where we operate."
       />
 
-      <Section id="community-care" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
+      <Section id="community-care" className="relative overflow-hidden bg-brand-50">
       <div className="container-x">
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">
           {stats.map((s) => (
             <div key={s.l} className="card-panel text-center">
-              <div className="font-serif text-2xl text-brand-accent">{s.v}</div>
+              <div className="font-serif text-2xl text-brand-accentDark">{s.v}</div>
               <div className="text-[10px] tracking-widest text-slate-500 uppercase mt-1">{s.l}</div>
             </div>
           ))}
@@ -77,7 +77,7 @@ export default function CommunityCare() {
 
         <div>
           <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-widest text-brand-accent mb-2">Around the world</div>
+            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">Around the world</div>
             <h3 className="font-serif text-3xl text-slate-900">Programmes Across Our Regions</h3>
             <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
               Local teams deliver tailored programmes in every country where Yanabiya Group operates.
@@ -90,13 +90,13 @@ export default function CommunityCare() {
                   <div className="text-4xl" aria-hidden>{c.flag}</div>
                   <div>
                     <h4 className="text-slate-900 text-lg font-semibold">{c.name}</h4>
-                    <div className="text-xs uppercase tracking-widest text-brand-accent mt-1">{c.role}</div>
+                    <div className="text-xs uppercase tracking-widest text-brand-accentDark mt-1">{c.role}</div>
                   </div>
                 </div>
                 <ul className="space-y-2 text-sm text-slate-600">
                   {(countryPrograms[c.code] ?? []).map((program, i) => (
                     <li key={i} className="flex gap-2">
-                      <span className="text-brand-accent shrink-0">•</span>
+                      <span className="text-brand-accentDark shrink-0">•</span>
                       <span>{program}</span>
                     </li>
                   ))}

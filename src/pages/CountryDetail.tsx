@@ -111,7 +111,7 @@ const COUNTRY_BG: Record<string, { blobs: { className: string }[] }> = {
     blobs: [
       { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-red-700/8 blur-[160px]' },
       { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-emerald-600/8 blur-[160px]' },
-      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-white/8 blur-[160px]' },
+      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-white blur-[160px]' },
     ],
   },
   GB: {
@@ -269,13 +269,13 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
     return (
       <main className="bg-brand-50 text-slate-900 min-h-screen grid place-items-center px-6">
         <div className="text-center">
-          <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accent mb-3">
+          <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
             404
           </div>
           <h2 className="font-serif text-3xl text-brand-deep mb-3">Country not found.</h2>
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accent hover:text-brand-accent"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accentDark hover:text-brand-accentDark"
           >
             Back to Home <ArrowRight size={14} />
           </Link>
@@ -295,7 +295,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
   }).activities
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
       {/* Shared About-Us style brand card — opens every country page
@@ -354,7 +354,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
       <section className="relative">
         <div className="container-x py-10 md:py-14 text-center">
           <Reveal>
-            <p className="text-sm md:text-base text-white/70 max-w-md mx-auto mb-5 leading-snug">
+            <p className="text-sm md:text-base text-brand-deep/70 max-w-md mx-auto mb-5 leading-snug">
               Want to reach the {c.name} office? Our full contact directory lives on the
               global Contact page.
             </p>
@@ -423,7 +423,7 @@ function Hero({
             </span>
             <span className="px-3 py-1 rounded-full
                              bg-slate-100 backdrop-blur-md ring-1 ring-brand-accent/25
-                             text-[11px] font-bold tracking-[0.32em] uppercase text-brand-accent inline-flex items-center gap-2">
+                             text-[11px] font-bold tracking-[0.32em] uppercase text-brand-accentDark inline-flex items-center gap-2">
               <span className="text-base leading-none">{country.flag}</span>
               {dash.tier.label}
             </span>
@@ -432,7 +432,7 @@ function Hero({
         <Reveal delay={120}>
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-brand-deep">
             {country.name.replace('Sultanate of ', '').replace('United States of America', 'USA')}
-            <span className="text-brand-accent"> Operations</span>
+            <span className="text-brand-accentDark"> Operations</span>
           </h1>
         </Reveal>
         <Reveal delay={260}>
@@ -452,7 +452,7 @@ function ServiceBlocks({ services, countryName }: { services: Service[]; country
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
               What we do
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
@@ -494,7 +494,7 @@ function ServiceBlocks({ services, countryName }: { services: Service[]; country
                   </div>
                   {/* Description */}
                   <div className="p-4 flex items-center gap-3">
-                    <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-accent/15 grid place-items-center text-brand-accent
+                    <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-accent/15 grid place-items-center text-brand-accentDark
                                     ring-1 ring-brand-accent/30
                                     transition-all duration-300
                                     group-hover:scale-110 group-hover:bg-brand-accent group-hover:text-brand-deep">
@@ -534,7 +534,7 @@ function CorporateHierarchy({
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
               Corporate Hierarchy
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
@@ -626,7 +626,7 @@ function BusinessActivities({
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
               Licensed Activities
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
@@ -673,9 +673,9 @@ function BusinessActivities({
                   {linkTo && (
                     <ArrowRight
                       size={12}
-                      className="shrink-0 mt-1 text-brand-accent/80
+                      className="shrink-0 mt-1 text-brand-accentDark/80
                                  transition-all duration-300
-                                 group-hover:translate-x-1 group-hover:text-brand-accent"
+                                 group-hover:translate-x-1 group-hover:text-brand-accentDark"
                     />
                   )}
                 </div>
@@ -722,7 +722,7 @@ function GlobalConnection({
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
               Global Connection
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">One unified network</h2>
@@ -797,7 +797,7 @@ function GlobalConnection({
             </div>
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-[3.5rem] md:translate-y-[4rem] pointer-events-none">
               <span className="px-2.5 py-1 rounded-full bg-brand-accent/15 ring-1 ring-brand-accent/40
-                               text-[9px] font-bold uppercase tracking-[0.3em] text-brand-accent">
+                               text-[9px] font-bold uppercase tracking-[0.3em] text-brand-accentDark">
                 You are here
               </span>
             </div>
@@ -836,7 +836,7 @@ function GlobalConnection({
                       }}
                     />
                     <span className="text-[10px] font-semibold text-slate-800
-                                     group-hover:text-brand-accent transition-colors">
+                                     group-hover:text-brand-accentDark transition-colors">
                       {shortName}
                     </span>
                   </div>
@@ -856,7 +856,7 @@ function Achievements({ achievements }: { achievements: Achievement[] }) {
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accent mb-3">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
               Achievements
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">Highlights &amp; milestones</h2>

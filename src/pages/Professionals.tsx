@@ -16,7 +16,7 @@ export default function Professionals() {
         subtitle="The specialist team driving delivery, engineering, and strategy across Yanabiya Group."
       />
 
-      <Section id="professionals-page" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
+      <Section id="professionals-page" className="relative overflow-hidden bg-brand-50">
       <div className="container-x">
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
@@ -32,7 +32,7 @@ export default function Professionals() {
                 onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
               />
               <div className="text-slate-900 text-sm font-medium leading-tight">{m.name}</div>
-              <div className="text-[10px] text-brand-accent uppercase tracking-widest mt-1">
+              <div className="text-[10px] text-brand-accentDark uppercase tracking-widest mt-1">
                 {m.role}
               </div>
             </div>

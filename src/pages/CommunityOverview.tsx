@@ -79,13 +79,13 @@ export default function CommunityOverview() {
   }, [])
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
       {/* Ambient mint glow */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/20 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/12 blur-[160px]" />
       </div>
 
       {/* HERO — shared brand card */}

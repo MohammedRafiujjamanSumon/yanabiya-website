@@ -53,7 +53,7 @@ export default function SustainableGrowth() {
         subtitle="Building business practices that protect the environment and support long-term value for every stakeholder — in every country we operate."
       />
 
-      <Section id="sustainable-growth" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
+      <Section id="sustainable-growth" className="relative overflow-hidden bg-brand-50">
       <div className="container-x">
 
         <div className="mb-16">
@@ -67,7 +67,7 @@ export default function SustainableGrowth() {
 
         <div className="mb-16">
           <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-widest text-brand-accent mb-2">On the ground</div>
+            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">On the ground</div>
             <h3 className="font-serif text-3xl text-slate-900">Initiatives Across Our Regions</h3>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
@@ -77,7 +77,7 @@ export default function SustainableGrowth() {
                   <div className="text-4xl" aria-hidden>{c.flag}</div>
                   <div>
                     <h4 className="text-slate-900 text-lg font-semibold">{c.name}</h4>
-                    <div className="text-xs uppercase tracking-widest text-brand-accent mt-1">{c.role}</div>
+                    <div className="text-xs uppercase tracking-widest text-brand-accentDark mt-1">{c.role}</div>
                   </div>
                 </div>
                 <ul className="space-y-3 text-sm">
@@ -95,13 +95,13 @@ export default function SustainableGrowth() {
 
         <div>
           <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-widest text-brand-accent mb-2">Forward commitments</div>
+            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">Forward commitments</div>
             <h3 className="font-serif text-3xl text-slate-900">Targets We're Working Towards</h3>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {commitments.map((c) => (
               <div key={c.year} className="card-panel text-center">
-                <div className="font-serif text-3xl text-brand-accent">{c.year}</div>
+                <div className="font-serif text-3xl text-brand-accentDark">{c.year}</div>
                 <div className="text-sm text-slate-600 mt-2 leading-snug">{c.goal}</div>
               </div>
             ))}

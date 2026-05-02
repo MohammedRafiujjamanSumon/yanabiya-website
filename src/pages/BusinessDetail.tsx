@@ -36,7 +36,7 @@ export default function BusinessDetail() {
     <Section
       id="business-detail"
       className="relative overflow-hidden
-                 bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]"
+                 bg-brand-50"
     >
       {/* Brand backdrop — same dark forest-green / brand-accent halos
        *  as the home About section. Existing page copy stays as-is on
@@ -46,11 +46,11 @@ export default function BusinessDetail() {
         <div className="absolute -bottom-32 -right-24 w-[460px] h-[460px] rounded-full bg-amber-400/10 blur-[150px]" />
       </div>
       <div className="container-x relative">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-6 border-b border-white/10">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-6 border-b border-slate-200">
           <Link
             to="/#businesses"
             className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-[0.18em]
-                       text-slate-300 hover:text-brand-accent transition-colors"
+                       text-slate-300 hover:text-brand-accentDark transition-colors"
           >
             <ArrowLeft size={14} />
             Back to Service List
@@ -60,7 +60,7 @@ export default function BusinessDetail() {
               <Link
                 to={`/business/${prevBusiness.slug}`}
                 className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full
-                           border border-white/15 text-slate-200 hover:border-brand-accent/60 hover:text-brand-accent
+                           border border-slate-200 text-slate-200 hover:border-brand-accent hover:text-brand-accentDark
                            transition-colors"
                 title={prevBusiness.title}
               >
@@ -125,13 +125,13 @@ export default function BusinessDetail() {
 
             {!hasSubServices && (
               <div className="mt-12">
-                <h3 className="text-brand-accent uppercase tracking-[0.22em] text-xs font-bold mb-5">
+                <h3 className="text-brand-accentDark uppercase tracking-[0.22em] text-xs font-bold mb-5">
                   What We Offer
                 </h3>
                 <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5 text-left max-w-2xl mx-auto">
                   {business.features.map((f) => (
                     <li key={f} className="flex items-start gap-2 text-sm text-slate-200">
-                      <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" />
+                      <CheckCircle2 size={16} className="text-brand-accentDark shrink-0 mt-0.5" />
                       <span>{f}</span>
                     </li>
                   ))}
@@ -188,8 +188,8 @@ function RelatedDivisions({
   )
   if (others.length === 0) return null
   return (
-    <div className="mt-12 pt-10 border-t border-white/10">
-      <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-brand-accent mb-2">
+    <div className="mt-12 pt-10 border-t border-slate-200">
+      <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-brand-accentDark mb-2">
         From the Group
       </div>
       <h3 className="font-serif text-2xl md:text-3xl text-white leading-tight mb-6">
@@ -201,12 +201,12 @@ function RelatedDivisions({
           <Link
             key={b.slug}
             to={`/business/${b.slug}`}
-            className="group flex items-start gap-3 rounded-xl bg-white/[0.05] border border-white/10
+            className="group flex items-start gap-3 rounded-xl bg-white/[0.05] border border-slate-200
                        p-4 transition-all duration-300
-                       hover:bg-white/[0.10] hover:border-brand-accent/40 hover:-translate-y-0.5"
+                       hover:bg-white/[0.10] hover:border-brand-accent hover:-translate-y-0.5"
           >
             <span className="shrink-0 grid place-items-center w-10 h-10 rounded-lg
-                             bg-brand-accent/15 text-brand-accent
+                             bg-brand-accent/15 text-brand-accentDark
                              transition-colors duration-300
                              group-hover:bg-brand-accent group-hover:text-brand-deep">
               <b.icon size={18} strokeWidth={1.6} />
@@ -215,7 +215,7 @@ function RelatedDivisions({
               <div className="text-[13px] font-semibold text-white leading-tight">
                 {b.title.replace('🤝 ', '')}
               </div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.22em] text-brand-accent
+              <div className="mt-1 text-[10px] uppercase tracking-[0.22em] text-brand-accentDark
                               inline-flex items-center gap-1
                               transition-all duration-300
                               group-hover:gap-1.5">
@@ -323,7 +323,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
   const [submitted, setSubmitted] = useState(false)
   const [open, setOpen] = useState(false)
   const inputCls =
-    'w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-accent'
+    'w-full bg-white border border-slate-200 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-accent'
 
   return (
     <div className="mt-14 mx-auto max-w-3xl text-left">
@@ -349,33 +349,33 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
             e.preventDefault()
             setSubmitted(true)
           }}
-          className="bg-white/5 border border-brand-accent/20 rounded-xl p-5 md:p-6 grid gap-4 fade-up"
+          className="bg-white border border-brand-accent/20 rounded-xl p-5 md:p-6 grid gap-4 fade-up"
         >
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">Name</label>
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">Name</label>
               <input required type="text" placeholder="Full name" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">Email</label>
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">Email</label>
               <input required type="email" placeholder="you@company.com" className={inputCls} />
             </div>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">Phone</label>
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">Phone</label>
               <input required type="tel" placeholder="+968 …" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">Location</label>
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">Location</label>
               <input required type="text" placeholder="City, country" className={inputCls} />
             </div>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">
                 Our Service <span className="opacity-60 normal-case">({sectorTitle})</span>
               </label>
               <select title="Our Service" defaultValue="" className={inputCls} required>
@@ -388,7 +388,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
               </select>
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">Customer Type</label>
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">Customer Type</label>
               <select title="Customer Type" className={inputCls} defaultValue="">
                 <option value="" disabled className="bg-brand-ink">Select one</option>
                 <option className="bg-brand-ink">Individual</option>
@@ -408,7 +408,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
           </button>
 
           {submitted && (
-            <div className="text-sm text-brand-accent text-center">
+            <div className="text-sm text-brand-accentDark text-center">
               Thanks — your request has been received. Our team will contact you shortly.
             </div>
           )}

@@ -106,17 +106,17 @@ export default function ExecutionEngine() {
   }, [])
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/leadership" label="Back to Leadership" />
 
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/20 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/12 blur-[160px]" />
       </div>
 
       <PageHero
         eyebrow="High-Skill Execution Engine"
-        title={<>Engineers, operators &amp; specialists <span className="italic text-brand-accent">who ship.</span></>}
+        title={<>Engineers, operators &amp; specialists <span className="italic text-brand-accentDark">who ship.</span></>}
         subtitle="The cross-functional bench behind every Yanabiya project across IT, AI, trade, design, and delivery."
       />
 
@@ -126,10 +126,10 @@ export default function ExecutionEngine() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
             {STATS.map((s, i) => (
               <Reveal key={s.k} delay={i * 80}>
-                <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10
+                <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                 px-4 py-5 text-center">
-                  <div className="font-serif text-2xl md:text-3xl text-brand-accent">{s.v}</div>
-                  <div className="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-white/60">
+                  <div className="font-serif text-2xl md:text-3xl text-brand-accentDark">{s.v}</div>
+                  <div className="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-brand-deep/60">
                     {s.k}
                   </div>
                 </div>
@@ -148,12 +148,12 @@ export default function ExecutionEngine() {
                 <div className="flex items-end justify-between gap-4 mb-5 md:mb-6">
                   <div>
                     <div className="inline-flex items-center gap-2 rounded-full
-                                    bg-brand-accent/15 border border-brand-accent/30
+                                    bg-brand-accent/15 border border-brand-accentDark/40
                                     px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em]
-                                    text-brand-accent">
+                                    text-brand-accentDark">
                       <sq.icon size={11} /> {sq.title}
                     </div>
-                    <h2 className="mt-3 font-serif text-xl md:text-2xl text-white leading-tight max-w-xl">
+                    <h2 className="mt-3 font-serif text-xl md:text-2xl text-brand-deep leading-tight max-w-xl">
                       {sq.blurb}
                     </h2>
                   </div>
@@ -164,11 +164,11 @@ export default function ExecutionEngine() {
                 {sq.members.map((m, i) => (
                   <Reveal key={m.name} delay={i * 70}>
                     <div className="group rounded-2xl overflow-hidden
-                                    bg-white/5 backdrop-blur border border-white/10
+                                    bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                     transition-all duration-500
-                                    hover:-translate-y-1 hover:border-brand-accent/50
-                                    hover:bg-white/8">
-                      <div className="relative aspect-[4/5] overflow-hidden bg-white/5">
+                                    hover:-translate-y-1 hover:border-brand-accent
+                                    hover:bg-white">
+                      <div className="relative aspect-[4/5] overflow-hidden bg-white">
                         <img
                           src={m.image}
                           alt={m.name}
@@ -181,18 +181,18 @@ export default function ExecutionEngine() {
                                         from-[#04100a] via-[#04100a]/30 to-transparent" />
                       </div>
                       <div className="p-3 md:p-4">
-                        <div className="font-serif text-[14px] md:text-[15px] text-white leading-tight">
+                        <div className="font-serif text-[14px] md:text-[15px] text-brand-deep leading-tight">
                           {m.name}
                         </div>
-                        <div className="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-brand-accent">
+                        <div className="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-brand-accentDark">
                           {m.role}
                         </div>
                         {m.tags && (
                           <div className="mt-2 flex flex-wrap gap-1">
                             {m.tags.map((t) => (
-                              <span key={t} className="inline-block rounded-full bg-white/8
-                                                       border border-white/10 px-2 py-0.5
-                                                       text-[9px] uppercase tracking-[0.16em] text-white/70">
+                              <span key={t} className="inline-block rounded-full bg-white
+                                                       border border-slate-200 px-2 py-0.5
+                                                       text-[9px] uppercase tracking-[0.16em] text-brand-deep/70">
                                 {t}
                               </span>
                             ))}
@@ -209,19 +209,19 @@ export default function ExecutionEngine() {
       </section>
 
       {/* Closing band */}
-      <section className="relative border-t border-white/10">
+      <section className="relative border-t border-slate-200">
         <div className="container-x py-10 md:py-12">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="grid place-items-center w-10 h-10 rounded-full
-                              bg-brand-accent/15 border border-brand-accent/30 text-brand-accent">
+                              bg-brand-accent/15 border border-brand-accentDark/40 text-brand-accentDark">
                 <Cpu size={16} />
               </div>
               <div>
                 <div className="font-serif text-lg text-white leading-tight">
                   Building something complex?
                 </div>
-                <div className="text-[12px] text-white/60">
+                <div className="text-[12px] text-brand-deep/60">
                   Our execution bench picks it up — across countries and time zones.
                 </div>
               </div>

@@ -69,16 +69,16 @@ function TierHeader({ icon: Icon, kicker, title, subtitle }: {
     <Reveal className="text-center max-w-2xl mx-auto mb-5 md:mb-7">
       <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-accent/15 px-3 py-1
                       border border-brand-accent/30 mb-2">
-        <Icon size={11} className="text-brand-accent" />
-        <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-brand-accent">
+        <Icon size={11} className="text-brand-accentDark" />
+        <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-brand-accentDark">
           {kicker}
         </span>
       </div>
-      <h3 className="font-serif text-xl md:text-2xl text-white leading-tight">
+      <h3 className="font-serif text-xl md:text-2xl text-brand-deep leading-tight">
         {title}
       </h3>
       {subtitle && (
-        <p className="mt-1.5 text-[12px] md:text-[13px] text-white/60 leading-snug">
+        <p className="mt-1.5 text-[12px] md:text-[13px] text-brand-deep/60 leading-snug">
           {subtitle}
         </p>
       )}
@@ -89,11 +89,11 @@ function TierHeader({ icon: Icon, kicker, title, subtitle }: {
 function PersonTile({ p, size = 'sm' }: { p: Person; size?: 'sm' | 'lg' }) {
   const ringSize = size === 'lg' ? 'w-32 h-32 md:w-40 md:h-40' : 'w-20 h-20 md:w-24 md:h-24'
   const nameClass = size === 'lg'
-    ? 'text-base md:text-lg font-serif text-white'
-    : 'text-[12px] md:text-[13px] font-semibold text-white'
+    ? 'text-base md:text-lg font-serif text-brand-deep'
+    : 'text-[12px] md:text-[13px] font-semibold text-brand-deep'
   const roleClass = size === 'lg'
-    ? 'text-[11px] md:text-[12px] text-brand-accent uppercase tracking-[0.18em]'
-    : 'text-[10px] md:text-[11px] text-white/60'
+    ? 'text-[11px] md:text-[12px] text-brand-accentDark uppercase tracking-[0.18em]'
+    : 'text-[10px] md:text-[11px] text-brand-deep/60'
 
   return (
     <div className="text-center">
@@ -123,17 +123,17 @@ export default function LeadershipOverview() {
   }, [])
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/20 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/12 blur-[160px]" />
       </div>
 
       <PageHero
         eyebrow="Global Leadership"
-        title={<>Leadership across <span className="italic text-brand-accent">four continents.</span></>}
+        title={<>Leadership across <span className="italic text-brand-accentDark">four continents.</span></>}
         subtitle="Anchored by integrity and execution — five tiers from board to bench."
       />
 
@@ -215,10 +215,10 @@ export default function LeadershipOverview() {
               <Link
                 to="/leadership/execution-engine"
                 className="group relative block rounded-2xl overflow-hidden
-                           bg-white/5 backdrop-blur border border-white/10
+                           bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                            transition-all duration-500
-                           hover:-translate-y-1 hover:border-brand-accent/60
-                           hover:bg-white/8"
+                           hover:-translate-y-1 hover:border-brand-accent
+                           hover:bg-white"
               >
                 <div className="absolute inset-0 opacity-25 group-hover:opacity-35 transition-opacity duration-500">
                   <img
@@ -232,10 +232,10 @@ export default function LeadershipOverview() {
 
                 <div className="relative px-6 py-8 md:px-10 md:py-10 grid md:grid-cols-[1fr_auto] gap-6 items-center">
                   <div>
-                    <h4 className="font-serif text-2xl md:text-3xl text-white leading-tight">
+                    <h4 className="font-serif text-2xl md:text-3xl text-brand-deep leading-tight">
                       Meet the engineers, operators &amp; specialists who ship.
                     </h4>
-                    <p className="mt-2 text-[13px] md:text-sm text-white/70 max-w-xl leading-snug">
+                    <p className="mt-2 text-[13px] md:text-sm text-brand-deep/70 max-w-xl leading-snug">
                       Software, AI, trade ops, design, delivery — the cross-functional bench
                       behind every project across our four markets.
                     </p>
@@ -269,12 +269,12 @@ export default function LeadershipOverview() {
                   to={`/leadership/country/${c.code}`}
                   aria-label={`Open ${c.name} management team`}
                   className="group relative block rounded-xl overflow-hidden
-                             bg-white/5 backdrop-blur border border-white/10
+                             bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                              transition-all duration-500
-                             hover:-translate-y-1 hover:border-brand-accent/60
-                             hover:bg-white/8"
+                             hover:-translate-y-1 hover:border-brand-accent
+                             hover:bg-white"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-white/5">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-white">
                     <img
                       src={c.image}
                       alt=""
@@ -293,17 +293,17 @@ export default function LeadershipOverview() {
                       <div className="text-white font-serif text-[14px] md:text-[15px] leading-tight">
                         {c.head}
                       </div>
-                      <div className="text-white/70 text-[10px] md:text-[11px] mt-0.5">
+                      <div className="text-brand-deep/70 text-[10px] md:text-[11px] mt-0.5">
                         {c.role}
                       </div>
                     </div>
                   </div>
-                  <div className="px-3 py-2.5 flex items-center justify-between border-t border-white/10">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/60
-                                     group-hover:text-brand-accent transition-colors duration-300">
+                  <div className="px-3 py-2.5 flex items-center justify-between border-t border-slate-200">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-deep/60
+                                     group-hover:text-brand-accentDark transition-colors duration-300">
                       View Team
                     </span>
-                    <ArrowRight size={12} className="text-brand-accent
+                    <ArrowRight size={12} className="text-brand-accentDark
                                                      group-hover:translate-x-0.5 transition-transform duration-300" />
                   </div>
                 </Link>

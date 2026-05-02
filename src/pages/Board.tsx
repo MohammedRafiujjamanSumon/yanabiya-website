@@ -67,17 +67,17 @@ export default function Board() {
   }, [])
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/leadership" label="Back to Leadership" />
 
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/20 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/12 blur-[160px]" />
       </div>
 
       <PageHero
         eyebrow="Tier 01 · Global Board & Advisory"
-        title={<>Strategic oversight, <span className="italic text-brand-accent">independent counsel.</span></>}
+        title={<>Strategic oversight, <span className="italic text-brand-accentDark">independent counsel.</span></>}
         subtitle="Board members and senior advisors providing governance, risk oversight, and long-term strategic guidance."
         centered
       />
@@ -86,10 +86,10 @@ export default function Board() {
         <div className="container-x py-12 md:py-16 space-y-6">
           {BOARD.map((m, i) => (
             <Reveal key={m.name} delay={i * 90}>
-              <article className="rounded-3xl bg-white/5 backdrop-blur border border-white/10
+              <article className="rounded-3xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                   shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] overflow-hidden
                                   grid md:grid-cols-[220px_1fr]">
-                <div className="relative aspect-square md:aspect-auto bg-white/5">
+                <div className="relative aspect-square md:aspect-auto bg-white">
                   <img
                     src={m.image}
                     alt={m.name}
@@ -100,18 +100,18 @@ export default function Board() {
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
                   <span className="inline-flex items-center gap-1.5 rounded-full
-                                   bg-brand-accent/15 border border-brand-accent/30
+                                   bg-brand-accent/15 border border-brand-accentDark/40
                                    px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em]
-                                   text-brand-accent w-fit">
+                                   text-brand-accentDark w-fit">
                     <Crown size={11} /> Board & Advisory
                   </span>
-                  <h2 className="mt-3 font-serif text-xl md:text-2xl text-white leading-tight">
+                  <h2 className="mt-3 font-serif text-xl md:text-2xl text-brand-deep leading-tight">
                     {m.name}
                   </h2>
-                  <div className="mt-1 text-[11px] md:text-[12px] uppercase tracking-[0.2em] text-brand-accent">
+                  <div className="mt-1 text-[11px] md:text-[12px] uppercase tracking-[0.2em] text-brand-accentDark">
                     {m.role}
                   </div>
-                  <p className="mt-4 text-sm text-white/70 leading-snug max-w-2xl">
+                  <p className="mt-4 text-sm text-brand-deep/70 leading-snug max-w-2xl">
                     {m.bio}
                   </p>
                 </div>

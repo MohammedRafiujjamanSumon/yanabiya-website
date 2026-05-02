@@ -99,13 +99,13 @@ export default function Testimonials() {
         subtitle="Words from our partners, clients and beneficiaries — gathered across the four countries where Yanabiya Group operates."
       />
 
-      <Section id="testimonials" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
+      <Section id="testimonials" className="relative overflow-hidden bg-brand-50">
       <div className="container-x">
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">
           {stats.map((s) => (
             <div key={s.l} className="card-panel text-center">
-              <div className="font-serif text-2xl text-brand-accent">{s.v}</div>
+              <div className="font-serif text-2xl text-brand-accentDark">{s.v}</div>
               <div className="text-[10px] tracking-widest text-slate-500 uppercase mt-1">{s.l}</div>
             </div>
           ))}
@@ -121,7 +121,7 @@ export default function Testimonials() {
                   <div className="text-3xl" aria-hidden>{c.flag}</div>
                   <div>
                     <h3 className="font-serif text-2xl text-slate-900">{c.name}</h3>
-                    <div className="text-xs uppercase tracking-widest text-brand-accent mt-0.5">
+                    <div className="text-xs uppercase tracking-widest text-brand-accentDark mt-0.5">
                       {c.role}
                     </div>
                   </div>
@@ -134,7 +134,7 @@ export default function Testimonials() {
                     >
                       <Quote
                         size={28}
-                        className="text-brand-accent/40 absolute top-4 right-4"
+                        className="text-brand-accentDark/40 absolute top-4 right-4"
                         aria-hidden
                       />
                       {t.rating && (

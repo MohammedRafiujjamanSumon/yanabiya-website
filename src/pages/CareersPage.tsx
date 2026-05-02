@@ -51,7 +51,7 @@ export default function CareersPage() {
         subtitle="Join a global team across Oman, the United Kingdom, Bangladesh and the USA — and help shape the future of trade, technology and community."
       />
 
-      <Section id="careers" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
+      <Section id="careers" className="relative overflow-hidden bg-brand-50">
       <div className="container-x">
 
         <div className="mb-16">
@@ -65,7 +65,7 @@ export default function CareersPage() {
 
         <div className="mb-16">
           <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-widest text-brand-accent mb-2">Open Roles</div>
+            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">Open Roles</div>
             <h3 className="font-serif text-3xl text-slate-900">Opportunities by Office</h3>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
@@ -77,7 +77,7 @@ export default function CareersPage() {
                     <div className="text-4xl" aria-hidden>{c.flag}</div>
                     <div className="flex-1">
                       <h4 className="text-slate-900 text-lg font-semibold">{c.name}</h4>
-                      <div className="text-xs uppercase tracking-widest text-brand-accent mt-1">{c.role}</div>
+                      <div className="text-xs uppercase tracking-widest text-brand-accentDark mt-1">{c.role}</div>
                       <div className="flex items-start gap-2 text-xs text-slate-500 mt-2">
                         <MapPin size={12} className="shrink-0 mt-0.5" />
                         <span className="whitespace-pre-line">{c.address}</span>
@@ -89,7 +89,7 @@ export default function CareersPage() {
                       {roles.map((role) => (
                         <div key={role} className="flex items-center justify-between rounded-lg bg-white/60 border border-slate-100 px-3 py-2">
                           <span className="text-slate-800 text-sm">{role}</span>
-                          <span className="text-[10px] text-brand-accent uppercase tracking-widest border border-brand-accent/30 px-2 py-1 rounded-full">
+                          <span className="text-[10px] text-brand-accentDark uppercase tracking-widest border border-brand-accent/30 px-2 py-1 rounded-full">
                             Open
                           </span>
                         </div>
@@ -105,7 +105,7 @@ export default function CareersPage() {
         </div>
 
         <div className="card-panel text-center max-w-xl mx-auto">
-          <Mail className="text-brand-accent mx-auto mb-3" size={28} />
+          <Mail className="text-brand-accentDark mx-auto mb-3" size={28} />
           <h4 className="font-serif text-2xl text-slate-900 mb-2">Don't see the right role?</h4>
           <p className="text-slate-600 text-sm mb-5">
             Send us your CV and tell us where you'd like to contribute — we're always open to strong talent.

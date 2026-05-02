@@ -44,17 +44,17 @@ export default function DistributionDetail() {
   const next = DISTRIBUTIONS[(idx + 1) % DISTRIBUTIONS.length]
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/#distributed-leadership" label="Back to Distributed Leadership" />
 
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/20 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/12 blur-[160px]" />
       </div>
 
       <PageHero
         eyebrow={`Distributed Leadership · ${idx + 1}/${DISTRIBUTIONS.length}`}
-        title={<>{d.label.split(' ').slice(0, -1).join(' ')}{' '}<span className="italic text-brand-accent">{d.label.split(' ').slice(-1)[0]}.</span></>}
+        title={<>{d.label.split(' ').slice(0, -1).join(' ')}{' '}<span className="italic text-brand-accentDark">{d.label.split(' ').slice(-1)[0]}.</span></>}
         subtitle={d.short}
         centered
       />
@@ -73,8 +73,8 @@ export default function DistributionDetail() {
                               text-[10px] font-bold uppercase tracking-[0.2em]
                               border transition-all duration-300
                               ${active
-                                ? 'bg-brand-accent text-brand-deep border-brand-accent'
-                                : 'bg-white/5 text-white/70 border-white/15 hover:bg-white/10 hover:text-white'}`}
+                                ? 'bg-brand-deep text-brand-accent border-brand-deep'
+                                : 'bg-white text-brand-deep/70 border-slate-200 hover:bg-brand-deep hover:text-white hover:border-brand-deep'}`}
                 >
                   {t.label.replace('Distribution ', '')}
                 </Link>
@@ -89,9 +89,9 @@ export default function DistributionDetail() {
         <div className="container-x py-10 md:py-12">
           <Reveal>
             <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden
-                            bg-white/5 backdrop-blur border border-white/10
+                            bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                             grid md:grid-cols-[44%_1fr]">
-              <div className="relative aspect-[4/3] md:aspect-auto bg-white/5">
+              <div className="relative aspect-[4/3] md:aspect-auto bg-white">
                 <img
                   src={d.image}
                   alt=""
@@ -106,15 +106,15 @@ export default function DistributionDetail() {
               </div>
               <div className="p-6 md:p-8 flex flex-col justify-center">
                 <span className="inline-flex items-center gap-1.5 rounded-full
-                                 bg-brand-accent/15 border border-brand-accent/30
+                                 bg-brand-accent/15 border border-brand-accentDark/40
                                  px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em]
-                                 text-brand-accent w-fit">
+                                 text-brand-accentDark w-fit">
                   {d.label}
                 </span>
-                <h2 className="mt-3 font-serif text-xl md:text-2xl text-white leading-tight">
+                <h2 className="mt-3 font-serif text-xl md:text-2xl text-brand-deep leading-tight">
                   {d.body}
                 </h2>
-                <div className="mt-4 space-y-3 text-[13px] md:text-[14px] text-white/70 leading-relaxed">
+                <div className="mt-4 space-y-3 text-[13px] md:text-[14px] text-brand-deep/70 leading-relaxed">
                   {d.longBody.map((para, i) => (
                     <p key={i}>{para}</p>
                   ))}
@@ -126,32 +126,32 @@ export default function DistributionDetail() {
       </section>
 
       {/* PREV / NEXT */}
-      <section className="relative border-t border-white/10">
+      <section className="relative border-t border-slate-200">
         <div className="container-x py-8 md:py-10">
           <div className="grid sm:grid-cols-2 gap-3 max-w-5xl mx-auto">
             <Link
               to={`/leadership/distributed/${prev.slug}`}
-              className="group rounded-2xl bg-white/5 backdrop-blur border border-white/10
+              className="group rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                          p-4 md:p-5 transition-all duration-500
-                         hover:bg-white/8 hover:border-brand-accent/40"
+                         hover:bg-white hover:border-brand-accent"
             >
-              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-white/60">
+              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep/60">
                 <ArrowLeft size={11} /> Previous
               </div>
-              <div className="mt-1 font-serif text-base md:text-lg text-white leading-tight">
+              <div className="mt-1 font-serif text-base md:text-lg text-brand-deep leading-tight">
                 {prev.label}
               </div>
             </Link>
             <Link
               to={`/leadership/distributed/${next.slug}`}
-              className="group rounded-2xl bg-white/5 backdrop-blur border border-white/10
+              className="group rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                          p-4 md:p-5 transition-all duration-500
-                         hover:bg-white/8 hover:border-brand-accent/40 sm:text-right"
+                         hover:bg-white hover:border-brand-accent sm:text-right"
             >
-              <div className="flex sm:justify-end items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-white/60">
+              <div className="flex sm:justify-end items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep/60">
                 Next <ArrowRight size={11} />
               </div>
-              <div className="mt-1 font-serif text-base md:text-lg text-white leading-tight">
+              <div className="mt-1 font-serif text-base md:text-lg text-brand-deep leading-tight">
                 {next.label}
               </div>
             </Link>

@@ -68,17 +68,17 @@ export default function Management() {
   }, [])
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/leadership" label="Back to Leadership" />
 
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/20 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/12 blur-[160px]" />
       </div>
 
       <PageHero
         eyebrow="Global CEO & Vice Chairman"
-        title={<>Messages from <span className="italic text-brand-accent">our leadership.</span></>}
+        title={<>Messages from <span className="italic text-brand-accentDark">our leadership.</span></>}
         subtitle="The voices behind Yanabiya Group's strategy, culture, and long-term vision."
         centered
       />
@@ -88,11 +88,11 @@ export default function Management() {
           {BLOCKS.map((b, idx) => (
             <Reveal key={b.name} delay={idx * 120}>
               <article className="relative overflow-hidden rounded-3xl
-                                  bg-white/5 backdrop-blur border border-white/10
+                                  bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                   shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]">
                 {/* Decorative quote glyph */}
                 <Quote
-                  className="absolute -top-6 -right-6 text-brand-accent/8"
+                  className="absolute -top-6 -right-6 text-brand-accentDark/8"
                   size={180}
                   strokeWidth={1}
                 />
@@ -114,15 +114,15 @@ export default function Management() {
                         />
                       </div>
                       <span className="mt-5 inline-flex items-center gap-1.5 rounded-full
-                                       bg-brand-accent/15 border border-brand-accent/30
+                                       bg-brand-accent/15 border border-brand-accentDark/40
                                        px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em]
-                                       text-brand-accent">
+                                       text-brand-accentDark">
                         <b.icon size={11} /> {b.kicker}
                       </span>
-                      <div className="mt-3 font-serif text-lg md:text-xl text-white leading-tight whitespace-nowrap">
+                      <div className="mt-3 font-serif text-lg md:text-xl text-brand-deep leading-tight whitespace-nowrap">
                         {b.name}
                       </div>
-                      <div className="mt-1 text-[11px] md:text-[12px] uppercase tracking-[0.2em] text-brand-accent">
+                      <div className="mt-1 text-[11px] md:text-[12px] uppercase tracking-[0.2em] text-brand-accentDark">
                         {b.role}
                       </div>
                     </div>
@@ -134,29 +134,29 @@ export default function Management() {
                     {!b.photo && (
                       <div className="mb-6">
                         <span className="inline-flex items-center gap-1.5 rounded-full
-                                         bg-brand-accent/15 border border-brand-accent/30
+                                         bg-brand-accent/15 border border-brand-accentDark/40
                                          px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em]
-                                         text-brand-accent">
+                                         text-brand-accentDark">
                           <b.icon size={11} /> {b.kicker}
                         </span>
-                        <div className="mt-3 font-serif text-2xl md:text-3xl text-white leading-tight">
+                        <div className="mt-3 font-serif text-2xl md:text-3xl text-brand-deep leading-tight">
                           {b.name}
                         </div>
-                        <div className="mt-1 text-[11px] md:text-[12px] uppercase tracking-[0.2em] text-brand-accent">
+                        <div className="mt-1 text-[11px] md:text-[12px] uppercase tracking-[0.2em] text-brand-accentDark">
                           {b.role}
                         </div>
                       </div>
                     )}
-                    <p className="text-white/85 mb-5 text-[14px] md:text-[15px]">{b.greeting}</p>
-                    <div className="space-y-4 text-[13px] md:text-[14px] text-white/70 leading-relaxed text-justify">
+                    <p className="text-brand-deep/80 mb-5 text-[14px] md:text-[15px]">{b.greeting}</p>
+                    <div className="space-y-4 text-[13px] md:text-[14px] text-brand-deep/70 leading-relaxed text-justify">
                       {b.paragraphs.map((para, i) => (
                         <p key={i}>{para}</p>
                       ))}
                     </div>
-                    <div className="mt-8 pt-5 border-t border-white/10">
-                      <p className="text-white/70 text-[13px]">Sincerely,</p>
-                      <p className="font-serif text-lg text-white mt-1">{b.name}</p>
-                      <p className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-brand-accent mt-1">
+                    <div className="mt-8 pt-5 border-t border-slate-200">
+                      <p className="text-brand-deep/70 text-[13px]">Sincerely,</p>
+                      <p className="font-serif text-lg text-brand-deep mt-1">{b.name}</p>
+                      <p className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-brand-accentDark mt-1">
                         {b.signOffRole}
                       </p>
                     </div>

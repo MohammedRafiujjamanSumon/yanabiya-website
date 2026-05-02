@@ -49,17 +49,17 @@ export default function Executive() {
   }, [])
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/leadership" label="Back to Leadership" />
 
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/20 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/12 blur-[160px]" />
       </div>
 
       <PageHero
         eyebrow="Tier 03 · Global Executive Management"
-        title={<>The senior bench <span className="italic text-brand-accent">running the group.</span></>}
+        title={<>The senior bench <span className="italic text-brand-accentDark">running the group.</span></>}
         subtitle="Operations, finance, technology, marketing, people, and strategy — six leaders responsible for executing the group's plan."
         centered
       />
@@ -70,11 +70,11 @@ export default function Executive() {
             {EXECS.map((m, i) => (
               <Reveal key={m.name} delay={i * 80}>
                 <div className="group rounded-2xl overflow-hidden
-                                bg-white/5 backdrop-blur border border-white/10
+                                bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                 transition-all duration-500
-                                hover:-translate-y-1 hover:border-brand-accent/50
-                                hover:bg-white/8 h-full">
-                  <div className="relative aspect-[4/5] overflow-hidden bg-white/5">
+                                hover:-translate-y-1 hover:border-brand-accent
+                                hover:bg-white h-full">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-white">
                     <img
                       src={m.image}
                       alt={m.name}
@@ -87,18 +87,18 @@ export default function Executive() {
                     <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full
                                     bg-brand-accent/20 backdrop-blur border border-brand-accent/30
                                     px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.2em]
-                                    text-brand-accent">
+                                    text-brand-accentDark">
                       <Briefcase size={10} /> Executive
                     </div>
                   </div>
                   <div className="p-4 md:p-5">
-                    <div className="font-serif text-base md:text-lg text-white leading-tight">
+                    <div className="font-serif text-base md:text-lg text-brand-deep leading-tight">
                       {m.name}
                     </div>
-                    <div className="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-brand-accent">
+                    <div className="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-brand-accentDark">
                       {m.role}
                     </div>
-                    <p className="mt-3 text-[12px] md:text-[13px] text-white/65 leading-snug">
+                    <p className="mt-3 text-[12px] md:text-[13px] text-brand-deep/65 leading-snug">
                       {m.bio}
                     </p>
                   </div>

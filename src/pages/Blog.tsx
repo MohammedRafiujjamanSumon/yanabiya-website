@@ -66,7 +66,7 @@ export default function Blog() {
         subtitle="Stories, insights and updates from Yanabiya Group teams across Oman, the United Kingdom, Bangladesh and the USA."
       />
 
-      <Section id="blog" className="relative overflow-hidden bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]">
+      <Section id="blog" className="relative overflow-hidden bg-brand-50">
       <div className="container-x">
 
         <div className="mb-16">
@@ -89,7 +89,7 @@ export default function Blog() {
                 className={`px-4 py-2 rounded-full text-sm font-medium transition border ${
                   active
                     ? 'bg-brand-accent text-brand-ink border-brand-accent'
-                    : 'bg-white text-slate-600 border-slate-200 hover:border-brand-accent hover:text-brand-accent'
+                    : 'bg-white text-slate-600 border-slate-200 hover:border-brand-accent hover:text-brand-accentDark'
                 }`}
               >
                 {f.flag && <span className="me-2">{f.flag}</span>}
@@ -104,7 +104,7 @@ export default function Blog() {
             <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/10 to-transparent" />
             <div className="relative">
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-xs uppercase tracking-widest text-brand-accent">{feature.category}</span>
+                <span className="text-xs uppercase tracking-widest text-brand-accentDark">{feature.category}</span>
                 <span className="text-xs text-slate-400">•</span>
                 <span className="text-xs text-slate-500">{countryLabel(feature.country)}</span>
               </div>
@@ -112,7 +112,7 @@ export default function Blog() {
               <p className="text-slate-600 mb-6 leading-snug">{feature.excerpt}</p>
               <div className="flex items-center justify-between text-sm text-slate-500 border-t border-slate-200 pt-4">
                 <span className="flex items-center gap-2"><Calendar size={14} /> {feature.date}</span>
-                <span className="flex items-center gap-2 text-brand-accent">
+                <span className="flex items-center gap-2 text-brand-accentDark">
                   Read more <ArrowUpRight size={14} />
                 </span>
               </div>
@@ -124,7 +124,7 @@ export default function Blog() {
           {rest.map((p) => (
             <article key={p.title} className="card-panel">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs uppercase tracking-widest text-brand-accent">{p.category}</span>
+                <span className="text-xs uppercase tracking-widest text-brand-accentDark">{p.category}</span>
                 <span className="text-xs text-slate-400">•</span>
                 <span className="text-xs text-slate-500">{countryLabel(p.country)}</span>
               </div>
@@ -132,7 +132,7 @@ export default function Blog() {
               <p className="text-sm text-slate-600 mb-4">{p.excerpt}</p>
               <div className="flex items-center justify-between text-xs text-slate-500 border-t border-slate-200 pt-3">
                 <span className="flex items-center gap-1"><Calendar size={12} /> {p.date}</span>
-                <span className="text-brand-accent">→</span>
+                <span className="text-brand-accentDark">→</span>
               </div>
             </article>
           ))}

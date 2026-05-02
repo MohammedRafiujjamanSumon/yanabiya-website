@@ -20,7 +20,7 @@ export default function SubServiceDetail() {
           <h2 className="font-serif text-3xl text-white mb-4">Service not found</h2>
           <Link
             to="/#businesses"
-            className="inline-flex items-center gap-2 mt-4 text-brand-accent hover:text-white"
+            className="inline-flex items-center gap-2 mt-4 text-brand-accentDark hover:text-white"
           >
             <ArrowLeft size={14} /> Back to Service List
           </Link>
@@ -39,7 +39,7 @@ export default function SubServiceDetail() {
     <Section
       id="sub-service-detail"
       className="relative overflow-hidden
-                 bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a]"
+                 bg-brand-50"
     >
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-32 -left-24 w-[460px] h-[460px] rounded-full bg-emerald-500/15 blur-[150px]" />
@@ -47,12 +47,12 @@ export default function SubServiceDetail() {
       </div>
       <div className="container-x relative">
         {/* Breadcrumb + prev/next */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-6 border-b border-white/10">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-6 border-b border-slate-200">
           <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300 flex-wrap">
             <Link
               to="/#businesses"
               className="font-semibold uppercase tracking-[0.18em]
-                         hover:text-brand-accent transition-colors"
+                         hover:text-brand-accentDark transition-colors"
             >
               Our Service
             </Link>
@@ -60,7 +60,7 @@ export default function SubServiceDetail() {
             <Link
               to={`/business/${business.slug}`}
               className="font-semibold uppercase tracking-[0.18em]
-                         hover:text-brand-accent transition-colors"
+                         hover:text-brand-accentDark transition-colors"
             >
               {business.title.replace('🤝 ', '')}
             </Link>
@@ -75,7 +75,7 @@ export default function SubServiceDetail() {
               <Link
                 to={`/business/${business.slug}/${prev.slug}`}
                 className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full
-                           border border-white/15 text-slate-200 hover:border-brand-accent/60 hover:text-brand-accent
+                           border border-slate-200 text-slate-200 hover:border-brand-accent hover:text-brand-accentDark
                            transition-colors"
                 title={prev.title}
               >
@@ -108,7 +108,7 @@ export default function SubServiceDetail() {
             <div className="w-20 h-20 rounded-full bg-blue-100 text-blue-600 grid place-items-center ring-4 ring-white/10 shadow-lg">
               <sub.icon size={36} />
             </div>
-            <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-brand-accent">
+            <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-brand-accentDark">
               {business.title.replace('🤝 ', '')}
             </p>
             <h1 className="font-serif text-3xl md:text-4xl text-white leading-tight">
@@ -120,7 +120,7 @@ export default function SubServiceDetail() {
 
           {/* Features list — numbered, mirroring the live site's style but in our brand */}
           <div className="mt-8">
-            <h3 className="text-brand-accent uppercase tracking-[0.22em] text-xs font-bold mb-6 text-center">
+            <h3 className="text-brand-accentDark uppercase tracking-[0.22em] text-xs font-bold mb-6 text-center">
               What We Offer
             </h3>
             <ol className="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl mx-auto">
@@ -128,11 +128,11 @@ export default function SubServiceDetail() {
                 <li
                   key={f}
                   className="flex items-start gap-3 text-sm text-slate-200 rounded-lg
-                             bg-white/[0.03] border border-white/10 p-3
+                             bg-white/[0.03] border border-slate-200 p-3
                              hover:border-brand-accent/30 transition"
                 >
                   <span
-                    className="shrink-0 w-7 h-7 rounded-full bg-brand-accent/15 text-brand-accent
+                    className="shrink-0 w-7 h-7 rounded-full bg-brand-accent/15 text-brand-accentDark
                                grid place-items-center text-[11px] font-bold tracking-wide"
                   >
                     {String(i + 1).padStart(2, '0')}
@@ -148,7 +148,7 @@ export default function SubServiceDetail() {
 
           {/* Other services in this division */}
           {others.length > 0 && (
-            <div className="mt-16 pt-10 border-t border-white/10">
+            <div className="mt-16 pt-10 border-t border-slate-200">
               <h3 className="font-serif text-2xl md:text-3xl text-white leading-tight mb-6 text-center">
                 More services in this division
               </h3>
@@ -157,13 +157,13 @@ export default function SubServiceDetail() {
                   <Link
                     key={s.slug}
                     to={`/business/${business.slug}/${s.slug}`}
-                    className="group flex items-start gap-3 rounded-xl bg-white/[0.05] border border-white/10
+                    className="group flex items-start gap-3 rounded-xl bg-white/[0.05] border border-slate-200
                                p-4 transition-all duration-300
-                               hover:bg-white/[0.10] hover:border-brand-accent/40 hover:-translate-y-0.5"
+                               hover:bg-white/[0.10] hover:border-brand-accent hover:-translate-y-0.5"
                   >
                     <span
                       className="shrink-0 grid place-items-center w-10 h-10 rounded-lg
-                                 bg-brand-accent/15 text-brand-accent
+                                 bg-brand-accent/15 text-brand-accentDark
                                  transition-colors duration-300
                                  group-hover:bg-brand-accent group-hover:text-brand-deep"
                     >
@@ -174,7 +174,7 @@ export default function SubServiceDetail() {
                         {s.title}
                       </div>
                       <div
-                        className="mt-1 text-[10px] uppercase tracking-[0.22em] text-brand-accent
+                        className="mt-1 text-[10px] uppercase tracking-[0.22em] text-brand-accentDark
                                    inline-flex items-center gap-1
                                    transition-all duration-300
                                    group-hover:gap-1.5"
@@ -197,7 +197,7 @@ function SubServiceForm({ sub, businessTitle }: { sub: SubService; businessTitle
   const [submitted, setSubmitted] = useState(false)
   const [open, setOpen] = useState(false)
   const inputCls =
-    'w-full bg-white/5 border border-white/15 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-accent'
+    'w-full bg-white border border-slate-200 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-accent'
 
   return (
     <div className="mt-14 mx-auto max-w-3xl text-left">
@@ -223,33 +223,33 @@ function SubServiceForm({ sub, businessTitle }: { sub: SubService; businessTitle
             e.preventDefault()
             setSubmitted(true)
           }}
-          className="bg-white/5 border border-brand-accent/20 rounded-xl p-5 md:p-6 grid gap-4 fade-up"
+          className="bg-white border border-brand-accent/20 rounded-xl p-5 md:p-6 grid gap-4 fade-up"
         >
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">Name</label>
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">Name</label>
               <input required type="text" placeholder="Full name" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">Email</label>
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">Email</label>
               <input required type="email" placeholder="you@company.com" className={inputCls} />
             </div>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">Phone</label>
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">Phone</label>
               <input required type="tel" placeholder="+968 …" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">Location</label>
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">Location</label>
               <input required type="text" placeholder="City, country" className={inputCls} />
             </div>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">
                 Service <span className="opacity-60 normal-case">({businessTitle.replace('🤝 ', '')})</span>
               </label>
               <select title="Service" defaultValue={sub.slug} className={inputCls} required>
@@ -259,7 +259,7 @@ function SubServiceForm({ sub, businessTitle }: { sub: SubService; businessTitle
               </select>
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accent mb-2">Customer Type</label>
+              <label className="block text-xs uppercase tracking-[0.18em] text-brand-accentDark mb-2">Customer Type</label>
               <select title="Customer Type" className={inputCls} defaultValue="">
                 <option value="" disabled className="bg-brand-ink">Select one</option>
                 <option className="bg-brand-ink">Individual</option>
@@ -279,7 +279,7 @@ function SubServiceForm({ sub, businessTitle }: { sub: SubService; businessTitle
           </button>
 
           {submitted && (
-            <div className="text-sm text-brand-accent text-center">
+            <div className="text-sm text-brand-accentDark text-center">
               Thanks — your request has been received. Our team will contact you shortly.
             </div>
           )}

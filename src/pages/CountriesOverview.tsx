@@ -41,17 +41,17 @@ export default function CountriesOverview() {
   }, [])
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/leadership" label="Back to Leadership" />
 
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/20 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/12 blur-[160px]" />
       </div>
 
       <PageHero
         eyebrow="Tier 04 · Country-Based Management"
-        title={<>Local leadership, <span className="italic text-brand-accent">four markets.</span></>}
+        title={<>Local leadership, <span className="italic text-brand-accentDark">four markets.</span></>}
         subtitle="Country heads and local teams across Oman, the UK, Bangladesh, and the US. Pick a country to meet the team."
         centered
       />
@@ -65,12 +65,12 @@ export default function CountriesOverview() {
                   to={`/leadership/country/${c.code}`}
                   aria-label={`Open ${c.name} management team`}
                   className="group relative block rounded-2xl overflow-hidden
-                             bg-white/5 backdrop-blur border border-white/10
+                             bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                              transition-all duration-500
-                             hover:-translate-y-1 hover:border-brand-accent/60
-                             hover:bg-white/8"
+                             hover:-translate-y-1 hover:border-brand-accent
+                             hover:bg-white"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-white/5">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-white">
                     <img
                       src={c.image}
                       alt=""
@@ -89,18 +89,18 @@ export default function CountriesOverview() {
                       <div className="font-serif text-xl text-white leading-tight">
                         {c.head}
                       </div>
-                      <div className="text-[11px] uppercase tracking-[0.2em] text-brand-accent mt-1">
+                      <div className="text-[11px] uppercase tracking-[0.2em] text-brand-accentDark mt-1">
                         {c.role}
                       </div>
                     </div>
                   </div>
                   <div className="p-5 flex items-center justify-between gap-4">
-                    <p className="text-[12px] md:text-[13px] text-white/65 leading-snug">
+                    <p className="text-[12px] md:text-[13px] text-brand-deep/65 leading-snug">
                       {c.blurb}
                     </p>
                     <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5
-                                     bg-brand-accent/15 border border-brand-accent/30
-                                     text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent
+                                     bg-brand-accent/15 border border-brand-accentDark/40
+                                     text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accentDark
                                      group-hover:gap-2 transition-all duration-300">
                       View Team <ArrowRight size={11} />
                     </span>
