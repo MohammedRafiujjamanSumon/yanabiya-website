@@ -521,23 +521,27 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         </div>
       </SectionFrame>
 
-      {/* SECTION 5 — Our Network */}
-      <SectionFrame eyebrow="Our Network" title="Strategic & Operational Partners Working Alongside Us.">
-        <PartnerMarquee
-          title="Strategic Partners"
-          subtitle="Long-term relationships powering core delivery."
-          items={ops.strategicPartners}
-          direction="left"
-          durationSec={50}
-        />
-        <PartnerMarquee
-          title="Operational Partners"
-          subtitle="Service partners we collaborate with day to day."
-          items={ops.operationalPartners}
-          direction="right"
-          durationSec={55}
-          className="mt-8"
-        />
+      {/* SECTION 5 — Trusted Network CTA */}
+      <SectionFrame eyebrow="Our Network" title="Explore Our Global Trusted Network.">
+        <div className="flex justify-center">
+          <a
+            href="/#partnerships"
+            className="group inline-flex items-center gap-4 rounded-2xl
+                       bg-brand-deep text-white px-10 py-6
+                       shadow-[0_8px_32px_rgba(15,58,35,0.25)]
+                       hover:shadow-[0_16px_48px_rgba(15,58,35,0.35)]
+                       hover:-translate-y-1 transition-all duration-300"
+          >
+            <span className="text-lg font-semibold leading-tight">
+              View Our Trusted Partners &amp; Network
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+              className="shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
+              <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
+            </svg>
+          </a>
+        </div>
       </SectionFrame>
 
 
