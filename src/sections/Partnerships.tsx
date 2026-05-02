@@ -48,7 +48,7 @@ function LogoMarquee({
               src={p.logo}
               alt={p.name}
               loading="lazy"
-              className="h-16 max-w-[140px] object-contain mix-blend-multiply
+              className="h-16 max-w-[140px] object-contain
                          opacity-100 scale-100 group-hover:scale-125
                          transition-all duration-300"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -57,15 +57,15 @@ function LogoMarquee({
         ))}
       </div>
 
-      <div className="absolute inset-y-0 left-0  w-24 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 left-0  w-24 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
     </div>
   )
 }
 
 export default function Partnerships() {
   return (
-    <Section id="partnerships" className="bg-gray-50">
+    <Section id="partnerships" className="bg-white">
       <div className="container-x text-center mx-auto pt-1 pb-2 mb-4">
         <Eyebrow>Trusted Network</Eyebrow>
         <H2 className="!text-[18px] md:!text-[20px] text-center">
