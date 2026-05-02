@@ -32,6 +32,30 @@
   p, li, label, td, th, figcaption, blockquote {
     color: #1e5c38;
   }
+
+  /* Global transparent card treatment — makes all card/panel divs glass so
+     the lime radial body gradient shows through on every page */
+  div.bg-white, li.bg-white, article.bg-white, aside.bg-white {
+    background-color: rgba(255, 255, 255, 0.50) !important;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  div.bg-brand-50, li.bg-brand-50, article.bg-brand-50 {
+    background-color: rgba(245, 250, 236, 0.45) !important;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  div.bg-slate-50, li.bg-slate-50, article.bg-slate-50,
+  div.bg-gray-50,  li.bg-gray-50 {
+    background-color: rgba(248, 250, 252, 0.45) !important;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  div.bg-slate-100, li.bg-slate-100 {
+    background-color: rgba(241, 245, 249, 0.40) !important;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
   h1, h2, h3, h4 { @apply font-serif tracking-tight text-brand-deep; }
   html[dir='rtl'] body { font-family: 'Noto Naskh Arabic', 'Cairo', system-ui, sans-serif; }
   html[lang='bn'] body { font-family: 'Noto Sans Bengali', 'Hind Siliguri', Inter, sans-serif; }
@@ -75,11 +99,11 @@
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2;
   }
   .card-panel {
-    @apply bg-white border border-slate-200 rounded-xl p-6
-           hover:border-brand-accent hover:shadow-lg hover:shadow-brand-accent/10 transition;
+    @apply bg-white/40 backdrop-blur-md border border-white/60 rounded-xl p-6
+           hover:border-brand-accent/60 hover:shadow-lg hover:shadow-brand-accent/10 transition;
   }
   .glass {
-    @apply bg-white/90 backdrop-blur border border-slate-200 rounded-2xl shadow-md;
+    @apply bg-white/35 backdrop-blur-md border border-white/50 rounded-2xl shadow-md;
   }
   .eyebrow {
     @apply text-brand-accentDark text-xs font-semibold tracking-[0.25em] uppercase;
