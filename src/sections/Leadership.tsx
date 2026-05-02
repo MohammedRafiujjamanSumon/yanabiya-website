@@ -229,7 +229,7 @@ export default function Leadership() {
                   to={`/leadership/country/${c.code}`}
                   aria-label={`Open ${c.name} management team`}
                   className="group relative block rounded-xl overflow-hidden
-                             bg-white border border-slate-200
+                             bg-brand-50 border border-brand-deep/15
                              shadow-[0_8px_22px_-14px_rgba(15,58,35,0.25)]
                              transition-all duration-500
                              hover:-translate-y-1 hover:border-brand-accent/60
@@ -251,10 +251,10 @@ export default function Leadership() {
                       {c.name}
                     </div>
                     <div className="absolute bottom-0 inset-x-0 px-3 py-2.5">
-                      <div className="text-white font-serif text-[14px] md:text-[15px] leading-tight">
+                      <div className="text-brand-deep font-serif text-[14px] md:text-[15px] leading-tight">
                         {c.head}
                       </div>
-                      <div className="text-white/70 text-[10px] md:text-[11px] mt-0.5">
+                      <div className="text-brand-deep/70 text-[10px] md:text-[11px] mt-0.5">
                         {c.role}
                       </div>
                     </div>

@@ -44,7 +44,7 @@ export default function BackButton({ to, label }: Props) {
                  shadow-lg shadow-slate-900/10
                  px-4 py-2 text-xs font-semibold uppercase tracking-wider
                  text-slate-700 hover:text-brand-accentDark
-                 hover:bg-white hover:shadow-xl hover:-translate-x-0.5
+                 hover:bg-brand-50 hover:shadow-xl hover:-translate-x-0.5
                  transition-all duration-300"
     >
       <ArrowLeft

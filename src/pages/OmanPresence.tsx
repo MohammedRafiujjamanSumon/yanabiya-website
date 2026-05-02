@@ -429,7 +429,7 @@ function CapabilityScrollCard({ card, index }: { card: CapabilityCard; index: nu
   const speed = index % 2 === 0 ? 22 : 16
   return (
     <div
-      className="group relative h-full rounded-2xl bg-white border border-slate-200/90
+      className="group relative h-full rounded-2xl bg-brand-50 border border-brand-deep/15/90
                  p-6 md:p-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)]
                  transition-all duration-500
                  hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
@@ -553,7 +553,7 @@ function CountryMarquee({ active }: { active: CountryCode }) {
               aria-current={isActive ? 'true' : undefined}
               aria-label={`${p.shortName} — read more`}
               className={`group/chip relative shrink-0 flex items-center gap-2.5
-                          rounded-full bg-white border-2 shadow-md
+                          rounded-full bg-brand-50 border-2 shadow-md
                           transition-all duration-300
                           h-20 pl-1.5 pr-1.5
                           hover:pr-6 hover:-translate-y-0.5 hover:shadow-xl
@@ -564,7 +564,7 @@ function CountryMarquee({ active }: { active: CountryCode }) {
                           }`}
             >
               {/* Flag medallion — bigger circular, always visible */}
-              <span className={`shrink-0 w-16 h-16 md:w-[68px] md:h-[68px] rounded-full bg-white grid place-items-center
+              <span className={`shrink-0 w-16 h-16 md:w-[68px] md:h-[68px] rounded-full bg-brand-50 grid place-items-center
                                 text-3xl md:text-[34px] shadow-sm ring-2 transition-colors duration-300
                                 ${isActive
                                   ? 'ring-brand-accent'

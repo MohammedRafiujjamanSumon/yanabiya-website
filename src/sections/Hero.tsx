@@ -642,7 +642,7 @@ export default function Hero() {
               {active.headline}
             </h1>
             <p
-              className="text-white/95 text-base md:text-lg leading-snug mx-auto max-w-2xl
+              className="text-white text-base md:text-lg leading-snug mx-auto max-w-2xl
                          drop-shadow-lg fade-up"
               style={{ animationDelay: '300ms' }}
             >

@@ -17,10 +17,10 @@ export default function SubServiceDetail() {
     return (
       <Section id="sub-service-not-found" className="bg-brand-ink">
         <div className="container-x text-center text-slate-200 py-20">
-          <h2 className="font-serif text-3xl text-white mb-4">Service not found</h2>
+          <h2 className="font-serif text-3xl text-brand-deep mb-4">Service not found</h2>
           <Link
             to="/#businesses"
-            className="inline-flex items-center gap-2 mt-4 text-brand-accentDark hover:text-white"
+            className="inline-flex items-center gap-2 mt-4 text-brand-accentDark hover:text-brand-deep"
           >
             <ArrowLeft size={14} /> Back to Service List
           </Link>
@@ -65,7 +65,7 @@ export default function SubServiceDetail() {
               {business.title.replace('🤝 ', '')}
             </Link>
             <span className="text-slate-500">›</span>
-            <span className="font-semibold text-white normal-case tracking-normal">
+            <span className="font-semibold text-brand-deep normal-case tracking-normal">
               {sub.title}
             </span>
           </div>
@@ -91,7 +91,7 @@ export default function SubServiceDetail() {
                 to={`/business/${business.slug}/${next.slug}`}
                 className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full
                            bg-brand-accent text-brand-ink font-semibold uppercase tracking-[0.14em]
-                           hover:bg-white transition-colors"
+                           hover:bg-brand-50 transition-colors"
                 title={next.title}
               >
                 <span>Next:</span>
@@ -111,7 +111,7 @@ export default function SubServiceDetail() {
             <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-brand-accentDark">
               {business.title.replace('🤝 ', '')}
             </p>
-            <h1 className="font-serif text-3xl md:text-4xl text-white leading-tight">
+            <h1 className="font-serif text-3xl md:text-4xl text-brand-deep leading-tight">
               {sub.title}
             </h1>
             <div className="w-16 h-0.5 bg-brand-accent rounded-full" />
@@ -149,7 +149,7 @@ export default function SubServiceDetail() {
           {/* Other services in this division */}
           {others.length > 0 && (
             <div className="mt-16 pt-10 border-t border-slate-200">
-              <h3 className="font-serif text-2xl md:text-3xl text-white leading-tight mb-6 text-center">
+              <h3 className="font-serif text-2xl md:text-3xl text-brand-deep leading-tight mb-6 text-center">
                 More services in this division
               </h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -170,7 +170,7 @@ export default function SubServiceDetail() {
                       <s.icon size={18} strokeWidth={1.6} />
                     </span>
                     <div className="min-w-0 flex-1">
-                      <div className="text-[13px] font-semibold text-white leading-tight">
+                      <div className="text-[13px] font-semibold text-brand-deep leading-tight">
                         {s.title}
                       </div>
                       <div
@@ -197,12 +197,12 @@ function SubServiceForm({ sub, businessTitle }: { sub: SubService; businessTitle
   const [submitted, setSubmitted] = useState(false)
   const [open, setOpen] = useState(false)
   const inputCls =
-    'w-full bg-white border border-slate-200 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-accent'
+    'w-full bg-brand-50 border border-brand-deep/15 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-400 focus:outline-none focus:border-brand-accent'
 
   return (
     <div className="mt-14 mx-auto max-w-3xl text-left">
       <div className="text-center mb-6">
-        <h3 className="font-serif text-2xl md:text-3xl text-white">Get This Service</h3>
+        <h3 className="font-serif text-2xl md:text-3xl text-brand-deep">Get This Service</h3>
         <p className="text-sm text-slate-300 mt-2">
           Tell us a bit about yourself and we will get in touch within one business day.
         </p>
@@ -210,7 +210,7 @@ function SubServiceForm({ sub, businessTitle }: { sub: SubService; businessTitle
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="inline-flex items-center gap-2 mt-5 px-6 py-3 rounded-sm bg-brand-accent text-brand-ink uppercase tracking-[0.18em] text-[11px] font-bold hover:bg-white transition"
+            className="inline-flex items-center gap-2 mt-5 px-6 py-3 rounded-sm bg-brand-accent text-brand-ink uppercase tracking-[0.18em] text-[11px] font-bold hover:bg-brand-50 transition"
           >
             Request {sub.title} →
           </button>
@@ -223,7 +223,7 @@ function SubServiceForm({ sub, businessTitle }: { sub: SubService; businessTitle
             e.preventDefault()
             setSubmitted(true)
           }}
-          className="bg-white border border-brand-accent/20 rounded-xl p-5 md:p-6 grid gap-4 fade-up"
+          className="bg-brand-50 border border-brand-accent/20 rounded-xl p-5 md:p-6 grid gap-4 fade-up"
         >
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
@@ -273,7 +273,7 @@ function SubServiceForm({ sub, businessTitle }: { sub: SubService; businessTitle
 
           <button
             type="submit"
-            className="inline-flex items-center justify-center gap-2 mt-2 px-6 py-3 rounded-sm bg-brand-accent text-brand-ink uppercase tracking-[0.18em] text-[11px] font-bold hover:bg-white transition"
+            className="inline-flex items-center justify-center gap-2 mt-2 px-6 py-3 rounded-sm bg-brand-accent text-brand-ink uppercase tracking-[0.18em] text-[11px] font-bold hover:bg-brand-50 transition"
           >
             Request Service <Send size={14} />
           </button>

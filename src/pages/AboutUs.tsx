@@ -155,7 +155,7 @@ export default function AboutUs() {
       </section>
 
       {/* ───────── 2. WHO WE ARE ───────── */}
-      <section id="identity" className="relative py-14 md:py-14 bg-white border-y border-slate-100 scroll-mt-28">
+      <section id="identity" className="relative py-14 md:py-14 bg-brand-50 border-y border-slate-100 scroll-mt-28">
         <div className="container-x grid lg:grid-cols-12 gap-12 items-start">
           <Reveal className="lg:col-span-5">
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
@@ -226,7 +226,7 @@ export default function AboutUs() {
           <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
             {triptych.map((t, i) => (
               <Reveal key={t.eyebrow} delay={i * 150}>
-                <div className="group relative h-full rounded-2xl bg-white border border-slate-200 p-7
+                <div className="group relative h-full rounded-2xl bg-brand-50 border border-brand-deep/15 p-7
                                 hover:border-brand-accent/40 hover:-translate-y-1
                                 hover:shadow-[0_20px_60px_-20px_rgba(158,199,58,0.4)]
                                 transition-all duration-300">
@@ -266,7 +266,7 @@ export default function AboutUs() {
       </section>
 
       {/* ───────── 4. WHAT WE DO ───────── */}
-      <section id="capability" className="relative py-14 md:py-14 bg-white border-y border-slate-100 scroll-mt-28">
+      <section id="capability" className="relative py-14 md:py-14 bg-brand-50 border-y border-slate-100 scroll-mt-28">
         <div className="container-x">
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
@@ -286,7 +286,7 @@ export default function AboutUs() {
               <Reveal key={c.slug} delay={i * 80}>
                 <Link
                   to={`/business/${c.slug}`}
-                  className="group relative block h-full rounded-2xl border border-slate-200 bg-white
+                  className="group relative block h-full rounded-2xl border border-slate-200 bg-brand-50
                              p-6 overflow-hidden
                              hover:border-brand-accent/40 hover:-translate-y-0.5 hover:shadow-lg
                              transition-all duration-300"
@@ -362,7 +362,7 @@ export default function AboutUs() {
               ].map((s) => (
                 <div
                   key={s.label}
-                  className="rounded-2xl border border-slate-200 bg-white p-5 text-center"
+                  className="rounded-2xl border border-slate-200 bg-brand-50 p-5 text-center"
                 >
                   <div className="font-serif text-3xl md:text-4xl text-brand-accentDark">{s.value}</div>
                   <div className="mt-1 text-xs uppercase tracking-wider text-slate-600">{s.label}</div>
@@ -376,7 +376,7 @@ export default function AboutUs() {
               <Reveal key={p.code} delay={i * 100}>
                 <Link
                   to={`/country/${p.code.toLowerCase()}`}
-                  className="group block rounded-2xl border border-slate-200 bg-white p-5
+                  className="group block rounded-2xl border border-slate-200 bg-brand-50 p-5
                              hover:border-brand-accent/40 hover:-translate-y-1 hover:shadow-lg transition-all"
                 >
                   <div className="text-3xl">{p.flag}</div>

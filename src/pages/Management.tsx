@@ -88,7 +88,7 @@ export default function Management() {
           {BLOCKS.map((b, idx) => (
             <Reveal key={b.name} delay={idx * 120}>
               <article className="relative overflow-hidden rounded-3xl
-                                  bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
+                                  bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                   shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]">
                 {/* Decorative quote glyph */}
                 <Quote

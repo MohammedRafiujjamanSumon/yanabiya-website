@@ -99,7 +99,7 @@ export default function About() {
                   <Link
                     to="/about/our-story"
                     className="group inline-flex items-center gap-3 rounded-full
-                               pl-2 pr-5 py-2 bg-white
+                               pl-2 pr-5 py-2 bg-brand-50
                                border border-brand-deep/15 text-brand-deep
                                shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                hover:border-brand-accent hover:shadow-[0_8px_24px_rgba(15,58,35,0.12)]
@@ -133,7 +133,7 @@ export default function About() {
                   <Link
                     to="/about-us"
                     className="relative grid place-items-center w-24 h-24 rounded-full
-                               bg-white border border-brand-deep/15 text-brand-deep
+                               bg-brand-50 border border-brand-deep/15 text-brand-deep
                                shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                hover:border-brand-accent hover:-translate-y-0.5
                                hover:shadow-[0_8px_24px_rgba(15,58,35,0.12)]

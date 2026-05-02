@@ -187,7 +187,7 @@ export default function Community() {
                     <span aria-hidden className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                   </span>
                   {/* Content */}
-                  <span className="relative z-10 flex flex-col items-center justify-end h-full pb-3 px-2 text-white">
+                  <span className="relative z-10 flex flex-col items-center justify-end h-full pb-3 px-2 text-brand-deep">
                     <h.icon size={20} strokeWidth={1.8} className="mb-1 opacity-90 drop-shadow" />
                     <span className="font-bold text-sm md:text-[15px] leading-tight tracking-tight drop-shadow">
                       {h.title}

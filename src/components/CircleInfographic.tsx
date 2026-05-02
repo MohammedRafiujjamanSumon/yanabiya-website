@@ -86,7 +86,7 @@ export default function CircleInfographic({
                 className={`flex flex-col items-center text-center ${ZIG_ZAG_OFFSETS[i % ZIG_ZAG_OFFSETS.length]}`}
               >
                 <div
-                  className={`relative grid place-items-center w-28 h-28 md:w-32 md:h-32 rounded-full text-white shadow-xl
+                  className={`relative grid place-items-center w-28 h-28 md:w-32 md:h-32 rounded-full text-brand-deep shadow-xl
                               ring-4 ring-white/90 ${item.bg}`}
                 >
                   {item.icon && <div className="mb-1 opacity-90">{item.icon}</div>}

@@ -89,7 +89,7 @@ export default function Blog() {
                 className={`px-4 py-2 rounded-full text-sm font-medium transition border ${
                   active
                     ? 'bg-brand-accent text-brand-ink border-brand-accent'
-                    : 'bg-white text-slate-600 border-slate-200 hover:border-brand-accent hover:text-brand-accentDark'
+                    : 'bg-brand-50 text-slate-600 border-slate-200 hover:border-brand-accent hover:text-brand-accentDark'
                 }`}
               >
                 {f.flag && <span className="me-2">{f.flag}</span>}

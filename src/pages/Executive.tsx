@@ -70,11 +70,11 @@ export default function Executive() {
             {EXECS.map((m, i) => (
               <Reveal key={m.name} delay={i * 80}>
                 <div className="group rounded-2xl overflow-hidden
-                                bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
+                                bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                 transition-all duration-500
                                 hover:-translate-y-1 hover:border-brand-accent
-                                hover:bg-white h-full">
-                  <div className="relative aspect-[4/5] overflow-hidden bg-white">
+                                hover:bg-brand-50 h-full">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-brand-50">
                     <img
                       src={m.image}
                       alt={m.name}

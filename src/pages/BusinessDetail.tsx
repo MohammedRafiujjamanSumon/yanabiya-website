@@ -20,7 +20,7 @@ export default function BusinessDetail() {
     return (
       <Section id="business-not-found" className="bg-brand-ink">
         <div className="container-x text-center text-slate-200 py-20">
-          <h2 className="font-serif text-3xl text-white mb-4">Sector not found</h2>
+          <h2 className="font-serif text-3xl text-brand-deep mb-4">Sector not found</h2>
         </div>
       </Section>
     )
@@ -76,7 +76,7 @@ export default function BusinessDetail() {
                 to={`/business/${nextBusiness.slug}`}
                 className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full
                            bg-brand-accent text-brand-ink font-semibold uppercase tracking-[0.14em]
-                           hover:bg-white transition-colors"
+                           hover:bg-brand-50 transition-colors"
                 title={nextBusiness.title}
               >
                 <span>Next:</span>
@@ -113,7 +113,7 @@ export default function BusinessDetail() {
                 <div className="w-20 h-20 rounded-full bg-blue-100 text-blue-600 grid place-items-center ring-4 ring-white/10 shadow-lg">
                   <business.icon size={36} />
                 </div>
-                <h2 className="font-serif text-3xl md:text-4xl text-white leading-tight">
+                <h2 className="font-serif text-3xl md:text-4xl text-brand-deep leading-tight">
                   {business.title}
                 </h2>
                 <div className="w-16 h-0.5 bg-brand-accent rounded-full" />
@@ -192,7 +192,7 @@ function RelatedDivisions({
       <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-brand-accentDark mb-2">
         From the Group
       </div>
-      <h3 className="font-serif text-2xl md:text-3xl text-white leading-tight mb-6">
+      <h3 className="font-serif text-2xl md:text-3xl text-brand-deep leading-tight mb-6">
         Explore other divisions
       </h3>
 
@@ -212,7 +212,7 @@ function RelatedDivisions({
               <b.icon size={18} strokeWidth={1.6} />
             </span>
             <div className="min-w-0 flex-1">
-              <div className="text-[13px] font-semibold text-white leading-tight">
+              <div className="text-[13px] font-semibold text-brand-deep leading-tight">
                 {b.title.replace('🤝 ', '')}
               </div>
               <div className="mt-1 text-[10px] uppercase tracking-[0.22em] text-brand-accentDark
@@ -243,7 +243,7 @@ function SubServicesSection({
   return (
     <div className="text-left">
       <div className="text-center mb-10">
-        <h2 className="font-serif text-3xl md:text-4xl text-white leading-tight">
+        <h2 className="font-serif text-3xl md:text-4xl text-brand-deep leading-tight">
           {heading}
         </h2>
         <div className="w-16 h-0.5 bg-brand-accent rounded-full mx-auto mt-4" />
@@ -275,7 +275,7 @@ function SubServicesSection({
                       <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 text-blue-600 grid place-items-center ring-2 ring-white/40 shadow-lg">
                         <s.icon size={18} />
                       </div>
-                      <h3 className="text-white text-sm sm:text-base font-semibold leading-tight drop-shadow">
+                      <h3 className="text-brand-deep text-sm sm:text-base font-semibold leading-tight drop-shadow">
                         {s.title}
                       </h3>
                     </div>
@@ -323,12 +323,12 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
   const [submitted, setSubmitted] = useState(false)
   const [open, setOpen] = useState(false)
   const inputCls =
-    'w-full bg-white border border-slate-200 rounded-md px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-accent'
+    'w-full bg-brand-50 border border-brand-deep/15 rounded-md px-4 py-3 text-sm text-brand-deep placeholder:text-slate-400 focus:outline-none focus:border-brand-accent'
 
   return (
     <div className="mt-14 mx-auto max-w-3xl text-left">
       <div className="text-center mb-6">
-        <h3 className="font-serif text-2xl md:text-3xl text-white">Get Our Service</h3>
+        <h3 className="font-serif text-2xl md:text-3xl text-brand-deep">Get Our Service</h3>
         <p className="text-sm text-slate-300 mt-2">
           Tell us a bit about yourself and we will get in touch within one business day.
         </p>
@@ -336,7 +336,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="inline-flex items-center gap-2 mt-5 px-6 py-3 rounded-sm bg-brand-accent text-brand-ink uppercase tracking-[0.18em] text-[11px] font-bold hover:bg-white transition"
+            className="inline-flex items-center gap-2 mt-5 px-6 py-3 rounded-sm bg-brand-accent text-brand-ink uppercase tracking-[0.18em] text-[11px] font-bold hover:bg-brand-50 transition"
           >
             Get Our Service →
           </button>
@@ -349,7 +349,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
             e.preventDefault()
             setSubmitted(true)
           }}
-          className="bg-white border border-brand-accent/20 rounded-xl p-5 md:p-6 grid gap-4 fade-up"
+          className="bg-brand-50 border border-brand-accent/20 rounded-xl p-5 md:p-6 grid gap-4 fade-up"
         >
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
@@ -402,7 +402,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
 
           <button
             type="submit"
-            className="inline-flex items-center justify-center gap-2 mt-2 px-6 py-3 rounded-sm bg-brand-accent text-brand-ink uppercase tracking-[0.18em] text-[11px] font-bold hover:bg-white transition"
+            className="inline-flex items-center justify-center gap-2 mt-2 px-6 py-3 rounded-sm bg-brand-accent text-brand-ink uppercase tracking-[0.18em] text-[11px] font-bold hover:bg-brand-50 transition"
           >
             Request Service <Send size={14} />
           </button>

@@ -111,7 +111,7 @@ const COUNTRY_BG: Record<string, { blobs: { className: string }[] }> = {
     blobs: [
       { className: 'absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-red-700/8 blur-[160px]' },
       { className: 'absolute top-1/3 -right-40 w-[560px] h-[560px] rounded-full bg-emerald-600/8 blur-[160px]' },
-      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-white blur-[160px]' },
+      { className: 'absolute bottom-0 left-1/3 w-[640px] h-[640px] rounded-full bg-brand-50 blur-[160px]' },
     ],
   },
   GB: {
@@ -362,7 +362,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
               to="/contact"
               className="inline-flex items-center gap-2 rounded-full px-6 py-3
                          bg-brand-accent text-brand-ink text-xs font-bold uppercase tracking-[0.22em]
-                         shadow-md hover:bg-white hover:shadow-lg hover:-translate-y-0.5
+                         shadow-md hover:bg-brand-50 hover:shadow-lg hover:-translate-y-0.5
                          transition-all duration-300"
             >
               Contact Us <ArrowRight size={14} />
@@ -466,7 +466,7 @@ function ServiceBlocks({ services, countryName }: { services: Service[]; country
             return (
               <Reveal key={s.label} delay={i * 80}>
                 <div className="group relative rounded-2xl overflow-hidden
-                                bg-white border border-slate-200
+                                bg-brand-50 border border-brand-deep/15
                                 shadow-[0_8px_24px_rgba(15,58,35,0.08)]
                                 transition-all duration-500
                                 hover:border-brand-accent/55 hover:-translate-y-1
@@ -682,7 +682,7 @@ function BusinessActivities({
               </>
             )
             const cardClass = `group relative rounded-xl overflow-hidden
-                              bg-white shadow-sm backdrop-blur-md border border-slate-200
+                              bg-brand-50 shadow-sm backdrop-blur-md border border-slate-200
                               transition-all duration-500
                               hover:border-brand-accent/55 hover:-translate-y-1
                               hover:shadow-[0_18px_42px_rgba(158,199,58,0.25)]

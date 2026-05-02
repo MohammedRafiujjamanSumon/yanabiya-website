@@ -28,7 +28,7 @@ export default function Professionals() {
               <img
                 src={m.photo}
                 alt={m.name}
-                className="w-24 h-24 rounded-full object-cover mx-auto mb-3 border border-brand-accent/30 bg-white"
+                className="w-24 h-24 rounded-full object-cover mx-auto mb-3 border border-brand-accent/30 bg-brand-50"
                 onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
               />
               <div className="text-slate-900 text-sm font-medium leading-tight">{m.name}</div>

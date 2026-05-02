@@ -159,21 +159,21 @@ export default function SocialFloat() {
             style={{ transitionDelay: open ? `${i * 30}ms` : '0ms' }}
           >
             <span className="hidden md:inline-flex items-center rounded-full bg-brand-deep
-                             text-white text-[10px] font-bold uppercase tracking-[0.22em]
+                             text-brand-deep text-[10px] font-bold uppercase tracking-[0.22em]
                              px-2.5 py-1 shadow-md
                              opacity-0 -translate-x-1
                              group-hover:opacity-100 group-hover:translate-x-0
                              transition-all duration-200 whitespace-nowrap">
               {c.label}
             </span>
-            <span className="relative grid place-items-center w-10 h-10 rounded-full text-white
+            <span className="relative grid place-items-center w-10 h-10 rounded-full text-brand-deep
                              ring-2 ring-white/70
                              bg-gradient-to-br from-[#25d366] to-[#128c7e]
                              shadow-[0_8px_18px_-6px_rgba(37,211,102,0.55)]">
               <WhatsAppLogo size={20} />
               {/* Flag set inside the logo — bottom-right small overlay */}
               <span className="absolute -bottom-0.5 -right-0.5 grid place-items-center
-                               w-4 h-4 rounded-full bg-white text-[10px] leading-none
+                               w-4 h-4 rounded-full bg-brand-50 text-[10px] leading-none
                                ring-1 ring-white shadow-sm">
                 {c.flag}
               </span>
@@ -203,7 +203,7 @@ export default function SocialFloat() {
               }}
             >
               <span className="hidden md:inline-flex items-center rounded-full bg-brand-deep
-                               text-white text-[10px] font-bold uppercase tracking-[0.22em]
+                               text-brand-deep text-[10px] font-bold uppercase tracking-[0.22em]
                                px-2.5 py-1 shadow-md
                                opacity-0 -translate-x-1
                                group-hover:opacity-100 group-hover:translate-x-0
@@ -211,7 +211,7 @@ export default function SocialFloat() {
                 {c.label}
               </span>
               <span
-                className={`grid place-items-center w-10 h-10 rounded-full text-white
+                className={`grid place-items-center w-10 h-10 rounded-full text-brand-deep
                             ring-2 ring-white/70
                             ${c.bg}`}
                 style={{ boxShadow: `0 8px 18px -6px ${c.ring}` }}

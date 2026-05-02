@@ -105,7 +105,7 @@ export default function NetworkSection() {
           <div
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto
-                       bg-white rounded-2xl shadow-2xl p-8 md:p-10"
+                       bg-brand-50 rounded-2xl shadow-2xl p-8 md:p-10"
           >
             <button
               type="button"

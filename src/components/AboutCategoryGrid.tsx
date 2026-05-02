@@ -148,7 +148,7 @@ export default function AboutCategoryGrid() {
               type="button"
               onClick={() => setOpenKey(c.key)}
               className="group/card relative h-64 rounded-2xl overflow-hidden shadow-md ring-1 ring-slate-200/60
-                         bg-white text-left
+                         bg-brand-50 text-left
                          hover:-translate-y-1 hover:shadow-2xl hover:ring-brand-accent/40 transition-all duration-300
                          focus:outline-none focus:ring-2 focus:ring-brand-accent"
             >
@@ -167,7 +167,7 @@ export default function AboutCategoryGrid() {
                   <Icon size={22} />
                 </div>
                 <div className="mt-auto">
-                  <h3 className="font-serif text-white text-xl font-bold drop-shadow leading-tight">
+                  <h3 className="font-serif text-brand-deep text-xl font-bold drop-shadow leading-tight">
                     {c.label}
                   </h3>
                   <p className="mt-2 text-white/85 text-sm leading-snug line-clamp-2">
@@ -175,7 +175,7 @@ export default function AboutCategoryGrid() {
                   </p>
                   <span className="mt-3 inline-flex items-center gap-1.5 rounded-full
                                    px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider
-                                   bg-white text-brand-accentDark
+                                   bg-brand-50 text-brand-accentDark
                                    transition-all group-hover/card:bg-brand-accent group-hover/card:text-white">
                     Explore <ArrowRight size={12} className="ltr-flip transition-transform group-hover/card:translate-x-0.5" />
                   </span>
@@ -199,7 +199,7 @@ export default function AboutCategoryGrid() {
           <div
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-4xl max-h-[88vh] overflow-y-auto
-                       bg-white rounded-3xl shadow-2xl"
+                       bg-brand-50 rounded-3xl shadow-2xl"
           >
             {/* Modal header — image hero */}
             <div className="relative h-44 md:h-52 overflow-hidden rounded-t-3xl">
@@ -214,11 +214,11 @@ export default function AboutCategoryGrid() {
                   <div className="w-12 h-12 rounded-xl bg-white/95 text-brand-accentDark grid place-items-center shadow">
                     <active.cardIcon size={22} />
                   </div>
-                  <h3 className="font-serif text-white text-2xl md:text-3xl font-bold drop-shadow">
+                  <h3 className="font-serif text-brand-deep text-2xl md:text-3xl font-bold drop-shadow">
                     {active.label}
                   </h3>
                 </div>
-                <p className="mt-2 text-white/90 text-sm md:text-base max-w-2xl">
+                <p className="mt-2 text-brand-deep/85 text-sm md:text-base max-w-2xl">
                   {active.preview}
                 </p>
               </div>
@@ -228,7 +228,7 @@ export default function AboutCategoryGrid() {
                 aria-label="Close"
                 className="absolute top-4 right-4 w-9 h-9 rounded-full
                            bg-white/95 text-slate-700 grid place-items-center shadow
-                           hover:bg-white hover:text-brand-accentDark transition-colors"
+                           hover:bg-brand-50 hover:text-brand-accentDark transition-colors"
               >
                 <span className="text-xl leading-none">×</span>
               </button>

@@ -86,10 +86,10 @@ export default function Board() {
         <div className="container-x py-12 md:py-16 space-y-6">
           {BOARD.map((m, i) => (
             <Reveal key={m.name} delay={i * 90}>
-              <article className="rounded-3xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
+              <article className="rounded-3xl bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                   shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] overflow-hidden
                                   grid md:grid-cols-[220px_1fr]">
-                <div className="relative aspect-square md:aspect-auto bg-white">
+                <div className="relative aspect-square md:aspect-auto bg-brand-50">
                   <img
                     src={m.image}
                     alt={m.name}

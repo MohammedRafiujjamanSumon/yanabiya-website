@@ -34,7 +34,7 @@ export default function Contact() {
   )
 
   const ipt =
-    'bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 ' +
+    'bg-brand-50 border border-brand-deep/15 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 ' +
     'focus:outline-none focus:border-brand-accent focus:ring-4 focus:ring-brand-accent/15 transition-all'
 
   return (
@@ -71,7 +71,7 @@ export default function Contact() {
 
         {/* CONTACT FORM */}
         <div
-          className="mt-12 rounded-2xl bg-white border border-slate-200 p-8 md:p-10 shadow-sm fade-up"
+          className="mt-12 rounded-2xl bg-brand-50 border border-brand-deep/15 p-8 md:p-10 shadow-sm fade-up"
           style={{ animationDelay: '420ms' }}
         >
           <div className="text-center max-w-2xl mx-auto mb-8">
@@ -142,7 +142,7 @@ function OfficeBanner({
     <Link
       to={`/contact#${code}`}
       aria-label={`Open the ${countryName} office page`}
-      className="group relative flex flex-col rounded-md overflow-hidden bg-white
+      className="group relative flex flex-col rounded-md overflow-hidden bg-brand-50
                  shadow-[0_10px_24px_-8px_rgba(15,23,42,0.18)]
                  transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                  hover:-translate-y-1.5 hover:shadow-[0_22px_44px_-14px_rgba(15,23,42,0.30)]
@@ -196,7 +196,7 @@ function OfficeBanner({
         <span
           className="mt-5 inline-flex items-center justify-center gap-1.5 rounded-full
                      px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.18em]
-                     text-white transition-transform duration-300
+                     text-brand-deep transition-transform duration-300
                      group-hover:-translate-y-0.5 group-hover:gap-2"
           style={{ backgroundColor: palette.arrow }}
         >

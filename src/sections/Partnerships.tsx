@@ -34,7 +34,7 @@ function LogoMarquee({
             key={`${p.name}-${i}`}
             tabIndex={0}
             className="relative h-32 w-44 p-3 mx-1 shrink-0 rounded-lg
-                       bg-white border border-slate-200/70
+                       bg-brand-50 border border-brand-deep/15/70
                        shadow-[0_4px_10px_-4px_rgba(15,23,42,0.10)]
                        flex items-center justify-center
                        [transform-style:preserve-3d]

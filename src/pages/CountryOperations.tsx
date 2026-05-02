@@ -585,12 +585,12 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
                   {/* Floating icon chip */}
                   <div className={`absolute top-2 left-2 w-7 h-7 rounded-md
                                   bg-gradient-to-br ${c.tone} ring-1 ring-white/30
-                                  grid place-items-center text-white shadow-md`}>
+                                  grid place-items-center text-brand-deep shadow-md`}>
                     <c.icon size={13} strokeWidth={2.2} />
                   </div>
                   {/* Label sitting on the image bottom */}
                   <div className="absolute inset-x-0 bottom-0 p-2 text-center">
-                    <span className="font-semibold text-white text-[10px] md:text-[11px] leading-tight
+                    <span className="font-semibold text-brand-deep text-[10px] md:text-[11px] leading-tight
                                      drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] block">
                       {c.label}
                     </span>
@@ -630,7 +630,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             />
           ))}
         </div>
-        <div className="rounded-2xl bg-white border border-slate-200 backdrop-blur-sm p-5 md:p-6">
+        <div className="rounded-2xl bg-brand-50 border border-brand-deep/15 backdrop-blur-sm p-5 md:p-6">
           <div className="text-[10px] md:text-[11px] uppercase tracking-[0.28em] font-semibold text-brand-accentDark mb-3">
             Active sectors
           </div>
@@ -638,7 +638,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             {ops.activeSectors.map((s) => (
               <span
                 key={s}
-                className="inline-block px-3 py-1.5 rounded-full bg-white border border-slate-200
+                className="inline-block px-3 py-1.5 rounded-full bg-brand-50 border border-brand-deep/15
                            text-xs text-brand-deep/80"
               >
                 {s}
@@ -677,7 +677,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             to="/contact"
             className="inline-flex items-center gap-2 rounded-full px-7 py-3.5
                        bg-brand-accent text-brand-ink text-xs font-bold uppercase tracking-[0.22em]
-                       shadow-md hover:bg-white hover:shadow-lg hover:-translate-y-0.5
+                       shadow-md hover:bg-brand-50 hover:shadow-lg hover:-translate-y-0.5
                        transition-all duration-300"
           >
             Partner With Us <ArrowUpRight size={14} />
@@ -697,7 +697,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             to="/contact"
             className="inline-flex items-center gap-2 rounded-full px-6 py-3
                        bg-brand-accent text-brand-ink text-xs font-bold uppercase tracking-[0.22em]
-                       shadow-md hover:bg-white hover:shadow-lg hover:-translate-y-0.5
+                       shadow-md hover:bg-brand-50 hover:shadow-lg hover:-translate-y-0.5
                        transition-all duration-300"
           >
             Share Your Idea <Send size={14} />
@@ -706,7 +706,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             to="/contact"
             className="inline-flex items-center gap-2 rounded-full px-6 py-3
                        border border-brand-deep/20 text-brand-deep text-xs font-bold uppercase tracking-[0.22em]
-                       bg-white shadow-sm
+                       bg-brand-50 shadow-sm
                        hover:bg-brand-deep hover:text-white hover:-translate-y-0.5
                        transition-all duration-300"
           >
@@ -772,7 +772,7 @@ function Card3D({
     <Reveal delay={delay}>
       <div
         className={`group relative h-full overflow-hidden rounded-lg
-                    bg-white
+                    bg-brand-50
                     border ${accent ? 'border-amber-300/40' : 'border-slate-200'}
                     [transform-style:preserve-3d]
                     transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
@@ -828,7 +828,7 @@ function Card3D({
 function InfoRow({ label, value, icon: Icon }: { label: string; value: string; icon: LucideIcon }) {
   return (
     <Reveal>
-      <div className="flex items-start gap-2 rounded-lg bg-white
+      <div className="flex items-start gap-2 rounded-lg bg-brand-50
                       border border-slate-200 p-2.5 md:p-3
                       transition-colors duration-300 hover:border-brand-accent">
         <div className="shrink-0 w-7 h-7 rounded bg-brand-accent/20 text-brand-accentDark
@@ -860,7 +860,7 @@ function ServiceCard({
       <Link
         to={`/business/${service.slug}`}
         className="group relative block h-full overflow-hidden rounded-lg
-                   bg-white border border-slate-200
+                   bg-brand-50 border border-brand-deep/15
                    [transform-style:preserve-3d]
                    transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                    hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)]
@@ -1006,7 +1006,7 @@ function PartnerLogo({ item }: { item: PartnerItem }) {
                            undefined
 
   return (
-    <div className="group relative h-20 rounded-lg bg-white border border-slate-200
+    <div className="group relative h-20 rounded-lg bg-brand-50 border border-brand-deep/15
                     grid place-items-center p-2 overflow-hidden
                     transition-all duration-300 hover:-translate-y-1 hover:scale-[1.04]
                     hover:shadow-[0_18px_36px_-14px_rgba(0,0,0,0.45)]">
@@ -1023,7 +1023,7 @@ function PartnerLogo({ item }: { item: PartnerItem }) {
       ) : (
         <div
           className={`w-9 h-9 rounded-lg bg-gradient-to-br ${toneFor(item.name)}
-                      grid place-items-center text-white font-serif text-sm
+                      grid place-items-center text-brand-deep font-serif text-sm
                       shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_3px_8px_rgba(0,0,0,0.18)]`}
         >
           {monogramOf(item.name)}

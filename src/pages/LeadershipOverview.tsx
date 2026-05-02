@@ -215,10 +215,10 @@ export default function LeadershipOverview() {
               <Link
                 to="/leadership/execution-engine"
                 className="group relative block rounded-2xl overflow-hidden
-                           bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
+                           bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                            transition-all duration-500
                            hover:-translate-y-1 hover:border-brand-accent
-                           hover:bg-white"
+                           hover:bg-brand-50"
               >
                 <div className="absolute inset-0 opacity-25 group-hover:opacity-35 transition-opacity duration-500">
                   <img
@@ -269,12 +269,12 @@ export default function LeadershipOverview() {
                   to={`/leadership/country/${c.code}`}
                   aria-label={`Open ${c.name} management team`}
                   className="group relative block rounded-xl overflow-hidden
-                             bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
+                             bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                              transition-all duration-500
                              hover:-translate-y-1 hover:border-brand-accent
-                             hover:bg-white"
+                             hover:bg-brand-50"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-white">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-brand-50">
                     <img
                       src={c.image}
                       alt=""
@@ -290,7 +290,7 @@ export default function LeadershipOverview() {
                       {c.name}
                     </div>
                     <div className="absolute bottom-0 inset-x-0 px-3 py-2.5">
-                      <div className="text-white font-serif text-[14px] md:text-[15px] leading-tight">
+                      <div className="text-brand-deep font-serif text-[14px] md:text-[15px] leading-tight">
                         {c.head}
                       </div>
                       <div className="text-brand-deep/70 text-[10px] md:text-[11px] mt-0.5">

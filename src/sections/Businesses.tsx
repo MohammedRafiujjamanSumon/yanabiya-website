@@ -247,7 +247,7 @@ function GbsCircle({
       <span
         aria-hidden
         className={`absolute inset-0 rounded-full overflow-hidden ring-[3px] ring-white
-                    ${isLogoTile ? 'bg-white' : 'bg-slate-100'}`}
+                    ${isLogoTile ? 'bg-brand-50' : 'bg-slate-100'}`}
         style={{
           boxShadow: [
             'inset 0 6px 12px rgba(255,255,255,0.45)',
@@ -288,7 +288,7 @@ function GbsCircle({
        *  vertically pinned to ~60% from top so it never clips the rim. */}
       {!item.decorative && (
         <span className="absolute left-1/2 top-[62%] -translate-x-1/2 z-10
-                         w-[78%] text-center text-white
+                         w-[78%] text-center text-brand-deep
                          font-semibold leading-snug
                          text-[11px] md:text-[12px] lg:text-[13px]
                          tracking-tight
@@ -326,7 +326,7 @@ function FlowCardTile({ card, onSelect }: { card: FlowCard; onSelect: (slug: str
       onClick={() => onSelect(card.slug)}
       aria-label={`Open ${card.title}`}
       className={`group relative text-left rounded-2xl ${card.bg}
-                  text-white p-5 md:p-6
+                  text-brand-deep p-5 md:p-6
                   shadow-[0_10px_24px_-8px_rgba(15,23,42,0.45)]
                   transition-all duration-300
                   hover:-translate-y-1
@@ -559,7 +559,7 @@ function ServicesPyramid({
         aria-label="Open all services overview"
         className="group/hub absolute left-1/2 top-2 -translate-x-1/2 z-10"
       >
-        <div className="relative w-12 h-12 rounded-full bg-white ring-2 ring-brand-accent
+        <div className="relative w-12 h-12 rounded-full bg-brand-50 ring-2 ring-brand-accent
                         shadow-[0_8px_22px_-6px_rgba(15,58,35,0.45)]
                         grid place-items-center overflow-hidden
                         transition-transform duration-300 group-hover/hub:scale-110">
@@ -626,7 +626,7 @@ function NodeDetailPanel({
         <aside
           onClick={(e) => e.stopPropagation()}
           className="absolute top-0 right-0 h-full w-full sm:w-[480px] md:w-[560px]
-                     bg-white shadow-[0_0_60px_rgba(0,0,0,0.35)]
+                     bg-brand-50 shadow-[0_0_60px_rgba(0,0,0,0.35)]
                      border-l border-brand-accent/30
                      overflow-y-auto"
           style={{ animation: 'slideInRight 0.4s cubic-bezier(0.22,1,0.36,1) both' }}
@@ -647,7 +647,7 @@ function NodeDetailPanel({
             <div className="flex items-center gap-3 mb-2">
               <div className="w-12 h-12 rounded-xl bg-brand-deep grid place-items-center
                               ring-2 ring-brand-accent overflow-hidden">
-                <img src={assets.logo} alt="" className="w-9 h-9 object-contain bg-white rounded p-0.5" />
+                <img src={assets.logo} alt="" className="w-9 h-9 object-contain bg-brand-50 rounded p-0.5" />
               </div>
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark">
@@ -723,7 +723,7 @@ function NodeDetailPanel({
       <aside
         onClick={(e) => e.stopPropagation()}
         className="absolute top-0 right-0 h-full w-full sm:w-[440px] md:w-[500px]
-                   bg-white shadow-[0_0_60px_rgba(0,0,0,0.35)]
+                   bg-brand-50 shadow-[0_0_60px_rgba(0,0,0,0.35)]
                    border-l border-brand-accent/30
                    overflow-y-auto"
         style={{ animation: 'slideInRight 0.4s cubic-bezier(0.22,1,0.36,1) both' }}

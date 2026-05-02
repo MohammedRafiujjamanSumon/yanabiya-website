@@ -126,7 +126,7 @@ export default function ExecutionEngine() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
             {STATS.map((s, i) => (
               <Reveal key={s.k} delay={i * 80}>
-                <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
+                <div className="rounded-2xl bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                 px-4 py-5 text-center">
                   <div className="font-serif text-2xl md:text-3xl text-brand-accentDark">{s.v}</div>
                   <div className="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-brand-deep/60">
@@ -164,11 +164,11 @@ export default function ExecutionEngine() {
                 {sq.members.map((m, i) => (
                   <Reveal key={m.name} delay={i * 70}>
                     <div className="group rounded-2xl overflow-hidden
-                                    bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
+                                    bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                                     transition-all duration-500
                                     hover:-translate-y-1 hover:border-brand-accent
-                                    hover:bg-white">
-                      <div className="relative aspect-[4/5] overflow-hidden bg-white">
+                                    hover:bg-brand-50">
+                      <div className="relative aspect-[4/5] overflow-hidden bg-brand-50">
                         <img
                           src={m.image}
                           alt={m.name}
@@ -190,7 +190,7 @@ export default function ExecutionEngine() {
                         {m.tags && (
                           <div className="mt-2 flex flex-wrap gap-1">
                             {m.tags.map((t) => (
-                              <span key={t} className="inline-block rounded-full bg-white
+                              <span key={t} className="inline-block rounded-full bg-brand-50
                                                        border border-slate-200 px-2 py-0.5
                                                        text-[9px] uppercase tracking-[0.16em] text-brand-deep/70">
                                 {t}
@@ -218,7 +218,7 @@ export default function ExecutionEngine() {
                 <Cpu size={16} />
               </div>
               <div>
-                <div className="font-serif text-lg text-white leading-tight">
+                <div className="font-serif text-lg text-brand-deep leading-tight">
                   Building something complex?
                 </div>
                 <div className="text-[12px] text-brand-deep/60">

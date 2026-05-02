@@ -124,7 +124,7 @@ export default function Global() {
             {/* CENTRE — Yanabiya logo medallion, fixed (no spin). Sized
              *  down from 80/96 to 56/64 so the whole orbit reads clean. */}
             <div className="absolute inset-0 grid place-items-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white shadow-xl
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-brand-50 shadow-xl
                               ring-2 ring-brand-accentDark/60 overflow-hidden
                               grid place-items-center">
                 <img
@@ -193,7 +193,7 @@ export default function Global() {
                       className="absolute inset-0 rounded-3xl
                                  bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800
                                  ring-2 ring-emerald-300/50 shadow-[0_8px_24px_rgba(15,58,35,0.4)]
-                                 grid place-items-center text-center text-white
+                                 grid place-items-center text-center text-brand-deep
                                  [backface-visibility:hidden]
                                  [-webkit-backface-visibility:hidden]"
                       style={{ transform: 'rotateY(180deg)' }}

@@ -46,7 +46,7 @@ export default function GlobalOverviewPanel({
       <aside
         onClick={(e) => e.stopPropagation()}
         className="absolute top-0 right-0 h-full w-full sm:w-[480px] md:w-[560px]
-                   bg-white shadow-[0_0_60px_rgba(0,0,0,0.35)]
+                   bg-brand-50 shadow-[0_0_60px_rgba(0,0,0,0.35)]
                    border-l border-brand-accent/30
                    overflow-y-auto"
         style={{ animation: 'slideInRight 0.4s cubic-bezier(0.22,1,0.36,1) both' }}

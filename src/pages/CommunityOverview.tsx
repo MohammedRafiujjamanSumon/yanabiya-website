@@ -141,7 +141,7 @@ export default function CommunityOverview() {
                     aria-label={`Open ${h.title}`}
                     className={`group inline-flex flex-col items-center justify-center
                                 w-32 h-32 md:w-36 md:h-36 rounded-full
-                                ${h.bg} text-white text-center px-3
+                                ${h.bg} text-brand-deep text-center px-3
                                 shadow-[0_12px_28px_-8px_rgba(15,23,42,0.35)]
                                 transition-all duration-300
                                 hover:scale-110 hover:shadow-[0_20px_40px_-10px_rgba(15,23,42,0.45)]

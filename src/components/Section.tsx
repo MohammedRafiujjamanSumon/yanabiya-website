@@ -15,7 +15,7 @@ export default function Section({ id, className = '', children }: Props) {
 }
 
 export function Eyebrow({ children, tone = 'dark' }: { children: ReactNode; tone?: 'dark' | 'light' }) {
-  const color = tone === 'light' ? 'text-white' : 'text-brand-accentDark'
+  const color = tone === 'light' ? 'text-brand-deep' : 'text-brand-accentDark'
   // Group + after:pseudo for the horizontal underline that scales in
   // from the centre on hover / focus / active (touch).
   return (

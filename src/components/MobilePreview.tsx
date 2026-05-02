@@ -43,7 +43,7 @@ export default function MobilePreview() {
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition ${
                     d.id === deviceId
                       ? 'bg-brand-accent text-white'
-                      : 'bg-white/10 text-white hover:bg-white/20'
+                      : 'bg-white/10 text-brand-deep hover:bg-white/20'
                   }`}
                 >
                   {d.label}
@@ -51,7 +51,7 @@ export default function MobilePreview() {
               ))}
               <button
                 onClick={() => setLandscape((v) => !v)}
-                className="px-3 py-1.5 rounded-full text-xs font-medium bg-white/10 text-white hover:bg-white/20 inline-flex items-center gap-1.5"
+                className="px-3 py-1.5 rounded-full text-xs font-medium bg-white/10 text-brand-deep hover:bg-white/20 inline-flex items-center gap-1.5"
                 title="Rotate"
               >
                 <RotateCw size={12} /> {landscape ? 'Landscape' : 'Portrait'}
@@ -59,7 +59,7 @@ export default function MobilePreview() {
             </div>
             <button
               onClick={() => setOpen(false)}
-              className="w-9 h-9 rounded-full bg-white/10 text-white hover:bg-white/20 grid place-items-center"
+              className="w-9 h-9 rounded-full bg-white/10 text-brand-deep hover:bg-white/20 grid place-items-center"
               aria-label="Close"
             >
               <X size={18} />
@@ -73,7 +73,7 @@ export default function MobilePreview() {
           >
             <iframe
               src="/?preview=mobile"
-              className="w-full h-full bg-white rounded-[1.6rem]"
+              className="w-full h-full bg-brand-50 rounded-[1.6rem]"
               style={{ width: w, height: Math.min(h, window.innerHeight * 0.85 - 24) }}
               title="Mobile preview"
             />
@@ -83,7 +83,7 @@ export default function MobilePreview() {
           </div>
 
           {/* Footer info */}
-          <div className="absolute bottom-4 inset-x-0 text-center text-xs text-white/60">
+          <div className="absolute bottom-4 inset-x-0 text-center text-xs text-brand-deep/60">
             {w} × {h} px · Tap outside or × to close
           </div>
 

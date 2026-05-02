@@ -65,12 +65,12 @@ export default function CountriesOverview() {
                   to={`/leadership/country/${c.code}`}
                   aria-label={`Open ${c.name} management team`}
                   className="group relative block rounded-2xl overflow-hidden
-                             bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
+                             bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                              transition-all duration-500
                              hover:-translate-y-1 hover:border-brand-accent
-                             hover:bg-white"
+                             hover:bg-brand-50"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-white">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-brand-50">
                     <img
                       src={c.image}
                       alt=""
@@ -86,7 +86,7 @@ export default function CountriesOverview() {
                       {c.name}
                     </div>
                     <div className="absolute bottom-0 inset-x-0 px-5 py-4">
-                      <div className="font-serif text-xl text-white leading-tight">
+                      <div className="font-serif text-xl text-brand-deep leading-tight">
                         {c.head}
                       </div>
                       <div className="text-[11px] uppercase tracking-[0.2em] text-brand-accentDark mt-1">

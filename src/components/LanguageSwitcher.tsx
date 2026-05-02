@@ -19,7 +19,7 @@ export default function LanguageSwitcher() {
       {open && (
         <>
           <div className="fixed inset-0 z-30" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 rtl:left-0 rtl:right-auto mt-2 z-40 bg-white border border-slate-200 rounded-md py-2 min-w-[160px] shadow-xl">
+          <div className="absolute right-0 rtl:left-0 rtl:right-auto mt-2 z-40 bg-brand-50 border border-brand-deep/15 rounded-md py-2 min-w-[160px] shadow-xl">
             {languages.map((l) => (
               <button
                 key={l.code}

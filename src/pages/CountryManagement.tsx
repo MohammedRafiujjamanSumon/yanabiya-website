@@ -195,8 +195,8 @@ function PersonCard({ p, accent = false }: { p: Person; accent?: boolean }) {
     <div className={`group rounded-2xl overflow-hidden border transition-all duration-500
                      hover:-translate-y-1
                      ${accent
-                       ? 'bg-white border-brand-accent/50 hover:border-brand-accent shadow-[0_8px_22px_-14px_rgba(15,58,35,0.25)]'
-                       : 'bg-white border-slate-200 hover:border-brand-accent/60 shadow-[0_4px_16px_rgba(15,58,35,0.06)]'}`}>
+                       ? 'bg-brand-50 border-brand-accent/50 hover:border-brand-accent shadow-[0_8px_22px_-14px_rgba(15,58,35,0.25)]'
+                       : 'bg-brand-50 border-brand-deep/15 hover:border-brand-accent/60 shadow-[0_4px_16px_rgba(15,58,35,0.06)]'}`}>
       <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
         <img
           src={p.image}
@@ -264,7 +264,7 @@ export default function CountryManagement() {
                               border transition-all duration-300
                               ${active
                                 ? 'bg-brand-deep text-brand-accent border-brand-deep'
-                                : 'bg-white text-brand-deep/70 border-slate-200 hover:bg-brand-deep hover:text-white hover:border-brand-deep'}`}
+                                : 'bg-brand-50 text-brand-deep/70 border-slate-200 hover:bg-brand-deep hover:text-white hover:border-brand-deep'}`}
                 >
                   <span className="text-sm leading-none">{c.flag}</span> {c.name}
                 </Link>
@@ -279,7 +279,7 @@ export default function CountryManagement() {
         <div className="container-x py-10">
           <Reveal>
             <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden
-                            bg-white border border-slate-200
+                            bg-brand-50 border border-brand-deep/15
                             shadow-[0_20px_50px_-20px_rgba(15,58,35,0.18)]
                             grid md:grid-cols-[280px_1fr]">
               <div className="relative aspect-square md:aspect-auto bg-slate-100">
@@ -323,7 +323,7 @@ export default function CountryManagement() {
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-6 md:mb-8">
               <div className="inline-flex items-center gap-1.5 rounded-full
-                              bg-white border border-slate-200
+                              bg-brand-50 border border-brand-deep/15
                               px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-deep/70">
                 <Users size={11} /> Local Leadership
               </div>
@@ -348,7 +348,7 @@ export default function CountryManagement() {
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-6 md:mb-8">
               <div className="inline-flex items-center gap-1.5 rounded-full
-                              bg-white border border-slate-200
+                              bg-brand-50 border border-brand-deep/15
                               px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-deep/70">
                 Team Members
               </div>
@@ -370,7 +370,7 @@ export default function CountryManagement() {
             <Reveal>
               <div className="text-center mb-6 md:mb-8">
                 <div className="inline-flex items-center gap-1.5 rounded-full
-                                bg-white border border-slate-200
+                                bg-brand-50 border border-brand-deep/15
                                 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-deep/70">
                   <Phone size={11} /> Office Contact
                 </div>
@@ -382,7 +382,7 @@ export default function CountryManagement() {
             <Reveal delay={100}>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {/* Address */}
-                <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
+                <div className="rounded-2xl bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
                   <div className="flex items-center gap-2 text-brand-accentDark mb-2">
                     <MapPin size={14} />
                     <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Address</span>
@@ -406,7 +406,7 @@ export default function CountryManagement() {
                 </div>
 
                 {/* Phone + Mobile */}
-                <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
+                <div className="rounded-2xl bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
                   <div className="flex items-center gap-2 text-brand-accentDark mb-2">
                     <Phone size={14} />
                     <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Phone</span>
@@ -438,7 +438,7 @@ export default function CountryManagement() {
                 </div>
 
                 {/* Email */}
-                <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
+                <div className="rounded-2xl bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
                   <div className="flex items-center gap-2 text-brand-accentDark mb-2">
                     <Mail size={14} />
                     <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Email</span>
@@ -454,7 +454,7 @@ export default function CountryManagement() {
                 </div>
 
                 {/* Hours */}
-                <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
+                <div className="rounded-2xl bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
                   <div className="flex items-center gap-2 text-brand-accentDark mb-2">
                     <Clock size={14} />
                     <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Office Hours</span>

@@ -74,7 +74,7 @@ export default function DistributionDetail() {
                               border transition-all duration-300
                               ${active
                                 ? 'bg-brand-deep text-brand-accent border-brand-deep'
-                                : 'bg-white text-brand-deep/70 border-slate-200 hover:bg-brand-deep hover:text-white hover:border-brand-deep'}`}
+                                : 'bg-brand-50 text-brand-deep/70 border-slate-200 hover:bg-brand-deep hover:text-white hover:border-brand-deep'}`}
                 >
                   {t.label.replace('Distribution ', '')}
                 </Link>
@@ -89,9 +89,9 @@ export default function DistributionDetail() {
         <div className="container-x py-10 md:py-12">
           <Reveal>
             <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden
-                            bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
+                            bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                             grid md:grid-cols-[44%_1fr]">
-              <div className="relative aspect-[4/3] md:aspect-auto bg-white">
+              <div className="relative aspect-[4/3] md:aspect-auto bg-brand-50">
                 <img
                   src={d.image}
                   alt=""
@@ -131,9 +131,9 @@ export default function DistributionDetail() {
           <div className="grid sm:grid-cols-2 gap-3 max-w-5xl mx-auto">
             <Link
               to={`/leadership/distributed/${prev.slug}`}
-              className="group rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
+              className="group rounded-2xl bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                          p-4 md:p-5 transition-all duration-500
-                         hover:bg-white hover:border-brand-accent"
+                         hover:bg-brand-50 hover:border-brand-accent"
             >
               <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep/60">
                 <ArrowLeft size={11} /> Previous
@@ -144,9 +144,9 @@ export default function DistributionDetail() {
             </Link>
             <Link
               to={`/leadership/distributed/${next.slug}`}
-              className="group rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
+              className="group rounded-2xl bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                          p-4 md:p-5 transition-all duration-500
-                         hover:bg-white hover:border-brand-accent sm:text-right"
+                         hover:bg-brand-50 hover:border-brand-accent sm:text-right"
             >
               <div className="flex sm:justify-end items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-brand-deep/60">
                 Next <ArrowRight size={11} />

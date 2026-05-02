@@ -160,14 +160,14 @@ function CountryCard({
         type="button"
         onClick={onClick}
         className="group block w-full h-full text-left rounded-2xl
-                   bg-white border border-slate-200
+                   bg-brand-50 border border-brand-deep/15
                    p-6 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
                    transition-all duration-500
                    hover:border-brand-deep/40 hover:-translate-y-1
                    hover:shadow-[0_24px_60px_-20px_rgba(15,58,35,0.25)]"
       >
         <div className="flex items-start gap-4">
-          <div className="shrink-0 w-14 h-14 rounded-full bg-white grid place-items-center
+          <div className="shrink-0 w-14 h-14 rounded-full bg-brand-50 grid place-items-center
                           text-3xl shadow-sm ring-2 ring-brand-accent/30
                           group-hover:ring-brand-accent transition-colors duration-300">
             {data.flag}
@@ -249,7 +249,7 @@ function CountryPreviewPanel({
       <aside
         onClick={(e) => e.stopPropagation()}
         className="absolute top-0 right-0 h-full w-full sm:w-[480px] md:w-[560px]
-                   bg-white shadow-[0_0_60px_rgba(0,0,0,0.35)]
+                   bg-brand-50 shadow-[0_0_60px_rgba(0,0,0,0.35)]
                    border-l border-brand-accent/30
                    overflow-y-auto"
         style={{ animation: 'slideInRight 0.4s cubic-bezier(0.22,1,0.36,1) both' }}
@@ -276,7 +276,7 @@ function CountryPreviewPanel({
           {/* Header */}
           <div className="text-center">
             <div className="inline-flex items-center gap-3 mb-4">
-              <span className="w-14 h-14 rounded-full bg-white grid place-items-center
+              <span className="w-14 h-14 rounded-full bg-brand-50 grid place-items-center
                                text-3xl shadow-sm ring-2 ring-brand-accent/40">
                 {data.flag}
               </span>
@@ -612,7 +612,7 @@ function GlobalNetworkMap() {
                 <span
                   key={n.code}
                   className="inline-flex items-center gap-2 rounded-full px-3 py-1
-                             bg-white border border-slate-200 text-[11px] font-semibold
+                             bg-brand-50 border border-brand-deep/15 text-[11px] font-semibold
                              tracking-wide text-brand-deep/85"
                 >
                   <span aria-hidden className="text-base leading-none">{n.flag}</span>

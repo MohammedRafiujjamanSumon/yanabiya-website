@@ -206,7 +206,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 3. MISSION IN ACTION ───────── */}
-      <section className="relative py-14 md:py-20 bg-white border-y border-slate-100">
+      <section className="relative py-14 md:py-20 bg-brand-50 border-y border-slate-100">
         <div className="container-x">
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
@@ -298,7 +298,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 5. JOURNEY TIMELINE ───────── */}
-      <section className="relative py-14 md:py-20 bg-white border-y border-slate-100">
+      <section className="relative py-14 md:py-20 bg-brand-50 border-y border-slate-100">
         <div className="container-x">
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
@@ -388,7 +388,7 @@ export default function OurStory() {
                       className="absolute inset-0 w-full h-full object-cover scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    <div className="absolute bottom-5 left-5 text-white text-3xl">{r.flag}</div>
+                    <div className="absolute bottom-5 left-5 text-brand-deep text-3xl">{r.flag}</div>
                   </div>
                 </Reveal>
                 <Reveal delay={150} className="lg:col-span-5">
@@ -416,7 +416,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 7. LEADERSHIP ───────── */}
-      <section className="relative py-14 md:py-20 bg-white border-y border-slate-100">
+      <section className="relative py-14 md:py-20 bg-brand-50 border-y border-slate-100">
         <div className="container-x">
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
@@ -503,7 +503,7 @@ export default function OurStory() {
               ].map(({ icon: Icon, value, label }) => (
                 <div
                   key={label}
-                  className="rounded-2xl border border-slate-200 bg-white p-6 text-center
+                  className="rounded-2xl border border-slate-200 bg-brand-50 p-6 text-center
                              hover:border-brand-accent/40 hover:-translate-y-1 hover:shadow-lg transition-all"
                 >
                   <div className="w-11 h-11 rounded-xl bg-brand-accent/10 text-brand-accentDark grid place-items-center mx-auto">
@@ -519,7 +519,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 9. PARTNERSHIPS ───────── */}
-      <section className="relative py-12 md:py-16 bg-white border-y border-slate-100">
+      <section className="relative py-12 md:py-16 bg-brand-50 border-y border-slate-100">
         <div className="container-x">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <Reveal>
@@ -573,7 +573,7 @@ export default function OurStory() {
             </h2>
           </Reveal>
           <Reveal delay={350}>
-            <p className="mt-8 text-lg text-white/70 max-w-xl mx-auto leading-snug">
+            <p className="mt-8 text-lg text-brand-deep/70 max-w-xl mx-auto leading-snug">
               Whether you’re scaling a venture, sourcing a partner, or entering a new
               market — let’s talk about what’s possible.
             </p>
@@ -593,7 +593,7 @@ export default function OurStory() {
               <Link
                 to="/#businesses"
                 className="inline-flex items-center gap-2 rounded-full px-8 py-4
-                           border border-white/30 text-white font-semibold uppercase tracking-wider text-sm
+                           border border-white/30 text-brand-deep font-semibold uppercase tracking-wider text-sm
                            hover:bg-white/10 hover:border-white transition-all"
               >
                 <MapPin size={16} />
