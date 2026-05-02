@@ -42,7 +42,7 @@ function LogoMarquee({
         {loop.map((p, i) => (
           <div
             key={`${p.name}-${i}`}
-            className="group shrink-0 flex flex-col items-center justify-center gap-2 px-6
+            className="group shrink-0 flex items-center justify-center px-6
                        transition-all duration-300 ease-out cursor-pointer"
           >
             <img
@@ -54,11 +54,6 @@ function LogoMarquee({
                          transition-all duration-300"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
-            <span className="text-[10px] font-semibold text-brand-deep/70
-                             tracking-wide uppercase text-center leading-tight
-                             group-hover:text-brand-accentDark transition-colors duration-300">
-              {p.name}
-            </span>
           </div>
         ))}
       </div>
