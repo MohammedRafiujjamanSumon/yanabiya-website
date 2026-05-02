@@ -24,29 +24,12 @@ type NavGroup = {
   subGroups?: NavSubGroup[]
 }
 
-/**
- * n8n.io-style light navbar:
- *  - White background, dark text, subtle bottom border
- *  - Logo far left; nav items left-aligned immediately after
- *  - Hover-open dropdowns with title + description rows
- */
 export default function Navbar() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
   useScrollHeader(8, 80)
   const isHome = location.pathname === '/' || location.pathname === ''
-  const [scrollY, setScrollY] = useState(0)
-  useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-  // Hero is 78svh — past 60% of viewport height = scrolled past hero
-  const pastHero = scrollY > window.innerHeight * 0.6
-  // Dark mode: on home page while still over the dark hero video
-  const darkMode = isHome && !pastHero
-  const transparent = true
   const [open, setOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [mobileOpenGroup, setMobileOpenGroup] = useState<string | null>(null)
@@ -61,11 +44,8 @@ export default function Navbar() {
   const handleHashClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault()
     if (location.pathname === '/' || location.pathname === '') {
-      // Already on home — just smooth-scroll.
       scrollToHash(id)
     } else {
-      // Navigate to /#id; the Home page reads `useLocation().hash` and
-      // smooth-scrolls to that section once it has mounted.
       navigate(`/#${id}`)
     }
   }
@@ -79,7 +59,6 @@ export default function Navbar() {
     { label: 'Our Community',     parentRoute: '/community'  },
     { label: 'Our Leadership',    parentRoute: '/leadership' },
   ]
-  const ctaRoute = '/contact'
 
   useEffect(() => {
     const onScroll = () => {
@@ -101,30 +80,21 @@ export default function Navbar() {
     closeTimer.current = window.setTimeout(() => setOpenMenu(null), 120)
   }
 
-  // Like yanabiyagibt.com: white text always; active = solid white pill (dark text);
-  // on light sections (past hero) switch active pill to brand-deep
   const baseLinkCls = (isActive: boolean) =>
-    `relative text-sm font-semibold whitespace-nowrap py-[6px] px-[18px] rounded-xl
-     transition-all duration-200 tracking-wide ${
-      darkMode
-        ? `text-white/90 hover:text-white hover:bg-white/15
-           ${isActive ? 'bg-white text-brand-deep! hover:bg-white hover:text-brand-deep!' : ''}`
-        : `text-brand-deep hover:bg-brand-deep/10
-           ${isActive ? 'bg-brand-deep text-white! hover:bg-brand-deep hover:text-white!' : ''}`
+    `relative text-base font-medium whitespace-nowrap py-1.5 px-3
+     transition-colors duration-200
+     hover:text-white ${
+      isActive ? 'text-white underline underline-offset-4 decoration-brand-accent/70' : 'text-brand-accent'
     }`
 
   return (
     <header
-      className={`left-0 right-0 z-40 transition-all duration-500 sticky top-0
-                  backdrop-blur-md
-                  ${darkMode
-                    ? 'bg-transparent'
-                    : 'bg-white/20 shadow-sm shadow-black/5'}`}
+      className="left-0 right-0 z-40 sticky top-0 bg-transparent"
     >
       <div className="bg-transparent">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
 
-        {/* LEFT — LOGO. Larger, brighter, retina-friendly. */}
+        {/* LEFT — LOGO */}
         <Link to="/#home" className="flex items-center shrink-0 group py-1">
           <img
             src={assets.logo}
@@ -143,8 +113,6 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* RIGHT — same black bg as the inner bar so logo + nav cluster
-         *  read as one black band sandwiched between two green strips. */}
       <div
         className={`flex flex-1 items-center gap-4 h-11 lg:h-12 ps-4 pe-5 lg:pe-8
                     bg-transparent`}
@@ -174,11 +142,12 @@ export default function Navbar() {
                 )
               }
               if (g.parentRoute) {
+                const isPageActive = location.pathname.startsWith(g.parentRoute)
                 return (
                   <Link
                     key={g.label}
                     to={g.parentRoute}
-                    className={baseLinkCls(location.pathname.startsWith(g.parentRoute))}
+                    className={baseLinkCls(isPageActive)}
                   >
                     {g.label}
                   </Link>
@@ -261,16 +230,7 @@ export default function Navbar() {
                   >
                     {g.subGroups.map((sg) => (
                       <div key={sg.label} className="flex flex-col gap-1">
-                        {sg.parentRoute ? (
-                          <Link
-                            to={sg.parentRoute}
-                            onClick={() => setOpenMenu(null)}
-                            className="px-3 pt-1 pb-2 text-[11px] font-semibold uppercase tracking-wider
-                                       text-slate-400 hover:text-brand-accentDark transition"
-                          >
-                            {sg.label}
-                          </Link>
-                        ) : sg.parentSection ? (
+                        {sg.parentSection ? (
                           <Link
                             to={`/#${sg.parentSection}`}
                             onClick={(e) => { setOpenMenu(null); handleHashClick(e, sg.parentSection!) }}
@@ -401,25 +361,14 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* CTA — Contact Us green gradient pill (like yanabiyagibt.com) */}
-        <Link
-          to={ctaRoute}
-          className="shrink-0 ml-5 text-sm font-semibold text-white px-5 py-2 rounded
-                     transition-all duration-300 whitespace-nowrap tracking-wide
-                     shadow-md hover:-translate-y-0.5 hover:shadow-lg"
-          style={{ background: 'linear-gradient(to right, #28a745, #218838)' }}
-        >
-          {t('nav.contact')}
-        </Link>
-
         {/* RIGHT — Language switcher (desktop) */}
-        <div className={`shrink-0 ${darkMode ? 'text-white' : 'text-brand-deep'}`}>
+        <div className="shrink-0 text-brand-accent">
           <LanguageSwitcher />
         </div>
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className={`flex lg:hidden items-center ms-auto gap-1 ${darkMode ? 'text-white' : 'text-brand-deep'}`}>
+        <div className="flex lg:hidden items-center ms-auto gap-1 text-brand-accent">
           <LanguageSwitcher />
           <button
             type="button"
@@ -434,7 +383,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile drawer — mirrors desktop nav: all groups + dropdown items as accordions */}
+      {/* Mobile drawer */}
       {open && (
         <div className="lg:hidden mt-3 rounded-2xl bg-white ring-1 ring-slate-200 shadow-2xl shadow-slate-900/10 overflow-hidden">
           <div className="px-3 py-2 flex flex-col divide-y divide-slate-100">
@@ -462,13 +411,14 @@ export default function Navbar() {
                   )
                 }
                 if (g.parentRoute) {
+                  const isPageActive = location.pathname.startsWith(g.parentRoute)
                   return (
                     <Link
                       key={g.label}
                       to={g.parentRoute}
                       onClick={() => setOpen(false)}
                       className={`py-3 px-2 text-[15px] font-medium transition ${
-                        location.pathname.startsWith(g.parentRoute) ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
+                        isPageActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
                       }`}
                     >
                       {g.label}
@@ -554,17 +504,7 @@ export default function Navbar() {
                         return (
                           <div key={sg.label} className="rounded-lg">
                             <div className="flex items-stretch">
-                              {sg.parentRoute ? (
-                                <Link
-                                  to={sg.parentRoute}
-                                  onClick={() => { setOpen(false); setMobileOpenGroup(null); setMobileOpenSubGroup(null) }}
-                                  className={`flex-1 py-2.5 px-3 text-[14px] font-semibold transition ${
-                                    subActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
-                                  }`}
-                                >
-                                  {sg.label}
-                                </Link>
-                              ) : sg.parentSection ? (
+                              {sg.parentSection ? (
                                 <Link
                                   to={`/#${sg.parentSection}`}
                                   onClick={(e) => { setOpen(false); setMobileOpenGroup(null); setMobileOpenSubGroup(null); handleHashClick(e, sg.parentSection!) }}
@@ -585,20 +525,18 @@ export default function Navbar() {
                                   {sg.label}
                                 </button>
                               )}
-                              {sg.items.length > 0 && (
-                                <button
-                                  type="button"
-                                  onClick={() => setMobileOpenSubGroup(isOpenSub ? null : `${g.label}:${sg.label}`)}
-                                  aria-label={`Toggle ${sg.label} submenu`}
-                                  aria-expanded={isOpenSub}
-                                  className="px-3 text-slate-400 hover:text-brand-accentDark transition"
-                                >
-                                  <ChevronDown
-                                    size={14}
-                                    className={`transition-transform duration-200 ${isOpenSub ? 'rotate-180' : ''}`}
-                                  />
-                                </button>
-                              )}
+                              <button
+                                type="button"
+                                onClick={() => setMobileOpenSubGroup(isOpenSub ? null : `${g.label}:${sg.label}`)}
+                                aria-label={`Toggle ${sg.label} submenu`}
+                                aria-expanded={isOpenSub}
+                                className="px-3 text-slate-400 hover:text-brand-accentDark transition"
+                              >
+                                <ChevronDown
+                                  size={14}
+                                  className={`transition-transform duration-200 ${isOpenSub ? 'rotate-180' : ''}`}
+                                />
+                              </button>
                             </div>
                             {isOpenSub && (
                               <div className="pb-2 pl-3 flex flex-col gap-0.5">
