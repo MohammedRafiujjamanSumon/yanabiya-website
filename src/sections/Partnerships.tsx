@@ -45,7 +45,10 @@ function LogoMarquee({
           <div
             key={`${p.name}-${i}`}
             className={`group shrink-0 flex items-center justify-center cursor-pointer transition-all duration-300 ease-out
-              ${showBg ? 'px-8' : 'px-8'}`}
+              ${showBg
+                ? 'px-6 py-4 rounded-2xl border border-lime-200/70 shadow-sm bg-[#f0fce8] hover:bg-[#f7fef2] hover:shadow-md'
+                : 'px-8'
+              }`}
           >
             <img
               src={p.logo}
