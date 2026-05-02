@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  X as CloseIcon, ExternalLink, ArrowRight,
+  X as CloseIcon, ExternalLink, ArrowRight, ArrowLeft, ArrowDown,
   Cpu, Globe2, Shirt, Handshake, Building2, Users,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -125,6 +125,205 @@ function ServicesFlowchart({ onSelect }: { onSelect: (slug: string) => void }) {
         ))}
       </div>
     </div>
+  )
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+ * S-SHAPE SNAKE SERVICE CARDS
+ * 8 service cards (6 existing + 2 new) laid out in two connected rows that
+ * form an S / serpentine path. Row 1 flows L→R, row 2 flows R→L so a reader
+ * naturally tracks the flow like reading a book: left, right, down, left.
+ * ───────────────────────────────────────────────────────────────────────── */
+
+type ServiceItem = {
+  slug: string
+  num: string
+  title: string
+  tagline: string
+  image: string
+  badge?: 'new' | 'soon'
+}
+
+const SERVICE_ITEMS: ServiceItem[] = [
+  {
+    slug: 'it-software', num: '01',
+    title: 'IT Software & Web Development',
+    tagline: 'Custom software, cloud & AI solutions',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    slug: 'export-import', num: '02',
+    title: 'Export & Import Business',
+    tagline: 'Freight, customs & global trade',
+    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    slug: 'clothing', num: '03',
+    title: 'Clothing & Accessories',
+    tagline: 'Private label & garment sourcing',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    slug: 'agents-brokerage', num: '04',
+    title: 'Agents & Brokerage',
+    tagline: 'Insurance, loans & partnerships',
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    slug: 'office-management', num: '05',
+    title: 'Office Management Services',
+    tagline: 'Facility, security & operations',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    slug: 'manpower', num: '06',
+    title: 'Manpower Supply Services',
+    tagline: 'IT, security & construction staff',
+    image: 'https://images.unsplash.com/photo-1524069290683-0457abfe42c3?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    slug: 'ecommerce', num: '07',
+    title: 'Yanabiya Vertical E-Commerce',
+    tagline: 'B2B & B2C online marketplace',
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+    badge: 'new',
+  },
+  {
+    slug: 'service-apps', num: '08',
+    title: 'Yanabiya Service Apps',
+    tagline: 'Digital service platform',
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
+    badge: 'soon',
+  },
+]
+
+function SnakeCard({ item, onSelect }: { item: ServiceItem; onSelect: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      className="group w-full flex flex-col rounded-2xl overflow-hidden
+                 bg-white/65 border border-white/85 shadow-sm text-left
+                 hover:shadow-xl hover:shadow-brand-accent/12
+                 hover:-translate-y-1 hover:border-brand-accent/50
+                 transition-all duration-300 h-full"
+    >
+      {/* ── Image ── */}
+      <div className="relative w-full overflow-hidden" style={{ paddingBottom: '60%' }}>
+        <img
+          src={item.image}
+          alt={item.title}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover
+                     group-hover:scale-106 transition-transform duration-500"
+          onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = '0' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+
+        {/* Number badge */}
+        <span className="absolute top-2.5 left-2.5 w-7 h-7 rounded-full
+                          bg-brand-accent text-white text-[11px] font-bold
+                          flex items-center justify-center shadow-md ring-2 ring-white/30">
+          {item.num}
+        </span>
+
+        {/* Status badge */}
+        {item.badge === 'new' && (
+          <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full
+                           bg-emerald-500 text-white text-[9px] font-bold uppercase tracking-wide shadow">
+            New
+          </span>
+        )}
+        {item.badge === 'soon' && (
+          <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full
+                           bg-amber-500 text-white text-[9px] font-bold uppercase tracking-wide shadow">
+            Coming Soon
+          </span>
+        )}
+      </div>
+
+      {/* ── Text panel — always fully visible outside the image ── */}
+      <div className="px-3.5 py-3 flex flex-col gap-1 flex-1">
+        <h3 className="font-semibold text-brand-deep text-[13px] leading-snug line-clamp-2">
+          {item.title}
+        </h3>
+        <p className="text-brand-deep/55 text-[11px] leading-snug flex-1">
+          {item.tagline}
+        </p>
+        <div className="mt-2 inline-flex items-center gap-1 text-brand-accentDark text-[11px]
+                        font-semibold group-hover:gap-2 transition-all duration-200">
+          {item.badge === 'soon' ? 'Coming Soon' : 'Explore'}
+          <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
+        </div>
+      </div>
+    </button>
+  )
+}
+
+function ServicesSnakePath({ onSelect }: { onSelect: (slug: string) => void }) {
+  const row1 = SERVICE_ITEMS.slice(0, 4)
+  // Row 2 reversed → displayed L→R as [Apps, E-Com, Manpower, Office]
+  // but ← arrows show flow goes R→L (Office → Manpower → E-Com → Apps)
+  const row2 = [...SERVICE_ITEMS.slice(4, 8)].reverse()
+
+  const HArrow = ({ dir }: { dir: 'right' | 'left' }) => (
+    <div className="flex-none w-7 flex items-center justify-center shrink-0">
+      <div className="flex flex-col items-center gap-[3px]">
+        <div className="w-px h-2.5 rounded bg-brand-accent/25" />
+        {dir === 'right'
+          ? <ArrowRight size={13} className="text-brand-accent/65" />
+          : <ArrowLeft  size={13} className="text-brand-accent/65" />}
+        <div className="w-px h-2.5 rounded bg-brand-accent/25" />
+      </div>
+    </div>
+  )
+
+  return (
+    <>
+      {/* ── DESKTOP S-SNAKE (md+) ── */}
+      <div className="hidden md:block">
+
+        {/* Row 1: left → right */}
+        <div className="flex items-stretch">
+          {row1.map((item, i) => (
+            <Fragment key={item.slug}>
+              <div className="flex-1 min-w-0">
+                <SnakeCard item={item} onSelect={() => onSelect(item.slug)} />
+              </div>
+              {i < 3 && <HArrow dir="right" />}
+            </Fragment>
+          ))}
+        </div>
+
+        {/* S-turn: right-side down connector */}
+        <div className="flex justify-end pr-[3px] py-1">
+          <div className="flex flex-col items-center gap-[3px] text-brand-accent/60 w-7">
+            <div className="w-px h-3 rounded bg-brand-accent/30" />
+            <ArrowDown size={13} />
+            <div className="w-px h-3 rounded bg-brand-accent/30" />
+          </div>
+        </div>
+
+        {/* Row 2: right → left (reversed display, left-pointing arrows) */}
+        <div className="flex items-stretch">
+          {row2.map((item, i) => (
+            <Fragment key={item.slug}>
+              <div className="flex-1 min-w-0">
+                <SnakeCard item={item} onSelect={() => onSelect(item.slug)} />
+              </div>
+              {i < 3 && <HArrow dir="left" />}
+            </Fragment>
+          ))}
+        </div>
+      </div>
+
+      {/* ── MOBILE: 2-col grid ── */}
+      <div className="md:hidden grid grid-cols-2 gap-3">
+        {SERVICE_ITEMS.map((item) => (
+          <SnakeCard key={item.slug} item={item} onSelect={() => onSelect(item.slug)} />
+        ))}
+      </div>
+    </>
   )
 }
 
@@ -548,24 +747,6 @@ function ServicesPyramid({
         </div>
       </div>
 
-      {/* Apex hub — small Yanabiya logo above the pyramid, click → overview */}
-      <button
-        type="button"
-        onClick={onSelectHub}
-        aria-label="Open all services overview"
-        className="group/hub absolute left-1/2 top-2 -translate-x-1/2 z-10"
-      >
-        <div className="relative w-12 h-12 rounded-full bg-brand-50 ring-2 ring-brand-accent
-                        shadow-[0_8px_22px_-6px_rgba(15,58,35,0.45)]
-                        grid place-items-center overflow-hidden
-                        transition-transform duration-300 group-hover/hub:scale-110">
-          <img src={assets.logo} alt="Yanabiya Group" className="w-10 h-10 object-contain p-1" />
-        </div>
-        <span className="absolute left-1/2 -translate-x-1/2 top-full mt-1.5 whitespace-nowrap
-                         text-[8px] font-bold tracking-[0.32em] uppercase text-brand-accentDark">
-          Group HQ
-        </span>
-      </button>
 
       {/* Active layer label below the pyramid (responsive to active index) */}
       <div className="absolute left-1/2 -translate-x-1/2 bottom-2 text-center">
@@ -694,6 +875,60 @@ function NodeDetailPanel({
                   </Link>
                 )
               })}
+            </div>
+          </div>
+        </aside>
+      </div>
+    )
+  }
+
+  // UPCOMING divisions — e-commerce & service apps
+  if (slug === 'ecommerce' || slug === 'service-apps') {
+    const item = SERVICE_ITEMS.find((s) => s.slug === slug)!
+    return (
+      <div role="dialog" aria-modal="true" className="fixed inset-0 z-[100]" onClick={onClose}>
+        <div className="absolute inset-0 bg-slate-900/55 backdrop-blur-sm animate-[fadeUp_0.3s_ease-out_both]" />
+        <aside
+          onClick={(e) => e.stopPropagation()}
+          className="absolute top-0 right-0 h-full w-full sm:w-[420px]
+                     bg-brand-50 shadow-[0_0_60px_rgba(0,0,0,0.35)] border-l border-brand-accent/30
+                     overflow-y-auto flex flex-col"
+          style={{ animation: 'slideInRight 0.4s cubic-bezier(0.22,1,0.36,1) both' }}
+        >
+          <button type="button" onClick={onClose} aria-label="Close"
+            className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full
+                       bg-white/80 hover:bg-white border border-brand-deep/10
+                       grid place-items-center text-brand-deep transition-colors">
+            <CloseIcon size={16} />
+          </button>
+          <div className="relative aspect-[16/9] shrink-0 overflow-hidden">
+            <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 to-transparent" />
+            <div className="absolute bottom-5 left-6 right-6">
+              <span className="inline-block mb-2 px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide
+                               bg-amber-500 text-white shadow">
+                {slug === 'ecommerce' ? 'New Division' : 'Coming Soon'}
+              </span>
+              <h3 className="font-serif text-2xl text-white leading-tight">{item.title}</h3>
+            </div>
+          </div>
+          <div className="p-7 flex-1">
+            <p className="text-sm text-brand-deep/70 leading-relaxed">
+              {slug === 'ecommerce'
+                ? 'Yanabiya is launching a vertically integrated B2B & B2C e-commerce platform — connecting suppliers, manufacturers, and buyers across Oman, UK, Bangladesh, and the US.'
+                : 'Yanabiya Service Apps is a unified digital platform bringing all group services — logistics, manpower, insurance, and more — into a single mobile and web experience. Launching soon.'}
+            </p>
+            <div className="mt-6 p-4 rounded-xl bg-brand-accent/8 border border-brand-accent/20">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-1">
+                {slug === 'ecommerce' ? 'Get Early Access' : 'Get Notified'}
+              </p>
+              <p className="text-xs text-brand-deep/60">
+                Contact us at{' '}
+                <a href="mailto:admin@yanabiyagroup.com"
+                   className="text-brand-accentDark font-semibold hover:underline">
+                  admin@yanabiyagroup.com
+                </a>
+              </p>
             </div>
           </div>
         </aside>
@@ -850,36 +1085,31 @@ export default function Businesses() {
 
   return (
     <Section id="businesses" className="relative overflow-hidden bg-brand-50">
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none flex items-center justify-center">
-        <img src={assets.logo} alt="" className="w-[70%] max-w-[600px] object-contain opacity-[0.45]" />
-      </div>
-
       <div className="container-x pt-2 md:pt-3 pb-4 md:pb-6 relative">
 
         {/* TEXT ON TOP — pyramid below (matches /#about pattern). */}
         <div className="flex flex-col gap-12 md:gap-16 items-center">
 
-          {/* TOP — Our Service text, centered */}
+          {/* TOP — heading */}
           <div className="w-full max-w-3xl mx-auto text-center order-1">
             <Reveal>
               <Eyebrow>Our Service</Eyebrow>
             </Reveal>
             <Reveal delay={120}>
-              <h2 className="font-serif text-[16px]
-                             leading-snug tracking-tight text-brand-deep lg:whitespace-nowrap">
-                Six specialised divisions,{' '}
+              <h2 className="font-serif text-[16px] leading-snug tracking-tight text-brand-deep">
+                Eight specialised divisions,{' '}
                 <span className="text-brand-accentDark">delivering value across continents.</span>
               </h2>
             </Reveal>
           </div>
 
-          {/* MIDDLE — GBS-Model numbered-circle chain */}
-          <Reveal delay={200} className="w-full order-2">
-            <ServicesGBSModel onSelect={(slug) => setSelected(slug)} />
+          {/* MIDDLE — S-snake card layout */}
+          <Reveal delay={180} className="w-full order-2">
+            <ServicesSnakePath onSelect={(slug) => setSelected(slug)} />
           </Reveal>
 
-          {/* BOTTOM — Get a Quote CTA + Live signal pill */}
-          <Reveal delay={320} className="w-full order-3">
+          {/* BOTTOM — CTA */}
+          <Reveal delay={280} className="w-full order-3">
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Link
                 to="/contact"
@@ -892,7 +1122,7 @@ export default function Businesses() {
               </Link>
               <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.32em] text-brand-accentDark font-bold">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                Live · {PYRAMID_LAYERS.length} layers
+                Live · {SERVICE_ITEMS.length} divisions
               </div>
             </div>
           </Reveal>
