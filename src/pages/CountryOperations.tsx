@@ -107,7 +107,9 @@ const OPS: Record<string, CountryOps> = {
     // Yanabiya umbrella. Strategic = long-term partners that anchor
     // core categories (internet, cloud, aviation); Operational =
     // service partners delivering connectivity, comms and tech.
-    strategicPartners: [],
+    strategicPartners: [
+      { name: 'Plexus Cloud', logo: '/logos/partners-co/plexuscloud.png' },
+    ],
     operationalPartners: [],
     categories: [
       { label: 'Internet Services & Connectivity',          icon: Globe2,    tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80' },
