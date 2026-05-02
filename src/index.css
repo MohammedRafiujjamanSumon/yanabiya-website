@@ -7,16 +7,25 @@
   body {
     background:
       radial-gradient(
-        ellipse 75% 55% at 50% 38%,
-        #cfe5a4 0%,
-        #e8f3d4 28%,
-        #f0f8e8 55%,
-        #f9fdf5 100%
+        ellipse 80% 60% at 50% 40%,
+        #b8e040 0%,
+        #cfe5a4 22%,
+        #e8f3d4 46%,
+        #f5faec 70%,
+        #fafef8 100%
       );
     background-attachment: fixed;
     color: #1f2937;
     min-height: 100vh;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Section-level and page-level wrappers that use bg-brand-50 should be
+     transparent so the body radial gradient shows through.
+     Card / input / small-element bg-brand-50 (on div/span/etc.) is unaffected. */
+  section.bg-brand-50,
+  main.bg-brand-50 {
+    background-color: transparent !important;
   }
   h1, h2, h3, h4 { @apply font-serif tracking-tight text-slate-900; }
   html[dir='rtl'] body { font-family: 'Noto Naskh Arabic', 'Cairo', system-ui, sans-serif; }
