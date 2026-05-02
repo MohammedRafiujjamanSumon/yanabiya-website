@@ -5,7 +5,15 @@
 @layer base {
   html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
   body {
-    background: #f5faec;
+    background:
+      radial-gradient(
+        ellipse 75% 55% at 50% 38%,
+        #cfe5a4 0%,
+        #e8f3d4 28%,
+        #f0f8e8 55%,
+        #f9fdf5 100%
+      );
+    background-attachment: fixed;
     color: #1f2937;
     min-height: 100vh;
     -webkit-tap-highlight-color: transparent;
