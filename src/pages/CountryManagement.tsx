@@ -195,9 +195,9 @@ function PersonCard({ p, accent = false }: { p: Person; accent?: boolean }) {
     <div className={`group rounded-2xl overflow-hidden border transition-all duration-500
                      hover:-translate-y-1
                      ${accent
-                       ? 'bg-white/10 border-brand-accent/40 hover:border-brand-accent/70'
-                       : 'bg-white/5 border-white/10 hover:border-brand-accent/50 hover:bg-white/8'}`}>
-      <div className="relative aspect-[4/5] overflow-hidden bg-white/5">
+                       ? 'bg-white border-brand-accent/50 hover:border-brand-accent shadow-[0_8px_22px_-14px_rgba(15,58,35,0.25)]'
+                       : 'bg-white border-slate-200 hover:border-brand-accent/60 shadow-[0_4px_16px_rgba(15,58,35,0.06)]'}`}>
+      <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
         <img
           src={p.image}
           alt={p.name}
@@ -206,12 +206,10 @@ function PersonCard({ p, accent = false }: { p: Person; accent?: boolean }) {
                      transition-transform duration-700 group-hover:scale-105"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
         />
-        <div className="absolute inset-0 bg-gradient-to-t
-                        from-[#04100a] via-[#04100a]/30 to-transparent" />
       </div>
       <div className="p-3 md:p-4">
-        <div className="font-serif text-[14px] md:text-[15px] text-white leading-tight">{p.name}</div>
-        <div className="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-brand-accent">
+        <div className="font-serif text-[14px] md:text-[15px] text-brand-deep leading-tight">{p.name}</div>
+        <div className="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-brand-accentDark">
           {p.role}
         </div>
       </div>
@@ -237,12 +235,12 @@ export default function CountryManagement() {
   if (!team) return <Navigate to="/leadership" replace />
 
   return (
-    <main className="relative bg-gradient-to-br from-[#0a1410] via-[#0c1f17] to-[#04100a] text-white overflow-hidden min-h-screen">
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/leadership" label="Back to Leadership" />
 
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/8 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/6 blur-[160px]" />
+        <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/15 blur-[160px]" />
+        <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/10 blur-[160px]" />
       </div>
 
       <PageHero
@@ -265,8 +263,8 @@ export default function CountryManagement() {
                               text-[11px] font-bold uppercase tracking-[0.2em]
                               border transition-all duration-300
                               ${active
-                                ? 'bg-brand-accent text-brand-deep border-brand-accent'
-                                : 'bg-white/5 text-white/70 border-white/15 hover:bg-white/10 hover:text-white'}`}
+                                ? 'bg-brand-deep text-brand-accent border-brand-deep'
+                                : 'bg-white text-brand-deep/70 border-slate-200 hover:bg-brand-deep hover:text-white hover:border-brand-deep'}`}
                 >
                   <span className="text-sm leading-none">{c.flag}</span> {c.name}
                 </Link>
@@ -281,10 +279,10 @@ export default function CountryManagement() {
         <div className="container-x py-10">
           <Reveal>
             <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden
-                            bg-gradient-to-br from-white/8 to-white/4
-                            backdrop-blur border border-white/10
+                            bg-white border border-slate-200
+                            shadow-[0_20px_50px_-20px_rgba(15,58,35,0.18)]
                             grid md:grid-cols-[280px_1fr]">
-              <div className="relative aspect-square md:aspect-auto bg-white/5">
+              <div className="relative aspect-square md:aspect-auto bg-slate-100">
                 <img
                   src={team.head.image}
                   alt={team.head.name}
@@ -295,21 +293,21 @@ export default function CountryManagement() {
               </div>
               <div className="p-6 md:p-8 flex flex-col justify-center">
                 <span className="inline-flex items-center gap-1.5 rounded-full
-                                 bg-brand-accent/15 border border-brand-accent/30
+                                 bg-brand-accent/20 border border-brand-accentDark/40
                                  px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em]
-                                 text-brand-accent w-fit">
+                                 text-brand-accentDark w-fit">
                   <Crown size={11} /> Country Head
                 </span>
-                <h2 className="mt-3 font-serif text-2xl md:text-3xl text-white leading-tight">
+                <h2 className="mt-3 font-serif text-2xl md:text-3xl text-brand-deep leading-tight">
                   {team.head.name}
                 </h2>
-                <div className="mt-1 text-[12px] md:text-[13px] uppercase tracking-[0.22em] text-brand-accent">
+                <div className="mt-1 text-[12px] md:text-[13px] uppercase tracking-[0.22em] text-brand-accentDark">
                   {team.head.role}
                 </div>
-                <div className="mt-3 inline-flex items-center gap-1.5 text-white/70 text-[12px]">
+                <div className="mt-3 inline-flex items-center gap-1.5 text-brand-deep/70 text-[12px]">
                   <MapPin size={12} /> {team.city}, {team.name}
                 </div>
-                <p className="mt-4 text-sm text-white/70 leading-snug max-w-md">
+                <p className="mt-4 text-sm text-brand-deep/70 leading-snug max-w-md">
                   Leads the {team.name} office across operations, partnerships, and delivery —
                   with full ownership of the country P&amp;L and team.
                 </p>
@@ -325,11 +323,11 @@ export default function CountryManagement() {
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-6 md:mb-8">
               <div className="inline-flex items-center gap-1.5 rounded-full
-                              bg-white/5 border border-white/10
-                              px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-white/70">
+                              bg-white border border-slate-200
+                              px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-deep/70">
                 <Users size={11} /> Local Leadership
               </div>
-              <h3 className="mt-3 font-serif text-xl md:text-2xl text-white leading-tight">
+              <h3 className="mt-3 font-serif text-xl md:text-2xl text-brand-deep leading-tight">
                 The senior bench in {team.name}.
               </h3>
             </div>
@@ -350,11 +348,11 @@ export default function CountryManagement() {
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-6 md:mb-8">
               <div className="inline-flex items-center gap-1.5 rounded-full
-                              bg-white/5 border border-white/10
-                              px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-white/70">
+                              bg-white border border-slate-200
+                              px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-deep/70">
                 Team Members
               </div>
-              <h3 className="mt-3 font-serif text-xl md:text-2xl text-white leading-tight">
+              <h3 className="mt-3 font-serif text-xl md:text-2xl text-brand-deep leading-tight">
                 The wider {team.name} team.
               </h3>
             </div>
@@ -372,11 +370,11 @@ export default function CountryManagement() {
             <Reveal>
               <div className="text-center mb-6 md:mb-8">
                 <div className="inline-flex items-center gap-1.5 rounded-full
-                                bg-white/5 border border-white/10
-                                px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-white/70">
+                                bg-white border border-slate-200
+                                px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-deep/70">
                   <Phone size={11} /> Office Contact
                 </div>
-                <h3 className="mt-3 font-serif text-xl md:text-2xl text-white leading-tight">
+                <h3 className="mt-3 font-serif text-xl md:text-2xl text-brand-deep leading-tight">
                   Reach our {team.name} office.
                 </h3>
               </div>
@@ -384,12 +382,12 @@ export default function CountryManagement() {
             <Reveal delay={100}>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {/* Address */}
-                <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-5">
-                  <div className="flex items-center gap-2 text-brand-accent mb-2">
+                <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
+                  <div className="flex items-center gap-2 text-brand-accentDark mb-2">
                     <MapPin size={14} />
                     <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Address</span>
                   </div>
-                  <div className="text-[13px] text-white/80 leading-snug space-y-0.5">
+                  <div className="text-[13px] text-brand-deep/80 leading-snug space-y-0.5">
                     {team.contact.address.map((line) => (
                       <div key={line}>{line}</div>
                     ))}
@@ -400,7 +398,7 @@ export default function CountryManagement() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase
-                                 tracking-[0.2em] text-brand-accent hover:gap-1.5 transition-all"
+                                 tracking-[0.2em] text-brand-accentDark hover:gap-1.5 transition-all"
                     >
                       Open in Maps <ArrowRight size={10} />
                     </a>
@@ -408,8 +406,8 @@ export default function CountryManagement() {
                 </div>
 
                 {/* Phone + Mobile */}
-                <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-5">
-                  <div className="flex items-center gap-2 text-brand-accent mb-2">
+                <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
+                  <div className="flex items-center gap-2 text-brand-accentDark mb-2">
                     <Phone size={14} />
                     <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Phone</span>
                   </div>
@@ -417,13 +415,13 @@ export default function CountryManagement() {
                     <div className="space-y-1">
                       {team.contact.phones.map((p) => (
                         <a key={p} href={`tel:${p.replace(/\s+/g, '')}`}
-                           className="block text-[13px] text-white/80 hover:text-brand-accent transition-colors">
+                           className="block text-[13px] text-brand-deep/80 hover:text-brand-accentDark transition-colors">
                           {p}
                         </a>
                       ))}
                     </div>
                   ) : (
-                    <div className="text-[12px] text-white/50 italic">Not yet listed</div>
+                    <div className="text-[12px] text-brand-deep/50 italic">Not yet listed</div>
                   )}
                   {team.contact.mobile && (
                     <>
@@ -432,7 +430,7 @@ export default function CountryManagement() {
                         <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Mobile</span>
                       </div>
                       <a href={`tel:${team.contact.mobile.replace(/\s+/g, '')}`}
-                         className="block text-[13px] text-white/80 hover:text-brand-accent transition-colors">
+                         className="block text-[13px] text-brand-deep/80 hover:text-brand-accentDark transition-colors">
                         {team.contact.mobile}
                       </a>
                     </>
@@ -440,15 +438,15 @@ export default function CountryManagement() {
                 </div>
 
                 {/* Email */}
-                <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-5">
-                  <div className="flex items-center gap-2 text-brand-accent mb-2">
+                <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
+                  <div className="flex items-center gap-2 text-brand-accentDark mb-2">
                     <Mail size={14} />
                     <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Email</span>
                   </div>
                   <div className="space-y-1">
                     {team.contact.emails.map((e) => (
                       <a key={e} href={`mailto:${e}`}
-                         className="block text-[13px] text-white/80 hover:text-brand-accent transition-colors break-all">
+                         className="block text-[13px] text-brand-deep/80 hover:text-brand-accentDark transition-colors break-all">
                         {e}
                       </a>
                     ))}
@@ -456,12 +454,12 @@ export default function CountryManagement() {
                 </div>
 
                 {/* Hours */}
-                <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-5">
-                  <div className="flex items-center gap-2 text-brand-accent mb-2">
+                <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,58,35,0.06)] p-5">
+                  <div className="flex items-center gap-2 text-brand-accentDark mb-2">
                     <Clock size={14} />
                     <span className="text-[10px] font-bold uppercase tracking-[0.22em]">Office Hours</span>
                   </div>
-                  <div className="text-[13px] text-white/80 leading-snug">
+                  <div className="text-[13px] text-brand-deep/80 leading-snug">
                     {team.contact.hours}
                   </div>
                 </div>
