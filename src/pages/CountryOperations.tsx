@@ -107,27 +107,23 @@ const OPS: Record<string, CountryOps> = {
     // Yanabiya umbrella. Strategic = long-term partners that anchor
     // core categories (internet, cloud, aviation); Operational =
     // service partners delivering connectivity, comms and tech.
-    // Bangladesh group of partner companies. Logo URLs are loaded
-    // via Clearbit (logo.clearbit.com/<domain>) where a domain is
-    // available; the renderer falls back to a coloured monogram if
-    // Clearbit returns nothing.
     strategicPartners: [
-      { name: 'Connet Online',                    domain: 'connetbd.net' },
-      { name: 'Plexus Cloud',                     domain: 'plexuscloud.com' },
-      { name: 'Gtech Aviation',                   domain: 'gtech.aero' },
-      { name: 'Idea Tec',                         domain: 'ideatec.io' },
-      { name: 'Citylink Communication',           domain: 'citylinkcommunication.com' },
-      { name: 'Trust Innovation Limited Company', domain: 'trustinnovation.io' },
-      { name: 'Business Zone Limited Company',    domain: 'businesszone.com.bd' },
+      { name: 'Connet Online',                    logo: '/logos/partners-co/connetonline.svg' },
+      { name: 'Plexus Cloud',                     logo: '/logos/partners-co/plexuscloud.svg' },
+      { name: 'Gtech Aviation',                   logo: '/logos/partners-co/gtechaviation.svg' },
+      { name: 'Idea Tec',                         logo: '/logos/partners-co/ideatec.svg' },
+      { name: 'Citylink Communication',           logo: '/logos/partners-co/citylink.svg' },
+      { name: 'Trust Innovation Limited Company', logo: '/logos/partners-co/trustinno.svg' },
+      { name: 'Business Zone Limited Company',    logo: '/logos/partners-co/businesszone.svg' },
     ],
     operationalPartners: [
-      { name: 'Eham WiFi',                  domain: 'ehamwifi.com' },
-      { name: 'Xlink Limited Company',      domain: 'xlinkbd.net' },
-      { name: 'Dot Internet',               domain: 'dotinternet.com.bd' },
-      { name: 'Zero Link',                  domain: 'zerolink.com.bd' },
-      { name: 'Global Communication Ltd',   domain: 'globalcommunication.com.bd' },
-      { name: 'Dot Exploration Ltd',        domain: 'dotexploration.com' },
-      { name: 'Bongo WiFi',                 domain: 'bongowifi.com' },
+      { name: 'Eham WiFi',                  logo: '/logos/partners-co/ehamwifi.svg' },
+      { name: 'Xlink Limited Company',      logo: '/logos/partners-co/xlinkltd.svg' },
+      { name: 'Dot Internet',               logo: '/logos/partners-co/dotinternet.svg' },
+      { name: 'Zero Link',                  logo: '/logos/partners-co/zerolink.svg' },
+      { name: 'Global Communication Ltd',   logo: '/logos/partners-co/globalcomm.svg' },
+      { name: 'Dot Exploration Ltd',        logo: '/logos/partners-co/dotexploration.svg' },
+      { name: 'Bongo WiFi',                 logo: '/logos/partners-co/bongowifi.svg' },
     ],
     categories: [
       { label: 'Internet Services & Connectivity',          icon: Globe2,    tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80' },
@@ -318,13 +314,13 @@ const OPS: Record<string, CountryOps> = {
     ],
     operationalPartners: [
       { name: 'Arpatech',                logo: '/logos/partners-co/arpatech.svg' },
-      { name: 'DataSoft Systems',        logo: '/logos/partners-co/revesoft.svg' },
+      { name: 'DataSoft Systems',        logo: '/logos/partners-co/datasoft.svg' },
       { name: 'REVE Systems',            logo: '/logos/partners-co/revesoft.svg' },
       { name: 'Bestway Group',           logo: '/logos/partners-co/bestway.svg' },
-      { name: 'Taj Stores' },
-      { name: 'East End Foods' },
-      { name: 'Dishoom' },
-      { name: 'Tayyabs' },
+      { name: 'Taj Stores',              logo: '/logos/partners-co/tajstores.svg' },
+      { name: 'East End Foods',          logo: '/logos/partners-co/eastendfoods.svg' },
+      { name: 'Dishoom',                 logo: '/logos/partners-co/dishoom.svg' },
+      { name: 'Tayyabs',                 logo: '/logos/partners-co/tayyabs.svg' },
     ],
     categories: [
       { label: 'IT, Software & Cloud Services',         icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80', href: 'https://yanabiyagibt.com/' },
