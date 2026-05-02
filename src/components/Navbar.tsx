@@ -67,9 +67,9 @@ export default function Navbar() {
     { label: t('nav.about'),      id: 'about'        },
     { label: t('nav.businesses'), id: 'businesses'   },
     { label: t('nav.global'),     id: 'global'       },
-    { label: 'Trusted Network',   id: 'partnerships' },
-    { label: 'Community',         parentRoute: '/community'   },
-    { label: 'Leadership',        parentRoute: '/leadership'  },
+    { label: 'Our Network',        id: 'partnerships' },
+    { label: 'Our Community',     parentRoute: '/community'   },
+    { label: 'Our Leadership',    parentRoute: '/leadership'  },
   ]
 
   useEffect(() => {
