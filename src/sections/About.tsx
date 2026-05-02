@@ -54,27 +54,50 @@ export default function About() {
           </Reveal>
         </div>
 
-        <div
-          className="relative px-1 py-4 md:px-6 md:py-6
-                     min-h-[520px] md:min-h-[600px]"
-        >
+        <div className="relative px-1 py-4 md:px-6 md:py-6 min-h-[520px] md:min-h-[600px]">
 
-          {/* Background glows — soft mint over mint */}
+          {/* Background glows */}
           <div aria-hidden className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-32 -left-24 w-[460px] h-[460px] rounded-full bg-brand-accent/25 blur-[150px]" />
             <div className="absolute -bottom-32 -right-24 w-[460px] h-[460px] rounded-full bg-brand-accentDark/15 blur-[150px]" />
           </div>
 
-          {/* Heading + subtitle (left column) */}
+          {/* Two-column row: 3D logo on the LEFT, heading + body on the RIGHT */}
           <div className="relative grid md:grid-cols-2 gap-8 md:gap-10 items-center">
-            <Reveal>
-              <div className="max-w-md">
+
+            {/* LEFT — 3D logo */}
+            <div className="relative h-[260px] md:h-[360px] order-2 md:order-1">
+              <div
+                aria-hidden
+                className="absolute left-0 md:left-2 top-0
+                           w-[88%] max-w-[340px] aspect-square pointer-events-none animate-float-3d
+                           [perspective:1200px]"
+              >
+                <div className="absolute inset-0 rounded-full bg-brand-accent/30 blur-[80px]" />
+                <div className="absolute inset-[10%] rounded-full bg-brand-accentDark/20 blur-[55px]" />
+                <img
+                  src={assets.logo}
+                  alt=""
+                  className="relative w-full h-full object-contain
+                             drop-shadow-[0_22px_44px_rgba(15,58,35,0.22)]
+                             drop-shadow-[0_10px_22px_rgba(15,58,35,0.16)]"
+                  style={{
+                    transform: 'rotateY(12deg) rotateX(8deg)',
+                  }}
+                  onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                />
+              </div>
+            </div>
+
+            {/* RIGHT — heading + subtitle */}
+            <Reveal className="order-1 md:order-2">
+              <div className="max-w-md md:ml-auto md:text-right">
                 <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
                                leading-[1.1] tracking-tight text-brand-deep">
                   A trusted multinational group,{' '}
                   <span className="text-brand-accentDark">built on integrity</span> and excellence.
                 </h2>
-                <p className="mt-4 text-sm md:text-base text-brand-deep/70 leading-snug max-w-sm">
+                <p className="mt-4 text-sm md:text-base text-brand-deep/70 leading-snug md:ml-auto">
                   Headquartered in Muscat and operating across the United Kingdom,
                   Bangladesh, and the United States — Yanabiya unites four cultures
                   under one shared standard of trust, professionalism, and long-term vision.
@@ -83,35 +106,10 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* Bottom-right 3D Yanabiya logo — sized so its bottom edge lands
-           *  just above the feature pills (where the Read Our Story card
-           *  used to sit). */}
-          <div
-            aria-hidden
-            className="absolute right-0 md:right-2
-                       top-2 md:top-4
-                       w-[44%] max-w-[320px] aspect-square pointer-events-none animate-float-3d
-                       [perspective:1200px]"
-          >
-            <div className="absolute inset-0 rounded-full bg-brand-accent/30 blur-[80px]" />
-            <div className="absolute inset-[10%] rounded-full bg-brand-accentDark/20 blur-[55px]" />
-
-            <img
-              src={assets.logo}
-              alt=""
-              className="relative w-full h-full object-contain
-                         drop-shadow-[0_22px_44px_rgba(15,58,35,0.22)]
-                         drop-shadow-[0_10px_22px_rgba(15,58,35,0.16)]"
-              style={{
-                transform: 'rotateY(-12deg) rotateX(8deg)',
-              }}
-              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-            />
-          </div>
-
-          {/* Floating feature pills */}
-          <div className="relative mt-10 md:mt-16">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+          {/* Feature pills — anchored to the right side */}
+          <div className="relative mt-10 md:mt-12">
+            <div className="md:ml-auto md:max-w-2xl
+                            grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
               {FEATURES.map((f, i) => (
                 <Reveal key={f.label} delay={120 + i * 90}>
                   <Link
