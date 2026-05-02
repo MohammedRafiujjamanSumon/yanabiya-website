@@ -15,7 +15,7 @@
         #fafef8 100%
       );
     background-attachment: fixed;
-    color: #0f3a23;
+    color: #1e5c38;
     min-height: 100vh;
     -webkit-tap-highlight-color: transparent;
   }
@@ -30,7 +30,7 @@
 
   /* Default paragraph + label text → dark green for readability on lime bg */
   p, li, label, td, th, figcaption, blockquote {
-    color: #0f3a23;
+    color: #1e5c38;
   }
   h1, h2, h3, h4 { @apply font-serif tracking-tight text-brand-deep; }
   html[dir='rtl'] body { font-family: 'Noto Naskh Arabic', 'Cairo', system-ui, sans-serif; }
