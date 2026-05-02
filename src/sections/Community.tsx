@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Newspaper, Leaf, HeartHandshake, Briefcase, MessageSquareQuote, type LucideIcon } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 
@@ -16,10 +16,9 @@ function Reveal({
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`${className} transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] delay-[${delay}ms] ${
         shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
-      style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
     </div>
@@ -28,188 +27,119 @@ function Reveal({
 
 type Hub = {
   to: string
-  icon: LucideIcon
   eyebrow: string
   title: string
-  /** Tailwind background colour used as fallback / outer ring tint. */
-  bg: string
-  /** Real photo for the circle. */
   image: string
-  /** Vertical offset (Tailwind) — alternating to mirror the infographic. */
-  offset: string
+  readMoreLabel?: string
 }
 
 const HUBS: Hub[] = [
   {
     to: '/community/blog',
-    icon: Newspaper,
     eyebrow: 'Stories & Insights',
     title: 'Blog',
-    bg: 'bg-emerald-600',
-    image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80',
-    offset: '',
+    image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80',
   },
   {
     to: '/community/sustainable-growth',
-    icon: Leaf,
     eyebrow: 'Long-term Value',
     title: 'Sustainable Growth',
-    bg: 'bg-cyan-500',
-    image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80',
-    offset: 'md:mt-10',
+    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80',
   },
   {
     to: '/community/community-care',
-    icon: HeartHandshake,
     eyebrow: 'Welfare Programmes',
     title: 'Community Care',
-    bg: 'bg-amber-500',
-    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80',
-    offset: 'md:mt-20',
+    image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=600&q=80',
   },
   {
     to: '/community/careers',
-    icon: Briefcase,
     eyebrow: 'Join the Team',
     title: 'Careers',
-    bg: 'bg-rose-500',
-    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80',
-    offset: 'md:mt-10',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
   },
   {
     to: '/community/testimonials',
-    icon: MessageSquareQuote,
     eyebrow: 'Voices & Stories',
     title: 'Testimonials',
-    bg: 'bg-teal-700',
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
-    offset: '',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80',
   },
 ]
 
 export default function Community() {
   return (
-    <Section
-      id="community"
-      className="bg-brand-50"
-    >
-
+    <Section id="community" className="bg-brand-50">
       <div className="container-x relative pt-2 md:pt-3 pb-4 md:pb-6">
 
-        {/* HEADER — centred two-line title with a thin horizontal divider.
-         *  Headings turn brand-green on hover/touch. */}
-        <div className="relative">
-          <div className="text-center max-w-3xl mx-auto pt-4 md:pt-6 mb-2 md:mb-4">
-            <Reveal>
-              <Eyebrow>Our Community</Eyebrow>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="font-serif text-[16px]
-                             leading-snug tracking-tight text-brand-deep mt-1">
-                Driven by purpose — investing in people,{' '}
-                <span className="italic text-brand-accentDark">progress, and shared prosperity.</span>
-              </h2>
-            </Reveal>
-          </div>
-        </div>
-
-        {/* RAINBOW ARC + 5 COLOUR-CODED CIRCLE NODES
-         *  Visual hierarchy mirrors the user-supplied infographic:
-         *    • 5 PARALLEL coloured arcs (concentric, not a single
-         *      gradient stroke) form a rainbow band over the circles.
-         *    • Vertical drop connectors in matching colours descend
-         *      from the band to each circle below.
-         *    • Circles alternate heights: outer ones up, middle one
-         *      lowest — same stair pattern as the reference.
-         */}
-        <div className="relative max-w-5xl mx-auto">
-
-          {/* Hidden on small screens where the geometry doesn't read;
-           *  circles + descriptions still stack in a 2-col grid. */}
-          <svg
-            viewBox="0 0 1000 280"
-            preserveAspectRatio="xMidYMid meet"
-            aria-hidden="true"
-            className="hidden md:block w-full h-auto -mb-16 lg:-mb-20"
-          >
-            {/* 5 parallel rainbow bands — outermost (green) wraps the
-             *  widest arc, innermost (teal) the tightest */}
-            <path d="M 80  240 C 240 -60, 760 -60, 920 240" stroke="#059669" strokeWidth="11" fill="none" strokeLinecap="round" />
-            <path d="M 112 240 C 258 -30, 742 -30, 888 240" stroke="#06b6d4" strokeWidth="11" fill="none" strokeLinecap="round" />
-            <path d="M 144 240 C 276   0, 724   0, 856 240" stroke="#f59e0b" strokeWidth="11" fill="none" strokeLinecap="round" />
-            <path d="M 176 240 C 294  30, 706  30, 824 240" stroke="#f43f5e" strokeWidth="11" fill="none" strokeLinecap="round" />
-            <path d="M 208 240 C 312  60, 688  60, 792 240" stroke="#0f766e" strokeWidth="11" fill="none" strokeLinecap="round" />
-
-            {/* Drop connectors — vertical lines in matching colours.
-             *  y1 chosen so each drop visually emerges from the band
-             *  it shares a colour with; y2 lands at the SVG bottom
-             *  so the negative bottom-margin overlaps the circles. */}
-            <line x1="100" y1="240" x2="100" y2="280" stroke="#059669" strokeWidth="11" strokeLinecap="round" />
-            <line x1="300" y1="170" x2="300" y2="280" stroke="#06b6d4" strokeWidth="11" strokeLinecap="round" />
-            <line x1="500" y1="110" x2="500" y2="280" stroke="#f59e0b" strokeWidth="11" strokeLinecap="round" />
-            <line x1="700" y1="170" x2="700" y2="280" stroke="#f43f5e" strokeWidth="11" strokeLinecap="round" />
-            <line x1="900" y1="240" x2="900" y2="280" stroke="#0f766e" strokeWidth="11" strokeLinecap="round" />
-          </svg>
-
-          {/* Five hub circles, image-led, alternating heights to mirror the
-           *  "Our Range of … Services" infographic style. */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-10 md:gap-x-4 lg:gap-x-6 justify-items-center [perspective:1400px]">
-            {HUBS.map((h, i) => (
-              <Reveal key={h.to} delay={i * 90} className={`${h.offset} flex flex-col items-center text-center max-w-[15rem]`}>
-                <Link
-                  to={h.to}
-                  aria-label={`Open ${h.title}`}
-                  className="group relative w-28 h-28 md:w-32 md:h-32 rounded-full
-                             animate-float-3d will-change-transform
-                             [transform-style:preserve-3d]
-                             shadow-[0_12px_28px_-8px_rgba(15,23,42,0.35)]
-                             transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                             hover:[transform:rotateY(8deg)_rotateX(-5deg)_translateZ(16px)_scale(1.08)]
-                             hover:shadow-[0_22px_44px_-12px_rgba(15,23,42,0.45)]
-                             focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
-                  style={{ animationDelay: `${i * 0.6}s` }}
-                >
-                  {/* Image background fills the circle */}
-                  <span aria-hidden className={`absolute inset-0 rounded-full overflow-hidden ring-2 ring-white ${h.bg}`}>
-                    <img
-                      src={h.image}
-                      alt=""
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                    />
-                    {/* Lower gradient anchors the title */}
-                    <span aria-hidden className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  </span>
-                  {/* Content */}
-                  <span className="relative z-10 flex flex-col items-center justify-end h-full pb-3 px-2 text-brand-deep">
-                    <h.icon size={20} strokeWidth={1.8} className="mb-1 opacity-90 drop-shadow" />
-                    <span className="font-bold text-sm md:text-[15px] leading-tight tracking-tight drop-shadow">
-                      {h.title}
-                    </span>
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* TAIL CTA */}
-          <Reveal delay={500}>
-            <div className="mt-10 md:mt-14 text-center">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-full px-7 py-3
-                           bg-brand-deep text-white text-xs font-bold uppercase tracking-[0.22em]
-                           shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
-                           transition-all duration-300"
-              >
-                Get in Touch <ArrowRight size={14} />
-              </Link>
-            </div>
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto pt-4 md:pt-6 mb-8 md:mb-10">
+          <Reveal>
+            <Eyebrow>Our Community</Eyebrow>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="font-serif text-[16px] leading-snug tracking-tight text-brand-deep mt-1">
+              Driven by purpose — investing in people,{' '}
+              <span className="italic text-brand-accentDark">progress, and shared prosperity.</span>
+            </h2>
           </Reveal>
         </div>
+
+        {/* Cards grid — 2-col mobile, 5-col desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-5 sm:gap-6 max-w-5xl mx-auto">
+          {HUBS.map((h, i) => (
+            <Reveal key={h.to} delay={i * 90} className="flex flex-col">
+              <Link
+                to={h.to}
+                aria-label={`Open ${h.title}`}
+                className="group flex flex-col rounded-2xl overflow-hidden
+                           bg-white/60 border border-white/80 shadow-sm
+                           hover:shadow-xl hover:-translate-y-1 hover:border-brand-accent/40
+                           transition-all duration-300 flex-1"
+              >
+                {/* Image */}
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={h.image}
+                    alt={h.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                  />
+                </div>
+
+                {/* Text panel below image */}
+                <div className="flex flex-col gap-1.5 p-4 flex-1">
+                  <p className="text-brand-accentDark text-[10px] font-semibold tracking-[0.2em] uppercase">
+                    {h.eyebrow}
+                  </p>
+                  <h3 className="text-brand-deep font-bold text-sm leading-snug">
+                    {h.title}
+                  </h3>
+                  <div className="mt-auto pt-2 inline-flex items-center gap-1 text-brand-accentDark text-xs font-semibold group-hover:gap-2 transition-all duration-200">
+                    Read More <ArrowRight size={12} />
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Tail CTA */}
+        <Reveal delay={500}>
+          <div className="mt-10 md:mt-14 text-center">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full px-7 py-3
+                         bg-brand-deep text-white text-xs font-bold uppercase tracking-[0.22em]
+                         shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
+                         transition-all duration-300"
+            >
+              Get in Touch <ArrowRight size={14} />
+            </Link>
+          </div>
+        </Reveal>
+
       </div>
     </Section>
   )
 }
-
