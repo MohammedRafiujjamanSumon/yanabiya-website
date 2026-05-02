@@ -45,8 +45,8 @@ function LogoMarquee({
             className="group shrink-0 flex items-center justify-center px-4 cursor-pointer"
           >
             <div className="flex items-center justify-center px-6 py-4 rounded-2xl
-                            bg-gray-50 border border-gray-100 shadow-sm
-                            group-hover:shadow-md group-hover:bg-white
+                            bg-white border border-brand-100 shadow-sm
+                            group-hover:shadow-md group-hover:border-brand-200
                             transition-all duration-300">
               <img
                 src={p.logo}
@@ -62,15 +62,15 @@ function LogoMarquee({
         ))}
       </div>
 
-      <div className="absolute inset-y-0 left-0  w-24 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 left-0  w-24 bg-gradient-to-r from-brand-50 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-brand-50 to-transparent pointer-events-none z-10" />
     </div>
   )
 }
 
 export default function Partnerships() {
   return (
-    <Section id="partnerships" className="bg-white">
+    <Section id="partnerships" className="bg-brand-50">
       <div className="container-x text-center mx-auto pt-1 pb-2 mb-4">
         <Eyebrow>Trusted Network</Eyebrow>
         <H2 className="!text-[18px] md:!text-[20px] text-center">
