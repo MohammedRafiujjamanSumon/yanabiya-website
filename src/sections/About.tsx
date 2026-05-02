@@ -65,21 +65,6 @@ export default function About() {
             <div className="absolute -bottom-32 -right-24 w-[460px] h-[460px] rounded-full bg-brand-accentDark/15 blur-[150px]" />
           </div>
 
-          {/* Massive ghost-outline wordmark — now in brand-deep stroke */}
-          <div
-            aria-hidden
-            className="absolute inset-0 pointer-events-none flex items-center justify-end pr-6 md:pr-12"
-          >
-            <span
-              className="font-serif font-black select-none
-                         text-[18vw] md:text-[16vw] lg:text-[14vw] leading-none tracking-tighter
-                         text-transparent"
-              style={{ WebkitTextStroke: '1px rgba(15,58,35,0.12)' }}
-            >
-              YANABIYA
-            </span>
-          </div>
-
           {/* Top-left: heading + subtitle + CTA */}
           <div className="relative grid md:grid-cols-2 gap-8 md:gap-10 items-center">
             <Reveal>
@@ -151,22 +136,24 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* Centerpiece: big 3D Yanabiya logo */}
+          {/* Bottom-right 3D Yanabiya logo — anchored inside the card so the
+           *  float animation never lets it bleed out. Lifted slightly off
+           *  the bottom so the shadow has room to breathe. */}
           <div
             aria-hidden
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-                       w-[62%] max-w-[480px] aspect-square pointer-events-none animate-float-3d
+            className="absolute right-4 md:right-8 bottom-16 md:bottom-20
+                       w-[40%] max-w-[260px] aspect-square pointer-events-none animate-float-3d
                        [perspective:1200px]"
           >
-            <div className="absolute inset-0 rounded-full bg-brand-accent/30 blur-[80px]" />
-            <div className="absolute inset-[10%] rounded-full bg-brand-accentDark/20 blur-[60px]" />
+            <div className="absolute inset-0 rounded-full bg-brand-accent/30 blur-[60px]" />
+            <div className="absolute inset-[10%] rounded-full bg-brand-accentDark/20 blur-[40px]" />
 
             <img
               src={assets.logo}
               alt=""
               className="relative w-full h-full object-contain
-                         drop-shadow-[0_30px_60px_rgba(15,58,35,0.18)]
-                         drop-shadow-[0_12px_24px_rgba(15,58,35,0.14)]"
+                         drop-shadow-[0_18px_36px_rgba(15,58,35,0.20)]
+                         drop-shadow-[0_8px_18px_rgba(15,58,35,0.14)]"
               style={{
                 transform: 'rotateY(-12deg) rotateX(8deg)',
               }}
