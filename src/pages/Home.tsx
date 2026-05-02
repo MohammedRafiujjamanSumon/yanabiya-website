@@ -6,7 +6,7 @@ import About from '../sections/About'
 import Businesses from '../sections/Businesses'
 import Global from '../sections/Global'
 import Partnerships from '../sections/Partnerships'
-import DistributedLeadership from '../sections/DistributedLeadership'
+import LeadershipPyramid from '../sections/LeadershipPyramid'
 import Community from '../sections/Community'
 import Contact from '../sections/Contact'
 
@@ -59,7 +59,7 @@ export default function Home() {
       <Businesses />
       <Global />
       <Partnerships />
-      <DistributedLeadership />
+      <LeadershipPyramid />
       <Community />
       <Contact />
     </>
