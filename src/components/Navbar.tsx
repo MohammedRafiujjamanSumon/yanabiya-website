@@ -93,11 +93,11 @@ export default function Navbar() {
   }
 
   const baseLinkCls = (isActive: boolean) =>
-    `relative text-base font-medium whitespace-nowrap py-1.5 px-3
-     transition-colors duration-200
-     hover:text-brand-accentDark ${
+    `relative text-sm font-semibold whitespace-nowrap py-1.5 px-4 rounded-full
+     transition-all duration-200
+     hover:bg-brand-deep hover:text-white ${
       isActive
-        ? 'text-brand-accentDark underline underline-offset-4 decoration-brand-accentDark/70'
+        ? 'bg-brand-deep text-white'
         : 'text-brand-deep'
     }`
 
