@@ -56,8 +56,8 @@ function LogoMarquee({
               loading="lazy"
               className={`object-contain transition-all duration-300
                 ${showBg
-                  ? 'h-20 max-w-[160px] opacity-90 group-hover:opacity-100 scale-100 group-hover:scale-125'
-                  : 'h-16 max-w-[140px] opacity-80 group-hover:opacity-100 scale-100 group-hover:scale-125'
+                  ? 'h-20 max-w-[160px] opacity-50 group-hover:opacity-100 scale-100 group-hover:scale-110'
+                  : 'h-16 max-w-[140px] opacity-50 group-hover:opacity-100 scale-100 group-hover:scale-125'
                 }`}
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
