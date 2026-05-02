@@ -42,17 +42,22 @@ function LogoMarquee({
         {loop.map((p, i) => (
           <div
             key={`${p.name}-${i}`}
-            className="group shrink-0 flex items-center justify-center px-8 cursor-pointer"
+            className="group shrink-0 flex items-center justify-center px-4 cursor-pointer"
           >
-            <img
-              src={p.logo}
-              alt={p.name}
-              loading="lazy"
-              className="h-16 max-w-[140px] object-contain
-                         opacity-100 scale-100 group-hover:scale-125
-                         transition-all duration-300"
-              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-            />
+            <div className="flex items-center justify-center px-6 py-4 rounded-2xl
+                            bg-gray-50 border border-gray-100 shadow-sm
+                            group-hover:shadow-md group-hover:bg-white
+                            transition-all duration-300">
+              <img
+                src={p.logo}
+                alt={p.name}
+                loading="lazy"
+                className="h-14 max-w-[130px] object-contain
+                           scale-100 group-hover:scale-110
+                           transition-all duration-300"
+                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+              />
+            </div>
           </div>
         ))}
       </div>
