@@ -45,10 +45,7 @@ function LogoMarquee({
           <div
             key={`${p.name}-${i}`}
             className={`group shrink-0 flex items-center justify-center cursor-pointer transition-all duration-300 ease-out
-              ${showBg
-                ? 'px-6 py-4 rounded-2xl bg-lime-50 border border-lime-200 shadow-sm hover:bg-white hover:shadow-md hover:border-lime-300'
-                : 'px-8'
-              }`}
+              ${showBg ? 'px-8' : 'px-8'}`}
           >
             <img
               src={p.logo}
@@ -56,7 +53,7 @@ function LogoMarquee({
               loading="lazy"
               className={`object-contain transition-all duration-300
                 ${showBg
-                  ? 'h-20 max-w-[160px] opacity-100 group-hover:scale-110'
+                  ? 'h-20 max-w-[160px] opacity-90 group-hover:opacity-100 scale-100 group-hover:scale-125'
                   : 'h-16 max-w-[140px] opacity-80 group-hover:opacity-100 scale-100 group-hover:scale-125'
                 }`}
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
