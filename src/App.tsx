@@ -37,24 +37,38 @@ import AdminDashboard from './admin/pages/Dashboard'
 import ContactEdit from './admin/pages/sections/ContactEdit'
 import PartnersEdit from './admin/pages/sections/PartnersEdit'
 import HeroEdit from './admin/pages/sections/HeroEdit'
+import HeroScenesEdit from './admin/pages/sections/HeroScenesEdit'
 import AboutEdit from './admin/pages/sections/AboutEdit'
+import CompanyEdit from './admin/pages/sections/CompanyEdit'
+import NavbarEdit from './admin/pages/sections/NavbarEdit'
+import FooterEdit from './admin/pages/sections/FooterEdit'
 import ServicesEdit from './admin/pages/sections/ServicesEdit'
 import LeadershipEdit from './admin/pages/sections/LeadershipEdit'
+import BlogEdit from './admin/pages/sections/BlogEdit'
+import CareersEdit from './admin/pages/sections/CareersEdit'
+import TestimonialsEdit from './admin/pages/sections/TestimonialsEdit'
 import SettingsEdit from './admin/pages/sections/SettingsEdit'
 
 function AdminRoutes() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="login" element={<AdminLogin />} />
-        <Route path="" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
-        <Route path="contact" element={<ProtectedRoute><ContactEdit /></ProtectedRoute>} />
-        <Route path="partners" element={<ProtectedRoute><PartnersEdit /></ProtectedRoute>} />
-        <Route path="hero" element={<ProtectedRoute><HeroEdit /></ProtectedRoute>} />
-        <Route path="about" element={<ProtectedRoute><AboutEdit /></ProtectedRoute>} />
-        <Route path="services" element={<ProtectedRoute><ServicesEdit /></ProtectedRoute>} />
-        <Route path="leadership" element={<ProtectedRoute><LeadershipEdit /></ProtectedRoute>} />
-        <Route path="settings" element={<ProtectedRoute><SettingsEdit /></ProtectedRoute>} />
+        <Route path="login"        element={<AdminLogin />} />
+        <Route path=""             element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+        <Route path="contact"      element={<ProtectedRoute><ContactEdit /></ProtectedRoute>} />
+        <Route path="partners"     element={<ProtectedRoute><PartnersEdit /></ProtectedRoute>} />
+        <Route path="hero"         element={<ProtectedRoute><HeroEdit /></ProtectedRoute>} />
+        <Route path="hero-scenes"  element={<ProtectedRoute><HeroScenesEdit /></ProtectedRoute>} />
+        <Route path="about"        element={<ProtectedRoute><AboutEdit /></ProtectedRoute>} />
+        <Route path="company"      element={<ProtectedRoute><CompanyEdit /></ProtectedRoute>} />
+        <Route path="navbar"       element={<ProtectedRoute><NavbarEdit /></ProtectedRoute>} />
+        <Route path="footer"       element={<ProtectedRoute><FooterEdit /></ProtectedRoute>} />
+        <Route path="services"     element={<ProtectedRoute><ServicesEdit /></ProtectedRoute>} />
+        <Route path="leadership"   element={<ProtectedRoute><LeadershipEdit /></ProtectedRoute>} />
+        <Route path="blog"         element={<ProtectedRoute><BlogEdit /></ProtectedRoute>} />
+        <Route path="careers"      element={<ProtectedRoute><CareersEdit /></ProtectedRoute>} />
+        <Route path="testimonials" element={<ProtectedRoute><TestimonialsEdit /></ProtectedRoute>} />
+        <Route path="settings"     element={<ProtectedRoute><SettingsEdit /></ProtectedRoute>} />
       </Routes>
     </AuthProvider>
   )
