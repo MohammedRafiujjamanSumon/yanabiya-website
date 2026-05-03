@@ -203,7 +203,7 @@ export default function Footer() {
                     >
                       <MapPin size={11} className="text-red-400" />
                     </a>
-                    <div className="leading-snug text-white/90 space-y-0.5">
+                    <div className="leading-snug text-white space-y-0.5">
                       {c.code === 'OM' ? (
                         <>
                           <p className="text-[8px] uppercase tracking-wider text-brand-accent/80 font-semibold">Postal Address</p>
