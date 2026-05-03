@@ -4,7 +4,7 @@ import {
   Linkedin, Facebook, Instagram, Twitter, Youtube,
   Globe2,
 } from 'lucide-react'
-import { contact } from '../data/contact'
+import { contact, contactByCountry } from '../data/contact'
 import { assets } from '../data/assets'
 
 const socials = [
@@ -29,12 +29,13 @@ const corporateLinks: { to: string; label: string }[] = [
   { to: '/about/our-story',                label: 'Our Story'                  },
   { to: '/contact',                        label: 'Contact Network'            },
   { to: '/leadership/management',          label: 'Our Management'             },
-  { to: '/leadership/professionals',       label: 'High Skilled Professionals' },
   { to: '/community/blog',                 label: 'Blog'                       },
   { to: '/community/sustainable-growth',   label: 'Sustainable Growth'         },
   { to: '/community/community-care',       label: 'Community Care'             },
   { to: '/community/careers',              label: 'Careers'                    },
 ]
+
+const FLAG: Record<string, string> = { OM: '🇴🇲', GB: '🇬🇧', BD: '🇧🇩', US: '🇺🇸' }
 
 const linkClass =
   'relative inline-block text-white/80 hover:text-white transition-colors ' +
@@ -62,208 +63,219 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-brand-accentDark text-white mt-24 pt-3">
-      {/* Footer pattern (top + bottom green strips equal in thickness):
-       *    pt-3     → top green strip
-       *    bg-black → main body (links, contact, newsletter, watermark)
-       *               — internal padding reduced so the black band is
-       *               visually compact rather than a tall slab.
-       *    bottom   → green strip carrying the copyright row (py-3)
-       */}
+    <footer className="bg-brand-accentDark text-white mt-4 pt-3">
       <div className="relative bg-brand-deep overflow-hidden">
 
-      {/* Subtle Yanabiya logo watermark */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center select-none">
-        <img
-          src={assets.logo}
-          alt=""
-          className="w-[55%] max-w-[640px] opacity-[0.04] object-contain"
-        />
-      </div>
+        {/* Subtle Yanabiya logo watermark */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center select-none">
+          <img
+            src={assets.logo}
+            alt=""
+            className="w-[55%] max-w-[640px] opacity-[0.06] object-contain"
+          />
+        </div>
 
-      {/* MAIN GRID — Brand + Group + Corporate + Contact */}
-      <div className="container-x py-9 md:py-10 relative grid gap-8 md:gap-10 md:grid-cols-12">
+        {/* ── TOP BLOCK — Brand + Group + Corporate + HQ Contact ── */}
+        <div className="container-x py-6 md:py-8 relative grid gap-8 md:gap-10 md:grid-cols-12">
 
-        {/* Brand + about + newsletter */}
-        <div className="md:col-span-12 lg:col-span-4">
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl bg-white grid place-items-center shadow ring-2 ring-white/20">
-              <img src={assets.logo} alt="Yanabiya Group" className="h-7 w-auto object-contain" />
-            </div>
-            <div>
-              <div className="font-serif text-xl text-white leading-tight group-hover:text-brand-accent transition-colors">
-                Yanabiya Group
+          {/* Brand + about + newsletter */}
+          <div className="md:col-span-12 lg:col-span-4">
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="w-11 h-11 rounded-xl bg-white grid place-items-center shadow ring-2 ring-white/20">
+                <img src={assets.logo} alt="Yanabiya Group" className="h-7 w-auto object-contain" />
               </div>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-brand-accent mt-0.5">
-                Global Enterprise Platform
+              <div>
+                <div className="font-serif text-xl text-white leading-tight group-hover:text-brand-accent transition-colors">
+                  Yanabiya Group
+                </div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-brand-accent mt-0.5">
+                  Global Enterprise Platform
+                </div>
               </div>
-            </div>
-          </Link>
-          <p className="mt-4 text-sm text-white/70 leading-snug">
-            A trusted international group of companies — building, scaling, and operating
-            high-impact ventures across technology, trade, talent and consulting.
-          </p>
+            </Link>
+            <p className="mt-4 text-sm text-white/70 leading-snug">
+              A trusted international group of companies — building, scaling, and operating
+              high-impact ventures across technology, trade, talent and consulting.
+            </p>
 
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="mt-6 flex items-center max-w-sm"
-          >
-            <input
-              type="email"
-              required
-              placeholder="Subscribe to group updates"
-              className="flex-1 bg-white/10 border border-white/15 rounded-l-full px-4 py-2.5 text-sm
-                         text-white placeholder:text-white/50
-                         focus:outline-none focus:border-brand-accent focus:bg-white/15 transition"
-            />
-            <button
-              type="submit"
-              className="inline-flex items-center gap-1.5 rounded-r-full bg-brand-accent text-white
-                         px-4 py-2.5 text-xs font-semibold uppercase tracking-wider
-                         hover:bg-brand-accentDark transition-colors"
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="mt-5 flex items-center max-w-sm"
             >
-              Join <Send size={14} />
-            </button>
-          </form>
-        </div>
-
-        {/* Group — on-page sections */}
-        <div className="md:col-span-3 lg:col-span-2">
-          <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">Group</h4>
-          <ul className="space-y-2.5 text-sm">
-            {groupLinks.map((l) => (
-              <li key={l.id}>
-                <a
-                  href={`/#${l.id}`}
-                  onClick={(e) => handleHashClick(e, l.id)}
-                  className={linkClass}
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Corporate — real subpages */}
-        <div className="md:col-span-3 lg:col-span-2">
-          <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">Corporate</h4>
-          <ul className="space-y-2.5 text-sm">
-            {corporateLinks.map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} className={linkClass}>{l.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contact + socials */}
-        <div className="md:col-span-6 lg:col-span-4">
-          <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">Get in Touch</h4>
-          <ul className="space-y-3 text-sm">
-            <li className="flex items-start gap-3">
-              <span className="shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-white/10 grid place-items-center">
-                <MapPin size={14} className="text-brand-accent" />
-              </span>
-              <div className="text-white/85 leading-snug">
-                <div className="font-semibold">{contact.poBox}</div>
-                <div className="text-white/75 text-sm mt-0.5">{contact.address}</div>
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-white/10 grid place-items-center">
-                <Phone size={14} className="text-brand-accent" />
-              </span>
-              <div className="space-y-0.5">
-                {contact.phones.map((p) => (
-                  <a
-                    key={p}
-                    href={`tel:${p.replace(/\s/g, '')}`}
-                    className="block text-white/85 hover:text-white transition-colors"
-                  >
-                    {p}
-                  </a>
-                ))}
-                <a
-                  href={`tel:${contact.mobile.replace(/\s/g, '')}`}
-                  className="block text-white/85 hover:text-white transition-colors"
-                >
-                  {contact.mobile}
-                </a>
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-white/10 grid place-items-center">
-                <Mail size={14} className="text-brand-accent" />
-              </span>
-              <div className="space-y-0.5">
-                {contact.emails.map((e) => (
-                  <a
-                    key={e}
-                    href={`mailto:${e}`}
-                    className="block text-white/85 hover:text-white transition-colors break-all"
-                  >
-                    {e}
-                  </a>
-                ))}
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-white/10 grid place-items-center">
-                <Globe2 size={14} className="text-brand-accent" />
-              </span>
-              <a
-                href={contact.webmail}
-                target="_blank"
-                rel="noreferrer"
-                className="text-white/85 hover:text-white transition-colors break-all"
+              <input
+                type="email"
+                required
+                placeholder="Subscribe to group updates"
+                className="flex-1 bg-white/10 border border-white/15 rounded-l-full px-4 py-2.5 text-sm
+                           text-white placeholder:text-white/50
+                           focus:outline-none focus:border-brand-accent focus:bg-white/15 transition"
+              />
+              <button
+                type="submit"
+                className="inline-flex items-center gap-1.5 rounded-r-full bg-brand-accent text-white
+                           px-4 py-2.5 text-xs font-semibold uppercase tracking-wider
+                           hover:bg-brand-accentDark transition-colors"
               >
-                Webmail Portal
-              </a>
-            </li>
-          </ul>
+                Join <Send size={14} />
+              </button>
+            </form>
 
-          <div className="mt-6">
-            <div className="text-xs uppercase tracking-widest text-brand-accent mb-3 font-semibold">Follow the Group</div>
-            <div className="flex items-center gap-2">
-              {socials.map(({ Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={label}
-                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-accent text-white
-                             grid place-items-center transition-all duration-200
-                             hover:scale-110 hover:shadow-[0_0_20px_rgba(158,199,58,0.5)]"
-                >
-                  <Icon size={16} />
+            {/* Social links */}
+            <div className="mt-5">
+              <div className="text-xs uppercase tracking-widest text-brand-accent mb-3 font-semibold">Follow the Group</div>
+              <div className="flex items-center gap-2">
+                {socials.map(({ Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={label}
+                    className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-accent text-white
+                               grid place-items-center transition-all duration-200
+                               hover:scale-110 hover:shadow-[0_0_20px_rgba(158,199,58,0.5)]"
+                  >
+                    <Icon size={16} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Group — on-page sections */}
+          <div className="md:col-span-3 lg:col-span-2">
+            <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">Group</h4>
+            <ul className="space-y-2.5 text-sm">
+              {groupLinks.map((l) => (
+                <li key={l.id}>
+                  <a
+                    href={`/#${l.id}`}
+                    onClick={(e) => handleHashClick(e, l.id)}
+                    className={linkClass}
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Corporate — real subpages */}
+          <div className="md:col-span-3 lg:col-span-2">
+            <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">Corporate</h4>
+            <ul className="space-y-2.5 text-sm">
+              {corporateLinks.map((l) => (
+                <li key={l.to}>
+                  <Link to={l.to} className={linkClass}>{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* HQ Contact */}
+          <div className="md:col-span-6 lg:col-span-4">
+            <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">
+              🇴🇲 Head Office — Oman
+            </h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start gap-3">
+                <span className="shrink-0 mt-0.5 w-7 h-7 rounded-lg bg-white/10 grid place-items-center">
+                  <MapPin size={13} className="text-brand-accent" />
+                </span>
+                <div className="text-white/80 leading-snug text-xs">
+                  <div>Office-41, 4th Floor, Building-846</div>
+                  <div>Way-4011, Complex-240, Al Gubrah</div>
+                  <div>Bushar, Muscat, Sultanate of Oman</div>
+                  <div className="mt-0.5 text-white/60">P.O. Box 1432, PC-133, Al Khuwair</div>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="shrink-0 mt-0.5 w-7 h-7 rounded-lg bg-white/10 grid place-items-center">
+                  <Phone size={13} className="text-brand-accent" />
+                </span>
+                <div className="space-y-0.5 text-xs">
+                  {contact.phones.map((p) => (
+                    <a key={p} href={`tel:${p.replace(/\s/g, '')}`}
+                       className="block text-white/80 hover:text-white transition-colors">{p}</a>
+                  ))}
+                  <a href={`tel:${contact.mobile.replace(/\s/g, '')}`}
+                     className="block text-white/80 hover:text-white transition-colors">{contact.mobile}</a>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="shrink-0 mt-0.5 w-7 h-7 rounded-lg bg-white/10 grid place-items-center">
+                  <Mail size={13} className="text-brand-accent" />
+                </span>
+                <div className="space-y-0.5 text-xs">
+                  {contact.emails.map((e) => (
+                    <a key={e} href={`mailto:${e}`}
+                       className="block text-white/80 hover:text-white transition-colors break-all">{e}</a>
+                  ))}
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="shrink-0 mt-0.5 w-7 h-7 rounded-lg bg-white/10 grid place-items-center">
+                  <Globe2 size={13} className="text-brand-accent" />
+                </span>
+                <a href={contact.webmail} target="_blank" rel="noreferrer"
+                   className="text-xs text-white/80 hover:text-white transition-colors">
+                  Webmail Portal
                 </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* ── COUNTRY OFFICES STRIP ── */}
+        <div className="border-t border-white/10">
+          <div className="container-x py-5 relative">
+            <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold text-center">
+              Global Offices
+            </h4>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+              {contactByCountry.map((c) => (
+                <div key={c.code} className="text-xs text-white/75 space-y-1.5">
+                  <div className="flex items-center gap-1.5 text-white font-semibold text-[11px] mb-2">
+                    <span className="text-base leading-none">{FLAG[c.code]}</span>
+                    {c.region}
+                    {c.code === 'OM' && (
+                      <span className="ml-auto text-[8px] uppercase tracking-wider bg-brand-accent/30 text-brand-accent px-1.5 py-0.5 rounded-full font-bold">
+                        HQ
+                      </span>
+                    )}
+                  </div>
+                  <div className="leading-snug">
+                    {c.officeAddress}
+                    {c.postAddress && <span className="block text-white/55">{c.postAddress}</span>}
+                  </div>
+                  {c.phones[0] && (
+                    <a href={`tel:${c.phones[0].replace(/\s/g, '')}`}
+                       className="block hover:text-white transition-colors">
+                      {c.phones[0]}
+                    </a>
+                  )}
+                  {c.emails[0] && (
+                    <a href={`mailto:${c.emails[0]}`}
+                       className="block hover:text-white transition-colors break-all">
+                      {c.emails[0]}
+                    </a>
+                  )}
+                </div>
               ))}
             </div>
           </div>
         </div>
-      </div>
 
       </div>
 
-      {/* BOTTOM GREEN STRIP — copyright + legal. Sits ON the green
-       *  margin so the row reads as the closing band of the page,
-       *  separated from the black footer body above. */}
+      {/* BOTTOM GREEN STRIP */}
       <div className="container-x py-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/85">
         <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
-          <span>
-            © Yanabiya Group · Since 2021 · All rights reserved.
-          </span>
+          <span>© {year} Yanabiya Group · All rights reserved.</span>
         </div>
         <div className="flex items-center gap-5">
           <Link to="/about-us" className={linkClass}>Group Profile</Link>
-          <a
-            href={`mailto:${contact.emails[0]}`}
-            className={linkClass}
-          >
-            {contact.emails[0]}
-          </a>
+          <a href={`mailto:${contact.emails[0]}`} className={linkClass}>{contact.emails[0]}</a>
         </div>
       </div>
     </footer>

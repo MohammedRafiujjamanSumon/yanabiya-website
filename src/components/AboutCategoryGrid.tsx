@@ -157,7 +157,7 @@ export default function AboutCategoryGrid() {
                 alt={c.label}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover
-                           transition-transform duration-700 group-hover/card:scale-110"
+                           transition-transform duration-300 group-hover/card:scale-110"
                 onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/15" />

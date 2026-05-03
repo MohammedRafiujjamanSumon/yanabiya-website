@@ -20,7 +20,7 @@ function Reveal({
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`${className} transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
         shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
@@ -160,7 +160,7 @@ export default function Global() {
                 >
                   <div
                     className="relative w-36 h-36 md:w-40 md:h-40
-                               transition-transform duration-700 ease-out
+                               transition-transform duration-300 ease-out
                                [transform-style:preserve-3d]"
                     style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
                   >

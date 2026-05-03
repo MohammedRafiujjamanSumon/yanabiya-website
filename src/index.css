@@ -14,7 +14,7 @@
         #fafef6 78%,
         #ffffff 100%
       );
-    background-attachment: fixed;
+    background-attachment: scroll;
     color: #1e5c38;
     min-height: 100vh;
     -webkit-tap-highlight-color: transparent;
@@ -132,6 +132,18 @@
   to   { transform: translateX(0); }
 }
 .animate-marquee-reverse { animation: marquee-reverse 75s linear infinite; }
+
+@keyframes marquee-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+.animate-marquee-up { animation: marquee-up linear infinite; }
+
+@keyframes marquee-down {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(0); }
+}
+.animate-marquee-down { animation: marquee-down linear infinite; }
 
 .marquee-pause:hover,
 .marquee-pause:focus-within,

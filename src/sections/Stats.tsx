@@ -23,7 +23,7 @@ function Reveal({
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`${className} transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
         shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}
       style={{ transitionDelay: `${delay}ms` }}

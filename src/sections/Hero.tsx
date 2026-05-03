@@ -575,7 +575,7 @@ export default function Hero() {
             <div
               key={s.id}
               aria-hidden={!isActive ? 'true' : 'false'}
-              className={`absolute inset-0 transition-opacity duration-700 ease-in-out
+              className={`absolute inset-0 transition-opacity duration-300 ease-in-out
                           ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
             >
               {/* Real-life photo background */}

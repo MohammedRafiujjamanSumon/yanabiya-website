@@ -25,7 +25,7 @@ function Reveal({
   return (
     <Tag
       ref={ref as never}
-      className={`${className} transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`${className} transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
         shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
@@ -438,7 +438,7 @@ export default function OurStory() {
                       src={l.image}
                       alt={l.name}
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                   <div className="p-6">

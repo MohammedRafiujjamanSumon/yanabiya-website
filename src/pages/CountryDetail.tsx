@@ -66,7 +66,7 @@ function Reveal({
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`${className} transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
         shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
@@ -479,7 +479,7 @@ function ServiceBlocks({ services, countryName }: { services: Service[]; country
                         alt={s.label}
                         loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover
-                                   transition-transform duration-700
+                                   transition-transform duration-300
                                    group-hover:scale-110"
                         onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                       />
@@ -648,7 +648,7 @@ function BusinessActivities({
                       alt={a.name}
                       loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover
-                                 transition-transform duration-700
+                                 transition-transform duration-300
                                  group-hover:scale-110"
                       onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                     />

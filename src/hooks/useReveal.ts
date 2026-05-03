@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
  * Honours `prefers-reduced-motion`.
  */
 export function useReveal<T extends HTMLElement = HTMLDivElement>(
-  options: IntersectionObserverInit = { threshold: 0.18, rootMargin: '0px 0px -10% 0px' },
+  options: IntersectionObserverInit = { threshold: 0.01, rootMargin: '120px 0px 0px 0px' },
 ) {
   const ref = useRef<T | null>(null)
   const [shown, setShown] = useState(false)
