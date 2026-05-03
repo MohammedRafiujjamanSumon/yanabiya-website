@@ -43,7 +43,6 @@ const BOARD: Person[] = [
 ]
 
 const FOUNDERS: Person[] = [
-  { name: 'S M Shamim Ahmed',     role: 'Global CEO',    image: board[0].photo },
   { name: 'Mohammad Abu Jaheed',  role: 'Vice Chairman', image: board[1].photo },
 ]
 
