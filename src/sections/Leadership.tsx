@@ -150,13 +150,6 @@ export default function Leadership() {
           <Reveal>
             <Eyebrow>Global Leadership</Eyebrow>
           </Reveal>
-          <Reveal delay={120}>
-            <h2 className="font-serif text-[16px] leading-snug tracking-tight text-brand-deep
-                           lg:whitespace-nowrap mt-1">
-              Experienced leadership across four continents,{' '}
-              <span className="italic text-brand-accentDark">anchored by integrity and execution.</span>
-            </h2>
-          </Reveal>
         </div>
 
         {/* TIER 01 — BOARD */}
