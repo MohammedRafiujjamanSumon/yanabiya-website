@@ -114,7 +114,7 @@ export default function Community() {
             viewBox="0 0 1000 280"
             preserveAspectRatio="xMidYMid meet"
             aria-hidden="true"
-            className="hidden md:block w-full h-auto -mb-16 lg:-mb-20"
+            className="block w-full h-auto mb-2 md:-mb-16 lg:-mb-20"
           >
             {/* 5 parallel rainbow bands */}
             <path d="M 80  240 C 240 -60, 760 -60, 920 240" stroke="#059669" strokeWidth="11" fill="none" strokeLinecap="round" />

@@ -61,10 +61,11 @@ export default function About() {
           <div className="grid md:grid-cols-2 items-center gap-6 md:gap-10 mt-4">
 
             {/* ── LEFT — office photo ── */}
-            <div className="hidden md:block">
+            <div>
               <div className="relative rounded-2xl overflow-hidden
                               shadow-[0_24px_64px_rgba(15,58,35,0.16)]
-                              ring-1 ring-brand-deep/10 h-[460px]">
+                              ring-1 ring-brand-deep/10
+                              h-52 sm:h-72 md:h-[460px]">
                 <img
                   src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&crop=center&w=1200&h=900&q=90"
                   alt="Yanabiya Group office"
@@ -123,7 +124,7 @@ export default function About() {
             </Reveal>
 
             {/* Vision / Mission / Goal cards — compact, bottom aligns with image */}
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="mt-6 grid grid-cols-3 gap-2 md:gap-3">
               {VMG.map(({ icon: Icon, label, body, to, tone, iconColor, border }, i) => (
                 <Reveal key={label} delay={320 + i * 100}>
                   <div className={`group relative rounded-xl bg-gradient-to-br ${tone}
