@@ -206,9 +206,9 @@ export default function Footer() {
                     <div className="leading-snug text-white space-y-0.5">
                       {c.code === 'OM' ? (
                         <>
-                          <p className="text-[8px] uppercase tracking-wider text-brand-accent/80 font-semibold">Postal Address</p>
+                          <p className="text-[8px] uppercase tracking-wider text-white font-semibold">Postal Address</p>
                           {c.postAddress.split('\n').map((line, i) => <p key={i}>{line}</p>)}
-                          <p className="text-[8px] uppercase tracking-wider text-brand-accent/80 font-semibold pt-1">Head Office</p>
+                          <p className="text-[8px] uppercase tracking-wider text-white font-semibold pt-1">Head Office</p>
                           {c.officeAddress.split('\n').map((line, i) => <p key={i}>{line}</p>)}
                         </>
                       ) : (
@@ -223,7 +223,7 @@ export default function Footer() {
                   {c.phones[0] && (
                     <div className="flex items-center gap-1.5">
                       <Phone size={11} className="text-emerald-400 shrink-0" />
-                      <a href={`tel:${c.phones[0].replace(/\s/g, '')}`} className="hover:text-white transition-colors">
+                      <a href={`tel:${c.phones[0].replace(/\s/g, '')}`} className="text-white hover:text-white transition-colors">
                         {c.phones[0]}
                       </a>
                     </div>
@@ -231,7 +231,7 @@ export default function Footer() {
                   {c.emails[0] && (
                     <div className="flex items-start gap-1.5">
                       <AtSign size={11} className="text-sky-400 shrink-0 mt-0.5" />
-                      <a href={`mailto:${c.emails[0]}`} className="hover:text-white transition-colors break-all">
+                      <a href={`mailto:${c.emails[0]}`} className="text-white hover:text-white transition-colors break-all">
                         {c.emails[0]}
                       </a>
                     </div>
