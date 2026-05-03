@@ -643,7 +643,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
 
       {/* SECTION 9 — Future Roadmap */}
       <SectionFrame eyebrow="Future Roadmap" title="Where we're heading next.">
-        <div className="grid sm:grid-cols-2 gap-4 md:gap-5 [perspective:1400px]">
+        <div className={`grid gap-3 [perspective:1400px] ${ops.futurePlans.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}`}>
           {ops.futurePlans.map((p, i) => (
             <Card3D
               key={p.title}
