@@ -50,8 +50,8 @@ function LogoMarquee({
               alt={p.name}
               loading="lazy"
               className="h-16 max-w-[150px] object-contain
-                         opacity-80 grayscale
-                         group-hover:opacity-100 group-hover:grayscale-0 group-hover:brightness-110
+                         opacity-90
+                         group-hover:opacity-100 group-hover:brightness-110
                          group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(16,185,129,0.5)]
                          active:opacity-100 active:grayscale-0 active:brightness-125 active:scale-110
                          transition-all duration-300"
