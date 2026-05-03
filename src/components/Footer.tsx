@@ -38,7 +38,7 @@ const FLAG: Record<string, string> = { OM: '🇴🇲', GB: '🇬🇧', BD: '🇧
 
 
 const linkClass =
-  'relative inline-block text-white/80 hover:text-white transition-colors ' +
+  'relative inline-block text-white hover:text-white transition-colors ' +
   'after:content-[""] after:absolute after:left-0 after:-bottom-0.5 after:h-px ' +
   'after:w-full after:bg-brand-accent after:scale-x-0 after:origin-left ' +
   'after:transition-transform after:duration-300 hover:after:scale-x-100'
@@ -93,7 +93,7 @@ export default function Footer() {
                 </div>
               </div>
             </Link>
-            <p className="mt-4 text-sm text-white/70 leading-snug">
+            <p className="mt-4 text-sm text-white leading-snug">
               A trusted international group of companies — building, scaling, and operating
               high-impact ventures across technology, trade, talent and consulting.
             </p>
@@ -179,7 +179,7 @@ export default function Footer() {
             </h4>
             <div className="grid grid-cols-2 gap-4">
               {contactByCountry.map((c) => (
-                <div key={c.code} className="space-y-1.5 text-[11px] text-white/90">
+                <div key={c.code} className="space-y-1.5 text-[11px] text-white">
 
                   {/* Country header */}
                   <div className="flex items-center gap-1.5 text-white font-semibold mb-1.5">
@@ -245,7 +245,7 @@ export default function Footer() {
       </div>
 
       {/* BOTTOM GREEN STRIP */}
-      <div className="container-x py-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/85">
+      <div className="container-x py-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white">
         <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
           <span>© {year} Yanabiya Group · All rights reserved.</span>
         </div>
