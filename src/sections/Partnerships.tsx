@@ -43,30 +43,26 @@ function LogoMarquee({
         {loop.map((p, i) => (
           <div
             key={`${p.name}-${i}`}
-            className="group shrink-0 flex items-center justify-center px-4 cursor-pointer"
+            className="group shrink-0 flex items-center justify-center px-6 cursor-pointer"
           >
-            <div className="flex items-center justify-center px-7 py-5 rounded-2xl
-                            bg-white/60 border border-brand-100/50
-                            group-hover:bg-white group-hover:shadow-md group-hover:border-brand-200
-                            group-hover:-translate-y-0.5
-                            transition-all duration-300">
-              <img
-                src={p.logo}
-                alt={p.name}
-                loading="lazy"
-                className="h-20 max-w-[160px] object-contain
-                           opacity-40 grayscale
-                           group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105
-                           transition-all duration-300"
-                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-              />
-            </div>
+            <img
+              src={p.logo}
+              alt={p.name}
+              loading="lazy"
+              className="h-16 max-w-[150px] object-contain
+                         opacity-80 grayscale
+                         group-hover:opacity-100 group-hover:grayscale-0 group-hover:brightness-110
+                         group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(16,185,129,0.5)]
+                         active:opacity-100 active:grayscale-0 active:brightness-125 active:scale-110
+                         transition-all duration-300"
+              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+            />
           </div>
         ))}
       </div>
 
-      <div className="absolute inset-y-0 left-0  w-24 bg-gradient-to-r from-brand-50 to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-brand-50 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 left-0  w-12 bg-gradient-to-r from-brand-50 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-brand-50 to-transparent pointer-events-none z-10" />
     </div>
   )
 }
