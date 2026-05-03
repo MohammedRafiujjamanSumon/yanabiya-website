@@ -29,62 +29,97 @@ import DistributionDetail from './pages/DistributionDetail'
 import CommunityOverview from './pages/CommunityOverview'
 import Testimonials from './pages/Testimonials'
 
+// ── Admin Panel ──────────────────────────────────────────────────────────────
+import { AuthProvider } from './admin/context/AuthContext'
+import ProtectedRoute from './admin/components/ProtectedRoute'
+import AdminLogin from './admin/pages/Login'
+import AdminDashboard from './admin/pages/Dashboard'
+import ContactEdit from './admin/pages/sections/ContactEdit'
+import PartnersEdit from './admin/pages/sections/PartnersEdit'
+import HeroEdit from './admin/pages/sections/HeroEdit'
+import AboutEdit from './admin/pages/sections/AboutEdit'
+import ServicesEdit from './admin/pages/sections/ServicesEdit'
+import LeadershipEdit from './admin/pages/sections/LeadershipEdit'
+import SettingsEdit from './admin/pages/sections/SettingsEdit'
+
+function AdminRoutes() {
+  return (
+    <AuthProvider>
+      <Routes>
+        <Route path="login" element={<AdminLogin />} />
+        <Route path="" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+        <Route path="contact" element={<ProtectedRoute><ContactEdit /></ProtectedRoute>} />
+        <Route path="partners" element={<ProtectedRoute><PartnersEdit /></ProtectedRoute>} />
+        <Route path="hero" element={<ProtectedRoute><HeroEdit /></ProtectedRoute>} />
+        <Route path="about" element={<ProtectedRoute><AboutEdit /></ProtectedRoute>} />
+        <Route path="services" element={<ProtectedRoute><ServicesEdit /></ProtectedRoute>} />
+        <Route path="leadership" element={<ProtectedRoute><LeadershipEdit /></ProtectedRoute>} />
+        <Route path="settings" element={<ProtectedRoute><SettingsEdit /></ProtectedRoute>} />
+      </Routes>
+    </AuthProvider>
+  )
+}
+
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <PageWatermark />
-      <Navbar />
-      <main className="flex-1 relative">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/business/:slug" element={<BusinessDetail />} />
-          <Route path="/business/:slug/:subSlug" element={<SubServiceDetail />} />
+    <Routes>
+      {/* ── Admin (no Navbar/Footer) ────────────────────────────────────── */}
+      <Route path="/admin/*" element={<AdminRoutes />} />
 
-          {/* Country-specific operations pages — listed before the
-           *  generic /country/:code and /global-presence/:code routes
-           *  so React-Router matches the more specific path first. */}
-          <Route path="/country/bd" element={<CountryOperations codeOverride="BD" />} />
-          <Route path="/global-presence/bd" element={<CountryOperations codeOverride="BD" />} />
-          <Route path="/country/om" element={<CountryOperations codeOverride="OM" />} />
-          <Route path="/global-presence/om" element={<CountryOperations codeOverride="OM" />} />
-          <Route path="/country/gb" element={<CountryOperations codeOverride="GB" />} />
-          <Route path="/global-presence/gb" element={<CountryOperations codeOverride="GB" />} />
-          <Route path="/country/us" element={<CountryOperations codeOverride="US" />} />
-          <Route path="/global-presence/us" element={<CountryOperations codeOverride="US" />} />
+      {/* ── Public site ────────────────────────────────────────────────── */}
+      <Route path="*" element={
+        <div className="min-h-screen flex flex-col">
+          <PageWatermark />
+          <Navbar />
+          <main className="flex-1 relative">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/business/:slug" element={<BusinessDetail />} />
+              <Route path="/business/:slug/:subSlug" element={<SubServiceDetail />} />
 
-          <Route path="/country/:code" element={<CountryDetail />} />
-          <Route path="/global-presence/scroll" element={<OmanPresence />} />
-          <Route path="/global-presence/:code" element={<CountryDetail />} />
+              <Route path="/country/bd" element={<CountryOperations codeOverride="BD" />} />
+              <Route path="/global-presence/bd" element={<CountryOperations codeOverride="BD" />} />
+              <Route path="/country/om" element={<CountryOperations codeOverride="OM" />} />
+              <Route path="/global-presence/om" element={<CountryOperations codeOverride="OM" />} />
+              <Route path="/country/gb" element={<CountryOperations codeOverride="GB" />} />
+              <Route path="/global-presence/gb" element={<CountryOperations codeOverride="GB" />} />
+              <Route path="/country/us" element={<CountryOperations codeOverride="US" />} />
+              <Route path="/global-presence/us" element={<CountryOperations codeOverride="US" />} />
 
-          {/* Clean country aliases — same page, prettier URLs. */}
-          <Route path="/oman"       element={<CountryOperations codeOverride="OM" />} />
-          <Route path="/uk"         element={<CountryOperations codeOverride="GB" />} />
-          <Route path="/bangladesh" element={<CountryOperations codeOverride="BD" />} />
-          <Route path="/usa"        element={<CountryOperations codeOverride="US" />} />
-          <Route path="/contact" element={<ContactGlobal />} />
-          <Route path="/leadership/board" element={<Board />} />
-          <Route path="/leadership/executive" element={<Executive />} />
-          <Route path="/leadership/countries" element={<CountriesOverview />} />
-          <Route path="/leadership/distributed/:slug" element={<DistributionDetail />} />
-          <Route path="/leadership/execution-engine" element={<ExecutionEngine />} />
-          <Route path="/leadership/country/:code" element={<CountryManagement />} />
-          <Route path="/leadership/management" element={<Management />} />
-          <Route path="/leadership/professionals" element={<Professionals />} />
-          <Route path="/leadership/departments" element={<DepartmentHeads />} />
-          <Route path="/community" element={<CommunityOverview />} />
-          <Route path="/community/blog" element={<Blog />} />
-          <Route path="/community/sustainable-growth" element={<SustainableGrowth />} />
-          <Route path="/community/community-care" element={<CommunityCare />} />
-          <Route path="/community/careers" element={<CareersPage />} />
-          <Route path="/community/testimonials" element={<Testimonials />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/about/our-story" element={<OurStory />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </main>
-      <Footer />
-      <SocialFloat />
-    </div>
+              <Route path="/country/:code" element={<CountryDetail />} />
+              <Route path="/global-presence/scroll" element={<OmanPresence />} />
+              <Route path="/global-presence/:code" element={<CountryDetail />} />
+
+              <Route path="/oman"       element={<CountryOperations codeOverride="OM" />} />
+              <Route path="/uk"         element={<CountryOperations codeOverride="GB" />} />
+              <Route path="/bangladesh" element={<CountryOperations codeOverride="BD" />} />
+              <Route path="/usa"        element={<CountryOperations codeOverride="US" />} />
+              <Route path="/contact" element={<ContactGlobal />} />
+              <Route path="/leadership/board" element={<Board />} />
+              <Route path="/leadership/executive" element={<Executive />} />
+              <Route path="/leadership/countries" element={<CountriesOverview />} />
+              <Route path="/leadership/distributed/:slug" element={<DistributionDetail />} />
+              <Route path="/leadership/execution-engine" element={<ExecutionEngine />} />
+              <Route path="/leadership/country/:code" element={<CountryManagement />} />
+              <Route path="/leadership/management" element={<Management />} />
+              <Route path="/leadership/professionals" element={<Professionals />} />
+              <Route path="/leadership/departments" element={<DepartmentHeads />} />
+              <Route path="/community" element={<CommunityOverview />} />
+              <Route path="/community/blog" element={<Blog />} />
+              <Route path="/community/sustainable-growth" element={<SustainableGrowth />} />
+              <Route path="/community/community-care" element={<CommunityCare />} />
+              <Route path="/community/careers" element={<CareersPage />} />
+              <Route path="/community/testimonials" element={<Testimonials />} />
+              <Route path="/about-us" element={<AboutUs />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/about/our-story" element={<OurStory />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </main>
+          <Footer />
+          <SocialFloat />
+        </div>
+      } />
+    </Routes>
   )
 }
