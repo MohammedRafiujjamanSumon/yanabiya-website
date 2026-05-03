@@ -4,6 +4,7 @@ import Section from '../components/Section'
 import PageHero from '../components/PageHero'
 import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
+import { useSection } from '../hooks/useSection'
 
 const blogCategories: CircleItem[] = [
   { label: 'Group Update', description: 'Major announcements and milestones from across the four Yanabiya regions.', bg: 'bg-emerald-500' },
@@ -48,6 +49,8 @@ function countryLabel(code: CountryCode) {
 
 export default function Blog() {
   const [filter, setFilter] = useState<CountryCode>('ALL')
+  const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
+  const hero = pageHeroes?.['blog']
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
@@ -61,9 +64,9 @@ export default function Blog() {
   return (
     <>
       <PageHero
-        eyebrow="Our Community"
-        title="Blog"
-        subtitle="Stories, insights and updates from Yanabiya Group teams across Oman, the United Kingdom, Bangladesh and the USA."
+        eyebrow={hero?.eyebrow || 'Our Community'}
+        title={hero?.title || 'Blog'}
+        subtitle={hero?.subtitle || 'Stories, insights and updates from Yanabiya Group teams across Oman, the United Kingdom, Bangladesh and the USA.'}
       />
 
       <Section id="blog" className="relative overflow-hidden bg-brand-50">

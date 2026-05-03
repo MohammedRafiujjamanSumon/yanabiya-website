@@ -4,6 +4,7 @@ import Section from '../components/Section'
 import PageHero from '../components/PageHero'
 import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
+import { useSection } from '../hooks/useSection'
 
 const reasons: CircleItem[] = [
   { label: 'Global Exposure',     description: 'Work across four countries and dozens of industries.',          bg: 'bg-emerald-500' },
@@ -39,6 +40,9 @@ const countryRoles: Record<string, string[]> = {
 }
 
 export default function CareersPage() {
+  const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
+  const hero = pageHeroes?.['careers']
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
@@ -46,9 +50,9 @@ export default function CareersPage() {
   return (
     <>
       <PageHero
-        eyebrow="Our Community"
-        title="Careers"
-        subtitle="Join a global team across Oman, the United Kingdom, Bangladesh and the USA — and help shape the future of trade, technology and community."
+        eyebrow={hero?.eyebrow || 'Our Community'}
+        title={hero?.title || 'Careers'}
+        subtitle={hero?.subtitle || 'Join a global team across Oman, the United Kingdom, Bangladesh and the USA — and help shape the future of trade, technology and community.'}
       />
 
       <Section id="careers" className="relative overflow-hidden bg-brand-50">

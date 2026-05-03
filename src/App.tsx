@@ -48,6 +48,9 @@ import BlogEdit from './admin/pages/sections/BlogEdit'
 import CareersEdit from './admin/pages/sections/CareersEdit'
 import TestimonialsEdit from './admin/pages/sections/TestimonialsEdit'
 import SettingsEdit from './admin/pages/sections/SettingsEdit'
+import CountryPagesEdit from './admin/pages/sections/CountryPagesEdit'
+import MediaLibrary from './admin/pages/MediaLibrary'
+import PageHeroesEdit from './admin/pages/sections/PageHeroesEdit'
 
 function AdminRoutes() {
   return (
@@ -67,8 +70,11 @@ function AdminRoutes() {
         <Route path="leadership"   element={<ProtectedRoute><LeadershipEdit /></ProtectedRoute>} />
         <Route path="blog"         element={<ProtectedRoute><BlogEdit /></ProtectedRoute>} />
         <Route path="careers"      element={<ProtectedRoute><CareersEdit /></ProtectedRoute>} />
-        <Route path="testimonials" element={<ProtectedRoute><TestimonialsEdit /></ProtectedRoute>} />
-        <Route path="settings"     element={<ProtectedRoute><SettingsEdit /></ProtectedRoute>} />
+        <Route path="testimonials"   element={<ProtectedRoute><TestimonialsEdit /></ProtectedRoute>} />
+        <Route path="settings"       element={<ProtectedRoute><SettingsEdit /></ProtectedRoute>} />
+        <Route path="country-pages"  element={<ProtectedRoute><CountryPagesEdit /></ProtectedRoute>} />
+        <Route path="page-heroes"    element={<ProtectedRoute><PageHeroesEdit /></ProtectedRoute>} />
+        <Route path="media"          element={<ProtectedRoute><MediaLibrary /></ProtectedRoute>} />
       </Routes>
     </AuthProvider>
   )

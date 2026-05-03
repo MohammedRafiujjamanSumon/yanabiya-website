@@ -4,6 +4,7 @@ import BackButton from '../components/BackButton'
 import OurPeopleNav from '../components/OurPeopleNav'
 import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
+import { useSection } from '../hooks/useSection'
 
 function Reveal({
   children,
@@ -46,6 +47,9 @@ const BOARD: Member[] = [
 ]
 
 export default function Board() {
+  const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
+  const hero = pageHeroes?.['board']
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
@@ -61,9 +65,9 @@ export default function Board() {
       </div>
 
       <PageHero
-        eyebrow="Tier 01 · Global Board & Advisory"
-        title={<>Our <span className="italic text-brand-accentDark">Board of Members.</span></>}
-        subtitle="The board members providing governance, strategic oversight, and long-term direction for Yanabiya Group."
+        eyebrow={hero?.eyebrow || 'Tier 01 · Global Board & Advisory'}
+        title={hero?.title || 'Board of Members'}
+        subtitle={hero?.subtitle || 'The board members providing governance, strategic oversight, and long-term direction for Yanabiya Group.'}
         centered
       />
 

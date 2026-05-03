@@ -4,6 +4,7 @@ import Section from '../components/Section'
 import PageHero from '../components/PageHero'
 import { countries } from '../data/countries'
 import { assets } from '../data/assets'
+import { useSection } from '../hooks/useSection'
 
 type Testimonial = {
   quote: string
@@ -87,6 +88,8 @@ const stats = [
 ]
 
 export default function Testimonials() {
+  const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
+  const hero = pageHeroes?.['testimonials']
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
@@ -94,9 +97,9 @@ export default function Testimonials() {
   return (
     <>
       <PageHero
-        eyebrow="Our Community"
-        title="Testimonials"
-        subtitle="Words from our partners, clients and beneficiaries — gathered across the four countries where Yanabiya Group operates."
+        eyebrow={hero?.eyebrow || 'Our Community'}
+        title={hero?.title || 'Testimonials'}
+        subtitle={hero?.subtitle || 'Words from our partners, clients and beneficiaries — gathered across the four countries where Yanabiya Group operates.'}
       />
 
       <Section id="testimonials" className="relative overflow-hidden bg-brand-50">

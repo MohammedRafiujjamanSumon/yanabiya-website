@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, Phone, Users, Image, Globe, Settings,
   LogOut, Menu, X, ChevronRight, Building2, FileText,
-  Newspaper, Briefcase, Quote, Navigation, Layout, MonitorPlay, Info,
+  Newspaper, Briefcase, Quote, Navigation, Layout, MonitorPlay, Info, FolderOpen,
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { assets } from '../../data/assets'
@@ -24,6 +24,11 @@ const NAV = [
   { to: '/admin/blog',         label: 'Blog Posts',      icon: Newspaper },
   { to: '/admin/careers',      label: 'Careers',         icon: Briefcase },
   { to: '/admin/testimonials', label: 'Testimonials',    icon: Quote },
+  { header: 'PAGES' },
+  { to: '/admin/page-heroes',   label: 'Page Heroes',    icon: Image },
+  { to: '/admin/country-pages', label: 'Country Pages',  icon: Globe },
+  { header: 'MEDIA' },
+  { to: '/admin/media',         label: 'Media Library',  icon: FolderOpen },
   { header: 'ACCOUNT' },
   { to: '/admin/settings',     label: 'Settings',        icon: Settings },
 ]

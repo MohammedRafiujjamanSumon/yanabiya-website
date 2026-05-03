@@ -26,29 +26,42 @@ export const api = {
   changePassword: (currentPassword: string, newPassword: string) =>
     req('PUT', '/api/auth/password', { currentPassword, newPassword }),
 
-  // Content
+  // Content sections
   getSection: (key: string) => req<{ key: string; data: unknown }>('GET', `/api/content/${key}`),
-  updateSection: (key: string, data: unknown) =>
-    req('PUT', `/api/content/${key}`, { data }),
+  updateSection: (key: string, data: unknown) => req('PUT', `/api/content/${key}`, { data }),
   listSections: () => req<{ key: string; updatedAt: string }[]>('GET', '/api/content'),
 
-  // Upload
-  uploadFile: async (folder: string, file: File): Promise<{ url: string }> => {
-    const fd = new FormData()
-    fd.append('file', file)
-    const res = await fetch(`${BASE}/api/content/upload/${folder}`, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${localStorage.getItem('yg_token')}` },
-      body: fd,
+  // Media library
+  listMedia: () => req<MediaFile[]>('GET', '/api/content/media'),
+  deleteMedia: (folder: string, filename: string) =>
+    req('DELETE', `/api/content/media/${folder}/${filename}`),
+
+  // File upload — returns { url, filename, folder, type }
+  uploadFile: async (folder: string, file: File, onProgress?: (pct: number) => void): Promise<UploadResult> => {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest()
+      const fd = new FormData()
+      fd.append('file', file)
+      xhr.open('POST', `${BASE}/api/content/upload/${folder}`)
+      xhr.setRequestHeader('Authorization', `Bearer ${localStorage.getItem('yg_token')}`)
+      if (onProgress) {
+        xhr.upload.onprogress = (e) => {
+          if (e.lengthComputable) onProgress(Math.round((e.loaded / e.total) * 100))
+        }
+      }
+      xhr.onload = () => {
+        if (xhr.status >= 200 && xhr.status < 300) resolve(JSON.parse(xhr.responseText))
+        else reject(new Error(`Upload failed: ${xhr.status}`))
+      }
+      xhr.onerror = () => reject(new Error('Upload failed'))
+      xhr.send(fd)
     })
-    if (!res.ok) throw new Error('Upload failed')
-    return res.json()
   },
 }
 
-export interface Admin {
-  id: string
-  email: string
-  name: string
-  role: string
+export interface Admin { id: string; email: string; name: string; role: string }
+export interface MediaFile {
+  name: string; folder: string; path: string; url: string
+  size: number; mtime: string; type: 'image' | 'video' | 'file'
 }
+export interface UploadResult { url: string; filename: string; folder: string; type: string }

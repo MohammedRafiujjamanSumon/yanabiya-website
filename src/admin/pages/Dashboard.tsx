@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import {
   Phone, Image, Globe, Building2, Users, FileText,
   ArrowRight, Clock, MonitorPlay, Info, Navigation,
-  Layout, Newspaper, Briefcase, Quote,
+  Layout, Newspaper, Briefcase, Quote, FolderOpen,
 } from 'lucide-react'
 import AdminLayout from '../components/AdminLayout'
 import { api } from '../api/adminApi'
@@ -22,7 +22,10 @@ const SECTIONS = [
   { key: 'blog',         label: 'Blog Posts',        icon: Newspaper,   to: '/admin/blog',         desc: 'Create & manage blog articles' },
   { key: 'careers',      label: 'Careers',           icon: Briefcase,   to: '/admin/careers',      desc: 'Job listings per country' },
   { key: 'testimonials', label: 'Testimonials',      icon: Quote,       to: '/admin/testimonials', desc: 'Client testimonials per country' },
-  { key: 'hero',         label: 'Hero Text',         icon: Globe,       to: '/admin/hero',         desc: 'Homepage headline & stats' },
+  { key: 'hero',          label: 'Hero Text',         icon: Globe,       to: '/admin/hero',          desc: 'Homepage headline & stats' },
+  { key: 'page-heroes',   label: 'Page Heroes',       icon: Image,       to: '/admin/page-heroes',   desc: 'Hero banner text on every sub-page' },
+  { key: 'country-pages', label: 'Country Pages',     icon: Globe,       to: '/admin/country-pages', desc: 'Oman, UK, Bangladesh, USA landing pages' },
+  { key: 'media',         label: 'Media Library',     icon: FolderOpen,  to: '/admin/media',         desc: 'Upload and manage all images & videos' },
 ]
 
 export default function Dashboard() {
