@@ -39,12 +39,14 @@ const BUSINESS_DISPLAY: Record<
   string,
   { title: string; tag: string; sample: string[] }
 > = {
-  'it-software':       { title: 'IT Software & Web Development',  tag: 'Custom software, cloud, AI.',         sample: ['Software', 'Cloud', 'Cyber Security'] },
-  'export-import':     { title: 'Export & Import Business',       tag: 'Sourcing, freight, fulfilment.',      sample: ['Freight', 'Customs', 'Warehousing'] },
-  'clothing':          { title: 'Clothing & Accessories',         tag: 'Private label, sourcing, retail.',    sample: ['Private Label', 'Sourcing', 'QA'] },
-  'agents-brokerage':  { title: 'Agents & Brokerage Business',    tag: 'Cross-border deals & partnerships.',  sample: ['Deals', 'Market Entry', 'Tenders'] },
-  'office-management': { title: 'Office Management Services',     tag: 'Serviced offices, PRO, admin.',       sample: ['Workspace', 'Accounting', 'PRO'] },
-  'manpower':          { title: 'Manpower Supply Services',       tag: 'Workforce, students, aviation.',      sample: ['Recruitment', 'Student Visa', 'Aviation'] },
+  'it-software':              { title: 'Technology & Digital Solutions', tag: 'Custom software, cloud, AI.',          sample: ['Software', 'Cloud', 'Cyber Security'] },
+  'export-import':            { title: 'Export & Import Business',       tag: 'Sourcing, freight, fulfilment.',       sample: ['Freight', 'Customs', 'Warehousing'] },
+  'clothing':                 { title: 'Clothing & Accessories',         tag: 'Private label, sourcing, retail.',     sample: ['Private Label', 'Sourcing', 'QA'] },
+  'agents-brokerage':         { title: 'Agents & Brokerage Business',   tag: 'Insurance, loans & partnerships.',     sample: ['Insurance', 'Home Loans', 'Brokerage'] },
+  'office-management':        { title: 'Office Management Services',     tag: 'Facility, security & operations.',     sample: ['Facility', 'Security', 'CCTV'] },
+  'manpower':                 { title: 'Manpower Supply Services',       tag: 'Workforce, students, aviation.',       sample: ['Recruitment', 'Student Visa', 'Aviation'] },
+  'yanabiya-commerce':        { title: 'Yanabiya Commerce',              tag: 'Online retail, marketplace, fulfilment.', sample: ['Online Store', 'Marketplace', 'Fulfilment'] },
+  'yanabiya-digital-platform':{ title: 'Yanabiya Digital Platform',      tag: 'Apps, field ops, HR & CRM.',          sample: ['Business App', 'Field Ops', 'HR System'] },
 }
 
 /* Bottom-up gradient palette per pyramid layer. Bottom is the broad
@@ -61,7 +63,7 @@ type PyramidLayer = {
 }
 
 const PYRAMID_LAYERS: PyramidLayer[] = [
-  { slug: 'it-software',       label: 'IT Software & Web Development', icon: Cpu,       from: '#7dd3fc', to: '#0369a1', glow: 'rgba(56,189,248,0.55)' },
+  { slug: 'it-software',       label: 'Technology & Digital Solutions', icon: Cpu,       from: '#7dd3fc', to: '#0369a1', glow: 'rgba(56,189,248,0.55)' },
   { slug: 'export-import',     label: 'Export & Import Business',      icon: Globe2,    from: '#6ee7b7', to: '#047857', glow: 'rgba(52,211,153,0.55)' },
   { slug: 'clothing',          label: 'Clothing & Accessories',        icon: Shirt,     from: '#fcd34d', to: '#b45309', glow: 'rgba(251,191,36,0.55)' },
   { slug: 'agents-brokerage',  label: 'Agents & Brokerage Business',   icon: Handshake, from: '#d8b4fe', to: '#7e22ce', glow: 'rgba(192,132,252,0.55)' },
@@ -85,7 +87,7 @@ type FlowCard = {
 }
 
 const FLOW_CARDS: FlowCard[] = [
-  { slug: 'it-software',       title: 'IT Software & Web Development', body: 'Custom software, web platforms, ERP, and AI solutions.', bg: 'bg-emerald-500',  stroke: '#10b981' },
+  { slug: 'it-software',       title: 'Technology & Digital Solutions', body: 'Custom software, web platforms, ERP, and AI solutions.', bg: 'bg-emerald-500',  stroke: '#10b981' },
   { slug: 'export-import',     title: 'Export & Import Business',      body: 'Sourcing, freight, customs, and end-to-end fulfilment.', bg: 'bg-teal-500',     stroke: '#14b8a6' },
   { slug: 'clothing',          title: 'Clothing & Accessories',        body: 'Private label, garment sourcing, QA, and retail supply.', bg: 'bg-sky-500',       stroke: '#0ea5e9' },
   { slug: 'agents-brokerage',  title: 'Agents & Brokerage Business',   body: 'Cross-border deals, partnerships, and tender support.',   bg: 'bg-slate-500',     stroke: '#64748b' },
@@ -147,7 +149,7 @@ type ServiceItem = {
 const SERVICE_ITEMS: ServiceItem[] = [
   {
     slug: 'it-software', num: '01',
-    title: 'IT Software & Web Development',
+    title: 'Technology & Digital Solutions',
     tagline: 'Custom software, cloud & AI solutions',
     image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80',
   },
@@ -182,16 +184,16 @@ const SERVICE_ITEMS: ServiceItem[] = [
     image: 'https://images.unsplash.com/photo-1524069290683-0457abfe42c3?auto=format&fit=crop&w=800&q=80',
   },
   {
-    slug: 'ecommerce', num: '07',
-    title: 'Yanabiya Vertical E-Commerce',
-    tagline: 'B2B & B2C online marketplace',
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+    slug: 'yanabiya-commerce', num: '07',
+    title: 'Yanabiya Commerce',
+    tagline: 'Online retail, marketplace & fulfilment',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
     badge: 'new',
   },
   {
-    slug: 'service-apps', num: '08',
-    title: 'Yanabiya Service Apps',
-    tagline: 'Digital service platform',
+    slug: 'yanabiya-digital-platform', num: '08',
+    title: 'Yanabiya Digital Platform',
+    tagline: 'Apps, field ops & digital services',
     image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
     badge: 'soon',
   },
@@ -220,13 +222,6 @@ function SnakeCard({ item, onSelect }: { item: ServiceItem; onSelect: () => void
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
 
-        {/* Number badge */}
-        <span className="absolute top-2.5 left-2.5 w-7 h-7 rounded-full
-                          bg-brand-accent text-white text-[11px] font-bold
-                          flex items-center justify-center shadow-md ring-2 ring-white/30">
-          {item.num}
-        </span>
-
         {/* Status badge */}
         {item.badge === 'new' && (
           <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full
@@ -244,12 +239,9 @@ function SnakeCard({ item, onSelect }: { item: ServiceItem; onSelect: () => void
 
       {/* ── Text panel — always fully visible outside the image ── */}
       <div className="px-3.5 py-3 flex flex-col gap-1 flex-1">
-        <h3 className="font-semibold text-brand-deep text-[13px] leading-snug line-clamp-2">
+        <h3 className="font-semibold text-brand-deep text-[13px] leading-snug line-clamp-2 flex-1">
           {item.title}
         </h3>
-        <p className="text-brand-deep/55 text-[11px] leading-snug flex-1">
-          {item.tagline}
-        </p>
         <div className="mt-2 inline-flex items-center gap-1 text-brand-accentDark text-[11px]
                         font-semibold group-hover:gap-2 transition-all duration-200">
           {item.badge === 'soon' ? 'Coming Soon' : 'Explore'}
@@ -353,7 +345,7 @@ type GbsItem = {
 const businessBySlug = Object.fromEntries(businesses.map((b) => [b.slug, b]))
 
 const GBS_ITEMS: GbsItem[] = [
-  { slug: 'it-software',       title: 'IT Software & Web Development', image: businessBySlug['it-software'].image,       ring: '#9a3412' },
+  { slug: 'it-software',       title: 'Technology & Digital Solutions', image: businessBySlug['it-software'].image,       ring: '#9a3412' },
   { slug: 'export-import',     title: 'Export & Import Business',      image: businessBySlug['export-import'].image,     ring: '#7c2d12' },
   { slug: 'clothing',          title: 'Clothing & Accessories',        image: businessBySlug['clothing'].image,          ring: '#831843' },
   { slug: 'office-management', title: 'Office Management Services',    image: businessBySlug['office-management'].image, ring: '#9f1239' },
@@ -882,60 +874,6 @@ function NodeDetailPanel({
     )
   }
 
-  // UPCOMING divisions — e-commerce & service apps
-  if (slug === 'ecommerce' || slug === 'service-apps') {
-    const item = SERVICE_ITEMS.find((s) => s.slug === slug)!
-    return (
-      <div role="dialog" aria-modal="true" className="fixed inset-0 z-[100]" onClick={onClose}>
-        <div className="absolute inset-0 bg-slate-900/55 backdrop-blur-sm animate-[fadeUp_0.3s_ease-out_both]" />
-        <aside
-          onClick={(e) => e.stopPropagation()}
-          className="absolute top-0 right-0 h-full w-full sm:w-[420px]
-                     bg-brand-50 shadow-[0_0_60px_rgba(0,0,0,0.35)] border-l border-brand-accent/30
-                     overflow-y-auto flex flex-col"
-          style={{ animation: 'slideInRight 0.4s cubic-bezier(0.22,1,0.36,1) both' }}
-        >
-          <button type="button" onClick={onClose} aria-label="Close"
-            className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full
-                       bg-white/80 hover:bg-white border border-brand-deep/10
-                       grid place-items-center text-brand-deep transition-colors">
-            <CloseIcon size={16} />
-          </button>
-          <div className="relative aspect-[16/9] shrink-0 overflow-hidden">
-            <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 to-transparent" />
-            <div className="absolute bottom-5 left-6 right-6">
-              <span className="inline-block mb-2 px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide
-                               bg-amber-500 text-white shadow">
-                {slug === 'ecommerce' ? 'New Division' : 'Coming Soon'}
-              </span>
-              <h3 className="font-serif text-2xl text-white leading-tight">{item.title}</h3>
-            </div>
-          </div>
-          <div className="p-7 flex-1">
-            <p className="text-sm text-brand-deep/70 leading-relaxed">
-              {slug === 'ecommerce'
-                ? 'Yanabiya is launching a vertically integrated B2B & B2C e-commerce platform — connecting suppliers, manufacturers, and buyers across Oman, UK, Bangladesh, and the US.'
-                : 'Yanabiya Service Apps is a unified digital platform bringing all group services — logistics, manpower, insurance, and more — into a single mobile and web experience. Launching soon.'}
-            </p>
-            <div className="mt-6 p-4 rounded-xl bg-brand-accent/8 border border-brand-accent/20">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-1">
-                {slug === 'ecommerce' ? 'Get Early Access' : 'Get Notified'}
-              </p>
-              <p className="text-xs text-brand-deep/60">
-                Contact us at{' '}
-                <a href="mailto:admin@yanabiyagroup.com"
-                   className="text-brand-accentDark font-semibold hover:underline">
-                  admin@yanabiyagroup.com
-                </a>
-              </p>
-            </div>
-          </div>
-        </aside>
-      </div>
-    )
-  }
-
   // SINGLE DIVISION mode — node click
   const b = businesses.find((bb) => bb.slug === slug)
   if (!b) return null
@@ -976,9 +914,9 @@ function NodeDetailPanel({
         <div className="relative p-6 md:p-8">
           {/* Header */}
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-brand-accent/15 grid place-items-center text-brand-deep
-                            ring-1 ring-brand-accent/30 shrink-0">
-              <Icon size={22} strokeWidth={1.6} />
+            <div className="w-12 h-12 rounded-full bg-white grid place-items-center
+                            ring-2 ring-brand-accent/30 shadow-md shrink-0 overflow-hidden">
+              <img src={assets.logo} alt="Yanabiya" className="w-9 h-9 object-contain" />
             </div>
             <div>
               <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark">

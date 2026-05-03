@@ -35,18 +35,7 @@ function Reveal({
 }
 
 function SectionWatermark() {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
-    >
-      <img
-        src={assets.logo}
-        alt=""
-        className="w-[55%] max-w-[480px] opacity-[0.07] object-contain"
-      />
-    </div>
-  )
+  return null
 }
 
 /* ───────────────────────── Types ───────────────────────── */

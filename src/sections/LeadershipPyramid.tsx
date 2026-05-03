@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Crown, Star, Briefcase, Globe2, type LucideIcon } from 'lucide-react'
+import { ArrowRight, Users } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
+import { board } from '../data/leadership'
 
 function Reveal({
   children,
@@ -17,7 +18,7 @@ function Reveal({
     <div
       ref={ref}
       className={`${className} transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
@@ -26,152 +27,251 @@ function Reveal({
   )
 }
 
-/* Four hierarchy cards on landing — every card opens its own dedicated
- * detail page where the names, portraits, and content live. */
+const BOARD_PHOTO  = 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=200&q=80'
+const CEO_PHOTO    = 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80'
+const GROUP_PHOTO  = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=200&q=80'
+const CFO_PHOTO    = 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=200&q=80'
+const DEPT_PHOTO   = 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=200&q=80'
 
-type Tier = {
-  step: string
-  title: string
-  blurb: string
-  icon: LucideIcon
-  href: string
-  cta: string
-  /** Real-life scenery / portrait header. */
-  image: string
+const COUNTRIES = [
+  { flag: '🇴🇲', name: 'Oman',       to: '/leadership/country/om' },
+  { flag: '🇬🇧', name: 'UK',         to: '/leadership/country/gb' },
+  { flag: '🇧🇩', name: 'Bangladesh', to: '/leadership/country/bd' },
+  { flag: '🇺🇸', name: 'USA',        to: '/leadership/country/us' },
+]
+
+const DEPARTMENTS = [
+  { label: 'HR'          },
+  { label: 'IT'          },
+  { label: 'Operations'  },
+  { label: 'Marketing'   },
+  { label: 'Legal'       },
+  { label: 'Support Team'},
+]
+
+function OrgNode({
+  label,
+  sub,
+  to,
+  photo,
+  delay = 0,
+  size = 'md',
+}: {
+  label: string
+  sub?: string
+  to: string
+  photo?: string
+  delay?: number
+  size?: 'sm' | 'md' | 'lg'
+}) {
+  const pill =
+    size === 'lg' ? 'px-7 py-3.5 min-w-[230px]' :
+    size === 'sm' ? 'px-4 py-2.5 min-w-[130px]'  :
+                   'px-5 py-3   min-w-[180px]'
+  const nameSize =
+    size === 'lg' ? 'text-sm font-bold'       :
+    size === 'sm' ? 'text-[11px] font-semibold':
+                   'text-[13px] font-semibold'
+  const iconSz =
+    size === 'lg' ? 'w-11 h-11' :
+    size === 'sm' ? 'w-7 h-7'   :
+                   'w-9 h-9'
+  const icon = size === 'lg' ? 20 : size === 'sm' ? 13 : 16
+
+  return (
+    <Reveal delay={delay}>
+      <Link
+        to={to}
+        className={`group flex items-center gap-3 bg-white rounded-full ${pill}
+                   shadow-[0_4px_24px_rgba(15,58,35,0.10)] border border-brand-accent/20
+                   hover:bg-brand-accent/8 hover:border-brand-accentDark/30
+                   hover:shadow-[0_8px_32px_rgba(15,58,35,0.18)]
+                   hover:-translate-y-0.5 transition-all duration-300`}
+      >
+        <span className={`shrink-0 ${iconSz} rounded-full overflow-hidden bg-brand-accent/15
+                         flex items-center justify-center
+                         group-hover:ring-2 group-hover:ring-brand-accentDark/40
+                         transition-all duration-300`}>
+          {photo
+            ? <img src={photo} alt={label} className="w-full h-full object-cover" />
+            : <Users size={icon} strokeWidth={2} className="text-brand-deep" />}
+        </span>
+        <div>
+          <div className={`${nameSize} text-brand-deep whitespace-nowrap leading-tight`}>
+            {label}
+          </div>
+          {sub && (
+            <div className="text-[10px] text-brand-deep/50 whitespace-nowrap mt-0.5">{sub}</div>
+          )}
+        </div>
+      </Link>
+    </Reveal>
+  )
 }
 
-const TIERS: Tier[] = [
-  {
-    step: '01',
-    title: 'Global Board & Advisory',
-    blurb: 'Independent directors and senior advisors providing governance, risk oversight, and long-term strategic guidance.',
-    icon: Crown,
-    href: '/leadership/board',
-    cta: 'Meet the Board',
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    step: '02',
-    title: 'Global CEO & Vice Chairman',
-    blurb: 'The vision-bearers behind the group — read messages from the Global CEO and Vice Chairman.',
-    icon: Star,
-    href: '/leadership/management',
-    cta: 'Read Messages',
-    image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    step: '03',
-    title: 'Global Executive Management',
-    blurb: 'Four country heads of department running operations on the ground in each market.',
-    icon: Briefcase,
-    href: '/leadership/executive',
-    cta: 'See Executives',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    step: '04',
-    title: 'Country-Based Operation Team',
-    blurb: 'Each country page covers its co-founder, executive management, and high-skill professionals.',
-    icon: Globe2,
-    href: '/leadership/countries',
-    cta: 'Pick a Country',
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80',
-  },
-]
+function Connector({ className = '' }: { className?: string }) {
+  return <div className={`bg-brand-accent/30 ${className}`} />
+}
+
+function CountryCard({
+  flag,
+  name,
+  to,
+  delay = 0,
+}: {
+  flag: string
+  name: string
+  to: string
+  delay?: number
+}) {
+  return (
+    <Reveal delay={delay}>
+      <Link
+        to={to}
+        className="group flex flex-col items-center gap-1 bg-white rounded-xl px-3 py-2.5
+                   shadow-[0_2px_12px_rgba(15,58,35,0.08)] border border-brand-accent/15
+                   hover:bg-brand-accent/8 hover:border-brand-accentDark/25
+                   hover:-translate-y-0.5 transition-all duration-300 min-w-[68px]"
+      >
+        <span className="text-2xl leading-none">{flag}</span>
+        <span className="text-[10px] font-semibold text-brand-deep">{name}</span>
+      </Link>
+    </Reveal>
+  )
+}
+
+function DeptPill({ label, delay = 0 }: { label: string; delay?: number }) {
+  return (
+    <Reveal delay={delay}>
+      <Link
+        to="/leadership/departments"
+        className="px-3 py-1.5 rounded-full bg-white
+                   shadow-[0_2px_8px_rgba(15,58,35,0.08)] border border-brand-accent/15
+                   text-[10px] font-semibold text-brand-deep whitespace-nowrap
+                   hover:bg-brand-accent/10 hover:-translate-y-0.5
+                   transition-all duration-300"
+      >
+        {label}
+      </Link>
+    </Reveal>
+  )
+}
 
 export default function LeadershipPyramid() {
   return (
-    <Section id="leadership" className="relative overflow-hidden bg-brand-50">
+    <Section id="leadership" className="bg-brand-50">
+      <div className="container-x pt-4 pb-10 md:pb-14">
 
-      {/* Ambient brand glows */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-32 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/15 blur-[160px]" />
-        <div className="absolute bottom-0 -right-40 w-[520px] h-[520px] rounded-full bg-brand-accentDark/10 blur-[140px]" />
-      </div>
-
-      <div className="container-x relative pt-2 md:pt-3 pb-10 md:pb-14">
-
-        {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
-          <Reveal>
-            <Eyebrow>Global Leadership</Eyebrow>
-          </Reveal>
-          <Reveal delay={120}>
-            <h2 className="font-serif text-[16px] leading-snug tracking-tight text-brand-deep mt-1">
-              Four tiers of leadership across the group —{' '}
-              <span className="italic text-brand-accentDark">from boardroom to country teams.</span>
+        {/* Header */}
+        <Reveal>
+          <div className="flex flex-col items-center gap-2 mb-10 md:mb-14 text-center">
+            <Eyebrow>Our People</Eyebrow>
+            <h2 className="font-serif text-2xl md:text-3xl text-brand-deep leading-snug tracking-tight">
+              The People Behind{' '}
+              <span className="italic text-brand-accentDark">Yanabiya</span>
             </h2>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
 
-        {/* FOUR HIERARCHY CARDS */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-          {TIERS.map((t, i) => (
-            <Reveal key={t.step} delay={i * 90}>
+        {/* Org chart */}
+        <div className="flex flex-col items-center">
+
+          {/* ── Top chain ── */}
+          <OrgNode
+            label="Founder, Chairman & CEO"
+            sub="S M Shamim Ahmed"
+            to="/leadership/management"
+            photo={board[0]?.photo}
+            delay={100}
+            size="lg"
+          />
+          <Connector className="w-px h-7" />
+          <OrgNode
+            label="Vice Chairman"
+            sub="Mohammad Abu Jaheed"
+            to="/leadership/management"
+            photo={board[1]?.photo}
+            delay={180}
+          />
+          <Connector className="w-px h-7" />
+          <OrgNode
+            label="Board of Directors"
+            to="/leadership/board"
+            photo={BOARD_PHOTO}
+            delay={260}
+          />
+          <Connector className="w-px h-7" />
+          <OrgNode
+            label="CEO"
+            sub="S M Shamim Ahmed"
+            to="/leadership/management"
+            photo={CEO_PHOTO}
+            delay={320}
+          />
+
+          {/* ── 3-way split connector ── */}
+          <div className="relative w-full max-w-3xl h-10">
+            <Connector className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-5" />
+            <Connector className="absolute top-5 left-[10%] right-[10%] h-px" />
+            <Connector className="absolute top-5 left-[10%]           w-px h-5" />
+            <Connector className="absolute top-5 left-1/2 -translate-x-1/2 w-px h-5" />
+            <Connector className="absolute top-5 right-[10%]          w-px h-5" />
+          </div>
+
+          {/* ── 3 columns ── */}
+          <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
+
+            {/* Column 1 — Group of Companies */}
+            <div className="flex flex-col items-center gap-3">
+              <OrgNode
+                label="Group of Companies"
+                to="/about-us"
+                photo={GROUP_PHOTO}
+                size="sm"
+                delay={340}
+              />
+            </div>
+
+            {/* Column 2 — CFO */}
+            <div className="flex flex-col items-center">
+              <OrgNode
+                label="CFO"
+                to="/leadership/management"
+                photo={CFO_PHOTO}
+                size="sm"
+                delay={360}
+              />
+            </div>
+
+            {/* Column 3 — Department Heads */}
+            <div className="flex flex-col items-center gap-3">
+              <OrgNode
+                label="Department Heads"
+                to="/leadership/departments"
+                photo={DEPT_PHOTO}
+                size="sm"
+                delay={380}
+              />
+            </div>
+
+          </div>
+
+          {/* ── CTA ── */}
+          <Reveal delay={720}>
+            <div className="mt-14 text-center">
               <Link
-                to={t.href}
-                aria-label={`Open ${t.title} page`}
-                className="group relative block h-full rounded-2xl overflow-hidden
-                           border border-brand-deep/15 bg-brand-50
-                           shadow-[0_10px_24px_-12px_rgba(15,58,35,0.20)]
-                           transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                           hover:-translate-y-1
-                           hover:shadow-[0_18px_36px_-14px_rgba(15,58,35,0.30)]
-                           hover:border-brand-accent"
+                to="/leadership/management"
+                className="inline-flex items-center gap-2 rounded-full px-7 py-3
+                           bg-brand-accent text-white text-xs font-bold uppercase tracking-[0.22em]
+                           shadow-md hover:bg-brand-accentDark hover:-translate-y-0.5
+                           transition-all duration-300"
               >
-                {/* Photo header */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-brand-50">
-                  <img
-                    src={t.image}
-                    alt=""
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover
-                               transition-transform duration-700 group-hover:scale-105"
-                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/85 via-brand-deep/30 to-transparent" />
-                  {/* Tier badge */}
-                  <div className="absolute top-3 left-3 inline-flex items-center gap-1.5
-                                  rounded-full bg-brand-accent/25 backdrop-blur
-                                  border border-brand-accent/40 px-2.5 py-1
-                                  text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accent">
-                    <t.icon size={11} /> Tier {t.step}
-                  </div>
-                </div>
-                {/* Body */}
-                <div className="p-5">
-                  <h3 className="font-serif text-[16px] md:text-lg text-brand-deep leading-tight">
-                    {t.title}
-                  </h3>
-                  <p className="mt-2 text-[12px] md:text-[13px] text-brand-deep/65 leading-snug">
-                    {t.blurb}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-[10px] font-bold
-                                   uppercase tracking-[0.22em] text-brand-accentDark
-                                   group-hover:gap-2 transition-all duration-300">
-                    {t.cta} <ArrowRight size={11} />
-                  </span>
-                </div>
+                Meet the Team <ArrowRight size={14} />
               </Link>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-10 md:mt-12">
-          <Reveal>
-            <Link
-              to="/leadership"
-              className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                         bg-brand-deep text-white text-xs font-bold uppercase tracking-[0.22em]
-                         shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
-                         transition-all duration-300"
-            >
-              Explore Leadership <ArrowRight size={14} />
-            </Link>
+            </div>
           </Reveal>
-        </div>
 
+        </div>
       </div>
     </Section>
   )

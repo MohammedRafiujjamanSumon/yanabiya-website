@@ -406,22 +406,12 @@ function SceneLeadership() {
 function SceneClosing() {
   return (
     <>
-      {/* Pulsing halo behind logo */}
+      {/* Pulsing halo */}
       <span
         aria-hidden="true"
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
                    w-56 h-56 rounded-full bg-brand-accent/30 blur-3xl animate-pulse"
       />
-      {/* Logo */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <img
-          src={assets.logo}
-          alt="Yanabiya Group"
-          className="h-24 md:h-36 w-auto object-contain
-                     drop-shadow-[0_8px_36px_rgba(158,199,58,0.6)]"
-          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-        />
-      </div>
     </>
   )
 }

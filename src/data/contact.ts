@@ -125,6 +125,7 @@ export const sections = [
   { id: 'global',       tKey: 'nav.global' },
   { id: 'csr',          tKey: 'nav.csr' },
   { id: 'network',      tKey: 'nav.network' },
+  { id: 'community',    tKey: 'nav.careers' },
   { id: 'leadership',   tKey: 'nav.leadership' },
   { id: 'strategy',     tKey: 'nav.strategy' },
   { id: 'insights',     tKey: 'nav.insights' },

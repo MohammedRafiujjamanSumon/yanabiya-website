@@ -43,7 +43,7 @@ function Reveal({
 export default function Stats() {
   return (
     <section id="stats" className="bg-brand-50 border-y border-brand-deep/10">
-      <div className="bg-brand-50">
+      <div className="bg-transparent">
         <div className="container-x px-2 md:px-4 py-2 md:py-2.5">
           <div className="grid grid-cols-4 gap-3 md:gap-4 [perspective:1400px]">
             {company.stats.map((s, i) => {

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Quote, Crown, Users } from 'lucide-react'
 import BackButton from '../components/BackButton'
+import OurPeopleNav from '../components/OurPeopleNav'
 import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
 import { board, chairmanMessage, viceChairmanMessage } from '../data/leadership'
@@ -69,7 +70,8 @@ export default function Management() {
 
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
-      <BackButton to="/leadership" label="Back to Leadership" />
+      <BackButton to="/#leadership" label="Our People" />
+      <OurPeopleNav />
 
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-brand-accent/20 blur-[160px]" />

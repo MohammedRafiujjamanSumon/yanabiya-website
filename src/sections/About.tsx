@@ -48,19 +48,6 @@ export default function About() {
   return (
     <Section id="about" className="relative overflow-hidden bg-brand-50 !pt-0 !pb-0">
 
-      {/* ── Background logo watermark ── */}
-      <div aria-hidden className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <div className="relative w-[380px] h-[380px] md:w-[540px] md:h-[540px]">
-          <div className="absolute inset-0 rounded-full bg-brand-accent/20 blur-[120px]" />
-          <img
-            src={assets.logo}
-            alt=""
-            className="relative w-full h-full object-contain opacity-[0.07]
-                       [transform:rotateY(6deg)_rotateX(4deg)]"
-            onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-          />
-        </div>
-      </div>
 
       <div className="relative z-10">
 
@@ -85,23 +72,6 @@ export default function About() {
                 className="w-full h-full object-cover object-center"
                 onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
               />
-              {/* Yanabiya logo — 3D lit effect on wall */}
-              <div className="absolute left-6 top-28 pointer-events-none">
-                {/* Glow halo behind logo */}
-                <div className="absolute inset-0 -m-6 rounded-full
-                                bg-brand-accent/30 blur-2xl" />
-                <div className="absolute inset-0 -m-2 rounded-full
-                                bg-white/20 blur-xl" />
-                <img
-                  src={assets.logo}
-                  alt=""
-                  aria-hidden="true"
-                  className="relative w-[170px] object-contain opacity-95
-                             drop-shadow-[0_0_18px_rgba(158,199,58,0.9)]
-                             drop-shadow-[0_0_40px_rgba(158,199,58,0.5)]
-                             drop-shadow-[0_8px_24px_rgba(0,0,0,0.4)]"
-                />
-              </div>
             </div>
           </div>
 

@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Send, ArrowRight, ArrowLeft, MapPin, Mail, Phone, User, Building, MessageSquare, ChevronDown, CheckCircle2 } from 'lucide-react'
 import Section from '../components/Section'
 import { businesses, type SubService } from '../data/businesses'
+import { assets } from '../data/assets'
 
 const COUNTRY_OPTIONS = [
   { value: 'OM', label: 'Oman' },
@@ -19,6 +20,46 @@ const COUNTRY_OPTIONS = [
   { value: 'PH', label: 'Philippines' },
   { value: 'OTHER', label: 'Other' },
 ]
+
+const HOVER_COLORS = [
+  { from: '#065f46', to: '#064e3b' },  // green
+  { from: '#1e40af', to: '#1e3a8a' },  // blue
+  { from: '#6d28d9', to: '#5b21b6' },  // violet
+  { from: '#be185d', to: '#9d174d' },  // pink
+  { from: '#b45309', to: '#92400e' },  // amber
+  { from: '#0e7490', to: '#155e75' },  // cyan
+  { from: '#7e22ce', to: '#6b21a8' },  // purple
+  { from: '#0369a1', to: '#075985' },  // sky
+  { from: '#b91c1c', to: '#991b1b' },  // red
+  { from: '#0f766e', to: '#115e59' },  // teal
+  { from: '#4338ca', to: '#3730a3' },  // indigo
+  { from: '#15803d', to: '#166534' },  // dark green
+]
+
+function FeatureCard({ f, idx }: { f: string; idx: number }) {
+  const [hovered, setHovered] = useState(false)
+  const color = HOVER_COLORS[idx % HOVER_COLORS.length]
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onTouchStart={() => setHovered(true)}
+      onTouchEnd={() => setHovered(false)}
+      className="grid place-items-center min-h-[64px] rounded-2xl px-5 py-3 cursor-default
+                 shadow-[0_4px_16px_rgba(15,58,35,0.30)]
+                 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]
+                 transition-all duration-300"
+      style={{
+        background: hovered
+          ? `linear-gradient(135deg, ${color.from}, ${color.to})`
+          : 'linear-gradient(135deg, #166534, #15803d, #14532d)',
+      }}
+    >
+      <span className="text-[13px] font-semibold text-white leading-snug text-center">{f}</span>
+    </div>
+  )
+}
 
 export default function SubServiceDetail() {
   const { slug, subSlug } = useParams<{ slug: string; subSlug: string }>()
@@ -118,44 +159,57 @@ export default function SubServiceDetail() {
           </div>
         </div>
 
-        {/* Header (no hero image) */}
+        {/* Hero banner + header */}
         <div className="fade-up max-w-5xl mx-auto">
-          <div className="flex flex-col items-center text-center gap-5 mb-10">
-            <div className="w-20 h-20 rounded-full bg-brand-accent/15 text-brand-accentDark grid place-items-center ring-4 ring-brand-accent/20 shadow-lg">
-              <sub.icon size={36} />
+          <div className="relative w-full aspect-[21/8] rounded-2xl overflow-hidden mb-10 shadow-2xl">
+            <img
+              src={sub.image}
+              alt={sub.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 via-brand-deep/40 to-transparent" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6">
+              <div className="w-20 h-20 rounded-full bg-white/90 ring-4 ring-white/50 grid place-items-center overflow-hidden shadow-xl">
+                <img src={assets.logo} alt="Yanabiya" className="w-14 h-14 object-contain" />
+              </div>
+              <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-white/70">
+                {business.title.replace('🤝 ', '')}
+              </p>
+              <h1 className="font-serif text-2xl md:text-4xl text-white drop-shadow-lg text-center">
+                {sub.title}
+              </h1>
             </div>
-            <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-brand-accentDark">
-              {business.title.replace('🤝 ', '')}
-            </p>
-            <h1 className="font-serif text-3xl md:text-4xl text-brand-deep leading-tight">
-              {sub.title}
-            </h1>
+          </div>
+          <div className="flex flex-col items-center text-center gap-4 mb-10">
             <div className="w-16 h-0.5 bg-brand-accent rounded-full" />
             <p className="text-brand-deep/70 leading-relaxed max-w-3xl mx-auto">{sub.body}</p>
           </div>
 
-          <div className="mt-8">
-            <h3 className="text-brand-accentDark uppercase tracking-[0.22em] text-xs font-bold mb-6 text-center">
+          {/* ── What We Offer — horizontal scroll green cards ── */}
+          <div className="mt-10">
+            <h3 className="text-brand-accentDark uppercase tracking-[0.22em] text-xs font-bold mb-5 text-center">
               What We Offer
             </h3>
-            <ol className="grid sm:grid-cols-2 gap-x-6 gap-y-3 max-w-3xl mx-auto">
-              {sub.features.map((f, i) => (
-                <li
-                  key={f}
-                  className="flex items-start gap-3 text-sm text-brand-deep/80 rounded-xl
-                             bg-white/60 border border-white/80 p-3.5 shadow-sm
-                             hover:border-brand-accent/30 hover:shadow-md transition"
-                >
-                  <span
-                    className="shrink-0 w-7 h-7 rounded-full bg-brand-accent/15 text-brand-accentDark
-                               grid place-items-center text-[11px] font-bold tracking-wide"
-                  >
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span className="pt-1 leading-snug">{f}</span>
-                </li>
-              ))}
-            </ol>
+            <div className="max-w-2xl mx-auto flex flex-col gap-3">
+              {Array.from({ length: Math.ceil(sub.features.length / 3) }, (_, ci) => {
+                const chunk = sub.features.slice(ci * 3, ci * 3 + 3)
+                const baseIdx = ci * 3
+                return (
+                  <div key={ci} className="flex flex-col gap-3">
+                    {/* 1 card — full width */}
+                    <FeatureCard f={chunk[0]} idx={baseIdx} />
+                    {/* 2 cards — side by side */}
+                    {chunk.length > 1 && (
+                      <div className="grid grid-cols-2 gap-3">
+                        {chunk.slice(1).map((f, j) => (
+                          <FeatureCard key={f} f={f} idx={baseIdx + j + 1} />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
           </div>
 
           {/* CTA form */}
@@ -163,7 +217,7 @@ export default function SubServiceDetail() {
 
           {others.length > 0 && (
             <div className="mt-16 pt-10 border-t border-brand-deep/10">
-              <h3 className="font-serif text-2xl md:text-3xl text-brand-deep leading-tight mb-6 text-center">
+              <h3 className="font-serif text-xl md:text-2xl text-brand-deep leading-tight mb-6 text-center">
                 More services in this division
               </h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -171,30 +225,41 @@ export default function SubServiceDetail() {
                   <Link
                     key={s.slug}
                     to={`/business/${business.slug}/${s.slug}`}
-                    className="group flex items-start gap-3 rounded-xl bg-white/60 border border-white/80
-                               p-4 shadow-sm transition-all duration-300
-                               hover:bg-white/80 hover:border-brand-accent hover:-translate-y-0.5"
+                    className="group flex flex-col rounded-2xl overflow-hidden
+                               bg-white border border-brand-accent/15
+                               shadow-[0_4px_16px_rgba(15,58,35,0.08)]
+                               hover:shadow-[0_8px_28px_rgba(15,58,35,0.18)]
+                               hover:-translate-y-1 transition-all duration-300"
                   >
-                    <span
-                      className="shrink-0 grid place-items-center w-10 h-10 rounded-lg
-                                 bg-brand-accent/15 text-brand-accentDark
-                                 transition-colors duration-300
-                                 group-hover:bg-brand-accent group-hover:text-white"
-                    >
-                      <s.icon size={18} strokeWidth={1.6} />
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[13px] font-semibold text-brand-deep leading-tight">
+                    {/* Image */}
+                    <div className="relative h-36 overflow-hidden">
+                      <img
+                        src={s.image}
+                        alt={s.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) => {
+                          const img = e.currentTarget as HTMLImageElement
+                          img.style.display = 'none'
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/60 via-transparent to-transparent" />
+                      <span className="absolute bottom-2 right-2 w-8 h-8 rounded-full
+                                       bg-white/20 backdrop-blur-sm ring-1 ring-white/40
+                                       grid place-items-center">
+                        <s.icon size={15} className="text-white" strokeWidth={1.8} />
+                      </span>
+                    </div>
+                    {/* Text */}
+                    <div className="px-4 py-3 flex items-center justify-between gap-2">
+                      <span className="text-[13px] font-bold text-brand-deep leading-snug">
                         {s.title}
-                      </div>
-                      <div
-                        className="mt-1 text-[10px] uppercase tracking-[0.22em] text-brand-accentDark
-                                   inline-flex items-center gap-1
-                                   transition-all duration-300
-                                   group-hover:gap-1.5"
-                      >
-                        Read More <ArrowRight size={11} />
-                      </div>
+                      </span>
+                      <span className="shrink-0 inline-flex items-center gap-0.5
+                                       text-[10px] font-bold uppercase tracking-[0.18em]
+                                       text-brand-accentDark group-hover:gap-1.5 transition-all">
+                        Read More <ArrowRight size={10} />
+                      </span>
                     </div>
                   </Link>
                 ))}

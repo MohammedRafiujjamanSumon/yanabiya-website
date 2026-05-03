@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import type React from 'react'
 import Section, { Eyebrow, H2 } from '../components/Section'
 import { partners, valuableClients, ukValuableClients, memberships, affiliations } from '../data/partners'
+import { assets } from '../data/assets'
 
 type Item = { name: string; logo: string }
 
@@ -44,17 +45,18 @@ function LogoMarquee({
             key={`${p.name}-${i}`}
             className="group shrink-0 flex items-center justify-center px-4 cursor-pointer"
           >
-            <div className="flex items-center justify-center px-6 py-4 rounded-2xl
-                            bg-white border border-brand-100 shadow-sm
-                            group-hover:shadow-md group-hover:border-brand-200
+            <div className="flex items-center justify-center px-7 py-5 rounded-2xl
+                            bg-white/60 border border-brand-100/50
+                            group-hover:bg-white group-hover:shadow-md group-hover:border-brand-200
                             group-hover:-translate-y-0.5
                             transition-all duration-300">
               <img
                 src={p.logo}
                 alt={p.name}
                 loading="lazy"
-                className="h-14 max-w-[130px] object-contain
-                           scale-100 group-hover:scale-110
+                className="h-20 max-w-[160px] object-contain
+                           opacity-40 grayscale
+                           group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105
                            transition-all duration-300"
                 onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
               />

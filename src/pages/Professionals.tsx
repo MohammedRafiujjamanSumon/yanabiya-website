@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
+import OurPeopleNav from '../components/OurPeopleNav'
+import BackButton from '../components/BackButton'
 import { team } from '../data/leadership'
 
 export default function Professionals() {
@@ -10,6 +12,8 @@ export default function Professionals() {
 
   return (
     <>
+      <BackButton to="/#leadership" label="Our People" />
+      <OurPeopleNav />
       <PageHero
         eyebrow="Leadership"
         title="High Skilled Professionals"

@@ -147,9 +147,6 @@ export default function OurStory() {
                      bg-brand-accent/20 blur-[160px] animate-gradient"
           style={{ animationDelay: '4s' }}
         />
-        <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <img src={assets.logo} alt="" className="w-[60%] max-w-[700px] opacity-[0.05] object-contain" />
-        </div>
 
         <div className="container-x relative z-10">
           <div className="max-w-4xl">

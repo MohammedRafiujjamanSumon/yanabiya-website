@@ -4,6 +4,7 @@ import { MapPin, Send, ArrowRight } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { contactByCountry } from '../data/contact'
 import { countries } from '../data/countries'
+import { assets } from '../data/assets'
 
 type Palette = {
   /** Solid header colour. */

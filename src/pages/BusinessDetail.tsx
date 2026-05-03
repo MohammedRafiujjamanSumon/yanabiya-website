@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { CheckCircle2, Send, ArrowRight, ArrowLeft, MapPin, Mail, Phone, User, Building, MessageSquare, ChevronDown } from 'lucide-react'
 import Section from '../components/Section'
 import { businesses, type SubService } from '../data/businesses'
+import { assets } from '../data/assets'
 import { countries as countryList } from '../data/countries'
 
 const DEFAULT_VIDEO =
@@ -123,8 +124,8 @@ export default function BusinessDetail() {
 
             {!hasSubServices && (
               <div className="flex flex-col items-center gap-5">
-                <div className="w-20 h-20 rounded-full bg-brand-accent/15 text-brand-accentDark grid place-items-center ring-4 ring-brand-accent/20 shadow-lg">
-                  <business.icon size={36} />
+                <div className="w-20 h-20 rounded-full bg-white grid place-items-center ring-4 ring-brand-accent/30 shadow-lg overflow-hidden">
+                  <img src={assets.logo} alt="Yanabiya" className="w-14 h-14 object-contain" />
                 </div>
                 <h2 className="font-serif text-3xl md:text-4xl text-brand-deep leading-tight">
                   {business.title}
@@ -164,11 +165,35 @@ export default function BusinessDetail() {
             )}
 
             {hasSubServices && (
-              <SubServicesSection
-                businessSlug={business.slug}
-                subServices={business.subServices!}
-                heading={business.subServicesHeading ?? 'Explore Our Services'}
-              />
+              <>
+                {/* Hero banner */}
+                <div className="relative w-full aspect-[21/8] rounded-2xl overflow-hidden mb-10 shadow-2xl">
+                  <img
+                    src={business.image}
+                    alt={business.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 via-brand-deep/40 to-transparent" />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6">
+                    <div className="w-20 h-20 rounded-full bg-white/90 ring-4 ring-white/50 grid place-items-center overflow-hidden shadow-xl">
+                      <img src={assets.logo} alt="Yanabiya" className="w-14 h-14 object-contain" />
+                    </div>
+                    <h2 className="font-serif text-2xl md:text-4xl text-white drop-shadow-lg text-center">
+                      {business.title}
+                    </h2>
+                    {business.details && (
+                      <p className="text-white/80 text-sm max-w-xl text-center drop-shadow">
+                        {business.details}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <SubServicesSection
+                  businessSlug={business.slug}
+                  subServices={business.subServices!}
+                  heading={business.subServicesHeading ?? 'Explore Our Services'}
+                />
+              </>
             )}
 
             <ServiceForm sectorTitle={business.title} features={business.features} />

@@ -28,8 +28,9 @@ export default function Navbar() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  useScrollHeader(8, 80)
+  const { scrolled } = useScrollHeader(8, 80)
   const isHome = location.pathname === '/' || location.pathname === ''
+  const onHeroTop = isHome && !scrolled
   const [open, setOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [mobileOpenGroup, setMobileOpenGroup] = useState<string | null>(null)
@@ -56,8 +57,8 @@ export default function Navbar() {
     { label: t('nav.businesses'), id: 'businesses'   },
     { label: t('nav.global'),     id: 'global'       },
     { label: 'Our Network',       id: 'partnerships' },
-    { label: 'Our Community',     parentRoute: '/community'  },
-    { label: 'Our Leadership',    parentRoute: '/leadership' },
+    { label: 'Our Community',     id: 'community'    },
+    { label: 'Our People',         id: 'leadership'   },
   ]
 
   useEffect(() => {
@@ -81,15 +82,18 @@ export default function Navbar() {
   }
 
   const baseLinkCls = (isActive: boolean) =>
-    `relative text-base font-medium whitespace-nowrap py-1.5 px-3
-     transition-colors duration-200
-     hover:text-white ${
-      isActive ? 'text-white underline underline-offset-4 decoration-brand-accent/70' : 'text-brand-accent'
+    `relative text-sm font-semibold whitespace-nowrap py-[6px] px-[18px] rounded-xl
+     transition-all duration-200
+     hover:bg-brand-deep hover:text-white ${
+      isActive
+        ? 'bg-brand-deep text-white'
+        : 'text-brand-deep'
     }`
 
   return (
     <header
-      className="left-0 right-0 z-40 sticky top-0 bg-transparent"
+      className={`left-0 right-0 z-40 bg-transparent transition-all duration-300
+                  ${onHeroTop ? 'absolute top-0' : 'sticky top-0'}`}
     >
       <div className="bg-transparent">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
@@ -136,18 +140,6 @@ export default function Navbar() {
                       }
                     }}
                     className={baseLinkCls(isActive)}
-                  >
-                    {g.label}
-                  </Link>
-                )
-              }
-              if (g.parentRoute) {
-                const isPageActive = location.pathname.startsWith(g.parentRoute)
-                return (
-                  <Link
-                    key={g.label}
-                    to={g.parentRoute}
-                    className={baseLinkCls(isPageActive)}
                   >
                     {g.label}
                   </Link>
@@ -404,21 +396,6 @@ export default function Navbar() {
                       }}
                       className={`py-3 px-2 text-[15px] font-medium transition ${
                         isActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
-                      }`}
-                    >
-                      {g.label}
-                    </Link>
-                  )
-                }
-                if (g.parentRoute) {
-                  const isPageActive = location.pathname.startsWith(g.parentRoute)
-                  return (
-                    <Link
-                      key={g.label}
-                      to={g.parentRoute}
-                      onClick={() => setOpen(false)}
-                      className={`py-3 px-2 text-[15px] font-medium transition ${
-                        isPageActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
                       }`}
                     >
                       {g.label}

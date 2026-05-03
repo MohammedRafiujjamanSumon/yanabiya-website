@@ -51,17 +51,6 @@ export default function GlobalOverviewPanel({
                    overflow-y-auto"
         style={{ animation: 'slideInRight 0.4s cubic-bezier(0.22,1,0.36,1) both' }}
       >
-        {/* Subtle Yanabiya logo watermark behind the panel content */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none opacity-[0.045]
-                     bg-no-repeat bg-center"
-          style={{
-            backgroundImage: `url(${assets.logo})`,
-            backgroundSize: '70%',
-          }}
-        />
-
         <div aria-hidden="true" className="absolute -top-32 -left-20 w-[420px] h-[420px] rounded-full bg-brand-accent/15 blur-[120px] pointer-events-none" />
 
         <button
@@ -77,11 +66,6 @@ export default function GlobalOverviewPanel({
 
         <div className="relative p-7 md:p-9">
           <div className="flex items-center gap-3 mb-2">
-            <img
-              src={assets.logo}
-              alt="Yanabiya Group"
-              className="w-16 h-16 md:w-20 md:h-20 object-contain shrink-0"
-            />
             <div>
               <h3 className="font-serif text-2xl md:text-3xl text-brand-deep leading-tight">
                 Global Presence
