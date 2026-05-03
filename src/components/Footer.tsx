@@ -2,7 +2,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   MapPin, Phone, Mail, Send,
   Linkedin, Facebook, Instagram, Twitter, Youtube,
-  Globe2,
 } from 'lucide-react'
 import { contact, contactByCountry } from '../data/contact'
 import { assets } from '../data/assets'
@@ -172,93 +171,47 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* HQ Contact */}
+          {/* Country Offices Contact */}
           <div className="md:col-span-6 lg:col-span-4">
             <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">
-              🇴🇲 Head Office — Oman
+              Our Offices
             </h4>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-3">
-                <span className="shrink-0 mt-0.5 w-7 h-7 rounded-lg bg-white/10 grid place-items-center">
-                  <MapPin size={13} className="text-brand-accent" />
-                </span>
-                <div className="text-white/80 leading-snug text-xs">
-                  <div>Office-41, 4th Floor, Building-846</div>
-                  <div>Way-4011, Complex-240, Al Gubrah</div>
-                  <div>Bushar, Muscat, Sultanate of Oman</div>
-                  <div className="mt-0.5 text-white/60">P.O. Box 1432, PC-133, Al Khuwair</div>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="shrink-0 mt-0.5 w-7 h-7 rounded-lg bg-white/10 grid place-items-center">
-                  <Phone size={13} className="text-brand-accent" />
-                </span>
-                <div className="space-y-0.5 text-xs">
-                  {contact.phones.map((p) => (
-                    <a key={p} href={`tel:${p.replace(/\s/g, '')}`}
-                       className="block text-white/80 hover:text-white transition-colors">{p}</a>
-                  ))}
-                  <a href={`tel:${contact.mobile.replace(/\s/g, '')}`}
-                     className="block text-white/80 hover:text-white transition-colors">{contact.mobile}</a>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="shrink-0 mt-0.5 w-7 h-7 rounded-lg bg-white/10 grid place-items-center">
-                  <Mail size={13} className="text-brand-accent" />
-                </span>
-                <div className="space-y-0.5 text-xs">
-                  {contact.emails.map((e) => (
-                    <a key={e} href={`mailto:${e}`}
-                       className="block text-white/80 hover:text-white transition-colors break-all">{e}</a>
-                  ))}
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="shrink-0 mt-0.5 w-7 h-7 rounded-lg bg-white/10 grid place-items-center">
-                  <Globe2 size={13} className="text-brand-accent" />
-                </span>
-                <a href={contact.webmail} target="_blank" rel="noreferrer"
-                   className="text-xs text-white/80 hover:text-white transition-colors">
-                  Webmail Portal
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* ── COUNTRY OFFICES STRIP ── */}
-        <div className="border-t border-white/10">
-          <div className="container-x py-5 relative">
-            <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold text-center">
-              Global Offices
-            </h4>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+            <div className="grid grid-cols-2 gap-4">
               {contactByCountry.map((c) => (
-                <div key={c.code} className="text-xs text-white/75 space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-white font-semibold text-[11px] mb-2">
-                    <span className="text-base leading-none">{FLAG[c.code]}</span>
-                    {c.region}
+                <div key={c.code} className="space-y-1.5 text-[11px] text-white/75">
+                  <div className="flex items-center gap-1.5 text-white font-semibold mb-1.5">
+                    <span className="text-sm leading-none">{FLAG[c.code]}</span>
+                    <span>{c.region}</span>
                     {c.code === 'OM' && (
-                      <span className="ml-auto text-[8px] uppercase tracking-wider bg-brand-accent/30 text-brand-accent px-1.5 py-0.5 rounded-full font-bold">
+                      <span className="text-[8px] uppercase tracking-wider bg-brand-accent/30 text-brand-accent px-1.5 py-0.5 rounded-full font-bold">
                         HQ
                       </span>
                     )}
                   </div>
-                  <div className="leading-snug">
-                    {c.officeAddress}
-                    {c.postAddress && <span className="block text-white/55">{c.postAddress}</span>}
+                  <div className="flex items-start gap-1.5">
+                    <MapPin size={11} className="text-brand-accent shrink-0 mt-0.5" />
+                    <span className="leading-snug text-white/65">
+                      {c.officeAddress}
+                      {c.postAddress && <span className="block">{c.postAddress}</span>}
+                    </span>
                   </div>
                   {c.phones[0] && (
-                    <a href={`tel:${c.phones[0].replace(/\s/g, '')}`}
-                       className="block hover:text-white transition-colors">
-                      {c.phones[0]}
-                    </a>
+                    <div className="flex items-center gap-1.5">
+                      <Phone size={11} className="text-brand-accent shrink-0" />
+                      <a href={`tel:${c.phones[0].replace(/\s/g, '')}`}
+                         className="hover:text-white transition-colors">
+                        {c.phones[0]}
+                      </a>
+                    </div>
                   )}
                   {c.emails[0] && (
-                    <a href={`mailto:${c.emails[0]}`}
-                       className="block hover:text-white transition-colors break-all">
-                      {c.emails[0]}
-                    </a>
+                    <div className="flex items-start gap-1.5">
+                      <Mail size={11} className="text-brand-accent shrink-0 mt-0.5" />
+                      <a href={`mailto:${c.emails[0]}`}
+                         className="hover:text-white transition-colors break-all">
+                        {c.emails[0]}
+                      </a>
+                    </div>
                   )}
                 </div>
               ))}

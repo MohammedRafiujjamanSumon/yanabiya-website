@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { MapPin, Send, ArrowRight } from 'lucide-react'
+import { MapPin, Send, ArrowRight, Phone, Mail } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { contactByCountry } from '../data/contact'
 import { countries } from '../data/countries'
@@ -66,6 +66,8 @@ export default function Contact() {
               countryName={o.country.name}
               role={o.country.role}
               palette={PALETTES[o.code] ?? PALETTES.OM}
+              phones={o.phones}
+              emails={o.emails}
             />
           ))}
         </div>
@@ -132,23 +134,23 @@ function OfficeBanner({
   countryName,
   role,
   palette,
+  phones,
+  emails,
 }: {
   code: string
   flag: string
   countryName: string
   role: string
   palette: Palette
+  phones: string[]
+  emails: string[]
 }) {
   return (
-    <Link
-      to={`/contact#${code}`}
-      aria-label={`Open the ${countryName} office page`}
-      className="group relative flex flex-col rounded-md overflow-hidden bg-brand-50
-                 shadow-[0_10px_24px_-8px_rgba(15,23,42,0.18)]
-                 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                 hover:-translate-y-1.5 hover:shadow-[0_22px_44px_-14px_rgba(15,23,42,0.30)]
-                 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-accent/40"
-    >
+    <div className="group relative flex flex-col rounded-md overflow-hidden bg-brand-50
+                    shadow-[0_10px_24px_-8px_rgba(15,23,42,0.18)]
+                    transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                    hover:-translate-y-1.5 hover:shadow-[0_22px_44px_-14px_rgba(15,23,42,0.30)]">
+
       {/* Coloured top header with the flag */}
       <div
         className="relative h-32 md:h-36 grid place-items-center text-white"
@@ -162,9 +164,7 @@ function OfficeBanner({
         <svg
           aria-hidden
           className="absolute left-1/2 -translate-x-1/2 -bottom-5 md:-bottom-6"
-          width="84"
-          height="32"
-          viewBox="0 0 84 32"
+          width="84" height="32" viewBox="0 0 84 32"
         >
           <polygon points="0,0 84,0 42,32" fill={palette.arrow} />
         </svg>
@@ -180,7 +180,7 @@ function OfficeBanner({
         </div>
       </div>
 
-      {/* Compact content — name + role + CTA */}
+      {/* Content */}
       <div className="px-5 md:px-6 pt-4 pb-6 flex-1 flex flex-col items-center text-center">
         <div className="font-bold uppercase tracking-[0.18em] text-[13px] md:text-[14px] text-slate-900">
           {countryName}
@@ -192,18 +192,52 @@ function OfficeBanner({
           {role}
         </div>
 
-        <div className="mt-5 mx-auto h-px w-12 bg-slate-200" />
+        <div className="mt-4 mx-auto h-px w-12 bg-slate-200" />
 
-        <span
-          className="mt-5 inline-flex items-center justify-center gap-1.5 rounded-full
-                     px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.18em]
-                     text-brand-deep transition-transform duration-300
-                     group-hover:-translate-y-0.5 group-hover:gap-2"
+        {/* Phone numbers */}
+        <div className="mt-4 w-full space-y-1.5">
+          {phones.map((p) => (
+            <a
+              key={p}
+              href={`tel:${p.replace(/\s/g, '')}`}
+              onClick={(e) => e.stopPropagation()}
+              className="flex items-center justify-center gap-2 text-[12px] font-semibold text-slate-800
+                         hover:text-brand-accentDark transition-colors"
+            >
+              <Phone size={12} style={{ color: palette.arrow }} />
+              {p}
+            </a>
+          ))}
+        </div>
+
+        {/* Emails */}
+        <div className="mt-2 w-full space-y-1">
+          {emails.map((e) => (
+            <a
+              key={e}
+              href={`mailto:${e}`}
+              onClick={(e2) => e2.stopPropagation()}
+              className="flex items-center justify-center gap-2 text-[11px] text-slate-600
+                         hover:text-brand-accentDark transition-colors break-all"
+            >
+              <Mail size={11} style={{ color: palette.arrow }} />
+              {e}
+            </a>
+          ))}
+        </div>
+
+        <div className="mt-4 mx-auto h-px w-12 bg-slate-200" />
+
+        <Link
+          to={`/contact#${code}`}
+          className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full
+                     px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white
+                     transition-all duration-300 hover:-translate-y-0.5 hover:gap-2"
           style={{ backgroundColor: palette.arrow }}
         >
           Visit Office <ArrowRight size={12} />
-        </span>
+        </Link>
       </div>
-    </Link>
+    </div>
   )
 }

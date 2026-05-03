@@ -43,18 +43,21 @@ function LogoMarquee({
         {loop.map((p, i) => (
           <div
             key={`${p.name}-${i}`}
-            className="group shrink-0 flex items-center justify-center cursor-pointer"
+            className="group relative shrink-0 flex items-center justify-center cursor-pointer
+                       active:z-50"
           >
             <img
               src={p.logo}
               alt={p.name}
               loading="lazy"
-              className="h-12 max-w-[140px] object-contain
-                         opacity-25 grayscale
-                         group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-110
-                         group-hover:drop-shadow-[0_0_12px_rgba(16,185,129,0.5)]
-                         active:opacity-100 active:grayscale-0 active:brightness-125 active:scale-110
-                         transition-all duration-300"
+              className="h-16 max-w-[180px] object-contain
+                         opacity-100 brightness-110 contrast-110
+                         group-hover:scale-110 group-hover:brightness-125 group-hover:contrast-125
+                         group-hover:drop-shadow-[0_0_18px_rgba(16,185,129,0.7)]
+                         group-active:scale-[2.2] group-active:brightness-150 group-active:contrast-150
+                         group-active:drop-shadow-[0_0_28px_rgba(16,185,129,0.9)]
+                         group-active:z-50
+                         transition-all duration-200"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
           </div>
