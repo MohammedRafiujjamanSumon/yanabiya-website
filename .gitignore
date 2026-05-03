@@ -1,4 +1,8 @@
 node_modules
+yanabiya-api/node_modules
+yanabiya-api/data
+yanabiya-api/uploads
+yanabiya-api/.env
 dist
 dist-ssr
 *.local

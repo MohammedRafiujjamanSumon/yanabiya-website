@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: yanabiya-api
+    runtime: node
+    plan: free
+    rootDir: yanabiya-api
+    buildCommand: npm install && node src/seed.js
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: ADMIN_EMAIL
+        value: admin@yanabiyagroup.com
+      - key: ADMIN_PASSWORD
+        value: YanabiyaAdmin@2024
+      - key: API_URL
+        sync: false
+    disk:
+      name: yanabiya-data
+      mountPath: /opt/render/project/src/yanabiya-api/data
+      sizeGB: 1
