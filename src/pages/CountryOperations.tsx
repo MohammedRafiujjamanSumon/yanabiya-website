@@ -491,7 +491,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
       />
 
       {/* SECTION 2 — About Our Operation */}
-      <SectionFrame eyebrow="About Our Operation" title="Who we are on the ground.">
+      <SectionFrame eyebrow="About Our Operation" title="Who we are on the ground." compact>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 [perspective:1400px]">
           <Card3D delay={0}   title="Local Branch"  body={ops.branchIntro}   icon={Building2}
             image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" />
@@ -704,16 +704,18 @@ function SectionFrame({
   eyebrow,
   title,
   children,
+  compact = false,
 }: {
   eyebrow: string
   title: string
   children: React.ReactNode
+  compact?: boolean
 }) {
   return (
     <section className="relative">
-      <div className="container-x py-6 md:py-8">
+      <div className={`container-x ${compact ? 'pt-3 pb-6 md:pt-4 md:pb-8' : 'py-6 md:py-8'}`}>
         <Reveal>
-          <div className="text-center mb-5 md:mb-6 max-w-2xl mx-auto">
+          <div className={`text-center max-w-2xl mx-auto ${compact ? 'mb-3' : 'mb-5 md:mb-6'}`}>
             <span className="inline-block text-[10px] font-semibold uppercase
                              tracking-[0.32em] text-brand-accentDark mb-1.5">
               {eyebrow}
