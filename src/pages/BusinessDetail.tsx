@@ -233,23 +233,32 @@ function RelatedDivisions({
           <Link
             key={b.slug}
             to={`/business/${b.slug}`}
-            className="group flex items-start gap-3 rounded-xl bg-white/50 border border-white/70
-                       p-4 transition-all duration-300
-                       hover:bg-white/70 hover:border-brand-accent hover:-translate-y-0.5 shadow-sm"
+            className="group flex flex-col rounded-xl overflow-hidden border border-white/70
+                       bg-white/50 transition-all duration-300
+                       hover:bg-white/70 hover:border-brand-accent hover:-translate-y-1 shadow-sm"
           >
-            <span className="shrink-0 grid place-items-center w-10 h-10 rounded-lg
-                             bg-brand-accent/15 text-brand-accentDark
-                             transition-colors duration-300
-                             group-hover:bg-brand-accent group-hover:text-white">
-              <b.icon size={18} strokeWidth={1.6} />
-            </span>
-            <div className="min-w-0 flex-1">
+            {/* Image */}
+            <div className="relative h-32 overflow-hidden">
+              <img
+                src={b.image}
+                alt={b.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/60 to-transparent" />
+              <span className="absolute bottom-2 left-2 grid place-items-center w-8 h-8 rounded-lg
+                               bg-brand-accent/90 text-white shadow
+                               transition-colors duration-300 group-hover:bg-brand-accent">
+                <b.icon size={15} strokeWidth={1.6} />
+              </span>
+            </div>
+
+            {/* Text */}
+            <div className="p-3">
               <div className="text-[13px] font-semibold text-brand-deep leading-tight">
                 {b.title.replace('🤝 ', '')}
               </div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.22em] text-brand-accentDark
-                              inline-flex items-center gap-1
-                              transition-all duration-300
+              <div className="mt-1.5 text-[10px] uppercase tracking-[0.22em] text-brand-accentDark
+                              inline-flex items-center gap-1 transition-all duration-300
                               group-hover:gap-1.5">
                 Explore <ArrowRight size={11} />
               </div>
