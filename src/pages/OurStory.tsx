@@ -181,7 +181,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 2. OUR STORY — line-by-line reveal ───────── */}
-      <section className="relative py-12 md:py-14">
+      <section className="relative py-4 md:py-6">
         <div className="container-x">
           <div className="max-w-2xl mx-auto">
             <Reveal>
@@ -189,7 +189,7 @@ export default function OurStory() {
                 01 · The Story
               </div>
             </Reveal>
-            <div className="space-y-8 md:space-y-10 text-center">
+            <div className="space-y-8 md:space-y-5 text-center">
               {storyLines.map((line, i) => (
                 <Reveal key={i} delay={i * 60}>
                   <p className="font-serif text-2xl md:text-3xl leading-snug text-slate-900">
@@ -203,7 +203,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 3. MISSION IN ACTION ───────── */}
-      <section className="relative py-14 md:py-20 bg-brand-50 border-y border-slate-100">
+      <section className="relative py-4 md:py-6 bg-brand-50 border-y border-slate-100">
         <div className="container-x">
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
@@ -253,7 +253,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 4. VISION FOR THE FUTURE ───────── */}
-      <section className="relative py-12 md:py-14 overflow-hidden bg-brand-50">
+      <section className="relative py-4 md:py-6 overflow-hidden bg-brand-50">
         {/* Floating particles */}
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
           {Array.from({ length: 18 }).map((_, i) => (
@@ -295,7 +295,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 5. JOURNEY TIMELINE ───────── */}
-      <section className="relative py-14 md:py-20 bg-brand-50 border-y border-slate-100">
+      <section className="relative py-4 md:py-6 bg-brand-50 border-y border-slate-100">
         <div className="container-x">
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
@@ -318,7 +318,7 @@ export default function OurStory() {
                          bg-gradient-to-b from-transparent via-brand-accent/50 to-transparent"
             />
 
-            <div className="space-y-14">
+            <div className="space-y-6">
               {milestones.map((m, i) => {
                 const right = i % 2 === 1
                 return (
@@ -353,7 +353,7 @@ export default function OurStory() {
 
       {/* ───────── 6. GLOBAL STRATEGY — Region Chapters ───────── */}
       <section className="relative bg-brand-50">
-        <div className="container-x py-12 md:py-16">
+        <div className="container-x py-4 md:py-6">
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
@@ -375,7 +375,7 @@ export default function OurStory() {
               key={r.code}
               className={`relative overflow-hidden border-t border-slate-100 ${i === regions.length - 1 ? 'border-b' : ''}`}
             >
-              <div className={`container-x py-12 md:py-14 grid lg:grid-cols-12 gap-10 items-center ${reverse ? 'lg:[&>*:first-child]:order-2' : ''}`}>
+              <div className={`container-x py-4 md:py-6 grid lg:grid-cols-12 gap-10 items-center ${reverse ? 'lg:[&>*:first-child]:order-2' : ''}`}>
                 <Reveal className="lg:col-span-7">
                   <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl">
                     <img
@@ -413,7 +413,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 7. LEADERSHIP ───────── */}
-      <section className="relative py-14 md:py-20 bg-brand-50 border-y border-slate-100">
+      <section className="relative py-4 md:py-6 bg-brand-50 border-y border-slate-100">
         <div className="container-x">
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
@@ -467,7 +467,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 8. SUSTAINABILITY & COMMUNITY ───────── */}
-      <section className="relative py-14 md:py-20 bg-brand-50">
+      <section className="relative py-4 md:py-6 bg-brand-50">
         <div className="container-x grid lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-6">
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
@@ -516,7 +516,7 @@ export default function OurStory() {
       </section>
 
       {/* ───────── 9. PARTNERSHIPS ───────── */}
-      <section className="relative py-12 md:py-16 bg-brand-50 border-y border-slate-100">
+      <section className="relative py-4 md:py-6 bg-brand-50 border-y border-slate-100">
         <div className="container-x">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <Reveal>
@@ -557,7 +557,7 @@ export default function OurStory() {
           <div className="w-[600px] h-[600px] rounded-full bg-brand-accent/15 blur-[120px] animate-halo" />
         </div>
 
-        <div className="container-x relative py-14 md:py-24 text-center">
+        <div className="container-x relative py-4 md:py-6 text-center">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accent mb-6">
               09 · The Next Chapter

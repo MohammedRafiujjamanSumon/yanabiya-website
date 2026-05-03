@@ -591,7 +591,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
       {/* HERO + ACTIVITIES — 40 / 60 editorial split (text left, capabilities right) */}
       <section className="relative">
         <SectionWatermark />
-        <div className="relative container-x py-10 md:py-14">
+        <div className="relative container-x py-4 md:py-6">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
 
             {/* TEXT BLOCK — 40% (left on even index, right on odd) */}
@@ -795,7 +795,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
       {/* CAPABILITY MATRIX */}
       <section className="relative border-t border-slate-100">
         <SectionWatermark />
-        <div className="relative container-x py-12 md:py-16">
+        <div className="relative container-x py-4 md:py-6">
           <Reveal>
             <div className="max-w-3xl">
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-blue-700 mb-3">
@@ -925,7 +925,7 @@ export default function OmanPresence() {
       {/* GLOBAL HERO */}
       <section className="relative">
         <SectionWatermark />
-        <div className="relative container-x py-10 md:py-14 text-center">
+        <div className="relative container-x py-4 md:py-6 text-center">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-4">
               Global Presence
@@ -962,7 +962,7 @@ export default function OmanPresence() {
 
       {/* CONTACT CTA — link out to the centralised /contact page */}
       <section className="border-t-2 border-slate-200 bg-brand-50">
-        <div className="container-x py-12 md:py-16 text-center">
+        <div className="container-x py-4 md:py-6 text-center">
           <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
             Get in Touch
           </div>

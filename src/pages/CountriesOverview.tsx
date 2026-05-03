@@ -57,7 +57,7 @@ export default function CountriesOverview() {
       />
 
       <section className="relative">
-        <div className="container-x py-12 md:py-16">
+        <div className="container-x py-4 md:py-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-5xl mx-auto">
             {COUNTRIES.map((c, i) => (
               <Reveal key={c.code} delay={i * 100}>

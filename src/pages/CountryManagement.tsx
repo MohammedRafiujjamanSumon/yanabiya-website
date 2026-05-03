@@ -251,7 +251,7 @@ export default function CountryManagement() {
 
       {/* Quick switcher */}
       <section className="relative">
-        <div className="container-x py-6">
+        <div className="container-x py-3">
           <div className="flex flex-wrap items-center justify-center gap-2">
             {COUNTRY_LINKS.map((c) => {
               const active = c.code === code?.toLowerCase()
@@ -276,7 +276,7 @@ export default function CountryManagement() {
 
       {/* COUNTRY HEAD spotlight */}
       <section className="relative">
-        <div className="container-x py-10">
+        <div className="container-x py-4">
           <Reveal>
             <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden
                             bg-brand-50 border border-brand-deep/15
@@ -319,7 +319,7 @@ export default function CountryManagement() {
 
       {/* LOCAL LEADERSHIP */}
       <section className="relative">
-        <div className="container-x py-10">
+        <div className="container-x py-4">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-6 md:mb-8">
               <div className="inline-flex items-center gap-1.5 rounded-full

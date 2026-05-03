@@ -86,7 +86,7 @@ export default function Management() {
       />
 
       <section className="relative">
-        <div className="container-x py-12 md:py-16 space-y-10 md:space-y-14">
+        <div className="container-x py-4 md:py-6 space-y-5 md:space-y-7">
           {BLOCKS.map((b, idx) => (
             <Reveal key={b.name} delay={idx * 120}>
               <article className="relative overflow-hidden rounded-3xl

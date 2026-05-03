@@ -61,7 +61,7 @@ export default function DistributionDetail() {
 
       {/* PILL ROW — quick switch between the six */}
       <section className="relative">
-        <div className="container-x py-6">
+        <div className="container-x py-3">
           <div className="flex flex-wrap items-center justify-center gap-2">
             {DISTRIBUTIONS.map((t) => {
               const active = t.slug === slug
@@ -86,7 +86,7 @@ export default function DistributionDetail() {
 
       {/* HERO IMAGE + LONG BODY */}
       <section className="relative">
-        <div className="container-x py-10 md:py-12">
+        <div className="container-x py-4 md:py-5">
           <Reveal>
             <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden
                             bg-brand-50 border border-brand-deep/15 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
@@ -127,7 +127,7 @@ export default function DistributionDetail() {
 
       {/* PREV / NEXT */}
       <section className="relative border-t border-slate-200">
-        <div className="container-x py-8 md:py-10">
+        <div className="container-x py-3 md:py-4">
           <div className="grid sm:grid-cols-2 gap-3 max-w-5xl mx-auto">
             <Link
               to={`/leadership/distributed/${prev.slug}`}

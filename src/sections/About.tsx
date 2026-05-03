@@ -52,7 +52,7 @@ export default function About() {
       <div className="relative z-10">
 
         {/* ── About Us eyebrow — full width ── */}
-        <div className="container-x pt-12 pb-6">
+        <div className="container-x pt-3 pb-3">
           <Reveal>
             <Eyebrow>About Us</Eyebrow>
           </Reveal>

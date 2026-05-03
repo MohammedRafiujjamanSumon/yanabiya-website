@@ -68,7 +68,7 @@ export default function Board() {
       />
 
       <section className="relative">
-        <div className="container-x py-12 md:py-16">
+        <div className="container-x py-4 md:py-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6 max-w-6xl mx-auto">
             {BOARD.map((m, i) => (
               <Reveal key={m.name} delay={i * 70}>

@@ -208,7 +208,7 @@ export default function AboutUs() {
       </section>
 
       {/* ───────── 3. MISSION · VISION · VALUES ───────── */}
-      <section id="principles" className="relative py-14 md:py-20 scroll-mt-28">
+      <section id="principles" className="relative py-4 md:py-6 scroll-mt-28">
         <div className="container-x">
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
@@ -336,7 +336,7 @@ export default function AboutUs() {
       </section>
 
       {/* ───────── 5. GLOBAL PRESENCE ───────── */}
-      <section id="presence" className="relative py-14 md:py-20 scroll-mt-28">
+      <section id="presence" className="relative py-4 md:py-6 scroll-mt-28">
         <div className="container-x">
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
@@ -414,7 +414,7 @@ export default function AboutUs() {
           <div className="w-[520px] h-[520px] rounded-full bg-brand-accent/15 blur-[120px] animate-halo" />
         </div>
 
-        <div className="container-x relative py-12 md:py-14 text-center">
+        <div className="container-x relative py-4 md:py-6 text-center">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accent mb-5">
               The Full Story

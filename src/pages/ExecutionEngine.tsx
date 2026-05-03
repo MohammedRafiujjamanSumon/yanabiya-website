@@ -122,7 +122,7 @@ export default function ExecutionEngine() {
 
       {/* STATS STRIP */}
       <section className="relative">
-        <div className="container-x py-10">
+        <div className="container-x py-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
             {STATS.map((s, i) => (
               <Reveal key={s.k} delay={i * 80}>
@@ -210,7 +210,7 @@ export default function ExecutionEngine() {
 
       {/* Closing band */}
       <section className="relative border-t border-slate-200">
-        <div className="container-x py-10 md:py-12">
+        <div className="container-x py-4 md:py-5">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="grid place-items-center w-10 h-10 rounded-full

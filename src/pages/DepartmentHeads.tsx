@@ -100,7 +100,7 @@ export default function DepartmentHeads() {
       />
 
       <Section id="departments-page" className="relative overflow-hidden bg-brand-50">
-        <div className="container-x py-10 md:py-14">
+        <div className="container-x py-4 md:py-6">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {DEPARTMENTS.map((dept, i) => {
               const Icon = dept.icon

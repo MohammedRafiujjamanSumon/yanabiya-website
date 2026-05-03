@@ -352,7 +352,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
 
       {/* ───────── 7. CONTACT — single CTA, full details on /contact ───────── */}
       <section className="relative">
-        <div className="container-x py-10 md:py-14 text-center">
+        <div className="container-x py-4 md:py-6 text-center">
           <Reveal>
             <p className="text-sm md:text-base text-brand-deep/70 max-w-md mx-auto mb-5 leading-snug">
               Want to reach the {c.name} office? Our full contact directory lives on the
@@ -448,7 +448,7 @@ function Hero({
 
 function ServiceBlocks({ services, countryName }: { services: Service[]; countryName: string }) {
   return (
-    <section className="relative py-10 md:py-12">
+    <section className="relative py-4 md:py-5">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
@@ -530,7 +530,7 @@ function CorporateHierarchy({
   const partners = hasParent ? entities : []
   const shortName = countryName.replace('Sultanate of ', '').replace('United States of America', 'USA')
   return (
-    <section className="relative py-10 md:py-12">
+    <section className="relative py-4 md:py-5">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
@@ -622,7 +622,7 @@ function BusinessActivities({
   activities: { code: string; name: string; icon?: string; image?: string }[]
 }) {
   return (
-    <section className="relative py-10 md:py-12">
+    <section className="relative py-4 md:py-5">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
@@ -718,7 +718,7 @@ function GlobalConnection({
 }) {
   const positions = ['top-[14%] left-1/2 -translate-x-1/2', 'top-1/2 left-[12%] -translate-y-1/2', 'bottom-[14%] left-1/2 -translate-x-1/2']
   return (
-    <section className="relative py-10 md:py-14">
+    <section className="relative py-4 md:py-6">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
@@ -852,7 +852,7 @@ function GlobalConnection({
 
 function Achievements({ achievements }: { achievements: Achievement[] }) {
   return (
-    <section className="relative py-10 md:py-12">
+    <section className="relative py-4 md:py-5">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
