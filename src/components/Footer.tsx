@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
-  MapPin, Phone, Mail, Send,
+  MapPin, Phone, Mail, Send, AtSign,
   Linkedin, Facebook, Instagram, Twitter, Youtube,
 } from 'lucide-react'
 import { contact, contactByCountry } from '../data/contact'
@@ -35,6 +35,7 @@ const corporateLinks: { to: string; label: string }[] = [
 ]
 
 const FLAG: Record<string, string> = { OM: '🇴🇲', GB: '🇬🇧', BD: '🇧🇩', US: '🇺🇸' }
+
 
 const linkClass =
   'relative inline-block text-white/80 hover:text-white transition-colors ' +
@@ -178,7 +179,9 @@ export default function Footer() {
             </h4>
             <div className="grid grid-cols-2 gap-4">
               {contactByCountry.map((c) => (
-                <div key={c.code} className="space-y-1.5 text-[11px] text-white/75">
+                <div key={c.code} className="space-y-1.5 text-[11px] text-white/90">
+
+                  {/* Country header */}
                   <div className="flex items-center gap-1.5 text-white font-semibold mb-1.5">
                     <span className="text-sm leading-none">{FLAG[c.code]}</span>
                     <span>{c.region}</span>
@@ -188,27 +191,47 @@ export default function Footer() {
                       </span>
                     )}
                   </div>
+
+                  {/* Address — map pin is clickable */}
                   <div className="flex items-start gap-1.5">
-                    <MapPin size={11} className="text-brand-accent shrink-0 mt-0.5" />
-                    <span className="leading-snug text-white/65">
-                      {c.officeAddress}
-                      {c.postAddress && <span className="block">{c.postAddress}</span>}
-                    </span>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.mapQuery)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="shrink-0 mt-0.5 hover:scale-125 transition-transform"
+                      title="Open in Google Maps"
+                    >
+                      <MapPin size={11} className="text-red-400" />
+                    </a>
+                    <div className="leading-snug text-white/90 space-y-0.5">
+                      {c.code === 'OM' ? (
+                        <>
+                          <p className="text-[8px] uppercase tracking-wider text-brand-accent/80 font-semibold">Postal Address</p>
+                          {c.postAddress.split('\n').map((line, i) => <p key={i}>{line}</p>)}
+                          <p className="text-[8px] uppercase tracking-wider text-brand-accent/80 font-semibold pt-1">Head Office</p>
+                          {c.officeAddress.split('\n').map((line, i) => <p key={i}>{line}</p>)}
+                        </>
+                      ) : (
+                        <>
+                          {c.officeAddress.split('\n').map((line, i) => <p key={i}>{line}</p>)}
+                          {c.postAddress && c.postAddress.split('\n').map((line, i) => <p key={i}>{line}</p>)}
+                        </>
+                      )}
+                    </div>
                   </div>
+
                   {c.phones[0] && (
                     <div className="flex items-center gap-1.5">
-                      <Phone size={11} className="text-brand-accent shrink-0" />
-                      <a href={`tel:${c.phones[0].replace(/\s/g, '')}`}
-                         className="hover:text-white transition-colors">
+                      <Phone size={11} className="text-emerald-400 shrink-0" />
+                      <a href={`tel:${c.phones[0].replace(/\s/g, '')}`} className="hover:text-white transition-colors">
                         {c.phones[0]}
                       </a>
                     </div>
                   )}
                   {c.emails[0] && (
                     <div className="flex items-start gap-1.5">
-                      <Mail size={11} className="text-brand-accent shrink-0 mt-0.5" />
-                      <a href={`mailto:${c.emails[0]}`}
-                         className="hover:text-white transition-colors break-all">
+                      <AtSign size={11} className="text-sky-400 shrink-0 mt-0.5" />
+                      <a href={`mailto:${c.emails[0]}`} className="hover:text-white transition-colors break-all">
                         {c.emails[0]}
                       </a>
                     </div>

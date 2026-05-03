@@ -179,8 +179,8 @@ const OMAN: CountryProfile = {
   contact: {
     eyebrow: 'Reach Us in Muscat',
     title: 'Contact.',
-    postal: ['P.O. Box 1432, PC-133', 'Al Khuwair, Muscat'],
-    head: ['Office-41, 4th Floor, Building-846', 'Way-4011, Complex-240', 'Al Gubrah, Bushar, Muscat, Oman'],
+    postal: ['P.O. Box 1432, PC-133', 'Al Khuwair, Muscat', 'Sultanate of Oman'],
+    head: ['Office-41, 4th Floor, Building-846', 'Way-4011, Complex-240', 'Al Gubrah, Bushar, Muscat', 'Sultanate of Oman'],
     map: {
       embedQuery: 'Building 846, Way 4011, Al Gubrah, Bushar, Muscat, Oman',
       openUrl: 'https://maps.app.goo.gl/8kfKBHGkBEZ7ExsT9',

@@ -7,7 +7,7 @@ export const countries = [
     heroImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80',
     mapImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Governorates_of_Oman_2011.png/500px-Governorates_of_Oman_2011.png',
     address:
-      'PC-133, P.O. Box 1432\nAl Khuwair, Muscat, Sultanate of Oman\n\nOffice-41, 4th Floor, Building-846, Way-4011, Complex-240, Al Gubrah, Bushar, Muscat, Sultanate of Oman',
+      'P.O. Box 1432, PC-133\nAl Khuwair, Muscat\nSultanate of Oman\n\nOffice-41, 4th Floor, Building-846\nWay-4011, Complex-240\nAl Gubrah, Bushar, Muscat\nSultanate of Oman',
     parentCompany: 'Yanabiya Gulf International Business & Trade SPC',
     entitiesLabel: 'Our Partner Companies',
     entities: [

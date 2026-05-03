@@ -77,7 +77,8 @@ const TEAMS: Record<string, CountryTeam> = {
       address: [
         'Office-41, 4th Floor, Building-846',
         'Way-4011, Complex-240',
-        'Al Gubrah, Bushar, Muscat, Oman',
+        'Al Gubrah, Bushar, Muscat',
+        'Sultanate of Oman',
       ],
       phones: ['+968 2249 5566'],
       mobile: '+968 9116 1677',

@@ -174,11 +174,11 @@ const OPS: Record<string, CountryOps> = {
     vision:
       'A leading global performer in trade, technology and integrated services, headquartered in Oman and scaling across four continents.',
     established: '19 September 2021',
-    postCode: 'P.O. Box 1432, PC-133, Al Khuwair, Muscat, Sultanate of Oman',
+    postCode: 'P.O. Box 1432, PC-133\nAl Khuwair, Muscat\nSultanate of Oman',
     registration: { label: 'Commercial Registration', value: '1395664' },
     legalEntity: 'Yanabiya Gulf International Business & Trade SPC',
     license: { name: 'Commercial Registration & Activities Licence', authority: 'Ministry of Commerce, Industry & Investment Promotion (MOCIIP), Oman' },
-    address: 'Office-41, 4th Floor, Building-846, Way-4011, Complex-240, Al Gubrah, Bushar, Muscat, Sultanate of Oman',
+    address: 'Office-41, 4th Floor, Building-846\nWay-4011, Complex-240\nAl Gubrah, Bushar, Muscat\nSultanate of Oman',
     services: [
       { label: 'Technology & Digital Solutions',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
       { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
@@ -817,7 +817,7 @@ function InfoRow({ label, value, icon: Icon }: { label: string; value: string; i
           <div className="text-[9px] uppercase tracking-[0.22em] font-semibold text-brand-accentDark/90 mb-0.5">
             {label}
           </div>
-          <div className="text-[12px] text-brand-deep/85 leading-snug break-words">
+          <div className="text-[12px] text-brand-deep/85 leading-snug break-words whitespace-pre-line">
             {value}
           </div>
         </div>
