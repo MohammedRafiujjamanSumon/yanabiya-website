@@ -168,17 +168,17 @@ const OPS: Record<string, CountryOps> = {
       'Yanabiya Gulf International Business and Trade SPC is the Group\'s headquarters, anchoring multi-sector operations across Oman through a coordinated network of seven partner companies in Muscat.',
     branchIntro:
       'Operating from Muscat since 2021, our Oman headquarters coordinates trade, contracting, technology and hospitality across the Sultanate under one integrated business structure.',
-    parentCompany: 'Yanabiya Group · Sultanate of Oman (Group HQ)',
+    parentCompany: 'Yanabiya Gulf International Business & Trade SPC',
     mission:
       'Deliver the Stamp of Quality & Professionalism — built on morals, ethics, honesty, and customer satisfaction across every Yanabiya engagement.',
     vision:
       'A leading global performer in trade, technology and integrated services, headquartered in Oman and scaling across four continents.',
     established: '19 September 2021',
-    postCode: 'PC 130, Muscat, Sultanate of Oman',
+    postCode: 'P.O. Box 1432, PC-133, Al Khuwair, Muscat, Sultanate of Oman',
     registration: { label: 'Commercial Registration', value: '1395664' },
-    legalEntity: 'Yanabiya Gulf International Business and Trade SPC',
+    legalEntity: 'Yanabiya Gulf International Business & Trade SPC',
     license: { name: 'Commercial Registration & Activities Licence', authority: 'Ministry of Commerce, Industry & Investment Promotion (MOCIIP), Oman' },
-    address: 'Office-41, 4th Floor, Building-846, Way-4011, Complex-240, Al Gubrah, Bushar, Muscat, Oman',
+    address: 'Office-41, 4th Floor, Building-846, Way-4011, Complex-240, Al Gubrah, Bushar, Muscat, Sultanate of Oman',
     services: [
       { label: 'Technology & Digital Solutions',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
       { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
@@ -492,20 +492,16 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
 
       {/* SECTION 2 — About Our Operation */}
       <SectionFrame eyebrow="About Our Operation" title="Who we are on the ground.">
-        <div className="grid md:grid-cols-3 gap-4 md:gap-5 [perspective:1400px]">
-          <Card3D delay={0}   title="Local Branch"  body={ops.branchIntro}    icon={Building2}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 [perspective:1400px]">
+          <Card3D delay={0}   title="Local Branch"  body={ops.branchIntro}   icon={Building2}
             image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" />
-          <Card3D delay={120} title="Parent Group"  body={ops.parentCompany}  icon={Globe2}
+          <Card3D delay={120} title="Parent Group"  body={ops.parentCompany} icon={Globe2}
             image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80" />
-          <Card3D delay={240} title="Our Mission"   body={ops.mission}        icon={Megaphone}
+          <Card3D delay={240} title="Our Mission"   body={ops.mission}       icon={Megaphone}
             image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" />
+          <Card3D delay={360} title="Our Vision"    body={ops.vision ?? ops.mission} icon={Sparkles}
+            image="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" />
         </div>
-        {ops.vision && (
-          <div className="mt-5">
-            <Card3D delay={360} title="Our Vision" body={ops.vision} icon={Sparkles}
-              image="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" />
-          </div>
-        )}
       </SectionFrame>
 
       {/* SECTION 3 — Company Information.
@@ -521,9 +517,9 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
               <InfoRow label="Issuing Authority" value={ops.license.authority} icon={Building2} />
             </>
           )}
-          <InfoRow label="Office Address" value={ops.address} icon={MapPin} />
+          <InfoRow label="Head Office" value={ops.address} icon={MapPin} />
           {ops.postCode && (
-            <InfoRow label="Post Code" value={ops.postCode} icon={MapPin} />
+            <InfoRow label="Postal Address" value={ops.postCode} icon={MapPin} />
           )}
         </div>
       </SectionFrame>
@@ -565,58 +561,68 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
 
       {/* SECTION 6 — Business Domains */}
       <SectionFrame eyebrow="Business Domains" title="The verticals we operate in.">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 md:gap-3 max-w-4xl mx-auto justify-items-center [perspective:1400px]">
-          {ops.categories.map((c, i) => {
-            const inner = (
-              <div
-                className="group relative w-full max-w-[140px] rounded-lg overflow-hidden
-                           border border-slate-200 bg-slate-100
-                           [transform-style:preserve-3d]
-                           transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                           hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.04)]
-                           hover:border-brand-accent"
-              >
-                <div className="relative aspect-square overflow-hidden">
-                  <img
-                    src={c.image}
-                    alt=""
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover
-                               transition-transform duration-500 group-hover:scale-105"
-                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/85" />
-                  <div className={`absolute top-2 left-2 w-7 h-7 rounded-md
-                                  bg-gradient-to-br ${c.tone} ring-1 ring-white/30
-                                  grid place-items-center text-brand-deep shadow-md`}>
-                    <c.icon size={13} strokeWidth={2.2} />
-                  </div>
-                  <div className="absolute inset-x-0 bottom-0 p-2 text-center">
-                    <span className="font-semibold text-white text-[10px] md:text-[11px] leading-tight
-                                     drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] block">
-                      {c.label}
-                    </span>
-                    {(c.href || c.to) && (
-                      <span className="text-brand-accent text-[9px] font-bold tracking-wide
-                                       opacity-0 group-hover:opacity-100 transition-opacity duration-300 block mt-0.5">
-                        {c.to ? 'Explore →' : 'Visit Site ↗'}
-                      </span>
-                    )}
-                  </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+          {/* Yanabiya Commerce */}
+          <Reveal delay={0}>
+            <Link
+              to="/business/yanabiya-commerce"
+              className="group relative flex flex-col rounded-2xl overflow-hidden shadow-lg
+                         border border-white/80 hover:border-brand-accent/50
+                         hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="relative h-44 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
+                  alt="Yanabiya Commerce"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 via-brand-deep/30 to-transparent" />
+                <div className="absolute top-3 left-3 w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500/60 to-amber-700/60
+                                ring-1 ring-white/30 grid place-items-center shadow-md">
+                  <ShoppingCart size={16} className="text-white" strokeWidth={2} />
                 </div>
               </div>
-            )
-            return (
-              <Reveal key={c.label} delay={i * 80}>
-                {c.to
-                  ? <Link to={c.to}>{inner}</Link>
-                  : c.href
-                  ? <a href={c.href} target="_blank" rel="noopener noreferrer">{inner}</a>
-                  : inner
-                }
-              </Reveal>
-            )
-          })}
+              <div className="p-4 bg-white flex items-center justify-between gap-2">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-0.5">New Division</p>
+                  <h4 className="font-semibold text-brand-deep text-sm leading-snug">Yanabiya Commerce</h4>
+                  <p className="text-[11px] text-brand-deep/55 mt-0.5">Online retail, marketplace & fulfilment</p>
+                </div>
+                <ArrowRight size={16} className="shrink-0 text-brand-accentDark group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          </Reveal>
+
+          {/* Yanabiya Digital Platform */}
+          <Reveal delay={120}>
+            <Link
+              to="/business/yanabiya-digital-platform"
+              className="group relative flex flex-col rounded-2xl overflow-hidden shadow-lg
+                         border border-white/80 hover:border-brand-accent/50
+                         hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="relative h-44 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+                  alt="Yanabiya Digital Platform"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 via-brand-deep/30 to-transparent" />
+                <div className="absolute top-3 left-3 w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500/60 to-indigo-700/60
+                                ring-1 ring-white/30 grid place-items-center shadow-md">
+                  <Monitor size={16} className="text-white" strokeWidth={2} />
+                </div>
+              </div>
+              <div className="p-4 bg-white flex items-center justify-between gap-2">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-0.5">New Division</p>
+                  <h4 className="font-semibold text-brand-deep text-sm leading-snug">Yanabiya Digital Platform</h4>
+                  <p className="text-[11px] text-brand-deep/55 mt-0.5">Apps, field ops & digital services</p>
+                </div>
+                <ArrowRight size={16} className="shrink-0 text-brand-accentDark group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          </Reveal>
         </div>
       </SectionFrame>
 
