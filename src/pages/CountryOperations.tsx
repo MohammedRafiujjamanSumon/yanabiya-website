@@ -4,7 +4,7 @@ import {
   ArrowRight, ArrowUpRight, Building2, FileBadge, Calendar, MapPin,
   Cpu, Boxes, Briefcase, Ship, Plane, Handshake,
   TrendingUp, Sparkles, Lightbulb, Megaphone, Globe2,
-  Heart, Send, Users,
+  Heart, Send, Users, ShoppingCart, Monitor,
   type LucideIcon,
 } from 'lucide-react'
 import BackButton from '../components/BackButton'
@@ -55,13 +55,14 @@ type CountryOps = {
   legalEntity: string
   license?: { name: string; authority: string }
   address: string
+  postCode?: string
   /** Section 4 — Our Services / What We Offer */
   services: { label: string; desc: string; icon: LucideIcon; slug: string; image: string }[]
   /** Section 5 — Our Network */
   strategicPartners: PartnerItem[]
   operationalPartners: PartnerItem[]
   /** Section 6 — Business Domains */
-  categories: { label: string; icon: LucideIcon; tone: string; image: string; href?: string }[]
+  categories: { label: string; icon: LucideIcon; tone: string; image: string; href?: string; to?: string }[]
   /** Section 7 — Licensed Activities */
   licensedActivities: string[]
   /** Section 8 — Current Operations */
@@ -82,7 +83,7 @@ type PartnerItem = {
 const OPS: Record<string, CountryOps> = {
   BD: {
     intro:
-      'Yanabiya Gulf International BD Trade is the Group\'s South Asia delivery hub — built around an engineering bench in Dhaka, an apparel-manufacturing network nationwide, and a fast-growing partner ecosystem.',
+      'Yanabiya Gulf International BD Trade is the Group\'s South Asia delivery hub, built around an engineering bench in Dhaka, an apparel-manufacturing network nationwide, and a fast-growing partner ecosystem.',
     branchIntro:
       'Our Bangladesh operation acts as the regional engine for technology delivery, garment trade, and workforce mobility. From Uttarkhan, we coordinate cross-border services for clients across Yanabiya\'s four countries.',
     parentCompany: 'Yanabiya Gulf International Business & Trade SPC, Sultanate of Oman',
@@ -96,12 +97,12 @@ const OPS: Record<string, CountryOps> = {
     license: { name: 'Trade License — General Trading & IT', authority: 'Dhaka North City Corporation' },
     address: 'Office #211, Plot #322/B, Block-Kanchkura, Uttarkhan, Dhaka-1230, Bangladesh',
     services: [
-      { label: 'IT Software & Web Development',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Technology & Digital Solutions',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
       { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
       { label: 'Clothing & Accessories',               desc: 'Private-label apparel sourcing, manufacturing, and retail supply.',    icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane,     slug: 'manpower',          image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane, slug: 'manpower', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
     ],
     // Group of partner companies operating in Bangladesh under the
     // Yanabiya umbrella. Strategic = long-term partners that anchor
@@ -117,7 +118,9 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Aviation & Workforce Mobility',             icon: Plane,     tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80' },
       { label: 'Communications & Telecommunications',       icon: Megaphone, tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
       { label: 'Trading & International Logistics',         icon: Boxes,     tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Construction & Civil Infrastructure Works', icon: Building2, tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Construction & Civil Infrastructure Works', icon: Building2,    tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Yanabiya Commerce',                         icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
+      { label: 'Yanabiya Digital Platform',                 icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
     ],
     // Activities aggregated across the entire group of partner
     // companies in Bangladesh — covers everything the umbrella runs
@@ -157,31 +160,32 @@ const OPS: Record<string, CountryOps> = {
       { title: 'Green Data Centre',             body: 'Investment in a sustainable Tier-III data-centre facility serving regional cloud workloads.', icon: Sparkles,    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
       { title: 'Global Digital Infrastructure', body: 'Expand the Dhaka delivery centre into a 500+ engineer hub serving all four group countries.', icon: TrendingUp,  image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80' },
       { title: 'Innovation-Driven Services',    body: 'Productised AI, security & analytics offerings exported under the Yanabiya brand.',           icon: Lightbulb,   image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
-      { title: 'New Country Entry — KSA',       body: 'Saudi Arabia entity in 2027 to extend Gulf-wide trade & manpower coverage.',                  icon: Globe2,      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
+      { title: 'New Country Entry: KSA',         body: 'Saudi Arabia entity in 2027 to extend Gulf-wide trade and manpower coverage.',                  icon: Globe2,      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
     ],
   },
   OM: {
     intro:
-      'Yanabiya Gulf International Business & Trade SPC is the Group\'s headquarters — anchoring multi-sector operations across Oman through a coordinated network of seven partner companies in Muscat.',
+      'Yanabiya Gulf International Business and Trade SPC is the Group\'s headquarters, anchoring multi-sector operations across Oman through a coordinated network of seven partner companies in Muscat.',
     branchIntro:
       'Operating from Muscat since 2021, our Oman headquarters coordinates trade, contracting, technology and hospitality across the Sultanate under one integrated business structure.',
     parentCompany: 'Yanabiya Group · Sultanate of Oman (Group HQ)',
     mission:
       'Deliver the Stamp of Quality & Professionalism — built on morals, ethics, honesty, and customer satisfaction across every Yanabiya engagement.',
     vision:
-      'A leading global performer in trade, technology and integrated services — headquartered in Oman, scaling across four continents.',
+      'A leading global performer in trade, technology and integrated services, headquartered in Oman and scaling across four continents.',
     established: '19 September 2021',
+    postCode: 'PC 130, Muscat, Sultanate of Oman',
     registration: { label: 'Commercial Registration', value: '1395664' },
     legalEntity: 'Yanabiya Gulf International Business and Trade SPC',
     license: { name: 'Commercial Registration & Activities Licence', authority: 'Ministry of Commerce, Industry & Investment Promotion (MOCIIP), Oman' },
     address: 'Office-41, 4th Floor, Building-846, Way-4011, Complex-240, Al Gubrah, Bushar, Muscat, Oman',
     services: [
-      { label: 'IT Software & Web Development',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Technology & Digital Solutions',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
       { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
       { label: 'Clothing & Accessories',               desc: 'Wholesale clothing, retail textiles, and accessories trade.',          icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane,     slug: 'manpower',          image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane, slug: 'manpower', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
     ],
     // Oman group of partner companies — the seven Yanabiya entities
     // operating across Muscat under the SPC umbrella.
@@ -211,7 +215,9 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Logistics, Warehousing & Shipping',     icon: Ship,      tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1494412574745-e1e7c8faa40d?auto=format&fit=crop&w=800&q=80' },
       { label: 'IT, Software & Cyber Security',         icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
       { label: 'Hospitality, Cafés & Catering',         icon: Megaphone, tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Office Management & Facilities',        icon: Briefcase, tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Office Management & Facilities',        icon: Briefcase,    tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Yanabiya Commerce',                    icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
+      { label: 'Yanabiya Digital Platform',            icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
     ],
     licensedActivities: [
       'Management offices and corporate administration',
@@ -264,26 +270,26 @@ const OPS: Record<string, CountryOps> = {
   },
   GB: {
     intro:
-      'Yanabiya Gulf International UK Ltd is the Group\'s European operations hub — bridging Gulf and Asian capability into the British and EU markets through 21+ trusted partners across IT, retail and hospitality.',
+      'Yanabiya Gulf International UK Ltd is the Group\'s European operations hub, bridging Gulf and Asian capability into the British and EU markets through 21+ trusted partners across IT, retail and hospitality.',
     branchIntro:
       'Operating from London since 2023, our UK office handles European-market business development, cross-border trade representation, and IT delivery into UK enterprises and SMEs.',
     parentCompany: 'Yanabiya Gulf International Business & Trade SPC, Sultanate of Oman',
     mission:
       'Connect Gulf and South-Asian capability with British and European demand — delivered with UK governance and enterprise-grade compliance.',
     vision:
-      'A trusted European partner for Gulf-rooted enterprises — and the UK gateway for Yanabiya Group\'s global network.',
+      'A trusted European partner for Gulf-rooted enterprises and the UK gateway for Yanabiya Group\'s global network.',
     established: '1 June 2023',
     registration: { label: 'Company Number', value: '14907791' },
     legalEntity: 'Yanabiya Gulf International UK Ltd',
     license: { name: 'Companies House Registration — Private Limited Company', authority: 'Companies House, United Kingdom' },
     address: '167-169 Great Portland Street, 5th Floor, London W1W 5PF, United Kingdom',
     services: [
-      { label: 'IT Software & Web Development',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Technology & Digital Solutions',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
       { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
       { label: 'Clothing & Accessories',               desc: 'Wholesale clothing, retail textiles, and accessories trade.',          icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane,     slug: 'manpower',          image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane, slug: 'manpower', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
     ],
     // UK group of partner companies (real names from the existing
     // global-presence dataset). Domain best-guesses fed to Clearbit
@@ -314,7 +320,9 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Hospitality, Restaurants & Foodservice', icon: Megaphone, tone: 'from-amber-500/40 to-orange-700/40',   image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
       { label: 'Cross-Border Trade & Brokerage',        icon: Handshake, tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'European Market Entry Advisory',        icon: Globe2,    tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Office, Compliance & Admin Services',   icon: Briefcase, tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Office, Compliance & Admin Services',   icon: Briefcase,    tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Yanabiya Commerce',                    icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
+      { label: 'Yanabiya Digital Platform',            icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
     ],
     licensedActivities: [
       'Information technology consultancy and software development',
@@ -354,7 +362,7 @@ const OPS: Record<string, CountryOps> = {
 
   US: {
     intro:
-      'Yanabiya Gulf International US LLC is the Group\'s North America operations entity — anchored in Austin, Texas, with a partner network onboarding through 2026 to serve enterprise clients across the US market.',
+      'Yanabiya Gulf International US LLC is the Group\'s North America operations entity, anchored in Austin, Texas, with a partner network onboarding through 2026 to serve enterprise clients across the US market.',
     branchIntro:
       'Established in 2025, our US LLC is in active onboarding — building cloud, AI and partnership-network engagements with North-American clients while preparing to scale through Austin into the wider Texas tech corridor.',
     parentCompany: 'Yanabiya Gulf International Business & Trade SPC, Sultanate of Oman',
@@ -368,11 +376,11 @@ const OPS: Record<string, CountryOps> = {
     license: { name: 'LLC Registration — Limited Liability Company', authority: 'Texas Secretary of State, USA' },
     address: '5900 Balcones Drive #18651, Austin, TX 78731, United States of America',
     services: [
-      { label: 'IT Software & Web Development',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Technology & Digital Solutions',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
       { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane,     slug: 'manpower',          image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane, slug: 'manpower', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
     ],
     // US partner network is still onboarding — show the global tech
     // partners that anchor early engagements as 'strategic' and a
@@ -397,7 +405,9 @@ const OPS: Record<string, CountryOps> = {
       { label: 'North American Market Entry',       icon: Globe2,    tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
       { label: 'Strategic & Boardroom Consulting',  icon: Briefcase, tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
       { label: 'Workforce Mobility (US-bound)',     icon: Plane,     tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Cross-Border Trade Representation', icon: Boxes,     tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Cross-Border Trade Representation', icon: Boxes,        tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Yanabiya Commerce',                icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
+      { label: 'Yanabiya Digital Platform',        icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
     ],
     licensedActivities: [
       'Cloud computing, AI and frontier-technology consulting',
@@ -477,18 +487,23 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
           </>
         }
         subtitle={ops.intro}
+        centered
       />
 
       {/* SECTION 2 — About Our Operation */}
       <SectionFrame eyebrow="About Our Operation" title="Who we are on the ground.">
         <div className="grid md:grid-cols-3 gap-4 md:gap-5 [perspective:1400px]">
-          <Card3D delay={0} title="Local Branch" body={ops.branchIntro} icon={Building2} />
-          <Card3D delay={120} title="Parent Group" body={ops.parentCompany} icon={Globe2} />
-          <Card3D delay={240} title="Our Mission" body={ops.mission} icon={Megaphone} />
+          <Card3D delay={0}   title="Local Branch"  body={ops.branchIntro}    icon={Building2}
+            image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" />
+          <Card3D delay={120} title="Parent Group"  body={ops.parentCompany}  icon={Globe2}
+            image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80" />
+          <Card3D delay={240} title="Our Mission"   body={ops.mission}        icon={Megaphone}
+            image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" />
         </div>
         {ops.vision && (
           <div className="mt-5">
-            <Card3D delay={360} title="Our Vision" body={ops.vision} icon={Sparkles} />
+            <Card3D delay={360} title="Our Vision" body={ops.vision} icon={Sparkles}
+              image="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" />
           </div>
         )}
       </SectionFrame>
@@ -507,6 +522,9 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             </>
           )}
           <InfoRow label="Office Address" value={ops.address} icon={MapPin} />
+          {ops.postCode && (
+            <InfoRow label="Post Code" value={ops.postCode} icon={MapPin} />
+          )}
         </div>
       </SectionFrame>
 
@@ -578,10 +596,10 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
                                      drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] block">
                       {c.label}
                     </span>
-                    {c.href && (
+                    {(c.href || c.to) && (
                       <span className="text-brand-accent text-[9px] font-bold tracking-wide
                                        opacity-0 group-hover:opacity-100 transition-opacity duration-300 block mt-0.5">
-                        Visit Site ↗
+                        {c.to ? 'Explore →' : 'Visit Site ↗'}
                       </span>
                     )}
                   </div>
@@ -590,7 +608,9 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
             )
             return (
               <Reveal key={c.label} delay={i * 80}>
-                {c.href
+                {c.to
+                  ? <Link to={c.to}>{inner}</Link>
+                  : c.href
                   ? <a href={c.href} target="_blank" rel="noopener noreferrer">{inner}</a>
                   : inner
                 }
@@ -632,32 +652,15 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         </div>
       </SectionFrame>
 
-      {/* SECTION 10 — Become a Partner */}
-      <SectionFrame eyebrow="Become a Partner" title="Build something with the Yanabiya group.">
-        <div className="grid md:grid-cols-3 gap-4 md:gap-5 mb-7 [perspective:1400px]">
-          <Card3D title="Business Collaboration" body="Source, supply, or co-deliver with our local team." icon={Handshake} delay={0} />
-          <Card3D title="Joint Venture"          body="Form a structured JV around a shared market opportunity." icon={Users}    delay={110} />
-          <Card3D title="Strategic Alliance"     body="Multi-year alliances on technology, trade or talent."     icon={TrendingUp} delay={220} />
-        </div>
-        <div className="text-center">
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 rounded-full px-7 py-3.5
-                       bg-brand-accent text-brand-ink text-xs font-bold uppercase tracking-[0.22em]
-                       shadow-md hover:bg-brand-50 hover:shadow-lg hover:-translate-y-0.5
-                       transition-all duration-300"
-          >
-            Partner With Us <ArrowUpRight size={14} />
-          </Link>
-        </div>
-      </SectionFrame>
-
       {/* SECTION 11 — Become a Sponsor / Contributor */}
       <SectionFrame eyebrow="Become a Sponsor / Contributor" title="Bring your ideas, capital or expertise.">
         <div className="grid md:grid-cols-3 gap-4 md:gap-5 mb-7 [perspective:1400px]">
-          <Card3D title="Share Your Idea"     body="Submit a proposal — we'll review and respond within 5 business days." icon={Lightbulb} delay={0} />
-          <Card3D title="Invest With Us"      body="Take a position in our growth roadmap or specific country expansion." icon={TrendingUp} delay={110} />
-          <Card3D title="Advisory Support"    body="Lend strategic advice to our board across IT, trade or governance."   icon={Heart}      delay={220} />
+          <Card3D title="Share Your Idea"  body="Submit a proposal. We'll review and respond within 5 business days." icon={Lightbulb} delay={0}
+            image="https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&w=800&q=80" />
+          <Card3D title="Invest With Us"   body="Take a position in our growth roadmap or specific country expansion." icon={TrendingUp} delay={110}
+            image="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" />
+          <Card3D title="Advisory Support" body="Lend strategic advice to our board across IT, trade or governance."  icon={Heart} delay={220}
+            image="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80" />
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Link
@@ -747,7 +750,7 @@ function Card3D({
                     hover:border-brand-accent`}
       >
         {image && (
-          <div className="relative aspect-[3/2] overflow-hidden bg-slate-100">
+          <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
             <img
               src={image}
               alt=""
@@ -758,31 +761,31 @@ function Card3D({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
             <div
-              className={`absolute top-1.5 left-1.5 w-6 h-6 rounded grid place-items-center
+              className={`absolute top-1.5 left-1.5 w-5 h-5 rounded grid place-items-center
                           ${accent ? 'bg-brand-deep text-[#0a1410]' : 'bg-white/95 text-[#0a1410]'}
                           shadow-sm [transform:translateZ(20px)]`}
             >
-              <Icon size={11} strokeWidth={2.4} />
+              <Icon size={10} strokeWidth={2.4} />
             </div>
           </div>
         )}
 
-        <div className="p-2.5 md:p-3">
+        <div className="p-2 md:p-2.5">
           {!image && (
             <div
-              className={`w-7 h-7 rounded grid place-items-center mb-2
+              className={`w-6 h-6 rounded grid place-items-center mb-2
                           ${accent ? 'bg-brand-accent/25 text-brand-accentDark' : 'bg-brand-deep text-white'}
                           ring-1 ${accent ? 'ring-brand-accentDark/40' : 'ring-slate-200'}
                           shadow-sm [transform:translateZ(18px)]`}
             >
-              <Icon size={13} strokeWidth={2} />
+              <Icon size={11} strokeWidth={2} />
             </div>
           )}
-          <div className="font-serif text-[13px] md:text-sm text-brand-deep leading-tight
+          <div className="font-serif text-[12px] md:text-[13px] text-brand-deep leading-tight
                           [transform:translateZ(10px)]">
             {title}
           </div>
-          <p className="mt-0.5 text-[11px] text-brand-deep/70 leading-snug
+          <p className="mt-0.5 text-[10px] md:text-[11px] text-brand-deep/70 leading-snug text-justify
                         [transform:translateZ(4px)]">
             {body}
           </p>
