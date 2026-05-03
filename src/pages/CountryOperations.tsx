@@ -713,7 +713,7 @@ function SectionFrame({
 }) {
   return (
     <section className="relative">
-      <div className={`container-x ${compact ? 'pt-3 pb-6 md:pt-4 md:pb-8' : 'py-6 md:py-8'}`}>
+      <div className={`container-x ${compact ? 'pt-2 pb-4 md:pt-3 md:pb-6' : 'py-4 md:py-5'}`}>
         <Reveal>
           <div className={`text-center max-w-2xl mx-auto ${compact ? 'mb-3' : 'mb-5 md:mb-6'}`}>
             <span className="inline-block text-[10px] font-semibold uppercase
