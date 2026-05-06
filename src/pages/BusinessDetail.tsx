@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { CheckCircle2, Send, ArrowRight, ArrowLeft, MapPin, Mail, Phone, User, Building, MessageSquare, ChevronDown } from 'lucide-react'
+import { CheckCircle2, Send, ArrowRight, ArrowLeft, MapPin, Mail, Phone, User, Building, MessageSquare, ChevronDown, ArrowUpRight } from 'lucide-react'
 import Section from '../components/Section'
 import { businesses, type SubService } from '../data/businesses'
 import { assets } from '../data/assets'
@@ -59,6 +59,42 @@ export default function BusinessDetail() {
         <div className="absolute -bottom-32 -right-24 w-[460px] h-[460px] rounded-full bg-amber-400/10 blur-[150px]" />
       </div>
       <div className="container-x relative">
+
+        {/* UK IT Portal banner — shown only on the Technology & Digital Solutions page */}
+        {business.slug === 'it-software' && (
+          <div className="mb-8 overflow-hidden rounded-2xl bg-brand-deep text-white shadow-xl">
+            <div className="relative flex flex-col sm:flex-row items-center gap-5 px-7 py-6">
+              <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                <div className="absolute -top-16 -left-16 w-56 h-56 rounded-full bg-emerald-500/20 blur-[80px]" />
+                <div className="absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-amber-400/15 blur-[80px]" />
+              </div>
+              <div className="relative flex-1 text-center sm:text-left">
+                <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-accent mb-1">
+                  UK IT Consultancy
+                </p>
+                <h4 className="font-serif text-lg md:text-xl leading-snug mb-1.5">
+                  Looking for UK-based IT consulting services?
+                </h4>
+                <p className="text-white/65 text-xs leading-relaxed max-w-lg">
+                  Our UK IT consulting arm operates via a dedicated platform — software, cloud, AI &amp; cybersecurity services tailored for the British market.
+                </p>
+              </div>
+              <a
+                href="https://yanabiyagibt.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full
+                           bg-brand-accent text-white font-semibold text-sm
+                           hover:bg-brand-accentDark hover:-translate-y-0.5
+                           shadow-lg shadow-brand-accent/30 transition-all duration-300"
+              >
+                Visit yanabiyagibt.com
+                <ArrowUpRight size={15} />
+              </a>
+            </div>
+          </div>
+        )}
+
         {/* Breadcrumb nav */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-6 border-b border-brand-deep/10">
           <Link
@@ -156,8 +192,7 @@ export default function BusinessDetail() {
             {!hasSubServices && business.footer && (
               <div className="mt-10 overflow-hidden">
                 <p
-                  className="text-brand-deep/60 italic whitespace-nowrap text-center"
-                  style={{ fontSize: 'clamp(0.55rem, 1.8vw, 1rem)' }}
+                  className="text-brand-deep/60 italic whitespace-nowrap text-center text-[clamp(0.55rem,1.8vw,1rem)]"
                 >
                   {business.footer}
                 </p>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ArrowLeft, ArrowRight, ArrowUpRight, Building2, FileBadge, Calendar, MapPin,
@@ -24,10 +24,10 @@ function Reveal({
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`${className} transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] [transition-delay:var(--reveal-delay)] ${
         shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ '--reveal-delay': `${delay}ms` } as React.CSSProperties}
     >
       {children}
     </div>
@@ -56,12 +56,12 @@ type CountryOps = {
   address: string
   postCode?: string
   /** Section 4, Our Services / What We Offer */
-  services: { label: string; desc: string; icon: LucideIcon; slug: string; image: string }[]
+  services: { label: string; desc: string; icon: LucideIcon; slug: string; image: string; href?: string }[]
   /** Section 5, Our Network */
   strategicPartners: PartnerItem[]
   operationalPartners: PartnerItem[]
-  /** Section 6, Business Domains */
-  categories: { label: string; icon: LucideIcon; tone: string; image: string; href?: string; to?: string }[]
+  /** Section 6, Business Domains (combined with licensed activities) */
+  categories: { label: string; icon: LucideIcon; tone: string; image: string; href?: string; to?: string; badge?: string; sic?: string; desc?: string }[]
   /** Section 7, Licensed Activities */
   licensedActivities: string[]
   /** Section 8, Current Operations */
@@ -283,7 +283,7 @@ const OPS: Record<string, CountryOps> = {
     license: { name: 'Companies House Registration, Private Limited Company', authority: 'Companies House, United Kingdom' },
     address: '167-169 Great Portland Street, 5th Floor, London W1W 5PF, United Kingdom',
     services: [
-      { label: 'Technology & Digital Solutions',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
+      { label: 'IT Consulting & Digital Solutions',      desc: 'UK-based IT consulting, software, cloud & AI — via yanabiyagibt.com.', icon: Cpu,       slug: 'it-software', href: 'https://yanabiyagibt.com', image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
       { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
       { label: 'Clothing & Accessories',               desc: 'Wholesale clothing, retail textiles, and accessories trade.',          icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
@@ -314,28 +314,15 @@ const OPS: Record<string, CountryOps> = {
       { name: 'Tayyabs',                 logo: '/logos/partners-co/tayyabs.svg' },
     ],
     categories: [
-      { label: 'IT, Software & Cloud Services',         icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80', href: 'https://yanabiyagibt.com/' },
-      { label: 'Wholesale Trade & Retail Distribution', icon: Boxes,     tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Hospitality, Restaurants & Foodservice', icon: Megaphone, tone: 'from-amber-500/40 to-orange-700/40',   image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Cross-Border Trade & Brokerage',        icon: Handshake, tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
-      { label: 'European Market Entry Advisory',        icon: Globe2,    tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Office, Compliance & Admin Services',   icon: Briefcase,    tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Yanabiya e-Commerce',                    icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
-      { label: 'Yanabiya Digital Platform',            icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
+      { label: 'IT Consultancy & Digital Solutions', icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80', href: 'https://yanabiyagibt.com', badge: 'UK IT Portal', sic: 'SIC 62020', desc: 'Software development, web design & IT consultancy' },
+      { label: 'AI Workforce Management',            icon: Users,     tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',                                badge: 'Our Product',  sic: 'SIC 74909', desc: 'AI-powered workforce & company management platform' },
+      { label: 'Professional & Technical Services',  icon: Lightbulb, tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',                                                   sic: 'SIC 74909', desc: 'Scientific, advisory & technical consulting services' },
+      { label: 'Equipment Leasing & Rentals',        icon: Briefcase, tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',                                                   sic: 'SIC 77390', desc: 'Renting & leasing of machinery and tangible goods' },
     ],
     licensedActivities: [
-      'Information technology consultancy and software development',
-      'Computer programming, web design and systems integration',
-      'Cloud hosting, data analytics and AI services',
-      'Cyber security advisory and compliance support',
-      'Wholesale of food, beverages and consumer goods',
-      'Retail trade in supermarkets, cash-and-carry and specialised stores',
-      'Licensed restaurant operations and foodservice',
-      'Commercial agency, brokerage and import/export representation',
-      'European market-entry advisory and partner identification',
-      'Cross-border trade representation and contract negotiation',
-      'Business administration, accounting and PRO services',
-      'Recruitment, immigration support and overseas placement coordination',
+      'Information technology consultancy and software development (SIC 62020)',
+      'Other professional, scientific and technical activities not elsewhere classified (SIC 74909)',
+      'Renting and leasing of other machinery, equipment and tangible goods not elsewhere classified (SIC 77390)',
     ],
     currentProjects: [
       { title: 'European Market-Entry Advisory',  body: 'Guiding Gulf-rooted enterprises into the UK & EU markets, from registration to compliance.',     image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80' },
@@ -473,7 +460,6 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
   }
 
   const NAV_ORDER: { code: string; label: string; to: string }[] = [
-    { code: 'GLOBAL', label: 'Global Branches', to: '/global-presence/scroll' },
     { code: 'OM',     label: 'Oman',            to: '/global-presence/om' },
     { code: 'BD',     label: 'Bangladesh',      to: '/global-presence/bd' },
     { code: 'GB',     label: 'United Kingdom',  to: '/global-presence/gb' },
@@ -534,6 +520,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         </div>
       </SectionFrame>
 
+
       {/* SECTION 3, Company Information.
        *  Registration number intentionally omitted (kept on the
        *  CountryOps record but not surfaced publicly). */}
@@ -589,86 +576,33 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
       </SectionFrame>
 
 
-      {/* SECTION 6, Business Domains */}
-      <SectionFrame eyebrow="Business Domains" title="The verticals we operate in.">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
-          {/* Yanabiya e-Commerce */}
-          <Reveal delay={0}>
-            <Link
-              to="/business/yanabiya-commerce"
-              className="group relative flex flex-col rounded-2xl overflow-hidden shadow-lg
-                         border border-white/80 hover:border-brand-accent/50
-                         hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
-            >
-              <div className="relative h-44 overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
-                  alt="Yanabiya e-Commerce"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 via-brand-deep/30 to-transparent" />
-                <div className="absolute top-3 left-3 w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500/60 to-amber-700/60
-                                ring-1 ring-white/30 grid place-items-center shadow-md">
-                  <ShoppingCart size={16} className="text-white" strokeWidth={2} />
-                </div>
-              </div>
-              <div className="p-4 bg-white flex items-center justify-between gap-2">
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-0.5">New Division</p>
-                  <h4 className="font-semibold text-brand-deep text-sm leading-snug">Yanabiya e-Commerce</h4>
-                  <p className="text-[11px] text-brand-deep/55 mt-0.5">Online retail, marketplace & fulfilment</p>
-                </div>
-                <ArrowRight size={16} className="shrink-0 text-brand-accentDark group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-          </Reveal>
-
-          {/* Yanabiya Digital Platform */}
-          <Reveal delay={120}>
-            <Link
-              to="/business/yanabiya-digital-platform"
-              className="group relative flex flex-col rounded-2xl overflow-hidden shadow-lg
-                         border border-white/80 hover:border-brand-accent/50
-                         hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
-            >
-              <div className="relative h-44 overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
-                  alt="Yanabiya Digital Platform"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 via-brand-deep/30 to-transparent" />
-                <div className="absolute top-3 left-3 w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500/60 to-indigo-700/60
-                                ring-1 ring-white/30 grid place-items-center shadow-md">
-                  <Monitor size={16} className="text-white" strokeWidth={2} />
-                </div>
-              </div>
-              <div className="p-4 bg-white flex items-center justify-between gap-2">
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-0.5">New Division</p>
-                  <h4 className="font-semibold text-brand-deep text-sm leading-snug">Yanabiya Digital Platform</h4>
-                  <p className="text-[11px] text-brand-deep/55 mt-0.5">Apps, field ops & digital services</p>
-                </div>
-                <ArrowRight size={16} className="shrink-0 text-brand-accentDark group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-          </Reveal>
+      {/* SECTION 6, Business Domains — combined with licensed activities for GB */}
+      <SectionFrame
+        eyebrow="Business Domains"
+        title={upper === 'GB' ? 'Licensed verticals we operate in.' : 'The verticals we operate in.'}
+      >
+        <div className={`grid sm:grid-cols-2 gap-5 mx-auto ${ops.categories.length <= 2 ? 'max-w-2xl' : 'max-w-3xl'}`}>
+          {ops.categories.map((cat, i) => (
+            <DomainCard key={cat.label} cat={cat} index={i} />
+          ))}
         </div>
       </SectionFrame>
 
-      {/* SECTION 7, Licensed Activities */}
-      <SectionFrame eyebrow="Approved Activities Under License" title="Government-approved scope of operations.">
-        <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm text-brand-deep/80">
-          {ops.licensedActivities.map((a, i) => (
-            <Reveal key={a} delay={i * 40}>
-              <li className="flex items-start gap-2.5">
-                <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-amber-300 shrink-0" />
-                <span>{a}</span>
-              </li>
-            </Reveal>
-          ))}
-        </ul>
-      </SectionFrame>
+      {/* SECTION 7, Licensed Activities — hidden for GB since SIC codes are on the cards */}
+      {upper !== 'GB' && (
+        <SectionFrame eyebrow="Approved Activities Under License" title="Government-approved scope of operations.">
+          <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm text-brand-deep/80">
+            {ops.licensedActivities.map((a, i) => (
+              <Reveal key={a} delay={i * 40}>
+                <li className="flex items-start gap-2.5">
+                  <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-amber-300 shrink-0" />
+                  <span>{a}</span>
+                </li>
+              </Reveal>
+            ))}
+          </ul>
+        </SectionFrame>
+      )}
 
 
       {/* SECTION 9, Future Roadmap */}
@@ -856,58 +790,135 @@ function InfoRow({ label, value, icon: Icon }: { label: string; value: string; i
   )
 }
 
+function DomainCard({
+  cat,
+  index,
+}: {
+  cat: { label: string; icon: LucideIcon; tone: string; image: string; href?: string; to?: string; badge?: string; sic?: string; desc?: string }
+  index: number
+}) {
+  const cardClass =
+    'group relative flex flex-col rounded-2xl overflow-hidden shadow-lg border border-white/80 hover:border-brand-accent/50 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 h-full'
+
+  const badgeColor =
+    cat.badge === 'UK IT Portal' ? 'bg-brand-accent/90' :
+    cat.badge === 'Our Product'  ? 'bg-blue-500/90' :
+    cat.badge === 'New Division' ? 'bg-amber-500/90' :
+    'bg-brand-deep/80'
+
+  const inner = (
+    <>
+      {/* Image */}
+      <div className="relative h-36 overflow-hidden shrink-0">
+        <img
+          src={cat.image}
+          alt={cat.label}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 via-brand-deep/20 to-transparent" />
+        <div className={`absolute top-3 left-3 w-8 h-8 rounded-xl bg-gradient-to-br ${cat.tone} ring-1 ring-white/30 grid place-items-center shadow-md`}>
+          <cat.icon size={14} className="text-white" strokeWidth={2} />
+        </div>
+        {cat.badge && (
+          <span className={`absolute top-3 right-3 px-2 py-0.5 rounded-md text-white text-[8px] font-bold uppercase tracking-widest ${badgeColor}`}>
+            {cat.badge}
+          </span>
+        )}
+        {cat.sic && (
+          <span className="absolute bottom-3 left-3 px-2 py-0.5 rounded bg-black/50 text-white/80 text-[8px] font-mono tracking-wider">
+            {cat.sic}
+          </span>
+        )}
+      </div>
+
+      {/* Body */}
+      <div className="flex flex-col flex-1 p-4 bg-white gap-1.5">
+        <h4 className="font-semibold text-brand-deep text-sm leading-snug">{cat.label}</h4>
+        {cat.desc && (
+          <p className="text-[11px] text-brand-deep/55 leading-snug">{cat.desc}</p>
+        )}
+        {cat.href && (
+          <p className="text-[10px] text-brand-accentDark font-semibold mt-auto pt-1 flex items-center gap-1 group-hover:gap-1.5 transition-all">
+            yanabiyagibt.com <ArrowUpRight size={10} />
+          </p>
+        )}
+        {cat.to && !cat.href && (
+          <p className="text-[10px] text-brand-accentDark font-semibold mt-auto pt-1 flex items-center gap-1 group-hover:gap-1.5 transition-all">
+            Explore <ArrowRight size={10} />
+          </p>
+        )}
+      </div>
+    </>
+  )
+
+  return (
+    <Reveal delay={index * 100}>
+      {cat.href ? (
+        <a href={cat.href} target="_blank" rel="noopener noreferrer" className={cardClass}>{inner}</a>
+      ) : cat.to ? (
+        <Link to={cat.to} className={cardClass}>{inner}</Link>
+      ) : (
+        <div className={`${cardClass} cursor-default`}>{inner}</div>
+      )}
+    </Reveal>
+  )
+}
+
 function ServiceCard({
   service,
   index,
 }: {
-  service: { label: string; desc: string; icon: LucideIcon; slug: string; image: string }
+  service: { label: string; desc: string; icon: LucideIcon; slug: string; image: string; href?: string }
   index: number
 }) {
+  const cardClass =
+    'group relative block h-full overflow-hidden rounded-lg bg-brand-50 border border-brand-deep/15 [transform-style:preserve-3d] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)] hover:border-brand-accent'
+
+  const inner = (
+    <>
+      <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
+        <img
+          src={service.image}
+          alt=""
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
+        <div className="absolute top-1 left-1 w-5 h-5 rounded bg-brand-deep text-[#0a1410] grid place-items-center shadow-sm [transform:translateZ(22px)]">
+          <service.icon size={10} strokeWidth={2.4} />
+        </div>
+        {service.href && (
+          <div className="absolute top-1 right-1 px-1.5 py-0.5 rounded bg-brand-accent/90 text-white text-[7px] font-bold uppercase tracking-widest">
+            UK Portal
+          </div>
+        )}
+      </div>
+      <div className="p-2 md:p-2.5">
+        <div className="font-serif text-[12px] md:text-[13px] text-brand-deep leading-tight [transform:translateZ(12px)]">
+          {service.label}
+        </div>
+        <p className="mt-0.5 text-[10px] md:text-[11px] text-brand-deep/70 leading-snug [transform:translateZ(4px)]">
+          {service.desc}
+        </p>
+        <div className="mt-1.5 inline-flex items-center gap-1 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accentDark group-hover:gap-2 transition-all">
+          {service.href ? 'Visit Portal' : 'Learn more'} <ArrowRight size={9} />
+        </div>
+      </div>
+    </>
+  )
+
   return (
     <Reveal delay={index * 80}>
-      <Link
-        to={`/business/${service.slug}`}
-        className="group relative block h-full overflow-hidden rounded-lg
-                   bg-brand-50 border border-brand-deep/15
-                   [transform-style:preserve-3d]
-                   transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                   hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)]
-                   hover:border-brand-accent"
-      >
-        {/* Real photo header, wider/shorter so tiles stay compact at 3-up */}
-        <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
-          <img
-            src={service.image}
-            alt=""
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover
-                       transition-transform duration-500 group-hover:scale-105"
-            onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
-          {/* Floating icon chip on top of the image */}
-          <div className="absolute top-1 left-1 w-5 h-5 rounded
-                          bg-brand-deep text-[#0a1410]
-                          grid place-items-center shadow-sm
-                          [transform:translateZ(22px)]">
-            <service.icon size={10} strokeWidth={2.4} />
-          </div>
-        </div>
-
-        {/* Body */}
-        <div className="p-2 md:p-2.5">
-          <div className="font-serif text-[12px] md:text-[13px] text-brand-deep leading-tight [transform:translateZ(12px)]">
-            {service.label}
-          </div>
-          <p className="mt-0.5 text-[10px] md:text-[11px] text-brand-deep/70 leading-snug [transform:translateZ(4px)]">
-            {service.desc}
-          </p>
-          <div className="mt-1.5 inline-flex items-center gap-1 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.22em]
-                          text-brand-accentDark group-hover:gap-2 transition-all">
-            Learn more <ArrowRight size={9} />
-          </div>
-        </div>
-      </Link>
+      {service.href ? (
+        <a href={service.href} target="_blank" rel="noopener noreferrer" className={cardClass}>
+          {inner}
+        </a>
+      ) : (
+        <Link to={`/business/${service.slug}`} className={cardClass}>
+          {inner}
+        </Link>
+      )}
     </Reveal>
   )
 }
@@ -965,6 +976,10 @@ function PartnerMarquee({
   const half = Array(repeats).fill(items).flat() as PartnerItem[]
   const loop = [...half, ...half]
   const animClass = direction === 'left' ? 'animate-marquee' : 'animate-marquee-reverse'
+  const stripRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    stripRef.current?.style.setProperty('--marquee-dur', `${durationSec}s`)
+  }, [durationSec])
 
   return (
     <div className={className}>
@@ -977,12 +992,8 @@ function PartnerMarquee({
 
       <div className="relative overflow-hidden [perspective:1400px]">
         <div
-          className={`flex ${animClass} gap-6 w-max py-3 [transform-style:preserve-3d]`}
-          style={{
-            animationDuration: `${durationSec}s`,
-            animationTimingFunction: 'linear',
-            willChange: 'transform',
-          }}
+          ref={stripRef}
+          className={`flex ${animClass} gap-6 w-max py-3 [transform-style:preserve-3d] will-change-transform [animation-timing-function:linear] [animation-duration:var(--marquee-dur)]`}
         >
           {loop.map((p, i) => (
             <div key={`${p.name}-${i}`} className="shrink-0 w-36">

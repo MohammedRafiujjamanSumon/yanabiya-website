@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowRight } from 'lucide-react'
 import { assets } from '../data/assets'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import GlobalOverviewPanel from '../components/GlobalOverviewPanel'
+import { HardHat, Truck, Laptop, TrendingUp, Coffee, Briefcase, Wrench, ArrowUpRight, ArrowRight, Building2, FileBadge, Calendar, MapPin, Cpu, Boxes, Ship, Plane, Handshake, Sparkles, Lightbulb, Megaphone, Globe2, Heart, Send, Users, ShoppingCart, Monitor, type LucideIcon } from 'lucide-react'
 
 function Reveal({
   children,
@@ -54,8 +54,8 @@ const MAP_BASE = `${import.meta.env.BASE_URL}maps/`
 
 export default function Global() {
   const { t } = useTranslation()
-  const [presenceOpen, setPresenceOpen] = useState(false)
   const [flippedCode, setFlippedCode] = useState<string | null>(null)
+  const [presenceOpen, setPresenceOpen] = useState(false)
 
   return (
     <Section id="global" className="relative overflow-hidden bg-brand-50">

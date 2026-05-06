@@ -15,7 +15,6 @@ import CommunityCare from './pages/CommunityCare'
 import CareersPage from './pages/CareersPage'
 import AboutUs from './pages/AboutUs'
 import OurStory from './pages/OurStory'
-import OmanPresence from './pages/OmanPresence'
 import ContactGlobal from './pages/ContactGlobal'
 import PersonPage from './pages/PersonPage'
 import CeoPage from './pages/CeoPage'
@@ -100,7 +99,6 @@ export default function App() {
               <Route path="/global-presence/us" element={<CountryOperations codeOverride="US" />} />
 
               <Route path="/country/:code" element={<CountryDetail />} />
-              <Route path="/global-presence/scroll" element={<OmanPresence />} />
               <Route path="/global-presence/:code" element={<CountryDetail />} />
 
               <Route path="/oman"       element={<CountryOperations codeOverride="OM" />} />
