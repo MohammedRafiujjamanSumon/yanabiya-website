@@ -117,7 +117,7 @@ export default function AboutUs() {
             </Reveal>
             <Reveal delay={300}>
               <p className="mt-8 text-lg md:text-xl text-slate-600 max-w-2xl leading-snug">
-                A diversified international group operating as one platform —
+                A diversified international group operating as one platform,
                 across technology, trade, talent, and consulting in four countries.
               </p>
             </Reveal>
@@ -176,7 +176,7 @@ export default function AboutUs() {
             </Reveal>
             <Reveal delay={120}>
               <p>
-                We don’t run as a single-sector company. We run as a platform —
+                We don’t run as a single-sector company. We run as a platform,
                 where multiple ventures share one operating discipline and one
                 long-term horizon, while remaining independent where they need to be.
               </p>

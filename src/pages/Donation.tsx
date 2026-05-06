@@ -721,7 +721,7 @@ export default function Donation() {
                   <p className="text-sm italic text-slate-600 leading-relaxed">
                     "I've donated through several platforms, Yanabiya is the only one that sent me a personal message and showed exactly where my money went."
                   </p>
-                  <p className="mt-2 text-[11px] font-semibold text-slate-500">— Fatima R., UK donor</p>
+                  <p className="mt-2 text-[11px] font-semibold text-slate-500">Fatima R., UK donor</p>
                 </div>
 
               </div>
@@ -795,7 +795,7 @@ export default function Donation() {
                 </div>
                 <h4 className="font-serif text-white text-xl mb-3 leading-snug">Yanabiya Charitable Foundation</h4>
                 <p className="text-white/55 text-sm leading-relaxed">
-                  Established to serve communities across Oman, Bangladesh, the United Kingdom and the USA —
+                  Established to serve communities across Oman, Bangladesh, the United Kingdom and the USA,
                   we direct charitable funds to those who need them most with full transparency and Islamic integrity.
                   Every programme is managed by a dedicated team and reviewed by a Shariah board.
                 </p>

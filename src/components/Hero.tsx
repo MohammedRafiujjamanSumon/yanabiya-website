@@ -7,7 +7,7 @@ export default function Hero() {
     <section className="relative overflow-hidden">
       <div className="container-x grid lg:grid-cols-2 gap-10 py-20 lg:py-28 items-center">
         <div>
-          <div className="eyebrow mb-4">— Welcome to Yanabiya Group</div>
+          <div className="eyebrow mb-4">Welcome to Yanabiya Group</div>
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-slate-900 leading-[1.05]">
             Built on Trust,<br />Driven by<br />Excellence
           </h1>

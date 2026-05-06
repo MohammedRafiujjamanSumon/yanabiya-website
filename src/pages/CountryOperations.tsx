@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  ArrowRight, ArrowUpRight, Building2, FileBadge, Calendar, MapPin,
+  ArrowLeft, ArrowRight, ArrowUpRight, Building2, FileBadge, Calendar, MapPin,
   Cpu, Boxes, Briefcase, Ship, Plane, Handshake,
   TrendingUp, Sparkles, Lightbulb, Megaphone, Globe2,
   Heart, Send, Users, ShoppingCart, Monitor,
   type LucideIcon,
 } from 'lucide-react'
-import BackButton from '../components/BackButton'
 import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
 import { countries } from '../data/countries'
@@ -457,7 +456,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
     return (
       <main className="relative bg-brand-50
                        text-brand-deep overflow-hidden min-h-screen grid place-items-center px-6">
-        <BackButton to="/" label="Back to Home" />
+        <Link to="/" className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors mb-6">Back to Home</Link>
         <div className="text-center">
           <div className="text-[11px] uppercase tracking-[0.32em] text-brand-accentDark mb-3">
             Coming soon
@@ -473,23 +472,53 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
     )
   }
 
+  const NAV_ORDER: { code: string; label: string; to: string }[] = [
+    { code: 'GLOBAL', label: 'Global Branches', to: '/global-presence/scroll' },
+    { code: 'OM',     label: 'Oman',            to: '/global-presence/om' },
+    { code: 'BD',     label: 'Bangladesh',      to: '/global-presence/bd' },
+    { code: 'GB',     label: 'United Kingdom',  to: '/global-presence/gb' },
+    { code: 'US',     label: 'USA',             to: '/global-presence/us' },
+  ]
+  const navIdx  = NAV_ORDER.findIndex((n) => n.code === upper)
+  const prevNav = navIdx > 0             ? NAV_ORDER[navIdx - 1] : null
+  const nextNav = navIdx < NAV_ORDER.length - 1 ? NAV_ORDER[navIdx + 1] : null
+
   return (
     <main className="relative bg-brand-50
                      text-brand-deep overflow-hidden min-h-screen">
-      <BackButton to="/" label="Back to Home" />
 
       {/* SECTION 1, Country Overview / Local Presence */}
-      <PageHero
-        eyebrow="Local Presence"
-        title={
-          <>
-            {country.flag} {country.name}
-          </>
-        }
-        subtitle={ops.intro}
-        centered
-        ghostText=""
-      />
+      <div className="relative">
+        <PageHero
+          eyebrow="Local Presence"
+          title={
+            <>
+              {country.flag} {country.name}
+            </>
+          }
+          subtitle={ops.intro}
+          centered
+          ghostText=""
+        />
+        <div className="absolute inset-0 container-x px-5 md:px-12 flex items-start justify-between pt-5 md:pt-6 pointer-events-none">
+          {prevNav ? (
+            <Link
+              to={prevNav.to}
+              className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
+            >
+              <ArrowLeft size={13} /> {prevNav.label}
+            </Link>
+          ) : <span />}
+          {nextNav ? (
+            <Link
+              to={nextNav.to}
+              className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
+            >
+              {nextNav.label} <ArrowRight size={13} />
+            </Link>
+          ) : <span />}
+        </div>
+      </div>
 
       {/* SECTION 2, About Our Operation */}
       <SectionFrame eyebrow="About Our Operation" title="Who we are on the ground." compact>

@@ -11,7 +11,7 @@ export type CountryCode = 'OM' | 'GB' | 'BD' | 'US'
 
 export interface CountryPresence {
   code: CountryCode
-  /** Short (3–14 words) role-specific summary of what this country contributes
+  /** Short (3 to 14 words) role-specific summary of what this country contributes
    *  to this business / sub-service. Shown under the country name on cards. */
   note: string
 }

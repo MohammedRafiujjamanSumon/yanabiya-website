@@ -367,7 +367,7 @@ function SubServiceForm({ sub, businessTitle }: { sub: SubService; businessTitle
             <label className={labelCls}>
               <Building size={12} />
               Service
-              <span className="normal-case tracking-normal font-normal opacity-60">— {businessTitle.replace('🤝 ', '')}</span>
+              <span className="normal-case tracking-normal font-normal opacity-60">{businessTitle.replace('🤝 ', '')}</span>
             </label>
             <div className="relative">
               <select title="Service" defaultValue={sub.title} className={`${inputCls} appearance-none pr-10`}>

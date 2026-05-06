@@ -47,7 +47,7 @@ export default function PageHero({
   eyebrow,
   title,
   subtitle,
-  ghostText = 'YANABIYA',
+  ghostText = '',
   cta,
   rightCaption,
   centered = false,

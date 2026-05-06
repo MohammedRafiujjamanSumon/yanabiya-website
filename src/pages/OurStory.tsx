@@ -46,7 +46,7 @@ const storyLines = [
   'Today, every Yanabiya business runs on the same operating principles.',
   'Quality before scale. Relationships before transactions. People before process.',
   'From Gulf trade routes to UK boardrooms.',
-  'From Dhaka engineering floors to Texas advisory rooms —',
+  'From Dhaka engineering floors to Texas advisory rooms,',
   'we connect markets, capital, and capability.',
   'And the story is still being written.',
   'One chapter at a time.',

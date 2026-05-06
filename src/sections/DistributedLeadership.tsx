@@ -58,7 +58,7 @@ export default function DistributedLeadership() {
           </Reveal>
           <Reveal delay={120}>
             <h2 className="font-serif text-[16px] leading-snug tracking-tight text-brand-deep mt-1">
-              Six ways leadership is distributed across the group —{' '}
+              Six ways leadership is distributed across the group,{' '}
               <span className="italic text-brand-accentDark">formal, pragmatic, strategic, incremental, opportunistic, cultural.</span>
             </h2>
           </Reveal>

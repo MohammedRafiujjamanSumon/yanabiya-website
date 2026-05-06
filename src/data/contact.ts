@@ -5,7 +5,7 @@ export const contact = {
   mobile: '+968 9116 1677',
   emails: ['info@yanabiyagroup.com', 'admin@yanabiyagroup.com'],
   webmail: 'https://webmail.yanabiyagroup.com/',
-  hours: 'Sunday – Thursday, 8:00 AM – 6:00 PM',
+  hours: 'Sunday  to  Thursday, 8:00 AM  to  6:00 PM',
 }
 
 // Per-country contact details. Addresses are split into three structured
@@ -50,7 +50,7 @@ export const contactByCountry: CountryContact[] = [
     whatsapp: '+968 9116 1677',
     emails: ['info@yanabiyagroup.com', 'admin@yanabiyagroup.com'],
     websites: ['www.yanabiyagroup.com'],
-    hours: 'Sunday – Thursday, 8:00 AM – 6:00 PM (GST)',
+    hours: 'Sunday  to  Thursday, 8:00 AM  to  6:00 PM (GST)',
     mapQuery: 'Office-41, 4th Floor, Building-846, Way-4011, Al Gubrah, Bushar, Muscat, Oman',
     poBox: 'P.O. Box: 1432, Postal Code: 133',
   },
@@ -66,7 +66,7 @@ export const contactByCountry: CountryContact[] = [
     mobile: '+44 7988 518877',
     emails: ['info@yanabiya.com', 'info@yanabiyagibt.com'],
     websites: ['www.yanabiya.com', 'www.yanabiyagibt.com'],
-    hours: 'Monday – Friday, 9:00 AM – 6:00 PM (GMT)',
+    hours: 'Monday  to  Friday, 9:00 AM  to  6:00 PM (GMT)',
     mapQuery: '167-169 Great Portland Street, 5th Floor, London W1W 5PF, UK',
   },
   {
@@ -81,7 +81,7 @@ export const contactByCountry: CountryContact[] = [
     mobile: '+880 1971 161677',
     emails: ['info@yanabiyabd.com'],
     websites: ['www.yanabiyabd.com'],
-    hours: 'Sunday – Thursday, 9:00 AM – 6:00 PM (BST)',
+    hours: 'Sunday  to  Thursday, 9:00 AM  to  6:00 PM (BST)',
     mapQuery: 'Office #211, Plot #322/B, Kanchkura, Uttarkhan, Dhaka 1230, Bangladesh',
   },
   {
@@ -96,7 +96,7 @@ export const contactByCountry: CountryContact[] = [
     mobile: '+1 512 355 5715',
     emails: ['info@yanabiyaus.com', 'info@ygiusllc.com'],
     websites: ['www.yanabiyaus.com', 'www.ygiusllc.com'],
-    hours: 'Monday – Friday, 9:00 AM – 5:00 PM (CT)',
+    hours: 'Monday  to  Friday, 9:00 AM  to  5:00 PM (CT)',
     mapQuery: '5900 Balcones Drive #18651, Austin, TX 78731, USA',
   },
 ]
