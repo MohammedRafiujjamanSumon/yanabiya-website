@@ -298,7 +298,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
-      {/* Shared About-Us style brand card — opens every country page
+      {/* Shared About-Us style brand card, opens every country page
        *  with the same forest-green / 3D-logo language as the home
        *  About section. Below this, the country's specific dashboard
        *  (services, hierarchy, leadership, contact) continues. */}
@@ -309,7 +309,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
             {c.flag} {c.name}
           </>
         }
-        subtitle={`${c.role} — ${c.address}`}
+        subtitle={`${c.role}, ${c.address}`}
         ghostText=""
       />
 
@@ -351,7 +351,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
       {/* ───────── 6. ACHIEVEMENTS ───────── */}
       <Achievements achievements={dash.achievements} />
 
-      {/* ───────── 7. CONTACT — single CTA, full details on /contact ───────── */}
+      {/* ───────── 7. CONTACT, single CTA, full details on /contact ───────── */}
       <section className="relative">
         <div className="container-x py-4 md:py-6 text-center">
           <Reveal>

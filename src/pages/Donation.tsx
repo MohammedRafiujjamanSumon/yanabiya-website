@@ -201,7 +201,7 @@ export default function Donation() {
         <PageHero
           eyebrow="Yanabiya Charitable Foundation"
           title={hero?.title || 'Donations Portal for Charitable'}
-          subtitle={hero?.subtitle || '100% of every donation goes directly to the cause you choose — no deductions, no hidden fees. Give with confidence.'}
+          subtitle={hero?.subtitle || '100% of every donation goes directly to the cause you choose, no deductions, no hidden fees. Give with confidence.'}
           centered
           ghostText=""
         />
@@ -232,7 +232,7 @@ export default function Donation() {
             "A Chance to Build Your Palace in Jannah"
           </h2>
           <p className="relative text-white/50 text-xs max-w-sm mx-auto">
-            The Prophet ﷺ said: "Charity does not decrease wealth." — Sahih Muslim
+            The Prophet ﷺ said: "Charity does not decrease wealth.", Sahih Muslim
           </p>
 
           {/* Stats */}
@@ -445,7 +445,7 @@ export default function Donation() {
                   </a>
                 </div>
 
-                {/* Gateway — live country */}
+                {/* Gateway, live country */}
                 {payCountry && selectedCountryData?.live && (
                   <div>
                     <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">
@@ -469,7 +469,7 @@ export default function Donation() {
                   </div>
                 )}
 
-                {/* Coming soon — non-live country */}
+                {/* Coming soon, non-live country */}
                 {payCountry && selectedCountryData && !selectedCountryData.live && (
                   <div className="rounded-xl border border-amber-200 bg-amber-50 px-5 py-4 text-center">
                     <p className="text-amber-700 font-semibold text-sm mb-1">
@@ -477,7 +477,7 @@ export default function Donation() {
                     </p>
                     <p className="text-amber-600 text-xs leading-relaxed">
                       Payment gateway for your chosen location is on its way.
-                      Stay with us — we are working to bring it live soon.
+                      Stay with us, we are working to bring it live soon.
                     </p>
                     <Link
                       to="/contact"
@@ -489,7 +489,7 @@ export default function Donation() {
                   </div>
                 )}
 
-                {/* QR panel — bKash / Nagad */}
+                {/* QR panel, bKash / Nagad */}
                 {payGateway && GATEWAY_INFO[payGateway] && (
                   <div className="rounded-xl bg-brand-50 border border-brand-accent/20 p-4">
                     <div className="flex gap-4 items-start">
@@ -648,7 +648,7 @@ export default function Donation() {
               </div>
             </div>
 
-            {/* Right: Why Donate With Us — trust card */}
+            {/* Right: Why Donate With Us, trust card */}
             <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden flex flex-col">
 
               {/* Header */}
@@ -667,8 +667,8 @@ export default function Donation() {
                 {/* Trust checkpoints */}
                 <div className="space-y-3">
                   {([
-                    { color: 'bg-emerald-500', title: 'Registered Organisation',    desc: 'Yanabiya Charitable Foundation — officially registered and audited across four countries.' },
-                    { color: 'bg-sky-500',     title: '100% Reaches the Cause',     desc: 'Administrative costs are covered separately — every penny of your gift goes directly to the cause.' },
+                    { color: 'bg-emerald-500', title: 'Registered Organisation',    desc: 'Yanabiya Charitable Foundation, officially registered and audited across four countries.' },
+                    { color: 'bg-sky-500',     title: '100% Reaches the Cause',     desc: 'Administrative costs are covered separately, every penny of your gift goes directly to the cause.' },
                     { color: 'bg-amber-500',   title: 'Shariah-Compliant',          desc: 'All programmes are reviewed and approved under Islamic guidelines.' },
                     { color: 'bg-rose-500',    title: 'Personal Acknowledgement',   desc: 'Every donor receives a personalised thank-you message and impact update.' },
                   ] as const).map((item) => (
@@ -719,7 +719,7 @@ export default function Donation() {
                 {/* Donor quote */}
                 <div className="border-l-4 border-brand-accent/40 pl-4">
                   <p className="text-sm italic text-slate-600 leading-relaxed">
-                    "I've donated through several platforms — Yanabiya is the only one that sent me a personal message and showed exactly where my money went."
+                    "I've donated through several platforms, Yanabiya is the only one that sent me a personal message and showed exactly where my money went."
                   </p>
                   <p className="mt-2 text-[11px] font-semibold text-slate-500">— Fatima R., UK donor</p>
                 </div>
@@ -751,13 +751,13 @@ export default function Donation() {
                   step: '01',
                   color: 'bg-emerald-500',
                   title: 'Choose a Cause',
-                  desc: 'Pick the programme that speaks to your heart — from orphan care and masjid support to student scholarships.',
+                  desc: 'Pick the programme that speaks to your heart, from orphan care and masjid support to student scholarships.',
                 },
                 {
                   step: '02',
                   color: 'bg-sky-500',
                   title: 'Complete Payment',
-                  desc: 'Select your country and follow the gateway steps — bKash, Nagad, bank transfer, or contact us directly.',
+                  desc: 'Select your country and follow the gateway steps, bKash, Nagad, bank transfer, or contact us directly.',
                 },
                 {
                   step: '03',
@@ -787,7 +787,7 @@ export default function Donation() {
                                        [background-size:20px_20px]" />
             <div className="relative grid md:grid-cols-2">
 
-              {/* Left — About */}
+              {/* Left, About */}
               <div className="px-8 py-8 border-b md:border-b-0 md:border-r border-white/10">
                 <div className="flex items-center gap-2 mb-4">
                   <HandHeart size={15} className="text-amber-400" />
@@ -806,7 +806,7 @@ export default function Donation() {
                 </div>
               </div>
 
-              {/* Right — Contact */}
+              {/* Right, Contact */}
               <div className="px-8 py-8">
                 <div className="flex items-center gap-2 mb-4">
                   <Mail size={14} className="text-sky-400" />
@@ -823,7 +823,7 @@ export default function Donation() {
                                px-4 py-3 text-sm text-white transition-colors"
                   >
                     <Heart size={14} className="text-amber-400 shrink-0" />
-                    donate@yanabiyagroup.com — Donation enquiries
+                    donate@yanabiyagroup.com, Donation enquiries
                   </a>
                   <a
                     href="mailto:info@yanabiyagroup.com"
@@ -831,7 +831,7 @@ export default function Donation() {
                                px-4 py-3 text-sm text-white transition-colors"
                   >
                     <Building2 size={14} className="text-sky-400 shrink-0" />
-                    info@yanabiyagroup.com — General enquiries
+                    info@yanabiyagroup.com, General enquiries
                   </a>
                 </div>
               </div>

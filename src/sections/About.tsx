@@ -57,11 +57,11 @@ export default function About() {
             <Eyebrow>About Us</Eyebrow>
           </Reveal>
 
-          {/* ── Two-column grid: 50 / 50 — inside container-x so edges align with navbar ── */}
+          {/* ── Two-column grid: 50 / 50, inside container-x so edges align with navbar ── */}
           <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
           <div className="grid grid-cols-2 items-center gap-10 mt-4 min-w-[600px]">
 
-            {/* ── LEFT — office photo ── */}
+            {/* ── LEFT, office photo ── */}
             <div>
               <div className="relative rounded-2xl overflow-hidden
                               shadow-[0_24px_64px_rgba(15,58,35,0.16)]
@@ -76,7 +76,7 @@ export default function About() {
               </div>
             </div>
 
-            {/* ── RIGHT — all text content ── */}
+            {/* ── RIGHT, all text content ── */}
             <div className="flex flex-col justify-center py-0 pl-6">
 
             {/* Tagline pill */}
@@ -124,7 +124,7 @@ export default function About() {
               </Link>
             </Reveal>
 
-            {/* Vision / Mission / Goal cards — compact, bottom aligns with image */}
+            {/* Vision / Mission / Goal cards, compact, bottom aligns with image */}
             <div className="mt-6 grid grid-cols-3 gap-2 md:gap-3">
               {VMG.map(({ icon: Icon, label, body, to, tone, iconColor, border }, i) => (
                 <Reveal key={label} delay={320 + i * 100}>

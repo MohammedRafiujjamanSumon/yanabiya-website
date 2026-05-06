@@ -77,7 +77,7 @@ export default function SustainableGrowth() {
       <div className="relative">
         <PageHero
           title={hero?.title || 'Sustainable Growth'}
-          subtitle={hero?.subtitle || 'Building business practices that protect the environment and support long-term value for every stakeholder — in every country we operate.'}
+          subtitle={hero?.subtitle || 'Building business practices that protect the environment and support long-term value for every stakeholder, in every country we operate.'}
           centered
           ghostText=""
         />

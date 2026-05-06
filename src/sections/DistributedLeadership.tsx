@@ -67,7 +67,7 @@ export default function DistributedLeadership() {
         {/* INFOGRAPHIC GRID */}
         <div className="relative max-w-6xl mx-auto">
 
-          {/* Centre pill — large grey banner that anchors the diagram */}
+          {/* Centre pill, large grey banner that anchors the diagram */}
           <Reveal delay={150}>
             <div className="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2
                             md:w-[42%] md:max-w-[420px]

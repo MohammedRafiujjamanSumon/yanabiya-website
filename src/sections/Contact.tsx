@@ -16,7 +16,7 @@ type Palette = {
 // Per-country palette inspired by the reference infographic
 // (red → orange → amber → blue ribbon banners).
 const PALETTES: Record<string, Palette> = {
-  OM: { header: '#b91c1c', arrow: '#7f1d1d' }, // red — HQ
+  OM: { header: '#b91c1c', arrow: '#7f1d1d' }, // red, HQ
   GB: { header: '#ea580c', arrow: '#9a3412' }, // orange
   BD: { header: '#d97706', arrow: '#92400e' }, // amber
   US: { header: '#0e7490', arrow: '#155e75' }, // teal-blue
@@ -54,7 +54,7 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* OFFICE BANNERS — compact ribbons, one per country.
+        {/* OFFICE BANNERS, compact ribbons, one per country.
          *  Click a banner to jump to the dedicated /contact landing page
          *  with the network diagram + full per-office details. */}
         <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
@@ -102,7 +102,7 @@ export default function Contact() {
               </option>
               {offices.map((o) => (
                 <option key={o.code} value={o.code}>
-                  {o.country.flag} {o.country.name} — {o.country.role}
+                  {o.country.flag} {o.country.name}, {o.country.role}
                 </option>
               ))}
             </select>
@@ -119,7 +119,7 @@ export default function Contact() {
             </button>
             {submitted && (
               <div className="text-sm text-brand-accentDark text-center mt-2">
-                ✓ Thanks — your message has been received.
+                ✓ Thanks, your message has been received.
               </div>
             )}
           </form>

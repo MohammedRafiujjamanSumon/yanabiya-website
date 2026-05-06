@@ -30,11 +30,11 @@ const raw: Record<string, Omit<Testimonial, 'code'>[]> = {
   BD: [
     { quote: 'The Dhaka engineering centre has been a true extension of our internal team. 24×7 support without ever feeling like outsourcing.', author: 'Tahmid Rahman', role: 'Chief Technology Officer', company: 'Uttarkhan Tech Solutions', rating: 5 },
     { quote: 'I have worked with Yanabiya for three years. The QA standard alone has saved us countless production incidents.', author: 'Nasrin Akter', role: 'Product Lead', company: 'DhakaCommerce Ltd', rating: 5 },
-    { quote: 'From discovery to go-live in twelve weeks — the team delivered a product our customers love and our ops team can manage independently.', author: 'Rafiqul Islam', role: 'VP Operations', company: 'Bengal Digital Hub', rating: 5 },
+    { quote: 'From discovery to go-live in twelve weeks, the team delivered a product our customers love and our ops team can manage independently.', author: 'Rafiqul Islam', role: 'VP Operations', company: 'Bengal Digital Hub', rating: 5 },
   ],
   US: [
     { quote: 'Yanabiya brought structured cloud and AI advisory to our growing North-American practice. Honest, hands-on, and well-priced.', author: 'Daniel Carter', role: 'Managing Partner', company: 'Carter Advisory Group', rating: 5 },
-    { quote: 'Their team blends seamlessly with our US engineers. Time-zone coverage is the bonus — quality of work is the headline.', author: 'Marcus Lee', role: 'VP Engineering', company: 'Texas Innovate Corp', rating: 5 },
+    { quote: 'Their team blends seamlessly with our US engineers. Time-zone coverage is the bonus, quality of work is the headline.', author: 'Marcus Lee', role: 'VP Engineering', company: 'Texas Innovate Corp', rating: 5 },
     { quote: 'Security-first culture, transparent communication, no surprise invoices. That combination is genuinely rare in the market.', author: 'Jennifer Walsh', role: 'Head of Product', company: 'Austin SaaS Partners', rating: 5 },
   ],
 }
@@ -145,7 +145,7 @@ export default function Testimonials() {
       <div className="relative">
         <PageHero
           title={hero?.title || 'Client Testimonials'}
-          subtitle={hero?.subtitle || 'Real words from real clients — gathered across Oman, UK, Bangladesh and the USA.'}
+          subtitle={hero?.subtitle || 'Real words from real clients, gathered across Oman, UK, Bangladesh and the USA.'}
           centered
           ghostText=""
         />
@@ -353,7 +353,7 @@ export default function Testimonials() {
 
           {visible.length === 0 && (
             <div className="text-center text-slate-400 py-16 text-sm">
-              No testimonials for this region yet — check back soon.
+              No testimonials for this region yet, check back soon.
             </div>
           )}
 

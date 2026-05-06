@@ -36,10 +36,10 @@ const categories: Category[] = [
     cardImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
     cardIcon: Eye,
     items: [
-      { id: 'v1', icon: Globe2,     title: 'Global Integrated Business Ecosystem',  body: 'A unified global platform that connects multiple industries under one structured ecosystem, enabling seamless coordination, scalability, and long-term strategic growth across international markets.', insight: 'Different businesses operate as one connected network — synergy and global efficiency.' },
+      { id: 'v1', icon: Globe2,     title: 'Global Integrated Business Ecosystem',  body: 'A unified global platform that connects multiple industries under one structured ecosystem, enabling seamless coordination, scalability, and long-term strategic growth across international markets.', insight: 'Different businesses operate as one connected network, synergy and global efficiency.' },
       { id: 'v2', icon: Cpu,        title: 'Technology-Driven Future Leadership',   body: 'Lead global markets by leveraging innovation, digital transformation, and advanced technology-driven solutions that redefine modern business operations.', insight: 'Technology is the foundation of leadership in the evolving global economy.' },
-      { id: 'v3', icon: Plane,      title: 'Borderless Business Expansion',         body: 'Expand operations across multiple countries, building a strong international footprint with scalable and adaptable business models.', insight: 'Grow beyond geographical boundaries — establish a truly global presence.' },
-      { id: 'v4', icon: TrendingUp, title: 'Sustainable Growth Leadership',         body: 'Long-term growth that balances profitability, operational efficiency, and environmental responsibility.', insight: 'Growth is not just speed — it’s stability and sustainability over time.' },
+      { id: 'v3', icon: Plane,      title: 'Borderless Business Expansion',         body: 'Expand operations across multiple countries, building a strong international footprint with scalable and adaptable business models.', insight: 'Grow beyond geographical boundaries, establish a truly global presence.' },
+      { id: 'v4', icon: TrendingUp, title: 'Sustainable Growth Leadership',         body: 'Long-term growth that balances profitability, operational efficiency, and environmental responsibility.', insight: 'Growth is not just speed, it’s stability and sustainability over time.' },
       { id: 'v5', icon: Lightbulb,  title: 'Innovation-Centric Organization',       body: 'Continuously develop innovative business models, systems, and strategies to stay ahead in competitive global markets.', insight: 'Innovation is at the core of how we build and evolve every business unit.' },
       { id: 'v6', icon: Gem,        title: 'Global Value Creation Platform',        body: 'Create long-term value for clients, partners, and stakeholders through structured, scalable, and impactful business solutions.', insight: 'Generate meaningful and lasting global value.' },
     ],
@@ -56,13 +56,13 @@ const categories: Category[] = [
       { id: 'm3', icon: ShieldCheck, title: 'Operational Excellence',                    body: 'High standards of efficiency, transparency, and structured execution across all business operations.', insight: 'Every process is clear, effective, and well-managed.' },
       { id: 'm4', icon: Handshake,   title: 'Global Partnership Development',            body: 'Build strong international partnerships and collaborations that strengthen our global network and business reach.', insight: 'Grow together through trusted global partnerships.' },
       { id: 'm5', icon: Users,       title: 'Empowerment of Businesses & Individuals',   body: 'Scalable solutions that empower both enterprises and individuals to grow, expand, and succeed globally.', insight: 'Create opportunities for sustainable growth for everyone.' },
-      { id: 'm6', icon: Repeat,      title: 'Sustainable Value Delivery',                body: 'Long-term, reliable, and impactful solutions that ensure continuous value creation over time.', insight: 'Consistent and lasting impact — not short-term results.' },
+      { id: 'm6', icon: Repeat,      title: 'Sustainable Value Delivery',                body: 'Long-term, reliable, and impactful solutions that ensure continuous value creation over time.', insight: 'Consistent and lasting impact, not short-term results.' },
     ],
   },
   {
     key: 'goals',
     label: 'Core Goals',
-    preview: 'The targets we are building toward — every quarter, every market, every team.',
+    preview: 'The targets we are building toward, every quarter, every market, every team.',
     cardImage: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
     cardIcon: Award,
     items: [
@@ -81,9 +81,9 @@ const categories: Category[] = [
     cardImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
     cardIcon: Sparkles,
     items: [
-      { id: 'sol1', icon: Workflow,    title: 'How We Deliver Our Services',     body: 'A structured, transparent, results-driven approach that ensures quality at every stage — from requirements to long-term support.', insight: 'Scalable solutions, clear milestones, measurable outcomes.' },
-      { id: 'sol2', icon: Handshake,   title: 'Partnership & Collaboration',     body: 'Long-term partnerships built on trust, shared vision, and mutual growth — combining expertise, resources, and innovation.', insight: 'Trust, transparency, and a commitment to shared success.' },
-      { id: 'sol3', icon: Award,       title: 'Sponsorship Engagement',          body: 'Meaningful sponsorships aligned with innovation, education, and sustainable development — creating visibility, value, and impact.', insight: 'Selected where contribution drives measurable progress.' },
+      { id: 'sol1', icon: Workflow,    title: 'How We Deliver Our Services',     body: 'A structured, transparent, results-driven approach that ensures quality at every stage, from requirements to long-term support.', insight: 'Scalable solutions, clear milestones, measurable outcomes.' },
+      { id: 'sol2', icon: Handshake,   title: 'Partnership & Collaboration',     body: 'Long-term partnerships built on trust, shared vision, and mutual growth, combining expertise, resources, and innovation.', insight: 'Trust, transparency, and a commitment to shared success.' },
+      { id: 'sol3', icon: Award,       title: 'Sponsorship Engagement',          body: 'Meaningful sponsorships aligned with innovation, education, and sustainable development, creating visibility, value, and impact.', insight: 'Selected where contribution drives measurable progress.' },
       { id: 'sol4', icon: Users,       title: 'Community Support & Development', body: 'Empowering communities through digital access, knowledge sharing, and sustainable initiatives that bridge technology and people.', insight: 'Creating real, measurable change wherever we operate.' },
       { id: 'sol5', icon: ShieldCheck, title: 'Quality & Service Assurance',     body: 'Structured QA ensures reliability, security, and performance across every service we deliver.', insight: 'Quality is a long-term commitment, not a one-time milestone.' },
     ],
@@ -91,7 +91,7 @@ const categories: Category[] = [
   {
     key: 'sustainability',
     label: 'Sustainability & Social Impact',
-    preview: 'How we make sure growth benefits people, communities, and the planet — not just balance sheets.',
+    preview: 'How we make sure growth benefits people, communities, and the planet, not just balance sheets.',
     cardImage: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80',
     cardIcon: Leaf,
     items: [
@@ -100,7 +100,7 @@ const categories: Category[] = [
       { id: 's3', icon: Scale,          title: 'Ethical Business Practices',       body: 'Transparency, fairness, and accountability in all business operations and decisions.', insight: 'Ethics and trust are fundamental to our operations.' },
       { id: 's4', icon: Recycle,        title: 'Resource Efficiency',              body: 'Optimize resources and reduce waste to ensure efficient and responsible business performance.', insight: 'We focus on doing more with less.' },
       { id: 's5', icon: Target,         title: 'Long-Term Impact Strategy',        body: 'Initiatives that create lasting social, economic, and environmental benefits.', insight: 'Meaningful long-term contribution.' },
-      { id: 's6', icon: UsersRound,     title: 'Inclusive Growth Model',           body: 'Growth opportunities shared across all stakeholders — partners, employees, and communities.', insight: 'Growth should benefit everyone in the ecosystem.' },
+      { id: 's6', icon: UsersRound,     title: 'Inclusive Growth Model',           body: 'Growth opportunities shared across all stakeholders, partners, employees, and communities.', insight: 'Growth should benefit everyone in the ecosystem.' },
     ],
   },
   {
@@ -186,7 +186,7 @@ export default function AboutCategoryGrid() {
         })}
       </div>
 
-      {/* Modal — full detail for the selected category */}
+      {/* Modal, full detail for the selected category */}
       {active && (
         <div
           role="dialog"
@@ -201,7 +201,7 @@ export default function AboutCategoryGrid() {
             className="relative w-full max-w-4xl max-h-[88vh] overflow-y-auto
                        bg-brand-50 rounded-3xl shadow-2xl"
           >
-            {/* Modal header — image hero */}
+            {/* Modal header, image hero */}
             <div className="relative h-44 md:h-52 overflow-hidden rounded-t-3xl">
               <img
                 src={active.cardImage}
@@ -234,7 +234,7 @@ export default function AboutCategoryGrid() {
               </button>
             </div>
 
-            {/* Modal body — items grid */}
+            {/* Modal body, items grid */}
             <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4">
               {active.items.map((item) => {
                 const ItemIcon = item.icon

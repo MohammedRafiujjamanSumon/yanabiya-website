@@ -9,7 +9,7 @@ type Props = {
   items: CircleItem[]
 }
 
-// Safe color map — avoids dynamic Tailwind class construction
+// Safe color map, avoids dynamic Tailwind class construction
 const BG_TO_HEX: Record<string, string> = {
   'bg-emerald-500': '#10b981',
   'bg-sky-500':     '#0ea5e9',
@@ -87,7 +87,7 @@ export default function SustainabilityPillars({ eyebrow, titleLine1, titleLine2,
                 </span>
               </div>
 
-              {/* Content — colored top border via inline style */}
+              {/* Content, colored top border via inline style */}
               <div
                 className="relative px-5 pt-7 pb-5 border-t-[3px]"
                 style={{ borderTopColor: hex }}

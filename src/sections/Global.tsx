@@ -31,7 +31,7 @@ function Reveal({
 }
 
 /* The four offices, plotted around the orbit pyramid like points on a
- * globe — Yanabiya logo medallion sits at the centre, each country
+ * globe, Yanabiya logo medallion sits at the centre, each country
  * silhouette card sits at its compass position (Oman·east, UK·north,
  * BD·south, USA·west) so the whole arrangement reads as the four
  * regions drawn together on a single round body. */
@@ -75,7 +75,7 @@ export default function Global() {
           </Reveal>
         </div>
 
-        {/* ───────── GEOMAP — orbit rings + central 2×2 silhouettes ───────── */}
+        {/* ───────── GEOMAP, orbit rings + central 2×2 silhouettes ───────── */}
         <Reveal delay={1080}>
           <div className="relative aspect-[5/4] w-full max-w-[640px] mx-auto mt-12 md:mt-16">
             {/* Soft halo */}
@@ -86,7 +86,7 @@ export default function Global() {
               <div className="w-[80%] h-[80%] rounded-full bg-brand-accent/30 blur-[80px] animate-gradient" />
             </div>
 
-            {/* Concentric orbit rings — 5 rings so each office can sit on
+            {/* Concentric orbit rings, 5 rings so each office can sit on
              *  its own (Oman·2, UK·3, BD·4, USA·5/outermost). */}
             <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
               {[0.92, 0.74, 0.56, 0.38, 0.20].map((s, i) => (
@@ -121,7 +121,7 @@ export default function Global() {
               })}
             </svg>
 
-            {/* CENTRE — Yanabiya logo medallion, fixed (no spin). Sized
+            {/* CENTRE, Yanabiya logo medallion, fixed (no spin). Sized
              *  down from 80/96 to 56/64 so the whole orbit reads clean. */}
             <div className="absolute inset-0 grid place-items-center">
               <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-brand-50 shadow-xl
@@ -133,11 +133,11 @@ export default function Global() {
                   className="w-full h-full object-contain scale-[1.35]"
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                 />
-                {/* No spin — logo sits still in the centre. */}
+                {/* No spin, logo sits still in the centre. */}
               </div>
             </div>
 
-            {/* COUNTRY NODES — flag-filled silhouettes that flip on touch
+            {/* COUNTRY NODES, flag-filled silhouettes that flip on touch
              *  to reveal a green card with flag + capital + country +
              *  "Explore about <country>" link in white text. */}
             {COUNTRY_NODES.map((d) => {
@@ -164,7 +164,7 @@ export default function Global() {
                                [transform-style:preserve-3d]"
                     style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
                   >
-                    {/* Front — flag-filled country silhouette */}
+                    {/* Front, flag-filled country silhouette */}
                     <div
                       className="absolute inset-0 [backface-visibility:hidden]
                                  [-webkit-backface-visibility:hidden]"
@@ -188,7 +188,7 @@ export default function Global() {
                       />
                     </div>
 
-                    {/* Back — green rounded card with white text */}
+                    {/* Back, green rounded card with white text */}
                     <div
                       className="absolute inset-0 rounded-3xl
                                  bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800
@@ -231,7 +231,7 @@ export default function Global() {
           </div>
         </Reveal>
 
-        {/* CTA — sits BELOW the geomap */}
+        {/* CTA, sits BELOW the geomap */}
         <Reveal delay={1200}>
           <div className="mt-10 md:mt-12 text-center">
             <button

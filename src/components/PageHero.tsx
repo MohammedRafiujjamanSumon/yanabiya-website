@@ -63,7 +63,7 @@ export default function PageHero({
           <div className="absolute -bottom-32 -right-24 w-[460px] h-[460px] rounded-full bg-brand-accentDark/15 blur-[150px]" />
         </div>
 
-        {/* Massive ghost-outline wordmark — deep-green stroke for the mint surface */}
+        {/* Massive ghost-outline wordmark, deep-green stroke for the mint surface */}
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none flex items-center justify-end pr-6 md:pr-12"

@@ -71,7 +71,7 @@ const PYRAMID_LAYERS: PyramidLayer[] = [
   { slug: 'manpower',          label: 'Manpower Supply Services',      icon: Users,     from: '#67e8f9', to: '#0e7490', glow: 'rgba(34,211,238,0.55)' },
 ]
 
-/* ServicesFlowchart — six division cards in a distributed-leadership
+/* ServicesFlowchart, six division cards in a distributed-leadership
  * style flowchart layout: 3 cards on top, central "Our Services" pill,
  * 3 cards on the bottom, with subtle SVG arrow connectors. Each card
  * navigates to /business/<slug>. Inspired by the user-provided
@@ -105,7 +105,7 @@ function ServicesFlowchart({ onSelect }: { onSelect: (slug: string) => void }) {
         ))}
       </div>
 
-      {/* Centre divider — "Our Services" pill on a subtle bar */}
+      {/* Centre divider, "Our Services" pill on a subtle bar */}
       <div className="relative my-8 md:my-10">
         <div aria-hidden="true" className="absolute inset-x-6 top-1/2 -translate-y-1/2 h-px bg-slate-200" />
         <div className="relative mx-auto max-w-md">
@@ -237,7 +237,7 @@ function SnakeCard({ item, onSelect }: { item: ServiceItem; onSelect: () => void
         )}
       </div>
 
-      {/* ── Text panel — always fully visible outside the image ── */}
+      {/* ── Text panel, always fully visible outside the image ── */}
       <div className="px-3.5 py-3 flex flex-col gap-1 flex-1">
         <h3 className="font-semibold text-brand-deep text-[13px] leading-snug line-clamp-2 flex-1">
           {item.title}
@@ -314,10 +314,10 @@ function ServicesSnakePath({ onSelect }: { onSelect: (slug: string) => void }) {
   )
 }
 
-/* ServicesGBSModel — eight-circle "Global Business Services" style layout
+/* ServicesGBSModel, eight-circle "Global Business Services" style layout
  * (six in our case, one per division) on a dark navy panel. Each circle is
  * numbered, solid-coloured, and surrounded by an overlapping outline ring
- * that links it to its neighbour — producing the chain look from the
+ * that links it to its neighbour, producing the chain look from the
  * reference infographic. Circles alternate up/down to create the
  * characteristic zig-zag rhythm. */
 type GbsItem = {
@@ -333,7 +333,7 @@ type GbsItem = {
   href?: string
   /** Outline ring colour for the chain look. */
   ring: string
-  /** Decorative tile — hides the number and title; shows only the logo. */
+  /** Decorative tile, hides the number and title; shows only the logo. */
   decorative?: boolean
 }
 
@@ -394,7 +394,7 @@ function GbsCircle({
   onSelect: () => void
 }) {
   const isLogoTile = !!item.logoUrl
-  // All tiles share the same compact size — the rhythm comes from zig-zag
+  // All tiles share the same compact size, the rhythm comes from zig-zag
   // vertical offset, not from size variation. `variant` is kept on the type
   // for future flexibility but no longer affects sizing.
   void variant
@@ -415,7 +415,7 @@ function GbsCircle({
           'drop-shadow(0 14px 22px rgba(15,23,42,0.25)) drop-shadow(0 4px 6px rgba(15,23,42,0.18))',
       }}
     >
-      {/* Outer coloured ring — chain look */}
+      {/* Outer coloured ring, chain look */}
       <span
         aria-hidden
         className="absolute -inset-[6px] rounded-full"
@@ -425,7 +425,7 @@ function GbsCircle({
         }}
       />
 
-      {/* Inner sphere — 3D-shaded image */}
+      {/* Inner sphere, 3D-shaded image */}
       <span
         aria-hidden
         className={`absolute inset-0 rounded-full overflow-hidden ring-[3px] ring-white
@@ -455,7 +455,7 @@ function GbsCircle({
                      pointer-events-none blur-[1px]"
         />
 
-        {/* Stronger lower-half emerald gradient — anchors the title */}
+        {/* Stronger lower-half emerald gradient, anchors the title */}
         {!item.decorative && (
           <span
             aria-hidden
@@ -466,7 +466,7 @@ function GbsCircle({
         )}
       </span>
 
-      {/* Title plate — sits well inside the round, centred horizontally,
+      {/* Title plate, sits well inside the round, centred horizontally,
        *  vertically pinned to ~60% from top so it never clips the rim. */}
       {!item.decorative && (
         <span className="absolute left-1/2 top-[62%] -translate-x-1/2 z-10
@@ -479,7 +479,7 @@ function GbsCircle({
         </span>
       )}
 
-      {/* "Learn more" pill — slides up from the bottom on hover so the
+      {/* "Learn more" pill, slides up from the bottom on hover so the
        *  click affordance is unmistakable while keeping idle state clean. */}
       {!item.decorative && (
         <span
@@ -529,7 +529,7 @@ function FlowCardTile({ card, onSelect }: { card: FlowCard; onSelect: (slug: str
   )
 }
 
-/* ServicesPyramid — six-layer 3D rotating "turntable" pyramid.
+/* ServicesPyramid, six-layer 3D rotating "turntable" pyramid.
  *
  * Each layer is an elliptical disc of decreasing width going up. The
  * whole stack lives inside a `transform-style: preserve-3d` wrapper
@@ -558,11 +558,11 @@ function ServicesPyramid({
   onSelectHub: () => void
 }) {
   const total = PYRAMID_LAYERS.length
-  // Pipe-ring dimensions — tighter stack, fatter rings.
+  // Pipe-ring dimensions, tighter stack, fatter rings.
   const baseWidth = 440   // bottom ring width (px)
   const stepWidth = 48    // shrink per step going up
   const layerH = 88       // ring thickness (px)
-  const stepY = 74        // vertical step — rings overlap slightly for stacked feel
+  const stepY = 74        // vertical step, rings overlap slightly for stacked feel
   const tiltX = 58        // less aggressive tilt so the ring's rim is visible
 
   return (
@@ -669,7 +669,7 @@ function ServicesPyramid({
                   transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)',
                 }}
               >
-                {/* Pipe ring — thick rounded slab, gently tilted so the rim
+                {/* Pipe ring, thick rounded slab, gently tilted so the rim
                  *  reads as solid + 3D. */}
                 <button
                   type="button"
@@ -692,7 +692,7 @@ function ServicesPyramid({
         </div>
       </div>
 
-      {/* Floating labels — separate non-rotating layer, positioned at each
+      {/* Floating labels, separate non-rotating layer, positioned at each
        *  ring's vertical level. They never spin with the pyramid, so the
        *  white pill + dark-green text + icon stay 100% readable at every
        *  angle and even when paused. */}
@@ -751,7 +751,7 @@ function ServicesPyramid({
   )
 }
 
-/* Slide-in detail panel — supports a single-division view OR a special
+/* Slide-in detail panel, supports a single-division view OR a special
  * 'overview' mode that lists every division (when the HQ is clicked). */
 function NodeDetailPanel({
   slug,
@@ -776,7 +776,7 @@ function NodeDetailPanel({
 
   if (!slug) return null
 
-  // OVERVIEW mode — HQ click. Show every division in one panel.
+  // OVERVIEW mode, HQ click. Show every division in one panel.
   if (slug === 'overview') {
     return (
       <div
@@ -869,7 +869,7 @@ function NodeDetailPanel({
     )
   }
 
-  // SINGLE DIVISION mode — node click
+  // SINGLE DIVISION mode, node click
   const b = businesses.find((bb) => bb.slug === slug)
   if (!b) return null
   const display = BUSINESS_DISPLAY[slug] ?? { title: b.title, tag: '', sample: [] }
@@ -931,7 +931,7 @@ function NodeDetailPanel({
           {previewSubs.length > 0 && (
             <>
               <div className="text-[10px] font-bold uppercase tracking-[0.28em] text-brand-accentDark mb-3">
-                Services — {b.subServices?.length} total
+                Services, {b.subServices?.length} total
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {previewSubs.map((s) => (
@@ -1020,10 +1020,10 @@ export default function Businesses() {
     <Section id="businesses" className="relative overflow-hidden bg-brand-50">
       <div className="container-x pt-2 md:pt-3 pb-4 md:pb-6 relative">
 
-        {/* TEXT ON TOP — pyramid below (matches /#about pattern). */}
+        {/* TEXT ON TOP, pyramid below (matches /#about pattern). */}
         <div className="flex flex-col gap-12 md:gap-16 items-center">
 
-          {/* TOP — heading */}
+          {/* TOP, heading */}
           <div className="w-full max-w-3xl mx-auto text-center order-1">
             <Reveal>
               <Eyebrow>Our Service</Eyebrow>
@@ -1036,12 +1036,12 @@ export default function Businesses() {
             </Reveal>
           </div>
 
-          {/* MIDDLE — S-snake card layout */}
+          {/* MIDDLE, S-snake card layout */}
           <Reveal delay={180} className="w-full order-2">
             <ServicesSnakePath onSelect={(slug) => setSelected(slug)} />
           </Reveal>
 
-          {/* BOTTOM — CTA */}
+          {/* BOTTOM, CTA */}
           <Reveal delay={280} className="w-full order-3">
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Link

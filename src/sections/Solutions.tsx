@@ -30,11 +30,11 @@ const solutions: {
     image:
       'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80',
     teaser:
-      'A structured, transparent, and results-driven approach that ensures quality at every stage — from requirements to long-term support.',
+      'A structured, transparent, and results-driven approach that ensures quality at every stage, from requirements to long-term support.',
     body: [
       "We follow a structured, transparent, and results-driven approach to ensure quality at every stage. From understanding requirements to execution and long-term support, our process is built around collaboration, reliability, and continuous improvement.",
       "We focus on delivering scalable solutions that align with real business needs and global standards. Every engagement is shaped by clear milestones, measurable outcomes, and open communication.",
-      "Our delivery model blends proven methodologies with agile execution — allowing us to adapt quickly, manage risks effectively, and maintain consistent service excellence across every project.",
+      "Our delivery model blends proven methodologies with agile execution, allowing us to adapt quickly, manage risks effectively, and maintain consistent service excellence across every project.",
     ],
   },
   {
@@ -44,7 +44,7 @@ const solutions: {
     image:
       'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
     teaser:
-      'Long-term partnerships built on trust, shared vision, and mutual growth — combining expertise, resources, and innovation.',
+      'Long-term partnerships built on trust, shared vision, and mutual growth, combining expertise, resources, and innovation.',
     body: [
       "We build long-term partnerships based on trust, shared vision, and mutual growth. Our partnership model is designed to create value for both sides by combining expertise, resources, and innovation.",
       "We actively engage with partners to develop sustainable opportunities and strengthen global business connections. Every collaboration is guided by transparency, fairness, and a commitment to shared success.",
@@ -58,11 +58,11 @@ const solutions: {
     image:
       'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80',
     teaser:
-      'Meaningful sponsorships aligned with innovation, education, and sustainable development — creating visibility, value, and impact.',
+      'Meaningful sponsorships aligned with innovation, education, and sustainable development, creating visibility, value, and impact.',
     body: [
       "Our sponsorship approach focuses on meaningful impact and strategic alignment. We support initiatives, projects, and organisations that align with our values of innovation, education, and sustainable development.",
       "Every sponsorship is designed to create visibility, value, and long-term community benefit. We carefully select opportunities where our contribution drives measurable progress and shared purpose.",
-      "Through our sponsorship engagements, we support emerging talent, research, and community-led programs — reinforcing our commitment to empowering people and advancing meaningful causes globally.",
+      "Through our sponsorship engagements, we support emerging talent, research, and community-led programs, reinforcing our commitment to empowering people and advancing meaningful causes globally.",
     ],
   },
   {
@@ -76,7 +76,7 @@ const solutions: {
     body: [
       "We are committed to serving and empowering communities through digital access, knowledge sharing, and sustainable initiatives. Our community programs focus on creating opportunities, supporting local development, and bridging the gap between technology and people.",
       "We invest in programs that uplift underserved communities, expand digital literacy, and enable long-term socio-economic growth. Our aim is to make technology accessible, practical, and genuinely useful in everyday life.",
-      "By combining our resources, expertise, and partnerships, we support initiatives that create real, measurable change — leaving a positive footprint wherever we operate.",
+      "By combining our resources, expertise, and partnerships, we support initiatives that create real, measurable change, leaving a positive footprint wherever we operate.",
     ],
   },
   {
@@ -89,7 +89,7 @@ const solutions: {
       'Structured quality assurance ensures reliability, security, and performance across every service we deliver.',
     body: [
       "Every project we deliver goes through a structured quality assurance process to ensure reliability, security, and performance. We continuously monitor, optimise, and support our services to maintain excellence and client satisfaction.",
-      "Our quality framework combines industry best practices, rigorous testing, and continuous feedback — ensuring each solution meets the highest standards before and after delivery.",
+      "Our quality framework combines industry best practices, rigorous testing, and continuous feedback, ensuring each solution meets the highest standards before and after delivery.",
       "We treat quality as a long-term commitment, not a one-time milestone. Ongoing reviews, audits, and improvements keep every service dependable, secure, and aligned with evolving business needs.",
     ],
   },
@@ -125,7 +125,7 @@ export default function Solutions() {
         </p>
       </div>
 
-      {/* Solution cards — small round images with hover Read More slide-up */}
+      {/* Solution cards, small round images with hover Read More slide-up */}
       <div className="group relative w-screen overflow-hidden mt-3">
         <div
           className="flex animate-marquee marquee-pause gap-6 w-max py-3 px-6"

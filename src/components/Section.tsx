@@ -33,7 +33,7 @@ export function Eyebrow({ children, tone = 'dark' }: { children: ReactNode; tone
 }
 
 export function H2({ children, className = '' }: { children: ReactNode; className?: string }) {
-  // Compact heading — 16 px to match the user's design (size 14/16
+  // Compact heading, 16 px to match the user's design (size 14/16
   // pair for eyebrow + heading). No hover underline.
   return (
     <h2

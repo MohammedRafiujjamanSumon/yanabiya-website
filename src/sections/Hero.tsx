@@ -9,7 +9,7 @@ import GlobalOverviewPanel from '../components/GlobalOverviewPanel'
 import { assets } from '../data/assets'
 
 /* ──────────────────────────────────────────────────────────────────────
- * Hero — auto-cycling 7-scene cinematic hero
+ * Hero, auto-cycling 7-scene cinematic hero
  *
  * Mirrors the corporate-video brief:
  *   01 OPENING      , "Connecting Businesses Across Borders"
@@ -32,13 +32,13 @@ type Scene = {
   eyebrow: string
   headline: string
   body: string
-  /** Real-life background photo (Unsplash) — full-bleed, dark-overlay-on-top. */
+  /** Real-life background photo (Unsplash), full-bleed, dark-overlay-on-top. */
   photo: string
   /** Photo focal area (CSS object-position). */
   photoPos?: string
   /** SVG / icon "motion overlay" sitting on top of the photo. */
   Visual: () => JSX.Element
-  /** Per-scene primary CTA — links to the matching landing section
+  /** Per-scene primary CTA, links to the matching landing section
    *  or detail page so the video scene becomes navigation. */
   cta: { label: string; href: string }
 }
@@ -73,7 +73,7 @@ function Continents() {
   )
 }
 
-/* 01 — OPENING: world map + arc beams from Oman HQ to branches */
+/* 01, OPENING: world map + arc beams from Oman HQ to branches */
 function SceneOpening() {
   const hub = PINS[0]
   const branches = PINS.slice(1)
@@ -141,7 +141,7 @@ function SceneOpening() {
   )
 }
 
-/* 02 — ABOUT: office building silhouettes + grid */
+/* 02, ABOUT: office building silhouettes + grid */
 function SceneAbout() {
   return (
     <>
@@ -168,7 +168,7 @@ function SceneAbout() {
           <rect x="82" y="22" width="7"  height="30" />
           <rect x="90" y="32" width="5"  height="20" />
         </g>
-        {/* Window dots — random office lights */}
+        {/* Window dots, random office lights */}
         <g fill="rgba(255,235,180,0.6)">
           {[
             [8, 36], [10, 42], [14, 32], [16, 40], [20, 38], [25, 26], [27, 32], [29, 40],
@@ -195,7 +195,7 @@ function SceneAbout() {
   )
 }
 
-/* 03 — SERVICES: 6 service icons in a circular constellation */
+/* 03, SERVICES: 6 service icons in a circular constellation */
 function SceneServices() {
   const SERVICE_ICONS = [
     { Icon: Cpu,       label: 'Tech & Software', angle: -90 },
@@ -261,7 +261,7 @@ function SceneServices() {
   )
 }
 
-/* 04 — PARTNERS: handshake centre + partner dot constellation */
+/* 04, PARTNERS: handshake centre + partner dot constellation */
 function ScenePartners() {
   const dots = Array.from({ length: 18 }).map((_, i) => {
     const θ = (i / 18) * Math.PI * 2
@@ -310,7 +310,7 @@ function ScenePartners() {
   )
 }
 
-/* 05 — COMMUNITY: heart centre + people ring + outward connections */
+/* 05, COMMUNITY: heart centre + people ring + outward connections */
 function SceneCommunity() {
   const people = Array.from({ length: 8 }).map((_, i) => {
     const θ = -Math.PI / 2 + (i / 8) * Math.PI * 2
@@ -360,7 +360,7 @@ function SceneCommunity() {
   )
 }
 
-/* 06 — LEADERSHIP: compass / vision lines radiating outward */
+/* 06, LEADERSHIP: compass / vision lines radiating outward */
 function SceneLeadership() {
   return (
     <>
@@ -402,7 +402,7 @@ function SceneLeadership() {
   )
 }
 
-/* 07 — CLOSING: logo center + radial network exploding outward */
+/* 07, CLOSING: logo center + radial network exploding outward */
 function SceneClosing() {
   return (
     <>
@@ -521,7 +521,7 @@ export default function Hero() {
     navigate(href)
   }
 
-  /* Auto-advance scene every SCENE_MS — always running, no pause. */
+  /* Auto-advance scene every SCENE_MS, always running, no pause. */
   useEffect(() => {
     const id = window.setInterval(() => {
       setScene((s) => (s + 1) % SCENES.length)
@@ -622,14 +622,14 @@ export default function Hero() {
               Welcome to
             </p>
 
-            {/* Line 2 — company name */}
+            {/* Line 2, company name */}
             <h1 className="font-bold text-white drop-shadow-lg uppercase
                            text-2xl sm:text-4xl md:text-5xl lg:text-[58px]
                            leading-[1.1] tracking-tight mb-4">
               <span className="text-brand-accent">Yanabiya</span> Group
             </h1>
 
-            {/* Line 3 & 4 — subtext */}
+            {/* Line 3 & 4, subtext */}
             <p className="text-white/85 text-xs sm:text-base md:text-lg drop-shadow leading-relaxed px-2">
               Firstly thank you for visiting our website.
             </p>

@@ -8,7 +8,7 @@ interface Props {
 }
 
 /**
- * Fixed top-left glassmorphic back button — used on subpages to give the
+ * Fixed top-left glassmorphic back button, used on subpages to give the
  * user a persistent way back to the previous level (Home / About).
  *
  * Behavior:

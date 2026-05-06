@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 
 /**
  * Tracks scroll for a smart header:
- *  - `scrolled`     — true after the user has scrolled past `topThreshold` px.
+ *  - `scrolled`    , true after the user has scrolled past `topThreshold` px.
  *                     Use it to add a shadow / shrink the bar.
- *  - `hidden`       — true when scrolling DOWN past `hideThreshold`. Use it
+ *  - `hidden`      , true when scrolling DOWN past `hideThreshold`. Use it
  *                     to slide the secondary (utility) row out of view.
  *  Scrolling back UP at any point un-hides immediately.
  */

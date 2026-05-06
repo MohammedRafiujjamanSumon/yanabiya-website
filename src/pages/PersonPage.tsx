@@ -69,7 +69,7 @@ export default function PersonPage() {
           <ArrowLeft size={12} /> Our People
         </button>
 
-        {/* Name block — bottom left */}
+        {/* Name block, bottom left */}
         <div className="absolute bottom-0 left-0 right-0 px-6 md:px-14 pb-10 md:pb-14">
           <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1
                             border text-[10px] font-bold uppercase tracking-[0.26em] mb-4

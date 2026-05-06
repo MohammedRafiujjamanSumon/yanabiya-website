@@ -34,7 +34,7 @@ type Hub = {
   offset: string
   /** Arc/connector colour for the top border stripe */
   accent: string
-  /** Hex value matching accent — used directly in SVG */
+  /** Hex value matching accent, used directly in SVG */
   hex: string
 }
 
@@ -107,7 +107,7 @@ export default function Community() {
           </Reveal>
           <Reveal delay={120}>
             <h2 className="font-serif text-[16px] leading-snug tracking-tight text-brand-deep mt-1">
-              Driven by purpose — investing in people,{' '}
+              Driven by purpose, investing in people,{' '}
               <span className="italic text-brand-accentDark">progress, and shared prosperity.</span>
             </h2>
           </Reveal>
@@ -117,7 +117,7 @@ export default function Community() {
         <div className="overflow-x-auto pb-2 -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
         <div className="relative max-w-7xl mx-auto min-w-[560px]">
 
-          {/* 6 parallel coloured arcs + drop connectors — desktop only.
+          {/* 6 parallel coloured arcs + drop connectors, desktop only.
            *  Negative bottom margin pulls the card grid up so connectors
            *  visually meet the coloured top-border of each card. */}
           <svg
@@ -126,7 +126,7 @@ export default function Community() {
             aria-hidden="true"
             className="block w-full h-auto mb-2 md:-mb-16 lg:-mb-20"
           >
-            {/* 6 parallel rainbow bands — order matches HUBS: cyan, emerald, amber, violet, teal, rose */}
+            {/* 6 parallel rainbow bands, order matches HUBS: cyan, emerald, amber, violet, teal, rose */}
             <path d="M 80  240 C 240 -60, 760 -60, 920 240" stroke="#06b6d4" strokeWidth="10" fill="none" strokeLinecap="round" />
             <path d="M 108 240 C 256 -30, 744 -30, 892 240" stroke="#059669" strokeWidth="10" fill="none" strokeLinecap="round" />
             <path d="M 136 240 C 272   0, 728   0, 864 240" stroke="#f59e0b" strokeWidth="10" fill="none" strokeLinecap="round" />
@@ -134,7 +134,7 @@ export default function Community() {
             <path d="M 192 240 C 304  56, 696  56, 808 240" stroke="#0f766e" strokeWidth="10" fill="none" strokeLinecap="round" />
             <path d="M 220 240 C 320  84, 680  84, 780 240" stroke="#f43f5e" strokeWidth="10" fill="none" strokeLinecap="round" />
 
-            {/* Drop connectors — each in the matching arc colour */}
+            {/* Drop connectors, each in the matching arc colour */}
             <line x1="100" y1="240" x2="100" y2="280" stroke="#06b6d4" strokeWidth="10" strokeLinecap="round" />
             <line x1="260" y1="175" x2="260" y2="280" stroke="#059669" strokeWidth="10" strokeLinecap="round" />
             <line x1="420" y1="115" x2="420" y2="280" stroke="#f59e0b" strokeWidth="10" strokeLinecap="round" />
@@ -143,7 +143,7 @@ export default function Community() {
             <line x1="900" y1="240" x2="900" y2="280" stroke="#f43f5e" strokeWidth="10" strokeLinecap="round" />
           </svg>
 
-          {/* Six hub cards — staircase heights mirror the infographic.
+          {/* Six hub cards, staircase heights mirror the infographic.
            *  Each card has a coloured 3-px top border that picks up its
            *  matching arc strand colour so the connection reads clearly. */}
           <div className="grid grid-cols-6 gap-x-2 gap-y-4 md:gap-x-4 lg:gap-x-5 justify-items-center">

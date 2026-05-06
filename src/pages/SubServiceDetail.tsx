@@ -185,7 +185,7 @@ export default function SubServiceDetail() {
             <p className="text-brand-deep/70 leading-relaxed max-w-3xl mx-auto">{sub.body}</p>
           </div>
 
-          {/* ── What We Offer — horizontal scroll green cards ── */}
+          {/* ── What We Offer, horizontal scroll green cards ── */}
           <div className="mt-10">
             <h3 className="text-brand-accentDark uppercase tracking-[0.22em] text-xs font-bold mb-5 text-center">
               What We Offer
@@ -196,9 +196,9 @@ export default function SubServiceDetail() {
                 const baseIdx = ci * 3
                 return (
                   <div key={ci} className="flex flex-col gap-3">
-                    {/* 1 card — full width */}
+                    {/* 1 card, full width */}
                     <FeatureCard f={chunk[0]} idx={baseIdx} />
-                    {/* 2 cards — side by side */}
+                    {/* 2 cards, side by side */}
                     {chunk.length > 1 && (
                       <div className="grid grid-cols-2 gap-3">
                         {chunk.slice(1).map((f, j) => (
@@ -418,7 +418,7 @@ function SubServiceForm({ sub, businessTitle }: { sub: SubService; businessTitle
           </div>
           <h4 className="font-serif text-xl text-brand-deep mb-2">Request Received!</h4>
           <p className="text-sm text-brand-deep/60">
-            Thank you — our team will contact you within one business day.
+            Thank you, our team will contact you within one business day.
           </p>
         </div>
       )}

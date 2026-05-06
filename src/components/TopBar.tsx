@@ -7,7 +7,7 @@ export default function TopBar() {
   const { t } = useTranslation()
   return (
     <div className="bg-brand-50 text-xs text-brand-deep border-b border-brand-deep/10">
-      {/* Row — phone + email left, tagline middle, Download PDF + Contact Us right */}
+      {/* Row, phone + email left, tagline middle, Download PDF + Contact Us right */}
       <div className="container-x grid grid-cols-1 md:grid-cols-3 md:items-center gap-1.5 md:gap-4 py-2">
         <div className="flex items-center justify-center md:justify-start gap-2 whitespace-nowrap">
           <a

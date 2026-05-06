@@ -38,7 +38,7 @@ const HUBS = [
     /** Tailwind background colour for the circle and the SVG drop line. */
     bg: 'bg-emerald-600',
     stop: '#059669',
-    /** Vertical offset (Tailwind) — alternating to mirror the infographic. */
+    /** Vertical offset (Tailwind), alternating to mirror the infographic. */
     offset: '',
   },
   {
@@ -88,15 +88,15 @@ export default function CommunityOverview() {
         <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/12 blur-[160px]" />
       </div>
 
-      {/* HERO — shared brand card */}
+      {/* HERO, shared brand card */}
       <PageHero
         eyebrow="Our Community"
         title="Beyond the balance sheet."
-        subtitle="Stories, sustainability, welfare, careers — four ways into the group beyond business."
+        subtitle="Stories, sustainability, welfare, careers, four ways into the group beyond business."
         ghostText=""
       />
 
-      {/* HUB CARDS — rainbow arc + four colour-coded circles */}
+      {/* HUB CARDS, rainbow arc + four colour-coded circles */}
       <section className="relative">
         <div className="container-x pb-20 md:pb-28">
           <div className="relative max-w-5xl mx-auto">
@@ -126,14 +126,14 @@ export default function CommunityOverview() {
                 strokeLinecap="round"
                 fill="none"
               />
-              {/* Drop connectors — same colour as the matching arc stop */}
+              {/* Drop connectors, same colour as the matching arc stop */}
               <line x1="125" y1="220" x2="125" y2="240" stroke="#059669" strokeWidth="14" strokeLinecap="round" />
               <line x1="375" y1="125" x2="375" y2="240" stroke="#06b6d4" strokeWidth="14" strokeLinecap="round" />
               <line x1="625" y1="125" x2="625" y2="240" stroke="#f59e0b" strokeWidth="14" strokeLinecap="round" />
               <line x1="875" y1="220" x2="875" y2="240" stroke="#f43f5e" strokeWidth="14" strokeLinecap="round" />
             </svg>
 
-            {/* Four hub circles — name only, click navigates to the page */}
+            {/* Four hub circles, name only, click navigates to the page */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 md:gap-x-6 justify-items-center">
               {HUBS.map((h, i) => (
                 <Reveal key={h.to} delay={i * 90} className={h.offset}>

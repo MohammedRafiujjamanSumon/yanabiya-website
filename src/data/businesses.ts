@@ -75,7 +75,7 @@ export const businesses: Business[] = [
     countries: [
       { code: 'OM', note: 'Delivery hub & regional client engagements across the Gulf.' },
       { code: 'GB', note: 'Enterprise architecture & client-facing teams for EMEA.' },
-      { code: 'BD', note: 'Engineering centre — development, QA and 24×7 support.' },
+      { code: 'BD', note: 'Engineering centre, development, QA and 24×7 support.' },
       { code: 'US', note: 'North-America partnerships & cloud/AI advisory.' },
     ],
     subServicesHeading: 'Explore Our IT & Development Services',
@@ -84,7 +84,7 @@ export const businesses: Business[] = [
         slug: 'custom-software-development',
         icon: Code2,
         title: 'Custom Software Development',
-        body: 'Bespoke software engineered around your exact workflows — from internal tools and ERPs to customer-facing SaaS products.',
+        body: 'Bespoke software engineered around your exact workflows, from internal tools and ERPs to customer-facing SaaS products.',
         image:
           'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80',
         features: [
@@ -297,9 +297,9 @@ export const businesses: Business[] = [
     slug: 'export-import',
     icon: Ship,
     title: 'Export & Import Business',
-    body: 'International trade across multiple regions — sourcing, logistics, and end-to-end fulfilment.',
+    body: 'International trade across multiple regions, sourcing, logistics, and end-to-end fulfilment.',
     details:
-      'Yanabiya Gulf facilitates seamless international trade across multiple regions through a trusted network of logistics partners and deep expertise in local compliance. We manage the entire end-to-end value chain — from sourcing and consolidation to shipping, customs clearance, and final delivery — enabling our clients to focus on expanding their markets while we handle operational complexity.',
+      'Yanabiya Gulf facilitates seamless international trade across multiple regions through a trusted network of logistics partners and deep expertise in local compliance. We manage the entire end-to-end value chain, from sourcing and consolidation to shipping, customs clearance, and final delivery, enabling our clients to focus on expanding their markets while we handle operational complexity.',
     features: [
       'Trade route planning, sourcing & supplier coordination',
       'International freight forwarding (sea, air, and land)',
@@ -323,7 +323,7 @@ export const businesses: Business[] = [
       'https://videos.pexels.com/video-files/32746861/13960848_2560_1440_60fps.mp4',
     subServicesHeading: 'Explore Our Trade & Logistics Services',
     countries: [
-      { code: 'OM', note: 'Regional hub — customs clearance & Gulf trade routes.' },
+      { code: 'OM', note: 'Regional hub, customs clearance & Gulf trade routes.' },
       { code: 'GB', note: 'EU/UK import coordination & compliance.' },
       { code: 'BD', note: 'Sourcing, consolidation & export documentation.' },
       { code: 'US', note: 'North-America distribution & last-mile delivery.' },
@@ -354,7 +354,7 @@ export const businesses: Business[] = [
         slug: 'freight-forwarding',
         icon: Ship,
         title: 'International Freight Forwarding',
-        body: 'End-to-end freight forwarding across sea, air, and land — connecting your shipments to global destinations reliably and on time.',
+        body: 'End-to-end freight forwarding across sea, air, and land, connecting your shipments to global destinations reliably and on time.',
         image: 'https://images.unsplash.com/photo-1511578194003-00c80e42dc9b?auto=format&fit=crop&w=800&q=80',
         features: [
           'Full container load (FCL) & less than container load (LCL)',
@@ -585,7 +585,7 @@ export const businesses: Business[] = [
         slug: 'order-fulfillment',
         icon: ClipboardList,
         title: 'End-to-End Order Fulfillment',
-        body: 'Complete order fulfillment management from purchase order issuance through final delivery — one point of contact for the entire journey.',
+        body: 'Complete order fulfillment management from purchase order issuance through final delivery, one point of contact for the entire journey.',
         image: 'https://images.unsplash.com/photo-1568992687947-868a62a9f521?auto=format&fit=crop&w=800&q=80',
         features: [
           'Purchase order management & tracking',
@@ -610,7 +610,7 @@ export const businesses: Business[] = [
     title: 'Clothing & Accessories',
     body: 'Garment and fashion-accessory trading with trusted manufacturers and retail partners.',
     details:
-      'Our apparel division connects Bangladesh\u2019s world-class garment manufacturing capabilities with retailers, distributors, and brand partners across key international markets. We manage private-label production, quality assurance, sourcing, and brand collaboration — delivering end-to-end apparel supply chain solutions from factory floor to retail shelf.',
+      'Our apparel division connects Bangladesh\u2019s world-class garment manufacturing capabilities with retailers, distributors, and brand partners across key international markets. We manage private-label production, quality assurance, sourcing, and brand collaboration, delivering end-to-end apparel supply chain solutions from factory floor to retail shelf.',
     features: [
       'Private-label manufacturing & brand development',
       'Bulk garment sourcing & production management',
@@ -637,7 +637,7 @@ export const businesses: Business[] = [
     countries: [
       { code: 'OM', note: 'Regional distribution & GCC retail partnerships.' },
       { code: 'GB', note: 'Brand partnerships & UK/EU retail buyers.' },
-      { code: 'BD', note: 'Manufacturing hub — production, QA & compliance.' },
+      { code: 'BD', note: 'Manufacturing hub, production, QA & compliance.' },
       { code: 'US', note: 'Wholesale & private-label brand distribution.' },
     ],
     subServices: [
@@ -645,7 +645,7 @@ export const businesses: Business[] = [
         slug: 'private-label-branding',
         icon: Tag,
         title: 'Private Label & Brand Development',
-        body: 'End-to-end private-label manufacturing and brand development — from concept and design through production and market launch.',
+        body: 'End-to-end private-label manufacturing and brand development, from concept and design through production and market launch.',
         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80',
         features: [
           'Brand identity & label design support',
@@ -679,7 +679,7 @@ export const businesses: Business[] = [
         countries: [
           { code: 'OM', note: 'GCC retail bulk-order coordination.' },
           { code: 'GB', note: 'UK/EU buyer-side sourcing support.' },
-          { code: 'BD', note: 'Manufacturing hub — bulk garment supply.' },
+          { code: 'BD', note: 'Manufacturing hub, bulk garment supply.' },
           { code: 'US', note: 'US wholesale bulk sourcing.' },
         ],
       },
@@ -687,7 +687,7 @@ export const businesses: Business[] = [
         slug: 'fashion-accessories',
         icon: Gem,
         title: 'Fashion Accessories Trading',
-        body: 'Sourcing and supply of fashion accessories — from bags and belts to jewelry and lifestyle items — across international markets.',
+        body: 'Sourcing and supply of fashion accessories, from bags and belts to jewelry and lifestyle items, across international markets.',
         image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
         features: [
           'Accessory sourcing & supplier coordination',
@@ -796,7 +796,7 @@ export const businesses: Business[] = [
     title: 'Agents & Brokerage Business',
     body: 'Commercial agency, representation, and brokerage services connecting global suppliers and buyers.',
     details:
-      'Through our professional brokerage network, we represent suppliers, manufacturers, and institutions across key markets — connecting buyers with the right partners, structuring deals, and supporting transactions from initial engagement to successful closure.',
+      'Through our professional brokerage network, we represent suppliers, manufacturers, and institutions across key markets, connecting buyers with the right partners, structuring deals, and supporting transactions from initial engagement to successful closure.',
     features: [
       'Commercial agency representation',
       'Cross-border deal brokerage',
@@ -1310,7 +1310,7 @@ export const businesses: Business[] = [
       'Inventory & warehouse management',
       'B2B & B2C trade solutions',
     ],
-    footer: '🛒 Yanabiya\'s own digital storefront — connecting buyers and sellers across four countries.',
+    footer: '🛒 Yanabiya\'s own digital storefront, connecting buyers and sellers across four countries.',
     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
     videoUrl: 'https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4',
     subServicesHeading: 'Explore Yanabiya e-Commerce Services',
@@ -1431,7 +1431,7 @@ export const businesses: Business[] = [
     videoUrl: 'https://videos.pexels.com/video-files/3130284/3130284-uhd_2560_1440_30fps.mp4',
     subServicesHeading: 'Explore Yanabiya Digital Platform Services',
     countries: [
-      { code: 'OM', note: 'HQ platform hub — all verticals managed from Muscat.' },
+      { code: 'OM', note: 'HQ platform hub, all verticals managed from Muscat.' },
       { code: 'GB', note: 'UK operations dashboard & client portal.' },
       { code: 'BD', note: 'Bangladesh field ops & HR management app.' },
       { code: 'US', note: 'US business intelligence & CRM platform.' },
@@ -1441,7 +1441,7 @@ export const businesses: Business[] = [
         slug: 'yanabiya-business-app',
         icon: Briefcase,
         title: 'Yanabiya Business App',
-        body: 'Core business management app for Yanabiya Group — tracking operations, finance, and performance across all verticals and countries.',
+        body: 'Core business management app for Yanabiya Group, tracking operations, finance, and performance across all verticals and countries.',
         image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80',
         features: [
           'Multi-vertical business dashboard',

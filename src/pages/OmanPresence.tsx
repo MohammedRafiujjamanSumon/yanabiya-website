@@ -47,7 +47,7 @@ type NodeAlign = 'left' | 'right'
 type Capability = {
   icon: LucideIcon
   title: string
-  /** items are { code?, name } — code is the official registry id when known */
+  /** items are { code?, name }, code is the official registry id when known */
   items: { code?: string; name: string }[]
 }
 
@@ -93,7 +93,7 @@ type CountryProfile = {
 
 /* ───────────────────────── Country profiles ───────────────────────── */
 
-/* OMAN — flagship hub. Content is byte-for-byte identical to the previous
+/* OMAN, flagship hub. Content is byte-for-byte identical to the previous
  * single-country Oman page. */
 const OMAN: CountryProfile = {
   code: 'OM',
@@ -104,7 +104,7 @@ const OMAN: CountryProfile = {
     title: 'Oman Global Presence',
     tagline: 'Connecting Businesses Across Borders',
     subtitle:
-      'Yanabiya Group — Integrated Business Network in the Sultanate of Oman, where a unified partner network operates across Muscat under a single integrated ecosystem with every venture directly connected back to the headquarters, including Yanabiya Muscat United Trade, Yanabiya Muscat for Comprehensive Projects, Yanabiya Muscat Integrated LLC, Yanabiya Al Khairat United Trade LLC, Yanabiya Muscat World Business, Yanabiya Muscat Al Mumyazat, and Yanabiya Al Rustaq Contracting, forming a coordinated and strategically aligned business structure.',
+      'Yanabiya Group, Integrated Business Network in the Sultanate of Oman, where a unified partner network operates across Muscat under a single integrated ecosystem with every venture directly connected back to the headquarters, including Yanabiya Muscat United Trade, Yanabiya Muscat for Comprehensive Projects, Yanabiya Muscat Integrated LLC, Yanabiya Al Khairat United Trade LLC, Yanabiya Muscat World Business, Yanabiya Muscat Al Mumyazat, and Yanabiya Al Rustaq Contracting, forming a coordinated and strategically aligned business structure.',
   },
   hq: { label: 'Muscat HQ', group: 'Yanabiya Group, Oman', city: 'Muscat', x: 50, y: 50 },
   /* 7 partners arranged on a single ring around the centre HQ.
@@ -126,7 +126,7 @@ const OMAN: CountryProfile = {
     subtitle: 'Integrated operational sectors driving Yanabiya Group’s regional growth.',
   },
   capabilities: {
-    /* 4-card scroll layout — each card vertically marquees its activities. */
+    /* 4-card scroll layout, each card vertically marquees its activities. */
     cards: [
       {
         title: 'Infrastructure & Engineering',
@@ -195,7 +195,7 @@ const BANGLADESH: CountryProfile = {
   hero: {
     eyebrow: 'People’s Republic of Bangladesh',
     title: 'Bangladesh Global Presence',
-    subtitle: 'Yanabiya Group — Bangladesh Operations Hub',
+    subtitle: 'Yanabiya Group, Bangladesh Operations Hub',
   },
   hq: { label: 'Dhaka HQ', group: 'Yanabiya Gulf International BD Trade', city: 'Dhaka', x: 50, y: 50 },
   partners: [
@@ -272,7 +272,7 @@ const UNITED_KINGDOM: CountryProfile = {
     title: 'UK Global Presence',
     tagline: 'Bridging Markets Across Europe',
     subtitle:
-      'Yanabiya Group — European Operations Hub, where 21 trusted partners across IT services, retail, and hospitality connect through the London office to deliver scalable cross-border value.',
+      'Yanabiya Group, European Operations Hub, where 21 trusted partners across IT services, retail, and hospitality connect through the London office to deliver scalable cross-border value.',
   },
   hq: { label: 'London HQ', group: 'Yanabiya Gulf International UK Ltd', city: 'London', x: 50, y: 50 },
   partners: [
@@ -308,7 +308,7 @@ const UNITED_KINGDOM: CountryProfile = {
     subtitle: 'Integrated operational sectors driving Yanabiya Group’s European operations.',
   },
   capabilities: {
-    /* 4-card scroll layout — UK partner clusters as scrolling activity lists */
+    /* 4-card scroll layout, UK partner clusters as scrolling activity lists */
     cards: [
       {
         title: 'IT Services & Consulting',
@@ -366,7 +366,7 @@ const USA: CountryProfile = {
   hero: {
     eyebrow: 'United States of America',
     title: 'USA Global Presence',
-    subtitle: 'Yanabiya Group — North America Operations',
+    subtitle: 'Yanabiya Group, North America Operations',
   },
   hq: { label: 'Austin HQ', group: 'Yanabiya Gulf International US LLC', city: 'Austin', x: 50, y: 50 },
   partners: [],
@@ -431,7 +431,7 @@ function CapabilityScrollCard({ card, index }: { card: CapabilityCard; index: nu
       </h4>
       <div className="mt-3 w-8 h-px bg-slate-900/70" />
 
-      {/* Marquee viewport — clipped, vertically scrolling */}
+      {/* Marquee viewport, clipped, vertically scrolling */}
       <div className="relative mt-5 h-[260px] overflow-hidden">
         <div
           className="flex flex-col animate-vertical-marquee group-hover:[animation-play-state:paused]"
@@ -515,7 +515,7 @@ function CapabilityCluster({ c }: { c: Capability }) {
 
 /* ───────────────────────── Country tabs ───────────────────────── */
 
-/* Horizontal moving country marquee — round flag medallions only by default.
+/* Horizontal moving country marquee, round flag medallions only by default.
  * On hover the medallion expands into a 'Read More' chip. Click smooth-scrolls
  * to the matching country section below. List doubled for a seamless loop. */
 function CountryMarquee({ active }: { active: CountryCode }) {
@@ -540,7 +540,7 @@ function CountryMarquee({ active }: { active: CountryCode }) {
               href={`#${code.toLowerCase()}`}
               onClick={(e) => handleClick(e, code)}
               aria-current={isActive ? 'true' : undefined}
-              aria-label={`${p.shortName} — read more`}
+              aria-label={`${p.shortName}, read more`}
               className={`group/chip relative shrink-0 flex items-center gap-2.5
                           rounded-full bg-brand-50 border-2 shadow-md
                           transition-all duration-300
@@ -552,7 +552,7 @@ function CountryMarquee({ active }: { active: CountryCode }) {
                               : 'border-slate-200 hover:border-brand-deep'
                           }`}
             >
-              {/* Flag medallion — bigger circular, always visible */}
+              {/* Flag medallion, bigger circular, always visible */}
               <span className={`shrink-0 w-16 h-16 md:w-[68px] md:h-[68px] rounded-full bg-brand-50 grid place-items-center
                                 text-3xl md:text-[34px] shadow-sm ring-2 transition-colors duration-300
                                 ${isActive
@@ -560,7 +560,7 @@ function CountryMarquee({ active }: { active: CountryCode }) {
                                   : 'ring-slate-200 group-hover/chip:ring-brand-accent'}`}>
                 {p.flag}
               </span>
-              {/* Read More label — expands inline on hover */}
+              {/* Read More label, expands inline on hover */}
               <span className="overflow-hidden whitespace-nowrap
                                max-w-0 opacity-0
                                group-hover/chip:max-w-[180px] group-hover/chip:opacity-100
@@ -588,13 +588,13 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
   const flipMap = index % 2 === 1
   return (
     <>
-      {/* HERO + ACTIVITIES — 40 / 60 editorial split (text left, capabilities right) */}
+      {/* HERO + ACTIVITIES, 40 / 60 editorial split (text left, capabilities right) */}
       <section className="relative">
         <SectionWatermark />
         <div className="relative container-x py-4 md:py-6">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
 
-            {/* TEXT BLOCK — 40% (left on even index, right on odd) */}
+            {/* TEXT BLOCK, 40% (left on even index, right on odd) */}
             <div className={`lg:col-span-5 ${flipMap ? 'lg:order-2' : 'lg:order-1'}`}>
               <Reveal>
                 <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-4">
@@ -634,7 +634,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
               </Reveal>
             </div>
 
-            {/* ORBIT BLOCK — 60% (right on even index, left on odd) */}
+            {/* ORBIT BLOCK, 60% (right on even index, left on odd) */}
             <Reveal delay={200} className={`lg:col-span-7 ${flipMap ? 'lg:order-1' : 'lg:order-2'}`}>
               <div className="group/map relative w-full aspect-[16/8] bg-[#fafafa] border border-slate-100 rounded-sm">
               {/* Background outline + grid (stylised, not geographically literal) */}
@@ -667,7 +667,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                 </g>
               </svg>
 
-              {/* HQ node — STATIC at the centre */}
+              {/* HQ node, STATIC at the centre */}
               <div
                 className="absolute z-20"
                 style={{ left: `${data.hq.x}%`, top: `${data.hq.y}%`, transform: 'translate(-50%, -50%)' }}
@@ -692,11 +692,11 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                 </div>
               </div>
 
-              {/* GEO-PINS — connection lines + static partner pins (no orbit, no drift).
+              {/* GEO-PINS, connection lines + static partner pins (no orbit, no drift).
                   Same visual language as the home Global section's labelled city pins. */}
               {showPartnerNetwork && (
                 <>
-                  {/* Connection lines — short stub from each partner toward HQ */}
+                  {/* Connection lines, short stub from each partner toward HQ */}
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 100 56.25"
@@ -735,7 +735,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                     })}
                   </svg>
 
-                  {/* Static partner pins — same style as home Global section's city pins */}
+                  {/* Static partner pins, same style as home Global section's city pins */}
                   {data.partners.map((p, i) => (
                     <div
                       key={p.name}
@@ -754,7 +754,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                                          transition-transform duration-300
                                          group-hover:scale-125" />
                       </span>
-                      {/* Label pill — name on default, category fades in on hover */}
+                      {/* Label pill, name on default, category fades in on hover */}
                       <div className={`whitespace-nowrap ${p.align === 'right' ? '' : 'order-first'}`}>
                         <div className="inline-flex items-center gap-1.5
                                         bg-white/95 backdrop-blur border border-brand-deep/20
@@ -949,7 +949,7 @@ export default function OmanPresence() {
         </div>
       </section>
 
-      {/* ALL COUNTRIES STACKED — every branch on the same page */}
+      {/* ALL COUNTRIES STACKED, every branch on the same page */}
       {TAB_ORDER.map((c, i) => (
         <section
           key={c}
@@ -960,7 +960,7 @@ export default function OmanPresence() {
         </section>
       ))}
 
-      {/* CONTACT CTA — link out to the centralised /contact page */}
+      {/* CONTACT CTA, link out to the centralised /contact page */}
       <section className="border-t-2 border-slate-200 bg-brand-50">
         <div className="container-x py-4 md:py-6 text-center">
           <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
@@ -970,7 +970,7 @@ export default function OmanPresence() {
             Browse every office in one place.
           </h3>
           <p className="mt-3 text-slate-600 max-w-xl mx-auto">
-            All Yanabiya Group contact details — Oman HQ, UK, Bangladesh, USA — live on a single
+            All Yanabiya Group contact details, Oman HQ, UK, Bangladesh, USA, live on a single
             centralised page.
           </p>
           <Link

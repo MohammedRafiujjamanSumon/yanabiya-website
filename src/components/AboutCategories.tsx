@@ -82,7 +82,7 @@ export const aboutCategories: Category[] = [
   {
     key: 'goals',
     label: 'Core Goals',
-    intro: 'The targets we are building toward — every quarter, every market, every team.',
+    intro: 'The targets we are building toward, every quarter, every market, every team.',
     items: [
       { id: 'g1', icon: MapPin,    image: IMG.market,  title: 'International Market Expansion',           body: 'We aim to expand into multiple global markets strategically, building a strong and sustainable international presence.', insight: 'Growth is achieved through structured and planned global expansion.' },
       { id: 'g2', icon: Server,    image: IMG.server,  title: 'Scalable Business Platform Development',   body: 'We develop systems capable of managing and supporting multiple businesses efficiently under one ecosystem.', insight: 'Our platform is designed to scale without limitations.' },
@@ -95,7 +95,7 @@ export const aboutCategories: Category[] = [
   {
     key: 'sustainability',
     label: 'Sustainability & Social Impact',
-    intro: 'How we make sure growth benefits people, communities, and the planet — not just balance sheets.',
+    intro: 'How we make sure growth benefits people, communities, and the planet, not just balance sheets.',
     items: [
       { id: 's1', icon: Leaf,           image: IMG.leaf,      title: 'Eco-Friendly Operations',          body: 'We promote environmentally responsible practices across all business activities to minimise ecological impact.', insight: 'Sustainability is embedded in our operational structure.' },
       { id: 's2', icon: HeartHandshake, image: IMG.community, title: 'Community Empowerment Programs',   body: 'We support communities through development initiatives, training programmes, and opportunity creation.', insight: 'We believe in empowering people at the local level.' },

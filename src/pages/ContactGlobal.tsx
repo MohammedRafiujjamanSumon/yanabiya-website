@@ -65,7 +65,7 @@ const COUNTRIES: CountryContact[] = [
     shortName: 'Oman',
     region: 'Headquarters',
     city: 'Muscat',
-    summary: 'Group HQ — anchoring Gulf trade, regulatory intelligence, and the seven-partner network.',
+    summary: 'Group HQ, anchoring Gulf trade, regulatory intelligence, and the seven-partner network.',
     parentCompany: 'Yanabiya Gulf International Business & Trade SPC',
     postal: ['P.O. Box 1432, PC-133', 'Al Khuwair, Muscat', 'Sultanate of Oman'],
     headOffice: [
@@ -89,7 +89,7 @@ const COUNTRIES: CountryContact[] = [
     shortName: 'UK',
     region: 'European Operations',
     city: 'London',
-    summary: 'European operations hub — connecting 21 IT, retail, and hospitality partners across the UK.',
+    summary: 'European operations hub, connecting 21 IT, retail, and hospitality partners across the UK.',
     parentCompany: 'Yanabiya Gulf International UK Ltd',
     headOffice: [
       '167-169 Great Portland Street',
@@ -109,7 +109,7 @@ const COUNTRIES: CountryContact[] = [
     shortName: 'Bangladesh',
     region: 'South Asia Operations',
     city: 'Dhaka',
-    summary: 'South Asia delivery hub — engineering, apparel, and a 14-partner connectivity network.',
+    summary: 'South Asia delivery hub, engineering, apparel, and a 14-partner connectivity network.',
     parentCompany: 'Yanabiya Gulf International BD Trade',
     headOffice: [
       'Office #211, Plot #322/B',
@@ -129,7 +129,7 @@ const COUNTRIES: CountryContact[] = [
     shortName: 'USA',
     region: 'North America Operations',
     city: 'Austin',
-    summary: 'North America presence — partner network onboarding in progress.',
+    summary: 'North America presence, partner network onboarding in progress.',
     parentCompany: 'Yanabiya Gulf International US LLC',
     headOffice: [
       '5900 Balcones Drive #18651',
@@ -416,7 +416,7 @@ export default function ContactGlobal() {
         <div className="absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full bg-brand-accentDark/12 blur-[160px]" />
       </div>
 
-      {/* HERO — shared brand strip */}
+      {/* HERO, shared brand strip */}
       <PageHero
         eyebrow="Global Contact Network"
         title="Contact Yanabiya Group"
@@ -425,7 +425,7 @@ export default function ContactGlobal() {
         ghostText=""
       />
 
-      {/* GLOBAL NETWORK MAP — 4 branches as nodes on a world-shape with
+      {/* GLOBAL NETWORK MAP, 4 branches as nodes on a world-shape with
        *  full-mesh animated connector lines. */}
       <GlobalNetworkMap />
 
@@ -554,7 +554,7 @@ function GlobalNetworkMap() {
                 <path d="M 82 40 L 92 40 L 94 46 L 90 48 L 84 46 Z" />
               </g>
 
-              {/* Connector lines — full mesh */}
+              {/* Connector lines, full mesh */}
               {pairs.map(([a, b], i) => {
                 // Curve via a midpoint that's pulled slightly upward so
                 // long routes arc instead of cutting through other nodes.
@@ -577,7 +577,7 @@ function GlobalNetworkMap() {
                 )
               })}
 
-              {/* Nodes — pulse + flag dot + label */}
+              {/* Nodes, pulse + flag dot + label */}
               {MAP_NODES.map((n) => (
                 <g key={n.code}>
                   <circle cx={n.x} cy={n.y} r="2.6" fill={n.color} fillOpacity="0.25">

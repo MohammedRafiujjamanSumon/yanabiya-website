@@ -73,7 +73,7 @@ export const countries = [
     address:
       '1230\nOffice #211, Plot #322/B, Block # Kanchkura, Uttarkhan, Dhaka, Bangladesh',
     description:
-      'Trading in Bangladesh as Yanabiya Gulf International BD Trade — a long-established South Asia operation licensed since November 1998.',
+      'Trading in Bangladesh as Yanabiya Gulf International BD Trade, a long-established South Asia operation licensed since November 1998.',
     licenceName: 'Yanabiya Gulf International BD Trade',
     entities: ['Yanabiya Gulf International BD Trade'],
   },
@@ -86,7 +86,7 @@ export const countries = [
     mapImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Blank_USA_states_map.png/500px-Blank_USA_states_map.png',
     address: 'TX 78731\n5900 Balcones Drive #18651, Austin, Texas, United States',
     description:
-      'Operating in the United States as Yanabiya Gulf International US LLC — the group\'s North America entity, formed in August 2025.',
+      'Operating in the United States as Yanabiya Gulf International US LLC, the group\'s North America entity, formed in August 2025.',
     licenceName: 'Yanabiya Gulf International US LLC',
     entities: ['Yanabiya Gulf International US LLC'],
   },

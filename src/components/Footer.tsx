@@ -75,7 +75,7 @@ export default function Footer() {
           />
         </div>
 
-        {/* ── TOP BLOCK — Brand + Group + Corporate + HQ Contact ── */}
+        {/* ── TOP BLOCK, Brand + Group + Corporate + HQ Contact ── */}
         <div className="overflow-x-auto">
         <div className="container-x py-8 relative grid gap-10 grid-cols-12 min-w-[720px]">
 
@@ -95,7 +95,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="mt-4 text-sm text-white leading-snug">
-              A trusted international group of companies — building, scaling, and operating
+              A trusted international group of companies, building, scaling, and operating
               high-impact ventures across technology, trade, talent and consulting.
             </p>
 
@@ -143,7 +143,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Group — on-page sections */}
+          {/* Group, on-page sections */}
           <div className="md:col-span-3 lg:col-span-2">
             <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">Group</h4>
             <ul className="space-y-2.5 text-sm">
@@ -161,7 +161,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Corporate — real subpages */}
+          {/* Corporate, real subpages */}
           <div className="md:col-span-3 lg:col-span-2">
             <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">Corporate</h4>
             <ul className="space-y-2.5 text-sm">
@@ -193,7 +193,7 @@ export default function Footer() {
                     )}
                   </div>
 
-                  {/* Address — map pin is clickable */}
+                  {/* Address, map pin is clickable */}
                   <div className="flex items-start gap-1.5">
                     <a
                       href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.mapQuery)}`}

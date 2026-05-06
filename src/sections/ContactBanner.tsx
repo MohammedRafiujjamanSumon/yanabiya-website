@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Send, Phone, Mail, MapPin, CheckCircle } from 'lucide-react'
 import { contact } from '../data/contact'
 
-// ── Sectors list — add new entries here to extend the dropdown ────────────────
+// ── Sectors list, add new entries here to extend the dropdown ────────────────
 const SECTORS = [
   'Information Technology',
   'Cloud Infrastructure & Managed Services',
@@ -38,7 +38,7 @@ export default function ContactBanner() {
         <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
         <div className="grid grid-cols-2 gap-16 items-start min-w-[640px]">
 
-          {/* ── LEFT — call to action ───────────────────────────────────── */}
+          {/* ── LEFT, call to action ───────────────────────────────────── */}
           <div className="text-white">
             <span className="inline-block text-[11px] font-bold tracking-[0.22em] uppercase
                              text-brand-accent bg-brand-accent/12 border border-brand-accent/25
@@ -53,7 +53,7 @@ export default function ContactBanner() {
 
             <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-sm mb-10">
               Whether you&rsquo;re exploring a partnership, need a technology solution, or simply
-              want to learn more — our team is ready to respond within one business day.
+              want to learn more, our team is ready to respond within one business day.
             </p>
 
             {/* Quick contact pills */}
@@ -107,7 +107,7 @@ export default function ContactBanner() {
             </div>
           </div>
 
-          {/* ── RIGHT — form ────────────────────────────────────────────── */}
+          {/* ── RIGHT, form ────────────────────────────────────────────── */}
           <div className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10 backdrop-blur-sm">
             <h3 className="font-serif text-xl md:text-2xl text-white mb-1">Send Us a Message</h3>
             <p className="text-white/45 text-sm mb-7">We&rsquo;ll route your message to the right team.</p>
@@ -117,7 +117,7 @@ export default function ContactBanner() {
                 <CheckCircle size={48} className="text-brand-accent" />
                 <p className="text-white font-semibold text-lg">Message Received!</p>
                 <p className="text-white/55 text-sm">
-                  Thank you — a member of our team will be in touch shortly.
+                  Thank you, a member of our team will be in touch shortly.
                 </p>
                 <button
                   type="button"
@@ -140,7 +140,7 @@ export default function ContactBanner() {
                   <input required type="email" placeholder="Email Address" className={ipt} />
                 </div>
 
-                {/* Sector dropdown — add to SECTORS array above to extend */}
+                {/* Sector dropdown, add to SECTORS array above to extend */}
                 <select required defaultValue="" aria-label="Select a sector" className={ipt}>
                   <option value="" disabled className="text-slate-800">
                     Select a Sector

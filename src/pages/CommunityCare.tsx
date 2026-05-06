@@ -78,7 +78,7 @@ export default function CommunityCare() {
       <div className="relative">
         <PageHero
           title={hero?.title || 'Community Care'}
-          subtitle={hero?.subtitle || 'Structured charitable donations and welfare programmes focused on transparency, dignity and lasting impact — delivered across every country where we operate.'}
+          subtitle={hero?.subtitle || 'Structured charitable donations and welfare programmes focused on transparency, dignity and lasting impact, delivered across every country where we operate.'}
           centered
           ghostText=""
         />

@@ -186,7 +186,7 @@ export default function Blog() {
 
         {visible.length === 0 && (
           <div className="text-center text-slate-500 py-4">
-            No posts for this region yet — check back soon.
+            No posts for this region yet, check back soon.
           </div>
         )}
       </div>

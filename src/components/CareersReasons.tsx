@@ -9,7 +9,7 @@ type Props = {
   items: CircleItem[]
 }
 
-// Tailwind gradient classes — listed as literals so JIT picks them up
+// Tailwind gradient classes, listed as literals so JIT picks them up
 const BG_TO_GRADIENT: Record<string, string> = {
   'bg-emerald-500': 'from-emerald-500 to-emerald-700',
   'bg-sky-500':     'from-sky-500 to-sky-700',

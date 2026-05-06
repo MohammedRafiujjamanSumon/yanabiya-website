@@ -39,7 +39,7 @@ export default function CeoPage() {
             S M Shamim Ahmed
           </h1>
           <p className="mt-2.5 text-sm md:text-base font-semibold uppercase tracking-[0.22em] text-amber-400">
-            Founder, Chairman &amp; CEO — Yanabiya Group
+            Founder, Chairman &amp; CEO, Yanabiya Group
           </p>
         </div>
       </div>

@@ -486,7 +486,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
               <Building size={12} />
               Service Required
               <span className="normal-case tracking-normal font-normal opacity-60">
-                — {sectorTitle.replace('🤝 ', '')}
+               , {sectorTitle.replace('🤝 ', '')}
               </span>
             </label>
             <div className="relative">
@@ -551,7 +551,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
           </div>
           <h4 className="font-serif text-xl text-brand-deep mb-2">Request Received!</h4>
           <p className="text-sm text-brand-deep/60">
-            Thank you — our team will contact you within one business day.
+            Thank you, our team will contact you within one business day.
           </p>
         </div>
       )}

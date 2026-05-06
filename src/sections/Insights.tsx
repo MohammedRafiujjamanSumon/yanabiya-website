@@ -5,7 +5,7 @@ import Section, { Eyebrow, H2 } from '../components/Section'
 const posts = [
   { c: 'Digital Transformation', t: 'Modernising Gulf enterprises: why cloud-first is no longer optional', d: '2026-04-10', e: 'How regional businesses are rethinking infrastructure and workflows in the era of AI and SaaS.' },
   { c: 'Trade', t: 'Import-export trends connecting South Asia, the Gulf and Europe', d: '2026-03-22', e: 'A look at logistics routes, regulatory shifts and new market openings for 2026 and beyond.' },
-  { c: 'Cyber Security', t: 'Practical cyber hygiene for SMEs in the region', d: '2026-03-05', e: 'Five security practices every growing business should adopt — without slowing down the team.' },
+  { c: 'Cyber Security', t: 'Practical cyber hygiene for SMEs in the region', d: '2026-03-05', e: 'Five security practices every growing business should adopt, without slowing down the team.' },
   { c: 'Cloud', t: "A buyer's guide to cloud adoption in 2026", d: '2026-02-14', e: 'Comparing strategies, vendors and total cost of ownership for Gulf-based enterprises.' },
   { c: 'IT Outsourcing', t: 'When to build, when to outsource: a decision framework', d: '2026-01-30', e: 'A practical lens for engineering leaders weighing internal vs external delivery.' },
   { c: 'Data & BI', t: 'From dashboards to decisions: getting real value from BI', d: '2026-01-12', e: 'Common pitfalls and the patterns that actually move the needle on decision quality.' },

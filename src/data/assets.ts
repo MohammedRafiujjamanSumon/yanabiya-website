@@ -1,4 +1,4 @@
-// Asset URLs — pulled from the live yanabiyagroup.com site so the website
+// Asset URLs, pulled from the live yanabiyagroup.com site so the website
 // works out of the box. To use your own copies, drop matching files into
 // /public/images/ and replace the URLs below with BASE + 'images/<filename>'.
 

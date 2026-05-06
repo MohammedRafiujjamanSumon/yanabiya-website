@@ -38,11 +38,11 @@ function Reveal({
 /* ───────────────────────── Story data ───────────────────────── */
 
 const storyLines = [
-  'It started in Muscat — one office, one belief.',
+  'It started in Muscat, one office, one belief.',
   'That trust outlasts trends, and craftsmanship outlasts shortcuts.',
   'A decade on, that belief reaches four countries and six sectors.',
   'We didn’t set out to build a single company.',
-  'We set out to build a platform — where many ventures could share one spine.',
+  'We set out to build a platform, where many ventures could share one spine.',
   'Today, every Yanabiya business runs on the same operating principles.',
   'Quality before scale. Relationships before transactions. People before process.',
   'From Gulf trade routes to UK boardrooms.',
@@ -55,7 +55,7 @@ const storyLines = [
 const milestones = [
   { year: '2014', title: 'Founded in Muscat', body: 'Yanabiya Gulf International Business & Trade SPC opens its doors in Al Khuwair.' },
   { year: '2017', title: 'Trade routes expand',  body: 'Cross-border operations established across Gulf and South Asia corridors.' },
-  { year: '2019', title: 'Engineering hub',      body: 'Bangladesh delivery centre launches — software, QA, and 24×7 support.' },
+  { year: '2019', title: 'Engineering hub',      body: 'Bangladesh delivery centre launches, software, QA, and 24×7 support.' },
   { year: '2022', title: 'European footprint',   body: 'Yanabiya Gulf International UK Ltd. registered in London for EMEA operations.' },
   { year: '2024', title: 'North America entry',  body: 'Yanabiya Gulf International US LLC opens in Austin, Texas.' },
   { year: '2026', title: 'Group platform',       body: 'Six diversified business units operating under one unified ecosystem.' },
@@ -77,13 +77,13 @@ const regions = [
   {
     code: 'BD', flag: '🇧🇩',
     name: 'Bangladesh', tag: 'South Asia Operations',
-    body: 'Our engineering and apparel hub. Where craft meets capacity — at scale, with discipline.',
+    body: 'Our engineering and apparel hub. Where craft meets capacity, at scale, with discipline.',
     image: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1400&q=80',
   },
   {
     code: 'US', flag: '🇺🇸',
     name: 'United States', tag: 'North America Operations',
-    body: 'Frontier-tech advisory and partner network for the Americas — from Austin into the wider continent.',
+    body: 'Frontier-tech advisory and partner network for the Americas, from Austin into the wider continent.',
     image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1400&q=80',
   },
 ]
@@ -92,7 +92,7 @@ const leaders = [
   {
     name: 'Founder & Chairman',
     role: 'Strategy, Group Vision',
-    quote: 'We deliver what we promise — and we measure ourselves by what survives the year, not the quarter.',
+    quote: 'We deliver what we promise, and we measure ourselves by what survives the year, not the quarter.',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
   },
   {
@@ -106,7 +106,7 @@ const leaders = [
 const missionInAction = [
   {
     quote: 'Quality before scale.',
-    body: 'Every engagement starts with a single question — would we be proud of this in five years?',
+    body: 'Every engagement starts with a single question, would we be proud of this in five years?',
     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80',
   },
   {
@@ -163,7 +163,7 @@ export default function OurStory() {
             </Reveal>
             <Reveal delay={320}>
               <p className="mt-8 text-lg md:text-xl text-white/75 max-w-2xl leading-snug">
-                A decade of building enterprises across four countries — written one
+                A decade of building enterprises across four countries, written one
                 relationship, one delivery, one chapter at a time.
               </p>
             </Reveal>
@@ -180,7 +180,7 @@ export default function OurStory() {
         <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#fbfdfb]/80" />
       </section>
 
-      {/* ───────── 2. OUR STORY — line-by-line reveal ───────── */}
+      {/* ───────── 2. OUR STORY, line-by-line reveal ───────── */}
       <section className="relative py-4 md:py-6">
         <div className="container-x">
           <div className="max-w-2xl mx-auto">
@@ -351,7 +351,7 @@ export default function OurStory() {
         </div>
       </section>
 
-      {/* ───────── 6. GLOBAL STRATEGY — Region Chapters ───────── */}
+      {/* ───────── 6. GLOBAL STRATEGY, Region Chapters ───────── */}
       <section className="relative bg-brand-50">
         <div className="container-x py-4 md:py-6">
           <div className="text-center mb-12 max-w-2xl mx-auto">
@@ -479,7 +479,7 @@ export default function OurStory() {
             <p className="mt-5 text-slate-600 text-lg leading-snug">
               Profit isn’t the only thing we measure. Across every country we operate
               in, we commit to community welfare programmes, education access, and
-              environmental responsibility — because long-term value isn’t built any
+              environmental responsibility, because long-term value isn’t built any
               other way.
             </p>
             <Link
@@ -572,7 +572,7 @@ export default function OurStory() {
           <Reveal delay={350}>
             <p className="mt-8 text-lg text-brand-deep/70 max-w-xl mx-auto leading-snug">
               Whether you’re scaling a venture, sourcing a partner, or entering a new
-              market — let’s talk about what’s possible.
+              market, let’s talk about what’s possible.
             </p>
           </Reveal>
           <Reveal delay={500}>

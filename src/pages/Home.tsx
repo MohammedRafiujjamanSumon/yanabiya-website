@@ -16,14 +16,14 @@ import Contact from '../sections/Contact'
  *   Trusted Network → Leadership → Our Community → Contact.
  *
  * AIDA + B2B trust hierarchy:
- *   Attention  : Hero — who we are.
- *   Interest   : Stats + About — quick proof of scale + brand intro.
- *   Desire     : Our Service — the offer (primary conversion driver).
- *                Global Presence — proof of where we deliver.
- *                Trusted Network — partners + clients social proof.
- *   Trust      : Leadership — who runs the show.
- *                Our Community — values + CSR (purpose layer).
- *   Action     : Contact — close the loop.
+ *   Attention  : Hero, who we are.
+ *   Interest   : Stats + About, quick proof of scale + brand intro.
+ *   Desire     : Our Service, the offer (primary conversion driver).
+ *                Global Presence, proof of where we deliver.
+ *                Trusted Network, partners + clients social proof.
+ *   Trust      : Leadership, who runs the show.
+ *                Our Community, values + CSR (purpose layer).
+ *   Action     : Contact, close the loop.
  */
 export default function Home() {
   const { hash } = useLocation()

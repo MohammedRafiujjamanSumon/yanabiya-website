@@ -116,7 +116,7 @@ function PersonCard({ person, theme, delay }: { person: PersonData; theme: TierT
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
         />
 
-        {/* Always-on gradient — bottom 55% */}
+        {/* Always-on gradient, bottom 55% */}
         <div className={`absolute inset-x-0 bottom-0 h-[55%]
                          bg-gradient-to-t ${theme.overlayBg} via-black/40 to-transparent`} />
 
@@ -124,7 +124,7 @@ function PersonCard({ person, theme, delay }: { person: PersonData; theme: TierT
         <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100
                         transition-opacity duration-500" />
 
-        {/* Content — always visible at bottom-left */}
+        {/* Content, always visible at bottom-left */}
         <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
           {/* Thin accent line */}
           <div className={`w-8 h-0.5 rounded-full mb-2.5 ${theme.accentLine}
@@ -141,7 +141,7 @@ function PersonCard({ person, theme, delay }: { person: PersonData; theme: TierT
             {person.name}
           </h4>
 
-          {/* Short bio — slides up on hover */}
+          {/* Short bio, slides up on hover */}
           <p className="text-white/70 text-[11px] leading-snug mt-1.5 line-clamp-2
                         max-h-0 overflow-hidden opacity-0
                         group-hover:max-h-12 group-hover:opacity-100
@@ -149,7 +149,7 @@ function PersonCard({ person, theme, delay }: { person: PersonData; theme: TierT
             {person.shortBio}
           </p>
 
-          {/* Read More — slides up on hover */}
+          {/* Read More, slides up on hover */}
           <div className="mt-3 translate-y-3 opacity-0
                           group-hover:translate-y-0 group-hover:opacity-100
                           transition-all duration-400 ease-out">
@@ -196,9 +196,9 @@ export default function Leadership() {
           </Reveal>
         </div>
 
-        {/* ── TIER 01 — BOARD ── */}
+        {/* ── TIER 01, BOARD ── */}
         <div className={`rounded-2xl border p-6 md:p-10 mb-4 ${t.board.panelBg} ${t.board.panelBorder} shadow-sm`}>
-          <TierBadge icon={Crown} kicker="Tier 01 — Global Board & Advisory" title="Board of Directors" theme={t.board} />
+          <TierBadge icon={Crown} kicker="Tier 01, Global Board & Advisory" title="Board of Directors" theme={t.board} />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 max-w-5xl mx-auto">
             {boardPeople.map((p, i) => (
               <PersonCard key={p.id} person={p} theme={t.board} delay={i * 80} />
@@ -211,9 +211,9 @@ export default function Leadership() {
           <div className={`w-px h-8 ${t.exec.connector}`} />
         </div>
 
-        {/* ── TIER 02 — EXEC ── */}
+        {/* ── TIER 02, EXEC ── */}
         <div className={`rounded-2xl border p-6 md:p-10 ${t.exec.panelBg} ${t.exec.panelBorder} shadow-sm`}>
-          <TierBadge icon={Briefcase} kicker="Tier 02 — Global Executive Management" title="C-Suite Leadership" theme={t.exec} />
+          <TierBadge icon={Briefcase} kicker="Tier 02, Global Executive Management" title="C-Suite Leadership" theme={t.exec} />
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 max-w-5xl mx-auto">
             {execPeople.map((p, i) => (
               <PersonCard key={p.id} person={p} theme={t.exec} delay={i * 60} />

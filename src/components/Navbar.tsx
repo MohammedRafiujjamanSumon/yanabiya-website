@@ -97,7 +97,7 @@ export default function Navbar() {
       <div className="bg-transparent">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
 
-        {/* LEFT — LOGO */}
+        {/* LEFT, LOGO */}
         <Link to="/#home" className="flex items-center shrink-0 group py-1">
           <img
             src={assets.logo}
@@ -121,7 +121,7 @@ export default function Navbar() {
                     bg-transparent`}
       >
 
-        {/* NAV + CTA — clustered on the right */}
+        {/* NAV + CTA, clustered on the right */}
         <div className="hidden lg:flex ms-auto items-center gap-4 xl:gap-5">
         <nav className="flex items-center gap-3 xl:gap-4 min-w-0">
           {navGroups.map((g) => {
@@ -352,13 +352,13 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* RIGHT — Language switcher (desktop) */}
+        {/* RIGHT, Language switcher (desktop) */}
         <div className="shrink-0 text-brand-accent">
           <LanguageSwitcher />
         </div>
         </div>
 
-        {/* MOBILE — language + hamburger */}
+        {/* MOBILE, language + hamburger */}
         <div className="flex lg:hidden items-center ms-auto gap-1 text-brand-accent">
           <LanguageSwitcher />
           <button

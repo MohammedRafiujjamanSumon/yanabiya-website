@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { MessageCircle, X } from 'lucide-react'
 import { social, contactByCountry } from '../data/contact'
 
-/* Floating bottom-right chat dock — single primary FAB toggling a
+/* Floating bottom-right chat dock, single primary FAB toggling a
  * vertical column of brand-true buttons. Per-country WhatsApp on top
  * (green WhatsApp logo + country flag set inside it), then a divider,
  * then the rest of the social channels with their real brand logos.
@@ -145,7 +145,7 @@ export default function SocialFloat() {
                     ${open ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto'
                             : 'opacity-0 scale-95 translate-y-2 pointer-events-none'}`}
       >
-        {/* Per-country WhatsApp — green WhatsApp logo + flag set inside it */}
+        {/* Per-country WhatsApp, green WhatsApp logo + flag set inside it */}
         {countryWhatsApps.map((c, i) => (
           <a
             key={`wa-${c.code}`}
@@ -171,7 +171,7 @@ export default function SocialFloat() {
                              bg-gradient-to-br from-[#25d366] to-[#128c7e]
                              shadow-[0_8px_18px_-6px_rgba(37,211,102,0.55)]">
               <WhatsAppLogo size={20} />
-              {/* Flag set inside the logo — bottom-right small overlay */}
+              {/* Flag set inside the logo, bottom-right small overlay */}
               <span className="absolute -bottom-0.5 -right-0.5 grid place-items-center
                                w-4 h-4 rounded-full bg-brand-50 text-[10px] leading-none
                                ring-1 ring-white shadow-sm">
@@ -185,7 +185,7 @@ export default function SocialFloat() {
           <span aria-hidden="true" className="block w-7 h-px bg-slate-300/60 my-0.5" />
         )}
 
-        {/* Other social channels — real brand logo inside coloured pill */}
+        {/* Other social channels, real brand logo inside coloured pill */}
         {channels.map((c, i) => {
           const Logo = c.logo
           return (

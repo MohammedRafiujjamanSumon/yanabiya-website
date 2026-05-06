@@ -36,7 +36,7 @@ const triptych = [
     icon: Target,
     eyebrow: 'Mission',
     title: 'Why we exist',
-    body: 'Build, scale, and operate diversified ventures with technology, trade, and trust at the centre — across every market we enter.',
+    body: 'Build, scale, and operate diversified ventures with technology, trade, and trust at the centre, across every market we enter.',
   },
   {
     icon: Eye,
@@ -48,7 +48,7 @@ const triptych = [
     icon: Sparkles,
     eyebrow: 'Values',
     title: 'How we work',
-    body: 'Quality before scale. Relationships before transactions. People before process. Three rules — applied without exception.',
+    body: 'Quality before scale. Relationships before transactions. People before process. Three rules, applied without exception.',
   },
 ]
 
@@ -122,7 +122,7 @@ export default function AboutUs() {
               </p>
             </Reveal>
 
-            {/* Executive summary — three proof points at a glance */}
+            {/* Executive summary, three proof points at a glance */}
             <Reveal delay={460}>
               <div className="mt-12 grid sm:grid-cols-3 gap-3 max-w-3xl">
                 {[
@@ -170,7 +170,7 @@ export default function AboutUs() {
             <Reveal>
               <p>
                 Yanabiya Group is a diversified global enterprise originating in
-                Al Khuwair, Muscat — operating today across the United Kingdom,
+                Al Khuwair, Muscat, operating today across the United Kingdom,
                 Bangladesh, and the United States.
               </p>
             </Reveal>
@@ -185,7 +185,7 @@ export default function AboutUs() {
               <p>
                 That structure is how a six-sector group stays coherent across four
                 countries. Innovation, execution, and operational capability move
-                together — not in silos.
+                together, not in silos.
               </p>
             </Reveal>
             <Reveal delay={360}>

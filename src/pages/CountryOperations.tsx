@@ -36,39 +36,39 @@ function Reveal({
 }
 
 /* ────────────────────────────────────────────────────────────
- *  Country operations data — premium naming applied
+ *  Country operations data, premium naming applied
  *  (Local Presence / About Our Operation / What We Offer /
  *   Our Network / Business Domains / Future Roadmap).
  * ────────────────────────────────────────────────────────── */
 
 type CountryOps = {
-  /** Section 1 — Country Overview */
+  /** Section 1, Country Overview */
   intro: string
-  /** Section 2 — Who We Are */
+  /** Section 2, Who We Are */
   branchIntro: string
   parentCompany: string
   mission: string
   vision?: string
-  /** Section 3 — Company Information */
+  /** Section 3, Company Information */
   established: string
   registration: { label: string; value: string }
   legalEntity: string
   license?: { name: string; authority: string }
   address: string
   postCode?: string
-  /** Section 4 — Our Services / What We Offer */
+  /** Section 4, Our Services / What We Offer */
   services: { label: string; desc: string; icon: LucideIcon; slug: string; image: string }[]
-  /** Section 5 — Our Network */
+  /** Section 5, Our Network */
   strategicPartners: PartnerItem[]
   operationalPartners: PartnerItem[]
-  /** Section 6 — Business Domains */
+  /** Section 6, Business Domains */
   categories: { label: string; icon: LucideIcon; tone: string; image: string; href?: string; to?: string }[]
-  /** Section 7 — Licensed Activities */
+  /** Section 7, Licensed Activities */
   licensedActivities: string[]
-  /** Section 8 — Current Operations */
+  /** Section 8, Current Operations */
   currentProjects: { title: string; body: string; image?: string }[]
   activeSectors: string[]
-  /** Section 9 — Future Roadmap */
+  /** Section 9, Future Roadmap */
   futurePlans: { title: string; body: string; icon: LucideIcon; image?: string }[]
 }
 
@@ -90,11 +90,11 @@ const OPS: Record<string, CountryOps> = {
     mission:
       'Deliver world-class digital and trade services from Bangladesh, with the discipline and scale of a multinational group.',
     vision:
-      'To be South Asia\'s most trusted multi-sector delivery partner — engineered in Dhaka, deployed globally.',
+      'To be South Asia\'s most trusted multi-sector delivery partner, engineered in Dhaka, deployed globally.',
     established: '17 November 1998',
     registration: { label: 'Trade License', value: 'TRAD/DNCC/100677/1998' },
     legalEntity: 'Yanabiya Gulf International BD Trade',
-    license: { name: 'Trade License — General Trading & IT', authority: 'Dhaka North City Corporation' },
+    license: { name: 'Trade License, General Trading & IT', authority: 'Dhaka North City Corporation' },
     address: 'Office #211, Plot #322/B, Block-Kanchkura, Uttarkhan, Dhaka-1230, Bangladesh',
     services: [
       { label: 'Technology & Digital Solutions',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
@@ -123,7 +123,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Yanabiya Digital Platform',                 icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
     ],
     // Activities aggregated across the entire group of partner
-    // companies in Bangladesh — covers everything the umbrella runs
+    // companies in Bangladesh, covers everything the umbrella runs
     // under one trade licence.
     licensedActivities: [
       'Internet service provision (ISP) & last-mile connectivity',
@@ -170,7 +170,7 @@ const OPS: Record<string, CountryOps> = {
       'Operating from Muscat since 2021, our Oman headquarters coordinates trade, contracting, technology and hospitality across the Sultanate under one integrated business structure.',
     parentCompany: 'Yanabiya Gulf International Business & Trade SPC',
     mission:
-      'Deliver the Stamp of Quality & Professionalism — built on morals, ethics, honesty, and customer satisfaction across every Yanabiya engagement.',
+      'Deliver the Stamp of Quality & Professionalism, built on morals, ethics, honesty, and customer satisfaction across every Yanabiya engagement.',
     vision:
       'A leading global performer in trade, technology and integrated services, headquartered in Oman and scaling across four continents.',
     established: '19 September 2021',
@@ -187,7 +187,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
       { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane, slug: 'manpower', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
     ],
-    // Oman group of partner companies — the seven Yanabiya entities
+    // Oman group of partner companies, the seven Yanabiya entities
     // operating across Muscat under the SPC umbrella.
     strategicPartners: [
       { name: 'Yanabiya Muscat United Trade' },
@@ -275,13 +275,13 @@ const OPS: Record<string, CountryOps> = {
       'Operating from London since 2023, our UK office handles European-market business development, cross-border trade representation, and IT delivery into UK enterprises and SMEs.',
     parentCompany: 'Yanabiya Gulf International Business & Trade SPC, Sultanate of Oman',
     mission:
-      'Connect Gulf and South-Asian capability with British and European demand — delivered with UK governance and enterprise-grade compliance.',
+      'Connect Gulf and South-Asian capability with British and European demand, delivered with UK governance and enterprise-grade compliance.',
     vision:
       'A trusted European partner for Gulf-rooted enterprises and the UK gateway for Yanabiya Group\'s global network.',
     established: '1 June 2023',
     registration: { label: 'Company Number', value: '14907791' },
     legalEntity: 'Yanabiya Gulf International UK Ltd',
-    license: { name: 'Companies House Registration — Private Limited Company', authority: 'Companies House, United Kingdom' },
+    license: { name: 'Companies House Registration, Private Limited Company', authority: 'Companies House, United Kingdom' },
     address: '167-169 Great Portland Street, 5th Floor, London W1W 5PF, United Kingdom',
     services: [
       { label: 'Technology & Digital Solutions',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
@@ -339,7 +339,7 @@ const OPS: Record<string, CountryOps> = {
       'Recruitment, immigration support and overseas placement coordination',
     ],
     currentProjects: [
-      { title: 'European Market-Entry Advisory',  body: 'Guiding Gulf-rooted enterprises into the UK & EU markets — from registration to compliance.',     image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80' },
+      { title: 'European Market-Entry Advisory',  body: 'Guiding Gulf-rooted enterprises into the UK & EU markets, from registration to compliance.',     image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80' },
       { title: 'IT Delivery Into UK SMEs',         body: 'Software, cloud and AI engagements with UK financial-services and retail clients.',                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
       { title: 'Wholesale & Retail Network',       body: 'Active relationships with UK supermarkets, cash-and-carry and ethnic-grocery distributors.',         image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
       { title: 'Hospitality Partnerships',         body: 'Sourcing, supply and operational support for London restaurant groups.',                            image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
@@ -364,16 +364,16 @@ const OPS: Record<string, CountryOps> = {
     intro:
       'Yanabiya Gulf International US LLC is the Group\'s North America operations entity, anchored in Austin, Texas, with a partner network onboarding through 2026 to serve enterprise clients across the US market.',
     branchIntro:
-      'Established in 2025, our US LLC is in active onboarding — building cloud, AI and partnership-network engagements with North-American clients while preparing to scale through Austin into the wider Texas tech corridor.',
+      'Established in 2025, our US LLC is in active onboarding, building cloud, AI and partnership-network engagements with North-American clients while preparing to scale through Austin into the wider Texas tech corridor.',
     parentCompany: 'Yanabiya Gulf International Business & Trade SPC, Sultanate of Oman',
     mission:
-      'Bring Gulf and South-Asian delivery capability to North-American enterprises — under US governance, with US-based account leadership.',
+      'Bring Gulf and South-Asian delivery capability to North-American enterprises, under US governance, with US-based account leadership.',
     vision:
       'A trusted Texas-anchored bridge between Yanabiya Group\'s global delivery network and the US technology economy.',
     established: '11 August 2025',
     registration: { label: 'File Number', value: '806163411' },
     legalEntity: 'Yanabiya Gulf International US LLC',
-    license: { name: 'LLC Registration — Limited Liability Company', authority: 'Texas Secretary of State, USA' },
+    license: { name: 'LLC Registration, Limited Liability Company', authority: 'Texas Secretary of State, USA' },
     address: '5900 Balcones Drive #18651, Austin, TX 78731, United States of America',
     services: [
       { label: 'Technology & Digital Solutions',        desc: 'Custom software, cloud platforms, and AI solutions.',                  icon: Cpu,       slug: 'it-software',      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
@@ -382,7 +382,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
       { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane, slug: 'manpower', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
     ],
-    // US partner network is still onboarding — show the global tech
+    // US partner network is still onboarding, show the global tech
     // partners that anchor early engagements as 'strategic' and a
     // few US-leaning advisory partners as 'operational'.
     strategicPartners: [
@@ -436,7 +436,7 @@ const OPS: Record<string, CountryOps> = {
       'Partnership Network Development',
     ],
     futurePlans: [
-      { title: 'Full US Launch — 2026',           body: 'Public launch of the US LLC after partner network closes; first Austin-based engagement live.',  icon: TrendingUp,  image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Full US Launch, 2026',           body: 'Public launch of the US LLC after partner network closes; first Austin-based engagement live.',  icon: TrendingUp,  image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80' },
       { title: 'AI Centre of Excellence',         body: 'Stand up an Austin-anchored AI centre of excellence delivering frontier-tech engagements.',     icon: Sparkles,    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
       { title: 'East-Coast Expansion',             body: 'Open New York representation in 2027 to anchor financial-services and corporate clients.',     icon: Globe2,      image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
       { title: 'Investor & Advisory Programme',    body: 'Build a US investor-and-advisor circle around Yanabiya Group\'s global growth roadmap.',        icon: Lightbulb,   image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
@@ -478,7 +478,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
                      text-brand-deep overflow-hidden min-h-screen">
       <BackButton to="/" label="Back to Home" />
 
-      {/* SECTION 1 — Country Overview / Local Presence */}
+      {/* SECTION 1, Country Overview / Local Presence */}
       <PageHero
         eyebrow="Local Presence"
         title={
@@ -491,7 +491,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         ghostText=""
       />
 
-      {/* SECTION 2 — About Our Operation */}
+      {/* SECTION 2, About Our Operation */}
       <SectionFrame eyebrow="About Our Operation" title="Who we are on the ground." compact>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 [perspective:1400px]">
           <Card3D delay={0}   title="Local Branch"  body={ops.branchIntro}   icon={Building2}
@@ -505,7 +505,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         </div>
       </SectionFrame>
 
-      {/* SECTION 3 — Company Information.
+      {/* SECTION 3, Company Information.
        *  Registration number intentionally omitted (kept on the
        *  CountryOps record but not surfaced publicly). */}
       <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored.">
@@ -525,7 +525,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         </div>
       </SectionFrame>
 
-      {/* SECTION 4 — What We Offer.
+      {/* SECTION 4, What We Offer.
        *  3 cards per row from sm and up so each tile stays compact
        *  even on tablet/mobile-landscape. */}
       <SectionFrame eyebrow="What We Offer" title="Services delivered locally, scaled globally.">
@@ -536,7 +536,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         </div>
       </SectionFrame>
 
-      {/* SECTION 5 — Trusted Network CTA */}
+      {/* SECTION 5, Trusted Network CTA */}
       <SectionFrame eyebrow="Our Network" title="Explore Our Global Trusted Network.">
         <div className="flex justify-center">
           <a
@@ -560,7 +560,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
       </SectionFrame>
 
 
-      {/* SECTION 6 — Business Domains */}
+      {/* SECTION 6, Business Domains */}
       <SectionFrame eyebrow="Business Domains" title="The verticals we operate in.">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
           {/* Yanabiya e-Commerce */}
@@ -627,7 +627,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         </div>
       </SectionFrame>
 
-      {/* SECTION 7 — Licensed Activities */}
+      {/* SECTION 7, Licensed Activities */}
       <SectionFrame eyebrow="Approved Activities Under License" title="Government-approved scope of operations.">
         <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm text-brand-deep/80">
           {ops.licensedActivities.map((a, i) => (
@@ -642,7 +642,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
       </SectionFrame>
 
 
-      {/* SECTION 9 — Future Roadmap */}
+      {/* SECTION 9, Future Roadmap */}
       <SectionFrame eyebrow="Future Roadmap" title="Where we're heading next.">
         <div className={`grid gap-3 [perspective:1400px] ${ops.futurePlans.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}`}>
           {ops.futurePlans.map((p, i) => (
@@ -659,7 +659,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         </div>
       </SectionFrame>
 
-      {/* SECTION 11 — Become a Sponsor / Contributor */}
+      {/* SECTION 11, Become a Sponsor / Contributor */}
       <SectionFrame eyebrow="Become a Sponsor / Contributor" title="Bring your ideas, capital or expertise.">
         <div className="grid md:grid-cols-3 gap-4 md:gap-5 mb-7 [perspective:1400px]">
           <Card3D title="Share Your Idea"  body="Submit a proposal. We'll review and respond within 5 business days." icon={Lightbulb} delay={0}
@@ -845,7 +845,7 @@ function ServiceCard({
                    hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)]
                    hover:border-brand-accent"
       >
-        {/* Real photo header — wider/shorter so tiles stay compact at 3-up */}
+        {/* Real photo header, wider/shorter so tiles stay compact at 3-up */}
         <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
           <img
             src={service.image}
@@ -911,7 +911,7 @@ function toneFor(name: string): string {
   return MONOGRAM_TONES[h % MONOGRAM_TONES.length]
 }
 
-/* Partner row with continuous horizontal marquee — same chain feel
+/* Partner row with continuous horizontal marquee, same chain feel
  * as the home Partnerships section. The strip is duplicated so the
  * scroll loops seamlessly. */
 function PartnerMarquee({
@@ -961,7 +961,7 @@ function PartnerMarquee({
             </div>
           ))}
         </div>
-        {/* Edge fades — let the strip dissolve into the dark page bg */}
+        {/* Edge fades, let the strip dissolve into the dark page bg */}
         <div className="absolute inset-y-0 start-0 w-24 bg-gradient-to-r from-[#0a1410] to-transparent pointer-events-none" />
         <div className="absolute inset-y-0 end-0 w-24 bg-gradient-to-l from-[#0a1410] to-transparent pointer-events-none" />
       </div>

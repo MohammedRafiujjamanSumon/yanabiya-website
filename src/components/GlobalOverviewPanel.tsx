@@ -5,7 +5,7 @@ import { countries } from '../data/countries'
 import { contactByCountry } from '../data/contact'
 import { assets } from '../data/assets'
 
-/* Right-side slide-in panel that lists all 4 countries — same look &
+/* Right-side slide-in panel that lists all 4 countries, same look &
  * feel as the HQ-overview panel on /global-presence, but reusable so
  * we can open it from any landing-page CTA without navigating away. */
 
@@ -73,7 +73,7 @@ export default function GlobalOverviewPanel({
             </div>
           </div>
           <p className="mt-3 text-sm text-slate-600 leading-snug">
-            Yanabiya Group operates across four countries — one coordinated network, four operational hubs.
+            Yanabiya Group operates across four countries, one coordinated network, four operational hubs.
           </p>
 
           <div className="mt-7 space-y-3">

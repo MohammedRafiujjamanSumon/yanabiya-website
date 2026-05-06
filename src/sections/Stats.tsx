@@ -33,7 +33,7 @@ function Reveal({
   )
 }
 
-/* Compact 4-up stats strip immediately under the hero — three seconds
+/* Compact 4-up stats strip immediately under the hero, three seconds
  * of trust-by-numbers (countries, industries, years, clients) so a
  * first-time visitor sees the scale of the group before scrolling into
  * the long-form sections.

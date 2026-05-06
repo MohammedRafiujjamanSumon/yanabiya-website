@@ -9,8 +9,8 @@ export const contact = {
 }
 
 // Per-country contact details. Addresses are split into three structured
-// pieces — office address, post address (P.O. Box / postal code line), and
-// the region/country line — so the Contact banner can render them as three
+// pieces, office address, post address (P.O. Box / postal code line), and
+// the region/country line, so the Contact banner can render them as three
 // distinct stacked rows. `mapQuery` is the canonical full-string variant
 // fed to Google Maps.
 export type CountryContact = {
@@ -18,7 +18,7 @@ export type CountryContact = {
   legalName: string
   registration: { label: string; value: string }
   established: string
-  /** Physical office address — building / floor / street / area. */
+  /** Physical office address, building / floor / street / area. */
   officeAddress: string
   /** Postal / P.O. Box address. Empty string if the office address doubles
    *  as the postal address. */
@@ -106,7 +106,7 @@ export const groupWhatsApp = '+968 9116 1677'
 
 /** Direct-to-customer messaging + social handles, surfaced in the
  *  floating chat dock on every page. Replace placeholders with real
- *  handles when ready — leave any URL empty (`''`) to hide that button. */
+ *  handles when ready, leave any URL empty (`''`) to hide that button. */
 export const social = {
   whatsapp:  'https://wa.me/96891161677',
   telegram:  'https://t.me/yanabiyagroup',
@@ -115,7 +115,7 @@ export const social = {
   instagram: 'https://www.instagram.com/yanabiyagroup/',
 } as const
 
-// Single-page navbar — each link scrolls to a section anchor on the same page.
+// Single-page navbar, each link scrolls to a section anchor on the same page.
 export const sections = [
   { id: 'home',         tKey: 'nav.home' },
   { id: 'about',        tKey: 'nav.about' },

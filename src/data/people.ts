@@ -14,7 +14,7 @@ export type PersonData = {
 }
 
 export const ALL_PEOPLE: PersonData[] = [
-  // ── Tier 01 — Board ──────────────────────────────────────────────────
+  // ── Tier 01, Board ──────────────────────────────────────────────────
   {
     id: 'khalifa-al-hinai',
     name: 'H.E. Khalifa Al-Hinai',
@@ -72,7 +72,7 @@ export const ALL_PEOPLE: PersonData[] = [
     ],
   },
 
-  // ── Tier 02 — Exec ───────────────────────────────────────────────────
+  // ── Tier 02, Exec ───────────────────────────────────────────────────
   {
     id: 'sara-al-mahrouqi',
     name: 'Sara Al-Mahrouqi',
@@ -138,7 +138,7 @@ export const ALL_PEOPLE: PersonData[] = [
     tierLabel: 'Tier 02, Executive Management',
     shortBio: 'Championing a people-first culture across Yanabiya\'s global workforce.',
     fullBio: [
-      'Layla Hossain leads all people strategy for Yanabiya Group — from talent acquisition and learning & development to cultural transformation and employee wellbeing.',
+      'Layla Hossain leads all people strategy for Yanabiya Group, from talent acquisition and learning & development to cultural transformation and employee wellbeing.',
       'Her human-centred leadership philosophy has resulted in industry-leading engagement scores and a workforce that reflects the diversity of the markets we serve.',
       'Layla holds a Master\'s in Organisational Psychology from UCL and serves as a mentor in the Oman Women in Leadership programme.',
     ],
@@ -158,11 +158,11 @@ export const ALL_PEOPLE: PersonData[] = [
     ],
   },
 
-  // ── Tier 03 — Country Heads ──────────────────────────────────────────
+  // ── Tier 03, Country Heads ──────────────────────────────────────────
   {
     id: 'yousuf-al-lawati',
     name: 'Yousuf Al-Lawati',
-    role: 'Country Head — Oman',
+    role: 'Country Head, Oman',
     image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80',
     tier: 'country',
     tierLabel: 'Tier 03, Country Management',
@@ -178,7 +178,7 @@ export const ALL_PEOPLE: PersonData[] = [
   {
     id: 'eleanor-hayward',
     name: 'Eleanor Hayward',
-    role: 'Country Head — UK',
+    role: 'Country Head, UK',
     image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80',
     tier: 'country',
     tierLabel: 'Tier 03, Country Management',
@@ -194,7 +194,7 @@ export const ALL_PEOPLE: PersonData[] = [
   {
     id: 'imran-chowdhury',
     name: 'Imran Chowdhury',
-    role: 'Country Head — Bangladesh',
+    role: 'Country Head, Bangladesh',
     image: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=800&q=80',
     tier: 'country',
     tierLabel: 'Tier 03, Country Management',
@@ -203,14 +203,14 @@ export const ALL_PEOPLE: PersonData[] = [
     flag: '🇧🇩',
     fullBio: [
       'Imran Chowdhury heads Yanabiya Group\'s rapidly growing Bangladesh entity, overseeing technology delivery, talent development, and client management across the country.',
-      'Bangladesh represents one of the Group\'s highest-growth markets, and Imran has been the architect of its expansion — building a team of over 100 skilled professionals in Dhaka.',
-      'His background spans software engineering, project management, and operations — making him uniquely qualified to bridge the technical and business dimensions of the Bangladesh entity.',
+      'Bangladesh represents one of the Group\'s highest-growth markets, and Imran has been the architect of its expansion, building a team of over 100 skilled professionals in Dhaka.',
+      'His background spans software engineering, project management, and operations, making him uniquely qualified to bridge the technical and business dimensions of the Bangladesh entity.',
     ],
   },
   {
     id: 'michael-reeves',
     name: 'Michael Reeves',
-    role: 'Country Head — USA',
+    role: 'Country Head, USA',
     image: 'https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=800&q=80',
     tier: 'country',
     tierLabel: 'Tier 03, Country Management',
