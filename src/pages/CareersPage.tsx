@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { MapPin, Mail, ArrowLeft } from 'lucide-react'
+import { MapPin, Mail, ArrowLeft, ArrowRight } from 'lucide-react'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
 import CareersReasons from '../components/CareersReasons'
@@ -74,16 +74,22 @@ export default function CareersPage() {
       <div className="relative">
         <PageHero
           title={hero?.title || 'Career With Us'}
-          subtitle={hero?.subtitle || 'Join a global team across Oman, the United Kingdom, Bangladesh and the USA — and help shape the future of trade, technology and community.'}
+          subtitle={hero?.subtitle || 'Join a global team across Oman, the United Kingdom, Bangladesh and the USA, and help shape the future of trade, technology and community.'}
           centered
           ghostText=""
         />
-        <div className="absolute inset-0 container-x px-5 md:px-12 flex items-start justify-start pt-5 md:pt-6 pointer-events-none">
+        <div className="absolute inset-0 container-x px-5 md:px-12 flex items-start justify-between pt-5 md:pt-6 pointer-events-none">
+          <Link
+            to="/community/community-care"
+            className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
+          >
+            <ArrowLeft size={13} /> Community Care
+          </Link>
           <Link
             to="/community/testimonials"
             className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
           >
-            <ArrowLeft size={13} /> Testimonials
+            Testimonials <ArrowRight size={13} />
           </Link>
         </div>
       </div>
@@ -145,7 +151,7 @@ export default function CareersPage() {
           <Mail className="text-brand-accentDark mx-auto mb-3" size={28} />
           <h4 className="font-serif text-2xl text-slate-900 mb-2">Don't see the right role?</h4>
           <p className="text-slate-600 text-sm mb-5">
-            Send us your CV and tell us where you'd like to contribute — we're always open to strong talent.
+            Send us your CV and tell us where you'd like to contribute, we're always open to strong talent.
           </p>
           <a href="mailto:careers@yanabiyagroup.com" className="btn-primary">
             careers@yanabiyagroup.com

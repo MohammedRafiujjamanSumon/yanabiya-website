@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Users } from 'lucide-react'
+import { ArrowRight, Users, Handshake, Briefcase } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { board } from '../data/leadership'
@@ -212,7 +212,7 @@ export default function LeadershipPyramid() {
           {/* ── 3 columns ── */}
           <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
 
-            {/* Column 1 — Group of Companies */}
+            {/* Column 1, Group of Companies */}
             <div className="flex flex-col items-center gap-3">
               <OrgNode
                 label="Group of Companies"
@@ -223,7 +223,7 @@ export default function LeadershipPyramid() {
               />
             </div>
 
-            {/* Column 2 — CFO */}
+            {/* Column 2, CFO */}
             <div className="flex flex-col items-center">
               <OrgNode
                 label="CFO"
@@ -234,7 +234,7 @@ export default function LeadershipPyramid() {
               />
             </div>
 
-            {/* Column 3 — Department Heads */}
+            {/* Column 3, Department Heads */}
             <div className="flex flex-col items-center gap-3">
               <OrgNode
                 label="Department Heads"
@@ -247,18 +247,56 @@ export default function LeadershipPyramid() {
 
           </div>
 
-          {/* ── CTA ── */}
+          {/* ── CTA cards ── */}
           <Reveal delay={720}>
-            <div className="mt-14 text-center">
+            <div className="mt-14 grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+
+              {/* Become a Partner */}
               <Link
-                to="/leadership/management"
-                className="inline-flex items-center gap-2 rounded-full px-7 py-3
-                           bg-brand-accent text-white text-xs font-bold uppercase tracking-[0.22em]
-                           shadow-md hover:bg-brand-accentDark hover:-translate-y-0.5
-                           transition-all duration-300"
+                to="/contact"
+                className="group relative rounded-2xl overflow-hidden bg-brand-deep px-6 py-7
+                           hover:-translate-y-1 hover:shadow-xl transition-all duration-300 shadow-md"
               >
-                Meet the Team <ArrowRight size={14} />
+                <div aria-hidden className="absolute inset-0 opacity-[0.05]
+                  [background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.4)_0px,rgba(255,255,255,0.4)_1px,transparent_1px,transparent_50%)]
+                  [background-size:18px_18px] pointer-events-none" />
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-white/15 grid place-items-center mb-4">
+                    <Handshake size={18} className="text-amber-400" />
+                  </div>
+                  <h4 className="font-serif text-white text-lg leading-snug mb-1">Become a Partner</h4>
+                  <p className="text-white/50 text-xs leading-relaxed mb-4">
+                    Work with us across trade, technology and community, we're always looking for the right collaborators.
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-amber-400 text-xs font-bold uppercase tracking-widest
+                                   group-hover:gap-3 transition-all duration-300">
+                    Get in Touch <ArrowRight size={12} />
+                  </span>
+                </div>
               </Link>
+
+              {/* Join Our Team */}
+              <Link
+                to="/community/careers"
+                className="group relative rounded-2xl overflow-hidden bg-brand-accent px-6 py-7
+                           hover:-translate-y-1 hover:shadow-xl transition-all duration-300 shadow-md"
+              >
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-white/20 grid place-items-center mb-4">
+                    <Briefcase size={18} className="text-white" />
+                  </div>
+                  <h4 className="font-serif text-white text-lg leading-snug mb-1">Join Our Team</h4>
+                  <p className="text-white/70 text-xs leading-relaxed mb-4">
+                    Offices in Oman, UK, Bangladesh and USA, find a role where your skills make a global impact.
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-white text-xs font-bold uppercase tracking-widest
+                                   group-hover:gap-3 transition-all duration-300">
+                    See Open Roles <ArrowRight size={12} />
+                  </span>
+                </div>
+              </Link>
+
             </div>
           </Reveal>
 
