@@ -12,3 +12,4 @@ dist-ssr
 .env.local
 .vscode/*
 !.vscode/extensions.json
+.sixth
