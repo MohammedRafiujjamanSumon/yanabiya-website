@@ -1,14 +1,38 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
-import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
+import CommunityCareCards from '../components/CommunityCareCards'
+import { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
+import { useSection } from '../hooks/useSection'
 
 const pillars: CircleItem[] = [
-  { label: 'Welfare',     description: 'Structured charitable drives supporting families in need with dignity and transparency.', bg: 'bg-emerald-500' },
-  { label: 'Education',   description: 'Scholarships, school programmes and learning resources for underserved communities.',     bg: 'bg-sky-500' },
-  { label: 'Health',      description: 'Free health camps, medical support and awareness programmes across regions.',             bg: 'bg-amber-500' },
-  { label: 'Empowerment', description: 'Skills training and livelihood programmes that build long-term independence.',            bg: 'bg-rose-500' },
+  {
+    label: 'Welfare',
+    description: 'Structured charitable drives supporting families in need with dignity and transparency.',
+    bg: 'bg-emerald-500',
+    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Education',
+    description: 'Scholarships, school programmes and learning resources for underserved communities.',
+    bg: 'bg-sky-500',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Health',
+    description: 'Free health camps, medical support and awareness programmes across regions.',
+    bg: 'bg-amber-500',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Empowerment',
+    description: 'Skills training and livelihood programmes that build long-term independence.',
+    bg: 'bg-rose-500',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=80',
+  },
 ]
 
 const countryPrograms: Record<string, string[]> = {
@@ -42,17 +66,37 @@ const stats = [
 ]
 
 export default function CommunityCare() {
+  const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
+  const hero = pageHeroes?.['community-care']
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
 
   return (
     <>
-      <PageHero
-        eyebrow="Our Community"
-        title="Community Care"
-        subtitle="Structured charitable donations and welfare programmes focused on transparency, dignity and lasting impact — delivered across every country where we operate."
-      />
+      <div className="relative">
+        <PageHero
+          title={hero?.title || 'Community Care'}
+          subtitle={hero?.subtitle || 'Structured charitable donations and welfare programmes focused on transparency, dignity and lasting impact — delivered across every country where we operate.'}
+          centered
+          ghostText=""
+        />
+        <div className="absolute inset-0 container-x px-5 md:px-12 flex items-start justify-between pt-5 md:pt-6 pointer-events-none">
+          <Link
+            to="/community/blog"
+            className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
+          >
+            <ArrowLeft size={13} /> Blog
+          </Link>
+          <Link
+            to="/community/donation"
+            className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
+          >
+            Donation <ArrowRight size={13} />
+          </Link>
+        </div>
+      </div>
 
       <Section id="community-care" className="relative overflow-hidden bg-brand-50">
       <div className="container-x">
@@ -67,10 +111,10 @@ export default function CommunityCare() {
         </div>
 
         <div className="mb-16">
-          <CircleInfographic
-            eyebrow="Our Commitment"
-            titleLine1="Our Pillars of"
-            titleLine2="Community Care"
+          <CommunityCareCards
+            eyebrow="How We Give Back"
+            titleLine1="Four Pillars"
+            titleLine2="of Impact"
             items={pillars}
           />
         </div>

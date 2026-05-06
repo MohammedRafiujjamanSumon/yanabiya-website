@@ -91,13 +91,13 @@ const regions = [
 const leaders = [
   {
     name: 'Founder & Chairman',
-    role: 'Strategy · Group Vision',
+    role: 'Strategy, Group Vision',
     quote: 'We deliver what we promise — and we measure ourselves by what survives the year, not the quarter.',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
   },
   {
     name: 'Vice Chairman',
-    role: 'Operations · Global Delivery',
+    role: 'Operations, Global Delivery',
     quote: 'Our job is to make a four-country group feel like one team in one room.',
     image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80',
   },
@@ -152,7 +152,7 @@ export default function OurStory() {
           <div className="max-w-4xl">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accent mb-6">
-                Yanabiya Group · Our Story
+                Yanabiya Group, Our Story
               </div>
             </Reveal>
             <Reveal delay={120}>
@@ -186,7 +186,7 @@ export default function OurStory() {
           <div className="max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-10 text-center">
-                01 · The Story
+                01, The Story
               </div>
             </Reveal>
             <div className="space-y-8 md:space-y-5 text-center">
@@ -208,7 +208,7 @@ export default function OurStory() {
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                02 · Mission in Action
+                02, Mission in Action
               </div>
             </Reveal>
             <Reveal delay={120}>
@@ -274,7 +274,7 @@ export default function OurStory() {
           <div className="max-w-3xl mx-auto text-center">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-6">
-                03 · Vision Forward
+                03, Vision Forward
               </div>
             </Reveal>
             <Reveal delay={150}>
@@ -300,7 +300,7 @@ export default function OurStory() {
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                04 · The Journey
+                04, The Journey
               </div>
             </Reveal>
             <Reveal delay={120}>
@@ -357,7 +357,7 @@ export default function OurStory() {
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                05 · Global Strategy
+                05, Global Strategy
               </div>
             </Reveal>
             <Reveal delay={120}>
@@ -390,7 +390,7 @@ export default function OurStory() {
                 </Reveal>
                 <Reveal delay={150} className="lg:col-span-5">
                   <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-3">
-                    Chapter 0{i + 1} · {r.tag}
+                    Chapter 0{i + 1}, {r.tag}
                   </div>
                   <h3 className="font-serif text-4xl md:text-5xl leading-tight">
                     {r.name}
@@ -418,7 +418,7 @@ export default function OurStory() {
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                06 · Leadership
+                06, Leadership
               </div>
             </Reveal>
             <Reveal delay={120}>
@@ -471,7 +471,7 @@ export default function OurStory() {
         <div className="container-x grid lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-6">
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-              07 · Stewardship
+              07, Stewardship
             </div>
             <h2 className="font-serif text-4xl md:text-5xl leading-tight">
               Growth that gives back.
@@ -521,7 +521,7 @@ export default function OurStory() {
           <div className="text-center max-w-2xl mx-auto mb-10">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                08 · Network
+                08, Network
               </div>
             </Reveal>
             <Reveal delay={120}>
@@ -560,7 +560,7 @@ export default function OurStory() {
         <div className="container-x relative py-4 md:py-6 text-center">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accent mb-6">
-              09 · The Next Chapter
+              09, The Next Chapter
             </div>
           </Reveal>
           <Reveal delay={150}>

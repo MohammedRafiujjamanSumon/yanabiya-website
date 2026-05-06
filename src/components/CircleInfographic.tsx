@@ -3,10 +3,9 @@ import { ReactNode } from 'react'
 export type CircleItem = {
   label: string
   description: string
-  /** Tailwind background colour class for the circle, e.g. 'bg-emerald-500'. */
   bg: string
-  /** Optional icon node rendered above the label inside the circle. */
   icon?: ReactNode
+  image?: string
 }
 
 type Props = {
@@ -16,90 +15,125 @@ type Props = {
   items: CircleItem[]
 }
 
-// Five-stop "rainbow" gradient roughly matching the reference infographic.
-const GRADIENT_ID = 'circle-infographic-gradient'
+const GRADIENT_ID = 'cig-snake'
 
-// Each circle is offset vertically to produce the zig-zag rhythm seen in the
-// reference image. Pattern repeats for items beyond index 4.
-const ZIG_ZAG_OFFSETS = ['md:mt-0', 'md:mt-16', 'md:mt-8', 'md:mt-16', 'md:mt-0']
+// Zig-zag: circles alternate high/low; card goes on the opposite side
+const ZZ = [
+  { offset: 'md:mt-0',  card: 'below' },
+  { offset: 'md:mt-16', card: 'above' },
+  { offset: 'md:mt-4',  card: 'below' },
+  { offset: 'md:mt-6',  card: 'above' },
+  { offset: 'md:mt-0',  card: 'below' },
+] as const
 
-export default function CircleInfographic({
-  eyebrow,
-  titleLine1,
-  titleLine2,
-  items,
-}: Props) {
+function DescCard({
+  label,
+  text,
+  bg,
+  dotSide,
+}: {
+  label: string
+  text: string
+  bg: string
+  dotSide: 'top' | 'bottom'
+}) {
+  return (
+    <div className="relative w-full rounded-xl bg-white border border-slate-100 shadow-sm px-2.5 pt-3.5 pb-2.5">
+      {/* Colored dot where the stem enters the card */}
+      <div
+        className={`absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full ${bg} shadow-sm ring-2 ring-white
+                    ${dotSide === 'top' ? '-top-1.5' : '-bottom-1.5'}`}
+      />
+      <p className="text-[11px] font-semibold text-slate-800 text-center leading-tight mb-1">{label}</p>
+      <p className="text-[10px] leading-snug text-slate-500 text-center">{text}</p>
+    </div>
+  )
+}
+
+export default function CircleInfographic({ eyebrow, titleLine1, titleLine2, items }: Props) {
   return (
     <section className="relative">
-      <div
-        className="absolute inset-0 opacity-[0.06] pointer-events-none"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 70' fill='none' stroke='%23475569' stroke-width='1'><polygon points='20,2 60,2 78,35 60,68 20,68 2,35'/></svg>\")",
-          backgroundSize: '80px 70px',
-        }}
-      />
+      <div className="text-center mb-10 mx-auto">
+        {eyebrow && (
+          <div className="text-xs uppercase tracking-[0.28em] text-brand-accent mb-3">{eyebrow}</div>
+        )}
+        <h2 className="font-serif font-light text-slate-900 leading-tight text-2xl md:text-3xl">
+          {titleLine1} {titleLine2}
+        </h2>
+      </div>
 
-      <div className="relative">
-        <div className="text-center mb-12 max-w-3xl mx-auto">
-          {eyebrow && (
-            <div className="text-xs uppercase tracking-[0.28em] text-brand-accent mb-3">
-              {eyebrow}
-            </div>
-          )}
-          <h2 className="font-serif font-light text-slate-900 leading-tight">
-            <span className="block text-4xl md:text-5xl lg:text-6xl">{titleLine1}</span>
-            <span className="block w-32 sm:w-48 md:w-64 h-px bg-slate-900 mx-auto my-3 md:my-4" />
-            <span className="block text-4xl md:text-5xl lg:text-6xl">{titleLine2}</span>
-          </h2>
-        </div>
+      <div className="relative max-w-5xl mx-auto px-4">
+        {/* Snake connector line */}
+        <svg
+          className="absolute inset-x-0 top-4 md:top-6 w-full h-40 md:h-56 pointer-events-none hidden md:block"
+          viewBox="0 0 1200 280"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <defs>
+            <linearGradient id={GRADIENT_ID} x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%"   stopColor="#10b981" />
+              <stop offset="28%"  stopColor="#0ea5e9" />
+              <stop offset="55%"  stopColor="#f59e0b" />
+              <stop offset="78%"  stopColor="#ef4444" />
+              <stop offset="100%" stopColor="#0f766e" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M 60 40 C 220 40 250 230 420 240 S 620 40 760 130 S 1000 260 1140 60"
+            stroke={`url(#${GRADIENT_ID})`}
+            strokeWidth="8"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
 
-        <div className="relative max-w-6xl mx-auto px-4">
-          <svg
-            className="absolute inset-x-0 top-4 md:top-8 w-full h-40 md:h-56 pointer-events-none hidden md:block"
-            viewBox="0 0 1200 280"
-            preserveAspectRatio="none"
-            aria-hidden
-          >
-            <defs>
-              <linearGradient id={GRADIENT_ID} x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#10b981" />
-                <stop offset="28%" stopColor="#0ea5e9" />
-                <stop offset="55%" stopColor="#f59e0b" />
-                <stop offset="78%" stopColor="#ef4444" />
-                <stop offset="100%" stopColor="#0f766e" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M 60 40 C 220 40 250 230 420 240 S 620 40 760 130 S 1000 260 1140 60"
-              stroke={`url(#${GRADIENT_ID})`}
-              strokeWidth="10"
-              strokeLinecap="round"
-              fill="none"
-            />
-          </svg>
+        <div className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-8 md:gap-x-6">
+          {items.map((item, i) => {
+            const zz = ZZ[i % ZZ.length]
+            const cardAbove = zz.card === 'above'
 
-          <div className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-10 md:gap-x-6">
-            {items.map((item, i) => (
+            return (
               <div
                 key={item.label}
-                className={`flex flex-col items-center text-center ${ZIG_ZAG_OFFSETS[i % ZIG_ZAG_OFFSETS.length]}`}
+                className={`flex flex-col items-center gap-1.5 ${zz.offset}`}
               >
-                <div
-                  className={`relative grid place-items-center w-28 h-28 md:w-32 md:h-32 rounded-full text-brand-deep shadow-xl
-                              ring-4 ring-white/90 ${item.bg}`}
-                >
-                  {item.icon && <div className="mb-1 opacity-90">{item.icon}</div>}
-                  <span className="px-3 font-semibold text-sm md:text-base leading-tight">
-                    {item.label}
-                  </span>
+                {/* Top zone: card or empty spacer */}
+                <div className="w-full min-h-[56px] flex items-end justify-center">
+                  {cardAbove && <DescCard label={item.label} text={item.description} bg={item.bg} dotSide="bottom" />}
                 </div>
-                <p className="mt-4 text-xs md:text-sm text-slate-700 leading-snug max-w-[14rem]">
-                  {item.description}
-                </p>
+
+                {/* Stem top */}
+                <div className={`w-0.5 h-4 ${cardAbove ? item.bg : 'bg-transparent'}`} />
+
+                {/* Circle with label inside */}
+                <div
+                  className={`relative z-10 overflow-hidden w-24 h-24 md:w-28 md:h-28 rounded-full
+                              shadow-xl ring-4 ring-white/90 flex-shrink-0
+                              ${item.image ? '' : item.bg}`}
+                >
+                  {item.image && (
+                    <img
+                      src={item.image}
+                      alt={item.label}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )}
+                  {item.image && (
+                    <div className={`absolute inset-0 ${item.bg} opacity-50`} />
+                  )}
+                </div>
+
+                {/* Stem bottom */}
+                <div className={`w-0.5 h-4 ${!cardAbove ? item.bg : 'bg-transparent'}`} />
+
+                {/* Bottom zone: card or empty spacer */}
+                <div className="w-full min-h-[56px] flex items-start justify-center">
+                  {!cardAbove && <DescCard label={item.label} text={item.description} bg={item.bg} dotSide="top" />}
+                </div>
               </div>
-            ))}
-          </div>
+            )
+          })}
         </div>
       </div>
     </section>

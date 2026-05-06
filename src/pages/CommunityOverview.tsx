@@ -93,6 +93,7 @@ export default function CommunityOverview() {
         eyebrow="Our Community"
         title="Beyond the balance sheet."
         subtitle="Stories, sustainability, welfare, careers — four ways into the group beyond business."
+        ghostText=""
       />
 
       {/* HUB CARDS — rainbow arc + four colour-coded circles */}

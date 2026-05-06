@@ -45,7 +45,7 @@ const BUSINESS_DISPLAY: Record<
   'agents-brokerage':         { title: 'Agents & Brokerage Business',   tag: 'Insurance, loans & partnerships.',     sample: ['Insurance', 'Home Loans', 'Brokerage'] },
   'office-management':        { title: 'Office Management Services',     tag: 'Facility, security & operations.',     sample: ['Facility', 'Security', 'CCTV'] },
   'manpower':                 { title: 'Manpower Supply Services',       tag: 'Workforce, students, aviation.',       sample: ['Recruitment', 'Student Visa', 'Aviation'] },
-  'yanabiya-commerce':        { title: 'Yanabiya Commerce',              tag: 'Online retail, marketplace, fulfilment.', sample: ['Online Store', 'Marketplace', 'Fulfilment'] },
+  'yanabiya-commerce':        { title: 'Yanabiya e-Commerce',              tag: 'Online retail, marketplace, fulfilment.', sample: ['Online Store', 'Marketplace', 'Fulfilment'] },
   'yanabiya-digital-platform':{ title: 'Yanabiya Digital Platform',      tag: 'Apps, field ops, HR & CRM.',          sample: ['Business App', 'Field Ops', 'HR System'] },
 }
 
@@ -185,7 +185,7 @@ const SERVICE_ITEMS: ServiceItem[] = [
   },
   {
     slug: 'yanabiya-commerce', num: '07',
-    title: 'Yanabiya Commerce',
+    title: 'Yanabiya e-Commerce',
     tagline: 'Online retail, marketplace & fulfilment',
     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
     badge: 'new',
@@ -272,8 +272,9 @@ function ServicesSnakePath({ onSelect }: { onSelect: (slug: string) => void }) {
 
   return (
     <>
-      {/* ── DESKTOP S-SNAKE (md+) ── */}
-      <div className="hidden md:block">
+      {/* ── S-SNAKE (always desktop layout) ── */}
+      <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
+      <div className="min-w-[640px]">
 
         {/* Row 1: left → right */}
         <div className="flex items-stretch">
@@ -308,12 +309,6 @@ function ServicesSnakePath({ onSelect }: { onSelect: (slug: string) => void }) {
           ))}
         </div>
       </div>
-
-      {/* ── MOBILE: 2-col grid ── */}
-      <div className="md:hidden grid grid-cols-2 gap-3">
-        {SERVICE_ITEMS.map((item) => (
-          <SnakeCard key={item.slug} item={item} onSelect={() => onSelect(item.slug)} />
-        ))}
       </div>
     </>
   )
@@ -743,7 +738,7 @@ function ServicesPyramid({
       {/* Active layer label below the pyramid (responsive to active index) */}
       <div className="absolute left-1/2 -translate-x-1/2 bottom-2 text-center">
         <div className="text-[9px] font-bold uppercase tracking-[0.32em] text-brand-accentDark">
-          Active · 0{active + 1} of {total}
+          Active, 0{active + 1} of {total}
         </div>
         <div
           className="font-serif text-lg text-brand-deep mt-1 leading-tight transition-colors duration-300"
@@ -1060,7 +1055,7 @@ export default function Businesses() {
               </Link>
               <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.32em] text-brand-accentDark font-bold">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                Live · {SERVICE_ITEMS.length} divisions
+                Live, {SERVICE_ITEMS.length} divisions
               </div>
             </div>
           </Reveal>

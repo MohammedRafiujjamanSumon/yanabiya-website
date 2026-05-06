@@ -159,7 +159,7 @@ export default function AboutUs() {
         <div className="container-x grid lg:grid-cols-12 gap-12 items-start">
           <Reveal className="lg:col-span-5">
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-              01 · Identity
+              01, Identity
             </div>
             <h2 className="font-serif text-4xl md:text-5xl leading-tight">
               Who we are.
@@ -207,13 +207,13 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ───────── 3. MISSION · VISION · VALUES ───────── */}
+      {/* ───────── 3. MISSION, VISION, VALUES ───────── */}
       <section id="principles" className="relative py-4 md:py-6 scroll-mt-28">
         <div className="container-x">
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                02 · Principles
+                02, Principles
               </div>
             </Reveal>
             <Reveal delay={120}>
@@ -271,7 +271,7 @@ export default function AboutUs() {
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                03 · Capability
+                03, Capability
               </div>
             </Reveal>
             <Reveal delay={120}>
@@ -341,7 +341,7 @@ export default function AboutUs() {
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                04 · Presence
+                04, Presence
               </div>
             </Reveal>
             <Reveal delay={120}>

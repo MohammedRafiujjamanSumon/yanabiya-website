@@ -28,7 +28,6 @@ function Reveal({
 }
 
 const BOARD_PHOTO  = 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=200&q=80'
-const CEO_PHOTO    = 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80'
 const GROUP_PHOTO  = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=200&q=80'
 const CFO_PHOTO    = 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=200&q=80'
 const DEPT_PHOTO   = 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=200&q=80'
@@ -180,7 +179,7 @@ export default function LeadershipPyramid() {
           <OrgNode
             label="Founder, Chairman & CEO"
             sub="S M Shamim Ahmed"
-            to="/leadership/management"
+            to="/people/ceo"
             photo={board[0]?.photo}
             delay={100}
             size="lg"
@@ -199,14 +198,6 @@ export default function LeadershipPyramid() {
             to="/leadership/board"
             photo={BOARD_PHOTO}
             delay={260}
-          />
-          <Connector className="w-px h-7" />
-          <OrgNode
-            label="CEO"
-            sub="S M Shamim Ahmed"
-            to="/leadership/management"
-            photo={CEO_PHOTO}
-            delay={320}
           />
 
           {/* ── 3-way split connector ── */}

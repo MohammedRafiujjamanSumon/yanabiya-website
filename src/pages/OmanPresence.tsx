@@ -106,7 +106,7 @@ const OMAN: CountryProfile = {
     subtitle:
       'Yanabiya Group — Integrated Business Network in the Sultanate of Oman, where a unified partner network operates across Muscat under a single integrated ecosystem with every venture directly connected back to the headquarters, including Yanabiya Muscat United Trade, Yanabiya Muscat for Comprehensive Projects, Yanabiya Muscat Integrated LLC, Yanabiya Al Khairat United Trade LLC, Yanabiya Muscat World Business, Yanabiya Muscat Al Mumyazat, and Yanabiya Al Rustaq Contracting, forming a coordinated and strategically aligned business structure.',
   },
-  hq: { label: 'Muscat HQ', group: 'Yanabiya Group · Oman', city: 'Muscat', x: 50, y: 50 },
+  hq: { label: 'Muscat HQ', group: 'Yanabiya Group, Oman', city: 'Muscat', x: 50, y: 50 },
   /* 7 partners arranged on a single ring around the centre HQ.
    * Angles in degrees from 12 o'clock, radius ~32% horizontal, ~38% vertical
    * (the 16:8 canvas is wider than tall so the ring is elongated). */
@@ -119,7 +119,7 @@ const OMAN: CountryProfile = {
     { name: 'Yanabiya Muscat Al Mumyazat',                 category: 'Services',             x: 22, y: 78, align: 'right' },
     { name: 'Yanabiya Al Rustaq Contracting',              category: 'Contracting',          x: 12, y: 50, align: 'right' },
   ],
-  mapNote: { fig: 'Fig. 01 · Group Network · Oman', source: 'Source: Yanabiya Group' },
+  mapNote: { fig: 'Fig. 01, Group Network, Oman', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
     eyebrow: 'Capability Matrix',
     title: 'Core Business Capabilities.',
@@ -214,7 +214,7 @@ const BANGLADESH: CountryProfile = {
     { name: 'Dot Exploration Ltd',               category: 'Tech Services',           x: 50, y: 90, align: 'right' },
     { name: 'Bongo WiFi',                        category: 'WiFi & Connectivity',     x: 76, y: 86, align: 'left'  },
   ],
-  mapNote: { fig: 'Fig. 01 · Group Network · Bangladesh', source: 'Source: Yanabiya Group' },
+  mapNote: { fig: 'Fig. 01, Group Network, Bangladesh', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
     eyebrow: 'Capability Matrix',
     title: 'Core Business Capabilities.',
@@ -301,7 +301,7 @@ const UNITED_KINGDOM: CountryProfile = {
     { name: 'Tayyabs',                       category: 'Restaurants',          x: 68, y: 88, align: 'left'  },
     { name: 'Needoo Grill',                  category: 'Restaurants',          x: 90, y: 90, align: 'left'  },
   ],
-  mapNote: { fig: 'Fig. 01 · Group Network · United Kingdom', source: 'Source: Yanabiya Group' },
+  mapNote: { fig: 'Fig. 01, Group Network, United Kingdom', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
     eyebrow: 'Capability Matrix',
     title: 'Core Business Capabilities.',
@@ -370,7 +370,7 @@ const USA: CountryProfile = {
   },
   hq: { label: 'Austin HQ', group: 'Yanabiya Gulf International US LLC', city: 'Austin', x: 50, y: 50 },
   partners: [],
-  mapNote: { fig: 'Fig. 01 · Group Network · United States', source: 'Source: Yanabiya Group' },
+  mapNote: { fig: 'Fig. 01, Group Network, United States', source: 'Source: Yanabiya Group' },
   capabilityHeading: {
     eyebrow: 'Capability Matrix',
     title: 'Core Business Capabilities.',

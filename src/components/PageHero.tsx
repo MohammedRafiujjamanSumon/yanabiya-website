@@ -54,8 +54,8 @@ export default function PageHero({
 }: PageHeroProps) {
   return (
     <section className="relative overflow-hidden bg-brand-50">
-      <div className="container-x relative px-5 py-10 md:px-12 md:py-14
-                      min-h-[420px] md:min-h-[480px]">
+      <div className="container-x relative px-5 py-6 md:px-12 md:py-8
+                      min-h-[180px] md:min-h-[200px]">
 
         {/* Soft brand-accent halos */}
         <div aria-hidden className="absolute inset-0 pointer-events-none">
@@ -95,7 +95,7 @@ export default function PageHero({
               </h1>
               {subtitle && (
                 <p className={`mt-4 text-sm md:text-base text-brand-deep/70 leading-snug
-                              ${centered ? 'max-w-xl mx-auto text-justify md:text-center' : 'max-w-sm'}`}>
+                              ${centered ? 'max-w-xl mx-auto text-justify' : 'max-w-sm'}`}>
                   {subtitle}
                 </p>
               )}

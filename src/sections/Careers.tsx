@@ -20,13 +20,14 @@ export default function Careers() {
   const { t } = useTranslation()
   return (
     <Section id="careers">
-      <div className="container-x grid lg:grid-cols-12 gap-10">
-        <div className="lg:col-span-5">
+      <div className="overflow-x-auto">
+      <div className="container-x grid grid-cols-12 gap-10 min-w-[640px]">
+        <div className="col-span-5">
           <Eyebrow>{t('careers.eyebrow')}</Eyebrow>
           <H2>{t('careers.title')}</H2>
           <p className="mt-4 max-w-2xl text-sm md:text-base text-slate-600 leading-snug text-justify">{t('careers.sub')}</p>
 
-          <div className="grid sm:grid-cols-2 gap-4 mt-8">
+          <div className="grid grid-cols-2 gap-4 mt-8">
             {reasons.map((r) => (
               <div key={r.t} className="card-panel">
                 <r.icon className="text-brand-accent mb-3" />
@@ -37,9 +38,9 @@ export default function Careers() {
           </div>
         </div>
 
-        <div className="lg:col-span-7">
+        <div className="col-span-7">
           <h3 className="font-serif text-2xl text-slate-900 mb-5">{t('careers.rolesTitle')}</h3>
-          <div className="grid sm:grid-cols-2 gap-3 mb-8">
+          <div className="grid grid-cols-2 gap-3 mb-8">
             {openRoles.map((role) => (
               <div key={role} className="card-panel flex items-center justify-between">
                 <span className="text-slate-800 text-sm">{role}</span>
@@ -56,6 +57,7 @@ export default function Careers() {
             </a>
           </div>
         </div>
+      </div>
       </div>
     </Section>
   )

@@ -1,14 +1,38 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
-import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
+import SustainabilityPillars from '../components/SustainabilityPillars'
+import { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
+import { useSection } from '../hooks/useSection'
 
 const pillars: CircleItem[] = [
-  { label: 'Green Operations',   description: 'Energy-efficient offices and responsible resource usage across all branches.',           bg: 'bg-emerald-500' },
-  { label: 'Circular Practices', description: 'Reuse, recycle and minimise waste across procurement, packaging and logistics.',         bg: 'bg-sky-500' },
-  { label: 'Climate Commitment', description: 'Tree plantation drives and lower-emission business models for long-term impact.',        bg: 'bg-amber-500' },
-  { label: 'Inclusive Growth',   description: 'Fair employment, local hiring, and supplier partnerships that strengthen communities.',  bg: 'bg-rose-500' },
+  {
+    label: 'Green Operations',
+    description: 'Energy-efficient offices and responsible resource usage across all branches.',
+    bg: 'bg-emerald-500',
+    image: 'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Circular Practices',
+    description: 'Reuse, recycle and minimise waste across procurement, packaging and logistics.',
+    bg: 'bg-sky-500',
+    image: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Climate Commitment',
+    description: 'Tree plantation drives and lower-emission business models for long-term impact.',
+    bg: 'bg-amber-500',
+    image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Inclusive Growth',
+    description: 'Fair employment, local hiring, and supplier partnerships that strengthen communities.',
+    bg: 'bg-rose-500',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80',
+  },
 ]
 
 const countryInitiatives: Record<string, { title: string; body: string }[]> = {
@@ -41,26 +65,46 @@ const commitments = [
 ]
 
 export default function SustainableGrowth() {
+  const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
+  const hero = pageHeroes?.['sustainable-growth']
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
 
   return (
     <>
-      <PageHero
-        eyebrow="Our Community"
-        title="Sustainable Growth"
-        subtitle="Building business practices that protect the environment and support long-term value for every stakeholder — in every country we operate."
-      />
+      <div className="relative">
+        <PageHero
+          title={hero?.title || 'Sustainable Growth'}
+          subtitle={hero?.subtitle || 'Building business practices that protect the environment and support long-term value for every stakeholder — in every country we operate.'}
+          centered
+          ghostText=""
+        />
+        <div className="absolute inset-0 container-x px-5 md:px-12 flex items-start justify-between pt-5 md:pt-6 pointer-events-none">
+          <Link
+            to="/#community"
+            className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
+          >
+            <ArrowLeft size={13} /> Our Community
+          </Link>
+          <Link
+            to="/community/blog"
+            className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
+          >
+            Blog <ArrowRight size={13} />
+          </Link>
+        </div>
+      </div>
 
       <Section id="sustainable-growth" className="relative overflow-hidden bg-brand-50">
       <div className="container-x">
 
         <div className="mb-16">
-          <CircleInfographic
-            eyebrow="Our Pillars"
-            titleLine1="Our Range of"
-            titleLine2="Sustainable Practices"
+          <SustainabilityPillars
+            eyebrow="Sustainability"
+            titleLine1="Building a"
+            titleLine2="Greener Future"
             items={pillars}
           />
         </div>

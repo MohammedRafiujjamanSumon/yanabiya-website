@@ -84,7 +84,7 @@ export default function MobilePreview() {
 
           {/* Footer info */}
           <div className="absolute bottom-4 inset-x-0 text-center text-xs text-brand-deep/60">
-            {w} × {h} px · Tap outside or × to close
+            {w} × {h} px, Tap outside or × to close
           </div>
 
           {/* Click-outside dismiss */}

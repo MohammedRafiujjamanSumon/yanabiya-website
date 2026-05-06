@@ -57,7 +57,8 @@ export default function Contact() {
         {/* OFFICE BANNERS — compact ribbons, one per country.
          *  Click a banner to jump to the dedicated /contact landing page
          *  with the network diagram + full per-office details. */}
-        <div className="mt-8 md:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
+        <div className="mt-8 grid grid-cols-4 gap-6 min-w-[560px]">
           {offices.map((o) => (
             <OfficeBanner
               key={o.code}
@@ -70,6 +71,7 @@ export default function Contact() {
               emails={o.emails}
             />
           ))}
+        </div>
         </div>
 
         {/* CONTACT FORM */}
@@ -90,7 +92,7 @@ export default function Contact() {
               setSubmitted(true)
             }}
           >
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <input required placeholder="Your Name" className={ipt} />
               <input required type="email" placeholder="Email Address" className={ipt} />
             </div>

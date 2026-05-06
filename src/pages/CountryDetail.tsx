@@ -310,6 +310,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
           </>
         }
         subtitle={`${c.role} — ${c.address}`}
+        ghostText=""
       />
 
       {/* Ambient glow blobs ,coloured from the country's flag palette */}

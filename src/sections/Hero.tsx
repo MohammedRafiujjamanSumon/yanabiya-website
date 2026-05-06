@@ -12,13 +12,13 @@ import { assets } from '../data/assets'
  * Hero — auto-cycling 7-scene cinematic hero
  *
  * Mirrors the corporate-video brief:
- *   01 OPENING       · "Connecting Businesses Across Borders"
- *   02 ABOUT         · "A dynamic group of companies …"
- *   03 SERVICES      · "Complete business solutions …"
- *   04 PARTNERS      · "Trusted by partners worldwide …"
- *   05 COMMUNITY     · "Growth beyond business …"
- *   06 LEADERSHIP    · "Visionary leadership …"
- *   07 CLOSING       · "Building the Future, Together."
+ *   01 OPENING      , "Connecting Businesses Across Borders"
+ *   02 ABOUT        , "A dynamic group of companies …"
+ *   03 SERVICES     , "Complete business solutions …"
+ *   04 PARTNERS     , "Trusted by partners worldwide …"
+ *   05 COMMUNITY    , "Growth beyond business …"
+ *   06 LEADERSHIP   , "Visionary leadership …"
+ *   07 CLOSING      , "Building the Future, Together."
  *
  * Each scene auto-advances every ~7.5s. Hovering the hero pauses the
  * cycle (matching the chat-dock UX). A tiny play/pause toggle and
@@ -421,7 +421,7 @@ function SceneClosing() {
 const SCENES: Scene[] = [
   {
     id: 'opening',
-    eyebrow: 'Scene 01 · Opening',
+    eyebrow: 'Scene 01, Opening',
     headline: 'Connecting Businesses Across Borders',
     body: 'A world driven by connection, innovation, and opportunity.',
     photo: 'https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?auto=format&fit=crop&w=1600&q=80',
@@ -431,7 +431,7 @@ const SCENES: Scene[] = [
   },
   {
     id: 'about',
-    eyebrow: 'Scene 02 · The Group',
+    eyebrow: 'Scene 02, The Group',
     headline: 'A dynamic group of companies.',
     body: 'Building an integrated global business ecosystem across multiple industries.',
     photo: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80',
@@ -441,9 +441,9 @@ const SCENES: Scene[] = [
   },
   {
     id: 'services',
-    eyebrow: 'Scene 03 · Services',
+    eyebrow: 'Scene 03, Services',
     headline: 'Complete business solutions.',
-    body: 'International trade · Strategic consulting · Logistics · Investment.',
+    body: 'International trade, Strategic consulting, Logistics, Investment.',
     photo: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80',
     photoPos: 'center',
     Visual: SceneServices,
@@ -451,7 +451,7 @@ const SCENES: Scene[] = [
   },
   {
     id: 'partners',
-    eyebrow: 'Scene 04 · Trusted Network',
+    eyebrow: 'Scene 04, Trusted Network',
     headline: 'Trusted by partners worldwide.',
     body: 'We collaborate with leading organisations to create long-term value.',
     photo: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80',
@@ -461,7 +461,7 @@ const SCENES: Scene[] = [
   },
   {
     id: 'community',
-    eyebrow: 'Scene 05 · Community',
+    eyebrow: 'Scene 05, Community',
     headline: 'Growth beyond business.',
     body: 'Empowering communities and creating sustainable impact.',
     photo: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80',
@@ -471,7 +471,7 @@ const SCENES: Scene[] = [
   },
   {
     id: 'leadership',
-    eyebrow: 'Scene 06 · Leadership',
+    eyebrow: 'Scene 06, Leadership',
     headline: 'Visionary leadership.',
     body: 'Turning ideas into global success stories.',
     photo: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80',
@@ -481,7 +481,7 @@ const SCENES: Scene[] = [
   },
   {
     id: 'closing',
-    eyebrow: 'Scene 07 · Closing',
+    eyebrow: 'Scene 07, Closing',
     headline: 'Yanabiya Group',
     body: 'Building the Future, Together.',
     photo: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&q=80',
@@ -532,8 +532,8 @@ export default function Hero() {
   const active = SCENES[scene]
 
   return (
-    <section id="home" className="relative scroll-mt-24">
-      <div className="relative w-full h-[78svh] min-h-[520px] overflow-hidden bg-brand-ink">
+    <section id="home" className="relative">
+      <div className="relative w-full h-[100svh] min-h-[520px] overflow-hidden">
 
         {/* ──────── Persistent: dark gradient background ──────── */}
         <div
@@ -639,7 +639,7 @@ export default function Hero() {
           </div>
 
           {/* CTAs */}
-          <div className="mt-7 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 items-center w-full sm:w-auto px-4 sm:px-0">
+          <div className="mt-7 flex flex-row flex-wrap gap-3 items-center justify-center">
             <a
               href="/yanabiya-profile.pdf"
               download

@@ -76,7 +76,8 @@ export default function Footer() {
         </div>
 
         {/* ── TOP BLOCK — Brand + Group + Corporate + HQ Contact ── */}
-        <div className="container-x py-6 md:py-8 relative grid gap-8 md:gap-10 md:grid-cols-12">
+        <div className="overflow-x-auto">
+        <div className="container-x py-8 relative grid gap-10 grid-cols-12 min-w-[720px]">
 
           {/* Brand + about + newsletter */}
           <div className="md:col-span-12 lg:col-span-4">
@@ -241,13 +242,14 @@ export default function Footer() {
             </div>
           </div>
         </div>
+        </div>
 
       </div>
 
       {/* BOTTOM GREEN STRIP */}
-      <div className="container-x py-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white">
-        <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start text-center md:text-left">
-          <span>© {year} Yanabiya Group · All rights reserved.</span>
+      <div className="container-x py-3 flex flex-row flex-wrap items-center justify-between gap-3 text-xs text-white">
+        <div className="flex items-center gap-2 flex-wrap justify-start text-left">
+          <span>© {year} Yanabiya Group, All rights reserved.</span>
         </div>
         <div className="flex items-center gap-5">
           <Link to="/about-us" className={linkClass}>Group Profile</Link>

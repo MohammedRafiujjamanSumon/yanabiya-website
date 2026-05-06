@@ -67,7 +67,8 @@ export default function NetworkSection() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
+        <div className="grid grid-cols-4 gap-6 min-w-[480px]">
           {stats.map((s) => (
             <div key={s.kKey} className="card-panel text-center relative overflow-hidden">
               <div className="absolute -top-4 -end-4 w-24 h-24 bg-brand-accent/5 rounded-full blur-xl" />
@@ -79,16 +80,19 @@ export default function NetworkSection() {
             </div>
           ))}
         </div>
+        </div>
 
         <div className="mt-16">
           <h3 className="font-serif text-2xl text-slate-900 mb-5">{t('network.memberships')}</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
+          <div className="grid grid-cols-3 gap-4 min-w-[480px]">
             {memberships.map((m) => (
               <div key={m} className="card-panel flex items-center gap-3">
                 <BadgeCheck className="text-brand-accent shrink-0" />
                 <span className="text-sm text-slate-800">{m}</span>
               </div>
             ))}
+          </div>
           </div>
         </div>
       </div>

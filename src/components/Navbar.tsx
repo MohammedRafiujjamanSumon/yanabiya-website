@@ -84,21 +84,15 @@ export default function Navbar() {
   const baseLinkCls = (isActive: boolean) =>
     `relative text-sm font-semibold whitespace-nowrap py-[6px] px-[18px] rounded-xl
      transition-all duration-200 ${
-      onHeroTop
-        ? isActive
-          ? 'bg-white/20 text-white'
-          : 'text-white hover:bg-white/20 hover:text-white'
-        : isActive
-          ? 'bg-brand-deep text-white'
-          : 'text-brand-deep hover:bg-brand-deep hover:text-white'
+      isActive
+        ? 'bg-brand-deep text-white'
+        : 'text-brand-deep hover:bg-brand-deep hover:text-white'
     }`
 
   return (
     <header
-      className={`left-0 right-0 z-40 transition-all duration-300
-                  ${onHeroTop
-                    ? 'absolute top-0 bg-gradient-to-b from-black/30 via-black/10 to-transparent'
-                    : 'sticky top-0 bg-transparent'}`}
+      className={`left-0 right-0 z-40 transition-all duration-300 bg-transparent
+                  ${onHeroTop ? 'absolute top-0' : 'sticky top-0'}`}
     >
       <div className="bg-transparent">
         <div className="container-x flex items-center gap-3 md:gap-4 px-2 md:px-4">
@@ -359,17 +353,17 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — Language switcher (desktop) */}
-        <div className={`shrink-0 ${onHeroTop ? 'text-white' : 'text-brand-accent'}`}>
+        <div className="shrink-0 text-brand-accent">
           <LanguageSwitcher />
         </div>
         </div>
 
         {/* MOBILE — language + hamburger */}
-        <div className={`flex lg:hidden items-center ms-auto gap-1 ${onHeroTop ? 'text-white' : 'text-brand-accent'}`}>
+        <div className="flex lg:hidden items-center ms-auto gap-1 text-brand-accent">
           <LanguageSwitcher />
           <button
             type="button"
-            className={`p-1 ${onHeroTop ? 'text-white' : 'text-brand-accent'}`}
+            className="p-1 text-brand-accent"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
           >

@@ -24,8 +24,9 @@ export default function Insights() {
           <p className="mt-4 max-w-2xl mx-auto text-sm md:text-base text-slate-600 leading-snug text-justify [text-align-last:center]">{t('insights.sub')}</p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
-          <article className="lg:col-span-2 card-panel relative overflow-hidden group">
+        <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
+        <div className="grid grid-cols-3 gap-6 min-w-[600px]">
+          <article className="col-span-2 card-panel relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/10 to-transparent" />
             <div className="relative">
               <div className="text-xs uppercase tracking-widest text-brand-accent mb-3">{feature.c}</div>
@@ -53,8 +54,10 @@ export default function Insights() {
             ))}
           </div>
         </div>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mt-6">
+        <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
+        <div className="grid grid-cols-3 gap-6 mt-6 min-w-[600px]">
           {rest.slice(2).map((p) => (
             <article key={p.t} className="card-panel">
               <div className="text-xs uppercase tracking-widest text-brand-accent mb-2">{p.c}</div>
@@ -66,6 +69,7 @@ export default function Insights() {
               </div>
             </article>
           ))}
+        </div>
         </div>
       </div>
     </Section>

@@ -47,7 +47,7 @@ export default function CSR() {
         <p className="text-center text-slate-600 max-w-2xl mx-auto mb-8">
           Building business practices that protect the environment and support long-term value for every stakeholder we serve.
         </p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+        <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0"><div className="grid grid-cols-4 gap-5 mb-14 min-w-[520px]">
           {sustainabilityItems.map((it) => (
             <div key={it.title} className="card-panel">
               <div className="w-12 h-12 rounded-lg bg-brand-accent/10 text-brand-accent grid place-items-center mb-4">
@@ -57,7 +57,7 @@ export default function CSR() {
               <p className="text-sm text-slate-600 leading-snug">{it.desc}</p>
             </div>
           ))}
-        </div>
+        </div></div>
 
         {/* Community Care */}
         <h3 id="community-care" className="text-center text-brand-accentDark uppercase tracking-[0.22em] text-sm md:text-base font-bold mb-6 scroll-mt-28">
@@ -66,7 +66,8 @@ export default function CSR() {
         <p className="text-center text-slate-600 max-w-2xl mx-auto mb-8">
           Structured charitable donations and welfare programmes focused on transparency, dignity, and lasting impact.
         </p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
+        <div className="grid grid-cols-4 gap-5 min-w-[520px]">
           {communityItems.map((it) => (
             <div key={it.k} className="card-panel">
               <div className="w-12 h-12 rounded-lg bg-brand-accent/10 text-brand-accent grid place-items-center mb-4">
@@ -76,6 +77,7 @@ export default function CSR() {
               <p className="text-sm text-slate-600 leading-snug">{t(`csr.items.${it.k}.d`)}</p>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </Section>

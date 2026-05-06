@@ -25,7 +25,8 @@ export default function Strategy() {
         </div>
 
         {/* Numbered timeline pillars */}
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
+        <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
+        <div className="grid grid-cols-2 gap-6 mb-16 min-w-[480px]">
           {pillarKeys.map((k, i) => (
             <div key={k} className="card-panel relative pt-10">
               <div className="absolute -top-4 start-6 w-12 h-12 rounded-lg bg-brand-accent text-white grid place-items-center font-serif text-xl font-bold">
@@ -36,9 +37,11 @@ export default function Strategy() {
             </div>
           ))}
         </div>
+        </div>
 
         <h3 className="font-serif text-2xl text-slate-900 mb-5">{t('strategy.focus')}</h3>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
+        <div className="grid grid-cols-3 gap-5 min-w-[480px]">
           {focus.map((f) => (
             <div key={f.t} className="card-panel">
               <div className="w-12 h-12 rounded-lg bg-brand-accent/10 text-brand-accent grid place-items-center mb-4">
@@ -48,6 +51,7 @@ export default function Strategy() {
               <p className="text-sm text-slate-600">{f.d}</p>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </Section>

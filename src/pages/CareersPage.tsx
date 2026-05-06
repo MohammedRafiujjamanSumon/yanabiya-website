@@ -1,16 +1,38 @@
 import { useEffect } from 'react'
-import { MapPin, Mail } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { MapPin, Mail, ArrowLeft } from 'lucide-react'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
-import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
+import CareersReasons from '../components/CareersReasons'
+import { type CircleItem } from '../components/CircleInfographic'
 import { countries } from '../data/countries'
 import { useSection } from '../hooks/useSection'
 
 const reasons: CircleItem[] = [
-  { label: 'Global Exposure',     description: 'Work across four countries and dozens of industries.',          bg: 'bg-emerald-500' },
-  { label: 'Modern Stack',        description: 'Cloud, AI, security and full-stack engineering.',                bg: 'bg-sky-500' },
-  { label: 'Career Growth',       description: 'Flexible, rewarding paths with real ownership.',                 bg: 'bg-amber-500' },
-  { label: 'Performance Culture', description: 'Teamwork-first with recognition for individual impact.',         bg: 'bg-rose-500' },
+  {
+    label: 'Global Exposure',
+    description: 'Work across four countries and dozens of industries.',
+    bg: 'bg-emerald-500',
+    image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Modern Stack',
+    description: 'Cloud, AI, security and full-stack engineering.',
+    bg: 'bg-sky-500',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Career Growth',
+    description: 'Flexible, rewarding paths with real ownership.',
+    bg: 'bg-amber-500',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Performance Culture',
+    description: 'Teamwork-first with recognition for individual impact.',
+    bg: 'bg-rose-500',
+    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80',
+  },
 ]
 
 const countryRoles: Record<string, string[]> = {
@@ -49,20 +71,31 @@ export default function CareersPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow={hero?.eyebrow || 'Our Community'}
-        title={hero?.title || 'Careers'}
-        subtitle={hero?.subtitle || 'Join a global team across Oman, the United Kingdom, Bangladesh and the USA — and help shape the future of trade, technology and community.'}
-      />
+      <div className="relative">
+        <PageHero
+          title={hero?.title || 'Career With Us'}
+          subtitle={hero?.subtitle || 'Join a global team across Oman, the United Kingdom, Bangladesh and the USA — and help shape the future of trade, technology and community.'}
+          centered
+          ghostText=""
+        />
+        <div className="absolute inset-0 container-x px-5 md:px-12 flex items-start justify-start pt-5 md:pt-6 pointer-events-none">
+          <Link
+            to="/community/testimonials"
+            className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
+          >
+            <ArrowLeft size={13} /> Testimonials
+          </Link>
+        </div>
+      </div>
 
       <Section id="careers" className="relative overflow-hidden bg-brand-50">
       <div className="container-x">
 
         <div className="mb-16">
-          <CircleInfographic
+          <CareersReasons
             eyebrow="Why Yanabiya"
-            titleLine1="Our Range of"
-            titleLine2="Career Opportunities"
+            titleLine1="Grow Your"
+            titleLine2="Career With Us"
             items={reasons}
           />
         </div>

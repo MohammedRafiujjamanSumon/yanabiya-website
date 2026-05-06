@@ -200,7 +200,7 @@ function CountryCard({
         </p>
 
         <div className="mt-5 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] font-bold">
-          <span className="text-slate-500">{data.city} · {data.name}</span>
+          <span className="text-slate-500">{data.city}, {data.name}</span>
           <span className="text-brand-accentDark group-hover:text-brand-deep transition-colors inline-flex items-center gap-1">
             View Page <ArrowRight size={11} />
           </span>
@@ -338,10 +338,10 @@ function CountryPreviewPanel({
             <div className="mt-8 grid grid-cols-1 gap-3 max-w-md mx-auto">
               <FactRow icon={Building2} label="Parent Company" value={data.parentCompany} />
               {data.phones.length > 0 && (
-                <FactRow icon={Phone} label="Phone" value={data.phones.join(' · ')} />
+                <FactRow icon={Phone} label="Phone" value={data.phones.join(', ')} />
               )}
               {data.mobile && <FactRow icon={Phone} label="Mobile" value={data.mobile} />}
-              <FactRow icon={Mail} label="Email" value={data.emails.join(' · ')} />
+              <FactRow icon={Mail} label="Email" value={data.emails.join(', ')} />
               <FactRow icon={Globe2} label="Office Hours" value={data.hours} />
             </div>
           </Reveal>
@@ -421,6 +421,8 @@ export default function ContactGlobal() {
         eyebrow="Global Contact Network"
         title="Contact Yanabiya Group"
         subtitle="Choose any country office below to preview its address, phone, email, and office hours. Open the page for full details."
+        centered
+        ghostText=""
       />
 
       {/* GLOBAL NETWORK MAP — 4 branches as nodes on a world-shape with

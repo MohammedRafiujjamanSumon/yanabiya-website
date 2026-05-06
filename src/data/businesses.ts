@@ -1294,10 +1294,10 @@ export const businesses: Business[] = [
   {
     slug: 'yanabiya-commerce',
     icon: ShoppingCart,
-    title: 'Yanabiya Commerce',
+    title: 'Yanabiya e-Commerce',
     body: 'Yanabiya\'s own e-commerce platform connecting buyers and sellers across Oman, UK, Bangladesh, and the USA.',
     details:
-      'Yanabiya Commerce is our proprietary e-commerce vertical delivering end-to-end online retail, multi-platform marketplace management, and digital trade solutions. We operate our own online stores across multiple countries, offering products ranging from garments and accessories to IT hardware and everyday essentials. Our platform handles everything from product listing and payment processing to order fulfilment and after-sales support.',
+      'Yanabiya e-Commerce is our proprietary e-commerce vertical delivering end-to-end online retail, multi-platform marketplace management, and digital trade solutions. We operate our own online stores across multiple countries, offering products ranging from garments and accessories to IT hardware and everyday essentials. Our platform handles everything from product listing and payment processing to order fulfilment and after-sales support.',
     features: [
       'Yanabiya-owned online retail storefronts',
       'Multi-platform selling (website, app, marketplace)',
@@ -1313,7 +1313,7 @@ export const businesses: Business[] = [
     footer: '🛒 Yanabiya\'s own digital storefront — connecting buyers and sellers across four countries.',
     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
     videoUrl: 'https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4',
-    subServicesHeading: 'Explore Yanabiya Commerce Services',
+    subServicesHeading: 'Explore Yanabiya e-Commerce Services',
     countries: [
       { code: 'OM', note: 'Primary storefront & fulfilment hub in Muscat.' },
       { code: 'GB', note: 'UK online retail & marketplace operations.' },
@@ -1388,7 +1388,7 @@ export const businesses: Business[] = [
         slug: 'digital-payment-solutions',
         icon: CreditCard,
         title: 'Digital Payment Solutions',
-        body: 'Secure multi-currency payment gateways, digital wallets, and cross-border payment processing for all Yanabiya Commerce transactions.',
+        body: 'Secure multi-currency payment gateways, digital wallets, and cross-border payment processing for all Yanabiya e-Commerce transactions.',
         image: 'https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=800&q=80',
         features: [
           'Multi-currency payment gateway integration',

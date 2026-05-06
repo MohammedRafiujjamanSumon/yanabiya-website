@@ -119,7 +119,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Communications & Telecommunications',       icon: Megaphone, tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
       { label: 'Trading & International Logistics',         icon: Boxes,     tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
       { label: 'Construction & Civil Infrastructure Works', icon: Building2,    tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Yanabiya Commerce',                         icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
+      { label: 'Yanabiya e-Commerce',                         icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
       { label: 'Yanabiya Digital Platform',                 icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
     ],
     // Activities aggregated across the entire group of partner
@@ -216,7 +216,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'IT, Software & Cyber Security',         icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
       { label: 'Hospitality, Cafés & Catering',         icon: Megaphone, tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management & Facilities',        icon: Briefcase,    tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Yanabiya Commerce',                    icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
+      { label: 'Yanabiya e-Commerce',                    icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
       { label: 'Yanabiya Digital Platform',            icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
     ],
     licensedActivities: [
@@ -321,7 +321,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Cross-Border Trade & Brokerage',        icon: Handshake, tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'European Market Entry Advisory',        icon: Globe2,    tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office, Compliance & Admin Services',   icon: Briefcase,    tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Yanabiya Commerce',                    icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
+      { label: 'Yanabiya e-Commerce',                    icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
       { label: 'Yanabiya Digital Platform',            icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
     ],
     licensedActivities: [
@@ -406,7 +406,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Strategic & Boardroom Consulting',  icon: Briefcase, tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
       { label: 'Workforce Mobility (US-bound)',     icon: Plane,     tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
       { label: 'Cross-Border Trade Representation', icon: Boxes,        tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Yanabiya Commerce',                icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
+      { label: 'Yanabiya e-Commerce',                icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
       { label: 'Yanabiya Digital Platform',        icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
     ],
     licensedActivities: [
@@ -488,6 +488,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
         }
         subtitle={ops.intro}
         centered
+        ghostText=""
       />
 
       {/* SECTION 2 — About Our Operation */}
@@ -562,7 +563,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
       {/* SECTION 6 — Business Domains */}
       <SectionFrame eyebrow="Business Domains" title="The verticals we operate in.">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
-          {/* Yanabiya Commerce */}
+          {/* Yanabiya e-Commerce */}
           <Reveal delay={0}>
             <Link
               to="/business/yanabiya-commerce"
@@ -573,7 +574,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
               <div className="relative h-44 overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
-                  alt="Yanabiya Commerce"
+                  alt="Yanabiya e-Commerce"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 via-brand-deep/30 to-transparent" />
@@ -585,7 +586,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
               <div className="p-4 bg-white flex items-center justify-between gap-2">
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accentDark mb-0.5">New Division</p>
-                  <h4 className="font-semibold text-brand-deep text-sm leading-snug">Yanabiya Commerce</h4>
+                  <h4 className="font-semibold text-brand-deep text-sm leading-snug">Yanabiya e-Commerce</h4>
                   <p className="text-[11px] text-brand-deep/55 mt-0.5">Online retail, marketplace & fulfilment</p>
                 </div>
                 <ArrowRight size={16} className="shrink-0 text-brand-accentDark group-hover:translate-x-1 transition-transform" />

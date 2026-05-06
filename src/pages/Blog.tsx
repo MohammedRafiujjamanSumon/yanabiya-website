@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Calendar, ArrowUpRight } from 'lucide-react'
+import { Calendar, ArrowUpRight, ArrowLeft, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
 import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
@@ -7,11 +8,36 @@ import { countries } from '../data/countries'
 import { useSection } from '../hooks/useSection'
 
 const blogCategories: CircleItem[] = [
-  { label: 'Group Update', description: 'Major announcements and milestones from across the four Yanabiya regions.', bg: 'bg-emerald-500' },
-  { label: 'Insights',     description: 'Market analysis, sector outlooks and commentary from our regional leadership.',   bg: 'bg-sky-500' },
-  { label: 'People',       description: 'Team stories, hiring spotlights and culture pieces from every office.',           bg: 'bg-amber-500' },
-  { label: 'Technology',   description: 'Product, cloud, AI and security updates from our engineering teams.',             bg: 'bg-rose-500' },
-  { label: 'Community',    description: 'CSR, sustainability and outreach reports across all four regions.',               bg: 'bg-teal-700' },
+  {
+    label: 'Group Update',
+    description: 'Major announcements and milestones from across the four Yanabiya regions.',
+    bg: 'bg-emerald-500',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Insights',
+    description: 'Market analysis, sector outlooks and commentary from our regional leadership.',
+    bg: 'bg-sky-500',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'People',
+    description: 'Team stories, hiring spotlights and culture pieces from every office.',
+    bg: 'bg-amber-500',
+    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Technology',
+    description: 'Product, cloud, AI and security updates from our engineering teams.',
+    bg: 'bg-rose-500',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    label: 'Community',
+    description: 'CSR, sustainability and outreach reports across all four regions.',
+    bg: 'bg-teal-700',
+    image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=400&q=80',
+  },
 ]
 
 type CountryCode = 'OM' | 'GB' | 'BD' | 'US' | 'ALL'
@@ -63,20 +89,37 @@ export default function Blog() {
 
   return (
     <>
-      <PageHero
-        eyebrow={hero?.eyebrow || 'Our Community'}
-        title={hero?.title || 'Blog'}
-        subtitle={hero?.subtitle || 'Stories, insights and updates from Yanabiya Group teams across Oman, the United Kingdom, Bangladesh and the USA.'}
-      />
+      <div className="relative">
+        <PageHero
+          title={hero?.title || 'Blog'}
+          subtitle={hero?.subtitle || 'Stories & insights from Yanabiya Group teams worldwide.'}
+          centered
+          ghostText=""
+        />
+        <div className="absolute inset-0 container-x px-5 md:px-12 flex items-start justify-between pt-5 md:pt-6 pointer-events-none">
+          <Link
+            to="/community/sustainable-growth"
+            className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
+          >
+            <ArrowLeft size={13} /> Sustainable Growth
+          </Link>
+          <Link
+            to="/community/community-care"
+            className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
+          >
+            Community Care <ArrowRight size={13} />
+          </Link>
+        </div>
+      </div>
 
-      <Section id="blog" className="relative overflow-hidden bg-brand-50">
+      <Section id="blog" className="relative overflow-hidden bg-brand-50 !pt-4">
       <div className="container-x">
 
-        <div className="mb-16">
+        <div className="mb-8">
           <CircleInfographic
-            eyebrow="What we cover"
-            titleLine1="Our Range of"
-            titleLine2="Community Stories"
+            eyebrow="What We Write About"
+            titleLine1="Stories &"
+            titleLine2="Insights"
             items={blogCategories}
           />
         </div>

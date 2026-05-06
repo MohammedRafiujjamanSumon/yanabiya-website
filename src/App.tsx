@@ -9,9 +9,6 @@ import BusinessDetail from './pages/BusinessDetail'
 import SubServiceDetail from './pages/SubServiceDetail'
 import CountryDetail from './pages/CountryDetail'
 import CountryOperations from './pages/CountryOperations'
-import Management from './pages/Management'
-import Professionals from './pages/Professionals'
-import DepartmentHeads from './pages/DepartmentHeads'
 import Blog from './pages/Blog'
 import SustainableGrowth from './pages/SustainableGrowth'
 import CommunityCare from './pages/CommunityCare'
@@ -20,14 +17,10 @@ import AboutUs from './pages/AboutUs'
 import OurStory from './pages/OurStory'
 import OmanPresence from './pages/OmanPresence'
 import ContactGlobal from './pages/ContactGlobal'
-import ExecutionEngine from './pages/ExecutionEngine'
-import CountryManagement from './pages/CountryManagement'
-import Board from './pages/Board'
-import Executive from './pages/Executive'
-import CountriesOverview from './pages/CountriesOverview'
-import DistributionDetail from './pages/DistributionDetail'
-import CommunityOverview from './pages/CommunityOverview'
+import PersonPage from './pages/PersonPage'
+import CeoPage from './pages/CeoPage'
 import Testimonials from './pages/Testimonials'
+import Donation from './pages/Donation'
 
 // ── Admin Panel ──────────────────────────────────────────────────────────────
 import { AuthProvider } from './admin/context/AuthContext'
@@ -115,21 +108,14 @@ export default function App() {
               <Route path="/bangladesh" element={<CountryOperations codeOverride="BD" />} />
               <Route path="/usa"        element={<CountryOperations codeOverride="US" />} />
               <Route path="/contact" element={<ContactGlobal />} />
-              <Route path="/leadership/board" element={<Board />} />
-              <Route path="/leadership/executive" element={<Executive />} />
-              <Route path="/leadership/countries" element={<CountriesOverview />} />
-              <Route path="/leadership/distributed/:slug" element={<DistributionDetail />} />
-              <Route path="/leadership/execution-engine" element={<ExecutionEngine />} />
-              <Route path="/leadership/country/:code" element={<CountryManagement />} />
-              <Route path="/leadership/management" element={<Management />} />
-              <Route path="/leadership/professionals" element={<Professionals />} />
-              <Route path="/leadership/departments" element={<DepartmentHeads />} />
-              <Route path="/community" element={<CommunityOverview />} />
+              <Route path="/people/ceo" element={<CeoPage />} />
+              <Route path="/people/:id" element={<PersonPage />} />
               <Route path="/community/blog" element={<Blog />} />
               <Route path="/community/sustainable-growth" element={<SustainableGrowth />} />
               <Route path="/community/community-care" element={<CommunityCare />} />
               <Route path="/community/careers" element={<CareersPage />} />
               <Route path="/community/testimonials" element={<Testimonials />} />
+              <Route path="/community/donation" element={<Donation />} />
               <Route path="/about-us" element={<AboutUs />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/about/our-story" element={<OurStory />} />
