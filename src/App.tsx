@@ -18,6 +18,8 @@ import OurStory from './pages/OurStory'
 import ContactGlobal from './pages/ContactGlobal'
 import PersonPage from './pages/PersonPage'
 import CeoPage from './pages/CeoPage'
+import ViceChairmanPage from './pages/ViceChairmanPage'
+import BoardPage from './pages/BoardPage'
 import Testimonials from './pages/Testimonials'
 import Donation from './pages/Donation'
 
@@ -107,6 +109,8 @@ export default function App() {
               <Route path="/usa"        element={<CountryOperations codeOverride="US" />} />
               <Route path="/contact" element={<ContactGlobal />} />
               <Route path="/people/ceo" element={<CeoPage />} />
+              <Route path="/people/vice-chairman" element={<ViceChairmanPage />} />
+              <Route path="/people/board" element={<BoardPage />} />
               <Route path="/people/:id" element={<PersonPage />} />
               <Route path="/community/blog" element={<Blog />} />
               <Route path="/community/sustainable-growth" element={<SustainableGrowth />} />

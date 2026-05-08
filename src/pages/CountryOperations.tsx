@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  ArrowLeft, ArrowRight, ArrowUpRight, Building2, FileBadge, Calendar, MapPin,
+  ArrowLeft, ArrowRight, ArrowUpRight, Building2, Calendar, MapPin,
+  Landmark, ScrollText, ShieldCheck, Mail,
   Cpu, Boxes, Briefcase, Ship, Plane, Handshake,
   TrendingUp, Sparkles, Lightbulb, Megaphone, Globe2,
   Heart, Send, Users, ShoppingCart, Monitor,
@@ -10,6 +11,7 @@ import {
 import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
 import { countries } from '../data/countries'
+import Partnerships from '../sections/Partnerships'
 
 function Reveal({
   children,
@@ -34,48 +36,31 @@ function Reveal({
   )
 }
 
-/* ────────────────────────────────────────────────────────────
- *  Country operations data, premium naming applied
- *  (Local Presence / About Our Operation / What We Offer /
- *   Our Network / Business Domains / Future Roadmap).
- * ────────────────────────────────────────────────────────── */
-
 type CountryOps = {
-  /** Section 1, Country Overview */
   intro: string
-  /** Section 2, Who We Are */
   branchIntro: string
   parentCompany: string
   mission: string
   vision?: string
-  /** Section 3, Company Information */
   established: string
   registration: { label: string; value: string }
   legalEntity: string
   license?: { name: string; authority: string }
   address: string
   postCode?: string
-  /** Section 4, Our Services / What We Offer */
   services: { label: string; desc: string; icon: LucideIcon; slug: string; image: string; href?: string }[]
-  /** Section 5, Our Network */
   strategicPartners: PartnerItem[]
   operationalPartners: PartnerItem[]
-  /** Section 6, Business Domains (combined with licensed activities) */
   categories: { label: string; icon: LucideIcon; tone: string; image: string; href?: string; to?: string; badge?: string; sic?: string; desc?: string }[]
-  /** Section 7, Licensed Activities */
   licensedActivities: string[]
-  /** Section 8, Current Operations */
   currentProjects: { title: string; body: string; image?: string }[]
   activeSectors: string[]
-  /** Section 9, Future Roadmap */
   futurePlans: { title: string; body: string; icon: LucideIcon; image?: string }[]
 }
 
 type PartnerItem = {
   name: string
-  /** Direct logo URL. If absent, the renderer tries Clearbit using `domain`. */
   logo?: string
-  /** Fallback domain used to fetch the logo via Clearbit (logo.clearbit.com). */
   domain?: string
 }
 
@@ -101,29 +86,22 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Clothing & Accessories',               desc: 'Private-label apparel sourcing, manufacturing, and retail supply.',    icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane, slug: 'manpower', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane,     slug: 'manpower',         image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
     ],
-    // Group of partner companies operating in Bangladesh under the
-    // Yanabiya umbrella. Strategic = long-term partners that anchor
-    // core categories (internet, cloud, aviation); Operational =
-    // service partners delivering connectivity, comms and tech.
     strategicPartners: [
       { name: 'Plexus Cloud', logo: '/logos/partners-co/plexuscloud.png' },
     ],
     operationalPartners: [],
     categories: [
-      { label: 'Internet Services & Connectivity',          icon: Globe2,    tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Cloud Computing & Technology Services',     icon: Cpu,       tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Aviation & Workforce Mobility',             icon: Plane,     tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Communications & Telecommunications',       icon: Megaphone, tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Trading & International Logistics',         icon: Boxes,     tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Internet Services & Connectivity',          icon: Globe2,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Cloud Computing & Technology Services',     icon: Cpu,          tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Aviation & Workforce Mobility',             icon: Plane,        tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Communications & Telecommunications',       icon: Megaphone,    tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Trading & International Logistics',         icon: Boxes,        tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
       { label: 'Construction & Civil Infrastructure Works', icon: Building2,    tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Yanabiya e-Commerce',                         icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
+      { label: 'Yanabiya e-Commerce',                       icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
       { label: 'Yanabiya Digital Platform',                 icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
     ],
-    // Activities aggregated across the entire group of partner
-    // companies in Bangladesh, covers everything the umbrella runs
-    // under one trade licence.
     licensedActivities: [
       'Internet service provision (ISP) & last-mile connectivity',
       'WiFi network deployment & managed connectivity services',
@@ -142,10 +120,10 @@ const OPS: Record<string, CountryOps> = {
       'Wholesale & retail trade in technology products',
     ],
     currentProjects: [
-      { title: 'Regional Delivery Centre',     body: '24×7 engineering & QA support for clients across the four-country group.',  image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Apparel Sourcing Network',     body: 'Active relationships with vetted RMG factories supplying private-label clients.', image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Workforce Mobility Pipeline',  body: 'Skilled & semi-skilled placement into the Gulf, UK and US under group employer.', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Government IT Engagements',    body: 'Public-sector digitalisation pilots in coordination with local partners.',    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Regional Delivery Centre',    body: '24×7 engineering & QA support for clients across the four-country group.',           image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Apparel Sourcing Network',    body: 'Active relationships with vetted RMG factories supplying private-label clients.',     image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Workforce Mobility Pipeline', body: 'Skilled & semi-skilled placement into the Gulf, UK and US under group employer.',     image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Government IT Engagements',   body: 'Public-sector digitalisation pilots in coordination with local partners.',           image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
     ],
     activeSectors: [
       'Information Technology, Software Development & Cloud Services',
@@ -156,10 +134,10 @@ const OPS: Record<string, CountryOps> = {
       'Office Administration & Business Support Services',
     ],
     futurePlans: [
-      { title: 'Green Data Centre',             body: 'Investment in a sustainable Tier-III data-centre facility serving regional cloud workloads.', icon: Sparkles,    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Global Digital Infrastructure', body: 'Expand the Dhaka delivery centre into a 500+ engineer hub serving all four group countries.', icon: TrendingUp,  image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Innovation-Driven Services',    body: 'Productised AI, security & analytics offerings exported under the Yanabiya brand.',           icon: Lightbulb,   image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
-      { title: 'New Country Entry: KSA',         body: 'Saudi Arabia entity in 2027 to extend Gulf-wide trade and manpower coverage.',                  icon: Globe2,      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Green Data Centre',             body: 'Investment in a sustainable Tier-III data-centre facility serving regional cloud workloads.', icon: Sparkles,   image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Global Digital Infrastructure', body: 'Expand the Dhaka delivery centre into a 500+ engineer hub serving all four group countries.', icon: TrendingUp, image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Innovation-Driven Services',    body: 'Productised AI, security & analytics offerings exported under the Yanabiya brand.',           icon: Lightbulb,  image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
+      { title: 'New Country Entry: KSA',        body: 'Saudi Arabia entity in 2027 to extend Gulf-wide trade and manpower coverage.',                icon: Globe2,     image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
     ],
   },
   OM: {
@@ -184,10 +162,8 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Clothing & Accessories',               desc: 'Wholesale clothing, retail textiles, and accessories trade.',          icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane, slug: 'manpower', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
     ],
-    // Oman group of partner companies, the seven Yanabiya entities
-    // operating across Muscat under the SPC umbrella.
     strategicPartners: [
       { name: 'Yanabiya Muscat United Trade' },
       { name: 'Yanabiya Muscat for Comprehensive Projects' },
@@ -197,7 +173,6 @@ const OPS: Record<string, CountryOps> = {
       { name: 'Yanabiya Muscat Al Mumyazat' },
       { name: 'Yanabiya Al Rustaq Contracting' },
     ],
-    // Global tech partners powering Oman delivery.
     operationalPartners: [
       { name: 'Amazon Web Services', logo: '/logos/partners-co/aws.svg' },
       { name: 'Microsoft',           logo: '/logos/partners-co/microsoft.svg' },
@@ -209,14 +184,31 @@ const OPS: Record<string, CountryOps> = {
       { name: 'HP',                  logo: '/logos/partners-co/hp.svg' },
     ],
     categories: [
-      { label: 'Construction & Infrastructure',         icon: Building2, tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Trading, Wholesale & Retail',           icon: Boxes,     tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Logistics, Warehousing & Shipping',     icon: Ship,      tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1494412574745-e1e7c8faa40d?auto=format&fit=crop&w=800&q=80' },
-      { label: 'IT, Software & Cyber Security',         icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Hospitality, Cafés & Catering',         icon: Megaphone, tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Office Management & Facilities',        icon: Briefcase,    tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Yanabiya e-Commerce',                    icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
-      { label: 'Yanabiya Digital Platform',            icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
+      { label: 'Management & Corporate Admin',           icon: Building2,    tone: 'from-slate-500/40 to-slate-700/40',    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Building & Civil Construction',          icon: Building2,    tone: 'from-rose-500/40 to-red-700/40',       image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Utilities & Telecom Networks',           icon: Cpu,          tone: 'from-blue-500/40 to-blue-700/40',      image: 'https://images.unsplash.com/photo-1570126618953-d437176e8c79?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Plastering, Painting & Decorating',     icon: Sparkles,     tone: 'from-yellow-500/40 to-yellow-700/40',  image: 'https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Specialised Cleaning',                   icon: Sparkles,     tone: 'from-cyan-500/40 to-cyan-700/40',      image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Construction Equipment Rental',          icon: Building2,    tone: 'from-orange-500/40 to-orange-700/40',  image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Construction Materials Retail',          icon: Boxes,        tone: 'from-amber-500/40 to-amber-700/40',    image: 'https://images.unsplash.com/photo-1504817343863-5092a923803e?auto=format&fit=crop&w=400&q=70' },
+      { label: 'International Maritime Transport',       icon: Ship,         tone: 'from-cyan-500/40 to-sky-700/40',       image: 'https://images.unsplash.com/photo-1494412574745-e1e7c8faa40d?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Cold & Frozen Warehousing',              icon: Boxes,        tone: 'from-sky-400/40 to-blue-700/40',       image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Loading & Unloading Goods',              icon: Boxes,        tone: 'from-violet-500/40 to-indigo-700/40',  image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Packaging & Storage Operations',         icon: Boxes,        tone: 'from-amber-400/40 to-yellow-700/40',   image: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Export & Import Offices',                icon: Plane,        tone: 'from-green-500/40 to-emerald-700/40',  image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Commission Agents & Brokerage',          icon: Handshake,    tone: 'from-purple-500/40 to-purple-700/40',  image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Wholesale Clothing & Accessories',       icon: Briefcase,    tone: 'from-pink-500/40 to-rose-700/40',      image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Textiles & Fabrics Retail',              icon: Briefcase,    tone: 'from-fuchsia-500/40 to-pink-700/40',   image: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Software & Computer Accessories Retail', icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Computer & Phone Repair',                icon: Cpu,          tone: 'from-red-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Software & Network Installation',        icon: Cpu,          tone: 'from-teal-500/40 to-teal-700/40',      image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Cloud Computing & Hosting',              icon: Monitor,      tone: 'from-sky-500/40 to-blue-700/40',       image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Systems Analysis & IT Consulting',       icon: Cpu,          tone: 'from-emerald-500/40 to-green-700/40',  image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Software Maintenance & Web Design',      icon: Monitor,      tone: 'from-indigo-500/40 to-violet-700/40',  image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=400&q=70' },
+      { label: 'IT & Cyber-Security Consulting',         icon: Cpu,          tone: 'from-red-400/40 to-rose-700/40',       image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Data Entry & Digital Operations',        icon: Monitor,      tone: 'from-slate-500/40 to-zinc-700/40',     image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Cafés & Beverage Services',              icon: Megaphone,    tone: 'from-amber-500/40 to-amber-700/40',    image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Catering & Food Services',               icon: Megaphone,    tone: 'from-orange-500/40 to-orange-700/40',  image: 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=400&q=70' },
     ],
     licensedActivities: [
       'Management offices and corporate administration',
@@ -246,10 +238,10 @@ const OPS: Record<string, CountryOps> = {
       'Catering activities and food service',
     ],
     currentProjects: [
-      { title: 'Group Headquarters Operations',  body: 'Coordinated administration across seven partner companies in Muscat.',                  image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Cloud & Software Engagements',   body: 'Active enterprise IT projects spanning AWS, Microsoft, Oracle and SAP stacks.',          image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Construction & Contracting',     body: 'Building, civil works and utility-network projects across the Sultanate.',                image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Trade & Wholesale Operations',   body: 'Active import / export pipelines for textiles, IT equipment and construction materials.', image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Group Headquarters Operations', body: 'Coordinated administration across seven partner companies in Muscat.',                  image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Cloud & Software Engagements',  body: 'Active enterprise IT projects spanning AWS, Microsoft, Oracle and SAP stacks.',          image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Construction & Contracting',    body: 'Building, civil works and utility-network projects across the Sultanate.',              image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Trade & Wholesale Operations',  body: 'Active import / export pipelines for textiles, IT equipment and construction materials.', image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
     ],
     activeSectors: [
       'Construction, Civil Works & Infrastructure',
@@ -261,10 +253,10 @@ const OPS: Record<string, CountryOps> = {
       'Hospitality, Cafés & Catering Operations',
     ],
     futurePlans: [
-      { title: 'Regional HQ Expansion',          body: 'Scale Muscat operations to coordinate Group activity across all four countries from Oman.',  icon: TrendingUp,  image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Cloud & AI Centre of Excellence', body: 'Build a Gulf-region centre of excellence delivering AI, security and analytics consulting.', icon: Sparkles,    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Sustainable Construction',       body: 'Adopt green building standards and lower-emission construction materials across new projects.', icon: Lightbulb,   image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Vision 2040 Alignment',          body: 'Active participation in Oman Vision 2040 initiatives across IT, trade and infrastructure.',     icon: Globe2,      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Regional HQ Expansion',           body: 'Scale Muscat operations to coordinate Group activity across all four countries from Oman.',  icon: TrendingUp, image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Cloud & AI Centre of Excellence', body: 'Build a Gulf-region centre of excellence delivering AI, security and analytics consulting.', icon: Sparkles,   image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Sustainable Construction',        body: 'Adopt green building standards and lower-emission construction materials across new projects.', icon: Lightbulb, image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Vision 2040 Alignment',           body: 'Active participation in Oman Vision 2040 initiatives across IT, trade and infrastructure.',    icon: Globe2,    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
     ],
   },
   GB: {
@@ -283,16 +275,13 @@ const OPS: Record<string, CountryOps> = {
     license: { name: 'Companies House Registration, Private Limited Company', authority: 'Companies House, United Kingdom' },
     address: '167-169 Great Portland Street, 5th Floor, London W1W 5PF, United Kingdom',
     services: [
-      { label: 'IT Consulting & Digital Solutions',      desc: 'UK-based IT consulting, software, cloud & AI — via yanabiyagibt.com.', icon: Cpu,       slug: 'it-software', href: 'https://yanabiyagibt.com', image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Clothing & Accessories',               desc: 'Wholesale clothing, retail textiles, and accessories trade.',          icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane, slug: 'manpower', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'IT Consulting & Digital Solutions',      desc: 'UK-based IT consulting, software, cloud & AI — via yanabiyagibt.com.', icon: Cpu,       slug: 'it-software',      href: 'https://yanabiyagibt.com', image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Trade & Supply Chain',           desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Clothing & Accessories',                desc: 'Wholesale clothing, retail textiles, and accessories trade.',          icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Agents & Brokerage Business',           desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Office Management Services',            desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Mobility & Workforce Services',  desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
     ],
-    // UK group of partner companies (real names from the existing
-    // global-presence dataset). Domain best-guesses fed to Clearbit
-    // with monogram fallback.
     strategicPartners: [
       { name: 'Tata Consultancy Services', logo: '/logos/partners-co/tcs.svg' },
       { name: 'Infosys',                   logo: '/logos/partners-co/infosys.svg' },
@@ -304,14 +293,14 @@ const OPS: Record<string, CountryOps> = {
       { name: 'Brain Station 23',          logo: '/logos/partners-co/brainstation.svg' },
     ],
     operationalPartners: [
-      { name: 'Arpatech',                logo: '/logos/partners-co/arpatech.svg' },
-      { name: 'DataSoft Systems',        logo: '/logos/partners-co/datasoft.svg' },
-      { name: 'REVE Systems',            logo: '/logos/partners-co/revesoft.svg' },
-      { name: 'Bestway Group',           logo: '/logos/partners-co/bestway.svg' },
-      { name: 'Taj Stores',              logo: '/logos/partners-co/tajstores.svg' },
-      { name: 'East End Foods',          logo: '/logos/partners-co/eastendfoods.svg' },
-      { name: 'Dishoom',                 logo: '/logos/partners-co/dishoom.svg' },
-      { name: 'Tayyabs',                 logo: '/logos/partners-co/tayyabs.svg' },
+      { name: 'Arpatech',         logo: '/logos/partners-co/arpatech.svg' },
+      { name: 'DataSoft Systems', logo: '/logos/partners-co/datasoft.svg' },
+      { name: 'REVE Systems',     logo: '/logos/partners-co/revesoft.svg' },
+      { name: 'Bestway Group',    logo: '/logos/partners-co/bestway.svg' },
+      { name: 'Taj Stores',       logo: '/logos/partners-co/tajstores.svg' },
+      { name: 'East End Foods',   logo: '/logos/partners-co/eastendfoods.svg' },
+      { name: 'Dishoom',          logo: '/logos/partners-co/dishoom.svg' },
+      { name: 'Tayyabs',          logo: '/logos/partners-co/tayyabs.svg' },
     ],
     categories: [
       { label: 'IT Consultancy & Digital Solutions', icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80', href: 'https://yanabiyagibt.com', badge: 'UK IT Portal', sic: 'SIC 62020', desc: 'Software development, web design & IT consultancy' },
@@ -325,10 +314,10 @@ const OPS: Record<string, CountryOps> = {
       'Renting and leasing of other machinery, equipment and tangible goods not elsewhere classified (SIC 77390)',
     ],
     currentProjects: [
-      { title: 'European Market-Entry Advisory',  body: 'Guiding Gulf-rooted enterprises into the UK & EU markets, from registration to compliance.',     image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80' },
-      { title: 'IT Delivery Into UK SMEs',         body: 'Software, cloud and AI engagements with UK financial-services and retail clients.',                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Wholesale & Retail Network',       body: 'Active relationships with UK supermarkets, cash-and-carry and ethnic-grocery distributors.',         image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Hospitality Partnerships',         body: 'Sourcing, supply and operational support for London restaurant groups.',                            image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
+      { title: 'European Market-Entry Advisory', body: 'Guiding Gulf-rooted enterprises into the UK & EU markets, from registration to compliance.',    image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80' },
+      { title: 'IT Delivery Into UK SMEs',       body: 'Software, cloud and AI engagements with UK financial-services and retail clients.',              image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Wholesale & Retail Network',     body: 'Active relationships with UK supermarkets, cash-and-carry and ethnic-grocery distributors.',     image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Hospitality Partnerships',       body: 'Sourcing, supply and operational support for London restaurant groups.',                         image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
     ],
     activeSectors: [
       'Information Technology & Software Engineering',
@@ -339,13 +328,12 @@ const OPS: Record<string, CountryOps> = {
       'Workforce Mobility & Student Placement',
     ],
     futurePlans: [
-      { title: 'Continental Europe Expansion',      body: 'Open representation in Frankfurt and Amsterdam to extend EU market coverage from London.',          icon: TrendingUp,  image: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=80' },
-      { title: 'UK Cloud & AI Practice',            body: 'Build a London-anchored cloud-and-AI practice serving financial-services and public-sector clients.', icon: Sparkles,    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
-      { title: 'ESG-Aligned Trade',                  body: 'Strengthen ethical-sourcing, carbon-reporting and supplier-code commitments across UK trade.',         icon: Lightbulb,   image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Hospitality Brand Investments',      body: 'Strategic investment in London restaurant groups bridging South-Asian and Middle-Eastern cuisine.',     icon: Globe2,      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Continental Europe Expansion',  body: 'Open representation in Frankfurt and Amsterdam to extend EU market coverage from London.',          icon: TrendingUp, image: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=80' },
+      { title: 'UK Cloud & AI Practice',        body: 'Build a London-anchored cloud-and-AI practice serving financial-services and public-sector clients.', icon: Sparkles,  image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
+      { title: 'ESG-Aligned Trade',             body: 'Strengthen ethical-sourcing, carbon-reporting and supplier-code commitments across UK trade.',       icon: Lightbulb, image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Hospitality Brand Investments', body: 'Strategic investment in London restaurant groups bridging South-Asian and Middle-Eastern cuisine.',   icon: Globe2,    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
     ],
   },
-
   US: {
     intro:
       'Yanabiya Gulf International US LLC is the Group\'s North America operations entity, anchored in Austin, Texas, with a partner network onboarding through 2026 to serve enterprise clients across the US market.',
@@ -366,34 +354,31 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Global Trade & Supply Chain',          desc: 'International sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border commercial agency, deals, and partnership matchmaking.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and administration.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane, slug: 'manpower', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Global Mobility & Workforce Services', desc: 'Workforce supply, student placement, visa, and aviation coordination.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
     ],
-    // US partner network is still onboarding, show the global tech
-    // partners that anchor early engagements as 'strategic' and a
-    // few US-leaning advisory partners as 'operational'.
     strategicPartners: [
-      { name: 'Amazon Web Services',  logo: '/logos/partners-co/aws.svg' },
-      { name: 'Microsoft',            logo: '/logos/partners-co/microsoft.svg' },
-      { name: 'Google Cloud',         logo: '/logos/partners/gc.png' },
-      { name: 'Oracle',               logo: '/logos/partners-co/oracle.svg' },
-      { name: 'NVIDIA',               logo: '/logos/partners-co/nvidia.svg' },
+      { name: 'Amazon Web Services', logo: '/logos/partners-co/aws.svg' },
+      { name: 'Microsoft',           logo: '/logos/partners-co/microsoft.svg' },
+      { name: 'Google Cloud',        logo: '/logos/partners/gc.png' },
+      { name: 'Oracle',              logo: '/logos/partners-co/oracle.svg' },
+      { name: 'NVIDIA',              logo: '/logos/partners-co/nvidia.svg' },
     ],
     operationalPartners: [
-      { name: 'GitHub',               logo: '/logos/partners-co/github_com.png' },
-      { name: 'Salesforce',           logo: '/logos/partners-co/salesforce.svg' },
-      { name: 'HubSpot',              logo: '/logos/partners-co/hubspot_com.png' },
-      { name: 'Atlassian',            logo: '/logos/partners-co/atlassian.svg' },
-      { name: 'Okta',                 logo: '/logos/partners-co/okta.svg' },
+      { name: 'GitHub',      logo: '/logos/partners-co/github_com.png' },
+      { name: 'Salesforce',  logo: '/logos/partners-co/salesforce.svg' },
+      { name: 'HubSpot',     logo: '/logos/partners-co/hubspot_com.png' },
+      { name: 'Atlassian',   logo: '/logos/partners-co/atlassian.svg' },
+      { name: 'Okta',        logo: '/logos/partners-co/okta.svg' },
     ],
     categories: [
-      { label: 'Cloud & AI Advisory',               icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Technology Partnership Network',    icon: Handshake, tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
-      { label: 'North American Market Entry',       icon: Globe2,    tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Strategic & Boardroom Consulting',  icon: Briefcase, tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Workforce Mobility (US-bound)',     icon: Plane,     tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Cloud & AI Advisory',               icon: Cpu,          tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Technology Partnership Network',    icon: Handshake,    tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
+      { label: 'North American Market Entry',       icon: Globe2,       tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Strategic & Boardroom Consulting',  icon: Briefcase,    tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Workforce Mobility (US-bound)',     icon: Plane,        tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
       { label: 'Cross-Border Trade Representation', icon: Boxes,        tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Yanabiya e-Commerce',                icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
-      { label: 'Yanabiya Digital Platform',        icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
+      { label: 'Yanabiya e-Commerce',               icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
+      { label: 'Yanabiya Digital Platform',         icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
     ],
     licensedActivities: [
       'Cloud computing, AI and frontier-technology consulting',
@@ -408,10 +393,10 @@ const OPS: Record<string, CountryOps> = {
       'Market research and US market-entry advisory',
     ],
     currentProjects: [
-      { title: 'Texas Operations Onboarding',     body: 'Standing up the Austin entity, partner contracts, and US banking/compliance setup.',           image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Cloud & AI Advisory Pilots',      body: 'Early pilot engagements with North-American enterprises around AWS, Azure and AI rollouts.',  image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Partner Network Build-Out',       body: 'Onboarding US-side technology, services and advisory partners for early-2026 launch.',         image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Strategic Account Programme',     body: 'Identifying anchor accounts across financial services, retail and government tech.',             image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Texas Operations Onboarding',  body: 'Standing up the Austin entity, partner contracts, and US banking/compliance setup.',          image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Cloud & AI Advisory Pilots',   body: 'Early pilot engagements with North-American enterprises around AWS, Azure and AI rollouts.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Partner Network Build-Out',    body: 'Onboarding US-side technology, services and advisory partners for early-2026 launch.',       image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Strategic Account Programme',  body: 'Identifying anchor accounts across financial services, retail and government tech.',          image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
     ],
     activeSectors: [
       'Cloud, AI & Frontier Technology Advisory',
@@ -422,14 +407,26 @@ const OPS: Record<string, CountryOps> = {
       'Partnership Network Development',
     ],
     futurePlans: [
-      { title: 'Full US Launch, 2026',           body: 'Public launch of the US LLC after partner network closes; first Austin-based engagement live.',  icon: TrendingUp,  image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80' },
-      { title: 'AI Centre of Excellence',         body: 'Stand up an Austin-anchored AI centre of excellence delivering frontier-tech engagements.',     icon: Sparkles,    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
-      { title: 'East-Coast Expansion',             body: 'Open New York representation in 2027 to anchor financial-services and corporate clients.',     icon: Globe2,      image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Investor & Advisory Programme',    body: 'Build a US investor-and-advisor circle around Yanabiya Group\'s global growth roadmap.',        icon: Lightbulb,   image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Full US Launch, 2026',        body: 'Public launch of the US LLC after partner network closes; first Austin-based engagement live.',  icon: TrendingUp, image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80' },
+      { title: 'AI Centre of Excellence',     body: 'Stand up an Austin-anchored AI centre of excellence delivering frontier-tech engagements.',     icon: Sparkles,   image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
+      { title: 'East-Coast Expansion',        body: 'Open New York representation in 2027 to anchor financial-services and corporate clients.',      icon: Globe2,     image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Investor & Advisory Programme', body: 'Build a US investor-and-advisor circle around Yanabiya Group\'s global growth roadmap.',      icon: Lightbulb,  image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
     ],
   },
 }
 
+/* ── Layout shared types ─────────────────────────────────────── */
+type NavItem = { code: string; label: string; to: string }
+type LayoutProps = {
+  country: { code: string; name: string; flag: string }
+  ops: CountryOps
+  prevNav: NavItem | null
+  nextNav: NavItem | null
+}
+
+/* ══════════════════════════════════════════════════════════════
+ *  Main export — dispatches to per-country layout
+ * ══════════════════════════════════════════════════════════════ */
 export default function CountryOperations({ codeOverride }: { codeOverride: string }) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
@@ -441,247 +438,596 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
 
   if (!country || !ops) {
     return (
-      <main className="relative bg-brand-50
-                       text-brand-deep overflow-hidden min-h-screen grid place-items-center px-6">
-        <Link to="/" className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors mb-6">Back to Home</Link>
+      <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen grid place-items-center px-6">
         <div className="text-center">
-          <div className="text-[11px] uppercase tracking-[0.32em] text-brand-accentDark mb-3">
-            Coming soon
-          </div>
-          <h1 className="font-serif text-3xl md:text-4xl text-brand-deep mb-3">
-            Operations page launching for this region
-          </h1>
+          <div className="text-[11px] uppercase tracking-[0.32em] text-brand-accentDark mb-3">Coming soon</div>
+          <h1 className="font-serif text-3xl md:text-4xl text-brand-deep mb-3">Operations page launching for this region</h1>
           <Link to="/contact" className="inline-flex items-center gap-2 mt-4 text-brand-accentDark hover:text-brand-deep">
-            Talk to us → <ArrowRight size={14} />
+            Talk to us <ArrowRight size={14} />
           </Link>
         </div>
       </main>
     )
   }
 
-  const NAV_ORDER: { code: string; label: string; to: string }[] = [
-    { code: 'OM',     label: 'Oman',            to: '/global-presence/om' },
-    { code: 'BD',     label: 'Bangladesh',      to: '/global-presence/bd' },
-    { code: 'GB',     label: 'United Kingdom',  to: '/global-presence/gb' },
-    { code: 'US',     label: 'USA',             to: '/global-presence/us' },
+  const NAV_ORDER: NavItem[] = [
+    { code: 'GLOBAL', label: 'Our Global Branches', to: '/#global' },
+    { code: 'OM',     label: 'Oman',                to: '/global-presence/om' },
+    { code: 'BD',     label: 'Bangladesh',           to: '/global-presence/bd' },
+    { code: 'GB',     label: 'United Kingdom',       to: '/global-presence/gb' },
+    { code: 'US',     label: 'USA',                  to: '/global-presence/us' },
   ]
   const navIdx  = NAV_ORDER.findIndex((n) => n.code === upper)
-  const prevNav = navIdx > 0             ? NAV_ORDER[navIdx - 1] : null
+  const prevNav = navIdx > 0                    ? NAV_ORDER[navIdx - 1] : null
   const nextNav = navIdx < NAV_ORDER.length - 1 ? NAV_ORDER[navIdx + 1] : null
+  const props: LayoutProps = { country, ops, prevNav, nextNav }
 
+  if (upper === 'OM') return <OmanPage {...props} />
+  if (upper === 'BD') return <BDPage  {...props} />
+  if (upper === 'US') return <USPage  {...props} />
+  return <GBPage {...props} />
+}
+
+/* ══════════════════════════════════════════════════════════════
+ *  GB (UK) — Reference design (current layout, clean)
+ * ══════════════════════════════════════════════════════════════ */
+function GBPage({ country, ops, prevNav, nextNav }: LayoutProps) {
   return (
-    <main className="relative bg-brand-50
-                     text-brand-deep overflow-hidden min-h-screen">
-
-      {/* SECTION 1, Country Overview / Local Presence */}
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <div className="relative">
         <PageHero
           eyebrow="Local Presence"
-          title={
-            <>
-              {country.flag} {country.name}
-            </>
-          }
+          title={<>{country.flag} {country.name}</>}
           subtitle={ops.intro}
           centered
           ghostText=""
         />
-        <div className="absolute inset-0 container-x px-5 md:px-12 flex items-start justify-between pt-5 md:pt-6 pointer-events-none">
-          {prevNav ? (
-            <Link
-              to={prevNav.to}
-              className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
-            >
-              <ArrowLeft size={13} /> {prevNav.label}
-            </Link>
-          ) : <span />}
-          {nextNav ? (
-            <Link
-              to={nextNav.to}
-              className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200"
-            >
-              {nextNav.label} <ArrowRight size={13} />
-            </Link>
-          ) : <span />}
-        </div>
+        <CountryNav prevNav={prevNav} nextNav={nextNav} />
       </div>
 
-      {/* SECTION 2, About Our Operation */}
-      <SectionFrame eyebrow="About Our Operation" title="Who we are on the ground." compact>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 [perspective:1400px]">
-          <Card3D delay={0}   title="Local Branch"  body={ops.branchIntro}   icon={Building2}
-            image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" />
-          <Card3D delay={120} title="Parent Group"  body={ops.parentCompany} icon={Globe2}
-            image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80" />
-          <Card3D delay={240} title="Our Mission"   body={ops.mission}       icon={Megaphone}
-            image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" />
-          <Card3D delay={360} title="Our Vision"    body={ops.vision ?? ops.mission} icon={Sparkles}
-            image="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" />
-        </div>
-      </SectionFrame>
+      {/* Stats strip */}
+      <div className="container-x py-5 md:py-7">
+        <Reveal>
+          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-brand-accent/30 border border-brand-accent/30 rounded-xl overflow-hidden bg-brand-50/60">
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-brand-accentDark leading-none">2023</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-brand-accentDark/70 font-semibold mt-1.5">Operational Since</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-brand-accentDark leading-none">{ops.services.length}+</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-brand-accentDark/70 font-semibold mt-1.5">Active Service Lines</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-brand-accentDark leading-none">{ops.licensedActivities.length}</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-brand-accentDark/70 font-semibold mt-1.5">Licensed Activities</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-brand-accentDark leading-none">{ops.strategicPartners.length}</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-brand-accentDark/70 font-semibold mt-1.5">Partner Companies</div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
 
-
-      {/* SECTION 3, Company Information.
-       *  Registration number intentionally omitted (kept on the
-       *  CountryOps record but not surfaced publicly). */}
       <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored.">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           <InfoRow label="Established"  value={ops.established} icon={Calendar} />
-          <InfoRow label="Legal Entity" value={ops.legalEntity} icon={Building2} />
-          {ops.license && (
-            <>
-              <InfoRow label="License Name"      value={ops.license.name}      icon={FileBadge} />
-              <InfoRow label="Issuing Authority" value={ops.license.authority} icon={Building2} />
-            </>
-          )}
+          <InfoRow label="Legal Entity" value={ops.legalEntity} icon={Landmark} />
+          {ops.license && <>
+            <InfoRow label="License Name"      value={ops.license.name}      icon={ScrollText} />
+            <InfoRow label="Issuing Authority" value={ops.license.authority} icon={ShieldCheck} />
+          </>}
           <InfoRow label="Head Office" value={ops.address} icon={MapPin} />
-          {ops.postCode && (
-            <InfoRow label="Postal Address" value={ops.postCode} icon={MapPin} />
-          )}
+          {ops.postCode && <InfoRow label="Postal Address" value={ops.postCode} icon={Mail} />}
         </div>
       </SectionFrame>
 
-      {/* SECTION 4, What We Offer.
-       *  3 cards per row from sm and up so each tile stays compact
-       *  even on tablet/mobile-landscape. */}
+      <SectionFrame eyebrow="Business Domains" title="Licensed verticals we operate in.">
+        <div className={`grid sm:grid-cols-2 gap-5 mx-auto ${ops.categories.length <= 2 ? 'max-w-2xl' : 'max-w-3xl'}`}>
+          {ops.categories.map((cat, i) => <DomainCard key={cat.label} cat={cat} index={i} />)}
+        </div>
+      </SectionFrame>
+
       <SectionFrame eyebrow="What We Offer" title="Services delivered locally, scaled globally.">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 max-w-5xl mx-auto [perspective:1400px]">
-          {ops.services.map((s, i) => (
-            <ServiceCard key={s.slug} service={s} index={i} />
-          ))}
+          {ops.services.map((s, i) => <ServiceCard key={s.slug} service={s} index={i} />)}
         </div>
       </SectionFrame>
 
-      {/* SECTION 5, Trusted Network CTA */}
-      <SectionFrame eyebrow="Our Network" title="Explore Our Global Trusted Network.">
-        <div className="flex justify-center">
-          <a
-            href="/#partnerships"
-            className="group inline-flex items-center gap-4 rounded-2xl
-                       bg-brand-deep text-white px-10 py-6
-                       shadow-[0_8px_32px_rgba(15,58,35,0.25)]
-                       hover:shadow-[0_16px_48px_rgba(15,58,35,0.35)]
-                       hover:-translate-y-1 transition-all duration-300"
-          >
-            <span className="text-lg font-semibold leading-tight">
-              View Our Trusted Partners &amp; Network
-            </span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              className="shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
-              <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
-            </svg>
-          </a>
-        </div>
-      </SectionFrame>
-
-
-      {/* SECTION 6, Business Domains — combined with licensed activities for GB */}
-      <SectionFrame
-        eyebrow="Business Domains"
-        title={upper === 'GB' ? 'Licensed verticals we operate in.' : 'The verticals we operate in.'}
-      >
-        <div className={`grid sm:grid-cols-2 gap-5 mx-auto ${ops.categories.length <= 2 ? 'max-w-2xl' : 'max-w-3xl'}`}>
-          {ops.categories.map((cat, i) => (
-            <DomainCard key={cat.label} cat={cat} index={i} />
-          ))}
-        </div>
-      </SectionFrame>
-
-      {/* SECTION 7, Licensed Activities — hidden for GB since SIC codes are on the cards */}
-      {upper !== 'GB' && (
-        <SectionFrame eyebrow="Approved Activities Under License" title="Government-approved scope of operations.">
-          <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm text-brand-deep/80">
-            {ops.licensedActivities.map((a, i) => (
-              <Reveal key={a} delay={i * 40}>
-                <li className="flex items-start gap-2.5">
-                  <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-amber-300 shrink-0" />
-                  <span>{a}</span>
-                </li>
-              </Reveal>
-            ))}
-          </ul>
-        </SectionFrame>
-      )}
-
-
-      {/* SECTION 9, Future Roadmap */}
       <SectionFrame eyebrow="Future Roadmap" title="Where we're heading next.">
         <div className={`grid gap-3 [perspective:1400px] ${ops.futurePlans.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}`}>
           {ops.futurePlans.map((p, i) => (
-            <Card3D
-              key={p.title}
-              title={p.title}
-              body={p.body}
-              icon={p.icon}
-              delay={i * 110}
-              accent
-              image={p.image}
-            />
+            <Card3D key={p.title} title={p.title} body={p.body} icon={p.icon} delay={i * 110} accent image={p.image} />
           ))}
         </div>
       </SectionFrame>
 
-      {/* SECTION 11, Become a Sponsor / Contributor */}
-      <SectionFrame eyebrow="Become a Sponsor / Contributor" title="Bring your ideas, capital or expertise.">
-        <div className="grid md:grid-cols-3 gap-4 md:gap-5 mb-7 [perspective:1400px]">
-          <Card3D title="Share Your Idea"  body="Submit a proposal. We'll review and respond within 5 business days." icon={Lightbulb} delay={0}
-            image="https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&w=800&q=80" />
-          <Card3D title="Invest With Us"   body="Take a position in our growth roadmap or specific country expansion." icon={TrendingUp} delay={110}
-            image="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" />
-          <Card3D title="Advisory Support" body="Lend strategic advice to our board across IT, trade or governance."  icon={Heart} delay={220}
-            image="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80" />
-        </div>
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                       bg-brand-accent text-brand-ink text-xs font-bold uppercase tracking-[0.22em]
-                       shadow-md hover:bg-brand-50 hover:shadow-lg hover:-translate-y-0.5
-                       transition-all duration-300"
-          >
-            Share Your Idea <Send size={14} />
-          </Link>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 rounded-full px-6 py-3
-                       border border-brand-deep/20 text-brand-deep text-xs font-bold uppercase tracking-[0.22em]
-                       bg-brand-50 shadow-sm
-                       hover:bg-brand-deep hover:text-white hover:-translate-y-0.5
-                       transition-all duration-300"
-          >
-            Become a Sponsor <ArrowUpRight size={14} />
-          </Link>
-        </div>
-      </SectionFrame>
-
+      <Partnerships />
+      <SponsorSection />
       <div className="h-8 md:h-12" />
     </main>
   )
 }
 
-/* ────────────────────────────────────────────────────────────
- *  Reusable bits
- * ────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════
+ *  OM (Oman) — Premium amber-gold desert theme
+ *  2×2 About grid · amber icon accents · 4-col domains
+ * ══════════════════════════════════════════════════════════════ */
+function OmanPage({ country, ops, prevNav, nextNav }: LayoutProps) {
+  return (
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
+
+      {/* ── Unified welcome hero ── */}
+      <div className="relative bg-brand-50 overflow-hidden">
+        {/* Ambient halos */}
+        <div aria-hidden className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-[640px] h-[420px] rounded-full bg-amber-300/25 blur-[130px]" />
+          <div className="absolute bottom-0 right-0 w-[320px] h-[320px] rounded-full bg-brand-accent/15 blur-[100px]" />
+        </div>
+
+        <div className="relative container-x px-5 pt-16 pb-10 md:pt-20 md:pb-12 text-center">
+          {/* Eyebrow */}
+          <Reveal>
+            <div className="inline-flex items-center gap-2.5 mb-5">
+              <span className="h-px w-7 bg-amber-600/40" />
+              <span className="text-[10px] uppercase tracking-[0.38em] text-amber-700 font-semibold">
+                Our Global Branches
+              </span>
+              <span className="h-px w-7 bg-amber-600/40" />
+            </div>
+          </Reveal>
+
+          {/* Main title */}
+          <Reveal delay={60}>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.1] tracking-tight text-brand-deep mb-3">
+              Welcome to Yanabiya Oman
+            </h1>
+            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-700/65 font-semibold mb-6">
+              {country.flag} Sultanate of Oman &middot; Group Headquarters &middot; Est. 2021
+            </p>
+          </Reveal>
+
+          {/* Intro text */}
+          <Reveal delay={120}>
+            <p className="max-w-2xl mx-auto text-brand-deep/65 text-sm md:text-base leading-relaxed mb-10">
+              {ops.intro}
+            </p>
+          </Reveal>
+
+          {/* Branch pills */}
+          <Reveal delay={200}>
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <span className="text-[9px] uppercase tracking-widest text-brand-deep/30 mr-1">Explore Branches</span>
+              {[
+                { flag: '🇧🇩', label: 'Bangladesh',     to: '/global-presence/bd' },
+                { flag: '🇬🇧', label: 'United Kingdom', to: '/global-presence/gb' },
+                { flag: '🇺🇸', label: 'United States',  to: '/global-presence/us' },
+              ].map(({ flag, label, to }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-brand-deep/12 bg-white/70 text-brand-deep text-[11px] font-semibold shadow-sm hover:border-amber-400 hover:bg-amber-50 hover:-translate-y-0.5 transition-all duration-200"
+                >
+                  {flag} {label}
+                </Link>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent" />
+      </div>
+
+      {/* Stats strip */}
+      <div className="container-x py-5 md:py-7">
+        <Reveal>
+          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-amber-200 border border-amber-200 rounded-xl overflow-hidden bg-amber-50/40">
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-amber-700 leading-none">2021</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-amber-600 font-semibold mt-1.5">Operational Since</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-amber-700 leading-none">{ops.services.length}+</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-amber-600 font-semibold mt-1.5">Active Service Lines</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-amber-700 leading-none">{ops.licensedActivities.length}</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-amber-600 font-semibold mt-1.5">Licensed Activities</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-amber-700 leading-none">{ops.strategicPartners.length}</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-amber-600 font-semibold mt-1.5">Partner Companies</div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+
+      <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored." eyebrowClass="text-amber-700">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          <InfoRow label="Established"  value={ops.established} icon={Calendar} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
+          <InfoRow label="Legal Entity" value={ops.legalEntity} icon={Landmark} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
+          {ops.license && <>
+            <InfoRow label="License Name"      value={ops.license.name}      icon={ScrollText} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
+            <InfoRow label="Issuing Authority" value={ops.license.authority} icon={ShieldCheck} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
+          </>}
+          <InfoRow label="Head Office" value={ops.address} icon={MapPin} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
+          {ops.postCode && <InfoRow label="Postal Address" value={ops.postCode} icon={Mail} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />}
+        </div>
+
+        {/* Partner company hierarchy */}
+        {ops.strategicPartners?.length > 0 && (
+          <div className="mt-10">
+
+            {/* Parent node */}
+            <div className="flex justify-center">
+              <div className="flex flex-col items-center gap-1.5 rounded-2xl bg-amber-50 border-2 border-amber-300
+                              px-6 py-3.5 shadow-lg shadow-amber-100/70 text-center">
+                <p className="text-[9px] uppercase tracking-[0.22em] text-amber-600 font-bold">
+                  Parent Company · Group Headquarters
+                </p>
+                <p className="text-sm font-semibold text-brand-deep leading-snug">{ops.legalEntity}</p>
+              </div>
+            </div>
+
+            {/* Vertical drop → horizontal bus → individual drops */}
+            <div className="flex justify-center">
+              <div className="w-px h-5 bg-amber-300/70" />
+            </div>
+            <div className="w-full h-px bg-amber-200" />
+
+            {/* Single row of flip cards */}
+            <div className="flex gap-1.5 mt-0">
+              {ops.strategicPartners.map((p, i) => (
+                <PartnerFlipCard key={p.name} name={p.name} colorIndex={i} />
+              ))}
+            </div>
+
+            <p className="text-center text-[10px] text-brand-deep/35 mt-3 tracking-wider uppercase">
+              Network of {ops.strategicPartners.length} Partner Companies · Muscat, Oman
+            </p>
+          </div>
+        )}
+      </SectionFrame>
+
+      {/* Business Domains: all 25 govt-approved licensed activities */}
+      <SectionFrame
+        eyebrow="Licensed Business Activities"
+        title="What Yanabiya Is Authorised to Operate in Oman."
+        eyebrowClass="text-amber-700"
+      >
+        <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-2 mt-2">
+          {ops.categories.map((cat, i) => <OmanLicenceCard key={cat.label} cat={cat} index={i} />)}
+        </div>
+      </SectionFrame>
+
+      <SectionFrame eyebrow="What We Offer" title="Services delivered locally, scaled globally." eyebrowClass="text-amber-700">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 max-w-5xl mx-auto [perspective:1400px]">
+          {ops.services.map((s, i) => <ServiceCard key={s.slug} service={s} index={i} />)}
+        </div>
+      </SectionFrame>
+
+      <SectionFrame eyebrow="Future Roadmap" title="Where we're heading next." eyebrowClass="text-amber-700">
+        <div className={`grid gap-3 [perspective:1400px] ${ops.futurePlans.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}`}>
+          {ops.futurePlans.map((p, i) => (
+            <Card3D key={p.title} title={p.title} body={p.body} icon={p.icon} delay={i * 110} accent image={p.image} />
+          ))}
+        </div>
+      </SectionFrame>
+
+      <Partnerships />
+      <SponsorSection />
+      <div className="h-8 md:h-12" />
+    </main>
+  )
+}
+
+/* ══════════════════════════════════════════════════════════════
+ *  BD (Bangladesh) — Teal tech-hub theme
+ *  Stats strip · 2×2 left-border cards · 4-col compact domains
+ * ══════════════════════════════════════════════════════════════ */
+function BDPage({ country, ops, prevNav, nextNav }: LayoutProps) {
+  return (
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
+      <div className="relative">
+        <PageHero
+          eyebrow="Local Presence"
+          title={<>{country.flag} {country.name}</>}
+          subtitle={ops.intro}
+          centered
+          ghostText=""
+        />
+        <CountryNav prevNav={prevNav} nextNav={nextNav} />
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/70 to-transparent" />
+      </div>
+
+      {/* Stats strip */}
+      <div className="container-x py-5 md:py-7">
+        <Reveal>
+          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-teal-200 border border-teal-200 rounded-xl overflow-hidden bg-teal-50/40">
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-teal-700 leading-none">1998</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-teal-600 font-semibold mt-1.5">Operational Since</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-teal-700 leading-none">{ops.services.length}+</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-teal-600 font-semibold mt-1.5">Active Service Lines</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-teal-700 leading-none">{ops.licensedActivities.length}</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-teal-600 font-semibold mt-1.5">Licensed Activities</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-teal-700 leading-none">{ops.strategicPartners.length}</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-teal-600 font-semibold mt-1.5">Partner Companies</div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+
+      <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored." eyebrowClass="text-teal-700">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          <InfoRow label="Established"  value={ops.established} icon={Calendar} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
+          <InfoRow label="Legal Entity" value={ops.legalEntity} icon={Landmark} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
+          {ops.license && <>
+            <InfoRow label="License Name"      value={ops.license.name}      icon={ScrollText} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
+            <InfoRow label="Issuing Authority" value={ops.license.authority} icon={ShieldCheck} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
+          </>}
+          <InfoRow label="Head Office" value={ops.address} icon={MapPin} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
+          {ops.postCode && <InfoRow label="Postal Address" value={ops.postCode} icon={Mail} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />}
+        </div>
+      </SectionFrame>
+
+      {/* Business Domains: 4-col compact grid */}
+      <SectionFrame eyebrow="Business Domains" title="The verticals we operate in." eyebrowClass="text-teal-700">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+          {ops.categories.map((cat, i) => <DomainCard key={cat.label} cat={cat} index={i} />)}
+        </div>
+      </SectionFrame>
+
+      <SectionFrame eyebrow="What We Offer" title="Services delivered locally, scaled globally." eyebrowClass="text-teal-700">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 max-w-5xl mx-auto [perspective:1400px]">
+          {ops.services.map((s, i) => <ServiceCard key={s.slug} service={s} index={i} />)}
+        </div>
+      </SectionFrame>
+
+      <SectionFrame eyebrow="Future Roadmap" title="Where we're heading next." eyebrowClass="text-teal-700">
+        <div className={`grid gap-3 [perspective:1400px] ${ops.futurePlans.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}`}>
+          {ops.futurePlans.map((p, i) => (
+            <Card3D key={p.title} title={p.title} body={p.body} icon={p.icon} delay={i * 110} accent image={p.image} />
+          ))}
+        </div>
+      </SectionFrame>
+
+      <Partnerships />
+      <SponsorSection />
+      <div className="h-8 md:h-12" />
+    </main>
+  )
+}
+
+/* ══════════════════════════════════════════════════════════════
+ *  US — Bold blue modern theme
+ *  Asymmetric About (wide+stacked) · blue accents · 2×2 roadmap
+ * ══════════════════════════════════════════════════════════════ */
+function USPage({ country, ops, prevNav, nextNav }: LayoutProps) {
+  return (
+    <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
+      <div className="relative">
+        <PageHero
+          eyebrow="Local Presence"
+          title={<>{country.flag} {country.name}</>}
+          subtitle={ops.intro}
+          centered
+          ghostText=""
+        />
+        <CountryNav prevNav={prevNav} nextNav={nextNav} />
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-400/70 to-transparent" />
+      </div>
+
+      {/* Stats strip */}
+      <div className="container-x py-5 md:py-7">
+        <Reveal>
+          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-blue-200 border border-blue-200 rounded-xl overflow-hidden bg-blue-50/40">
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-blue-700 leading-none">2025</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-blue-600 font-semibold mt-1.5">Operational Since</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-blue-700 leading-none">{ops.services.length}+</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-blue-600 font-semibold mt-1.5">Active Service Lines</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-blue-700 leading-none">{ops.licensedActivities.length}</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-blue-600 font-semibold mt-1.5">Licensed Activities</div>
+            </div>
+            <div className="py-5 px-4 text-center">
+              <div className="font-serif text-2xl md:text-3xl text-blue-700 leading-none">{ops.strategicPartners.length}</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-blue-600 font-semibold mt-1.5">Partner Companies</div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+
+      <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored." eyebrowClass="text-blue-700">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          <InfoRow label="Established"  value={ops.established} icon={Calendar} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
+          <InfoRow label="Legal Entity" value={ops.legalEntity} icon={Landmark} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
+          {ops.license && <>
+            <InfoRow label="License Name"      value={ops.license.name}      icon={ScrollText} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
+            <InfoRow label="Issuing Authority" value={ops.license.authority} icon={ShieldCheck} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
+          </>}
+          <InfoRow label="Head Office" value={ops.address} icon={MapPin} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
+          {ops.postCode && <InfoRow label="Postal Address" value={ops.postCode} icon={Mail} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />}
+        </div>
+      </SectionFrame>
+
+      {/* Business Domains: 2-col wider for US */}
+      <SectionFrame eyebrow="Business Domains" title="The verticals we operate in." eyebrowClass="text-blue-700">
+        <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
+          {ops.categories.map((cat, i) => <DomainCard key={cat.label} cat={cat} index={i} />)}
+        </div>
+      </SectionFrame>
+
+      <SectionFrame eyebrow="What We Offer" title="Services delivered locally, scaled globally." eyebrowClass="text-blue-700">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 max-w-5xl mx-auto [perspective:1400px]">
+          {ops.services.map((s, i) => <ServiceCard key={s.slug} service={s} index={i} />)}
+        </div>
+      </SectionFrame>
+
+      {/* Future Roadmap: 2×2 larger cards */}
+      <SectionFrame eyebrow="Future Roadmap" title="Where we're heading next." eyebrowClass="text-blue-700">
+        <div className="grid grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto [perspective:1400px]">
+          {ops.futurePlans.map((p, i) => (
+            <Card3D key={p.title} title={p.title} body={p.body} icon={p.icon} delay={i * 110} accent image={p.image} />
+          ))}
+        </div>
+      </SectionFrame>
+
+      <Partnerships />
+      <SponsorSection />
+      <div className="h-8 md:h-12" />
+    </main>
+  )
+}
+
+/* ══════════════════════════════════════════════════════════════
+ *  Country-specific About card variants
+ * ══════════════════════════════════════════════════════════════ */
+
+/** Oman: amber top-border, landscape image */
+function OmanCard({ title, body, icon: Icon, delay, image }: {
+  title: string; body: string; icon: LucideIcon; delay: number; image: string
+}) {
+  return (
+    <Reveal delay={delay}>
+      <div className="group relative overflow-hidden rounded-xl border-t-2 border-t-amber-400 border border-slate-200 bg-brand-50 hover:border-amber-300 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+        <div className="relative aspect-[16/7] overflow-hidden">
+          <img src={image} alt="" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/90 via-[#04100a]/30 to-transparent" />
+          <div className="absolute top-2 left-2 w-7 h-7 rounded-lg bg-amber-400/95 text-brand-deep grid place-items-center shadow-md">
+            <Icon size={13} strokeWidth={2.2} />
+          </div>
+        </div>
+        <div className="p-3 md:p-4">
+          <div className="font-serif text-sm text-brand-deep leading-tight mb-1">{title}</div>
+          <p className="text-[11px] text-brand-deep/70 leading-snug">{body}</p>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
+/** Bangladesh: teal left-border, compact */
+function BDCard({ title, body, icon: Icon, delay, image }: {
+  title: string; body: string; icon: LucideIcon; delay: number; image: string
+}) {
+  return (
+    <Reveal delay={delay}>
+      <div className="group relative overflow-hidden rounded-xl border-l-2 border-l-teal-400 border border-slate-200 bg-brand-50 hover:border-teal-300 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+        <div className="relative aspect-[16/7] overflow-hidden">
+          <img src={image} alt="" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/90 via-[#04100a]/30 to-transparent" />
+          <div className="absolute top-2 left-2 w-7 h-7 rounded-full bg-teal-500/95 text-white grid place-items-center shadow-md">
+            <Icon size={13} strokeWidth={2.2} />
+          </div>
+        </div>
+        <div className="p-3 md:p-4">
+          <div className="font-serif text-sm text-brand-deep leading-tight mb-1">{title}</div>
+          <p className="text-[11px] text-brand-deep/70 leading-snug">{body}</p>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
+/** USA: blue circle icon top-right, title overlaid on image bottom */
+function USCard({ title, body, icon: Icon, delay, image, tall = false }: {
+  title: string; body: string; icon: LucideIcon; delay: number; image: string; tall?: boolean
+}) {
+  return (
+    <Reveal delay={delay} className={tall ? 'h-full' : ''}>
+      <div className={`group relative overflow-hidden rounded-xl border border-slate-200 bg-brand-50 hover:border-blue-300 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${tall ? 'flex flex-col h-full' : ''}`}>
+        <div className={`relative overflow-hidden ${tall ? 'flex-1 min-h-[160px]' : 'aspect-[16/8]'}`}>
+          <img src={image} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/90 via-[#04100a]/40 to-transparent" />
+          <div className="absolute top-2 right-2 w-7 h-7 rounded-full bg-blue-500/95 text-white grid place-items-center shadow-md">
+            <Icon size={13} strokeWidth={2.2} />
+          </div>
+          <div className="absolute bottom-2 left-3 font-serif text-sm text-white leading-tight drop-shadow">{title}</div>
+        </div>
+        <div className="p-3 md:p-4">
+          <p className="text-[11px] text-brand-deep/70 leading-snug">{body}</p>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
+/* ══════════════════════════════════════════════════════════════
+ *  Shared section components
+ * ══════════════════════════════════════════════════════════════ */
+
+function CountryNav({ prevNav, nextNav }: { prevNav: NavItem | null; nextNav: NavItem | null }) {
+  return (
+    <div className="absolute inset-0 container-x px-5 md:px-12 flex items-start justify-between pt-5 md:pt-6 pointer-events-none">
+      {prevNav ? (
+        <Link to={prevNav.to} className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200">
+          <ArrowLeft size={13} /> {prevNav.label}
+        </Link>
+      ) : <span />}
+      {nextNav ? (
+        <Link to={nextNav.to} className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200">
+          {nextNav.label} <ArrowRight size={13} />
+        </Link>
+      ) : <span />}
+    </div>
+  )
+}
+
+
+function SponsorSection() {
+  return (
+    <SectionFrame eyebrow="Become a Sponsor / Contributor" title="Bring your ideas, capital or expertise.">
+      <div className="grid md:grid-cols-3 gap-4 md:gap-5 mb-7 [perspective:1400px]">
+        <Card3D title="Share Your Idea"  body="Submit a proposal. We'll review and respond within 5 business days." icon={Lightbulb}  delay={0}   image="https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&w=800&q=80" />
+        <Card3D title="Invest With Us"   body="Take a position in our growth roadmap or specific country expansion." icon={TrendingUp} delay={110} image="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" />
+        <Card3D title="Advisory Support" body="Lend strategic advice to our board across IT, trade or governance."  icon={Heart}      delay={220} image="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80" />
+      </div>
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        <Link to="/contact" className="inline-flex items-center gap-2 rounded-full px-6 py-3 bg-brand-accent text-brand-ink text-xs font-bold uppercase tracking-[0.22em] shadow-md hover:bg-brand-50 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+          Share Your Idea <Send size={14} />
+        </Link>
+        <Link to="/contact" className="inline-flex items-center gap-2 rounded-full px-6 py-3 border border-brand-deep/20 text-brand-deep text-xs font-bold uppercase tracking-[0.22em] bg-brand-50 shadow-sm hover:bg-brand-deep hover:text-white hover:-translate-y-0.5 transition-all duration-300">
+          Become a Sponsor <ArrowUpRight size={14} />
+        </Link>
+      </div>
+    </SectionFrame>
+  )
+}
+
+/* ══════════════════════════════════════════════════════════════
+ *  Core reusable UI components
+ * ══════════════════════════════════════════════════════════════ */
 
 function SectionFrame({
   eyebrow,
   title,
   children,
   compact = false,
+  eyebrowClass = 'text-brand-accentDark',
 }: {
   eyebrow: string
   title: string
   children: React.ReactNode
   compact?: boolean
+  eyebrowClass?: string
 }) {
   return (
     <section className="relative">
       <div className={`container-x ${compact ? 'pt-2 pb-4 md:pt-3 md:pb-6' : 'py-4 md:py-5'}`}>
         <Reveal>
           <div className={`text-center max-w-2xl mx-auto ${compact ? 'mb-3' : 'mb-5 md:mb-6'}`}>
-            <span className="inline-block text-[10px] font-semibold uppercase
-                             tracking-[0.32em] text-brand-accentDark mb-1.5">
+            <span className={`inline-block text-[10px] font-semibold uppercase tracking-[0.32em] ${eyebrowClass} mb-1.5`}>
               {eyebrow}
             </span>
             <h2 className="font-serif text-lg sm:text-xl md:text-2xl text-brand-deep leading-tight">
@@ -713,13 +1059,7 @@ function Card3D({
   return (
     <Reveal delay={delay}>
       <div
-        className={`group relative h-full overflow-hidden rounded-lg
-                    bg-brand-50
-                    border ${accent ? 'border-amber-300/40' : 'border-slate-200'}
-                    [transform-style:preserve-3d]
-                    transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-                    hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)]
-                    hover:border-brand-accent`}
+        className={`group relative h-full overflow-hidden rounded-lg bg-brand-50 border ${accent ? 'border-amber-300/40' : 'border-slate-200'} [transform-style:preserve-3d] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:[transform:rotateY(6deg)_rotateX(-4deg)_translateZ(10px)_scale(1.02)] hover:border-brand-accent`}
       >
         {image && (
           <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
@@ -727,38 +1067,25 @@ function Card3D({
               src={image}
               alt=""
               loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover
-                         transition-transform duration-500 group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#04100a]/85 via-[#04100a]/30 to-transparent" />
-            <div
-              className={`absolute top-1.5 left-1.5 w-5 h-5 rounded grid place-items-center
-                          ${accent ? 'bg-brand-deep text-[#0a1410]' : 'bg-white/95 text-[#0a1410]'}
-                          shadow-sm [transform:translateZ(20px)]`}
-            >
+            <div className={`absolute top-1.5 left-1.5 w-5 h-5 rounded grid place-items-center ${accent ? 'bg-brand-deep text-[#0a1410]' : 'bg-white/95 text-[#0a1410]'} shadow-sm [transform:translateZ(20px)]`}>
               <Icon size={10} strokeWidth={2.4} />
             </div>
           </div>
         )}
-
         <div className="p-2 md:p-2.5">
           {!image && (
-            <div
-              className={`w-6 h-6 rounded grid place-items-center mb-2
-                          ${accent ? 'bg-brand-accent/25 text-brand-accentDark' : 'bg-brand-deep text-white'}
-                          ring-1 ${accent ? 'ring-brand-accentDark/40' : 'ring-slate-200'}
-                          shadow-sm [transform:translateZ(18px)]`}
-            >
+            <div className={`w-6 h-6 rounded grid place-items-center mb-2 ${accent ? 'bg-brand-accent/25 text-brand-accentDark' : 'bg-brand-deep text-white'} ring-1 ${accent ? 'ring-brand-accentDark/40' : 'ring-slate-200'} shadow-sm [transform:translateZ(18px)]`}>
               <Icon size={11} strokeWidth={2} />
             </div>
           )}
-          <div className="font-serif text-[12px] md:text-[13px] text-brand-deep leading-tight
-                          [transform:translateZ(10px)]">
+          <div className="font-serif text-[12px] md:text-[13px] text-brand-deep leading-tight [transform:translateZ(10px)]">
             {title}
           </div>
-          <p className="mt-0.5 text-[10px] md:text-[11px] text-brand-deep/70 leading-snug text-justify
-                        [transform:translateZ(4px)]">
+          <p className="mt-0.5 text-[10px] md:text-[11px] text-brand-deep/70 leading-snug text-justify [transform:translateZ(4px)]">
             {body}
           </p>
         </div>
@@ -767,23 +1094,104 @@ function Card3D({
   )
 }
 
-function InfoRow({ label, value, icon: Icon }: { label: string; value: string; icon: LucideIcon }) {
+function InfoRow({
+  label,
+  value,
+  icon: Icon,
+  iconClass = 'bg-brand-accent/20 text-brand-accentDark ring-brand-accentDark/35',
+}: {
+  label: string
+  value: string
+  icon: LucideIcon
+  iconClass?: string
+}) {
   return (
     <Reveal>
-      <div className="flex items-start gap-2 rounded-lg bg-brand-50
-                      border border-slate-200 p-2.5 md:p-3
-                      transition-colors duration-300 hover:border-brand-accent">
-        <div className="shrink-0 w-7 h-7 rounded bg-brand-accent/20 text-brand-accentDark
-                        ring-1 ring-brand-accentDark/35 grid place-items-center">
-          <Icon size={12} strokeWidth={2} />
+      <div className="flex flex-col items-center text-center gap-2 rounded-lg bg-brand-50 border border-slate-200 p-3 md:p-4 transition-colors duration-300 hover:border-brand-accent h-full">
+        <div className={`shrink-0 w-9 h-9 rounded-lg grid place-items-center ring-1 ${iconClass}`}>
+          <Icon size={16} strokeWidth={2} />
         </div>
-        <div className="min-w-0 flex-1">
-          <div className="text-[9px] uppercase tracking-[0.22em] font-semibold text-brand-accentDark/90 mb-0.5">
+        <div className="min-w-0">
+          <div className="text-[9px] uppercase tracking-[0.22em] font-semibold text-brand-accentDark/90 mb-1">
             {label}
           </div>
           <div className="text-[12px] text-brand-deep/85 leading-snug break-words whitespace-pre-line">
             {value}
           </div>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
+const PARTNER_COLORS = [
+  'bg-amber-500  border-amber-400',
+  'bg-emerald-600 border-emerald-500',
+  'bg-blue-500   border-blue-400',
+  'bg-violet-500 border-violet-400',
+  'bg-rose-500   border-rose-400',
+  'bg-teal-600   border-teal-500',
+  'bg-orange-500 border-orange-400',
+]
+
+function PartnerFlipCard({ name, colorIndex }: { name: string; colorIndex: number }) {
+  const [flipped, setFlipped] = useState(false)
+  const color = PARTNER_COLORS[colorIndex % PARTNER_COLORS.length]
+  return (
+    <div
+      className="relative flex-1 min-w-0 h-24 cursor-pointer [perspective:800px] shrink"
+      onClick={() => setFlipped(f => !f)}
+    >
+      <div
+        className={`absolute inset-0 transition-transform duration-500 [transform-style:preserve-3d]
+                    ${flipped ? '[transform:rotateY(180deg)]' : '[transform:rotateY(0deg)]'}`}
+      >
+        {/* Front */}
+        <div className={`absolute inset-0 rounded-xl border ${color}
+                         flex items-center justify-center px-2 text-center
+                         [backface-visibility:hidden] [-webkit-backface-visibility:hidden]`}>
+          <p className="text-white text-[9px] md:text-[10px] font-bold leading-snug drop-shadow-sm">
+            {name}
+          </p>
+        </div>
+        {/* Back */}
+        <div className="absolute inset-0 rounded-xl bg-brand-deep border border-brand-deep
+                        flex items-center justify-center px-2 text-center
+                        [backface-visibility:hidden] [-webkit-backface-visibility:hidden]
+                        [transform:rotateY(180deg)]">
+          <p className="text-brand-200 text-[8px] md:text-[9px] font-semibold leading-snug">
+            Partner Company<br />
+            <span className="text-brand-accent">Yanabiya Group</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function OmanLicenceCard({
+  cat,
+  index,
+}: {
+  cat: { label: string; icon: LucideIcon; tone: string; image: string }
+  index: number
+}) {
+  return (
+    <Reveal delay={index * 30}>
+      <div className="group relative overflow-hidden rounded-xl aspect-[3/4] shadow-md cursor-default
+                      ring-1 ring-white/60 hover:ring-amber-400/70
+                      hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200">
+        <img
+          src={cat.image}
+          alt={cat.label}
+          loading="lazy"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+        <div className="absolute bottom-0 inset-x-0 px-1 pb-1.5 pt-4">
+          <p className="text-white text-[7px] md:text-[7.5px] font-semibold leading-tight text-center">
+            {cat.label}
+          </p>
         </div>
       </div>
     </Reveal>
@@ -808,7 +1216,6 @@ function DomainCard({
 
   const inner = (
     <>
-      {/* Image */}
       <div className="relative h-36 overflow-hidden shrink-0">
         <img
           src={cat.image}
@@ -830,13 +1237,9 @@ function DomainCard({
           </span>
         )}
       </div>
-
-      {/* Body */}
       <div className="flex flex-col flex-1 p-4 bg-white gap-1.5">
         <h4 className="font-semibold text-brand-deep text-sm leading-snug">{cat.label}</h4>
-        {cat.desc && (
-          <p className="text-[11px] text-brand-deep/55 leading-snug">{cat.desc}</p>
-        )}
+        {cat.desc && <p className="text-[11px] text-brand-deep/55 leading-snug">{cat.desc}</p>}
         {cat.href && (
           <p className="text-[10px] text-brand-accentDark font-semibold mt-auto pt-1 flex items-center gap-1 group-hover:gap-1.5 transition-all">
             yanabiyagibt.com <ArrowUpRight size={10} />
@@ -911,21 +1314,18 @@ function ServiceCard({
   return (
     <Reveal delay={index * 80}>
       {service.href ? (
-        <a href={service.href} target="_blank" rel="noopener noreferrer" className={cardClass}>
-          {inner}
-        </a>
+        <a href={service.href} target="_blank" rel="noopener noreferrer" className={cardClass}>{inner}</a>
       ) : (
-        <Link to={`/business/${service.slug}`} className={cardClass}>
-          {inner}
-        </Link>
+        <Link to={`/business/${service.slug}`} className={cardClass}>{inner}</Link>
       )}
     </Reveal>
   )
 }
 
-/* Coloured initials fallback when no logo is available. The colour is
- * derived from a quick hash of the name so each partner gets a stable
- * unique tile. */
+/* ══════════════════════════════════════════════════════════════
+ *  Partner marquee (kept for future use)
+ * ══════════════════════════════════════════════════════════════ */
+
 const MONOGRAM_TONES = [
   'from-emerald-500/70 to-emerald-700/70',
   'from-cyan-500/70 to-sky-700/70',
@@ -951,9 +1351,6 @@ function toneFor(name: string): string {
   return MONOGRAM_TONES[h % MONOGRAM_TONES.length]
 }
 
-/* Partner row with continuous horizontal marquee, same chain feel
- * as the home Partnerships section. The strip is duplicated so the
- * scroll loops seamlessly. */
 function PartnerMarquee({
   title,
   subtitle,
@@ -969,8 +1366,6 @@ function PartnerMarquee({
   durationSec?: number
   className?: string
 }) {
-  // Repeat enough tiles so the strip fills the viewport even with
-  // small partner counts.
   const minTiles = 12
   const repeats = Math.max(1, Math.ceil(minTiles / Math.max(items.length, 1)))
   const half = Array(repeats).fill(items).flat() as PartnerItem[]
@@ -984,12 +1379,9 @@ function PartnerMarquee({
   return (
     <div className={className}>
       <div className="mb-4">
-        <div className="text-[10px] uppercase tracking-[0.28em] font-semibold text-brand-accentDark mb-1">
-          {title}
-        </div>
+        <div className="text-[10px] uppercase tracking-[0.28em] font-semibold text-brand-accentDark mb-1">{title}</div>
         <div className="text-sm text-brand-deep/65">{subtitle}</div>
       </div>
-
       <div className="relative overflow-hidden [perspective:1400px]">
         <div
           ref={stripRef}
@@ -1001,7 +1393,6 @@ function PartnerMarquee({
             </div>
           ))}
         </div>
-        {/* Edge fades, let the strip dissolve into the dark page bg */}
         <div className="absolute inset-y-0 start-0 w-24 bg-gradient-to-r from-[#0a1410] to-transparent pointer-events-none" />
         <div className="absolute inset-y-0 end-0 w-24 bg-gradient-to-l from-[#0a1410] to-transparent pointer-events-none" />
       </div>
@@ -1009,47 +1400,32 @@ function PartnerMarquee({
   )
 }
 
-/* Individual partner tile. Tries the explicit logo URL first,
- * then Clearbit (logo.clearbit.com/<domain>), and finally falls
- * back to a coloured monogram with the partner's initials + name
- * underneath. */
 function PartnerLogo({ item }: { item: PartnerItem }) {
   type Stage = 'logo' | 'clearbit' | 'fallback'
   const [stage, setStage] = useState<Stage>(
     item.logo ? 'logo' : item.domain ? 'clearbit' : 'fallback',
   )
-
   const src =
     stage === 'logo'     ? item.logo :
     stage === 'clearbit' ? `https://logo.clearbit.com/${item.domain}` :
                            undefined
 
   return (
-    <div className="group relative h-20 rounded-lg bg-brand-50 border border-brand-deep/15
-                    grid place-items-center p-2 overflow-hidden
-                    transition-all duration-300 hover:-translate-y-1 hover:scale-[1.04]
-                    hover:shadow-[0_18px_36px_-14px_rgba(0,0,0,0.45)]">
+    <div className="group relative h-20 rounded-lg bg-brand-50 border border-brand-deep/15 grid place-items-center p-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:scale-[1.04] hover:shadow-[0_18px_36px_-14px_rgba(0,0,0,0.45)]">
       {src ? (
         <img
           src={src}
           alt={item.name}
           loading="lazy"
           className="max-w-[78%] max-h-[55%] object-contain"
-          onError={() => {
-            setStage((s: Stage) => (s === 'logo' ? (item.domain ? 'clearbit' : 'fallback') : 'fallback'))
-          }}
+          onError={() => setStage((s: Stage) => s === 'logo' ? (item.domain ? 'clearbit' : 'fallback') : 'fallback')}
         />
       ) : (
-        <div
-          className={`w-9 h-9 rounded-lg bg-gradient-to-br ${toneFor(item.name)}
-                      grid place-items-center text-brand-deep font-serif text-sm
-                      shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_3px_8px_rgba(0,0,0,0.18)]`}
-        >
+        <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${toneFor(item.name)} grid place-items-center text-brand-deep font-serif text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_3px_8px_rgba(0,0,0,0.18)]`}>
           {monogramOf(item.name)}
         </div>
       )}
-      <span className="absolute inset-x-1.5 bottom-1 text-[9px] font-semibold text-slate-700
-                       text-center leading-tight truncate">
+      <span className="absolute inset-x-1.5 bottom-1 text-[9px] font-semibold text-slate-700 text-center leading-tight truncate">
         {item.name}
       </span>
     </div>

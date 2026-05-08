@@ -103,7 +103,7 @@ export default function AdminLogin() {
         </div>
 
         <p className="text-center text-slate-600 text-xs mt-6">
-          Yanabiya Group © {new Date().getFullYear()} · Secure Admin Access
+          Yanabiya Group © 2021 · Secure Admin Access
         </p>
       </div>
     </div>

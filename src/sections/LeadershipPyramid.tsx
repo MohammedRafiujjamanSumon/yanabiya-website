@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Users, Handshake, Briefcase } from 'lucide-react'
+import { ArrowRight, Users, Handshake, Briefcase, Building2 } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { board } from '../data/leadership'
@@ -14,41 +14,115 @@ function Reveal({
   className?: string
 }) {
   const { ref, shown } = useReveal<HTMLDivElement>()
+  const DELAY: Record<number, string> = {
+    0: '', 80: 'delay-[80ms]', 160: 'delay-[160ms]', 240: 'delay-[240ms]',
+    320: 'delay-[320ms]', 340: 'delay-[340ms]', 360: 'delay-[360ms]', 480: 'delay-[480ms]',
+  }
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={`${className} transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                  ${DELAY[delay] ?? ''} ${shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
     >
       {children}
     </div>
   )
 }
 
-const BOARD_PHOTO  = 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=200&q=80'
-const GROUP_PHOTO  = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=200&q=80'
-const CFO_PHOTO    = 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=200&q=80'
-const DEPT_PHOTO   = 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=200&q=80'
+function Connector() {
+  return <div className="w-px h-2 bg-brand-deep/20 mx-auto" />
+}
 
-const COUNTRIES = [
-  { flag: '🇴🇲', name: 'Oman',       to: '/leadership/country/om' },
-  { flag: '🇬🇧', name: 'UK',         to: '/leadership/country/gb' },
-  { flag: '🇧🇩', name: 'Bangladesh', to: '/leadership/country/bd' },
-  { flag: '🇺🇸', name: 'USA',        to: '/leadership/country/us' },
-]
+type CardColor = {
+  bg: string
+  border: string
+  ring: string
+  badge: string
+  badgeText: string
+  label: string
+  sub: string
+  readMore: string
+  readMoreText: string
+  glow: string
+}
 
-const DEPARTMENTS = [
-  { label: 'HR'          },
-  { label: 'IT'          },
-  { label: 'Operations'  },
-  { label: 'Marketing'   },
-  { label: 'Legal'       },
-  { label: 'Support Team'},
-]
+const COLORS: Record<string, CardColor> = {
+  ceo: {
+    bg:           'bg-gradient-to-b from-brand-50 to-brand-100',
+    border:       'border-brand-accentDark',
+    ring:         'ring-brand-accentDark',
+    badge:        'bg-brand-100 text-brand-deep border border-brand-accentDark',
+    badgeText:    'text-brand-deep',
+    label:        'text-brand-deep',
+    sub:          'text-brand-accentDark',
+    readMore:     'bg-brand-deep hover:bg-brand-ink',
+    readMoreText: 'Read about the CEO',
+    glow:         'shadow-brand-200/60',
+  },
+  vice: {
+    bg:           'bg-gradient-to-b from-brand-100 to-brand-200',
+    border:       'border-brand-accent',
+    ring:         'ring-brand-accent',
+    badge:        'bg-brand-200 text-brand-deep border border-brand-accent',
+    badgeText:    'text-brand-deep',
+    label:        'text-brand-deep',
+    sub:          'text-brand-accentDark',
+    readMore:     'bg-brand-accentDark hover:bg-brand-deep',
+    readMoreText: 'Read about the Vice Chairman',
+    glow:         'shadow-brand-accent/40',
+  },
+  board: {
+    bg:           'bg-gradient-to-b from-blue-50 to-indigo-50',
+    border:       'border-blue-300',
+    ring:         'ring-blue-300',
+    badge:        'bg-blue-100 text-blue-700 border border-blue-300',
+    badgeText:    'text-blue-700',
+    label:        'text-blue-900',
+    sub:          'text-blue-700/70',
+    readMore:     'bg-blue-500 hover:bg-blue-600',
+    readMoreText: 'Meet the Board',
+    glow:         'shadow-blue-200/60',
+  },
+  group: {
+    bg:           'bg-gradient-to-b from-violet-50 to-purple-50',
+    border:       'border-violet-300',
+    ring:         'ring-violet-300',
+    badge:        'bg-violet-100 text-violet-700 border border-violet-300',
+    badgeText:    'text-violet-700',
+    label:        'text-violet-900',
+    sub:          'text-violet-700/70',
+    readMore:     'bg-violet-500 hover:bg-violet-600',
+    readMoreText: 'View Companies',
+    glow:         'shadow-violet-200/60',
+  },
+  cfo: {
+    bg:           'bg-gradient-to-b from-rose-50 to-pink-50',
+    border:       'border-rose-300',
+    ring:         'ring-rose-300',
+    badge:        'bg-rose-100 text-rose-700 border border-rose-300',
+    badgeText:    'text-rose-700',
+    label:        'text-rose-900',
+    sub:          'text-rose-700/70',
+    readMore:     'bg-rose-500 hover:bg-rose-600',
+    readMoreText: 'Meet the CFO',
+    glow:         'shadow-rose-200/60',
+  },
+  dept: {
+    bg:           'bg-gradient-to-b from-orange-50 to-amber-50',
+    border:       'border-orange-300',
+    ring:         'ring-orange-300',
+    badge:        'bg-orange-100 text-orange-700 border border-orange-300',
+    badgeText:    'text-orange-700',
+    label:        'text-orange-900',
+    sub:          'text-orange-700/70',
+    readMore:     'bg-orange-500 hover:bg-orange-600',
+    readMoreText: 'View Heads',
+    glow:         'shadow-orange-200/60',
+  },
+}
 
-function OrgNode({
+function HierarchyCard({
+  colorKey,
   label,
   sub,
   to,
@@ -56,105 +130,65 @@ function OrgNode({
   delay = 0,
   size = 'md',
 }: {
+  colorKey: keyof typeof COLORS
   label: string
   sub?: string
   to: string
   photo?: string
   delay?: number
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'lg' | 'md' | 'sm' | 'xs' | 'xxs'
 }) {
-  const pill =
-    size === 'lg' ? 'px-7 py-3.5 min-w-[230px]' :
-    size === 'sm' ? 'px-4 py-2.5 min-w-[130px]'  :
-                   'px-5 py-3   min-w-[180px]'
-  const nameSize =
-    size === 'lg' ? 'text-sm font-bold'       :
-    size === 'sm' ? 'text-[11px] font-semibold':
-                   'text-[13px] font-semibold'
-  const iconSz =
-    size === 'lg' ? 'w-11 h-11' :
-    size === 'sm' ? 'w-7 h-7'   :
-                   'w-9 h-9'
-  const icon = size === 'lg' ? 20 : size === 'sm' ? 13 : 16
+  const c = COLORS[colorKey]
+
+  const imgSize  = size === 'lg' ? 'w-16 h-16' : size === 'md' ? 'w-14 h-14' : size === 'sm' ? 'w-12 h-12' : size === 'xs' ? 'w-10 h-10' : 'w-8 h-8'
+  const maxW     = size === 'lg' ? 'max-w-[160px]' : size === 'md' ? 'max-w-[148px]' : size === 'sm' ? 'max-w-[136px]' : size === 'xs' ? 'max-w-[118px]' : 'max-w-[100px]'
+  const pad      = size === 'lg' ? 'px-4 py-3.5' : size === 'md' ? 'px-3.5 py-3' : size === 'sm' ? 'px-3 py-2' : size === 'xs' ? 'px-2.5 py-1.5' : 'px-2 py-1'
+  const labelSz  = size === 'lg' ? 'text-[11px] font-bold' : size === 'md' ? 'text-[11px] font-semibold' : size === 'sm' ? 'text-[10px] font-semibold' : size === 'xs' ? 'text-[9px] font-semibold' : 'text-[8px] font-semibold'
+  const subSz    = 'text-[9px]'
+  const btnSz    = 'text-[8px] px-2.5 py-0.5'
 
   return (
     <Reveal delay={delay}>
       <Link
         to={to}
-        className={`group flex items-center gap-3 bg-white rounded-full ${pill}
-                   shadow-[0_4px_24px_rgba(15,58,35,0.10)] border border-brand-accent/20
-                   hover:bg-brand-accent/8 hover:border-brand-accentDark/30
-                   hover:shadow-[0_8px_32px_rgba(15,58,35,0.18)]
-                   hover:-translate-y-0.5 transition-all duration-300`}
+        className={`group flex flex-col items-center gap-2 text-center w-full ${maxW} ${pad} rounded-2xl
+                    border shadow-lg ${c.bg} ${c.border} ${c.glow}
+                    hover:-translate-y-1.5 hover:shadow-xl
+                    transition-all duration-300`}
       >
-        <span className={`shrink-0 ${iconSz} rounded-full overflow-hidden bg-brand-accent/15
-                         flex items-center justify-center
-                         group-hover:ring-2 group-hover:ring-brand-accentDark/40
+        {/* Photo */}
+        <div className={`${imgSize} rounded-full overflow-hidden shrink-0
+                         ring-2 ${c.ring} ring-offset-2
                          transition-all duration-300`}>
           {photo
-            ? <img src={photo} alt={label} className="w-full h-full object-cover" />
-            : <Users size={icon} strokeWidth={2} className="text-brand-deep" />}
-        </span>
-        <div>
-          <div className={`${nameSize} text-brand-deep whitespace-nowrap leading-tight`}>
-            {label}
-          </div>
-          {sub && (
-            <div className="text-[10px] text-brand-deep/50 whitespace-nowrap mt-0.5">{sub}</div>
-          )}
+            ? <img src={photo} alt={label} className="w-full h-full object-cover object-top" />
+            : <div className="w-full h-full bg-white/60 grid place-items-center">
+                <Users size={size === 'sm' ? 16 : 20} className="text-brand-deep/30" />
+              </div>
+          }
         </div>
+
+        {/* Text */}
+        <div className="flex flex-col items-center gap-0.5">
+          <p className={`${labelSz} ${c.label} leading-snug`}>{label}</p>
+          {sub && <p className={`${subSz} ${c.sub}`}>{sub}</p>}
+        </div>
+
+        {/* Read More button */}
+        <span className={`inline-flex items-center gap-1 rounded-full font-bold uppercase tracking-wider
+                          text-white ${btnSz} ${c.readMore}
+                          group-hover:gap-2 transition-all duration-200`}>
+          {c.readMoreText} <ArrowRight size={9} />
+        </span>
       </Link>
     </Reveal>
   )
 }
 
-function Connector({ className = '' }: { className?: string }) {
-  return <div className={`bg-brand-accent/30 ${className}`} />
-}
-
-function CountryCard({
-  flag,
-  name,
-  to,
-  delay = 0,
-}: {
-  flag: string
-  name: string
-  to: string
-  delay?: number
-}) {
-  return (
-    <Reveal delay={delay}>
-      <Link
-        to={to}
-        className="group flex flex-col items-center gap-1 bg-white rounded-xl px-3 py-2.5
-                   shadow-[0_2px_12px_rgba(15,58,35,0.08)] border border-brand-accent/15
-                   hover:bg-brand-accent/8 hover:border-brand-accentDark/25
-                   hover:-translate-y-0.5 transition-all duration-300 min-w-[68px]"
-      >
-        <span className="text-2xl leading-none">{flag}</span>
-        <span className="text-[10px] font-semibold text-brand-deep">{name}</span>
-      </Link>
-    </Reveal>
-  )
-}
-
-function DeptPill({ label, delay = 0 }: { label: string; delay?: number }) {
-  return (
-    <Reveal delay={delay}>
-      <Link
-        to="/leadership/departments"
-        className="px-3 py-1.5 rounded-full bg-white
-                   shadow-[0_2px_8px_rgba(15,58,35,0.08)] border border-brand-accent/15
-                   text-[10px] font-semibold text-brand-deep whitespace-nowrap
-                   hover:bg-brand-accent/10 hover:-translate-y-0.5
-                   transition-all duration-300"
-      >
-        {label}
-      </Link>
-    </Reveal>
-  )
-}
+const BOARD_PHOTO = 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=200&q=80'
+const GROUP_PHOTO = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=200&q=80'
+const CFO_PHOTO   = 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=200&q=80'
+const DEPT_PHOTO  = 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=200&q=80'
 
 export default function LeadershipPyramid() {
   return (
@@ -163,7 +197,7 @@ export default function LeadershipPyramid() {
 
         {/* Header */}
         <Reveal>
-          <div className="flex flex-col items-center gap-2 mb-10 md:mb-14 text-center">
+          <div className="flex flex-col items-center gap-2 mb-12 text-center">
             <Eyebrow>Our People</Eyebrow>
             <h2 className="font-serif text-2xl md:text-3xl text-brand-deep leading-snug tracking-tight">
               The People Behind{' '}
@@ -172,131 +206,125 @@ export default function LeadershipPyramid() {
           </div>
         </Reveal>
 
-        {/* Org chart */}
-        <div className="flex flex-col items-center">
+        {/* ── Org Chart ── */}
+        <div className="flex flex-col items-center w-full">
 
-          {/* ── Top chain ── */}
-          <OrgNode
-            label="Founder, Chairman & CEO"
-            sub="S M Shamim Ahmed"
-            to="/people/ceo"
-            photo={board[0]?.photo}
-            delay={100}
-            size="lg"
-          />
-          <Connector className="w-px h-7" />
-          <OrgNode
-            label="Vice Chairman"
-            sub="Mohammad Abu Jaheed"
-            to="/leadership/management"
-            photo={board[1]?.photo}
-            delay={180}
-          />
-          <Connector className="w-px h-7" />
-          <OrgNode
-            label="Board of Directors"
-            to="/leadership/board"
-            photo={BOARD_PHOTO}
-            delay={260}
-          />
+          {/* ══ Row 1: CEO elevated · Board (left-lower) · Vice Chairman (right-lower) ══ */}
+          <div className="relative w-full max-w-[520px]">
+            {/* L-shape lines behind the cards */}
+            <div className="absolute inset-0 pointer-events-none z-0">
+              {/* Horizontal left: CEO col (50%) → Board col (16%) at CEO center height */}
+              <div className="absolute top-[65px] left-[16%] right-[50%] h-0.5 bg-brand-deep/25" />
+              {/* Horizontal right: CEO col (50%) → Vice col (84%) */}
+              <div className="absolute top-[65px] left-[50%] right-[16%] h-0.5 bg-brand-deep/25" />
+              {/* Vertical drop at Board column */}
+              <div className="absolute top-[65px] left-[16%] -translate-x-px w-0.5 h-[55px] bg-brand-deep/25" />
+              {/* Vertical drop at Vice column */}
+              <div className="absolute top-[65px] right-[16%] w-0.5 h-[55px] bg-brand-deep/25" />
+              {/* Corner dots */}
+              <div className="absolute top-[65px] left-[16%] -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-deep/15 border border-brand-deep/25" />
+              <div className="absolute top-[65px] right-[16%] translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-deep/15 border border-brand-deep/25" />
+              {/* CEO junction dot */}
+              <div className="absolute top-[65px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-brand-deep/10 border-2 border-brand-deep/20" />
+            </div>
 
-          {/* ── 3-way split connector ── */}
-          <div className="relative w-full max-w-3xl h-10">
-            <Connector className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-5" />
-            <Connector className="absolute top-5 left-[10%] right-[10%] h-px" />
-            <Connector className="absolute top-5 left-[10%]           w-px h-5" />
-            <Connector className="absolute top-5 left-1/2 -translate-x-1/2 w-px h-5" />
-            <Connector className="absolute top-5 right-[10%]          w-px h-5" />
+            <div className="relative grid grid-cols-3 gap-3 z-10">
+              {/* Board — pushed down */}
+              <Reveal delay={100}>
+                <div className="flex justify-center pt-16">
+                  <HierarchyCard colorKey="board" label="Board of Directors" to="/people/board" photo={BOARD_PHOTO} delay={0} size="sm" />
+                </div>
+              </Reveal>
+              {/* CEO — elevated at top */}
+              <Reveal delay={80}>
+                <div className="flex justify-center">
+                  <HierarchyCard colorKey="ceo" label="Founder & CEO" sub="S M Shamim Ahmed" to="/people/ceo" photo={board[0]?.photo} delay={0} size="lg" />
+                </div>
+              </Reveal>
+              {/* Vice Chairman — pushed down */}
+              <Reveal delay={120}>
+                <div className="flex justify-center pt-16">
+                  <HierarchyCard colorKey="vice" label="Vice Chairman" sub="Mohammad Abu Jaheed" to="/people/vice-chairman" photo={board[1]?.photo} delay={0} size="sm" />
+                </div>
+              </Reveal>
+            </div>
           </div>
 
-          {/* ── 3 columns ── */}
-          <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
-
-            {/* Column 1, Group of Companies */}
-            <div className="flex flex-col items-center gap-3">
-              <OrgNode
-                label="Group of Companies"
-                to="/about-us"
-                photo={GROUP_PHOTO}
-                size="sm"
-                delay={340}
-              />
-            </div>
-
-            {/* Column 2, CFO */}
-            <div className="flex flex-col items-center">
-              <OrgNode
-                label="CFO"
-                to="/leadership/management"
-                photo={CFO_PHOTO}
-                size="sm"
-                delay={360}
-              />
-            </div>
-
-            {/* Column 3, Department Heads */}
-            <div className="flex flex-col items-center gap-3">
-              <OrgNode
-                label="Department Heads"
-                to="/leadership/departments"
-                photo={DEPT_PHOTO}
-                size="sm"
-                delay={380}
-              />
-            </div>
-
+          {/* CEO → fork → CFO + Group */}
+          <div className="relative w-full max-w-[520px] h-12 shrink-0">
+            <div className="absolute top-0 left-1/2 -translate-x-px w-0.5 h-6 bg-brand-deep/30" />
+            <div className="absolute top-6 left-[33%] right-[33%] h-0.5 bg-brand-deep/30" />
+            <div className="absolute top-6 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-deep/20 border border-brand-deep/25" />
+            <div className="absolute top-6 left-[33%] -translate-x-px w-0.5 h-6 bg-brand-deep/30" />
+            <div className="absolute top-6 right-[33%] w-0.5 h-6 bg-brand-deep/30" />
           </div>
 
-          {/* ── CTA cards ── */}
-          <Reveal delay={720}>
-            <div className="mt-14 grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          {/* ══ Row 2: CFO · Group of Companies ══ */}
+          <div className="w-full max-w-[520px] grid grid-cols-2 gap-14 px-[12%]">
+            <Reveal delay={260}>
+              <div className="flex justify-center">
+                <HierarchyCard colorKey="cfo" label="CFO" to="/leadership/management" photo={CFO_PHOTO} delay={0} size="sm" />
+              </div>
+            </Reveal>
+            <Reveal delay={300}>
+              <div className="flex justify-center">
+                <HierarchyCard colorKey="group" label="Group of Companies" to="/about-us" photo={GROUP_PHOTO} delay={0} size="sm" />
+              </div>
+            </Reveal>
+          </div>
 
-              {/* Become a Partner */}
+          {/* CFO + Group → merge → Department Heads (extra space) */}
+          <div className="relative w-full max-w-[520px] h-20 shrink-0">
+            <div className="absolute top-0 left-[33%] -translate-x-px w-0.5 h-10 bg-brand-deep/30" />
+            <div className="absolute top-0 right-[33%] w-0.5 h-10 bg-brand-deep/30" />
+            <div className="absolute top-10 left-[33%] right-[33%] h-0.5 bg-brand-deep/30" />
+            <div className="absolute top-10 left-[33%] -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-brand-deep/25" />
+            <div className="absolute top-10 right-[33%] translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-brand-deep/25" />
+            <div className="absolute top-10 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-deep/20 border border-brand-deep/25" />
+            <div className="absolute top-10 left-1/2 -translate-x-px w-0.5 h-10 bg-brand-deep/30" />
+          </div>
+
+          {/* ══ Row 3: Department Heads ══ */}
+          <HierarchyCard colorKey="dept" label="Department Heads" to="/leadership/departments" photo={DEPT_PHOTO} delay={400} size="md" />
+
+          {/* CTA buttons */}
+          <Reveal delay={520}>
+            <div className="mt-12 flex flex-wrap justify-center gap-3">
               <Link
                 to="/contact"
-                className="group relative rounded-2xl overflow-hidden bg-brand-deep px-6 py-7
-                           hover:-translate-y-1 hover:shadow-xl transition-all duration-300 shadow-md"
+                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full
+                           bg-brand-deep text-white text-xs font-semibold
+                           hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-deep/20
+                           transition-all duration-300"
               >
-                <div aria-hidden className="absolute inset-0 opacity-[0.05]
-                  [background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.4)_0px,rgba(255,255,255,0.4)_1px,transparent_1px,transparent_50%)]
-                  [background-size:18px_18px] pointer-events-none" />
-                <div className="relative">
-                  <div className="w-10 h-10 rounded-full bg-white/15 grid place-items-center mb-4">
-                    <Handshake size={18} className="text-amber-400" />
-                  </div>
-                  <h4 className="font-serif text-white text-lg leading-snug mb-1">Become a Partner</h4>
-                  <p className="text-white/50 text-xs leading-relaxed mb-4">
-                    Work with us across trade, technology and community, we're always looking for the right collaborators.
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 text-amber-400 text-xs font-bold uppercase tracking-widest
-                                   group-hover:gap-3 transition-all duration-300">
-                    Get in Touch <ArrowRight size={12} />
-                  </span>
-                </div>
+                <Handshake size={13} className="text-amber-400" />
+                Become a Partner
+                <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
               </Link>
 
-              {/* Join Our Team */}
               <Link
                 to="/community/careers"
-                className="group relative rounded-2xl overflow-hidden bg-brand-accent px-6 py-7
-                           hover:-translate-y-1 hover:shadow-xl transition-all duration-300 shadow-md"
+                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full
+                           bg-brand-accent text-white text-xs font-semibold
+                           hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-accent/30
+                           transition-all duration-300"
               >
-                <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
-                <div className="relative">
-                  <div className="w-10 h-10 rounded-full bg-white/20 grid place-items-center mb-4">
-                    <Briefcase size={18} className="text-white" />
-                  </div>
-                  <h4 className="font-serif text-white text-lg leading-snug mb-1">Join Our Team</h4>
-                  <p className="text-white/70 text-xs leading-relaxed mb-4">
-                    Offices in Oman, UK, Bangladesh and USA, find a role where your skills make a global impact.
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 text-white text-xs font-bold uppercase tracking-widest
-                                   group-hover:gap-3 transition-all duration-300">
-                    See Open Roles <ArrowRight size={12} />
-                  </span>
-                </div>
+                <Briefcase size={13} />
+                Join Our Team
+                <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
               </Link>
 
+              <Link
+                to="/about-us"
+                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full
+                           bg-white border border-brand-accent/25 text-brand-deep text-xs font-semibold
+                           hover:-translate-y-0.5 hover:border-brand-accent/50 hover:shadow-md
+                           transition-all duration-300"
+              >
+                <Building2 size={13} className="text-brand-accentDark" />
+                Our Companies
+                <ArrowRight size={11} className="text-brand-accentDark group-hover:translate-x-0.5 transition-transform" />
+              </Link>
             </div>
           </Reveal>
 

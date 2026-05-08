@@ -23,7 +23,7 @@ const groupLinks = [
   { id: 'contact',      label: 'Contact Us'      },
 ]
 
-const corporateLinks: { to: string; label: string }[] = [
+const corporateLinks: { to?: string; href?: string; label: string }[] = [
   { to: '/about-us',                       label: 'Group Profile'              },
   { to: '/about/our-story',                label: 'Our Story'                  },
   { to: '/contact',                        label: 'Contact Network'            },
@@ -32,6 +32,7 @@ const corporateLinks: { to: string; label: string }[] = [
   { to: '/community/sustainable-growth',   label: 'Sustainable Growth'         },
   { to: '/community/community-care',       label: 'Community Care'             },
   { to: '/community/careers',              label: 'Careers'                    },
+  { href: 'https://ygiusllc.com/',         label: 'Yanabiya E-Commerce ↗'      },
 ]
 
 const FLAG: Record<string, string> = { OM: '🇴🇲', GB: '🇬🇧', BD: '🇧🇩', US: '🇺🇸' }
@@ -44,7 +45,7 @@ const linkClass =
   'after:transition-transform after:duration-300 hover:after:scale-x-100'
 
 export default function Footer() {
-  const year = new Date().getFullYear()
+  const year = 2021
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -166,8 +167,11 @@ export default function Footer() {
             <h4 className="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">Corporate</h4>
             <ul className="space-y-2.5 text-sm">
               {corporateLinks.map((l) => (
-                <li key={l.to}>
-                  <Link to={l.to} className={linkClass}>{l.label}</Link>
+                <li key={l.href ?? l.to}>
+                  {l.href
+                    ? <a href={l.href} target="_blank" rel="noopener noreferrer" className={linkClass}>{l.label}</a>
+                    : <Link to={l.to!} className={linkClass}>{l.label}</Link>
+                  }
                 </li>
               ))}
             </ul>

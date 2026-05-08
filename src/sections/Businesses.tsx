@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  X as CloseIcon, ExternalLink, ArrowRight, ArrowLeft, ArrowDown,
+  X as CloseIcon, ExternalLink, ArrowRight, ArrowLeft, ArrowDown, ArrowUpRight, ShoppingCart,
   Cpu, Globe2, Shirt, Handshake, Building2, Users,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -1061,6 +1061,32 @@ export default function Businesses() {
           </Reveal>
         </div>
 
+      </div>
+
+      {/* Yanabiya E-Commerce promo strip */}
+      <div className="container-x pb-8">
+        <a
+          href="https://ygiusllc.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex flex-col sm:flex-row items-center justify-between gap-4
+                     rounded-2xl border border-brand-accent/25 bg-gradient-to-r from-brand-50 to-brand-100
+                     px-6 py-4 hover:border-brand-accent/60 hover:shadow-md transition-all duration-300"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-brand-accent/15 grid place-items-center shrink-0">
+              <ShoppingCart size={18} className="text-brand-accentDark" />
+            </div>
+            <div>
+              <p className="text-[9px] uppercase tracking-[0.28em] font-semibold text-brand-accentDark">Yanabiya E-Commerce</p>
+              <p className="text-sm font-semibold text-brand-deep">Shop globally — trade, clothing &amp; more</p>
+            </div>
+          </div>
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-accentDark
+                           group-hover:gap-2.5 transition-all duration-200">
+            Visit ygiusllc.com <ArrowUpRight size={14} />
+          </span>
+        </a>
       </div>
 
       {/* Slide-in detail panel for the workflow node click */}

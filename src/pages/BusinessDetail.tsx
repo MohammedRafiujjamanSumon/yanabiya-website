@@ -60,22 +60,57 @@ export default function BusinessDetail() {
       </div>
       <div className="container-x relative">
 
+        {/* E-Commerce banner — shown on Global Trade & Clothing pages */}
+        {(business.slug === 'export-import' || business.slug === 'clothing') && (
+          <div className="mb-8 overflow-hidden rounded-2xl bg-gradient-to-r from-brand-deep to-brand-accentDark text-white shadow-xl">
+            <div className="relative flex flex-col items-center gap-5 px-7 py-6 text-center">
+              <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                <div className="absolute -top-16 -left-16 w-56 h-56 rounded-full bg-brand-accent/20 blur-[80px]" />
+                <div className="absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-white/10 blur-[80px]" />
+              </div>
+              <div className="relative flex-1">
+                <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-accent mb-1">
+                  Yanabiya E-Commerce
+                </p>
+                <h4 className="font-serif text-lg md:text-xl leading-snug mb-1.5">
+                  Shop globally with Yanabiya
+                </h4>
+                <p className="text-white/75 text-xs leading-relaxed max-w-lg mx-auto">
+                  Our global e-commerce platform connects buyers and sellers across borders — trade, clothing, accessories and more, fulfilled worldwide.
+                </p>
+              </div>
+              <a
+                href="https://ygiusllc.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full
+                           bg-brand-accent text-white font-semibold text-sm
+                           hover:bg-amber-400 hover:-translate-y-0.5
+                           shadow-lg shadow-brand-accent/30 transition-all duration-300"
+              >
+                Visit ygiusllc.com
+                <ArrowUpRight size={15} />
+              </a>
+            </div>
+          </div>
+        )}
+
         {/* UK IT Portal banner — shown only on the Technology & Digital Solutions page */}
         {business.slug === 'it-software' && (
-          <div className="mb-8 overflow-hidden rounded-2xl bg-brand-deep text-white shadow-xl">
-            <div className="relative flex flex-col sm:flex-row items-center gap-5 px-7 py-6">
+          <div className="mb-8 overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-xl">
+            <div className="relative flex flex-col items-center gap-5 px-7 py-6 text-center">
               <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
-                <div className="absolute -top-16 -left-16 w-56 h-56 rounded-full bg-emerald-500/20 blur-[80px]" />
-                <div className="absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-amber-400/15 blur-[80px]" />
+                <div className="absolute -top-16 -left-16 w-56 h-56 rounded-full bg-white/10 blur-[80px]" />
+                <div className="absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-white/10 blur-[80px]" />
               </div>
-              <div className="relative flex-1 text-center sm:text-left">
-                <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-accent mb-1">
+              <div className="relative flex-1">
+                <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-emerald-100 mb-1">
                   UK IT Consultancy
                 </p>
                 <h4 className="font-serif text-lg md:text-xl leading-snug mb-1.5">
                   Looking for UK-based IT consulting services?
                 </h4>
-                <p className="text-white/65 text-xs leading-relaxed max-w-lg">
+                <p className="text-white/75 text-xs leading-relaxed max-w-lg mx-auto">
                   Our UK IT consulting arm operates via a dedicated platform — software, cloud, AI &amp; cybersecurity services tailored for the British market.
                 </p>
               </div>
