@@ -1,6 +1,5 @@
-import { Phone, Mail, Download, ArrowRight } from 'lucide-react'
+import { Phone, Mail, Download } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { contact } from '../data/contact'
 
 export default function TopBar() {
@@ -38,14 +37,6 @@ export default function TopBar() {
           >
             <Download size={14} /> <span>{t('topbar.downloadPdf')}</span>
           </a>
-          <Link
-            to="/#contact"
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full
-                       bg-brand-deep text-white font-semibold
-                       hover:bg-brand-accentDark transition"
-          >
-            {t('nav.contact')} <ArrowRight size={14} className="ltr-flip" />
-          </Link>
         </div>
       </div>
     </div>

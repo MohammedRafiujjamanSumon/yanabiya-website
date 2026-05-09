@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Menu, X, ChevronDown, ArrowRight, ShoppingCart } from 'lucide-react'
+import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { sections } from '../data/contact'
 import { assets } from '../data/assets'
@@ -352,20 +352,7 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* E-Commerce CTA (desktop) */}
-        <a
-          href="https://ygiusllc.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full
-                     bg-brand-accent/15 text-brand-accentDark text-xs font-semibold
-                     hover:bg-brand-accent hover:text-white transition-all duration-200 shrink-0"
-        >
-          <ShoppingCart size={13} />
-          Yanabiya E-Commerce
-        </a>
-
-        {/* RIGHT, Language switcher (desktop) */}
+{/* RIGHT, Language switcher (desktop) */}
         <div className="shrink-0 text-brand-accent">
           <LanguageSwitcher />
         </div>
@@ -588,24 +575,8 @@ export default function Navbar() {
 
           </div>
 
-          {/* E-Commerce link — mobile drawer */}
-          <div className="px-2 py-3 border-t border-slate-100">
-            <a
-              href="https://ygiusllc.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setOpen(false)}
-              className="flex items-center gap-2 px-3 py-2.5 rounded-xl
-                         bg-brand-accent/10 text-brand-accentDark text-[14px] font-semibold
-                         hover:bg-brand-accent hover:text-white transition-all duration-200"
-            >
-              <ShoppingCart size={16} />
-              Yanabiya E-Commerce
-              <ArrowRight size={13} className="ms-auto" />
-            </a>
-          </div>
 
-        </div>
+</div>
       )}
     </header>
   )

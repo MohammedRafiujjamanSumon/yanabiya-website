@@ -62,6 +62,12 @@ export const countries = [
       'Operating in the United Kingdom as Yanabiya Gulf International UK Ltd, managing regional business activities and services across the UK market since June 2023.',
     licenceName: 'Yanabiya Gulf International UK Ltd',
     entities: ['Yanabiya Gulf International UK Ltd'],
+    hideActivityCodes: true,
+    activities: [
+      { code: '62020', name: 'Information Technology Consultancy Activities', icon: '💻', image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80' },
+      { code: '74909', name: 'Other Professional, Scientific and Technical Activities not elsewhere classified', icon: '🔬', image: 'https://images.unsplash.com/photo-1532094349884-543559059938?w=600&q=80' },
+      { code: '77390', name: 'Renting and Leasing of Other Machinery, Equipment and Tangible Goods not elsewhere classified', icon: '🏗️', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80' },
+    ],
   },
   {
     code: 'BD',

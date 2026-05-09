@@ -293,6 +293,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
   const activities = (c as {
     activities?: { code: string; name: string; icon?: string; image?: string }[]
   }).activities
+  const hideActivityCodes = !!(c as { hideActivityCodes?: boolean }).hideActivityCodes
 
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
@@ -337,7 +338,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
 
       {/* ───────── 4c. BUSINESS ACTIVITIES (only for entities with activities) ───────── */}
       {activities && activities.length > 0 && (
-        <BusinessActivities activities={activities} />
+        <BusinessActivities activities={activities} countryName={c.name} hideCodes={hideActivityCodes} />
       )}
 
       {/* ───────── 5. 3D GLOBAL CONNECTION ───────── */}
@@ -619,19 +620,26 @@ function CorporateHierarchy({
 
 function BusinessActivities({
   activities,
+  countryName,
+  hideCodes = false,
 }: {
   activities: { code: string; name: string; icon?: string; image?: string }[]
+  countryName: string
+  hideCodes?: boolean
 }) {
+  const shortName = countryName
+    .replace('Sultanate of ', '')
+    .replace('United States of America', 'USA')
   return (
     <section className="relative py-4 md:py-5">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
-              Licensed Activities
+              Licensed Business Activities
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
-              {activities.length} business activities under our licence
+              What Yanabiya Is Authorised to Operate in {shortName}
             </h2>
           </div>
         </Reveal>
@@ -655,13 +663,15 @@ function BusinessActivities({
                     />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                  <div className="absolute top-2 right-2 inline-flex items-center gap-1
-                                  px-1.5 py-0.5 rounded-full
-                                  bg-white/70 backdrop-blur-sm
-                                  ring-1 ring-brand-accent/30
-                                  font-mono text-[9px] text-brand-accentDark">
-                    {a.code}
-                  </div>
+                  {!hideCodes && (
+                    <div className="absolute top-2 right-2 inline-flex items-center gap-1
+                                    px-1.5 py-0.5 rounded-full
+                                    bg-white/70 backdrop-blur-sm
+                                    ring-1 ring-brand-accent/30
+                                    font-mono text-[9px] text-brand-accentDark">
+                      {a.code}
+                    </div>
+                  )}
                   <span className="absolute bottom-2 left-2 text-2xl leading-none drop-shadow-md">
                     {a.icon ?? '•'}
                   </span>

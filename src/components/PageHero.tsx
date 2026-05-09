@@ -81,21 +81,23 @@ export default function PageHero({
         {/* Top-left content + optional right caption */}
         <div className={`relative grid gap-8 md:gap-10 items-center
                         ${centered ? '' : 'md:grid-cols-2'}`}>
-          <Reveal className={centered ? 'mx-auto text-center' : ''}>
+          <Reveal className={centered ? 'mx-auto' : ''}>
             <div className={centered ? 'max-w-2xl mx-auto' : 'max-w-md'}>
               {eyebrow && (
-                <span className="inline-block text-[10px] md:text-[11px] font-semibold uppercase
-                                 tracking-[0.32em] text-brand-accentDark mb-4">
+                <span className={`inline-block text-[10px] md:text-[11px] font-semibold uppercase
+                                 tracking-[0.32em] text-brand-accentDark mb-4
+                                 ${centered ? 'block text-center' : ''}`}>
                   {eyebrow}
                 </span>
               )}
-              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
-                             leading-[1.1] tracking-tight text-brand-deep">
+              <h1 className={`font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px]
+                             leading-[1.1] tracking-tight text-brand-deep
+                             ${centered ? 'text-center' : ''}`}>
                 {title}
               </h1>
               {subtitle && (
                 <p className={`mt-4 text-sm md:text-base text-brand-deep/70 leading-snug
-                              ${centered ? 'max-w-xl mx-auto text-justify' : 'max-w-sm'}`}>
+                              ${centered ? 'max-w-xl mx-auto text-justify [text-align-last:center]' : 'max-w-sm'}`}>
                   {subtitle}
                 </p>
               )}

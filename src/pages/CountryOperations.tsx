@@ -261,7 +261,7 @@ const OPS: Record<string, CountryOps> = {
   },
   GB: {
     intro:
-      'Yanabiya Gulf International UK Ltd is the Group\'s European operations hub, bridging Gulf and Asian capability into the British and EU markets through 21+ trusted partners across IT, retail and hospitality.',
+      'Yanabiya Gulf International UK Ltd serves as the Group\'s strategic gateway to the UK and European markets, connecting Gulf and Asian expertise with a strong network of 21+ trusted partners across the IT, retail, and hospitality sectors. The company is focused on building long-term international collaborations, delivering innovative solutions, and expanding business opportunities across Europe.',
     branchIntro:
       'Operating from London since 2023, our UK office handles European-market business development, cross-border trade representation, and IT delivery into UK enterprises and SMEs.',
     parentCompany: 'Yanabiya Gulf International Business & Trade SPC, Sultanate of Oman',
@@ -303,10 +303,9 @@ const OPS: Record<string, CountryOps> = {
       { name: 'Tayyabs',          logo: '/logos/partners-co/tayyabs.svg' },
     ],
     categories: [
-      { label: 'IT Consultancy & Digital Solutions', icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80', href: 'https://yanabiyagibt.com', badge: 'UK IT Portal', sic: 'SIC 62020', desc: 'Software development, web design & IT consultancy' },
-      { label: 'AI Workforce Management',            icon: Users,     tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',                                badge: 'Our Product',  sic: 'SIC 74909', desc: 'AI-powered workforce & company management platform' },
-      { label: 'Professional & Technical Services',  icon: Lightbulb, tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',                                                   sic: 'SIC 74909', desc: 'Scientific, advisory & technical consulting services' },
-      { label: 'Equipment Leasing & Rentals',        icon: Briefcase, tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',                                                   sic: 'SIC 77390', desc: 'Renting & leasing of machinery and tangible goods' },
+      { label: 'Information Technology Consultancy Activities',                               icon: Cpu,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Other Professional, Scientific and Technical Activities',                     icon: Lightbulb, tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Renting and Leasing of Other Machinery, Equipment and Tangible Goods',       icon: Briefcase, tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
     ],
     licensedActivities: [
       'Information technology consultancy and software development (SIC 62020)',
@@ -474,21 +473,71 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
 function GBPage({ country, ops, prevNav, nextNav }: LayoutProps) {
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
-      <div className="relative">
-        <PageHero
-          eyebrow="Local Presence"
-          title={<>{country.flag} {country.name}</>}
-          subtitle={ops.intro}
-          centered
-          ghostText=""
-        />
+      <div className="relative bg-brand-50 overflow-hidden">
+        {/* Ambient halos */}
+        <div aria-hidden className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-[640px] h-[420px] rounded-full bg-amber-300/25 blur-[130px]" />
+          <div className="absolute bottom-0 right-0 w-[320px] h-[320px] rounded-full bg-brand-accent/15 blur-[100px]" />
+        </div>
+
+        <div className="relative container-x px-5 pt-16 pb-10 md:pt-20 md:pb-12 text-center">
+          {/* Eyebrow */}
+          <Reveal>
+            <div className="inline-flex items-center gap-2.5 mb-5">
+              <span className="h-px w-7 bg-amber-600/40" />
+              <span className="text-[10px] uppercase tracking-[0.38em] text-amber-700 font-semibold">
+                Our Global Branches
+              </span>
+              <span className="h-px w-7 bg-amber-600/40" />
+            </div>
+          </Reveal>
+
+          {/* Main title */}
+          <Reveal delay={60}>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.1] tracking-tight text-brand-deep mb-3">
+              Welcome to Yanabiya United Kingdom
+            </h1>
+            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-700/65 font-semibold mb-6">
+              {country.flag} United Kingdom &middot; European Operations &middot; Est. 2023
+            </p>
+          </Reveal>
+
+          {/* Intro text */}
+          <Reveal delay={120}>
+            <p className="max-w-2xl mx-auto text-brand-deep/65 text-sm md:text-base leading-relaxed mb-10 text-justify [text-align-last:center]">
+              {ops.intro}
+            </p>
+          </Reveal>
+
+          {/* Branch pills */}
+          <Reveal delay={200}>
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <span className="text-[9px] uppercase tracking-widest text-brand-deep/30 mr-1">Explore Branches</span>
+              {[
+                { flag: '🇴🇲', label: 'Oman',          to: '/global-presence/om' },
+                { flag: '🇧🇩', label: 'Bangladesh',    to: '/global-presence/bd' },
+                { flag: '🇺🇸', label: 'United States', to: '/global-presence/us' },
+              ].map(({ flag, label, to }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-brand-deep/12 bg-white/70 text-brand-deep text-[11px] font-semibold shadow-sm hover:border-amber-400 hover:bg-amber-50 hover:-translate-y-0.5 transition-all duration-200"
+                >
+                  {flag} {label}
+                </Link>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent" />
         <CountryNav prevNav={prevNav} nextNav={nextNav} />
       </div>
 
       {/* Stats strip */}
       <div className="container-x py-5 md:py-7">
         <Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-brand-accent/30 border border-brand-accent/30 rounded-xl overflow-hidden bg-brand-50/60">
+          <div className="grid grid-cols-3 divide-x divide-brand-accent/30 border border-brand-accent/30 rounded-xl overflow-hidden bg-brand-50/60">
             <div className="py-5 px-4 text-center">
               <div className="font-serif text-2xl md:text-3xl text-brand-accentDark leading-none">2023</div>
               <div className="text-[9px] uppercase tracking-[0.2em] text-brand-accentDark/70 font-semibold mt-1.5">Operational Since</div>
@@ -500,10 +549,6 @@ function GBPage({ country, ops, prevNav, nextNav }: LayoutProps) {
             <div className="py-5 px-4 text-center">
               <div className="font-serif text-2xl md:text-3xl text-brand-accentDark leading-none">{ops.licensedActivities.length}</div>
               <div className="text-[9px] uppercase tracking-[0.2em] text-brand-accentDark/70 font-semibold mt-1.5">Licensed Activities</div>
-            </div>
-            <div className="py-5 px-4 text-center">
-              <div className="font-serif text-2xl md:text-3xl text-brand-accentDark leading-none">{ops.strategicPartners.length}</div>
-              <div className="text-[9px] uppercase tracking-[0.2em] text-brand-accentDark/70 font-semibold mt-1.5">Partner Companies</div>
             </div>
           </div>
         </Reveal>
@@ -522,9 +567,9 @@ function GBPage({ country, ops, prevNav, nextNav }: LayoutProps) {
         </div>
       </SectionFrame>
 
-      <SectionFrame eyebrow="Business Domains" title="Licensed verticals we operate in.">
-        <div className={`grid sm:grid-cols-2 gap-5 mx-auto ${ops.categories.length <= 2 ? 'max-w-2xl' : 'max-w-3xl'}`}>
-          {ops.categories.map((cat, i) => <DomainCard key={cat.label} cat={cat} index={i} />)}
+      <SectionFrame eyebrow="Licensed Business Activities" title="What Yanabiya Is Authorised to Operate in the United Kingdom.">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+          {ops.categories.map((cat, i) => <OmanLicenceCard key={cat.label} cat={cat} index={i} />)}
         </div>
       </SectionFrame>
 
@@ -589,7 +634,7 @@ function OmanPage({ country, ops, prevNav, nextNav }: LayoutProps) {
 
           {/* Intro text */}
           <Reveal delay={120}>
-            <p className="max-w-2xl mx-auto text-brand-deep/65 text-sm md:text-base leading-relaxed mb-10">
+            <p className="max-w-2xl mx-auto text-brand-deep/65 text-sm md:text-base leading-relaxed mb-10 text-justify">
               {ops.intro}
             </p>
           </Reveal>
@@ -728,16 +773,65 @@ function OmanPage({ country, ops, prevNav, nextNav }: LayoutProps) {
 function BDPage({ country, ops, prevNav, nextNav }: LayoutProps) {
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
-      <div className="relative">
-        <PageHero
-          eyebrow="Local Presence"
-          title={<>{country.flag} {country.name}</>}
-          subtitle={ops.intro}
-          centered
-          ghostText=""
-        />
+      <div className="relative bg-brand-50 overflow-hidden">
+        {/* Ambient halos */}
+        <div aria-hidden className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-[640px] h-[420px] rounded-full bg-amber-300/25 blur-[130px]" />
+          <div className="absolute bottom-0 right-0 w-[320px] h-[320px] rounded-full bg-brand-accent/15 blur-[100px]" />
+        </div>
+
+        <div className="relative container-x px-5 pt-16 pb-10 md:pt-20 md:pb-12 text-center">
+          {/* Eyebrow */}
+          <Reveal>
+            <div className="inline-flex items-center gap-2.5 mb-5">
+              <span className="h-px w-7 bg-amber-600/40" />
+              <span className="text-[10px] uppercase tracking-[0.38em] text-amber-700 font-semibold">
+                Our Global Branches
+              </span>
+              <span className="h-px w-7 bg-amber-600/40" />
+            </div>
+          </Reveal>
+
+          {/* Main title */}
+          <Reveal delay={60}>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.1] tracking-tight text-brand-deep mb-3">
+              Welcome to Yanabiya Bangladesh
+            </h1>
+            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-700/65 font-semibold mb-6">
+              {country.flag} Bangladesh &middot; South Asia Operations &middot; Est. 1998
+            </p>
+          </Reveal>
+
+          {/* Intro text */}
+          <Reveal delay={120}>
+            <p className="max-w-2xl mx-auto text-brand-deep/65 text-sm md:text-base leading-relaxed mb-10 text-justify [text-align-last:center]">
+              {ops.intro}
+            </p>
+          </Reveal>
+
+          {/* Branch pills */}
+          <Reveal delay={200}>
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <span className="text-[9px] uppercase tracking-widest text-brand-deep/30 mr-1">Explore Branches</span>
+              {[
+                { flag: '🇴🇲', label: 'Oman',           to: '/global-presence/om' },
+                { flag: '🇬🇧', label: 'United Kingdom', to: '/global-presence/gb' },
+                { flag: '🇺🇸', label: 'United States',  to: '/global-presence/us' },
+              ].map(({ flag, label, to }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-brand-deep/12 bg-white/70 text-brand-deep text-[11px] font-semibold shadow-sm hover:border-amber-400 hover:bg-amber-50 hover:-translate-y-0.5 transition-all duration-200"
+                >
+                  {flag} {label}
+                </Link>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent" />
         <CountryNav prevNav={prevNav} nextNav={nextNav} />
-        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/70 to-transparent" />
       </div>
 
       {/* Stats strip */}
@@ -812,16 +906,65 @@ function BDPage({ country, ops, prevNav, nextNav }: LayoutProps) {
 function USPage({ country, ops, prevNav, nextNav }: LayoutProps) {
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
-      <div className="relative">
-        <PageHero
-          eyebrow="Local Presence"
-          title={<>{country.flag} {country.name}</>}
-          subtitle={ops.intro}
-          centered
-          ghostText=""
-        />
+      <div className="relative bg-brand-50 overflow-hidden">
+        {/* Ambient halos */}
+        <div aria-hidden className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-[640px] h-[420px] rounded-full bg-amber-300/25 blur-[130px]" />
+          <div className="absolute bottom-0 right-0 w-[320px] h-[320px] rounded-full bg-brand-accent/15 blur-[100px]" />
+        </div>
+
+        <div className="relative container-x px-5 pt-16 pb-10 md:pt-20 md:pb-12 text-center">
+          {/* Eyebrow */}
+          <Reveal>
+            <div className="inline-flex items-center gap-2.5 mb-5">
+              <span className="h-px w-7 bg-amber-600/40" />
+              <span className="text-[10px] uppercase tracking-[0.38em] text-amber-700 font-semibold">
+                Our Global Branches
+              </span>
+              <span className="h-px w-7 bg-amber-600/40" />
+            </div>
+          </Reveal>
+
+          {/* Main title */}
+          <Reveal delay={60}>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.1] tracking-tight text-brand-deep mb-3">
+              Welcome to Yanabiya United States
+            </h1>
+            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-700/65 font-semibold mb-6">
+              {country.flag} United States &middot; North America Operations &middot; Est. 2025
+            </p>
+          </Reveal>
+
+          {/* Intro text */}
+          <Reveal delay={120}>
+            <p className="max-w-2xl mx-auto text-brand-deep/65 text-sm md:text-base leading-relaxed mb-10 text-justify [text-align-last:center]">
+              {ops.intro}
+            </p>
+          </Reveal>
+
+          {/* Branch pills */}
+          <Reveal delay={200}>
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <span className="text-[9px] uppercase tracking-widest text-brand-deep/30 mr-1">Explore Branches</span>
+              {[
+                { flag: '🇴🇲', label: 'Oman',           to: '/global-presence/om' },
+                { flag: '🇧🇩', label: 'Bangladesh',     to: '/global-presence/bd' },
+                { flag: '🇬🇧', label: 'United Kingdom', to: '/global-presence/gb' },
+              ].map(({ flag, label, to }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-brand-deep/12 bg-white/70 text-brand-deep text-[11px] font-semibold shadow-sm hover:border-amber-400 hover:bg-amber-50 hover:-translate-y-0.5 transition-all duration-200"
+                >
+                  {flag} {label}
+                </Link>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent" />
         <CountryNav prevNav={prevNav} nextNav={nextNav} />
-        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-400/70 to-transparent" />
       </div>
 
       {/* Stats strip */}
