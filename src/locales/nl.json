@@ -105,7 +105,26 @@
   "businesses": {
     "eyebrow": "Onze Diensten",
     "title": "Zes divisies die ondernemingen en handel op alle continenten aandrijven.",
-    "sub": "Van bedrijfssoftware tot internationale handel — volledig end-to-end gebouwd."
+    "sub": "Van bedrijfssoftware tot internationale handel — volledig end-to-end gebouwd.",
+    "ourServices": "Onze Diensten",
+    "getQuote": "Offerte Aanvragen",
+    "explore": "Ontdekken",
+    "comingSoon": "Binnenkort Beschikbaar",
+    "new": "Nieuw",
+    "live": "Actief",
+    "divisions": "divisies",
+    "readMore": "Meer Lezen",
+    "learnMore": "Ontdek",
+    "items": {
+      "it-software":               { "title": "Technologie & Digitale Oplossingen", "tagline": "Maatwerksoftware, cloud & AI-oplossingen", "body": "Maatwerksoftware, webplatforms, ERP en AI-oplossingen." },
+      "export-import":             { "title": "Export- & Importbedrijf", "tagline": "Vracht, douane & wereldhandel", "body": "Inkoop, vracht, douane en end-to-end fulfilment." },
+      "clothing":                  { "title": "Kleding & Accessoires", "tagline": "Private label & kleding sourcing", "body": "Private label, kleding sourcing, kwaliteitscontrole en retaillevering." },
+      "agents-brokerage":          { "title": "Agenten & Makelaardij", "tagline": "Verzekeringen, leningen & partnerschappen", "body": "Grensoverschrijdende deals, partnerschappen en aanbestedingsondersteuning." },
+      "office-management":         { "title": "Kantoorbeheersdiensten", "tagline": "Facilitair, beveiliging & operaties", "body": "Servicekantoren, PRO-diensten, boekhouding en administratie." },
+      "manpower":                  { "title": "Arbeidskrachtenlevering", "tagline": "IT-, beveiligings- & bouwpersoneel", "body": "Arbeidskrachten, studentenplaatsing, visa en luchtvaart." },
+      "yanabiya-commerce":         { "title": "Yanabiya e-Commerce", "tagline": "Online retail, marktplaats & fulfilment", "body": "Online retail, marktplaats, orderverwerking." },
+      "yanabiya-digital-platform": { "title": "Yanabiya Digitaal Platform", "tagline": "Apps, buitendienst & digitale diensten", "body": "Apps, buitendienst, HR & CRM." }
+    }
   },
   "solutions": {
     "eyebrow": "Oplossingen",

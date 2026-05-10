@@ -105,7 +105,26 @@
   "businesses": {
     "eyebrow": "Våra Tjänster",
     "title": "Sex divisioner som driver företag och handel på alla kontinenter.",
-    "sub": "Från företagsprogramvara till internationell handel — byggt end-to-end."
+    "sub": "Från företagsprogramvara till internationell handel — byggt end-to-end.",
+    "ourServices": "Våra Tjänster",
+    "getQuote": "Begär Offert",
+    "explore": "Utforska",
+    "comingSoon": "Kommer Snart",
+    "new": "Ny",
+    "live": "Aktiv",
+    "divisions": "divisioner",
+    "readMore": "Läs Mer",
+    "learnMore": "Lär dig",
+    "items": {
+      "it-software":               { "title": "Teknik & Digitala Lösningar", "tagline": "Skräddarsydd programvara, cloud & AI-lösningar", "body": "Skräddarsydd programvara, webbplattformar, ERP och AI-lösningar." },
+      "export-import":             { "title": "Export- & Importverksamhet", "tagline": "Frakt, tull & global handel", "body": "Inköp, frakt, tull och heltäckande orderuppfyllnad." },
+      "clothing":                  { "title": "Kläder & Accessoarer", "tagline": "Privat märke & klädanskaffning", "body": "Privat märke, klädanskaffning, kvalitetssäkring och detaljhandelsförsörjning." },
+      "agents-brokerage":          { "title": "Agenter & Mäkleri", "tagline": "Försäkringar, lån & partnerskap", "body": "Gränsöverskridande affärer, partnerskap och anbudsstöd." },
+      "office-management":         { "title": "Kontorsförvaltningstjänster", "tagline": "Fastighet, säkerhet & verksamhet", "body": "Servicekontorer, PRO-tjänster, redovisning och administration." },
+      "manpower":                  { "title": "Bemanningstjänster", "tagline": "IT-, säkerhets- & byggpersonal", "body": "Arbetskraft, studentplacering, visum och luftfart." },
+      "yanabiya-commerce":         { "title": "Yanabiya e-Commerce", "tagline": "Onlinehandel, marknadsplats & orderuppfyllnad", "body": "Onlinehandel, marknadsplats, orderuppfyllnad." },
+      "yanabiya-digital-platform": { "title": "Yanabiya Digital Plattform", "tagline": "Appar, fältverksamhet & digitala tjänster", "body": "Appar, fältverksamhet, HR & CRM." }
+    }
   },
   "solutions": {
     "eyebrow": "Lösningar",

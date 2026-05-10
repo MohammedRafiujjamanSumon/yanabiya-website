@@ -105,7 +105,26 @@
   "businesses": {
     "eyebrow": "Nasze Usługi",
     "title": "Sześć dywizji napędzających przedsiębiorstwa i handel na wszystkich kontynentach.",
-    "sub": "Od oprogramowania dla przedsiębiorstw po handel międzynarodowy — zbudowane od początku do końca."
+    "sub": "Od oprogramowania dla przedsiębiorstw po handel międzynarodowy — zbudowane od początku do końca.",
+    "ourServices": "Nasze Usługi",
+    "getQuote": "Zapytaj o Wycenę",
+    "explore": "Odkryj",
+    "comingSoon": "Wkrótce",
+    "new": "Nowe",
+    "live": "Aktywne",
+    "divisions": "dywizje",
+    "readMore": "Czytaj Więcej",
+    "learnMore": "Poznaj",
+    "items": {
+      "it-software":               { "title": "Technologia & Rozwiązania Cyfrowe", "tagline": "Oprogramowanie na zamówienie, cloud & rozwiązania AI", "body": "Oprogramowanie na zamówienie, platformy internetowe, ERP i rozwiązania AI." },
+      "export-import":             { "title": "Handel Eksportowo-Importowy", "tagline": "Fracht, cła & globalny handel", "body": "Zaopatrzenie, fracht, odprawa celna i kompleksowe dostawy." },
+      "clothing":                  { "title": "Odzież & Akcesoria", "tagline": "Marki własne & sourcing odzieży", "body": "Marki własne, sourcing odzieży, kontrola jakości i dostawy detaliczne." },
+      "agents-brokerage":          { "title": "Agenci & Pośrednictwo", "tagline": "Ubezpieczenia, pożyczki & partnerstwa", "body": "Transakcje transgraniczne, partnerstwa i wsparcie przetargowe." },
+      "office-management":         { "title": "Zarządzanie Biurem", "tagline": "Facility, bezpieczeństwo & operacje", "body": "Biura serwisowane, usługi PRO, księgowość i administracja." },
+      "manpower":                  { "title": "Dostarczanie Siły Roboczej", "tagline": "Personel IT, ochrony & budowlany", "body": "Siła robocza, praktyki studenckie, wizy i lotnictwo." },
+      "yanabiya-commerce":         { "title": "Yanabiya e-Commerce", "tagline": "Sprzedaż online, marketplace & realizacja zamówień", "body": "Sprzedaż online, marketplace, realizacja zamówień." },
+      "yanabiya-digital-platform": { "title": "Yanabiya Platforma Cyfrowa", "tagline": "Aplikacje, operacje terenowe & usługi cyfrowe", "body": "Aplikacje, operacje terenowe, HR & CRM." }
+    }
   },
   "solutions": {
     "eyebrow": "Rozwiązania",

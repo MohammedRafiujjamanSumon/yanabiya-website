@@ -105,7 +105,26 @@
   "businesses": {
     "eyebrow": "Nos Services",
     "title": "Six divisions propulsant les entreprises et le commerce à travers les continents.",
-    "sub": "Du logiciel d'entreprise au commerce international — construit de bout en bout."
+    "sub": "Du logiciel d'entreprise au commerce international — construit de bout en bout.",
+    "ourServices": "Nos Services",
+    "getQuote": "Demander un Devis",
+    "explore": "Explorer",
+    "comingSoon": "Bientôt Disponible",
+    "new": "Nouveau",
+    "live": "Actif",
+    "divisions": "divisions",
+    "readMore": "En Savoir Plus",
+    "learnMore": "Découvrir",
+    "items": {
+      "it-software":               { "title": "Technologies & Solutions Numériques", "tagline": "Logiciels sur mesure, cloud & solutions IA", "body": "Logiciels sur mesure, plateformes web, ERP et solutions IA." },
+      "export-import":             { "title": "Commerce Import & Export", "tagline": "Fret, douanes & commerce mondial", "body": "Approvisionnement, fret, douanes et fulfilment de bout en bout." },
+      "clothing":                  { "title": "Vêtements & Accessoires", "tagline": "Marque propre & sourcing de vêtements", "body": "Marque propre, sourcing textile, contrôle qualité et approvisionnement retail." },
+      "agents-brokerage":          { "title": "Agents & Courtage", "tagline": "Assurances, prêts & partenariats", "body": "Accords transfrontaliers, partenariats et soutien aux appels d'offres." },
+      "office-management":         { "title": "Services de Gestion de Bureaux", "tagline": "Facility, sécurité & opérations", "body": "Bureaux équipés, services PRO, comptabilité et administration." },
+      "manpower":                  { "title": "Services de Fourniture de Main-d'œuvre", "tagline": "Personnel IT, sécurité & construction", "body": "Main-d'œuvre, placement étudiant, visa et aviation." },
+      "yanabiya-commerce":         { "title": "Yanabiya e-Commerce", "tagline": "Vente en ligne, marketplace & fulfilment", "body": "Vente en ligne, marketplace, fulfilment." },
+      "yanabiya-digital-platform": { "title": "Yanabiya Plateforme Digitale", "tagline": "Applications, opérations terrain & services numériques", "body": "Applications, opérations terrain, RH & CRM." }
+    }
   },
   "solutions": {
     "eyebrow": "Solutions",

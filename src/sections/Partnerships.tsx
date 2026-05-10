@@ -29,6 +29,7 @@ function LogoMarquee({
 
   return (
     <div
+      dir="ltr"
       className="relative overflow-hidden"
       onMouseEnter={pause}
       onMouseLeave={resume}

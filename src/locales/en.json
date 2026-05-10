@@ -105,7 +105,26 @@
   "businesses": {
     "eyebrow": "Our Service",
     "title": "Six divisions powering enterprises and trade across continents.",
-    "sub": "From enterprise software to international trade — built end-to-end."
+    "sub": "From enterprise software to international trade — built end-to-end.",
+    "ourServices": "Our Services",
+    "getQuote": "Get a Quote",
+    "explore": "Explore",
+    "comingSoon": "Coming Soon",
+    "new": "New",
+    "live": "Live",
+    "divisions": "divisions",
+    "readMore": "Read More",
+    "learnMore": "Learn",
+    "items": {
+      "it-software":              { "title": "Technology & Digital Solutions", "tagline": "Custom software, cloud & AI solutions",     "body": "Custom software, web platforms, ERP, and AI solutions." },
+      "export-import":            { "title": "Export & Import Business",       "tagline": "Freight, customs & global trade",           "body": "Sourcing, freight, customs, and end-to-end fulfilment." },
+      "clothing":                 { "title": "Clothing & Accessories",         "tagline": "Private label & garment sourcing",          "body": "Private label, garment sourcing, QA, and retail supply." },
+      "agents-brokerage":         { "title": "Agents & Brokerage Business",    "tagline": "Insurance, loans & partnerships",           "body": "Cross-border deals, partnerships, and tender support." },
+      "office-management":        { "title": "Office Management Services",     "tagline": "Facility, security & operations",           "body": "Serviced offices, PRO services, accounting, and admin." },
+      "manpower":                 { "title": "Manpower Supply Services",       "tagline": "IT, security & construction staff",         "body": "Workforce, student placement, visa, and aviation." },
+      "yanabiya-commerce":        { "title": "Yanabiya e-Commerce",            "tagline": "Online retail, marketplace & fulfilment",   "body": "Online retail, marketplace, fulfilment." },
+      "yanabiya-digital-platform":{ "title": "Yanabiya Digital Platform",      "tagline": "Apps, field ops & digital services",        "body": "Apps, field ops, HR & CRM." }
+    }
   },
   "solutions": {
     "eyebrow": "Solutions",

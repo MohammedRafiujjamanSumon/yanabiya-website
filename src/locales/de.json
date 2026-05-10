@@ -105,7 +105,26 @@
   "businesses": {
     "eyebrow": "Unsere Dienste",
     "title": "Sechs Divisionen, die Unternehmen und Handel auf allen Kontinenten antreiben.",
-    "sub": "Von Unternehmenssoftware bis zum internationalen Handel — vollständig end-to-end."
+    "sub": "Von Unternehmenssoftware bis zum internationalen Handel — vollständig end-to-end.",
+    "ourServices": "Unsere Dienstleistungen",
+    "getQuote": "Angebot Anfordern",
+    "explore": "Erkunden",
+    "comingSoon": "Demnächst Verfügbar",
+    "new": "Neu",
+    "live": "Aktiv",
+    "divisions": "Divisionen",
+    "readMore": "Mehr Lesen",
+    "learnMore": "Entdecken",
+    "items": {
+      "it-software":               { "title": "Technologie & Digitale Lösungen", "tagline": "Individuelle Software, Cloud & KI-Lösungen", "body": "Individuelle Software, Webplattformen, ERP und KI-Lösungen." },
+      "export-import":             { "title": "Export- & Importgeschäft", "tagline": "Fracht, Zoll & Welthandel", "body": "Beschaffung, Fracht, Zoll und End-to-End-Abwicklung." },
+      "clothing":                  { "title": "Bekleidung & Accessoires", "tagline": "Private Label & Textilbeschaffung", "body": "Private Label, Textilbeschaffung, Qualitätssicherung und Einzelhandelsversorgung." },
+      "agents-brokerage":          { "title": "Agenten & Maklergeschäft", "tagline": "Versicherungen, Kredite & Partnerschaften", "body": "Grenzüberschreitende Geschäfte, Partnerschaften und Ausschreibungsunterstützung." },
+      "office-management":         { "title": "Büroverwaltungsdienstleistungen", "tagline": "Facility, Sicherheit & Betrieb", "body": "Servicebüros, PRO-Dienste, Buchhaltung und Verwaltung." },
+      "manpower":                  { "title": "Arbeitskräfteversorgung", "tagline": "IT-, Sicherheits- & Baupersonal", "body": "Arbeitskräfte, Studentenvermittlung, Visa und Luftfahrt." },
+      "yanabiya-commerce":         { "title": "Yanabiya e-Commerce", "tagline": "Online-Handel, Marktplatz & Abwicklung", "body": "Online-Handel, Marktplatz, Auftragsabwicklung." },
+      "yanabiya-digital-platform": { "title": "Yanabiya Digitale Plattform", "tagline": "Apps, Außendienst & digitale Dienste", "body": "Apps, Außendienst, HR & CRM." }
+    }
   },
   "solutions": {
     "eyebrow": "Lösungen",

@@ -105,7 +105,26 @@
   "businesses": {
     "eyebrow": "Nossos Serviços",
     "title": "Seis divisões a impulsionar empresas e comércio por todos os continentes.",
-    "sub": "Do software empresarial ao comércio internacional — construído de ponta a ponta."
+    "sub": "Do software empresarial ao comércio internacional — construído de ponta a ponta.",
+    "ourServices": "Os Nossos Serviços",
+    "getQuote": "Pedir Orçamento",
+    "explore": "Explorar",
+    "comingSoon": "Em Breve",
+    "new": "Novo",
+    "live": "Ativo",
+    "divisions": "divisões",
+    "readMore": "Ler Mais",
+    "learnMore": "Saber",
+    "items": {
+      "it-software":               { "title": "Tecnologia & Soluções Digitais", "tagline": "Software à medida, cloud & soluções IA", "body": "Software à medida, plataformas web, ERP e soluções IA." },
+      "export-import":             { "title": "Negócio de Exportação e Importação", "tagline": "Frete, alfândega & comércio global", "body": "Aprovisionamento, frete, alfândega e cumprimento integral." },
+      "clothing":                  { "title": "Vestuário & Acessórios", "tagline": "Marca própria & sourcing de vestuário", "body": "Marca própria, sourcing de vestuário, controlo de qualidade e fornecimento retail." },
+      "agents-brokerage":          { "title": "Agentes & Corretagem", "tagline": "Seguros, empréstimos & parcerias", "body": "Negócios transfronteiriços, parcerias e apoio a concursos." },
+      "office-management":         { "title": "Serviços de Gestão de Escritórios", "tagline": "Instalações, segurança & operações", "body": "Escritórios com serviços, serviços PRO, contabilidade e administração." },
+      "manpower":                  { "title": "Serviços de Fornecimento de Mão de Obra", "tagline": "Pessoal de IT, segurança & construção", "body": "Mão de obra, colocação de estudantes, vistos e aviação." },
+      "yanabiya-commerce":         { "title": "Yanabiya e-Commerce", "tagline": "Retalho online, marketplace & cumprimento", "body": "Retalho online, marketplace, cumprimento de encomendas." },
+      "yanabiya-digital-platform": { "title": "Yanabiya Plataforma Digital", "tagline": "Aplicações, operações de campo & serviços digitais", "body": "Aplicações, operações de campo, RH & CRM." }
+    }
   },
   "solutions": {
     "eyebrow": "Soluções",

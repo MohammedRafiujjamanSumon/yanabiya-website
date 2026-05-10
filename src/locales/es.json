@@ -105,7 +105,26 @@
   "businesses": {
     "eyebrow": "Nuestros Servicios",
     "title": "Seis divisiones impulsando empresas y comercio en todos los continentes.",
-    "sub": "Desde software empresarial hasta comercio internacional — construido de extremo a extremo."
+    "sub": "Desde software empresarial hasta comercio internacional — construido de extremo a extremo.",
+    "ourServices": "Nuestros Servicios",
+    "getQuote": "Solicitar Presupuesto",
+    "explore": "Explorar",
+    "comingSoon": "Próximamente",
+    "new": "Nuevo",
+    "live": "Activo",
+    "divisions": "divisiones",
+    "readMore": "Leer Más",
+    "learnMore": "Conocer",
+    "items": {
+      "it-software":               { "title": "Tecnología & Soluciones Digitales", "tagline": "Software a medida, cloud & soluciones IA", "body": "Software a medida, plataformas web, ERP y soluciones IA." },
+      "export-import":             { "title": "Negocio de Exportación e Importación", "tagline": "Flete, aduanas & comercio global", "body": "Aprovisionamiento, flete, aduanas y cumplimiento integral." },
+      "clothing":                  { "title": "Ropa & Accesorios", "tagline": "Marca propia & aprovisionamiento textil", "body": "Marca propia, aprovisionamiento textil, control de calidad y suministro retail." },
+      "agents-brokerage":          { "title": "Agentes & Corretaje", "tagline": "Seguros, préstamos & alianzas", "body": "Acuerdos transfronterizos, alianzas y apoyo a licitaciones." },
+      "office-management":         { "title": "Servicios de Gestión de Oficinas", "tagline": "Instalaciones, seguridad & operaciones", "body": "Oficinas con servicios, servicios PRO, contabilidad y administración." },
+      "manpower":                  { "title": "Servicios de Provisión de Personal", "tagline": "Personal IT, seguridad & construcción", "body": "Mano de obra, colocación estudiantil, visa y aviación." },
+      "yanabiya-commerce":         { "title": "Yanabiya e-Commerce", "tagline": "Venta online, marketplace & logística", "body": "Venta online, marketplace, cumplimiento de pedidos." },
+      "yanabiya-digital-platform": { "title": "Yanabiya Plataforma Digital", "tagline": "Aplicaciones, operaciones de campo & servicios digitales", "body": "Aplicaciones, operaciones de campo, RR. HH. & CRM." }
+    }
   },
   "solutions": {
     "eyebrow": "Soluciones",

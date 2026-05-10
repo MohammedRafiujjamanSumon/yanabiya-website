@@ -97,6 +97,7 @@ const FLOW_CARDS: FlowCard[] = [
 ]
 
 function ServicesFlowchart({ onSelect }: { onSelect: (slug: string) => void }) {
+  const { t } = useTranslation()
   return (
     <div className="relative max-w-5xl mx-auto">
       {/* Top row */}
@@ -116,7 +117,7 @@ function ServicesFlowchart({ onSelect }: { onSelect: (slug: string) => void }) {
             <div className="text-[10px] font-bold tracking-[0.32em] uppercase text-brand-accent mb-0.5">
               Yanabiya Group
             </div>
-            <div className="font-serif text-xl tracking-tight">Our Services</div>
+            <div className="font-serif text-xl tracking-tight">{t('businesses.ourServices')}</div>
           </div>
         </div>
       </div>
@@ -201,6 +202,7 @@ const SERVICE_ITEMS: ServiceItem[] = [
 ]
 
 function SnakeCard({ item, onSelect }: { item: ServiceItem; onSelect: () => void }) {
+  const { t } = useTranslation()
   return (
     <button
       type="button"
@@ -227,13 +229,13 @@ function SnakeCard({ item, onSelect }: { item: ServiceItem; onSelect: () => void
         {item.badge === 'new' && (
           <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full
                            bg-emerald-500 text-white text-[9px] font-bold uppercase tracking-wide shadow">
-            New
+            {t('businesses.new')}
           </span>
         )}
         {item.badge === 'soon' && (
           <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full
                            bg-amber-500 text-white text-[9px] font-bold uppercase tracking-wide shadow">
-            Coming Soon
+            {t('businesses.comingSoon')}
           </span>
         )}
       </div>
@@ -241,11 +243,11 @@ function SnakeCard({ item, onSelect }: { item: ServiceItem; onSelect: () => void
       {/* ── Text panel, always fully visible outside the image ── */}
       <div className="px-3.5 py-3 flex flex-col gap-1 flex-1">
         <h3 className="font-semibold text-brand-deep text-[13px] leading-snug line-clamp-2 flex-1">
-          {item.title}
+          {t(`businesses.items.${item.slug}.title`, item.title)}
         </h3>
         <div className="mt-2 inline-flex items-center gap-1 text-brand-accentDark text-[11px]
                         font-semibold group-hover:gap-2 transition-all duration-200">
-          {item.badge === 'soon' ? 'Coming Soon' : 'Explore'}
+          {item.badge === 'soon' ? t('businesses.comingSoon') : t('businesses.explore')}
           <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
         </div>
       </div>
@@ -394,6 +396,7 @@ function GbsCircle({
   variant?: 'tall' | 'short'
   onSelect: () => void
 }) {
+  const { t } = useTranslation()
   const isLogoTile = !!item.logoUrl
   // All tiles share the same compact size, the rhythm comes from zig-zag
   // vertical offset, not from size variation. `variant` is kept on the type
@@ -476,7 +479,7 @@ function GbsCircle({
                          text-[11px] md:text-[12px] lg:text-[13px]
                          tracking-tight
                          drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
-          {item.title}
+          {t(`businesses.items.${item.slug}.title`, item.title)}
         </span>
       )}
 
@@ -495,7 +498,7 @@ function GbsCircle({
                      group-hover:opacity-100 group-hover:translate-y-0
                      group-focus-visible:opacity-100 group-focus-visible:translate-y-0"
         >
-          Learn <ArrowRight size={9} />
+          {t('businesses.learnMore')} <ArrowRight size={9} />
         </span>
       )}
     </button>
@@ -503,6 +506,7 @@ function GbsCircle({
 }
 
 function FlowCardTile({ card, onSelect }: { card: FlowCard; onSelect: (slug: string) => void }) {
+  const { t } = useTranslation()
   return (
     <button
       type="button"
@@ -517,14 +521,14 @@ function FlowCardTile({ card, onSelect }: { card: FlowCard; onSelect: (slug: str
                   focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60`}
     >
       <div className="font-bold text-sm md:text-base leading-tight mb-2">
-        {card.title}
+        {t(`businesses.items.${card.slug}.title`, card.title)}
       </div>
       <div className="text-[11px] md:text-xs opacity-90 leading-snug">
-        {card.body}
+        {t(`businesses.items.${card.slug}.body`, card.body)}
       </div>
       <div className="mt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
                       opacity-90 group-hover:gap-1.5 transition-all">
-        Read More <ArrowRight size={11} />
+        {t('businesses.readMore')} <ArrowRight size={11} />
       </div>
     </button>
   )
@@ -558,6 +562,7 @@ function ServicesPyramid({
   onSelect: (slug: string) => void
   onSelectHub: () => void
 }) {
+  const { t } = useTranslation()
   const total = PYRAMID_LAYERS.length
   // Pipe-ring dimensions, tighter stack, fatter rings.
   const baseWidth = 440   // bottom ring width (px)
@@ -727,7 +732,7 @@ function ServicesPyramid({
                   }}
                 >
                   <Icon size={fontPx + 3} strokeWidth={2.4} className="text-brand-deep" />
-                  {layer.label}
+                  {t(`businesses.items.${layer.slug}.title`, layer.label)}
                 </span>
               </span>
             )
@@ -739,13 +744,13 @@ function ServicesPyramid({
       {/* Active layer label below the pyramid (responsive to active index) */}
       <div className="absolute left-1/2 -translate-x-1/2 bottom-2 text-center">
         <div className="text-[9px] font-bold uppercase tracking-[0.32em] text-brand-accentDark">
-          Active, 0{active + 1} of {total}
+          {t('businesses.live')}, 0{active + 1} of {total}
         </div>
         <div
           className="font-serif text-lg text-brand-deep mt-1 leading-tight transition-colors duration-300"
           style={{ color: PYRAMID_LAYERS[active].to }}
         >
-          {PYRAMID_LAYERS[active].label}
+          {t(`businesses.items.${PYRAMID_LAYERS[active].slug}.title`, PYRAMID_LAYERS[active].label)}
         </div>
       </div>
     </div>
@@ -1051,12 +1056,12 @@ export default function Businesses() {
                            bg-brand-accent text-white text-xs font-semibold uppercase tracking-wider
                            shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
-                Get a Quote
+                {t('businesses.getQuote')}
                 <ArrowRight size={14} />
               </Link>
               <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.32em] text-brand-accentDark font-bold">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                Live, {SERVICE_ITEMS.length} divisions
+                {t('businesses.live')}, {SERVICE_ITEMS.length} {t('businesses.divisions')}
               </div>
             </div>
           </Reveal>
