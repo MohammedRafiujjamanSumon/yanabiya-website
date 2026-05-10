@@ -49,6 +49,10 @@ import SettingsEdit from './admin/pages/sections/SettingsEdit'
 import CountryPagesEdit from './admin/pages/sections/CountryPagesEdit'
 import MediaLibrary from './admin/pages/MediaLibrary'
 import PageHeroesEdit from './admin/pages/sections/PageHeroesEdit'
+import PeopleEdit from './admin/pages/sections/PeopleEdit'
+import BranchesEdit from './admin/pages/sections/BranchesEdit'
+import SolutionsEdit from './admin/pages/sections/SolutionsEdit'
+import LogoEdit from './admin/pages/sections/LogoEdit'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -81,6 +85,10 @@ function AdminRoutes() {
         <Route path="country-pages"  element={<ProtectedRoute><CountryPagesEdit /></ProtectedRoute>} />
         <Route path="page-heroes"    element={<ProtectedRoute><PageHeroesEdit /></ProtectedRoute>} />
         <Route path="media"          element={<ProtectedRoute><MediaLibrary /></ProtectedRoute>} />
+        <Route path="people"         element={<ProtectedRoute><PeopleEdit /></ProtectedRoute>} />
+        <Route path="branches"       element={<ProtectedRoute><BranchesEdit /></ProtectedRoute>} />
+        <Route path="solutions"      element={<ProtectedRoute><SolutionsEdit /></ProtectedRoute>} />
+        <Route path="logo"           element={<ProtectedRoute><LogoEdit /></ProtectedRoute>} />
       </Routes>
     </AuthProvider>
   )

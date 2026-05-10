@@ -4,28 +4,32 @@ import {
   Phone, Image, Globe, Building2, Users, FileText,
   ArrowRight, Clock, MonitorPlay, Info, Navigation,
   Layout, Newspaper, Briefcase, Quote, FolderOpen,
+  Lightbulb, MapPin, ImageIcon,
 } from 'lucide-react'
 import AdminLayout from '../components/AdminLayout'
 import { api } from '../api/adminApi'
 import { useAuth } from '../context/AuthContext'
 
 const SECTIONS = [
-  { key: 'hero-scenes',  label: 'Hero Slides',      icon: MonitorPlay, to: '/admin/hero-scenes',  desc: '7 rotating banner scenes' },
-  { key: 'company',      label: 'Company Info',      icon: Info,        to: '/admin/company',      desc: 'Name, tagline, stats, mission & vision' },
-  { key: 'navbar',       label: 'Navbar',            icon: Navigation,  to: '/admin/navbar',       desc: 'Navigation labels & CTA button' },
-  { key: 'about',        label: 'About Section',     icon: Building2,   to: '/admin/about',        desc: 'Company pillars & intro' },
-  { key: 'services',     label: 'Services',          icon: FileText,    to: '/admin/services',     desc: 'Business cards & descriptions' },
-  { key: 'partners',     label: 'Partners & Logos',  icon: Image,       to: '/admin/partners',     desc: 'Partner, client & membership logos' },
-  { key: 'leadership',   label: 'Leadership',        icon: Users,       to: '/admin/leadership',   desc: 'Board & management profiles' },
-  { key: 'contact',      label: 'Contact Info',      icon: Phone,       to: '/admin/contact',      desc: 'Office addresses, phones & emails' },
-  { key: 'footer',       label: 'Footer',            icon: Layout,      to: '/admin/footer',       desc: 'Links, social media & copyright' },
-  { key: 'blog',         label: 'Blog Posts',        icon: Newspaper,   to: '/admin/blog',         desc: 'Create & manage blog articles' },
-  { key: 'careers',      label: 'Careers',           icon: Briefcase,   to: '/admin/careers',      desc: 'Job listings per country' },
-  { key: 'testimonials', label: 'Testimonials',      icon: Quote,       to: '/admin/testimonials', desc: 'Client testimonials per country' },
-  { key: 'hero',          label: 'Hero Text',         icon: Globe,       to: '/admin/hero',          desc: 'Homepage headline & stats' },
-  { key: 'page-heroes',   label: 'Page Heroes',       icon: Image,       to: '/admin/page-heroes',   desc: 'Hero banner text on every sub-page' },
-  { key: 'country-pages', label: 'Country Pages',     icon: Globe,       to: '/admin/country-pages', desc: 'Oman, UK, Bangladesh, USA landing pages' },
-  { key: 'media',         label: 'Media Library',     icon: FolderOpen,  to: '/admin/media',         desc: 'Upload and manage all images & videos' },
+  { key: 'branding',     label: 'Logo & Branding',   icon: ImageIcon,   to: '/admin/logo',          desc: 'Site logo, brandmark, name & tagline' },
+  { key: 'hero-scenes',  label: 'Hero Slides',        icon: MonitorPlay, to: '/admin/hero-scenes',   desc: '7 rotating banner scenes' },
+  { key: 'company',      label: 'Company Info',        icon: Info,        to: '/admin/company',       desc: 'Name, tagline, stats, mission & vision' },
+  { key: 'navbar',       label: 'Navbar',              icon: Navigation,  to: '/admin/navbar',        desc: 'Navigation labels & CTA button' },
+  { key: 'about',        label: 'About Section',       icon: Building2,   to: '/admin/about',         desc: 'Company pillars & intro' },
+  { key: 'services',     label: 'Services',            icon: FileText,    to: '/admin/services',      desc: 'Business cards & descriptions' },
+  { key: 'solutions',    label: 'Solutions',           icon: Lightbulb,   to: '/admin/solutions',     desc: '10 solution items on homepage' },
+  { key: 'partners',     label: 'Partners & Logos',    icon: Image,       to: '/admin/partners',      desc: 'Partner, client & membership logos' },
+  { key: 'footer',       label: 'Footer',              icon: Layout,      to: '/admin/footer',        desc: 'Links, social media & copyright' },
+  { key: 'leadership',   label: 'Leadership',          icon: Users,       to: '/admin/leadership',    desc: 'Board & management profiles' },
+  { key: 'people',       label: 'People Profiles',     icon: Users,       to: '/admin/people',        desc: 'All team & people profiles' },
+  { key: 'branches',     label: 'Global Branches',     icon: MapPin,      to: '/admin/branches',      desc: 'Oman, UK, Bangladesh, USA offices' },
+  { key: 'contact',      label: 'Contact Info',        icon: Phone,       to: '/admin/contact',       desc: 'Office addresses, phones & emails' },
+  { key: 'country-pages',label: 'Country Pages',       icon: Globe,       to: '/admin/country-pages', desc: 'Oman, UK, Bangladesh, USA landing pages' },
+  { key: 'blog',         label: 'Blog Posts',          icon: Newspaper,   to: '/admin/blog',          desc: 'Create & manage blog articles' },
+  { key: 'careers',      label: 'Careers',             icon: Briefcase,   to: '/admin/careers',       desc: 'Job listings per country' },
+  { key: 'testimonials', label: 'Testimonials',        icon: Quote,       to: '/admin/testimonials',  desc: 'Client testimonials per country' },
+  { key: 'page-heroes',  label: 'Page Heroes',         icon: Image,       to: '/admin/page-heroes',   desc: 'Hero banner text on every sub-page' },
+  { key: 'media',        label: 'Media Library',       icon: FolderOpen,  to: '/admin/media',         desc: 'Upload and manage all images & videos' },
 ]
 
 export default function Dashboard() {
