@@ -116,14 +116,46 @@
     "readMore": "Read More",
     "learnMore": "Learn",
     "items": {
-      "it-software":              { "title": "Technology & Digital Solutions", "tagline": "Custom software, cloud & AI solutions",     "body": "Custom software, web platforms, ERP, and AI solutions." },
-      "export-import":            { "title": "Export & Import Business",       "tagline": "Freight, customs & global trade",           "body": "Sourcing, freight, customs, and end-to-end fulfilment." },
-      "clothing":                 { "title": "Clothing & Accessories",         "tagline": "Private label & garment sourcing",          "body": "Private label, garment sourcing, QA, and retail supply." },
-      "agents-brokerage":         { "title": "Agents & Brokerage Business",    "tagline": "Insurance, loans & partnerships",           "body": "Cross-border deals, partnerships, and tender support." },
-      "office-management":        { "title": "Office Management Services",     "tagline": "Facility, security & operations",           "body": "Serviced offices, PRO services, accounting, and admin." },
-      "manpower":                 { "title": "Manpower Supply Services",       "tagline": "IT, security & construction staff",         "body": "Workforce, student placement, visa, and aviation." },
-      "yanabiya-commerce":        { "title": "Yanabiya e-Commerce",            "tagline": "Online retail, marketplace & fulfilment",   "body": "Online retail, marketplace, fulfilment." },
-      "yanabiya-digital-platform":{ "title": "Yanabiya Digital Platform",      "tagline": "Apps, field ops & digital services",        "body": "Apps, field ops, HR & CRM." }
+      "it-software": {
+        "title": "Technology & Digital Solutions",
+        "tagline": "Custom software, cloud & AI solutions",
+        "body": "Custom software, web platforms, ERP, and AI solutions."
+      },
+      "export-import": {
+        "title": "Export & Import Business",
+        "tagline": "Freight, customs & global trade",
+        "body": "Sourcing, freight, customs, and end-to-end fulfilment."
+      },
+      "clothing": {
+        "title": "Clothing & Accessories",
+        "tagline": "Private label & garment sourcing",
+        "body": "Private label, garment sourcing, QA, and retail supply."
+      },
+      "agents-brokerage": {
+        "title": "Agents & Brokerage Business",
+        "tagline": "Insurance, loans & partnerships",
+        "body": "Cross-border deals, partnerships, and tender support."
+      },
+      "office-management": {
+        "title": "Office Management Services",
+        "tagline": "Facility, security & operations",
+        "body": "Serviced offices, PRO services, accounting, and admin."
+      },
+      "manpower": {
+        "title": "Manpower Supply Services",
+        "tagline": "IT, security & construction staff",
+        "body": "Workforce, student placement, visa, and aviation."
+      },
+      "yanabiya-commerce": {
+        "title": "Yanabiya e-Commerce",
+        "tagline": "Online retail, marketplace & fulfilment",
+        "body": "Online retail, marketplace, fulfilment."
+      },
+      "yanabiya-digital-platform": {
+        "title": "Yanabiya Digital Platform",
+        "tagline": "Apps, field ops & digital services",
+        "body": "Apps, field ops, HR & CRM."
+      }
     }
   },
   "solutions": {
@@ -153,10 +185,22 @@
     "cta": "Explore Global Presence",
     "exploreAbout": "Explore about",
     "nodes": {
-      "OM": { "name": "Oman",        "capital": "Muscat" },
-      "GB": { "name": "UK",          "capital": "London" },
-      "BD": { "name": "Bangladesh",  "capital": "Dhaka"  },
-      "US": { "name": "USA",         "capital": "Austin" }
+      "OM": {
+        "name": "Oman",
+        "capital": "Muscat"
+      },
+      "GB": {
+        "name": "UK",
+        "capital": "London"
+      },
+      "BD": {
+        "name": "Bangladesh",
+        "capital": "Dhaka"
+      },
+      "US": {
+        "name": "USA",
+        "capital": "Austin"
+      }
     }
   },
   "csr": {
@@ -357,11 +401,32 @@
     "visitOffice": "Visit Office"
   },
   "common": {
-    "ourPeople": "Our People", "previous": "Previous", "next": "Next", "close": "Close",
-    "active": "Active", "launching": "Launching", "viewPage": "View Page",
-    "viewOnMaps": "View on Google Maps", "notFound": "Not found.", "bioComing": "Bio coming soon.",
-    "backToHome": "Back to Home", "readMore": "Read More", "learnMore": "Learn more",
-    "getInTouch": "Get in Touch", "viewAll": "View All Members"
+    "ourPeople": "Our People",
+    "previous": "Previous",
+    "next": "Next",
+    "close": "Close",
+    "active": "Active",
+    "launching": "Launching",
+    "viewPage": "View Page",
+    "viewOnMaps": "View on Google Maps",
+    "notFound": "Not found.",
+    "bioComing": "Bio coming soon.",
+    "backToHome": "Back to Home",
+    "readMore": "Read More",
+    "learnMore": "Learn more",
+    "getInTouch": "Get in Touch",
+    "viewAll": "View All Members",
+    "sincerely": "Sincerely,",
+    "roleResponsibilities": "Role & Responsibilities",
+    "viewMore": "View More",
+    "backTo": "Back to",
+    "explore": "Explore",
+    "contactUs": "Contact Us",
+    "allRegions": "All Regions",
+    "verified": "Verified",
+    "verifiedClient": "Verified Client",
+    "noOpenRoles": "No open roles right now.",
+    "teamMembersListed": "Team members will be listed here."
   },
   "board": {
     "title": "Board of Members",
@@ -376,15 +441,192 @@
   "people": {
     "notFound": "Page not found.",
     "empowering": "Empowering Global Operations, Strategic Leadership & Cross-Border Business Excellence Under Yanabiya Group of Companies",
-    "coFounders": "Co-Founders", "managementTeam": "Management Team",
-    "accountsFinance": "Accounts & Finance", "chiefOfAccounts": "Chief of Accounts",
+    "coFounders": "Co-Founders",
+    "managementTeam": "Management Team",
+    "accountsFinance": "Accounts & Finance",
+    "chiefOfAccounts": "Chief of Accounts",
     "bioComing": "Bio coming soon."
   },
   "globalContact": {
-    "postalAddress": "Postal Address", "headOffice": "Head Office", "branchOffice": "Branch Office",
-    "parentCompany": "Parent Company", "officeHours": "Office Hours",
-    "viewOnMaps": "View on Google Maps", "branchesConnected": "Branches Connected",
+    "postalAddress": "Postal Address",
+    "headOffice": "Head Office",
+    "branchOffice": "Branch Office",
+    "parentCompany": "Parent Company",
+    "officeHours": "Office Hours",
+    "viewOnMaps": "View on Google Maps",
+    "branchesConnected": "Branches Connected",
     "ourGlobalNetwork": "Our Global Network"
+  },
+  "ceoPage": {
+    "badge": "Founder · Chairman · CEO",
+    "badgeLong": "Founder, Chairman & CEO",
+    "msgTitle": "Message from the Chairman & CEO",
+    "groupLabel": "Yanabiya Group"
+  },
+  "vcPage": {
+    "badge": "Vice Chairman",
+    "msgTitle": "Message from the Vice Chairman",
+    "backToLabel": "Our People"
+  },
+  "aboutPage": {
+    "eyebrow": "About Yanabiya Group",
+    "heroH1": "Built to connect.",
+    "heroSpan": "Designed to endure.",
+    "heroPara": "A diversified international group operating as one platform, across technology, trade, talent, and consulting in four countries.",
+    "proof": {
+      "sectors": {
+        "label": "Six sectors",
+        "body": "One operating discipline across tech, trade, and talent."
+      },
+      "countries": {
+        "label": "Four countries",
+        "body": "Oman HQ, with teams in the UK, Bangladesh, and USA."
+      },
+      "trust": {
+        "label": "Decade of trust",
+        "body": "10+ years of compounding partnerships across borders."
+      }
+    },
+    "identity": {
+      "kicker": "01, Identity",
+      "title": "Who we are.",
+      "p1": "Yanabiya Group is a diversified global enterprise originating in Al Khuwair, Muscat, operating today across the United Kingdom, Bangladesh, and the United States.",
+      "p2": "We don't run as a single-sector company. We run as a platform, where multiple ventures share one operating discipline and one long-term horizon, while remaining independent where they need to be.",
+      "p3": "That structure is how a six-sector group stays coherent across four countries. Innovation, execution, and operational capability move together, not in silos.",
+      "viewMore": "View More"
+    },
+    "principles": {
+      "kicker": "02, Principles",
+      "title": "What we stand for.",
+      "mission": {
+        "eyebrow": "Mission",
+        "title": "Why we exist",
+        "body": "Build, scale, and operate diversified ventures with technology, trade, and trust at the centre, across every market we enter."
+      },
+      "vision": {
+        "eyebrow": "Vision",
+        "title": "Where we're going",
+        "body": "A trusted global ecosystem where many businesses share one operating discipline, one set of values, and one long-term horizon."
+      },
+      "values": {
+        "eyebrow": "Values",
+        "title": "How we work",
+        "body": "Quality before scale. Relationships before transactions. People before process. Three rules, applied without exception."
+      },
+      "cta": "Explore What We Do"
+    },
+    "capability": {
+      "kicker": "03, Capability",
+      "title": "Six sectors. One discipline.",
+      "cta": "See Our Global Presence"
+    },
+    "presence": {
+      "kicker": "04, Presence",
+      "title": "One platform. Four homes.",
+      "stats": {
+        "countries": "Countries",
+        "sectors": "Sectors",
+        "years": "Years",
+        "operations": "Operations"
+      },
+      "tags": {
+        "OM": "Headquarters",
+        "GB": "European Operations",
+        "BD": "South Asia Operations",
+        "US": "North America Operations"
+      },
+      "cta": "Explore Our Business"
+    },
+    "fullStory": {
+      "eyebrow": "The Full Story",
+      "h2Part1": "Every group has a story.",
+      "h2Part2": "Ours is just beginning.",
+      "cta": "Discover Our Full Story"
+    }
+  },
+  "careersPage": {
+    "whyEyebrow": "Why Yanabiya",
+    "growTitle1": "Grow Your",
+    "growTitle2": "Career With Us",
+    "openRoles": "Open Roles",
+    "opportunitiesTitle": "Opportunities by Office",
+    "noRoleH4": "Don't see the right role?",
+    "noRoleDesc": "Send us your CV and tell us where you'd like to contribute, we're always open to strong talent."
+  },
+  "communityCare": {
+    "stats": {
+      "beneficiaries": "Beneficiaries",
+      "countries": "Countries",
+      "track": "Track record",
+      "programmes": "Programmes"
+    },
+    "eyebrow": "How We Give Back",
+    "titleLine1": "Four Pillars",
+    "titleLine2": "of Impact",
+    "aroundWorld": "Around the world",
+    "programmesTitle": "Programmes Across Our Regions",
+    "programmesDesc": "Local teams deliver tailored programmes in every country where Yanabiya Group operates."
+  },
+  "sustainablePage": {
+    "eyebrow": "Sustainability",
+    "titleLine1": "Building a",
+    "titleLine2": "Greener Future",
+    "onGround": "On the ground",
+    "initiativesTitle": "Initiatives Across Our Regions",
+    "forwardCommitments": "Forward commitments",
+    "targetsTitle": "Targets We're Working Towards"
+  },
+  "communityOverview": {
+    "eyebrow": "Our Community",
+    "title": "Beyond the balance sheet.",
+    "subtitle": "Stories, sustainability, welfare, careers, four ways into the group beyond business."
+  },
+  "blogPage": {
+    "eyebrow": "What We Write About",
+    "titleLine1": "Stories &",
+    "titleLine2": "Insights",
+    "allRegions": "All Regions",
+    "noPosts": "No posts for this region yet, check back soon."
+  },
+  "countryDetail": {
+    "operations": "Operations",
+    "whatWeDo": "What we do",
+    "servicesIn": "Services in",
+    "corporateHierarchy": "Corporate Hierarchy",
+    "groupStructure": "Group structure in",
+    "parentCompany": "Parent Company",
+    "registeredEntity": "Registered Entity",
+    "licensedActivities": "Licensed Business Activities",
+    "authorisedIn": "What Yanabiya Is Authorised to Operate in",
+    "globalConnection": "Global Connection",
+    "unifiedNetwork": "One unified network",
+    "unifiedDesc": "Linked to every other Yanabiya hub by daily collaboration, shared clients, and a single delivery playbook.",
+    "achievements": "Achievements",
+    "highlights": "Highlights & milestones",
+    "youAreHere": "You are here",
+    "contactCta": "Want to reach our office? Our full contact directory lives on the global Contact page.",
+    "countryNotFound": "Country not found."
+  },
+  "testimonialsPage": {
+    "clientVoices": "Client Voices",
+    "title": "Trusted by leaders across four continents",
+    "desc": "Every quote below is from a verified client or partner who has worked with Yanabiya Group.",
+    "stats": {
+      "avgRating": "Average Rating",
+      "clientsServed": "Clients Served",
+      "countries": "Countries",
+      "track": "Track Record"
+    },
+    "noTestimonials": "No testimonials for this region yet, check back soon."
+  },
+  "deptCountry": {
+    "notFound": "Department not found.",
+    "backToBusiness": "Business Support Team",
+    "viewProfile": "View Profile",
+    "teamComingSoon": "Team members will be listed here.",
+    "otherTeams": "Other Regional Teams",
+    "teamCount_one": "{{count}} team member in Yanabiya's {{country}} operations.",
+    "teamCount_other": "{{count}} team members in Yanabiya's {{country}} operations."
   },
   "footer": {
     "rights": "All rights reserved.",
@@ -416,6 +658,372 @@
       "community": "Community Care",
       "careers": "Careers",
       "ecommerce": "Yanabiya E-Commerce ↗"
+    }
+  },
+  "serviceForm": {
+    "workWithUs": "Work with us",
+    "getOurService": "Get Our Service",
+    "getThisService": "Get This Service",
+    "intro": "Tell us a bit about yourself and we will get in touch within one business day.",
+    "fullName": "Full Name",
+    "fullNamePh": "Your full name",
+    "company": "Company / Organisation",
+    "companyPh": "Company name (optional)",
+    "emailAddress": "Email Address",
+    "emailPh": "you@company.com",
+    "phoneNumber": "Phone Number",
+    "phonePh": "+968 9000 0000",
+    "yourCountry": "Your Country",
+    "selectCountry": "Select country",
+    "customerType": "Customer Type",
+    "selectOne": "Select one",
+    "individual": "Individual",
+    "sme": "SME / Startup",
+    "enterprise": "Enterprise / Corporate",
+    "gov": "Government / Public Sector",
+    "nonprofit": "Non-profit / NGO",
+    "serviceRequired": "Service Required",
+    "selectService": "Select a service",
+    "descMessage": "Description / Message",
+    "descPh": "Briefly describe your requirement, project scope, or any specific questions...",
+    "sendRequest": "Send Request",
+    "cancel": "Cancel",
+    "requestReceived": "Request Received!",
+    "thankYou": "Thank you, our team will contact you within one business day."
+  },
+  "businessDetail": {
+    "sectorNotFound": "Sector not found",
+    "serviceNotFound": "Service not found",
+    "backToServiceList": "Back to Service List",
+    "ourService": "Our Service",
+    "previous": "Previous",
+    "next": "Next",
+    "whatWeOffer": "What We Offer",
+    "exploreOurServices": "Explore Our Services",
+    "readMore": "Read More",
+    "explore": "Explore",
+    "fromTheGroup": "From the Group",
+    "exploreOtherDivisions": "Explore other divisions",
+    "moreInDivision": "More services in this division",
+    "ecommerceBadge": "Yanabiya E-Commerce",
+    "ecommerceTitle": "Shop globally with Yanabiya",
+    "ecommerceDesc": "Our global e-commerce platform connects buyers and sellers across borders — trade, clothing, accessories and more, fulfilled worldwide.",
+    "ukItBadge": "UK IT Consultancy",
+    "ukItTitle": "Looking for UK-based IT consulting services?",
+    "ukItDesc": "Our UK IT consulting arm operates via a dedicated platform — software, cloud, AI & cybersecurity services tailored for the British market."
+  },
+  "ourStory": {
+    "eyebrow": "Yanabiya Group, Our Story",
+    "heroTitle": "From Muscat.",
+    "heroAccent": "For the World.",
+    "heroPara": "A decade of building enterprises across four countries, written one relationship, one delivery, one chapter at a time.",
+    "scrollToBegin": "Scroll to begin",
+    "s01kicker": "01, The Story",
+    "s02kicker": "02, Mission in Action",
+    "s02Title": "Three principles. One discipline.",
+    "s03kicker": "03, Vision Forward",
+    "s03Title": "The next decade isn't about more.",
+    "s03Accent": "It's about deeper.",
+    "s03Para": "Deeper expertise across our six sectors. Deeper trust with the communities we serve. Deeper connections across the four countries we already call home.",
+    "s04kicker": "04, The Journey",
+    "s04Title": "A decade in milestones.",
+    "s05kicker": "05, Global Strategy",
+    "s05Title": "One platform. Four homes.",
+    "chapterPrefix": "Chapter 0",
+    "visitCountry": "Visit",
+    "s06kicker": "06, Leadership",
+    "s06Title": "Stewards of the long view.",
+    "meetFullTeam": "Meet the full team",
+    "s07kicker": "07, Stewardship",
+    "s07Title": "Growth that gives back.",
+    "s07Para": "Profit isn't the only thing we measure. Across every country we operate in, we commit to community welfare programmes, education access, and environmental responsibility, because long-term value isn't built any other way.",
+    "exploreImpact": "Explore our impact",
+    "stewardStats": {
+      "sustainabilityProgrammes": "Sustainability programmes",
+      "communitiesServed": "Communities served",
+      "welfarePartnerships": "Welfare partnerships",
+      "opsEthics": "Operational ethics review"
+    },
+    "s08kicker": "08, Network",
+    "s08Title": "Trusted by enterprises across four continents.",
+    "seeNetwork": "See our trusted network",
+    "s09kicker": "09, The Next Chapter",
+    "s09Title": "Build the next chapter",
+    "s09Accent": "with us.",
+    "s09Para": "Whether you're scaling a venture, sourcing a partner, or entering a new market, let's talk about what's possible.",
+    "startConversation": "Start a Conversation",
+    "exploreSectors": "Explore our sectors",
+    "backToAbout": "Back to About Us",
+    "storyLines": [
+      "It started in Muscat, one office, one belief.",
+      "That trust outlasts trends, and craftsmanship outlasts shortcuts.",
+      "A decade on, that belief reaches four countries and six sectors.",
+      "We didn't set out to build a single company.",
+      "We set out to build a platform, where many ventures could share one spine.",
+      "Today, every Yanabiya business runs on the same operating principles.",
+      "Quality before scale. Relationships before transactions. People before process.",
+      "From Gulf trade routes to UK boardrooms.",
+      "From Dhaka engineering floors to Texas advisory rooms,",
+      "we connect markets, capital, and capability.",
+      "And the story is still being written.",
+      "One chapter at a time."
+    ],
+    "milestones": [
+      {
+        "year": "2014",
+        "title": "Founded in Muscat",
+        "body": "Yanabiya Gulf International Business & Trade SPC opens its doors in Al Khuwair."
+      },
+      {
+        "year": "2017",
+        "title": "Trade routes expand",
+        "body": "Cross-border operations established across Gulf and South Asia corridors."
+      },
+      {
+        "year": "2019",
+        "title": "Engineering hub",
+        "body": "Bangladesh delivery centre launches, software, QA, and 24x7 support."
+      },
+      {
+        "year": "2022",
+        "title": "European footprint",
+        "body": "Yanabiya Gulf International UK Ltd. registered in London for EMEA operations."
+      },
+      {
+        "year": "2024",
+        "title": "North America entry",
+        "body": "Yanabiya Gulf International US LLC opens in Austin, Texas."
+      },
+      {
+        "year": "2026",
+        "title": "Group platform",
+        "body": "Six diversified business units operating under one unified ecosystem."
+      }
+    ],
+    "regions": {
+      "OM": {
+        "tag": "Headquarters",
+        "body": "Where the story began. Our Muscat office anchors group strategy, regulatory intelligence, and Gulf trade operations."
+      },
+      "GB": {
+        "tag": "European Operations",
+        "body": "A London base for client engagements, partnerships, and regulated advisory work across EMEA."
+      },
+      "BD": {
+        "tag": "South Asia Operations",
+        "body": "Our engineering and apparel hub. Where craft meets capacity, at scale, with discipline."
+      },
+      "US": {
+        "tag": "North America Operations",
+        "body": "Frontier-tech advisory and partner network for the Americas, from Austin into the wider continent."
+      }
+    },
+    "leaders": [
+      {
+        "name": "Founder & Chairman",
+        "role": "Strategy, Group Vision",
+        "quote": "We deliver what we promise, and we measure ourselves by what survives the year, not the quarter."
+      },
+      {
+        "name": "Vice Chairman",
+        "role": "Operations, Global Delivery",
+        "quote": "Our job is to make a four-country group feel like one team in one room."
+      }
+    ],
+    "missionInAction": [
+      {
+        "quote": "Quality before scale.",
+        "body": "Every engagement starts with a single question, would we be proud of this in five years?"
+      },
+      {
+        "quote": "Relationships before transactions.",
+        "body": "Most of our business comes from clients who came back. That's the only metric we trust."
+      },
+      {
+        "quote": "People before process.",
+        "body": "Process serves people, not the other way around. We hire well and we trust deeply."
+      }
+    ]
+  },
+  "omanPresence": {
+    "globalPresence": "Global Presence",
+    "tagline": "Connecting Opportunities. Building Global Businesses.",
+    "readMore": "Read More",
+    "openPage": "Open {{name}} page",
+    "colA": "Column A",
+    "colB": "Column B",
+    "getInTouch": "Get in Touch",
+    "browseOffice": "Browse every office in one place.",
+    "contactDesc": "All Yanabiya Group contact details, Oman HQ, UK, Bangladesh, USA, live on a single centralised page.",
+    "openContactNetwork": "Open Contact Network",
+    "backToGlobal": "Back to Global"
+  },
+  "donation": {
+    "communityCareNav": "Community Care",
+    "testimonialsNav": "Testimonials",
+    "foundationBadge": "Yanabiya Charitable Foundation",
+    "jannahQuote": "A Chance to Build Your Palace in Jannah",
+    "prophetHadith": "The Prophet said: Charity does not decrease wealth. (Sahih Muslim)",
+    "stats": {
+      "directToCause": "Direct to Cause",
+      "livesTouched": "Lives Touched",
+      "countries": "Countries",
+      "trackRecord": "Track Record"
+    },
+    "whereGiftGoes": "Where Your Gift Goes",
+    "chooseCause": "Choose a Cause to Support",
+    "selected": "Selected:",
+    "paymentMethod": "Payment Method",
+    "paymentSubtitle": "Choose your amount, pick country, follow steps",
+    "chooseProgramme": "Choose Programme",
+    "selectCausePh": "Select a cause to support",
+    "yourContribution": "Your Contribution",
+    "fromWherePayment": "From where will you make payment?",
+    "selectCountryPh": "Select your country",
+    "contactUsToDonate": "Contact Us to Donate",
+    "paymentGateway": "Payment Gateway",
+    "comingSoonTitle": "Coming Soon",
+    "comingSoonDesc": "Payment gateway for your chosen location is on its way. Stay with us, we are working to bring it live soon.",
+    "contactInMeantime": "Contact us in the meantime",
+    "scanToPay": "Scan to pay",
+    "amountToSend": "Amount to send",
+    "bankDetails": "Bank Details",
+    "bankLabels": {
+      "bank": "Bank",
+      "accountName": "Account Name",
+      "accountNo": "Account No",
+      "routing": "Routing",
+      "swift": "SWIFT"
+    },
+    "amountToTransfer": "Amount to transfer",
+    "getInvoice": "Get Invoice",
+    "optional": "(optional)",
+    "yourName": "Your Name",
+    "noInvoice": "I don't need an invoice",
+    "confirmDonation": "Confirm My Donation",
+    "jazakAllah": "JazakAllah Khayran!",
+    "donationThankYou": "Your generous contribution will make a real difference. May Allah reward you with His best.",
+    "donateAgain": "Donate again",
+    "whyDonateTitle": "Why Donate With Us",
+    "whyDonateSubtitle": "Trusted, Transparent, Halal verified",
+    "trust": {
+      "registered": {
+        "title": "Registered Organisation",
+        "desc": "Yanabiya Charitable Foundation, officially registered and audited across four countries."
+      },
+      "directToCause": {
+        "title": "100% Reaches the Cause",
+        "desc": "Administrative costs are covered separately, every penny of your gift goes directly to the cause."
+      },
+      "shariah": {
+        "title": "Shariah-Compliant",
+        "desc": "All programmes are reviewed and approved under Islamic guidelines."
+      },
+      "personal": {
+        "title": "Personal Acknowledgement",
+        "desc": "Every donor receives a personalised thank-you message and impact update."
+      }
+    },
+    "fundAllocation": "Fund Allocation",
+    "directToCauseLabel": "Direct to cause",
+    "simpleTransparent": "Simple, Transparent, Impactful",
+    "howItWorksTitle": "How Your Donation Works",
+    "steps": [
+      {
+        "title": "Choose a Cause",
+        "desc": "Pick the programme that speaks to your heart, from orphan care and masjid support to student scholarships."
+      },
+      {
+        "title": "Complete Payment",
+        "desc": "Select your country and follow the gateway steps, bKash, Nagad, bank transfer, or contact us directly."
+      },
+      {
+        "title": "We Deliver the Impact",
+        "desc": "Funds reach the cause within 7 days. You receive a personal confirmation and an impact update."
+      }
+    ],
+    "aboutFoundationBadge": "About the Foundation",
+    "foundationDesc": "Established to serve communities across Oman, Bangladesh, the United Kingdom and the USA, we direct charitable funds to those who need them most with full transparency and Islamic integrity. Every programme is managed by a dedicated team and reviewed by a Shariah board.",
+    "foundationTags": [
+      "Registered NGO",
+      "Shariah Board Approved",
+      "15+ Years of Service",
+      "4 Countries"
+    ],
+    "getInTouchBadge": "Get in Touch",
+    "getInTouchDesc": "Questions about our programmes, how we serve each cause, or need help with your donation? Our team responds within one business day.",
+    "donationEnquiries": "Donation enquiries",
+    "generalEnquiries": "General enquiries",
+    "forDonationsFrom": "For donations from {{country}}, reach out and we will arrange the best payment method.",
+    "amountLabels": [
+      "Provides a meal for a family",
+      "Sponsors a student for a week",
+      "Covers medical care for a child",
+      "Supports an orphan for a month",
+      "Choose your own impact"
+    ],
+    "enterAmount": "Enter amount",
+    "causeList": {
+      "masjidSupport": {
+        "label": "Masjid Support",
+        "desc": "Construction and maintenance of mosques.",
+        "impact": "Builds a house of prayer"
+      },
+      "orphanCare": {
+        "label": "Orphan Care",
+        "desc": "Education and welfare for orphaned children.",
+        "impact": "Gives a child a future"
+      },
+      "elderlyHome": {
+        "label": "Elderly Home",
+        "desc": "Care and dignity for the elderly in need.",
+        "impact": "Restores dignity to elders"
+      },
+      "medicalSupport": {
+        "label": "Medical Support",
+        "desc": "Free health camps and medicine for those who cannot afford care.",
+        "impact": "Heals a family in need"
+      },
+      "endingTorment": {
+        "label": "Ending the Torment",
+        "desc": "Emergency relief for families in extreme hardship.",
+        "impact": "Brings relief in crisis"
+      },
+      "studentCare": {
+        "label": "Student Care",
+        "desc": "Scholarships and learning resources for underprivileged students.",
+        "impact": "Opens doors to knowledge"
+      },
+      "specialCare": {
+        "label": "Special Care",
+        "desc": "Support and resources for individuals with special needs.",
+        "impact": "Empowers every person"
+      },
+      "eidClothes": {
+        "label": "Eid Clothes",
+        "desc": "New clothing for those who cannot afford to celebrate.",
+        "impact": "Spreads joy on Eid"
+      },
+      "zakah": {
+        "label": "Pay Your Zakah",
+        "desc": "Fulfil your annual Zakah obligation through us.",
+        "impact": "Purifies your wealth"
+      },
+      "sadaqah": {
+        "label": "Sadaqah",
+        "desc": "Voluntary charity for any worthy cause, any time.",
+        "impact": "Sadaqah never decreases wealth"
+      },
+      "environmentCare": {
+        "label": "Environment Care",
+        "desc": "Tree plantation and eco initiatives for future generations.",
+        "impact": "Sadaqah Jariyah for generations"
+      },
+      "buildingMaintenance": {
+        "label": "Building & Maintenance",
+        "desc": "Upkeep of mosques, madrasas and charitable facilities.",
+        "impact": "Preserves a place of worship"
+      }
     }
   }
 }

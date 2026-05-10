@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Quote } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { assets } from '../data/assets'
 import { chairmanMessage } from '../data/leadership'
 
 export default function CeoPage() {
+  const { t } = useTranslation()
   return (
     <div className="min-h-screen bg-brand-50 relative overflow-hidden">
 
@@ -26,7 +28,7 @@ export default function CeoPage() {
           className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest
                      text-brand-deep/50 hover:text-brand-deep transition-colors duration-200"
         >
-          <ArrowLeft size={12} /> Our People
+          <ArrowLeft size={12} /> {t('common.ourPeople')}
         </Link>
       </div>
 
@@ -38,7 +40,7 @@ export default function CeoPage() {
           <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 border
                            bg-amber-100 text-amber-800 border-amber-300
                            text-[10px] font-bold uppercase tracking-[0.26em]">
-            Founder · Chairman · CEO
+            {t('ceoPage.badge')}
           </span>
         </div>
 
@@ -64,7 +66,7 @@ export default function CeoPage() {
                 S M Shamim Ahmed
               </h1>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-600 mt-1">
-                Founder, Chairman &amp; CEO
+                {t('ceoPage.badgeLong')}
               </p>
               <p className="text-[11px] text-brand-deep/40 mt-0.5">Yanabiya Group</p>
             </div>
@@ -83,7 +85,7 @@ export default function CeoPage() {
             <div className="w-8 h-0.5 bg-amber-400 rounded-full mb-5" />
 
             <h2 className="font-serif text-sm md:text-base text-brand-deep mb-5 uppercase tracking-widest">
-              Message from the Chairman &amp; CEO
+              {t('ceoPage.msgTitle')}
             </h2>
 
             <div className="space-y-3.5 text-brand-deep/65 text-[13px] md:text-sm leading-relaxed">
@@ -95,7 +97,7 @@ export default function CeoPage() {
             {/* Role & Responsibilities */}
             <div className="mt-7 rounded-2xl bg-amber-50 border border-amber-200 px-5 py-4">
               <p className="text-[9px] uppercase tracking-[0.24em] text-amber-600 font-bold mb-3">
-                Role &amp; Responsibilities
+                {t('common.roleResponsibilities')}
               </p>
               <ul className="space-y-2">
                 {[
@@ -115,9 +117,9 @@ export default function CeoPage() {
 
             {/* Signature */}
             <div className="mt-6 pt-5 border-t border-brand-deep/10">
-              <p className="text-[11px] text-brand-deep/40 mb-2 italic">Sincerely,</p>
+              <p className="text-[11px] text-brand-deep/40 mb-2 italic">{t('common.sincerely')}</p>
               <p className="font-serif text-sm font-semibold text-brand-deep">S M Shamim Ahmed</p>
-              <p className="text-[11px] text-amber-600 font-medium mt-0.5">Founder, Chairman &amp; CEO — Yanabiya Group</p>
+              <p className="text-[11px] text-amber-600 font-medium mt-0.5">{t('ceoPage.badgeLong')} — {t('ceoPage.groupLabel')}</p>
             </div>
 
           </div>

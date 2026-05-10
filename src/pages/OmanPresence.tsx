@@ -4,6 +4,7 @@ import {
   HardHat, Truck, Laptop, TrendingUp, Coffee,
   Briefcase, Wrench, ArrowUpRight, ArrowRight,
 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import type { LucideIcon } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import BackButton from '../components/BackButton'
@@ -123,7 +124,7 @@ const OMAN: CountryProfile = {
   capabilityHeading: {
     eyebrow: 'Capability Matrix',
     title: 'Core Business Capabilities.',
-    subtitle: 'Integrated operational sectors driving Yanabiya Group’s regional growth.',
+    subtitle: "Integrated operational sectors driving Yanabiya Group's regional growth.",
   },
   capabilities: {
     /* 4-card scroll layout, each card vertically marquees its activities. */
@@ -193,7 +194,7 @@ const BANGLADESH: CountryProfile = {
   flag: '🇧🇩',
   shortName: 'Bangladesh',
   hero: {
-    eyebrow: 'People’s Republic of Bangladesh',
+    eyebrow: "People's Republic of Bangladesh",
     title: 'Bangladesh Global Presence',
     subtitle: 'Yanabiya Group, Bangladesh Operations Hub',
   },
@@ -218,7 +219,7 @@ const BANGLADESH: CountryProfile = {
   capabilityHeading: {
     eyebrow: 'Capability Matrix',
     title: 'Core Business Capabilities.',
-    subtitle: 'Integrated operational sectors driving Yanabiya Group’s South Asia delivery.',
+    subtitle: "Integrated operational sectors driving Yanabiya Group's South Asia delivery.",
   },
   capabilities: {
     columnA: {
@@ -305,7 +306,7 @@ const UNITED_KINGDOM: CountryProfile = {
   capabilityHeading: {
     eyebrow: 'Capability Matrix',
     title: 'Core Business Capabilities.',
-    subtitle: 'Integrated operational sectors driving Yanabiya Group’s European operations.',
+    subtitle: "Integrated operational sectors driving Yanabiya Group's European operations.",
   },
   capabilities: {
     /* 4-card scroll layout, UK partner clusters as scrolling activity lists */
@@ -374,7 +375,7 @@ const USA: CountryProfile = {
   capabilityHeading: {
     eyebrow: 'Capability Matrix',
     title: 'Core Business Capabilities.',
-    subtitle: 'Integrated operational sectors driving Yanabiya Group’s North America presence.',
+    subtitle: "Integrated operational sectors driving Yanabiya Group's North America presence.",
   },
   capabilities: {
     columnA: {
@@ -519,6 +520,7 @@ function CapabilityCluster({ c }: { c: Capability }) {
  * On hover the medallion expands into a 'Read More' chip. Click smooth-scrolls
  * to the matching country section below. List doubled for a seamless loop. */
 function CountryMarquee({ active }: { active: CountryCode }) {
+  const { t } = useTranslation()
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, code: CountryCode) => {
     e.preventDefault()
     const el = document.getElementById(code.toLowerCase())
@@ -567,7 +569,7 @@ function CountryMarquee({ active }: { active: CountryCode }) {
                                transition-all duration-300 ease-out
                                text-[11px] font-bold uppercase tracking-[0.22em]
                                text-brand-deep">
-                {p.shortName} → Read More
+                {p.shortName} → {t('omanPresence.readMore')}
               </span>
             </a>
           )
@@ -583,6 +585,7 @@ function CountryMarquee({ active }: { active: CountryCode }) {
 /* ───────────────────────── Single-country view ───────────────────────── */
 
 function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number }) {
+  const { t } = useTranslation()
   const showPartnerNetwork = data.partners.length > 0
   /* Alternate the map row: even index → text-left/map-right; odd → flipped. */
   const flipMap = index % 2 === 1
@@ -629,7 +632,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                              hover:border-brand-accentDark hover:text-brand-accentDark hover:-translate-y-0.5
                              transition-all"
                 >
-                  Open {data.shortName} page <ArrowUpRight size={12} />
+                  {t('omanPresence.openPage', { name: data.shortName })} <ArrowUpRight size={12} />
                 </Link>
               </Reveal>
             </div>
@@ -833,7 +836,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                 <div className={data.capabilities.columnB ? 'lg:pr-10' : ''}>
                   <Reveal>
                     <div className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500 mb-2">
-                      Column A
+                      {t('omanPresence.colA')}
                     </div>
                     <h4 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight">
                       {data.capabilities.columnA.label}
@@ -854,7 +857,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
                 <div className={data.capabilities.columnA ? 'lg:pl-10' : ''}>
                   <Reveal>
                     <div className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500 mb-2">
-                      Column B
+                      {t('omanPresence.colB')}
                     </div>
                     <h4 className="font-serif text-2xl md:text-3xl text-slate-900 leading-tight">
                       {data.capabilities.columnB.label}
@@ -884,6 +887,7 @@ function CountryView({ data, index = 0 }: { data: CountryProfile; index?: number
  * scroll-spies the active country and jumps to its section on click. */
 
 export default function OmanPresence() {
+  const { t } = useTranslation()
   const { code } = useParams<{ code: string }>()
   const [active, setActive] = useState<CountryCode>('OM')
 
@@ -920,7 +924,7 @@ export default function OmanPresence() {
 
   return (
     <main className="relative bg-brand-50 text-slate-900 overflow-hidden">
-      <BackButton to="/#global" label="Back to Global" />
+      <BackButton to="/#global" label={t('omanPresence.backToGlobal')} />
 
       {/* GLOBAL HERO */}
       <section className="relative">
@@ -928,7 +932,7 @@ export default function OmanPresence() {
         <div className="relative container-x py-4 md:py-6 text-center">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-blue-700 mb-4">
-              Global Presence
+              {t('omanPresence.globalPresence')}
             </div>
           </Reveal>
           <Reveal delay={120}>
@@ -938,7 +942,7 @@ export default function OmanPresence() {
           </Reveal>
           <Reveal delay={260}>
             <p className="mt-4 text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-snug">
-              Connecting Opportunities. Building Global Businesses.
+              {t('omanPresence.tagline')}
             </p>
           </Reveal>
           <Reveal delay={400}>
@@ -964,14 +968,13 @@ export default function OmanPresence() {
       <section className="border-t-2 border-slate-200 bg-brand-50">
         <div className="container-x py-4 md:py-6 text-center">
           <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
-            Get in Touch
+            {t('omanPresence.getInTouch')}
           </div>
           <h3 className="font-serif text-2xl md:text-3xl text-brand-deep leading-tight">
-            Browse every office in one place.
+            {t('omanPresence.browseOffice')}
           </h3>
           <p className="mt-3 text-slate-600 max-w-xl mx-auto">
-            All Yanabiya Group contact details, Oman HQ, UK, Bangladesh, USA, live on a single
-            centralised page.
+            {t('omanPresence.contactDesc')}
           </p>
           <Link
             to="/contact"
@@ -980,7 +983,7 @@ export default function OmanPresence() {
                        shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
                        transition-all"
           >
-            Open Contact Network
+            {t('omanPresence.openContactNetwork')}
             <ArrowRight size={14} />
           </Link>
         </div>

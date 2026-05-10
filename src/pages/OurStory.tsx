@@ -4,6 +4,7 @@ import {
   ArrowRight, Compass, Globe2, Leaf, Sparkles, Target,
   Quote, ChevronRight, MapPin,
 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useReveal } from '../hooks/useReveal'
 import { assets } from '../data/assets'
 import BackButton from '../components/BackButton'
@@ -35,102 +36,54 @@ function Reveal({
   )
 }
 
-/* ───────────────────────── Story data ───────────────────────── */
+/* ───────────────────────── Story data (images only — text from i18n) ───────────────────────── */
 
-const storyLines = [
-  'It started in Muscat, one office, one belief.',
-  'That trust outlasts trends, and craftsmanship outlasts shortcuts.',
-  'A decade on, that belief reaches four countries and six sectors.',
-  'We didn’t set out to build a single company.',
-  'We set out to build a platform, where many ventures could share one spine.',
-  'Today, every Yanabiya business runs on the same operating principles.',
-  'Quality before scale. Relationships before transactions. People before process.',
-  'From Gulf trade routes to UK boardrooms.',
-  'From Dhaka engineering floors to Texas advisory rooms,',
-  'we connect markets, capital, and capability.',
-  'And the story is still being written.',
-  'One chapter at a time.',
+function countryFlag(code: string) {
+  const base = 0x1F1E6 - 65
+  return String.fromCodePoint(base + code.charCodeAt(0), base + code.charCodeAt(1))
+}
+
+const regionImages: Record<string, { name: string; image: string }> = {
+  OM: { name: 'Oman',           image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1400&q=80' },
+  GB: { name: 'United Kingdom', image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1400&q=80' },
+  BD: { name: 'Bangladesh',     image: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1400&q=80' },
+  US: { name: 'United States',  image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1400&q=80' },
+}
+
+const leaderImages = [
+  'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80',
 ]
 
-const milestones = [
-  { year: '2014', title: 'Founded in Muscat', body: 'Yanabiya Gulf International Business & Trade SPC opens its doors in Al Khuwair.' },
-  { year: '2017', title: 'Trade routes expand',  body: 'Cross-border operations established across Gulf and South Asia corridors.' },
-  { year: '2019', title: 'Engineering hub',      body: 'Bangladesh delivery centre launches, software, QA, and 24×7 support.' },
-  { year: '2022', title: 'European footprint',   body: 'Yanabiya Gulf International UK Ltd. registered in London for EMEA operations.' },
-  { year: '2024', title: 'North America entry',  body: 'Yanabiya Gulf International US LLC opens in Austin, Texas.' },
-  { year: '2026', title: 'Group platform',       body: 'Six diversified business units operating under one unified ecosystem.' },
+const missionImages = [
+  'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80',
+  'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80',
+  'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=80',
 ]
 
-const regions = [
-  {
-    code: 'OM', flag: '🇴🇲',
-    name: 'Oman', tag: 'Headquarters',
-    body: 'Where the story began. Our Muscat office anchors group strategy, regulatory intelligence, and Gulf trade operations.',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1400&q=80',
-  },
-  {
-    code: 'GB', flag: '🇬🇧',
-    name: 'United Kingdom', tag: 'European Operations',
-    body: 'A London base for client engagements, partnerships, and regulated advisory work across EMEA.',
-    image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1400&q=80',
-  },
-  {
-    code: 'BD', flag: '🇧🇩',
-    name: 'Bangladesh', tag: 'South Asia Operations',
-    body: 'Our engineering and apparel hub. Where craft meets capacity, at scale, with discipline.',
-    image: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1400&q=80',
-  },
-  {
-    code: 'US', flag: '🇺🇸',
-    name: 'United States', tag: 'North America Operations',
-    body: 'Frontier-tech advisory and partner network for the Americas, from Austin into the wider continent.',
-    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1400&q=80',
-  },
-]
-
-const leaders = [
-  {
-    name: 'Founder & Chairman',
-    role: 'Strategy, Group Vision',
-    quote: 'We deliver what we promise, and we measure ourselves by what survives the year, not the quarter.',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    name: 'Vice Chairman',
-    role: 'Operations, Global Delivery',
-    quote: 'Our job is to make a four-country group feel like one team in one room.',
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80',
-  },
-]
-
-const missionInAction = [
-  {
-    quote: 'Quality before scale.',
-    body: 'Every engagement starts with a single question, would we be proud of this in five years?',
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80',
-  },
-  {
-    quote: 'Relationships before transactions.',
-    body: 'Most of our business comes from clients who came back. That’s the only metric we trust.',
-    image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80',
-  },
-  {
-    quote: 'People before process.',
-    body: 'Process serves people, not the other way around. We hire well and we trust deeply.',
-    image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=80',
-  },
+const stewardStats = [
+  { icon: Leaf,     value: '6',    key: 'sustainabilityProgrammes' },
+  { icon: Sparkles, value: '4',    key: 'communitiesServed' },
+  { icon: Target,   value: '12+',  key: 'welfarePartnerships' },
+  { icon: Compass,  value: '24/7', key: 'opsEthics' },
 ]
 
 /* ───────────────────────── Page ───────────────────────── */
 
 export default function OurStory() {
+  const { t } = useTranslation()
+  const storyLines = t('ourStory.storyLines', { returnObjects: true }) as string[]
+  const milestones = t('ourStory.milestones', { returnObjects: true }) as Array<{ year: string; title: string; body: string }>
+  const leaders = t('ourStory.leaders', { returnObjects: true }) as Array<{ name: string; role: string; quote: string }>
+  const missionInAction = t('ourStory.missionInAction', { returnObjects: true }) as Array<{ quote: string; body: string }>
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
 
   return (
     <main className="bg-brand-50 text-slate-900">
-      <BackButton to="/about-us" label="Back to About Us" />
+      <BackButton to="/about-us" label={t('ourStory.backToAbout')} />
 
       {/* ───────── 1. CINEMATIC HERO ───────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-brand-deep text-white">
@@ -152,25 +105,24 @@ export default function OurStory() {
           <div className="max-w-4xl">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accent mb-6">
-                Yanabiya Group, Our Story
+                {t('ourStory.eyebrow')}
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h1 className="font-serif text-5xl md:text-7xl lg:text-[112px] leading-[0.95] tracking-tight">
-                From Muscat.
-                <span className="block text-brand-accent">For the World.</span>
+                {t('ourStory.heroTitle')}
+                <span className="block text-brand-accent">{t('ourStory.heroAccent')}</span>
               </h1>
             </Reveal>
             <Reveal delay={320}>
               <p className="mt-8 text-lg md:text-xl text-white/75 max-w-2xl leading-snug">
-                A decade of building enterprises across four countries, written one
-                relationship, one delivery, one chapter at a time.
+                {t('ourStory.heroPara')}
               </p>
             </Reveal>
             <Reveal delay={520}>
               <div className="mt-10 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/50">
                 <span className="w-12 h-px bg-white/30" />
-                Scroll to begin
+                {t('ourStory.scrollToBegin')}
               </div>
             </Reveal>
           </div>
@@ -186,7 +138,7 @@ export default function OurStory() {
           <div className="max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-10 text-center">
-                01, The Story
+                {t('ourStory.s01kicker')}
               </div>
             </Reveal>
             <div className="space-y-8 md:space-y-5 text-center">
@@ -208,12 +160,12 @@ export default function OurStory() {
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                02, Mission in Action
+                {t('ourStory.s02kicker')}
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                Three principles. One discipline.
+                {t('ourStory.s02Title')}
               </h2>
             </Reveal>
           </div>
@@ -238,7 +190,7 @@ export default function OurStory() {
                   <Reveal delay={120} className="lg:col-span-7">
                     <div className="relative aspect-[5/3] rounded-2xl overflow-hidden shadow-xl">
                       <img
-                        src={m.image}
+                        src={missionImages[i]}
                         alt=""
                         loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover"
@@ -274,20 +226,18 @@ export default function OurStory() {
           <div className="max-w-3xl mx-auto text-center">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-6">
-                03, Vision Forward
+                {t('ourStory.s03kicker')}
               </div>
             </Reveal>
             <Reveal delay={150}>
               <h2 className="font-serif text-4xl md:text-6xl leading-tight">
-                The next decade isn’t about more.
-                <span className="block mt-2 text-brand-accentDark">It’s about deeper.</span>
+                {t('ourStory.s03Title')}
+                <span className="block mt-2 text-brand-accentDark">{t('ourStory.s03Accent')}</span>
               </h2>
             </Reveal>
             <Reveal delay={350}>
               <p className="mt-8 text-lg text-slate-600 leading-snug max-w-2xl mx-auto">
-                Deeper expertise across our six sectors. Deeper trust with the
-                communities we serve. Deeper connections across the four countries
-                we already call home.
+                {t('ourStory.s03Para')}
               </p>
             </Reveal>
           </div>
@@ -300,12 +250,12 @@ export default function OurStory() {
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                04, The Journey
+                {t('ourStory.s04kicker')}
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                A decade in milestones.
+                {t('ourStory.s04Title')}
               </h2>
             </Reveal>
           </div>
@@ -357,23 +307,24 @@ export default function OurStory() {
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                05, Global Strategy
+                {t('ourStory.s05kicker')}
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                One platform. Four homes.
+                {t('ourStory.s05Title')}
               </h2>
             </Reveal>
           </div>
         </div>
 
-        {regions.map((r, i) => {
+        {Object.entries(regionImages).map(([code, r], i) => {
           const reverse = i % 2 === 1
+          const regionT = t(`ourStory.regions.${code}`, { returnObjects: true }) as { tag: string; body: string }
           return (
             <div
-              key={r.code}
-              className={`relative overflow-hidden border-t border-slate-100 ${i === regions.length - 1 ? 'border-b' : ''}`}
+              key={code}
+              className={`relative overflow-hidden border-t border-slate-100 ${i === Object.keys(regionImages).length - 1 ? 'border-b' : ''}`}
             >
               <div className={`container-x py-4 md:py-6 grid lg:grid-cols-12 gap-10 items-center ${reverse ? 'lg:[&>*:first-child]:order-2' : ''}`}>
                 <Reveal className="lg:col-span-7">
@@ -385,25 +336,25 @@ export default function OurStory() {
                       className="absolute inset-0 w-full h-full object-cover scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    <div className="absolute bottom-5 left-5 text-brand-deep text-3xl">{r.flag}</div>
+                    <div className="absolute bottom-5 left-5 text-brand-deep text-3xl">{countryFlag(code)}</div>
                   </div>
                 </Reveal>
                 <Reveal delay={150} className="lg:col-span-5">
                   <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-3">
-                    Chapter 0{i + 1}, {r.tag}
+                    {t('ourStory.chapterPrefix')}{i + 1}, {regionT.tag}
                   </div>
                   <h3 className="font-serif text-4xl md:text-5xl leading-tight">
                     {r.name}
                   </h3>
                   <p className="mt-5 text-slate-600 text-lg leading-snug">
-                    {r.body}
+                    {regionT.body}
                   </p>
                   <Link
-                    to={`/country/${r.code.toLowerCase()}`}
+                    to={`/country/${code.toLowerCase()}`}
                     className="mt-6 inline-flex items-center gap-2 text-brand-accentDark font-semibold
                                hover:gap-3 transition-all"
                   >
-                    Visit {r.name} <ChevronRight size={16} />
+                    {t('ourStory.visitCountry')} {r.name} <ChevronRight size={16} />
                   </Link>
                 </Reveal>
               </div>
@@ -418,24 +369,24 @@ export default function OurStory() {
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                06, Leadership
+                {t('ourStory.s06kicker')}
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                Stewards of the long view.
+                {t('ourStory.s06Title')}
               </h2>
             </Reveal>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {leaders.map((l, i) => (
-              <Reveal key={l.name} delay={i * 120}>
+              <Reveal key={i} delay={i * 120}>
                 <div className="group relative rounded-2xl overflow-hidden bg-brand-50 border border-slate-200
                                 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
-                      src={l.image}
+                      src={leaderImages[i]}
                       alt={l.name}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -447,7 +398,7 @@ export default function OurStory() {
                     </div>
                     <h3 className="mt-2 font-serif text-2xl">{l.name}</h3>
                     <blockquote className="mt-4 text-slate-600 italic leading-snug border-l-2 border-brand-accent pl-4">
-                      “{l.quote}”
+                      "{l.quote}"
                     </blockquote>
                   </div>
                 </div>
@@ -460,7 +411,7 @@ export default function OurStory() {
               to="/leadership/management"
               className="inline-flex items-center gap-2 text-brand-accentDark font-semibold hover:gap-3 transition-all"
             >
-              Meet the full team <ChevronRight size={16} />
+              {t('ourStory.meetFullTeam')} <ChevronRight size={16} />
             </Link>
           </div>
         </div>
@@ -471,35 +422,27 @@ export default function OurStory() {
         <div className="container-x grid lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-6">
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-              07, Stewardship
+              {t('ourStory.s07kicker')}
             </div>
             <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-              Growth that gives back.
+              {t('ourStory.s07Title')}
             </h2>
             <p className="mt-5 text-slate-600 text-lg leading-snug">
-              Profit isn’t the only thing we measure. Across every country we operate
-              in, we commit to community welfare programmes, education access, and
-              environmental responsibility, because long-term value isn’t built any
-              other way.
+              {t('ourStory.s07Para')}
             </p>
             <Link
               to="/community/sustainable-growth"
               className="mt-6 inline-flex items-center gap-2 text-brand-accentDark font-semibold hover:gap-3 transition-all"
             >
-              Explore our impact <ChevronRight size={16} />
+              {t('ourStory.exploreImpact')} <ChevronRight size={16} />
             </Link>
           </Reveal>
 
           <Reveal delay={150} className="lg:col-span-6">
             <div className="grid grid-cols-2 gap-4">
-              {[
-                { icon: Leaf,     value: '6',   label: 'Sustainability programmes' },
-                { icon: Sparkles, value: '4',   label: 'Communities served' },
-                { icon: Target,   value: '12+', label: 'Welfare partnerships' },
-                { icon: Compass,  value: '24/7', label: 'Operational ethics review' },
-              ].map(({ icon: Icon, value, label }) => (
+              {stewardStats.map(({ icon: Icon, value, key }) => (
                 <div
-                  key={label}
+                  key={key}
                   className="rounded-2xl border border-slate-200 bg-brand-50 p-6 text-center
                              hover:border-brand-accent/40 hover:-translate-y-1 hover:shadow-lg transition-all"
                 >
@@ -507,7 +450,9 @@ export default function OurStory() {
                     <Icon size={20} />
                   </div>
                   <div className="mt-4 font-serif text-3xl text-brand-accentDark">{value}</div>
-                  <div className="mt-1 text-xs uppercase tracking-wider text-slate-600">{label}</div>
+                  <div className="mt-1 text-xs uppercase tracking-wider text-slate-600">
+                    {t(`ourStory.stewardStats.${key}`)}
+                  </div>
                 </div>
               ))}
             </div>
@@ -521,12 +466,12 @@ export default function OurStory() {
           <div className="text-center max-w-2xl mx-auto mb-10">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                08, Network
+                {t('ourStory.s08kicker')}
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-3xl md:text-4xl leading-tight">
-                Trusted by enterprises across four continents.
+                {t('ourStory.s08Title')}
               </h2>
             </Reveal>
           </div>
@@ -539,7 +484,7 @@ export default function OurStory() {
                            hover:border-brand-accent hover:text-brand-accentDark transition-colors"
               >
                 <Globe2 size={16} />
-                See our trusted network
+                {t('ourStory.seeNetwork')}
                 <ChevronRight size={14} />
               </Link>
             </div>
@@ -560,19 +505,18 @@ export default function OurStory() {
         <div className="container-x relative py-4 md:py-6 text-center">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accent mb-6">
-              09, The Next Chapter
+              {t('ourStory.s09kicker')}
             </div>
           </Reveal>
           <Reveal delay={150}>
             <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.05]">
-              Build the next chapter
-              <span className="block text-brand-accent">with us.</span>
+              {t('ourStory.s09Title')}
+              <span className="block text-brand-accent">{t('ourStory.s09Accent')}</span>
             </h2>
           </Reveal>
           <Reveal delay={350}>
             <p className="mt-8 text-lg text-brand-deep/70 max-w-xl mx-auto leading-snug">
-              Whether you’re scaling a venture, sourcing a partner, or entering a new
-              market, let’s talk about what’s possible.
+              {t('ourStory.s09Para')}
             </p>
           </Reveal>
           <Reveal delay={500}>
@@ -584,7 +528,7 @@ export default function OurStory() {
                            shadow-lg hover:bg-brand-accentDark hover:shadow-2xl hover:-translate-y-0.5
                            transition-all"
               >
-                Start a Conversation
+                {t('ourStory.startConversation')}
                 <ArrowRight size={16} />
               </Link>
               <Link
@@ -594,7 +538,7 @@ export default function OurStory() {
                            hover:bg-white/10 hover:border-white transition-all"
               >
                 <MapPin size={16} />
-                Explore our sectors
+                {t('ourStory.exploreSectors')}
               </Link>
             </div>
           </Reveal>

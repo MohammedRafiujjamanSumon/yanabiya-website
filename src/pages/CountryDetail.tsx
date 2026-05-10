@@ -6,6 +6,7 @@ import {
   Trophy, TrendingUp, Sparkles, Plane, Boxes,
   type LucideIcon,
 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import BackButton from '../components/BackButton'
 import PageHero from '../components/PageHero'
 import { countries } from '../data/countries'
@@ -198,7 +199,7 @@ const COUNTRY_DASHBOARDS: Record<string, CountryDashboard> = {
     ],
   },
   BD: {
-    subtitle: 'Global business presence in Bangladesh ,group’s longest-running entity, full-spectrum operations since 1998.',
+    subtitle: "Global business presence in Bangladesh, group's longest-running entity, full-spectrum operations since 1998.",
     yearsActive: '27+',
     tier: { rank: 'Tier 02', label: 'Established Hub' },
     stats: [
@@ -221,7 +222,7 @@ const COUNTRY_DASHBOARDS: Record<string, CountryDashboard> = {
       { name: 'Manufacturing Network', city: 'Across Bangladesh', type: 'Network' },
     ],
     achievements: [
-      { title: '27+ Years in Business', body: 'Group’s longest-running entity, since 1998', icon: Trophy },
+      { title: '27+ Years in Business', body: "Group's longest-running entity, since 1998", icon: Trophy },
       { title: 'Manufacturing Hub', body: 'Garments, sourcing & QA at scale', icon: TrendingUp },
       { title: 'Talent Engine', body: 'Engineering & recruitment for the group', icon: Sparkles },
     ],
@@ -255,6 +256,7 @@ const COUNTRY_DASHBOARDS: Record<string, CountryDashboard> = {
 }
 
 export default function CountryDetail({ codeOverride }: { codeOverride?: string } = {}) {
+  const { t } = useTranslation()
   const { code: paramCode } = useParams<{ code: string }>()
   const code = codeOverride ?? paramCode
   const upper = (code ?? '').toUpperCase()
@@ -272,12 +274,12 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
           <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
             404
           </div>
-          <h2 className="font-serif text-3xl text-brand-deep mb-3">Country not found.</h2>
+          <h2 className="font-serif text-3xl text-brand-deep mb-3">{t('countryDetail.countryNotFound')}</h2>
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accentDark hover:text-brand-accentDark"
           >
-            Back to Home <ArrowRight size={14} />
+            {t('common.backToHome')} <ArrowRight size={14} />
           </Link>
         </div>
       </main>
@@ -297,7 +299,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
 
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
-      <BackButton to="/" label="Back to Home" />
+      <BackButton to="/" label={t('common.backToHome')} />
 
       {/* Shared About-Us style brand card, opens every country page
        *  with the same forest-green / 3D-logo language as the home
@@ -357,8 +359,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
         <div className="container-x py-4 md:py-6 text-center">
           <Reveal>
             <p className="text-sm md:text-base text-brand-deep/70 max-w-md mx-auto mb-5 leading-snug">
-              Want to reach the {c.name} office? Our full contact directory lives on the
-              global Contact page.
+              {t('countryDetail.contactCta')}
             </p>
             <Link
               to="/contact"
@@ -367,7 +368,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
                          shadow-md hover:bg-brand-50 hover:shadow-lg hover:-translate-y-0.5
                          transition-all duration-300"
             >
-              Contact Us <ArrowRight size={14} />
+              {t('common.contactUs')} <ArrowRight size={14} />
             </Link>
           </Reveal>
         </div>
@@ -387,6 +388,7 @@ function Hero({
   mapUrl: string
   flagUrl: string
 }) {
+  const { t } = useTranslation()
   return (
     <section className="relative min-h-[70vh] flex items-center">
       {/* Floating orbit lines (decorative ,flag silhouette removed per
@@ -434,7 +436,7 @@ function Hero({
         <Reveal delay={120}>
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-brand-deep">
             {country.name.replace('Sultanate of ', '').replace('United States of America', 'USA')}
-            <span className="text-brand-accentDark"> Operations</span>
+            <span className="text-brand-accentDark"> {t('countryDetail.operations')}</span>
           </h1>
         </Reveal>
         <Reveal delay={260}>
@@ -449,16 +451,17 @@ function Hero({
 
 
 function ServiceBlocks({ services, countryName }: { services: Service[]; countryName: string }) {
+  const { t } = useTranslation()
   return (
     <section className="relative py-4 md:py-5">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
-              What we do
+              {t('countryDetail.whatWeDo')}
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
-              Services in {countryName.replace('Sultanate of ', '').replace('United States of America', 'the US')}
+              {t('countryDetail.servicesIn')} {countryName.replace('Sultanate of ', '').replace('United States of America', 'the US')}
             </h2>
           </div>
         </Reveal>
@@ -529,6 +532,7 @@ function CorporateHierarchy({
   entitiesLabel: string
   hasParent: boolean
 }) {
+  const { t } = useTranslation()
   const partners = hasParent ? entities : []
   const shortName = countryName.replace('Sultanate of ', '').replace('United States of America', 'USA')
   return (
@@ -537,10 +541,10 @@ function CorporateHierarchy({
         <Reveal>
           <div className="text-center mb-10">
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
-              Corporate Hierarchy
+              {t('countryDetail.corporateHierarchy')}
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
-              Group structure in {shortName}
+              {t('countryDetail.groupStructure')} {shortName}
             </h2>
           </div>
         </Reveal>
@@ -555,7 +559,7 @@ function CorporateHierarchy({
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full
                             bg-brand-accent text-slate-900
                             text-[9px] font-black tracking-[0.32em] uppercase">
-              {hasParent ? 'Parent Company' : 'Registered Entity'}
+              {hasParent ? t('countryDetail.parentCompany') : t('countryDetail.registeredEntity')}
             </div>
             <div className="mt-4 font-serif text-xl md:text-2xl text-brand-deep leading-tight">
               {parentCompany}
@@ -627,6 +631,7 @@ function BusinessActivities({
   countryName: string
   hideCodes?: boolean
 }) {
+  const { t } = useTranslation()
   const shortName = countryName
     .replace('Sultanate of ', '')
     .replace('United States of America', 'USA')
@@ -636,10 +641,10 @@ function BusinessActivities({
         <Reveal>
           <div className="text-center mb-10">
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
-              Licensed Business Activities
+              {t('countryDetail.licensedActivities')}
             </div>
             <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">
-              What Yanabiya Is Authorised to Operate in {shortName}
+              {t('countryDetail.authorisedIn')} {shortName}
             </h2>
           </div>
         </Reveal>
@@ -730,6 +735,7 @@ function GlobalConnection({
   currentMapUrl: string
   otherCountries: typeof countries
 }) {
+  const { t } = useTranslation()
   const positions = ['top-[14%] left-1/2 -translate-x-1/2', 'top-1/2 left-[12%] -translate-y-1/2', 'bottom-[14%] left-1/2 -translate-x-1/2']
   return (
     <section className="relative py-4 md:py-6">
@@ -737,12 +743,11 @@ function GlobalConnection({
         <Reveal>
           <div className="text-center mb-10">
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
-              Global Connection
+              {t('countryDetail.globalConnection')}
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">One unified network</h2>
+            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">{t('countryDetail.unifiedNetwork')}</h2>
             <p className="mt-3 text-sm text-slate-700 max-w-xl mx-auto">
-              Linked to every other Yanabiya hub by daily collaboration, shared
-              clients, and a single delivery playbook.
+              {t('countryDetail.unifiedDesc')}
             </p>
           </div>
         </Reveal>
@@ -812,7 +817,7 @@ function GlobalConnection({
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-[3.5rem] md:translate-y-[4rem] pointer-events-none">
               <span className="px-2.5 py-1 rounded-full bg-brand-accent/15 ring-1 ring-brand-accent/40
                                text-[9px] font-bold uppercase tracking-[0.3em] text-brand-accentDark">
-                You are here
+                {t('countryDetail.youAreHere')}
               </span>
             </div>
 
@@ -865,15 +870,16 @@ function GlobalConnection({
 }
 
 function Achievements({ achievements }: { achievements: Achievement[] }) {
+  const { t } = useTranslation()
   return (
     <section className="relative py-4 md:py-5">
       <div className="container-x max-w-6xl mx-auto">
         <Reveal>
           <div className="text-center mb-10">
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
-              Achievements
+              {t('countryDetail.achievements')}
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">Highlights &amp; milestones</h2>
+            <h2 className="font-serif text-3xl md:text-4xl text-brand-deep">{t('countryDetail.highlights')}</h2>
           </div>
         </Reveal>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">

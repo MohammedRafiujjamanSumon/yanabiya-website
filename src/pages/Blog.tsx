@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Calendar, ArrowUpRight, ArrowLeft, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
 import CircleInfographic, { type CircleItem } from '../components/CircleInfographic'
@@ -74,6 +75,7 @@ function countryLabel(code: CountryCode) {
 }
 
 export default function Blog() {
+  const { t } = useTranslation()
   const [filter, setFilter] = useState<CountryCode>('ALL')
   const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
   const hero = pageHeroes?.['blog']
@@ -117,9 +119,9 @@ export default function Blog() {
 
         <div className="mb-8">
           <CircleInfographic
-            eyebrow="What We Write About"
-            titleLine1="Stories &"
-            titleLine2="Insights"
+            eyebrow={t('blogPage.eyebrow')}
+            titleLine1={t('blogPage.titleLine1')}
+            titleLine2={t('blogPage.titleLine2')}
             items={blogCategories}
           />
         </div>
@@ -139,7 +141,7 @@ export default function Blog() {
                 }`}
               >
                 {f.flag && <span className="me-2">{f.flag}</span>}
-                {f.label}
+                {f.code === 'ALL' ? t('common.allRegions') : f.label}
               </button>
             )
           })}
@@ -159,7 +161,7 @@ export default function Blog() {
               <div className="flex items-center justify-between text-sm text-slate-500 border-t border-slate-200 pt-4">
                 <span className="flex items-center gap-2"><Calendar size={14} /> {feature.date}</span>
                 <span className="flex items-center gap-2 text-brand-accentDark">
-                  Read more <ArrowUpRight size={14} />
+                  {t('common.readMore')} <ArrowUpRight size={14} />
                 </span>
               </div>
             </div>
@@ -186,7 +188,7 @@ export default function Blog() {
 
         {visible.length === 0 && (
           <div className="text-center text-slate-500 py-4">
-            No posts for this region yet, check back soon.
+            {t('blogPage.noPosts')}
           </div>
         )}
       </div>

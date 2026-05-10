@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
 import SustainabilityPillars from '../components/SustainabilityPillars'
@@ -65,6 +66,7 @@ const commitments = [
 ]
 
 export default function SustainableGrowth() {
+  const { t } = useTranslation()
   const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
   const hero = pageHeroes?.['sustainable-growth']
 
@@ -102,17 +104,17 @@ export default function SustainableGrowth() {
 
         <div className="mb-16">
           <SustainabilityPillars
-            eyebrow="Sustainability"
-            titleLine1="Building a"
-            titleLine2="Greener Future"
+            eyebrow={t('sustainablePage.eyebrow')}
+            titleLine1={t('sustainablePage.titleLine1')}
+            titleLine2={t('sustainablePage.titleLine2')}
             items={pillars}
           />
         </div>
 
         <div className="mb-16">
           <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">On the ground</div>
-            <h3 className="font-serif text-3xl text-slate-900">Initiatives Across Our Regions</h3>
+            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">{t('sustainablePage.onGround')}</div>
+            <h3 className="font-serif text-3xl text-slate-900">{t('sustainablePage.initiativesTitle')}</h3>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
             {countries.map((c) => (
@@ -139,8 +141,8 @@ export default function SustainableGrowth() {
 
         <div>
           <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">Forward commitments</div>
-            <h3 className="font-serif text-3xl text-slate-900">Targets We're Working Towards</h3>
+            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">{t('sustainablePage.forwardCommitments')}</div>
+            <h3 className="font-serif text-3xl text-slate-900">{t('sustainablePage.targetsTitle')}</h3>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {commitments.map((c) => (

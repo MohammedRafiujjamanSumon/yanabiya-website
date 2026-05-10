@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
 import CommunityCareCards from '../components/CommunityCareCards'
@@ -58,14 +59,11 @@ const countryPrograms: Record<string, string[]> = {
   ],
 }
 
-const stats = [
-  { v: '500+', l: 'Beneficiaries' },
-  { v: '4',    l: 'Countries' },
-  { v: '15Y',  l: 'Track record' },
-  { v: '25+',  l: 'Programmes' },
-]
+const statKeys = ['beneficiaries', 'countries', 'track', 'programmes']
+const statValues = ['500+', '4', '15Y', '25+']
 
 export default function CommunityCare() {
+  const { t } = useTranslation()
   const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
   const hero = pageHeroes?.['community-care']
 
@@ -102,29 +100,29 @@ export default function CommunityCare() {
       <div className="container-x">
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">
-          {stats.map((s) => (
-            <div key={s.l} className="card-panel text-center">
-              <div className="font-serif text-2xl text-brand-accentDark">{s.v}</div>
-              <div className="text-[10px] tracking-widest text-slate-500 uppercase mt-1">{s.l}</div>
+          {statKeys.map((key, idx) => (
+            <div key={key} className="card-panel text-center">
+              <div className="font-serif text-2xl text-brand-accentDark">{statValues[idx]}</div>
+              <div className="text-[10px] tracking-widest text-slate-500 uppercase mt-1">{t(`communityCare.stats.${key}`)}</div>
             </div>
           ))}
         </div>
 
         <div className="mb-16">
           <CommunityCareCards
-            eyebrow="How We Give Back"
-            titleLine1="Four Pillars"
-            titleLine2="of Impact"
+            eyebrow={t('communityCare.eyebrow')}
+            titleLine1={t('communityCare.titleLine1')}
+            titleLine2={t('communityCare.titleLine2')}
             items={pillars}
           />
         </div>
 
         <div>
           <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">Around the world</div>
-            <h3 className="font-serif text-3xl text-slate-900">Programmes Across Our Regions</h3>
+            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">{t('communityCare.aroundWorld')}</div>
+            <h3 className="font-serif text-3xl text-slate-900">{t('communityCare.programmesTitle')}</h3>
             <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
-              Local teams deliver tailored programmes in every country where Yanabiya Group operates.
+              {t('communityCare.programmesDesc')}
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">

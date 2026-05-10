@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Star, ArrowLeft, ArrowRight, BadgeCheck, Users, Globe, Award } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
 import { useSection } from '../hooks/useSection'
@@ -105,11 +106,11 @@ const CC: Record<string, {
 }
 
 /* ── Stats ──────────────────────────────────────────────────── */
-const stats = [
-  { Icon: Star,  v: '4.9/5', l: 'Average Rating' },
-  { Icon: Users, v: '120+',  l: 'Clients Served' },
-  { Icon: Globe, v: '4',     l: 'Countries'       },
-  { Icon: Award, v: '15Y',   l: 'Track Record'    },
+const statsData = [
+  { Icon: Star,  v: '4.9/5', key: 'avgRating'    },
+  { Icon: Users, v: '120+',  key: 'clientsServed' },
+  { Icon: Globe, v: '4',     key: 'countries'     },
+  { Icon: Award, v: '15Y',   key: 'track'         },
 ]
 
 /* ── Filter tabs ────────────────────────────────────────────── */
@@ -128,6 +129,7 @@ function initials(name: string) {
 
 /* ── Page component ─────────────────────────────────────────── */
 export default function Testimonials() {
+  const { t } = useTranslation()
   const [filter, setFilter] = useState<Code>('ALL')
   const pageHeroes = useSection<Record<string, { eyebrow: string; title: string; subtitle: string }>>('page-heroes')
   const hero = pageHeroes?.['testimonials']
@@ -166,8 +168,8 @@ export default function Testimonials() {
 
           {/* ── Stats trust bar ───────────────────────────────── */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-slate-200/70 rounded-2xl overflow-hidden mb-14 shadow-sm">
-            {stats.map(({ Icon, v, l }) => (
-              <div key={l} className="bg-white flex items-center gap-4 px-6 py-5 group">
+            {statsData.map(({ Icon, v, key }) => (
+              <div key={key} className="bg-white flex items-center gap-4 px-6 py-5 group">
                 <div className="w-10 h-10 rounded-xl bg-brand-50 border border-brand-accent/20
                                flex items-center justify-center shrink-0
                                group-hover:bg-brand-accent group-hover:border-brand-accent transition-colors duration-300">
@@ -175,7 +177,7 @@ export default function Testimonials() {
                 </div>
                 <div>
                   <div className="font-serif text-2xl font-bold text-brand-deep leading-none">{v}</div>
-                  <div className="text-[10px] uppercase tracking-[0.22em] text-slate-400 mt-0.5">{l}</div>
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-slate-400 mt-0.5">{t(`testimonialsPage.stats.${key}`)}</div>
                 </div>
               </div>
             ))}
@@ -185,24 +187,21 @@ export default function Testimonials() {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-3 mb-3">
               <span className="block w-8 h-px bg-brand-accent rounded-full" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.34em] text-brand-accentDark">Client Voices</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.34em] text-brand-accentDark">{t('testimonialsPage.clientVoices')}</span>
               <span className="block w-8 h-px bg-brand-accent rounded-full" />
             </div>
             <h2 className="font-serif text-3xl md:text-[38px] text-slate-900 leading-[1.12]">
-              Trusted by leaders{' '}
-              <span className="bg-gradient-to-r from-brand-accentDark to-sky-600 bg-clip-text text-transparent">
-                across four continents
-              </span>
+              {t('testimonialsPage.title')}
             </h2>
             <p className="text-slate-500 text-sm mt-3 max-w-lg mx-auto leading-relaxed">
-              Every quote below is from a verified client or partner who has worked with Yanabiya Group.
+              {t('testimonialsPage.desc')}
             </p>
           </div>
 
           {/* ── Filter tabs ───────────────────────────────────── */}
           <div className="flex flex-wrap gap-2 mb-10 justify-center">
             {TABS.map((tab) => {
-              const count = tab.code === 'ALL' ? all.length : all.filter((t) => t.code === tab.code).length
+              const count = tab.code === 'ALL' ? all.length : all.filter((tm) => tm.code === tab.code).length
               const active = filter === tab.code
               return (
                 <button
@@ -217,7 +216,7 @@ export default function Testimonials() {
                              }`}
                 >
                   {tab.flag && <span className="text-base leading-none">{tab.flag}</span>}
-                  {tab.label}
+                  {tab.code === 'ALL' ? t('common.allRegions') : tab.label}
                   <span className={`text-[10px] font-bold rounded-full px-1.5 py-0.5
                                    ${active ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-400'}`}>
                     {count}
@@ -257,7 +256,7 @@ export default function Testimonials() {
                     </div>
                     <div className="flex items-center gap-1 rounded-full bg-white/10 px-3 py-1.5">
                       <BadgeCheck size={12} className={cc.badgeText} />
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-white/60">Verified Client</span>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-white/60">{t('common.verifiedClient')}</span>
                     </div>
                     <div className="flex items-center gap-0.5 ml-auto">
                       {Array.from({ length: featured.rating }).map((_, i) => (
@@ -291,9 +290,9 @@ export default function Testimonials() {
 
           {/* ── Testimonial grid ──────────────────────────────── */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {rest.map((t, i) => {
-              const meta = COUNTRY[t.code]
-              const cc   = CC[t.code]
+            {rest.map((tm, i) => {
+              const meta = COUNTRY[tm.code]
+              const cc   = CC[tm.code]
               return (
                 <figure
                   key={i}
@@ -305,13 +304,13 @@ export default function Testimonials() {
                   {/* Stars + verified */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-0.5">
-                      {Array.from({ length: t.rating }).map((_, idx) => (
+                      {Array.from({ length: tm.rating }).map((_, idx) => (
                         <Star key={idx} size={12} className="fill-amber-500 stroke-0" />
                       ))}
                     </div>
                     <div className="flex items-center gap-1">
                       <BadgeCheck size={11} className={cc.badgeText} />
-                      <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">Verified</span>
+                      <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">{t('common.verified')}</span>
                     </div>
                   </div>
 
@@ -322,7 +321,7 @@ export default function Testimonials() {
 
                   {/* Quote */}
                   <blockquote className="text-slate-600 text-sm leading-relaxed flex-1 mb-5">
-                    {t.quote}
+                    {tm.quote}
                   </blockquote>
 
                   {/* Author row */}
@@ -331,12 +330,12 @@ export default function Testimonials() {
                       <div className={`w-9 h-9 rounded-full flex items-center justify-center
                                       text-white text-[11px] font-bold shrink-0 ring-2 ring-white
                                       ${cc.avatarBg}`}>
-                        {initials(t.author)}
+                        {initials(tm.author)}
                       </div>
                       <div>
-                        <div className="text-slate-900 font-semibold text-sm leading-tight">{t.author}</div>
-                        <div className="text-slate-400 text-[11px] mt-0.5">{t.role}</div>
-                        <div className="text-slate-300 text-[10px]">{t.company}</div>
+                        <div className="text-slate-900 font-semibold text-sm leading-tight">{tm.author}</div>
+                        <div className="text-slate-400 text-[11px] mt-0.5">{tm.role}</div>
+                        <div className="text-slate-300 text-[10px]">{tm.company}</div>
                       </div>
                     </div>
                     {/* Country chip */}
@@ -353,7 +352,7 @@ export default function Testimonials() {
 
           {visible.length === 0 && (
             <div className="text-center text-slate-400 py-16 text-sm">
-              No testimonials for this region yet, check back soon.
+              {t('testimonialsPage.noTestimonials')}
             </div>
           )}
 

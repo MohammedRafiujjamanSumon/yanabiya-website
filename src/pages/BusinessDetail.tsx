@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { CheckCircle2, Send, ArrowRight, ArrowLeft, MapPin, Mail, Phone, User, Building, MessageSquare, ChevronDown, ArrowUpRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Section from '../components/Section'
 import { businesses, type SubService } from '../data/businesses'
 import { assets } from '../data/assets'
@@ -26,6 +27,7 @@ const COUNTRY_OPTIONS = [
 ]
 
 export default function BusinessDetail() {
+  const { t } = useTranslation()
   const { slug } = useParams<{ slug: string }>()
   const business = businesses.find((b) => b.slug === slug)
 
@@ -37,7 +39,7 @@ export default function BusinessDetail() {
     return (
       <Section id="business-not-found" className="bg-brand-ink">
         <div className="container-x text-center text-slate-200 py-20">
-          <h2 className="font-serif text-3xl text-brand-deep mb-4">Sector not found</h2>
+          <h2 className="font-serif text-3xl text-brand-deep mb-4">{t('businessDetail.sectorNotFound')}</h2>
         </div>
       </Section>
     )
@@ -70,13 +72,13 @@ export default function BusinessDetail() {
               </div>
               <div className="relative flex-1">
                 <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-accent mb-1">
-                  Yanabiya E-Commerce
+                  {t('businessDetail.ecommerceBadge')}
                 </p>
                 <h4 className="font-serif text-lg md:text-xl leading-snug mb-1.5">
-                  Shop globally with Yanabiya
+                  {t('businessDetail.ecommerceTitle')}
                 </h4>
                 <p className="text-white/75 text-xs leading-relaxed max-w-lg mx-auto">
-                  Our global e-commerce platform connects buyers and sellers across borders — trade, clothing, accessories and more, fulfilled worldwide.
+                  {t('businessDetail.ecommerceDesc')}
                 </p>
               </div>
               <a
@@ -105,13 +107,13 @@ export default function BusinessDetail() {
               </div>
               <div className="relative flex-1">
                 <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-emerald-100 mb-1">
-                  UK IT Consultancy
+                  {t('businessDetail.ukItBadge')}
                 </p>
                 <h4 className="font-serif text-lg md:text-xl leading-snug mb-1.5">
-                  Looking for UK-based IT consulting services?
+                  {t('businessDetail.ukItTitle')}
                 </h4>
                 <p className="text-white/75 text-xs leading-relaxed max-w-lg mx-auto">
-                  Our UK IT consulting arm operates via a dedicated platform — software, cloud, AI &amp; cybersecurity services tailored for the British market.
+                  {t('businessDetail.ukItDesc')}
                 </p>
               </div>
               <a
@@ -138,7 +140,7 @@ export default function BusinessDetail() {
                        text-brand-deep/60 hover:text-brand-accentDark transition-colors"
           >
             <ArrowLeft size={14} />
-            Back to Service List
+            {t('businessDetail.backToServiceList')}
           </Link>
           <div className="flex flex-wrap items-center gap-2 text-[11px] md:text-xs ml-auto">
             {prevBusiness && (
@@ -150,7 +152,7 @@ export default function BusinessDetail() {
                 title={prevBusiness.title}
               >
                 <ArrowLeft size={12} />
-                <span>Previous:</span>
+                <span>{t('businessDetail.previous')}:</span>
                 <span className="font-semibold normal-case tracking-normal">
                   {prevBusiness.title}
                 </span>
@@ -164,7 +166,7 @@ export default function BusinessDetail() {
                            hover:bg-brand-accentDark transition-colors"
                 title={nextBusiness.title}
               >
-                <span>Next:</span>
+                <span>{t('businessDetail.next')}:</span>
                 <span className="font-bold normal-case tracking-normal">
                   {nextBusiness.title}
                 </span>
@@ -211,7 +213,7 @@ export default function BusinessDetail() {
             {!hasSubServices && (
               <div className="mt-12">
                 <h3 className="text-brand-accentDark uppercase tracking-[0.22em] text-xs font-bold mb-5">
-                  What We Offer
+                  {t('businessDetail.whatWeOffer')}
                 </h3>
                 <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5 text-left max-w-2xl mx-auto">
                   {business.features.map((f) => (
@@ -261,7 +263,7 @@ export default function BusinessDetail() {
                 <SubServicesSection
                   businessSlug={business.slug}
                   subServices={business.subServices!}
-                  heading={business.subServicesHeading ?? 'Explore Our Services'}
+                  heading={business.subServicesHeading ?? t('businessDetail.exploreOurServices')}
                 />
               </>
             )}
@@ -286,6 +288,7 @@ function RelatedDivisions({
   currentSlug: string
   excludeSlug?: string
 }) {
+  const { t } = useTranslation()
   const others = businesses.filter(
     (b) => b.slug !== currentSlug && b.slug !== excludeSlug,
   )
@@ -293,10 +296,10 @@ function RelatedDivisions({
   return (
     <div className="mt-12 pt-10 border-t border-brand-deep/10">
       <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-brand-accentDark mb-2">
-        From the Group
+        {t('businessDetail.fromTheGroup')}
       </div>
       <h3 className="font-serif text-2xl md:text-3xl text-brand-deep leading-tight mb-6">
-        Explore other divisions
+        {t('businessDetail.exploreOtherDivisions')}
       </h3>
       <div className="grid grid-flow-col auto-cols-[minmax(130px,1fr)] gap-3 overflow-x-auto pb-1">
         {others.map((b) => (
@@ -330,7 +333,7 @@ function RelatedDivisions({
               <div className="mt-1 text-[9px] uppercase tracking-widest text-brand-accentDark
                               inline-flex items-center gap-0.5 transition-all duration-300
                               group-hover:gap-1">
-                Explore <ArrowRight size={9} />
+                {t('businessDetail.explore')} <ArrowRight size={9} />
               </div>
             </div>
           </Link>
@@ -349,6 +352,7 @@ function SubServicesSection({
   subServices: SubService[]
   heading: string
 }) {
+  const { t } = useTranslation()
   return (
     <div className="text-left">
       <div className="text-center mb-10">
@@ -412,7 +416,7 @@ function SubServicesSection({
               <div className="mt-auto pt-1 inline-flex items-center gap-1
                               text-brand-accentDark text-xs font-semibold
                               group-hover:gap-2 transition-all duration-200">
-                Read More
+                {t('businessDetail.readMore')}
                 <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
               </div>
             </div>
@@ -424,6 +428,7 @@ function SubServicesSection({
 }
 
 function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features: string[] }) {
+  const { t } = useTranslation()
   const [submitted, setSubmitted] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -437,11 +442,11 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
       {/* Section header */}
       <div className="text-center mb-8">
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-accentDark mb-2">
-          Work with us
+          {t('serviceForm.workWithUs')}
         </p>
-        <h3 className="font-serif text-2xl md:text-3xl text-brand-deep">Get Our Service</h3>
+        <h3 className="font-serif text-2xl md:text-3xl text-brand-deep">{t('serviceForm.getOurService')}</h3>
         <p className="text-sm text-brand-deep/60 mt-2 max-w-md mx-auto">
-          Tell us a bit about yourself and we will get in touch within one business day.
+          {t('serviceForm.intro')}
         </p>
 
         {!open && (
@@ -455,7 +460,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
                        active:translate-y-0 active:scale-[0.98]
                        transition-all duration-300"
           >
-            Get Our Service
+            {t('serviceForm.getOurService')}
             <ArrowRight size={16} />
           </button>
         )}
@@ -474,16 +479,16 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
             <div>
               <label className={labelCls}>
                 <User size={12} />
-                Full Name
+                {t('serviceForm.fullName')}
               </label>
-              <input required type="text" placeholder="Your full name" className={inputCls} />
+              <input required type="text" placeholder={t('serviceForm.fullNamePh')} className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>
                 <Building size={12} />
-                Company / Organisation
+                {t('serviceForm.company')}
               </label>
-              <input type="text" placeholder="Company name (optional)" className={inputCls} />
+              <input type="text" placeholder={t('serviceForm.companyPh')} className={inputCls} />
             </div>
           </div>
 
@@ -492,16 +497,16 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
             <div>
               <label className={labelCls}>
                 <Mail size={12} />
-                Email Address
+                {t('serviceForm.emailAddress')}
               </label>
-              <input required type="email" placeholder="you@company.com" className={inputCls} />
+              <input required type="email" placeholder={t('serviceForm.emailPh')} className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>
                 <Phone size={12} />
-                Phone Number
+                {t('serviceForm.phoneNumber')}
               </label>
-              <input required type="tel" placeholder="+968 9000 0000" className={inputCls} />
+              <input required type="tel" placeholder={t('serviceForm.phonePh')} className={inputCls} />
             </div>
           </div>
 
@@ -510,7 +515,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
             <div>
               <label className={labelCls}>
                 <MapPin size={12} />
-                Your Country
+                {t('serviceForm.yourCountry')}
               </label>
               <div className="relative">
                 <select
@@ -519,7 +524,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
                   defaultValue=""
                   className={`${inputCls} appearance-none pr-10`}
                 >
-                  <option value="" disabled>Select country</option>
+                  <option value="" disabled>{t('serviceForm.selectCountry')}</option>
                   {COUNTRY_OPTIONS.map((c) => (
                     <option key={c.value} value={c.value}>{c.label}</option>
                   ))}
@@ -530,7 +535,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
             <div>
               <label className={labelCls}>
                 <User size={12} />
-                Customer Type
+                {t('serviceForm.customerType')}
               </label>
               <div className="relative">
                 <select
@@ -538,12 +543,12 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
                   defaultValue=""
                   className={`${inputCls} appearance-none pr-10`}
                 >
-                  <option value="" disabled>Select one</option>
-                  <option>Individual</option>
-                  <option>SME / Startup</option>
-                  <option>Enterprise / Corporate</option>
-                  <option>Government / Public Sector</option>
-                  <option>Non-profit / NGO</option>
+                  <option value="" disabled>{t('serviceForm.selectOne')}</option>
+                  <option>{t('serviceForm.individual')}</option>
+                  <option>{t('serviceForm.sme')}</option>
+                  <option>{t('serviceForm.enterprise')}</option>
+                  <option>{t('serviceForm.gov')}</option>
+                  <option>{t('serviceForm.nonprofit')}</option>
                 </select>
                 <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-deep/40 pointer-events-none" />
               </div>
@@ -554,7 +559,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
           <div className="mb-4">
             <label className={labelCls}>
               <Building size={12} />
-              Service Required
+              {t('serviceForm.serviceRequired')}
               <span className="normal-case tracking-normal font-normal opacity-60">
                , {sectorTitle.replace('🤝 ', '')}
               </span>
@@ -566,7 +571,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
                 defaultValue=""
                 className={`${inputCls} appearance-none pr-10`}
               >
-                <option value="" disabled>Select a service</option>
+                <option value="" disabled>{t('serviceForm.selectService')}</option>
                 {features.map((f) => (
                   <option key={f} value={f}>{f}</option>
                 ))}
@@ -579,10 +584,10 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
           <div className="mb-6">
             <label className={labelCls}>
               <MessageSquare size={12} />
-              Description / Message
+              {t('serviceForm.descMessage')}
             </label>
             <textarea
-              placeholder="Briefly describe your requirement, project scope, or any specific questions..."
+              placeholder={t('serviceForm.descPh')}
               rows={4}
               className={`${inputCls} resize-none`}
             />
@@ -600,7 +605,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
                          active:translate-y-0 active:scale-[0.98]
                          transition-all duration-300"
             >
-              Send Request
+              {t('serviceForm.sendRequest')}
               <Send size={15} />
             </button>
             <button
@@ -608,7 +613,7 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
               onClick={() => setOpen(false)}
               className="text-xs text-brand-deep/50 hover:text-brand-deep transition-colors"
             >
-              Cancel
+              {t('serviceForm.cancel')}
             </button>
           </div>
         </form>
@@ -619,9 +624,9 @@ function ServiceForm({ sectorTitle, features }: { sectorTitle: string; features:
           <div className="w-14 h-14 rounded-full bg-brand-accent/15 text-brand-accentDark grid place-items-center mx-auto mb-4">
             <CheckCircle2 size={28} />
           </div>
-          <h4 className="font-serif text-xl text-brand-deep mb-2">Request Received!</h4>
+          <h4 className="font-serif text-xl text-brand-deep mb-2">{t('serviceForm.requestReceived')}</h4>
           <p className="text-sm text-brand-deep/60">
-            Thank you, our team will contact you within one business day.
+            {t('serviceForm.thankYou')}
           </p>
         </div>
       )}

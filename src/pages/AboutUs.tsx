@@ -5,6 +5,7 @@ import {
   Cpu, Globe2, Shirt, Handshake, Building2, Users,
   ChevronRight, Layers, MapPinned, ShieldCheck,
 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useReveal } from '../hooks/useReveal'
 import BackButton from '../components/BackButton'
 
@@ -31,44 +32,27 @@ function Reveal({
   )
 }
 
-const triptych = [
-  {
-    icon: Target,
-    eyebrow: 'Mission',
-    title: 'Why we exist',
-    body: 'Build, scale, and operate diversified ventures with technology, trade, and trust at the centre, across every market we enter.',
-  },
-  {
-    icon: Eye,
-    eyebrow: 'Vision',
-    title: 'Where we’re going',
-    body: 'A trusted global ecosystem where many businesses share one operating discipline, one set of values, and one long-term horizon.',
-  },
-  {
-    icon: Sparkles,
-    eyebrow: 'Values',
-    title: 'How we work',
-    body: 'Quality before scale. Relationships before transactions. People before process. Three rules, applied without exception.',
-  },
-]
-
 const capabilities = [
-  { slug: 'it-software',       icon: Cpu,        label: 'IT & Software',          desc: 'Custom software, ERP, cloud, and AI engineering.' },
-  { slug: 'export-import',     icon: Globe2,     label: 'Export & Import Business',           desc: 'Sourcing, freight, customs, and end-to-end fulfilment.' },
-  { slug: 'clothing',          icon: Shirt,      label: 'Clothing & Accessories', desc: 'Private-label, bulk garment sourcing, and brand support.' },
-  { slug: 'agents-brokerage',  icon: Handshake,  label: 'Agents & Brokerage',     desc: 'Cross-border deals, market entry, and partnerships.' },
-  { slug: 'office-management', icon: Building2,  label: 'Office Management',      desc: 'Serviced offices, PRO, accounting, and admin.' },
-  { slug: 'manpower',          icon: Users,      label: 'Manpower Supply Services',        desc: 'Workforce, student, and aviation services.' },
+  { slug: 'it-software',       icon: Cpu       },
+  { slug: 'export-import',     icon: Globe2    },
+  { slug: 'clothing',          icon: Shirt     },
+  { slug: 'agents-brokerage',  icon: Handshake },
+  { slug: 'office-management', icon: Building2 },
+  { slug: 'manpower',          icon: Users     },
 ]
 
 const presence = [
-  { code: 'OM', flag: '🇴🇲', name: 'Oman',           tag: 'Headquarters' },
-  { code: 'GB', flag: '🇬🇧', name: 'United Kingdom', tag: 'European Operations' },
-  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh',     tag: 'South Asia Operations' },
-  { code: 'US', flag: '🇺🇸', name: 'United States',  tag: 'North America Operations' },
+  { code: 'OM', flag: '\u{1F1F4}\u{1F1F2}' },
+  { code: 'GB', flag: '\u{1F1EC}\u{1F1E7}' },
+  { code: 'BD', flag: '\u{1F1E7}\u{1F1E9}' },
+  { code: 'US', flag: '\u{1F1FA}\u{1F1F8}' },
 ]
 
+const triptychKeys = ['mission', 'vision', 'values'] as const
+const triptychIcons = [Target, Eye, Sparkles]
+
 export default function AboutUs() {
+  const { t } = useTranslation()
   const { hash } = useLocation()
 
   useEffect(() => {
@@ -86,7 +70,7 @@ export default function AboutUs() {
 
   return (
     <main className="bg-brand-50 text-slate-900">
-      <BackButton to="/#about" label="Back to Home" />
+      <BackButton to="/#about" label={t('common.backToHome')} />
 
       {/* ───────── 1. HERO ───────── */}
       <section id="hero" className="relative min-h-[70vh] flex items-center overflow-hidden scroll-mt-28">
@@ -106,19 +90,18 @@ export default function AboutUs() {
           <div className="max-w-4xl">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-6">
-                About Yanabiya Group
+                {t('aboutPage.eyebrow')}
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h1 className="font-serif text-5xl md:text-7xl lg:text-[88px] leading-[1.02] tracking-tight">
-                Built to connect.
-                <span className="block text-brand-accentDark">Designed to endure.</span>
+                {t('aboutPage.heroH1')}
+                <span className="block text-brand-accentDark">{t('aboutPage.heroSpan')}</span>
               </h1>
             </Reveal>
             <Reveal delay={300}>
               <p className="mt-8 text-lg md:text-xl text-slate-600 max-w-2xl leading-snug">
-                A diversified international group operating as one platform,
-                across technology, trade, talent, and consulting in four countries.
+                {t('aboutPage.heroPara')}
               </p>
             </Reveal>
 
@@ -126,12 +109,12 @@ export default function AboutUs() {
             <Reveal delay={460}>
               <div className="mt-12 grid sm:grid-cols-3 gap-3 max-w-3xl">
                 {[
-                  { icon: Layers,      label: 'Six sectors', body: 'One operating discipline across tech, trade, and talent.' },
-                  { icon: MapPinned,   label: 'Four countries', body: 'Oman HQ, with teams in the UK, Bangladesh, and USA.' },
-                  { icon: ShieldCheck, label: 'Decade of trust', body: '10+ years of compounding partnerships across borders.' },
+                  { icon: Layers,      labelKey: 'sectors',   bodyKey: 'sectors' },
+                  { icon: MapPinned,   labelKey: 'countries', bodyKey: 'countries' },
+                  { icon: ShieldCheck, labelKey: 'trust',     bodyKey: 'trust' },
                 ].map((s) => (
                   <div
-                    key={s.label}
+                    key={s.labelKey}
                     className="rounded-xl border border-slate-200 bg-white/80 backdrop-blur-sm
                                p-4 transition-all duration-300
                                hover:border-brand-accent/50 hover:-translate-y-0.5
@@ -140,11 +123,11 @@ export default function AboutUs() {
                     <div className="flex items-center gap-2 text-brand-accentDark">
                       <s.icon size={16} strokeWidth={1.8} />
                       <span className="text-[10px] font-bold uppercase tracking-[0.22em]">
-                        {s.label}
+                        {t(`aboutPage.proof.${s.labelKey}.label`)}
                       </span>
                     </div>
                     <p className="mt-2 text-[13px] text-slate-600 leading-snug">
-                      {s.body}
+                      {t(`aboutPage.proof.${s.bodyKey}.body`)}
                     </p>
                   </div>
                 ))}
@@ -159,34 +142,22 @@ export default function AboutUs() {
         <div className="container-x grid lg:grid-cols-12 gap-12 items-start">
           <Reveal className="lg:col-span-5">
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-              01, Identity
+              {t('aboutPage.identity.kicker')}
             </div>
             <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-              Who we are.
+              {t('aboutPage.identity.title')}
             </h2>
           </Reveal>
 
           <div className="lg:col-span-7 space-y-5 text-slate-600 text-lg leading-snug">
             <Reveal>
-              <p>
-                Yanabiya Group is a diversified global enterprise originating in
-                Al Khuwair, Muscat, operating today across the United Kingdom,
-                Bangladesh, and the United States.
-              </p>
+              <p>{t('aboutPage.identity.p1')}</p>
             </Reveal>
             <Reveal delay={120}>
-              <p>
-                We don’t run as a single-sector company. We run as a platform,
-                where multiple ventures share one operating discipline and one
-                long-term horizon, while remaining independent where they need to be.
-              </p>
+              <p>{t('aboutPage.identity.p2')}</p>
             </Reveal>
             <Reveal delay={240}>
-              <p>
-                That structure is how a six-sector group stays coherent across four
-                countries. Innovation, execution, and operational capability move
-                together, not in silos.
-              </p>
+              <p>{t('aboutPage.identity.p3')}</p>
             </Reveal>
             <Reveal delay={360}>
               <a
@@ -200,7 +171,7 @@ export default function AboutUs() {
                            hover:border-brand-accentDark hover:text-brand-accentDark hover:-translate-y-0.5
                            transition-all"
               >
-                View More <ChevronRight size={14} />
+                {t('aboutPage.identity.viewMore')} <ChevronRight size={14} />
               </a>
             </Reveal>
           </div>
@@ -213,19 +184,21 @@ export default function AboutUs() {
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                02, Principles
+                {t('aboutPage.principles.kicker')}
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                What we stand for.
+                {t('aboutPage.principles.title')}
               </h2>
             </Reveal>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-            {triptych.map((t, i) => (
-              <Reveal key={t.eyebrow} delay={i * 150}>
+            {triptychKeys.map((key, i) => {
+              const Icon = triptychIcons[i]
+              return (
+              <Reveal key={key} delay={i * 150}>
                 <div className="group relative h-full rounded-2xl bg-brand-50 border border-brand-deep/15 p-7
                                 hover:border-brand-accent/40 hover:-translate-y-1
                                 hover:shadow-[0_20px_60px_-20px_rgba(158,199,58,0.4)]
@@ -233,16 +206,17 @@ export default function AboutUs() {
                   <div className="w-12 h-12 rounded-xl bg-brand-accent/10 text-brand-accentDark
                                   grid place-items-center transition-transform duration-300
                                   group-hover:rotate-6 group-hover:bg-brand-accent group-hover:text-white">
-                    <t.icon size={22} />
+                    <Icon size={22} />
                   </div>
                   <div className="mt-5 text-[11px] font-semibold tracking-[0.25em] uppercase text-brand-accentDark">
-                    {t.eyebrow}
+                    {t(`aboutPage.principles.${key}.eyebrow`)}
                   </div>
-                  <h3 className="mt-2 font-serif text-2xl leading-tight">{t.title}</h3>
-                  <p className="mt-3 text-slate-600 leading-snug">{t.body}</p>
+                  <h3 className="mt-2 font-serif text-2xl leading-tight">{t(`aboutPage.principles.${key}.title`)}</h3>
+                  <p className="mt-3 text-slate-600 leading-snug">{t(`aboutPage.principles.${key}.body`)}</p>
                 </div>
               </Reveal>
-            ))}
+              )
+            })}
           </div>
 
           <Reveal delay={500}>
@@ -258,7 +232,7 @@ export default function AboutUs() {
                            hover:border-brand-accentDark hover:text-brand-accentDark hover:-translate-y-0.5
                            transition-all"
               >
-                Explore What We Do <ChevronRight size={14} />
+                {t('aboutPage.principles.cta')} <ChevronRight size={14} />
               </a>
             </div>
           </Reveal>
@@ -271,12 +245,12 @@ export default function AboutUs() {
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                03, Capability
+                {t('aboutPage.capability.kicker')}
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                Six sectors. One discipline.
+                {t('aboutPage.capability.title')}
               </h2>
             </Reveal>
           </div>
@@ -302,12 +276,12 @@ export default function AboutUs() {
                                     group-hover:scale-110 group-hover:bg-brand-accent group-hover:text-white">
                       <c.icon size={20} />
                     </div>
-                    <h3 className="mt-4 font-serif text-xl leading-tight">{c.label}</h3>
-                    <p className="mt-2 text-sm text-slate-600 leading-snug">{c.desc}</p>
+                    <h3 className="mt-4 font-serif text-xl leading-tight">{t(`businesses.items.${c.slug}.title`, c.slug)}</h3>
+                    <p className="mt-2 text-sm text-slate-600 leading-snug">{t(`businesses.items.${c.slug}.body`, c.slug)}</p>
                     <div className="mt-3 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider
                                     text-brand-accentDark opacity-0 -translate-x-1
                                     group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-                      Explore <ChevronRight size={12} />
+                      {t('common.explore')} <ChevronRight size={12} />
                     </div>
                   </div>
                 </Link>
@@ -328,7 +302,7 @@ export default function AboutUs() {
                            hover:border-brand-accentDark hover:text-brand-accentDark hover:-translate-y-0.5
                            transition-all"
               >
-                See Our Global Presence <ChevronRight size={14} />
+                {t('aboutPage.capability.cta')} <ChevronRight size={14} />
               </a>
             </div>
           </Reveal>
@@ -341,12 +315,12 @@ export default function AboutUs() {
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accentDark mb-4">
-                04, Presence
+                {t('aboutPage.presence.kicker')}
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                One platform. Four homes.
+                {t('aboutPage.presence.title')}
               </h2>
             </Reveal>
           </div>
@@ -355,17 +329,17 @@ export default function AboutUs() {
           <Reveal delay={200}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10">
               {[
-                { value: '4',   label: 'Countries' },
-                { value: '6',   label: 'Sectors' },
-                { value: '10+', label: 'Years' },
-                { value: '24/7', label: 'Operations' },
+                { value: '4',    labelKey: 'countries' },
+                { value: '6',    labelKey: 'sectors' },
+                { value: '10+',  labelKey: 'years' },
+                { value: '24/7', labelKey: 'operations' },
               ].map((s) => (
                 <div
-                  key={s.label}
+                  key={s.labelKey}
                   className="rounded-2xl border border-slate-200 bg-brand-50 p-5 text-center"
                 >
                   <div className="font-serif text-3xl md:text-4xl text-brand-accentDark">{s.value}</div>
-                  <div className="mt-1 text-xs uppercase tracking-wider text-slate-600">{s.label}</div>
+                  <div className="mt-1 text-xs uppercase tracking-wider text-slate-600">{t(`aboutPage.presence.stats.${s.labelKey}`)}</div>
                 </div>
               ))}
             </div>
@@ -380,9 +354,9 @@ export default function AboutUs() {
                              hover:border-brand-accent/40 hover:-translate-y-1 hover:shadow-lg transition-all"
                 >
                   <div className="text-3xl">{p.flag}</div>
-                  <div className="mt-3 font-serif text-lg leading-tight">{p.name}</div>
+                  <div className="mt-3 font-serif text-lg leading-tight">{t(`global.nodes.${p.code}.name`)}</div>
                   <div className="text-[11px] uppercase tracking-wider text-brand-accentDark mt-1">
-                    {p.tag}
+                    {t(`aboutPage.presence.tags.${p.code}`)}
                   </div>
                 </Link>
               </Reveal>
@@ -398,7 +372,7 @@ export default function AboutUs() {
                            shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
                            transition-all"
               >
-                Explore Our Business <ArrowRight size={14} />
+                {t('aboutPage.presence.cta')} <ArrowRight size={14} />
               </Link>
             </div>
           </Reveal>
@@ -417,13 +391,13 @@ export default function AboutUs() {
         <div className="container-x relative py-4 md:py-6 text-center">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.3em] uppercase text-brand-accent mb-5">
-              The Full Story
+              {t('aboutPage.fullStory.eyebrow')}
             </div>
           </Reveal>
           <Reveal delay={120}>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight max-w-3xl mx-auto">
-              Every group has a story.
-              <span className="block text-brand-accent">Ours is just beginning.</span>
+              {t('aboutPage.fullStory.h2Part1')}
+              <span className="block text-brand-accent">{t('aboutPage.fullStory.h2Part2')}</span>
             </h2>
           </Reveal>
           <Reveal delay={300}>
@@ -435,7 +409,7 @@ export default function AboutUs() {
                            shadow-lg hover:bg-brand-accentDark hover:shadow-2xl hover:-translate-y-0.5
                            transition-all"
               >
-                Discover Our Full Story
+                {t('aboutPage.fullStory.cta')}
                 <ArrowRight size={16} />
               </Link>
             </div>

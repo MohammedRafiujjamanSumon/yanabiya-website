@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Newspaper, Leaf, HeartHandshake, Briefcase } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import BackButton from '../components/BackButton'
 import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
@@ -74,13 +75,14 @@ const HUBS = [
 ]
 
 export default function CommunityOverview() {
+  const { t } = useTranslation()
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
 
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
-      <BackButton to="/" label="Back to Home" />
+      <BackButton to="/" label={t('common.backToHome')} />
 
       {/* Ambient mint glow */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
@@ -90,9 +92,9 @@ export default function CommunityOverview() {
 
       {/* HERO, shared brand card */}
       <PageHero
-        eyebrow="Our Community"
-        title="Beyond the balance sheet."
-        subtitle="Stories, sustainability, welfare, careers, four ways into the group beyond business."
+        eyebrow={t('communityOverview.eyebrow')}
+        title={t('communityOverview.title')}
+        subtitle={t('communityOverview.subtitle')}
         ghostText=""
       />
 

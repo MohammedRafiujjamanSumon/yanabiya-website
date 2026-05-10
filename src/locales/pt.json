@@ -116,14 +116,46 @@
     "readMore": "Ler Mais",
     "learnMore": "Saber",
     "items": {
-      "it-software":               { "title": "Tecnologia & Soluções Digitais", "tagline": "Software à medida, cloud & soluções IA", "body": "Software à medida, plataformas web, ERP e soluções IA." },
-      "export-import":             { "title": "Negócio de Exportação e Importação", "tagline": "Frete, alfândega & comércio global", "body": "Aprovisionamento, frete, alfândega e cumprimento integral." },
-      "clothing":                  { "title": "Vestuário & Acessórios", "tagline": "Marca própria & sourcing de vestuário", "body": "Marca própria, sourcing de vestuário, controlo de qualidade e fornecimento retail." },
-      "agents-brokerage":          { "title": "Agentes & Corretagem", "tagline": "Seguros, empréstimos & parcerias", "body": "Negócios transfronteiriços, parcerias e apoio a concursos." },
-      "office-management":         { "title": "Serviços de Gestão de Escritórios", "tagline": "Instalações, segurança & operações", "body": "Escritórios com serviços, serviços PRO, contabilidade e administração." },
-      "manpower":                  { "title": "Serviços de Fornecimento de Mão de Obra", "tagline": "Pessoal de IT, segurança & construção", "body": "Mão de obra, colocação de estudantes, vistos e aviação." },
-      "yanabiya-commerce":         { "title": "Yanabiya e-Commerce", "tagline": "Retalho online, marketplace & cumprimento", "body": "Retalho online, marketplace, cumprimento de encomendas." },
-      "yanabiya-digital-platform": { "title": "Yanabiya Plataforma Digital", "tagline": "Aplicações, operações de campo & serviços digitais", "body": "Aplicações, operações de campo, RH & CRM." }
+      "it-software": {
+        "title": "Tecnologia & Soluções Digitais",
+        "tagline": "Software à medida, cloud & soluções IA",
+        "body": "Software à medida, plataformas web, ERP e soluções IA."
+      },
+      "export-import": {
+        "title": "Negócio de Exportação e Importação",
+        "tagline": "Frete, alfândega & comércio global",
+        "body": "Aprovisionamento, frete, alfândega e cumprimento integral."
+      },
+      "clothing": {
+        "title": "Vestuário & Acessórios",
+        "tagline": "Marca própria & sourcing de vestuário",
+        "body": "Marca própria, sourcing de vestuário, controlo de qualidade e fornecimento retail."
+      },
+      "agents-brokerage": {
+        "title": "Agentes & Corretagem",
+        "tagline": "Seguros, empréstimos & parcerias",
+        "body": "Negócios transfronteiriços, parcerias e apoio a concursos."
+      },
+      "office-management": {
+        "title": "Serviços de Gestão de Escritórios",
+        "tagline": "Instalações, segurança & operações",
+        "body": "Escritórios com serviços, serviços PRO, contabilidade e administração."
+      },
+      "manpower": {
+        "title": "Serviços de Fornecimento de Mão de Obra",
+        "tagline": "Pessoal de IT, segurança & construção",
+        "body": "Mão de obra, colocação de estudantes, vistos e aviação."
+      },
+      "yanabiya-commerce": {
+        "title": "Yanabiya e-Commerce",
+        "tagline": "Retalho online, marketplace & cumprimento",
+        "body": "Retalho online, marketplace, cumprimento de encomendas."
+      },
+      "yanabiya-digital-platform": {
+        "title": "Yanabiya Plataforma Digital",
+        "tagline": "Aplicações, operações de campo & serviços digitais",
+        "body": "Aplicações, operações de campo, RH & CRM."
+      }
     }
   },
   "solutions": {
@@ -153,10 +185,22 @@
     "cta": "Explorar Presença Global",
     "exploreAbout": "Explorar",
     "nodes": {
-      "OM": { "name": "Omã",            "capital": "Mascate" },
-      "GB": { "name": "Reino Unido",    "capital": "Londres" },
-      "BD": { "name": "Bangladesh",     "capital": "Dhaka"   },
-      "US": { "name": "Estados Unidos", "capital": "Austin"  }
+      "OM": {
+        "name": "Omã",
+        "capital": "Mascate"
+      },
+      "GB": {
+        "name": "Reino Unido",
+        "capital": "Londres"
+      },
+      "BD": {
+        "name": "Bangladesh",
+        "capital": "Dhaka"
+      },
+      "US": {
+        "name": "Estados Unidos",
+        "capital": "Austin"
+      }
     }
   },
   "csr": {
@@ -397,7 +441,18 @@
     "readMore": "Ler mais",
     "learnMore": "Saber mais",
     "getInTouch": "Entrar em contacto",
-    "viewAll": "Ver todos os membros"
+    "viewAll": "Ver todos os membros",
+    "sincerely": "Atenciosamente",
+    "roleResponsibilities": "Papel e responsabilidades",
+    "viewMore": "Ver mais",
+    "backTo": "Voltar para",
+    "explore": "Explorar",
+    "contactUs": "Entre em contato",
+    "allRegions": "Todas as regiões",
+    "verified": "Verificado",
+    "verifiedClient": "Cliente verificado",
+    "noOpenRoles": "Sem vagas abertas",
+    "teamMembersListed": "Membros da equipe listados"
   },
   "board": {
     "title": "Conselho de Membros",
@@ -433,5 +488,461 @@
     "legalEntity": "Entidade Jurídica",
     "licenseName": "Nome da Licença",
     "issuingAuthority": "Autoridade Emissora"
+  },
+  "ceoPage": {
+    "badge": "Fundador · Presidente · CEO",
+    "badgeLong": "Fundador, Presidente e CEO",
+    "msgTitle": "Mensagem do Presidente e CEO",
+    "groupLabel": "Yanabiya Group"
+  },
+  "vcPage": {
+    "badge": "Vice-Presidente",
+    "msgTitle": "Mensagem do Vice-Presidente",
+    "backToLabel": "Nossa equipe"
+  },
+  "aboutPage": {
+    "eyebrow": "Sobre o Yanabiya Group",
+    "heroH1": "Construído para conectar.",
+    "heroSpan": "Projetado para durar.",
+    "heroPara": "Um grupo internacional diversificado que opera como uma única plataforma, em tecnologia, comércio, talentos e consultoria em quatro países.",
+    "proof": {
+      "sectors": {
+        "label": "Seis setores",
+        "body": "Uma disciplina operacional em tecnologia, comércio e talentos."
+      },
+      "countries": {
+        "label": "Quatro países",
+        "body": "Sede em Omã, com equipes no Reino Unido, Bangladesh e EUA."
+      },
+      "trust": {
+        "label": "Década de confiança",
+        "body": "Mais de 10 anos de parcerias consolidadas além-fronteiras."
+      }
+    },
+    "identity": {
+      "kicker": "01, Identidade",
+      "title": "Quem somos.",
+      "p1": "Yanabiya Group é uma empresa global diversificada originária de Al Khuwair, Mascate, operando hoje no Reino Unido, Bangladesh e nos Estados Unidos.",
+      "p2": "Não operamos como uma empresa de setor único. Operamos como uma plataforma, onde múltiplos empreendimentos compartilham uma disciplina operacional e um horizonte de longo prazo, permanecendo independentes onde precisam ser.",
+      "p3": "Essa estrutura é como um grupo de seis setores permanece coerente em quatro países. Inovação, execução e capacidade operacional avançam juntas, não em silos.",
+      "viewMore": "Ver mais"
+    },
+    "principles": {
+      "kicker": "02, Princípios",
+      "title": "Pelo que nos posicionamos.",
+      "mission": {
+        "eyebrow": "Missão",
+        "title": "Por que existimos",
+        "body": "Construir, escalar e operar empreendimentos diversificados com tecnologia, comércio e confiança no centro, em cada mercado que entramos."
+      },
+      "vision": {
+        "eyebrow": "Visão",
+        "title": "Para onde vamos",
+        "body": "Um ecossistema global confiável onde muitos negócios compartilham uma disciplina operacional, um conjunto de valores e um horizonte de longo prazo."
+      },
+      "values": {
+        "eyebrow": "Valores",
+        "title": "Como trabalhamos",
+        "body": "Qualidade antes de escala. Relacionamentos antes de transações. Pessoas antes de processos. Três regras, aplicadas sem exceção."
+      },
+      "cta": "Explore o que fazemos"
+    },
+    "capability": {
+      "kicker": "03, Capacidade",
+      "title": "Seis setores. Uma disciplina.",
+      "cta": "Ver nossa presença global"
+    },
+    "presence": {
+      "kicker": "04, Presença",
+      "title": "Uma plataforma. Quatro lares.",
+      "stats": {
+        "countries": "Países",
+        "sectors": "Setores",
+        "years": "Anos",
+        "operations": "Operações"
+      },
+      "tags": {
+        "OM": "Sede central",
+        "GB": "Operações europeias",
+        "BD": "Operações na Ásia do Sul",
+        "US": "Operações na América do Norte"
+      },
+      "cta": "Explore nosso negócio"
+    },
+    "fullStory": {
+      "eyebrow": "A história completa",
+      "h2Part1": "Todo grupo tem uma história.",
+      "h2Part2": "A nossa está apenas começando.",
+      "cta": "Descubra nossa história completa"
+    }
+  },
+  "careersPage": {
+    "whyEyebrow": "Por que Yanabiya",
+    "growTitle1": "Desenvolva sua",
+    "growTitle2": "carreira conosco",
+    "openRoles": "Vagas abertas",
+    "opportunitiesTitle": "Oportunidades por escritório",
+    "noRoleH4": "Não encontrou a vaga certa?",
+    "noRoleDesc": "Envie-nos seu currículo e diga onde gostaria de contribuir, estamos sempre abertos a talentos fortes."
+  },
+  "communityCare": {
+    "stats": {
+      "beneficiaries": "Beneficiários",
+      "countries": "Países",
+      "track": "Histórico",
+      "programmes": "Programas"
+    },
+    "eyebrow": "Como retribuímos",
+    "titleLine1": "Quatro pilares",
+    "titleLine2": "de impacto",
+    "aroundWorld": "Ao redor do mundo",
+    "programmesTitle": "Programas em nossas regiões",
+    "programmesDesc": "As equipes locais entregam programas adaptados em cada país onde o Yanabiya Group opera."
+  },
+  "sustainablePage": {
+    "eyebrow": "Sustentabilidade",
+    "titleLine1": "Construindo um",
+    "titleLine2": "futuro mais verde",
+    "onGround": "No terreno",
+    "initiativesTitle": "Iniciativas em nossas regiões",
+    "forwardCommitments": "Compromissos futuros",
+    "targetsTitle": "Metas em que estamos trabalhando"
+  },
+  "communityOverview": {
+    "eyebrow": "Nossa comunidade",
+    "title": "Além do balanço.",
+    "subtitle": "Histórias, sustentabilidade, bem-estar, carreiras: quatro formas de entrar no grupo além dos negócios."
+  },
+  "blogPage": {
+    "eyebrow": "Sobre o que escrevemos",
+    "titleLine1": "Histórias e",
+    "titleLine2": "perspectivas",
+    "allRegions": "Todas as regiões",
+    "noPosts": "Ainda não há publicações para esta região, volte em breve."
+  },
+  "countryDetail": {
+    "operations": "Operações",
+    "whatWeDo": "O que fazemos",
+    "servicesIn": "Serviços em",
+    "corporateHierarchy": "Hierarquia corporativa",
+    "groupStructure": "Estrutura do grupo em",
+    "parentCompany": "Empresa-mãe",
+    "registeredEntity": "Entidade registrada",
+    "licensedActivities": "Atividades comerciais licenciadas",
+    "authorisedIn": "Para o que Yanabiya está autorizada a operar em",
+    "globalConnection": "Conexão global",
+    "unifiedNetwork": "Uma rede unificada",
+    "unifiedDesc": "Ligado a cada outro hub Yanabiya por colaboração diária, clientes compartilhados e um único manual de entrega.",
+    "achievements": "Conquistas",
+    "highlights": "Destaques e marcos",
+    "youAreHere": "Você está aqui",
+    "contactCta": "Quer contactar nosso escritório? Nosso diretório de contatos completo está na página de Contato global.",
+    "countryNotFound": "País não encontrado."
+  },
+  "testimonialsPage": {
+    "clientVoices": "Vozes dos clientes",
+    "title": "Confiado por líderes em quatro continentes",
+    "desc": "Cada citação abaixo é de um cliente ou parceiro verificado que trabalhou com o Yanabiya Group.",
+    "stats": {
+      "avgRating": "Avaliação média",
+      "clientsServed": "Clientes atendidos",
+      "countries": "Países",
+      "track": "Histórico"
+    },
+    "noTestimonials": "Ainda não há depoimentos para esta região, volte em breve."
+  },
+  "deptCountry": {
+    "notFound": "Departamento não encontrado.",
+    "backToBusiness": "Equipe de suporte empresarial",
+    "viewProfile": "Ver perfil",
+    "teamComingSoon": "Os membros da equipe serão listados aqui.",
+    "otherTeams": "Outras equipes regionais",
+    "teamCount_one": "{{count}} membro da equipe nas operações Yanabiya em {{country}}.",
+    "teamCount_other": "{{count}} membros da equipe nas operações Yanabiya em {{country}}."
+  },
+  "serviceForm": {
+    "heading": "Trabalhe conosco",
+    "sub": "Diga-nos como a Yanabiya pode ajudá-lo — responderemos em 48 horas.",
+    "namePlaceholder": "Seu nome completo",
+    "emailPlaceholder": "Seu e-mail profissional",
+    "countryPlaceholder": "Seu país",
+    "servicePlaceholder": "Selecione um serviço…",
+    "messagePlaceholder": "Descreva brevemente o seu projeto ou necessidade…",
+    "submit": "Enviar consulta",
+    "sending": "Enviando…",
+    "successTitle": "Consulta recebida!",
+    "successMsg": "Obrigado, {{name}}. Um membro da equipe Yanabiya entrará em contato em 48 horas.",
+    "errorMsg": "Algo deu errado. Por favor, tente novamente ou escreva para contact@yanabiyagroup.com.",
+    "services": {
+      "trade": "Comércio e Logística",
+      "consulting": "Consultoria Empresarial",
+      "community": "Serviços Comunitários",
+      "investment": "Investimento e Financiamento",
+      "other": "Outro"
+    }
+  },
+  "businessDetail": {
+    "contactCta": "Contatar esta divisão",
+    "learnMore": "Saiba mais",
+    "keyFacts": "Factos principais",
+    "regionsActive": "Regiões ativas",
+    "teamSize": "Tamanho da equipe",
+    "established": "Fundado",
+    "headquarters": "Sede",
+    "servicesOffered": "Serviços oferecidos",
+    "partners": "Parceiros",
+    "backToBusinesses": "Voltar aos negócios"
+  },
+  "ourStory": {
+    "kicker": "A nossa história",
+    "title": "Da ambição ao impacto global",
+    "intro": "A Yanabiya Group nasceu de uma convicção simples: comércio ético, comunidade e progresso sustentável podem coexistir. O que começou como uma empresa comercial focada nos mercados do Golfo transformou-se numa família de empresas presentes em quatro continentes.",
+    "milestones": [
+      {
+        "year": "2008",
+        "title": "Fundação em Mascate",
+        "body": "A Yanabiya é fundada em Mascate, Omã, com uma pequena equipe dedicada a soluções comerciais transfronteiriças para os mercados do Golfo e do Sul da Ásia."
+      },
+      {
+        "year": "2012",
+        "title": "Expansão para o Reino Unido",
+        "body": "Um escritório no Reino Unido é inaugurado, estabelecendo a nossa primeira presença europeia e lançando as bases para parcerias globais."
+      },
+      {
+        "year": "2015",
+        "title": "Presença no Bangladesh",
+        "body": "As operações no Bangladesh começam, conectando exportadores locais a mercados globais e criando empregos nas comunidades locais."
+      },
+      {
+        "year": "2018",
+        "title": "Lançamento da fundação beneficente",
+        "body": "A Yanabiya Charitable Foundation é oficialmente lançada, canalizando lucros para a educação, ajuda de emergência e programas comunitários."
+      },
+      {
+        "year": "2021",
+        "title": "Entrada no mercado americano",
+        "body": "A Yanabiya se estabelece nos EUA, expandindo as suas capacidades de consultoria e forjando parcerias estratégicas na América do Norte."
+      },
+      {
+        "year": "2024",
+        "title": "Rede em 4 continentes",
+        "body": "Hoje, a Yanabiya opera em quatro continentes com equipes no Omã, Reino Unido, Bangladesh e EUA, servindo clientes em mais de 20 países."
+      }
+    ],
+    "storyLines": [
+      "A Yanabiya não foi fundada para perseguir o lucro, mas para servir a um propósito: conectar comunidades, criar valor e fazer do comércio uma ferramenta de dignidade humana.",
+      "O nosso fundador acreditava que as empresas podem ser boas — para os seus proprietários, os seus funcionários, as comunidades que servem e o planeta em que operam.",
+      "Ao longo dos anos, navegámos por mercados difíceis, incertezas geopolíticas e desafios globais. Em cada momento, os nossos valores guiaram as nossas decisões.",
+      "Nunca procurámos crescer pelo simples prazer de crescer. Cada expansão que empreendemos foi motivada por uma oportunidade real de serviço.",
+      "No Omã, começámos por facilitar o comércio entre os mercados do Golfo e da Ásia — construindo pontes comerciais onde não existiam.",
+      "No Reino Unido, estabelecemos um hub para a diáspora — ajudando as comunidades a aceder a assessoria profissional, serviços financeiros e oportunidades de negócio.",
+      "No Bangladesh, ligámos produtores locais a mercados globais, ajudando famílias a aceder a rendimentos que mudam vidas.",
+      "Nos EUA, estamos a desenvolver parcerias estratégicas que trazem oportunidades de volta para as nossas comunidades de origem.",
+      "A nossa fundação beneficente — financiada pelos lucros das nossas atividades comerciais — apoiou escolas, Masjid, socorro em catástrofes e programas de empoderamento feminino.",
+      "Acreditamos que o sucesso empresarial e a responsabilidade social não se excluem mutuamente. Na verdade, um reforça o outro.",
+      "Cada parceiro com quem trabalhamos, cada cliente que servimos, cada comunidade que tocamos — todos fazem parte da história da Yanabiya.",
+      "Esta jornada está longe de terminar. Continuamos a construir, a aprender e a servir — guiados pela fé, movidos pelo propósito e enraizados na integridade."
+    ],
+    "leaders": [
+      {
+        "name": "Fundador e CEO",
+        "quote": "Não fundámos a Yanabiya para construir um império. Fundámo-la para servir — as famílias, as comunidades e o mundo mais amplo que Allah nos confiou."
+      },
+      {
+        "name": "Diretora de Operações",
+        "quote": "A nossa força reside nas nossas equipes — pessoas de diferentes nações, culturas e origens, todas unidas por valores partilhados."
+      }
+    ],
+    "missionInAction": [
+      {
+        "icon": "🤝",
+        "title": "Comércio ético",
+        "body": "Cada transação que facilitamos respeita os princípios Shariah, garante equidade para todas as partes e cria valor além do lucro."
+      },
+      {
+        "icon": "🌍",
+        "title": "Alcance global",
+        "body": "Com escritórios em quatro continentes, estamos perto dos nossos clientes onde quer que estejam — enraizados localmente, conectados globalmente."
+      },
+      {
+        "icon": "💛",
+        "title": "Impacto comunitário",
+        "body": "Percentagens de cada atividade comercial alimentam a Yanabiya Foundation, que financia diretamente educação, socorro de emergência e programas comunitários."
+      }
+    ],
+    "regions": {
+      "OM": "Sede Global e Hub Comercial do Golfo",
+      "GB": "Hub Europa e Diáspora",
+      "BD": "Hub Sul da Ásia e Apoio Comunitário",
+      "US": "Hub Américas e Consultoria Estratégica"
+    }
+  },
+  "omanPresence": {
+    "welcome": "Bem-vindo às nossas operações no Omã",
+    "intro": "O Omã é o lar da Yanabiya — a nossa sede global e o coração da nossa rede comercial no Golfo. A partir de Mascate, coordenamos as nossas operações internacionais, desenvolvemos parcerias estratégicas e servimos os nossos clientes em toda a região MENA.",
+    "highlights": [
+      "Sede global em Mascate",
+      "Hub de comércio e logística para a região MENA",
+      "Parcerias com instituições financeiras e agências governamentais omanienses",
+      "Apoio à comunidade local e iniciativas beneficentes"
+    ],
+    "licensedTitle": "Atividades licenciadas no Omã",
+    "licensedActivities": [
+      "Comércio geral e Importação/Exportação",
+      "Consultoria empresarial e Representação comercial",
+      "Logística e Gestão da cadeia de abastecimento",
+      "Serviços imobiliários",
+      "Programas de desenvolvimento comunitário"
+    ],
+    "ctaLabel": "Contactar o nosso escritório no Omã"
+  },
+  "donation": {
+    "heroTitle": "Dê por Allah — Dê por Jannah",
+    "heroSub": "Uma oportunidade de construir o seu palácio em Jannah ajudando quem precisa aqui na Terra. Cada riyal, cada libra, cada donativo conta.",
+    "tabOnline": "Doar online",
+    "tabBank": "Transferência bancária",
+    "tabContact": "Contacte-nos",
+    "amountLabel": "Escolha um valor",
+    "customAmountPlaceholder": "Valor personalizado",
+    "currencyLabel": "Moeda",
+    "causeLabel": "Escolha uma causa",
+    "allCauses": "Todas as causas",
+    "nameLabel": "O seu nome",
+    "emailLabel": "Endereço de e-mail",
+    "messageLabel": "Mensagem (opcional)",
+    "messagePlaceholder": "Diga-nos por que está a doar ou deixe uma duaa…",
+    "submitBtn": "Doar agora",
+    "submitting": "A processar…",
+    "successTitle": "JazakAllah Khayran!",
+    "successMsg": "O seu donativo foi recebido. Que Allah o aceite de si e abençoe a sua família.",
+    "bankTitle": "Efetuar uma transferência bancária",
+    "bankSub": "Use os dados abaixo para efetuar uma transferência. Por favor, indique o seu nome e a causa na referência.",
+    "contactTitle": "Prefere falar connosco?",
+    "contactSub": "Contacte diretamente a nossa equipe de donativos para doações grandes, recorrentes ou parcerias institucionais.",
+    "contactEmail": "donate@yanabiyagroup.com",
+    "impactTitle": "O seu impacto em números",
+    "impactSub": "Desde o lançamento da Yanabiya Charitable Foundation, os donativos da nossa comunidade tiveram um impacto real e mensurável.",
+    "stats": {
+      "raised": "Arrecadado até agora",
+      "projects": "Projetos financiados",
+      "countries": "Países impactados",
+      "families": "Famílias ajudadas"
+    },
+    "bankLabels": {
+      "accountName": "Nome do titular",
+      "bankName": "Nome do banco",
+      "accountNumber": "Número de conta",
+      "sortCode": "Código de ordenação",
+      "iban": "IBAN",
+      "swift": "SWIFT/BIC",
+      "reference": "Referência"
+    },
+    "trust": {
+      "secure": {
+        "title": "Pagamentos seguros",
+        "body": "Todos os donativos online são processados através de gateways encriptados e seguros. Os seus dados financeiros nunca são armazenados nos nossos servidores."
+      },
+      "shariah": {
+        "title": "Conforme com a Shariah",
+        "body": "Toda a angariação e distribuição de fundos segue os princípios islâmicos. O nosso comité Shariah supervisiona a afetação de fundos."
+      },
+      "transparent": {
+        "title": "100% transparente",
+        "body": "Os relatórios anuais da fundação são publicados publicamente. Pode ver exatamente como cada donativo é utilizado."
+      },
+      "receipt": {
+        "title": "Recibo de donativo",
+        "body": "Cada doador recebe uma confirmação por e-mail. Mediante pedido, fornecemos recibos fiscais formais onde a lei o permite."
+      }
+    },
+    "steps": [
+      {
+        "title": "Escolha a sua causa",
+        "body": "Selecione a causa ou fundação que lhe é mais cara, ou doe para o fundo geral e alocaremos onde for mais urgente."
+      },
+      {
+        "title": "Selecione um valor",
+        "body": "Escolha entre os nossos valores sugeridos ou introduza o seu próprio. Cada valor faz uma diferença real."
+      },
+      {
+        "title": "Complete o seu donativo",
+        "body": "Introduza os seus dados e finalize o seu donativo em segurança. Receberá uma confirmação por e-mail imediatamente."
+      }
+    ],
+    "foundationTags": [
+      "Fundo Geral da Yanabiya Foundation",
+      "Socorro de emergência e Ajuda humanitária",
+      "Bolsas de estudo e Educação",
+      "Construção e Renovação de Masjid"
+    ],
+    "amountLabels": {
+      "feeds": "alimenta uma família durante uma semana",
+      "educates": "financia a educação de uma criança durante um mês",
+      "builds": "contribui para a construção de um poço",
+      "sponsors": "apoia um estudante durante um trimestre",
+      "custom": "Valor personalizado"
+    },
+    "causeList": {
+      "education": {
+        "label": "Educação",
+        "desc": "Financiar bolsas de estudo, material escolar e programas de formação para comunidades necessitadas.",
+        "impact": "300 £ = bolsa de estudo por um ano"
+      },
+      "emergency": {
+        "label": "Socorro de emergência",
+        "desc": "Ajuda imediata a vítimas de catástrofes naturais, conflitos e crises humanitárias.",
+        "impact": "50 £ = kit alimentar de emergência para 5 dias"
+      },
+      "masjid": {
+        "label": "Construção de Masjid",
+        "desc": "Contribuir para a construção e renovação de Masjid em comunidades carenciadas.",
+        "impact": "500 £ = renovação de um espaço de oração"
+      },
+      "water": {
+        "label": "Água limpa",
+        "desc": "Financiar poços, sistemas de filtração e infraestruturas de água potável em zonas rurais.",
+        "impact": "200 £ = um poço para 50 famílias"
+      },
+      "orphan": {
+        "label": "Apadrinhamento de órfãos",
+        "desc": "Prestar apoio mensal a órfãos, cobrindo alimentação, vestuário, cuidados médicos e educação.",
+        "impact": "30 £/mês = apadrinhamento completo de um órfão"
+      },
+      "widow": {
+        "label": "Apoio a viúvas",
+        "desc": "Empoderamento de viúvas através de apoio financeiro, formação profissional e suporte comunitário.",
+        "impact": "100 £ = um mês de apoio a uma viúva e seus filhos"
+      },
+      "zakat": {
+        "label": "Distribuição de Zakah",
+        "desc": "A sua Zakah será distribuída a beneficiários verificados em situação de necessidade, de acordo com os princípios islâmicos.",
+        "impact": "100% da Zakah vai para os beneficiários"
+      },
+      "sadaqah": {
+        "label": "Sadaqah Jariyah",
+        "desc": "Donativos contínuos para projetos duradouros — poços, bibliotecas, centros educativos — cujas recompensas continuam após a sua morte.",
+        "impact": "Recompensas duradouras nesta vida e no além"
+      },
+      "food": {
+        "label": "Distribuição de alimentos",
+        "desc": "Fornecer refeições nutritivas a famílias pobres, órfãos e necessitados durante o Ramadão e ao longo do ano.",
+        "impact": "20 £ = alimenta uma família durante uma semana"
+      },
+      "medical": {
+        "label": "Ajuda médica",
+        "desc": "Financiar tratamentos médicos, medicamentos e cuidados de saúde para quem não os pode pagar.",
+        "impact": "75 £ = tratamento médico para um paciente"
+      },
+      "women": {
+        "label": "Empoderamento feminino",
+        "desc": "Programas de formação profissional, microfinanciamento e alfabetização para mulheres em comunidades marginalizadas.",
+        "impact": "150 £ = formação profissional para uma mulher"
+      },
+      "general": {
+        "label": "Fundo geral",
+        "desc": "O seu donativo será alocado onde houver maior necessidade entre os nossos projetos ativos.",
+        "impact": "100% vai para os projetos da fundação"
+      }
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import {
   ArrowLeft, ArrowRight, Heart, Send, CheckCircle, Copy, Mail,
   Building2, UserRound, Stethoscope, Shield, BookOpen,
@@ -13,9 +14,7 @@ import { useSection } from '../hooks/useSection'
 
 /* ── Types ──────────────────────────────────────────────────── */
 type Cause = {
-  label: string
-  description: string
-  impact: string
+  causeKey: string
   icon: ReactNode
   image: string
   color: string
@@ -23,105 +22,47 @@ type Cause = {
 
 /* ── Data ───────────────────────────────────────────────────── */
 const causes: Cause[] = [
-  {
-    label: 'Masjid Support', description: 'Construction and maintenance of mosques.',
-    impact: 'Builds a house of prayer', color: '#10b981',
-    icon: <Building2 size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    label: 'Orphan Care', description: 'Education and welfare for orphaned children.',
-    impact: 'Gives a child a future', color: '#f43f5e',
-    icon: <Heart size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    label: 'Elderly Home', description: 'Care and dignity for the elderly in need.',
-    impact: 'Restores dignity to elders', color: '#0ea5e9',
-    icon: <UserRound size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    label: 'Medical Support', description: 'Free health camps and medicine for those who cannot afford care.',
-    impact: 'Heals a family in need', color: '#f59e0b',
-    icon: <Stethoscope size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    label: 'Ending the Torment', description: 'Emergency relief for families in extreme hardship.',
-    impact: 'Brings relief in crisis', color: '#8b5cf6',
-    icon: <Shield size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    label: 'Student Care', description: 'Scholarships and learning resources for underprivileged students.',
-    impact: 'Opens doors to knowledge', color: '#0ea5e9',
-    icon: <BookOpen size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    label: 'Special Care', description: 'Support and resources for individuals with special needs.',
-    impact: 'Empowers every person', color: '#10b981',
-    icon: <Star size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    label: 'Eid Clothes', description: 'New clothing for those who cannot afford to celebrate.',
-    impact: 'Spreads joy on Eid', color: '#f59e0b',
-    icon: <Gift size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1604328702728-d26d2062c20b?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    label: 'Pay Your Zakah', description: 'Fulfil your annual Zakah obligation through us.',
-    impact: 'Purifies your wealth', color: '#f43f5e',
-    icon: <Banknote size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    label: 'Sadaqah', description: 'Voluntary charity for any worthy cause, any time.',
-    impact: 'Sadaqah never decreases wealth', color: '#8b5cf6',
-    icon: <Sparkles size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    label: 'Environment Care', description: 'Tree plantation and eco initiatives for future generations.',
-    impact: 'Sadaqah Jariyah for generations', color: '#10b981',
-    icon: <Leaf size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    label: 'Building & Maintenance', description: 'Upkeep of mosques, madrasas and charitable facilities.',
-    impact: 'Preserves a place of worship', color: '#f59e0b',
-    icon: <Hammer size={15} strokeWidth={2} />,
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80',
-  },
+  { causeKey: 'masjidSupport',      color: '#10b981', icon: <Building2 size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'orphanCare',         color: '#f43f5e', icon: <Heart size={15} strokeWidth={2} />,     image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'elderlyHome',        color: '#0ea5e9', icon: <UserRound size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'medicalSupport',     color: '#f59e0b', icon: <Stethoscope size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'endingTorment',      color: '#8b5cf6', icon: <Shield size={15} strokeWidth={2} />,    image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'studentCare',        color: '#0ea5e9', icon: <BookOpen size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'specialCare',        color: '#10b981', icon: <Star size={15} strokeWidth={2} />,      image: 'https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'eidClothes',         color: '#f59e0b', icon: <Gift size={15} strokeWidth={2} />,      image: 'https://images.unsplash.com/photo-1604328702728-d26d2062c20b?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'zakah',              color: '#f43f5e', icon: <Banknote size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'sadaqah',            color: '#8b5cf6', icon: <Sparkles size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'environmentCare',    color: '#10b981', icon: <Leaf size={15} strokeWidth={2} />,      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'buildingMaintenance',color: '#f59e0b', icon: <Hammer size={15} strokeWidth={2} />,   image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80' },
 ]
 
 const amounts = [
-  { v: '10',  label: 'Provides a meal for a family'      },
-  { v: '25',  label: 'Sponsors a student for a week'     },
-  { v: '50',  label: 'Covers medical care for a child'   },
-  { v: '100', label: 'Supports an orphan for a month'    },
-  { v: 'Custom', label: 'Choose your own impact'         },
+  { v: '10',     idx: 0 },
+  { v: '25',     idx: 1 },
+  { v: '50',     idx: 2 },
+  { v: '100',    idx: 3 },
+  { v: 'Custom', idx: 4 },
 ]
 
 const bankRows = [
-  { k: 'Bank',         v: 'Shahjalal Islami Bank Ltd.'              },
-  { k: 'Account Name', v: 'Jamiya Ahmadiya Madrasha & Orphanage'    },
-  { k: 'Account No',   v: '4057-11100000795'                        },
-  { k: 'Routing',      v: '190260871'                               },
-  { k: 'SWIFT',        v: 'SJBLBDDHCPC'                             },
+  { k: 'bank',         v: 'Shahjalal Islami Bank Ltd.'              },
+  { k: 'accountName',  v: 'Jamiya Ahmadiya Madrasha & Orphanage'    },
+  { k: 'accountNo',    v: '4057-11100000795'                        },
+  { k: 'routing',      v: '190260871'                               },
+  { k: 'swift',        v: 'SJBLBDDHCPC'                             },
 ]
 
 const stats = [
-  { v: '100%',   l: 'Direct to Cause' },
-  { v: '1,000+', l: 'Lives Touched'   },
-  { v: '4',      l: 'Countries'       },
-  { v: '15Y',    l: 'Track Record'    },
+  { v: '100%',   key: 'directToCause' },
+  { v: '1,000+', key: 'livesTouched'  },
+  { v: '4',      key: 'countries'     },
+  { v: '15Y',    key: 'trackRecord'   },
 ]
 
 /* ── Component ──────────────────────────────────────────────── */
 export default function Donation() {
+  const { t } = useTranslation()
+  const amountLabels = t('donation.amountLabels', { returnObjects: true }) as string[]
   const pageHeroes = useSection<Record<string, { eyebrow: string; title: string; subtitle: string }>>('page-heroes')
   const hero = pageHeroes?.['donation']
 
@@ -199,7 +140,7 @@ export default function Donation() {
       {/* ── Page hero ─────────────────────────────────────────── */}
       <div className="relative">
         <PageHero
-          eyebrow="Yanabiya Charitable Foundation"
+          eyebrow={t('donation.foundationBadge')}
           title={hero?.title || 'Donations Portal for Charitable'}
           subtitle={hero?.subtitle || '100% of every donation goes directly to the cause you choose, no deductions, no hidden fees. Give with confidence.'}
           centered
@@ -208,11 +149,11 @@ export default function Donation() {
         <div className="absolute inset-0 container-x px-5 md:px-12 flex items-start justify-between pt-5 md:pt-6 pointer-events-none">
           <Link to="/community/community-care"
             className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200">
-            <ArrowLeft size={13} /> Community Care
+            <ArrowLeft size={13} /> {t('donation.communityCareNav')}
           </Link>
           <Link to="/community/testimonials"
             className="pointer-events-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-brand-accentDark hover:text-brand-deep transition-colors duration-200">
-            Testimonials <ArrowRight size={13} />
+            {t('donation.testimonialsNav')} <ArrowRight size={13} />
           </Link>
         </div>
       </div>
@@ -226,21 +167,21 @@ export default function Donation() {
                                      [background-size:20px_20px]" />
           <div className="relative flex items-center justify-center gap-2 mb-3">
             <HandHeart size={14} className="text-amber-400" />
-            <span className="text-amber-400 text-[10px] font-bold uppercase tracking-[0.38em]">Yanabiya Charitable Foundation</span>
+            <span className="text-amber-400 text-[10px] font-bold uppercase tracking-[0.38em]">{t('donation.foundationBadge')}</span>
           </div>
           <h2 className="relative font-serif text-white text-2xl md:text-3xl italic mb-2">
-            "A Chance to Build Your Palace in Jannah"
+            "{t('donation.jannahQuote')}"
           </h2>
           <p className="relative text-white/50 text-xs max-w-sm mx-auto">
-            The Prophet ﷺ said: "Charity does not decrease wealth.", Sahih Muslim
+            {t('donation.prophetHadith')}
           </p>
 
           {/* Stats */}
           <div className="relative mt-8 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden max-w-2xl mx-auto">
             {stats.map((s) => (
-              <div key={s.l} className="bg-brand-deep/80 flex flex-col items-center py-5 px-3">
+              <div key={s.key} className="bg-brand-deep/80 flex flex-col items-center py-5 px-3">
                 <span className="font-serif text-2xl md:text-3xl font-light text-amber-400 leading-none mb-0.5">{s.v}</span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">{s.l}</span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">{t(`donation.stats.${s.key}`)}</span>
               </div>
             ))}
           </div>
@@ -253,30 +194,28 @@ export default function Donation() {
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-3 mb-3">
                 <span className="block w-8 h-px bg-amber-400 rounded-full" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-700">Where Your Gift Goes</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-700">{t('donation.whereGiftGoes')}</span>
                 <span className="block w-8 h-px bg-amber-400 rounded-full" />
               </div>
               <h3 className="font-serif text-slate-900 text-2xl md:text-3xl">
-                Choose a{' '}
-                <span className="bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent">
-                  Cause to Support
-                </span>
+                {t('donation.chooseCause')}
               </h3>
               {selectedCause && (
                 <p className="mt-2 text-sm text-emerald-700 font-medium">
-                  ✓ Selected: {selectedCause}
+                  ✓ {t('donation.selected')} {selectedCause}
                 </p>
               )}
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {causes.map((c) => {
-                const active = selectedCause === c.label
+                const causeLabel = t(`donation.causeList.${c.causeKey}.label`)
+                const active = selectedCause === causeLabel
                 return (
                   <button
-                    key={c.label}
+                    key={c.causeKey}
                     type="button"
-                    onClick={() => setSelectedCause(active ? '' : c.label)}
+                    onClick={() => setSelectedCause(active ? '' : causeLabel)}
                     className={`group relative rounded-2xl overflow-hidden aspect-[4/3] text-left
                                transition-all duration-300
                                ${active
@@ -288,7 +227,7 @@ export default function Donation() {
                     {/* Photo */}
                     <img
                       src={c.image}
-                      alt={c.label}
+                      alt={causeLabel}
                       className="absolute inset-0 w-full h-full object-cover
                                  transition-transform duration-500 group-hover:scale-110"
                     />
@@ -315,10 +254,10 @@ export default function Donation() {
 
                     {/* Content bottom */}
                     <div className="absolute bottom-0 left-0 right-0 p-3">
-                      <p className="text-white font-semibold text-xs leading-snug mb-1">{c.label}</p>
+                      <p className="text-white font-semibold text-xs leading-snug mb-1">{t(`donation.causeList.${c.causeKey}.label`)}</p>
                       <p className="text-white/0 group-hover:text-white/75 text-[10px] leading-snug
                                    transition-all duration-300 max-h-0 group-hover:max-h-12 overflow-hidden">
-                        {c.description}
+                        {t(`donation.causeList.${c.causeKey}.desc`)}
                       </p>
                       {/* Impact pill */}
                       <span
@@ -327,7 +266,7 @@ export default function Donation() {
                                    transition-opacity duration-300"
                         style={{ backgroundColor: `${c.color}cc` }}
                       >
-                        {c.impact}
+                        {t(`donation.causeList.${c.causeKey}.impact`)}
                       </span>
                     </div>
                   </button>
@@ -349,8 +288,8 @@ export default function Donation() {
                   <Heart size={16} className="text-brand-accent" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg text-white leading-tight">Payment Method</h3>
-                  <p className="text-white/45 text-[10px]">Choose your amount, pick country, follow steps</p>
+                  <h3 className="font-serif text-lg text-white leading-tight">{t('donation.paymentMethod')}</h3>
+                  <p className="text-white/45 text-[10px]">{t('donation.paymentSubtitle')}</p>
                 </div>
               </div>
 
@@ -359,16 +298,16 @@ export default function Donation() {
                 {/* Choose Programme */}
                 <div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-brand-accentDark mb-2">
-                    Choose Programme
+                    {t('donation.chooseProgramme')}
                   </div>
                   <select
                     value={selectedCause}
                     onChange={(e) => setSelectedCause(e.target.value)}
                     className={ipt}
                   >
-                    <option value="">Select a cause to support</option>
+                    <option value="">{t('donation.selectCausePh')}</option>
                     {causes.map((c) => (
-                      <option key={c.label} value={c.label}>{c.label}</option>
+                      <option key={c.causeKey} value={t(`donation.causeList.${c.causeKey}.label`)}>{t(`donation.causeList.${c.causeKey}.label`)}</option>
                     ))}
                   </select>
                 </div>
@@ -376,7 +315,7 @@ export default function Donation() {
                 {/* Amount tiers */}
                 <div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-brand-accentDark mb-3">
-                    Your Contribution
+                    {t('donation.yourContribution')}
                   </div>
                   <div className="grid grid-cols-3 gap-2 mb-3">
                     {amounts.map((a) => {
@@ -400,7 +339,7 @@ export default function Donation() {
                           ) : null}
                           <span className={`block text-[10px] leading-snug
                                            ${active ? 'text-brand-accentDark font-semibold' : 'text-slate-400'}`}>
-                            {a.v === 'Custom' ? '✏️ Custom' : a.label}
+                            {a.v === 'Custom' ? `✏️ ${amountLabels[4]}` : amountLabels[a.idx]}
                           </span>
                         </button>
                       )
@@ -410,7 +349,7 @@ export default function Donation() {
                     <input
                       type="number"
                       min="1"
-                      placeholder="Enter amount"
+                      placeholder={t('donation.enterAmount')}
                       value={customAmt}
                       onChange={(e) => setCustomAmt(e.target.value)}
                       className={ipt}
@@ -421,14 +360,14 @@ export default function Donation() {
                 {/* Country dropdown */}
                 <div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-brand-accentDark mb-2">
-                    From where will you make payment?
+                    {t('donation.fromWherePayment')}
                   </div>
                   <select
                     value={payCountry ?? ''}
                     onChange={(e) => { setPayCountry(e.target.value || null); setPayGateway(null) }}
                     className={ipt}
                   >
-                    <option value="">-- Select your country --</option>
+                    <option value="">{t('donation.selectCountryPh')}</option>
                     {PAY_COUNTRIES.map((c) => (
                       <option key={c.code} value={c.code}>
                         {c.flag} {c.name}
@@ -441,7 +380,7 @@ export default function Donation() {
                                text-brand-accentDark text-xs font-semibold py-2.5
                                hover:bg-brand-accent/10 transition-colors"
                   >
-                    <Mail size={13} /> Contact Us to Donate
+                    <Mail size={13} /> {t('donation.contactUsToDonate')}
                   </a>
                 </div>
 
@@ -449,7 +388,7 @@ export default function Donation() {
                 {payCountry && selectedCountryData?.live && (
                   <div>
                     <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">
-                      Payment Gateway
+                      {t('donation.paymentGateway')}
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {selectedCountryData.gateways.map((gw) => (
@@ -473,18 +412,17 @@ export default function Donation() {
                 {payCountry && selectedCountryData && !selectedCountryData.live && (
                   <div className="rounded-xl border border-amber-200 bg-amber-50 px-5 py-4 text-center">
                     <p className="text-amber-700 font-semibold text-sm mb-1">
-                      Coming Soon
+                      {t('donation.comingSoonTitle')}
                     </p>
                     <p className="text-amber-600 text-xs leading-relaxed">
-                      Payment gateway for your chosen location is on its way.
-                      Stay with us, we are working to bring it live soon.
+                      {t('donation.comingSoonDesc')}
                     </p>
                     <Link
                       to="/contact"
                       className="inline-flex items-center gap-1.5 mt-3 text-xs font-semibold text-amber-700
                                  underline underline-offset-2 hover:text-amber-900 transition-colors"
                     >
-                      Contact us in the meantime
+                      {t('donation.contactInMeantime')}
                     </Link>
                   </div>
                 )}
@@ -501,7 +439,7 @@ export default function Donation() {
                           height={112}
                           className="w-28 h-28 rounded-xl border border-brand-accent/20"
                         />
-                        <p className="text-[9px] text-slate-400 mt-1">Scan to pay</p>
+                        <p className="text-[9px] text-slate-400 mt-1">{t('donation.scanToPay')}</p>
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-[10px] font-bold uppercase tracking-widest text-brand-accentDark mb-1.5">
@@ -518,7 +456,7 @@ export default function Donation() {
                           </button>
                         </div>
                         <div className="rounded-lg bg-white border border-brand-accent/30 px-3 py-2">
-                          <p className="text-[10px] text-slate-400 leading-none mb-0.5">Amount to send</p>
+                          <p className="text-[10px] text-slate-400 leading-none mb-0.5">{t('donation.amountToSend')}</p>
                           <p className="font-bold text-brand-accentDark text-xl leading-none">
                             {COUNTRY_CURRENCY[payCountry ?? ''] ?? ''}&nbsp;{selectedAmt === 'Custom' ? (customAmt || '—') : selectedAmt}
                           </p>
@@ -531,13 +469,13 @@ export default function Donation() {
                 {/* Bank Transfer panel */}
                 {payGateway === 'Bank Transfer' && (
                   <div className="rounded-xl bg-brand-50 border border-brand-accent/20 p-4 space-y-1.5">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-brand-accentDark mb-2">Bank Details</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-brand-accentDark mb-2">{t('donation.bankDetails')}</p>
                     {bankRows.map(({ k, v }) => (
                       <div key={k} className="flex items-center justify-between gap-3 py-1 border-b border-slate-100 last:border-0">
-                        <span className="text-[11px] text-slate-400 w-20 shrink-0">{k}</span>
+                        <span className="text-[11px] text-slate-400 w-20 shrink-0">{t(`donation.bankLabels.${k}`)}</span>
                         <div className="flex items-center gap-1.5 justify-end flex-1">
                           <span className="text-[11px] text-slate-800 font-medium text-right">{v}</span>
-                          {(k === 'Account No' || k === 'SWIFT') && (
+                          {(k === 'accountNo' || k === 'swift') && (
                             <button type="button" onClick={() => copy(v, k)}
                                     className="text-slate-300 hover:text-brand-accentDark transition-colors shrink-0">
                               {copied === k ? <CheckCircle size={12} className="text-brand-accent" /> : <Copy size={12} />}
@@ -547,7 +485,7 @@ export default function Donation() {
                       </div>
                     ))}
                     <div className="rounded-lg bg-white border border-brand-accent/30 px-3 py-2 mt-2">
-                      <p className="text-[10px] text-slate-400 leading-none mb-0.5">Amount to transfer</p>
+                      <p className="text-[10px] text-slate-400 leading-none mb-0.5">{t('donation.amountToTransfer')}</p>
                       <p className="font-bold text-brand-accentDark text-xl leading-none">
                         BDT&nbsp;{selectedAmt === 'Custom' ? (customAmt || '—') : selectedAmt}
                       </p>
@@ -559,7 +497,7 @@ export default function Donation() {
                 {payGateway === 'Contact Us' && (
                   <div className="rounded-xl bg-brand-50 border border-brand-accent/20 p-4 text-center">
                     <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                      For donations from <strong>{selectedCountryData?.name}</strong>, reach out and we'll arrange the best payment method.
+                      {t('donation.forDonationsFrom', { country: selectedCountryData?.name })}
                     </p>
                     <a
                       href="mailto:donate@yanabiyagroup.com"
@@ -578,25 +516,25 @@ export default function Donation() {
                     {!noInvoice && (
                       <div className="space-y-2">
                         <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">
-                          Get Invoice{' '}
-                          <span className="font-normal normal-case text-slate-300">(optional)</span>
+                          {t('donation.getInvoice')}{' '}
+                          <span className="font-normal normal-case text-slate-300">{t('donation.optional')}</span>
                         </div>
                         <input
-                          placeholder="Your Name"
+                          placeholder={t('donation.yourName')}
                           value={donorName}
                           onChange={(e) => setDonorName(e.target.value)}
                           className={ipt}
                         />
                         <div className="grid grid-cols-2 gap-2">
                           <input
-                            placeholder="Phone Number"
+                            placeholder={t('serviceForm.phoneNumber')}
                             value={donorPhone}
                             onChange={(e) => setDonorPhone(e.target.value)}
                             className={ipt}
                           />
                           <input
                             type="email"
-                            placeholder="Email Address"
+                            placeholder={t('serviceForm.emailAddress')}
                             value={donorEmail}
                             onChange={(e) => setDonorEmail(e.target.value)}
                             className={ipt}
@@ -611,7 +549,7 @@ export default function Donation() {
                         onChange={(e) => setNoInvoice(e.target.checked)}
                         className="rounded border-slate-300 accent-brand-deep"
                       />
-                      I don't need an invoice
+                      {t('donation.noInvoice')}
                     </label>
                   </div>
                 )}
@@ -626,7 +564,7 @@ export default function Donation() {
                                  hover:bg-brand-accentDark hover:-translate-y-0.5 hover:shadow-lg
                                  transition-all shadow-md"
                     >
-                      Confirm My Donation <Send size={14} />
+                      {t('donation.confirmDonation')} <Send size={14} />
                     </button>
                   </form>
                 )}
@@ -634,13 +572,13 @@ export default function Donation() {
                 {submitted && (
                   <div className="rounded-xl bg-brand-50 border border-brand-accent/30 p-5 text-center">
                     <CheckCircle size={40} className="text-brand-accent mx-auto mb-3" />
-                    <p className="text-slate-900 font-serif text-xl mb-1">JazakAllah Khayran!</p>
+                    <p className="text-slate-900 font-serif text-xl mb-1">{t('donation.jazakAllah')}</p>
                     <p className="text-slate-500 text-sm max-w-xs mx-auto leading-relaxed mb-3">
-                      Your generous contribution will make a real difference. May Allah reward you with His best.
+                      {t('donation.donationThankYou')}
                     </p>
                     <button type="button" onClick={() => setSubmitted(false)}
                             className="text-xs text-brand-accentDark hover:underline">
-                      Donate again →
+                      {t('donation.donateAgain')} →
                     </button>
                   </div>
                 )}
@@ -657,8 +595,8 @@ export default function Donation() {
                   <Shield size={16} className="text-amber-400" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg text-white leading-tight">Why Donate With Us</h3>
-                  <p className="text-white/45 text-[10px]">Trusted, Transparent, Halal verified</p>
+                  <h3 className="font-serif text-lg text-white leading-tight">{t('donation.whyDonateTitle')}</h3>
+                  <p className="text-white/45 text-[10px]">{t('donation.whyDonateSubtitle')}</p>
                 </div>
               </div>
 
@@ -667,18 +605,18 @@ export default function Donation() {
                 {/* Trust checkpoints */}
                 <div className="space-y-3">
                   {([
-                    { color: 'bg-emerald-500', title: 'Registered Organisation',    desc: 'Yanabiya Charitable Foundation, officially registered and audited across four countries.' },
-                    { color: 'bg-sky-500',     title: '100% Reaches the Cause',     desc: 'Administrative costs are covered separately, every penny of your gift goes directly to the cause.' },
-                    { color: 'bg-amber-500',   title: 'Shariah-Compliant',          desc: 'All programmes are reviewed and approved under Islamic guidelines.' },
-                    { color: 'bg-rose-500',    title: 'Personal Acknowledgement',   desc: 'Every donor receives a personalised thank-you message and impact update.' },
+                    { color: 'bg-emerald-500', key: 'registered'    },
+                    { color: 'bg-sky-500',     key: 'directToCause' },
+                    { color: 'bg-amber-500',   key: 'shariah'       },
+                    { color: 'bg-rose-500',    key: 'personal'      },
                   ] as const).map((item) => (
-                    <div key={item.title} className="flex items-start gap-3">
+                    <div key={item.key} className="flex items-start gap-3">
                       <div className={`mt-0.5 w-6 h-6 rounded-full ${item.color} grid place-items-center shrink-0 text-white`}>
                         <Check size={13} strokeWidth={2.5} />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-slate-900 leading-none mb-0.5">{item.title}</p>
-                        <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+                        <p className="text-sm font-semibold text-slate-900 leading-none mb-0.5">{t(`donation.trust.${item.key}.title`)}</p>
+                        <p className="text-xs text-slate-500 leading-relaxed">{t(`donation.trust.${item.key}.desc`)}</p>
                       </div>
                     </div>
                   ))}
@@ -686,10 +624,10 @@ export default function Donation() {
 
                 {/* Fund allocation */}
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-brand-accentDark mb-3">Fund Allocation</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-brand-accentDark mb-3">{t('donation.fundAllocation')}</p>
                   <div className="space-y-2.5">
                     {([
-                      { label: 'Direct to cause', pct: '100%', barClass: 'w-full bg-brand-accent' },
+                      { label: t('donation.directToCauseLabel'), pct: '100%', barClass: 'w-full bg-brand-accent' },
                     ] as const).map((row) => (
                       <div key={row.label}>
                         <div className="flex justify-between text-[11px] text-slate-500 mb-1">
@@ -735,48 +673,30 @@ export default function Donation() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-3 mb-3">
                 <span className="block w-8 h-px bg-amber-400 rounded-full" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-700">Simple, Transparent, Impactful</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-700">{t('donation.simpleTransparent')}</span>
                 <span className="block w-8 h-px bg-amber-400 rounded-full" />
               </div>
               <h3 className="font-serif text-slate-900 text-2xl md:text-3xl">
-                How Your{' '}
-                <span className="bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent">
-                  Donation Works
-                </span>
+                {t('donation.howItWorksTitle')}
               </h3>
             </div>
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {([
-                {
-                  step: '01',
-                  color: 'bg-emerald-500',
-                  title: 'Choose a Cause',
-                  desc: 'Pick the programme that speaks to your heart, from orphan care and masjid support to student scholarships.',
-                },
-                {
-                  step: '02',
-                  color: 'bg-sky-500',
-                  title: 'Complete Payment',
-                  desc: 'Select your country and follow the gateway steps, bKash, Nagad, bank transfer, or contact us directly.',
-                },
-                {
-                  step: '03',
-                  color: 'bg-amber-500',
-                  title: 'We Deliver the Impact',
-                  desc: 'Funds reach the cause within 7 days. You receive a personal confirmation and an impact update.',
-                },
-              ] as const).map((s, i) => (
-                <div key={s.step} className="card-panel relative text-center overflow-hidden">
-                  <span aria-hidden className="absolute top-3 right-4 font-serif text-5xl font-black text-slate-100 leading-none select-none">{s.step}</span>
-                  <div className={`relative z-10 w-12 h-12 rounded-full ${s.color} grid place-items-center mx-auto mb-4 shadow-md`}>
-                    {i === 0 && <Heart size={20} className="text-white" />}
-                    {i === 1 && <Send size={20} className="text-white" />}
-                    {i === 2 && <CheckCircle size={20} className="text-white" />}
+              {(t('donation.steps', { returnObjects: true }) as Array<{ title: string; desc: string }>).map((s, i) => {
+                const stepNum = String(i + 1).padStart(2, '0')
+                const colors = ['bg-emerald-500', 'bg-sky-500', 'bg-amber-500']
+                return (
+                  <div key={stepNum} className="card-panel relative text-center overflow-hidden">
+                    <span aria-hidden className="absolute top-3 right-4 font-serif text-5xl font-black text-slate-100 leading-none select-none">{stepNum}</span>
+                    <div className={`relative z-10 w-12 h-12 rounded-full ${colors[i]} grid place-items-center mx-auto mb-4 shadow-md`}>
+                      {i === 0 && <Heart size={20} className="text-white" />}
+                      {i === 1 && <Send size={20} className="text-white" />}
+                      {i === 2 && <CheckCircle size={20} className="text-white" />}
+                    </div>
+                    <h4 className="relative z-10 font-semibold text-slate-900 text-base mb-2">{s.title}</h4>
+                    <p className="relative z-10 text-slate-500 text-sm leading-relaxed">{s.desc}</p>
                   </div>
-                  <h4 className="relative z-10 font-semibold text-slate-900 text-base mb-2">{s.title}</h4>
-                  <p className="relative z-10 text-slate-500 text-sm leading-relaxed">{s.desc}</p>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
 
@@ -791,16 +711,14 @@ export default function Donation() {
               <div className="px-8 py-8 border-b md:border-b-0 md:border-r border-white/10">
                 <div className="flex items-center gap-2 mb-4">
                   <HandHeart size={15} className="text-amber-400" />
-                  <span className="text-amber-400 text-[10px] font-bold uppercase tracking-[0.32em]">About the Foundation</span>
+                  <span className="text-amber-400 text-[10px] font-bold uppercase tracking-[0.32em]">{t('donation.aboutFoundationBadge')}</span>
                 </div>
-                <h4 className="font-serif text-white text-xl mb-3 leading-snug">Yanabiya Charitable Foundation</h4>
+                <h4 className="font-serif text-white text-xl mb-3 leading-snug">{t('donation.foundationBadge')}</h4>
                 <p className="text-white/55 text-sm leading-relaxed">
-                  Established to serve communities across Oman, Bangladesh, the United Kingdom and the USA,
-                  we direct charitable funds to those who need them most with full transparency and Islamic integrity.
-                  Every programme is managed by a dedicated team and reviewed by a Shariah board.
+                  {t('donation.foundationDesc')}
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {['Registered NGO', 'Shariah Board Approved', '15+ Years of Service', '4 Countries'].map((tag) => (
+                  {(t('donation.foundationTags', { returnObjects: true }) as string[]).map((tag) => (
                     <span key={tag} className="rounded-full border border-white/20 text-white/55 text-[11px] px-3 py-1">{tag}</span>
                   ))}
                 </div>
@@ -810,11 +728,10 @@ export default function Donation() {
               <div className="px-8 py-8">
                 <div className="flex items-center gap-2 mb-4">
                   <Mail size={14} className="text-sky-400" />
-                  <span className="text-sky-400 text-[10px] font-bold uppercase tracking-[0.32em]">Get in Touch</span>
+                  <span className="text-sky-400 text-[10px] font-bold uppercase tracking-[0.32em]">{t('donation.getInTouchBadge')}</span>
                 </div>
                 <p className="text-white/55 text-sm leading-relaxed mb-5">
-                  Questions about our programmes, how we serve each cause, or need help with your donation?
-                  Our team responds within one business day.
+                  {t('donation.getInTouchDesc')}
                 </p>
                 <div className="space-y-2.5">
                   <a
@@ -823,7 +740,7 @@ export default function Donation() {
                                px-4 py-3 text-sm text-white transition-colors"
                   >
                     <Heart size={14} className="text-amber-400 shrink-0" />
-                    donate@yanabiyagroup.com, Donation enquiries
+                    donate@yanabiyagroup.com, {t('donation.donationEnquiries')}
                   </a>
                   <a
                     href="mailto:info@yanabiyagroup.com"
@@ -831,7 +748,7 @@ export default function Donation() {
                                px-4 py-3 text-sm text-white transition-colors"
                   >
                     <Building2 size={14} className="text-sky-400 shrink-0" />
-                    info@yanabiyagroup.com, General enquiries
+                    info@yanabiyagroup.com, {t('donation.generalEnquiries')}
                   </a>
                 </div>
               </div>

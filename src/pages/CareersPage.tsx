@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { MapPin, Mail, ArrowLeft, ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
 import CareersReasons from '../components/CareersReasons'
@@ -62,6 +63,7 @@ const countryRoles: Record<string, string[]> = {
 }
 
 export default function CareersPage() {
+  const { t } = useTranslation()
   const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
   const hero = pageHeroes?.['careers']
 
@@ -99,17 +101,17 @@ export default function CareersPage() {
 
         <div className="mb-16">
           <CareersReasons
-            eyebrow="Why Yanabiya"
-            titleLine1="Grow Your"
-            titleLine2="Career With Us"
+            eyebrow={t('careersPage.whyEyebrow')}
+            titleLine1={t('careersPage.growTitle1')}
+            titleLine2={t('careersPage.growTitle2')}
             items={reasons}
           />
         </div>
 
         <div className="mb-16">
           <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">Open Roles</div>
-            <h3 className="font-serif text-3xl text-slate-900">Opportunities by Office</h3>
+            <div className="text-xs uppercase tracking-widest text-brand-accentDark mb-2">{t('careersPage.openRoles')}</div>
+            <h3 className="font-serif text-3xl text-slate-900">{t('careersPage.opportunitiesTitle')}</h3>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
             {countries.map((c) => {
@@ -133,13 +135,13 @@ export default function CareersPage() {
                         <div key={role} className="flex items-center justify-between rounded-lg bg-white/60 border border-slate-100 px-3 py-2">
                           <span className="text-slate-800 text-sm">{role}</span>
                           <span className="text-[10px] text-brand-accentDark uppercase tracking-widest border border-brand-accent/30 px-2 py-1 rounded-full">
-                            Open
+                            {t('careers.open')}
                           </span>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <div className="text-xs text-slate-500 italic">No open roles right now.</div>
+                    <div className="text-xs text-slate-500 italic">{t('common.noOpenRoles')}</div>
                   )}
                 </div>
               )
@@ -149,9 +151,9 @@ export default function CareersPage() {
 
         <div className="card-panel text-center max-w-xl mx-auto">
           <Mail className="text-brand-accentDark mx-auto mb-3" size={28} />
-          <h4 className="font-serif text-2xl text-slate-900 mb-2">Don't see the right role?</h4>
+          <h4 className="font-serif text-2xl text-slate-900 mb-2">{t('careersPage.noRoleH4')}</h4>
           <p className="text-slate-600 text-sm mb-5">
-            Send us your CV and tell us where you'd like to contribute, we're always open to strong talent.
+            {t('careersPage.noRoleDesc')}
           </p>
           <a href="mailto:careers@yanabiyagroup.com" className="btn-primary">
             careers@yanabiyagroup.com

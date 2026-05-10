@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Users } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { assets } from '../data/assets'
 import { ALL_PEOPLE, type PersonData } from '../data/people'
 
@@ -83,6 +84,7 @@ const COUNTRY_MAP: Record<string, CountryConfig> = {
 }
 
 function PersonCard({ person, color }: { person: PersonData; color: CountryConfig['color'] }) {
+  const { t } = useTranslation()
   return (
     <Link
       to={`/people/${person.id}`}
@@ -112,7 +114,7 @@ function PersonCard({ person, color }: { person: PersonData; color: CountryConfi
         <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full
                           text-white text-[10px] font-bold uppercase tracking-wider
                           ${color.btn} group-hover:gap-2.5 transition-all duration-200`}>
-          View Profile <ArrowRight size={9} />
+          {t('deptCountry.viewProfile')} <ArrowRight size={9} />
         </span>
       </div>
     </Link>
@@ -120,6 +122,7 @@ function PersonCard({ person, color }: { person: PersonData; color: CountryConfi
 }
 
 export default function DepartmentCountryPage() {
+  const { t } = useTranslation()
   const { country } = useParams<{ country: string }>()
   const navigate = useNavigate()
   const config = COUNTRY_MAP[country ?? '']
@@ -127,9 +130,9 @@ export default function DepartmentCountryPage() {
   if (!config) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <p className="text-brand-deep">Department not found.</p>
+        <p className="text-brand-deep">{t('deptCountry.notFound')}</p>
         <Link to="/people/departments" className="text-brand-accentDark underline text-sm">
-          ← Business Support
+          ← {t('deptCountry.backToBusiness')}
         </Link>
       </div>
     )
@@ -151,7 +154,7 @@ export default function DepartmentCountryPage() {
           className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest
                      text-slate-400 hover:text-brand-deep transition-colors duration-200"
         >
-          <ArrowLeft size={13} /> Business Support Team
+          <ArrowLeft size={13} /> {t('deptCountry.backToBusiness')}
         </button>
       </div>
 
@@ -163,7 +166,7 @@ export default function DepartmentCountryPage() {
           <span className="text-4xl">{config.flag}</span>
           <div>
             <p className="text-white/70 text-xs font-bold uppercase tracking-[0.2em] mb-1">
-              Business Support Team
+              {t('departments.title')}
             </p>
             <h1 className="text-white font-serif text-2xl md:text-4xl leading-tight drop-shadow">
               {config.name}
@@ -194,7 +197,7 @@ export default function DepartmentCountryPage() {
         ) : (
           <div className="flex flex-col items-center justify-center py-20 gap-3 text-center">
             <Users size={40} className="text-slate-200" />
-            <p className="text-slate-400 text-sm">Team members will be listed here.</p>
+            <p className="text-slate-400 text-sm">{t('common.teamMembersListed')}</p>
           </div>
         )}
       </div>
@@ -204,7 +207,7 @@ export default function DepartmentCountryPage() {
         <div className="border-t border-slate-100 bg-slate-50/60 px-6 md:px-16 py-10">
           <div className="max-w-5xl mx-auto">
             <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-slate-400 mb-5">
-              Other Regional Teams
+              {t('deptCountry.otherTeams')}
             </p>
             <div className="flex flex-wrap gap-3">
               {otherCountries.map(([key, cfg]) => (
