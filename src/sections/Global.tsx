@@ -204,10 +204,10 @@ export default function Global() {
                         <div className="w-8 h-px bg-white/40 my-1" aria-hidden />
                         <div className="text-[11px] uppercase tracking-[0.18em] text-emerald-100/85
                                         font-semibold">
-                          {d.capital}
+                          {t(`global.nodes.${d.code}.capital`, d.capital)}
                         </div>
                         <div className="text-base font-bold leading-tight">
-                          {d.name}
+                          {t(`global.nodes.${d.code}.name`, d.name)}
                         </div>
                         <div className="w-8 h-px bg-white/40 my-1" aria-hidden />
                         <Link
@@ -218,7 +218,7 @@ export default function Global() {
                                      text-[9px] font-bold uppercase tracking-wider
                                      transition-colors"
                         >
-                          Explore about {d.name}
+                          {t('global.exploreAbout')} {t(`global.nodes.${d.code}.name`, d.name)}
                           <ArrowRight size={10} />
                         </Link>
                       </div>

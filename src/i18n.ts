@@ -14,9 +14,6 @@ import nl from './locales/nl.json'
 import pl from './locales/pl.json'
 import ru from './locales/ru.json'
 import sv from './locales/sv.json'
-import hi from './locales/hi.json'
-import ur from './locales/ur.json'
-import tl from './locales/tl.json'
 
 export type LanguageMeta = {
   code: string
@@ -29,25 +26,24 @@ export type LanguageMeta = {
 
 export const languages: LanguageMeta[] = [
   // Global / default
-  { code: 'en', label: 'English',    native: 'English',      dir: 'ltr', flag: '🇬🇧', region: 'global' },
+  { code: 'en',    label: 'English',          native: 'English',      dir: 'ltr', flag: '🇬🇧', region: 'global' },
   // Gulf
-  { code: 'ar', label: 'Arabic',     native: 'العربية',      dir: 'rtl', flag: '🇴🇲', region: 'gulf'   },
+  { code: 'ar',    label: 'Arabic (Oman)',    native: 'عُمان',        dir: 'rtl', flag: '🇴🇲', region: 'gulf'   },
+  { code: 'ar-AE', label: 'Arabic (UAE)',     native: 'الإمارات',     dir: 'rtl', flag: '🇦🇪', region: 'gulf'   },
+  { code: 'ar-QA', label: 'Arabic (Qatar)',   native: 'قطر',          dir: 'rtl', flag: '🇶🇦', region: 'gulf'   },
+  { code: 'ar-SA', label: 'Arabic (Saudi)',   native: 'السعودية',     dir: 'rtl', flag: '🇸🇦', region: 'gulf'   },
   // Europe
-  { code: 'fr', label: 'French',     native: 'Français',     dir: 'ltr', flag: '🇫🇷', region: 'europe' },
-  { code: 'de', label: 'German',     native: 'Deutsch',      dir: 'ltr', flag: '🇩🇪', region: 'europe' },
-  { code: 'es', label: 'Spanish',    native: 'Español',      dir: 'ltr', flag: '🇪🇸', region: 'europe' },
-  { code: 'it', label: 'Italian',    native: 'Italiano',     dir: 'ltr', flag: '🇮🇹', region: 'europe' },
-  { code: 'pt', label: 'Portuguese', native: 'Português',    dir: 'ltr', flag: '🇵🇹', region: 'europe' },
-  { code: 'nl', label: 'Dutch',      native: 'Nederlands',   dir: 'ltr', flag: '🇳🇱', region: 'europe' },
-  { code: 'pl', label: 'Polish',     native: 'Polski',       dir: 'ltr', flag: '🇵🇱', region: 'europe' },
-  { code: 'ru', label: 'Russian',    native: 'Русский',      dir: 'ltr', flag: '🇷🇺', region: 'europe' },
-  { code: 'sv', label: 'Swedish',    native: 'Svenska',      dir: 'ltr', flag: '🇸🇪', region: 'europe' },
-  // Gulf (extra)
-  { code: 'hi', label: 'Hindi',      native: 'हिन्दी',       dir: 'ltr', flag: '🇮🇳', region: 'gulf'   },
-  { code: 'ur', label: 'Urdu',       native: 'اردو',          dir: 'rtl', flag: '🇵🇰', region: 'gulf'   },
-  { code: 'tl', label: 'Tagalog',    native: 'Filipino',      dir: 'ltr', flag: '🇵🇭', region: 'gulf'   },
+  { code: 'fr',    label: 'French',           native: 'Français',     dir: 'ltr', flag: '🇫🇷', region: 'europe' },
+  { code: 'de',    label: 'German',           native: 'Deutsch',      dir: 'ltr', flag: '🇩🇪', region: 'europe' },
+  { code: 'es',    label: 'Spanish',          native: 'Español',      dir: 'ltr', flag: '🇪🇸', region: 'europe' },
+  { code: 'it',    label: 'Italian',          native: 'Italiano',     dir: 'ltr', flag: '🇮🇹', region: 'europe' },
+  { code: 'pt',    label: 'Portuguese',       native: 'Português',    dir: 'ltr', flag: '🇵🇹', region: 'europe' },
+  { code: 'nl',    label: 'Dutch',            native: 'Nederlands',   dir: 'ltr', flag: '🇳🇱', region: 'europe' },
+  { code: 'pl',    label: 'Polish',           native: 'Polski',       dir: 'ltr', flag: '🇵🇱', region: 'europe' },
+  { code: 'ru',    label: 'Russian',          native: 'Русский',      dir: 'ltr', flag: '🇷🇺', region: 'europe' },
+  { code: 'sv',    label: 'Swedish',          native: 'Svenska',      dir: 'ltr', flag: '🇸🇪', region: 'europe' },
   // Asia
-  { code: 'bn', label: 'Bengali',    native: 'বাংলা',        dir: 'ltr', flag: '🇧🇩', region: 'asia'   },
+  { code: 'bn',    label: 'Bengali',          native: 'বাংলা',        dir: 'ltr', flag: '🇧🇩', region: 'asia'   },
 ]
 
 const supportedLngs = languages.map(l => l.code)
@@ -57,21 +53,21 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { translation: en },
-      ar: { translation: ar },
-      bn: { translation: bn },
-      fr: { translation: fr },
-      de: { translation: de },
-      es: { translation: es },
-      it: { translation: it },
-      pt: { translation: pt },
-      nl: { translation: nl },
-      pl: { translation: pl },
-      ru: { translation: ru },
-      sv: { translation: sv },
-      hi: { translation: hi },
-      ur: { translation: ur },
-      tl: { translation: tl },
+      en:    { translation: en },
+      ar:    { translation: ar },
+      'ar-AE': { translation: ar },
+      'ar-QA': { translation: ar },
+      'ar-SA': { translation: ar },
+      bn:    { translation: bn },
+      fr:    { translation: fr },
+      de:    { translation: de },
+      es:    { translation: es },
+      it:    { translation: it },
+      pt:    { translation: pt },
+      nl:    { translation: nl },
+      pl:    { translation: pl },
+      ru:    { translation: ru },
+      sv:    { translation: sv },
     },
     fallbackLng: 'en',
     supportedLngs,

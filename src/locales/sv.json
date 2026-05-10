@@ -131,7 +131,14 @@
     "europe": "Europeiska Operationer",
     "southAsia": "Sydasiatiska Operationer",
     "northAmerica": "Nordamerikanska Operationer",
-    "cta": "Utforska Global Närvaro"
+    "cta": "Utforska Global Närvaro",
+    "exploreAbout": "Utforska",
+    "nodes": {
+      "OM": { "name": "Oman",            "capital": "Maskat"   },
+      "GB": { "name": "Storbritannien",  "capital": "London"   },
+      "BD": { "name": "Bangladesh",      "capital": "Dhaka"    },
+      "US": { "name": "USA",             "capital": "Austin"   }
+    }
   },
   "csr": {
     "eyebrow": "Påverkan & CSR",

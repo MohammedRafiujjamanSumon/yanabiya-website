@@ -131,7 +131,14 @@
     "europe": "Operacje Europejskie",
     "southAsia": "Operacje Azji Południowej",
     "northAmerica": "Operacje Ameryki Północnej",
-    "cta": "Odkryj Globalną Obecność"
+    "cta": "Odkryj Globalną Obecność",
+    "exploreAbout": "Odkryj",
+    "nodes": {
+      "OM": { "name": "Oman",          "capital": "Maskat"  },
+      "GB": { "name": "Wielka Brytania", "capital": "Londyn" },
+      "BD": { "name": "Bangladesz",    "capital": "Dhaka"   },
+      "US": { "name": "Stany Zjednoczone", "capital": "Austin" }
+    }
   },
   "csr": {
     "eyebrow": "Wpływ & CSR",

@@ -131,7 +131,14 @@
     "europe": "Europese Operaties",
     "southAsia": "Zuid-Aziatische Operaties",
     "northAmerica": "Noord-Amerikaanse Operaties",
-    "cta": "Wereldwijde Aanwezigheid Verkennen"
+    "cta": "Wereldwijde Aanwezigheid Verkennen",
+    "exploreAbout": "Ontdek",
+    "nodes": {
+      "OM": { "name": "Oman",                  "capital": "Muscat" },
+      "GB": { "name": "Verenigd Koninkrijk",   "capital": "Londen" },
+      "BD": { "name": "Bangladesh",            "capital": "Dhaka"  },
+      "US": { "name": "Verenigde Staten",      "capital": "Austin" }
+    }
   },
   "csr": {
     "eyebrow": "Impact & MVO",
