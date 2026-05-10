@@ -405,8 +405,8 @@ const OPS: Record<string, CountryOps> = {
         bio: 'Mohammad Abu Jaheed oversees Yanabiya\'s European expansion from London, positioning the UK entity as the Group\'s gateway into Western and European markets.',
       },
       managingDirector: {
-        name: 'Managing Director — UK Operations',
-        role: 'Managing Director',
+        name: 'To Be Confirmed',
+        role: 'Leading UK Operations',
         image: `https://ui-avatars.com/api/?name=MD+UK&background=0e2d4e&color=9ec73a&size=200&bold=true`,
         bio: 'Yanabiya UK\'s Managing Director steers the London operation across IT consulting, trade, and workforce services — building the Group\'s European footprint from the heart of the city.',
       },
@@ -484,8 +484,8 @@ const OPS: Record<string, CountryOps> = {
         bio: 'Mohammad Abu Jaheed leads Yanabiya\'s North America strategy, anchoring the Austin, Texas LLC as the Group\'s bridge between Gulf delivery capability and the US technology market.',
       },
       managingDirector: {
-        name: 'Managing Director — North America',
-        role: 'Managing Director',
+        name: 'To Be Confirmed',
+        role: 'Leading North America Operations',
         image: `https://ui-avatars.com/api/?name=MD+USA&background=0e2d4e&color=9ec73a&size=200&bold=true`,
         bio: 'Yanabiya US\'s Managing Director leads Austin-based operations, growing an enterprise partner network and delivering cloud, AI and strategic consulting engagements across the US market.',
       },
@@ -1321,7 +1321,7 @@ function CountryLeaderCard({
           <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-white/80 shadow-md ring-2 ring-white/40">
             <img
               src={person.image}
-              alt={person.name}
+              alt=""
               className="w-full h-full object-cover"
               onError={(e) => {
                 ;(e.currentTarget as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(person.name)}&background=0e2d4e&color=9ec73a&size=200&bold=true`
