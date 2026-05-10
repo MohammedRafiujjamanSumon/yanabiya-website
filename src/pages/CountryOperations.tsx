@@ -795,16 +795,18 @@ function OmanPage({ country, ops, prevNav, nextNav }: LayoutProps) {
               </div>
             </div>
 
-            {/* Vertical drop → horizontal bus → individual drops */}
+            {/* Vertical stem from parent */}
             <div className="flex justify-center">
-              <div className="w-px h-5 bg-amber-300/70" />
+              <div className="w-0.5 h-6 bg-amber-400" />
             </div>
-            <div className="w-full h-px bg-amber-200" />
 
-            {/* Single row of flip cards */}
-            <div className="flex gap-1.5 mt-0">
+            {/* Horizontal bus + individual drops + cards */}
+            <div className="flex gap-1.5 border-t-2 border-amber-400">
               {ops.strategicPartners.map((p, i) => (
-                <PartnerFlipCard key={p.name} name={p.name} colorIndex={i} />
+                <div key={p.name} className="flex-1 flex flex-col items-center">
+                  <div className="w-0.5 h-5 bg-amber-400" />
+                  <PartnerFlipCard name={p.name} colorIndex={i} />
+                </div>
               ))}
             </div>
 
@@ -1473,7 +1475,7 @@ function PartnerFlipCard({ name, colorIndex }: { name: string; colorIndex: numbe
   const color = PARTNER_COLORS[colorIndex % PARTNER_COLORS.length]
   return (
     <div
-      className="relative flex-1 min-w-0 h-24 cursor-pointer [perspective:800px] shrink"
+      className="relative w-full h-24 cursor-pointer [perspective:800px]"
       onClick={() => setFlipped(f => !f)}
     >
       <div
