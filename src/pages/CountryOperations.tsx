@@ -65,7 +65,7 @@ type CountryOps = {
   currentProjects: { title: string; body: string; image?: string }[]
   activeSectors: string[]
   futurePlans: { title: string; body: string; icon: LucideIcon; image?: string }[]
-  countryLeadership: { cofounder: LeaderProfile; managingDirector: LeaderProfile }
+  countryLeadership: { cofounder: LeaderProfile; managingDirector?: LeaderProfile }
 }
 
 type PartnerItem = {
@@ -181,13 +181,13 @@ const OPS: Record<string, CountryOps> = {
         name: 'Mohammad Abu Jaheed',
         role: 'Co-founder & Vice Chairman',
         image: assets.viceChairman,
-        bio: 'As Co-founder and Vice Chairman, Mohammad Abu Jaheed champions Yanabiya\'s South Asia presence, overseeing the Bangladesh operation as the Group\'s technology and trade delivery hub.',
+        bio: 'As Co-founder and Vice Chairman, he champions Yanabiya\'s South Asia presence, overseeing the Bangladesh operation as the Group\'s technology and trade delivery hub.',
       },
       managingDirector: {
         name: 'S M Momim Ahmed',
         role: 'Managing Director',
         image: assets.people.momiimAhmed,
-        bio: 'S M Momim Ahmed leads Yanabiya Bangladesh\'s day-to-day operations, directing a multi-sector team across technology delivery, garment trade, and workforce mobility.',
+        bio: 'Leads Yanabiya Bangladesh\'s day-to-day operations, directing a multi-sector team across technology delivery, garment trade, and workforce mobility.',
       },
     },
   },
@@ -314,13 +314,13 @@ const OPS: Record<string, CountryOps> = {
         name: 'Mohammad Abu Jaheed',
         role: 'Co-founder & Vice Chairman',
         image: assets.viceChairman,
-        bio: 'As Co-founder and Vice Chairman, Mohammad Abu Jaheed guides Yanabiya\'s flagship Oman headquarters, steering the Group\'s strategic vision from Muscat across all four operating countries.',
+        bio: 'As Co-founder and Vice Chairman, he guides Yanabiya\'s flagship Oman headquarters, steering the Group\'s strategic vision from Muscat across all four operating countries.',
       },
       managingDirector: {
         name: 'Khalid Saif Ahmed Al Sulaimani',
         role: 'General Manager, Oman',
         image: assets.people.khalidSulaimani,
-        bio: 'Khalid Saif Ahmed Al Sulaimani oversees daily operations and client relationships across Yanabiya\'s Oman entity, ensuring premium delivery and alignment with the Group\'s quality standards.',
+        bio: 'Oversees daily operations and client relationships across Yanabiya\'s Oman entity, ensuring premium delivery and alignment with the Group\'s quality standards.',
       },
     },
   },
@@ -402,13 +402,7 @@ const OPS: Record<string, CountryOps> = {
         name: 'Mohammad Abu Jaheed',
         role: 'Co-founder & Vice Chairman',
         image: assets.viceChairman,
-        bio: 'Mohammad Abu Jaheed oversees Yanabiya\'s European expansion from London, positioning the UK entity as the Group\'s gateway into Western and European markets.',
-      },
-      managingDirector: {
-        name: 'To Be Confirmed',
-        role: 'Leading UK Operations',
-        image: `https://ui-avatars.com/api/?name=MD+UK&background=0e2d4e&color=9ec73a&size=200&bold=true`,
-        bio: 'Yanabiya UK\'s Managing Director steers the London operation across IT consulting, trade, and workforce services — building the Group\'s European footprint from the heart of the city.',
+        bio: 'Oversees Yanabiya\'s European expansion from London, positioning the UK entity as the Group\'s gateway into Western and European markets.',
       },
     },
   },
@@ -481,13 +475,7 @@ const OPS: Record<string, CountryOps> = {
         name: 'Mohammad Abu Jaheed',
         role: 'Co-founder & Vice Chairman',
         image: assets.viceChairman,
-        bio: 'Mohammad Abu Jaheed leads Yanabiya\'s North America strategy, anchoring the Austin, Texas LLC as the Group\'s bridge between Gulf delivery capability and the US technology market.',
-      },
-      managingDirector: {
-        name: 'To Be Confirmed',
-        role: 'Leading North America Operations',
-        image: `https://ui-avatars.com/api/?name=MD+USA&background=0e2d4e&color=9ec73a&size=200&bold=true`,
-        bio: 'Yanabiya US\'s Managing Director leads Austin-based operations, growing an enterprise partner network and delivering cloud, AI and strategic consulting engagements across the US market.',
+        bio: 'Leads Yanabiya\'s North America strategy, anchoring the Austin, Texas LLC as the Group\'s bridge between Gulf delivery capability and the US technology market.',
       },
     },
   },
@@ -1372,15 +1360,17 @@ function CountryLeaderSection({
           badgeText={badgeText}
           badgeBorder={badgeBorder}
         />
-        <CountryLeaderCard
-          person={leadership.managingDirector}
-          tier="Managing Director"
-          accentBorder="border-slate-200"
-          accentBg="bg-white/60"
-          badgeBg="bg-slate-100"
-          badgeText="text-slate-700"
-          badgeBorder="border-slate-300/60"
-        />
+        {leadership.managingDirector && (
+          <CountryLeaderCard
+            person={leadership.managingDirector}
+            tier="Managing Director"
+            accentBorder="border-slate-200"
+            accentBg="bg-white/60"
+            badgeBg="bg-slate-100"
+            badgeText="text-slate-700"
+            badgeBorder="border-slate-300/60"
+          />
+        )}
       </div>
     </SectionFrame>
   )
