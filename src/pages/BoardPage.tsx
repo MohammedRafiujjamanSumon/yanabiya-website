@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { board } from '../data/leadership'
 
 const BOARD_IDS_ORDERED = [
@@ -15,6 +16,7 @@ const PH = (name: string) =>
   `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0e2d4e&color=9ec73a&size=400&bold=true`
 
 export default function BoardPage() {
+  const { t } = useTranslation()
   return (
     <div className="min-h-screen bg-brand-50 relative overflow-hidden">
 
@@ -25,7 +27,7 @@ export default function BoardPage() {
           className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest
                      text-brand-deep/50 hover:text-brand-deep transition-colors duration-200"
         >
-          <ArrowLeft size={12} /> Our People
+          <ArrowLeft size={12} /> {t('common.ourPeople')}
         </Link>
       </div>
 
@@ -36,17 +38,13 @@ export default function BoardPage() {
           <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 border
                            bg-amber-100 text-amber-800 border-amber-300
                            text-[10px] font-bold uppercase tracking-[0.26em] mb-4">
-            Board of Members
+            {t('board.title')}
           </span>
           <h1 className="font-serif text-3xl md:text-4xl text-brand-deep leading-snug mb-4">
-            The Governing Body of<br />
-            <span className="italic text-brand-accentDark">Yanabiya Group</span>
+            {t('board.subtitle')}
           </h1>
           <p className="text-sm text-brand-deep/55 max-w-2xl mx-auto leading-relaxed">
-            The Board of Members exercises the highest level of fiduciary responsibility
-            over Yanabiya Group, providing independent oversight, long-term strategic
-            direction, and institutional accountability across all operating jurisdictions
-            — Oman, the United Kingdom, the United States, and Bangladesh.
+            {t('board.desc')}
           </p>
           <div className="mt-6 w-16 h-0.5 bg-amber-400 rounded-full mx-auto" />
         </div>

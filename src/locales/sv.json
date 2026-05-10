@@ -215,7 +215,12 @@
     "tier2Kicker": "Nivå 02 — Verkställande Ledning",
     "tier2Title": "Global Verkställande Ledning",
     "tier3Kicker": "Nivå 03 — Regionala Operationer",
-    "tier3Title": "Regionalt Driftteam"
+    "tier3Title": "Regionalt Driftteam",
+    "pyramidTitle": "Personerna Bakom",
+    "founderCEO": "Grundare & VD",
+    "becomePartner": "Bli Partner",
+    "joinTeam": "Gå med i Vårt Team",
+    "ourCompanies": "Våra Företag"
   },
   "strategy": {
     "eyebrow": "Strategi & Innovation",
@@ -306,7 +311,7 @@
     "address": "Adress",
     "phone": "Telefon",
     "email": "E-post",
-    "hours": "Öppettider",
+    "hours": "Vi svarar vanligtvis inom 24 timmar",
     "languages": "Språk",
     "send": "Skicka ett meddelande",
     "name": "Fullständigt namn",
@@ -350,5 +355,57 @@
       "careers": "Karriär",
       "ecommerce": "Yanabiya E-Commerce ↗"
     }
+  },
+  "common": {
+    "ourPeople": "Vårt Team",
+    "previous": "Föregående",
+    "next": "Nästa",
+    "close": "Stäng",
+    "active": "Aktiv",
+    "launching": "Lanseras",
+    "viewPage": "Visa sida",
+    "viewOnMaps": "Visa på Google Maps",
+    "notFound": "Hittades inte.",
+    "bioComing": "Biografi kommer snart.",
+    "backToHome": "Tillbaka till startsidan",
+    "readMore": "Läs mer",
+    "learnMore": "Läs mer",
+    "getInTouch": "Kontakta oss",
+    "viewAll": "Visa alla medlemmar"
+  },
+  "board": {
+    "title": "Medlemsråd",
+    "subtitle": "Yanabiya Groups styrande organ",
+    "desc": "Medlemsrådet utövar det högsta fiduciära ansvaret inom Yanabiya Group och tillhandahåller oberoende tillsyn, långsiktig strategisk inriktning och institutionell ansvarsskyldighet i alla operativa jurisdiktioner — Oman, Storbritannien, USA och Bangladesh."
+  },
+  "departments": {
+    "tier": "Nivå 03 — Företagsstöd",
+    "title": "Företagsstödsteam",
+    "desc": "Yanabiya Groups kvalificerade proffs driver teknologi, verksamhet och kundexcellens i fyra länder."
+  },
+  "people": {
+    "notFound": "Sidan hittades inte.",
+    "empowering": "Stärker globala verksamheter, strategiskt ledarskap och gränsöverskridande affärsexcellens inom Yanabiya Group of Companies",
+    "coFounders": "Medgrundare",
+    "managementTeam": "Ledningsgrupp",
+    "accountsFinance": "Redovisning och finans",
+    "chiefOfAccounts": "Redovisningschef",
+    "bioComing": "Biografi kommer snart."
+  },
+  "globalContact": {
+    "postalAddress": "Postadress",
+    "headOffice": "Huvudkontor",
+    "branchOffice": "Regionkontor",
+    "parentCompany": "Moderbolag",
+    "officeHours": "Kontorstider",
+    "viewOnMaps": "Visa på Google Maps",
+    "branchesConnected": "Anslutna filialer",
+    "ourGlobalNetwork": "Vårt globala nätverk"
+  },
+  "countryOps": {
+    "established": "Grundat",
+    "legalEntity": "Juridisk Enhet",
+    "licenseName": "Licensnamn",
+    "issuingAuthority": "Utfärdande Myndighet"
   }
 }

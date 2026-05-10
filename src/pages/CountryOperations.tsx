@@ -8,6 +8,7 @@ import {
   Heart, Send, Users, ShoppingCart, Monitor,
   type LucideIcon,
 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
 import { countries } from '../data/countries'
@@ -549,6 +550,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
  *  GB (UK) — Reference design (current layout, clean)
  * ══════════════════════════════════════════════════════════════ */
 function GBPage({ country, ops, prevNav, nextNav }: LayoutProps) {
+  const { t } = useTranslation()
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <div className="relative bg-brand-50 overflow-hidden">
@@ -636,14 +638,14 @@ function GBPage({ country, ops, prevNav, nextNav }: LayoutProps) {
 
       <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored.">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          <InfoRow label="Established"  value={ops.established} icon={Calendar} />
-          <InfoRow label="Legal Entity" value={ops.legalEntity} icon={Landmark} />
+          <InfoRow label={t('countryOps.established')} value={ops.established} icon={Calendar} />
+          <InfoRow label={t('countryOps.legalEntity')}value={ops.legalEntity} icon={Landmark} />
           {ops.license && <>
-            <InfoRow label="License Name"      value={ops.license.name}      icon={ScrollText} />
-            <InfoRow label="Issuing Authority" value={ops.license.authority} icon={ShieldCheck} />
+            <InfoRow label={t('countryOps.licenseName')}value={ops.license.name}      icon={ScrollText} />
+            <InfoRow label={t('countryOps.issuingAuthority')}value={ops.license.authority} icon={ShieldCheck} />
           </>}
-          <InfoRow label="Head Office" value={ops.address} icon={MapPin} />
-          {ops.postCode && <InfoRow label="Postal Address" value={ops.postCode} icon={Mail} />}
+          <InfoRow label={t('globalContact.headOffice')}value={ops.address} icon={MapPin} />
+          {ops.postCode && <InfoRow label={t('globalContact.postalAddress')}value={ops.postCode} icon={Mail} />}
         </div>
       </SectionFrame>
 
@@ -679,6 +681,7 @@ function GBPage({ country, ops, prevNav, nextNav }: LayoutProps) {
  *  2×2 About grid · amber icon accents · 4-col domains
  * ══════════════════════════════════════════════════════════════ */
 function OmanPage({ country, ops, prevNav, nextNav }: LayoutProps) {
+  const { t } = useTranslation()
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
 
@@ -779,14 +782,14 @@ function OmanPage({ country, ops, prevNav, nextNav }: LayoutProps) {
 
       <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored." eyebrowClass="text-amber-700">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          <InfoRow label="Established"  value={ops.established} icon={Calendar} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
-          <InfoRow label="Legal Entity" value={ops.legalEntity} icon={Landmark} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
+          <InfoRow label={t('countryOps.established')} value={ops.established} icon={Calendar} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
+          <InfoRow label={t('countryOps.legalEntity')}value={ops.legalEntity} icon={Landmark} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
           {ops.license && <>
-            <InfoRow label="License Name"      value={ops.license.name}      icon={ScrollText} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
-            <InfoRow label="Issuing Authority" value={ops.license.authority} icon={ShieldCheck} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
+            <InfoRow label={t('countryOps.licenseName')}value={ops.license.name}      icon={ScrollText} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
+            <InfoRow label={t('countryOps.issuingAuthority')}value={ops.license.authority} icon={ShieldCheck} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
           </>}
-          <InfoRow label="Head Office" value={ops.address} icon={MapPin} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
-          {ops.postCode && <InfoRow label="Postal Address" value={ops.postCode} icon={Mail} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />}
+          <InfoRow label={t('globalContact.headOffice')}value={ops.address} icon={MapPin} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />
+          {ops.postCode && <InfoRow label={t('globalContact.postalAddress')}value={ops.postCode} icon={Mail} iconClass="bg-amber-100 text-amber-700 ring-amber-300/60" />}
         </div>
 
         {/* Partner company hierarchy */}
@@ -861,6 +864,7 @@ function OmanPage({ country, ops, prevNav, nextNav }: LayoutProps) {
  *  Stats strip · 2×2 left-border cards · 4-col compact domains
  * ══════════════════════════════════════════════════════════════ */
 function BDPage({ country, ops, prevNav, nextNav }: LayoutProps) {
+  const { t } = useTranslation()
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <div className="relative bg-brand-50 overflow-hidden">
@@ -960,14 +964,14 @@ function BDPage({ country, ops, prevNav, nextNav }: LayoutProps) {
 
       <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored." eyebrowClass="text-teal-700">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          <InfoRow label="Established"  value={ops.established} icon={Calendar} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
-          <InfoRow label="Legal Entity" value={ops.legalEntity} icon={Landmark} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
+          <InfoRow label={t('countryOps.established')} value={ops.established} icon={Calendar} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
+          <InfoRow label={t('countryOps.legalEntity')}value={ops.legalEntity} icon={Landmark} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
           {ops.license && <>
-            <InfoRow label="License Name"      value={ops.license.name}      icon={ScrollText} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
-            <InfoRow label="Issuing Authority" value={ops.license.authority} icon={ShieldCheck} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
+            <InfoRow label={t('countryOps.licenseName')}value={ops.license.name}      icon={ScrollText} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
+            <InfoRow label={t('countryOps.issuingAuthority')}value={ops.license.authority} icon={ShieldCheck} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
           </>}
-          <InfoRow label="Head Office" value={ops.address} icon={MapPin} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
-          {ops.postCode && <InfoRow label="Postal Address" value={ops.postCode} icon={Mail} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />}
+          <InfoRow label={t('globalContact.headOffice')}value={ops.address} icon={MapPin} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
+          {ops.postCode && <InfoRow label={t('globalContact.postalAddress')}value={ops.postCode} icon={Mail} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />}
         </div>
       </SectionFrame>
 
@@ -1003,6 +1007,7 @@ function BDPage({ country, ops, prevNav, nextNav }: LayoutProps) {
  *  Asymmetric About (wide+stacked) · blue accents · 2×2 roadmap
  * ══════════════════════════════════════════════════════════════ */
 function USPage({ country, ops, prevNav, nextNav }: LayoutProps) {
+  const { t } = useTranslation()
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
       <div className="relative bg-brand-50 overflow-hidden">
@@ -1102,14 +1107,14 @@ function USPage({ country, ops, prevNav, nextNav }: LayoutProps) {
 
       <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored." eyebrowClass="text-blue-700">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          <InfoRow label="Established"  value={ops.established} icon={Calendar} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
-          <InfoRow label="Legal Entity" value={ops.legalEntity} icon={Landmark} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
+          <InfoRow label={t('countryOps.established')} value={ops.established} icon={Calendar} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
+          <InfoRow label={t('countryOps.legalEntity')}value={ops.legalEntity} icon={Landmark} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
           {ops.license && <>
-            <InfoRow label="License Name"      value={ops.license.name}      icon={ScrollText} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
-            <InfoRow label="Issuing Authority" value={ops.license.authority} icon={ShieldCheck} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
+            <InfoRow label={t('countryOps.licenseName')}value={ops.license.name}      icon={ScrollText} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
+            <InfoRow label={t('countryOps.issuingAuthority')}value={ops.license.authority} icon={ShieldCheck} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
           </>}
-          <InfoRow label="Head Office" value={ops.address} icon={MapPin} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
-          {ops.postCode && <InfoRow label="Postal Address" value={ops.postCode} icon={Mail} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />}
+          <InfoRow label={t('globalContact.headOffice')}value={ops.address} icon={MapPin} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
+          {ops.postCode && <InfoRow label={t('globalContact.postalAddress')}value={ops.postCode} icon={Mail} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />}
         </div>
       </SectionFrame>
 

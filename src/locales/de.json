@@ -215,7 +215,12 @@
     "tier2Kicker": "Ebene 02 — Geschäftsführung",
     "tier2Title": "Globales Exekutivmanagement",
     "tier3Kicker": "Ebene 03 — Regionale Operationen",
-    "tier3Title": "Regionales Betriebsteam"
+    "tier3Title": "Regionales Betriebsteam",
+    "pyramidTitle": "Die Menschen Dahinter",
+    "founderCEO": "Gründer & CEO",
+    "becomePartner": "Partner werden",
+    "joinTeam": "Unserem Team beitreten",
+    "ourCompanies": "Unsere Unternehmen"
   },
   "strategy": {
     "eyebrow": "Strategie & Innovation",
@@ -306,7 +311,7 @@
     "address": "Adresse",
     "phone": "Telefon",
     "email": "E-Mail",
-    "hours": "Öffnungszeiten",
+    "hours": "Wir antworten in der Regel innerhalb von 24 Stunden",
     "languages": "Sprachen",
     "send": "Nachricht senden",
     "name": "Vollständiger Name",
@@ -350,5 +355,57 @@
       "careers": "Karriere",
       "ecommerce": "Yanabiya E-Commerce ↗"
     }
+  },
+  "common": {
+    "ourPeople": "Unser Team",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "close": "Schließen",
+    "active": "Aktiv",
+    "launching": "In Vorbereitung",
+    "viewPage": "Seite anzeigen",
+    "viewOnMaps": "Auf Google Maps ansehen",
+    "notFound": "Nicht gefunden.",
+    "bioComing": "Biografie folgt in Kürze.",
+    "backToHome": "Zurück zur Startseite",
+    "readMore": "Mehr lesen",
+    "learnMore": "Mehr erfahren",
+    "getInTouch": "Kontakt aufnehmen",
+    "viewAll": "Alle Mitglieder anzeigen"
+  },
+  "board": {
+    "title": "Mitgliederrat",
+    "subtitle": "Das Leitungsgremium der Yanabiya Group",
+    "desc": "Der Mitgliederrat trägt die höchste treuhänderische Verantwortung innerhalb der Yanabiya Group und gewährleistet unabhängige Aufsicht, langfristige strategische Ausrichtung sowie institutionelle Rechenschaftspflicht in allen Betriebsgerichtsbarkeiten — Oman, Vereinigtes Königreich, Vereinigte Staaten und Bangladesch."
+  },
+  "departments": {
+    "tier": "Ebene 03 — Unternehmensunterstützung",
+    "title": "Unternehmensunterstützungsteam",
+    "desc": "Die qualifizierten Fachleute der Yanabiya Group fördern Technologie, Betrieb und Kundenexzellenz in vier Ländern."
+  },
+  "people": {
+    "notFound": "Seite nicht gefunden.",
+    "empowering": "Stärkung globaler Betriebe, strategischer Führung und grenzüberschreitender Geschäftsexzellenz innerhalb der Yanabiya Group of Companies",
+    "coFounders": "Mitgründer",
+    "managementTeam": "Managementteam",
+    "accountsFinance": "Buchhaltung und Finanzen",
+    "chiefOfAccounts": "Leiter der Buchhaltung",
+    "bioComing": "Biografie folgt in Kürze."
+  },
+  "globalContact": {
+    "postalAddress": "Postanschrift",
+    "headOffice": "Hauptsitz",
+    "branchOffice": "Zweigstelle",
+    "parentCompany": "Muttergesellschaft",
+    "officeHours": "Bürozeiten",
+    "viewOnMaps": "Auf Google Maps ansehen",
+    "branchesConnected": "Verbundene Filialen",
+    "ourGlobalNetwork": "Unser globales Netzwerk"
+  },
+  "countryOps": {
+    "established": "Gegründet",
+    "legalEntity": "Rechtsform",
+    "licenseName": "Lizenzname",
+    "issuingAuthority": "Ausstellende Behörde"
   }
 }

@@ -478,24 +478,24 @@ export default function Hero() {
     <section id="home" className="relative">
       <div className="relative w-full h-[100svh] min-h-[520px] overflow-hidden">
 
-        {/* ──────── Persistent: dark gradient background ──────── */}
+        {/* ──────── Persistent: off-white gradient background ──────── */}
         <div
           aria-hidden="true"
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse at 50% 35%, rgba(15,58,35,0.55) 0%, rgba(8,28,18,0.92) 55%, #060f0a 100%)',
+              'radial-gradient(ellipse at 50% 35%, rgba(255,252,245,0.55) 0%, rgba(248,244,235,0.80) 55%, rgba(240,236,224,0.90) 100%)',
           }}
         />
         <div
           aria-hidden="true"
           className="absolute -top-32 -right-24 w-[640px] h-[640px] rounded-full
-                     bg-brand-accent/15 blur-[160px] animate-pulse"
+                     bg-brand-accent/18 blur-[160px] animate-pulse"
         />
         <div
           aria-hidden="true"
           className="absolute -bottom-40 -left-24 w-[560px] h-[560px] rounded-full
-                     bg-brand-accentDark/10 blur-[160px]"
+                     bg-amber-100/40 blur-[160px]"
         />
 
         {/* ──────── Video background (autoplay, muted, loop) ──────── */}
@@ -530,13 +530,13 @@ export default function Hero() {
                 style={{ objectPosition: s.photoPos ?? 'center' }}
                 onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
               />
-              {/* Dark gradient overlay (legibility) */}
+              {/* Off-white gradient overlay */}
               <div
                 aria-hidden="true"
                 className="absolute inset-0"
                 style={{
                   background:
-                    'linear-gradient(180deg, rgba(8,28,18,0.78) 0%, rgba(8,28,18,0.55) 40%, rgba(8,28,18,0.85) 100%)',
+                    'linear-gradient(180deg, rgba(255,252,245,0.82) 0%, rgba(255,252,245,0.60) 40%, rgba(255,252,245,0.88) 100%)',
                 }}
               />
               {/* SVG / icon motion overlay */}
@@ -551,7 +551,7 @@ export default function Hero() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse at 50% 60%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.55) 100%)',
+              'radial-gradient(ellipse at 50% 60%, rgba(0,0,0,0) 35%, rgba(200,190,170,0.30) 100%)',
           }}
         />
 
@@ -560,23 +560,23 @@ export default function Hero() {
 
           <div className="max-w-3xl w-full">
             {/* Line 1 */}
-            <p className="text-white/80 text-sm sm:text-lg md:text-2xl font-light
+            <p className="text-brand-deep/70 text-sm sm:text-lg md:text-2xl font-light
                           tracking-[0.14em] sm:tracking-[0.18em] uppercase drop-shadow mb-2">
               {t('hero.welcomeTo')}
             </p>
 
             {/* Line 2, company name */}
-            <h1 className="font-bold text-white drop-shadow-lg uppercase
+            <h1 className="font-bold text-brand-deep drop-shadow-lg uppercase
                            text-2xl sm:text-4xl md:text-5xl lg:text-[58px]
                            leading-[1.1] tracking-tight mb-4">
-              <span className="text-brand-accent">Yanabiya</span> Group
+              <span className="text-brand-accentDark">Yanabiya</span> Group
             </h1>
 
             {/* Line 3 & 4, subtext */}
-            <p className="text-white/85 text-xs sm:text-base md:text-lg drop-shadow leading-relaxed px-2">
+            <p className="text-brand-deep/80 text-xs sm:text-base md:text-lg drop-shadow leading-relaxed px-2">
               {t('hero.desc1')}
             </p>
-            <p className="text-white/85 text-xs sm:text-base md:text-lg drop-shadow leading-relaxed px-2">
+            <p className="text-brand-deep/80 text-xs sm:text-base md:text-lg drop-shadow leading-relaxed px-2">
               {t('hero.desc2')}
             </p>
           </div>
@@ -596,9 +596,9 @@ export default function Hero() {
             <Link
               to="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-full
-                         px-8 py-3.5 border-2 border-white/60 text-white font-bold text-sm
+                         px-8 py-3.5 border-2 border-brand-deep/50 text-brand-deep font-bold text-sm
                          backdrop-blur-sm
-                         hover:bg-white hover:text-brand-deep hover:-translate-y-0.5
+                         hover:bg-brand-deep hover:text-white hover:-translate-y-0.5
                          transition-all duration-300"
             >
               <Handshake size={16} /> {t('hero.cta2')}
@@ -607,15 +607,15 @@ export default function Hero() {
 
           {/* Scroll indicator */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-60">
-            <div className="w-[1px] h-8 bg-white/50 animate-bounce" />
-            <span className="text-white/50 text-[10px] tracking-widest uppercase">{t('hero.scroll')}</span>
+            <div className="w-[1px] h-8 bg-brand-deep/50 animate-bounce" />
+            <span className="text-brand-deep/50 text-[10px] tracking-widest uppercase">{t('hero.scroll')}</span>
           </div>
         </div>
 
         {/* ──────── Bottom-right: scene progress dots (clickable nav) ──────── */}
         <div className="absolute bottom-5 right-5 md:bottom-6 md:right-6 z-20">
-          <div className="flex items-center gap-1.5 rounded-full bg-brand-deep/60 backdrop-blur px-3 py-1.5
-                          border border-brand-accent/30">
+          <div className="flex items-center gap-1.5 rounded-full bg-white/60 backdrop-blur px-3 py-1.5
+                          border border-brand-deep/20">
             {SCENES.map((_, i) => (
               <button
                 key={i}
@@ -624,8 +624,8 @@ export default function Hero() {
                 aria-label={`Scene ${i + 1}`}
                 className={`rounded-full transition-all duration-300
                             ${i === scene
-                              ? 'w-6 h-1.5 bg-brand-accent'
-                              : 'w-1.5 h-1.5 bg-white/40 hover:bg-brand-accent/70'}`}
+                              ? 'w-6 h-1.5 bg-brand-accentDark'
+                              : 'w-1.5 h-1.5 bg-brand-deep/30 hover:bg-brand-accentDark/70'}`}
               />
             ))}
           </div>

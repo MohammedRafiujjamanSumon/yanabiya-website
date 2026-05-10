@@ -215,7 +215,12 @@
     "tier2Kicker": "Poziom 02 — Zarząd Wykonawczy",
     "tier2Title": "Globalne Kierownictwo Wykonawcze",
     "tier3Kicker": "Poziom 03 — Operacje Regionalne",
-    "tier3Title": "Regionalny Zespół Operacyjny"
+    "tier3Title": "Regionalny Zespół Operacyjny",
+    "pyramidTitle": "Ludzie Za Kulisami",
+    "founderCEO": "Założyciel & CEO",
+    "becomePartner": "Zostań Partnerem",
+    "joinTeam": "Dołącz do Naszego Zespołu",
+    "ourCompanies": "Nasze Firmy"
   },
   "strategy": {
     "eyebrow": "Strategia & Innowacje",
@@ -306,7 +311,7 @@
     "address": "Adres",
     "phone": "Telefon",
     "email": "Email",
-    "hours": "Godziny",
+    "hours": "Zazwyczaj odpowiadamy w ciągu 24 godzin",
     "languages": "Języki",
     "send": "Wyślij wiadomość",
     "name": "Pełne imię i nazwisko",
@@ -350,5 +355,57 @@
       "careers": "Kariera",
       "ecommerce": "Yanabiya E-Commerce ↗"
     }
+  },
+  "common": {
+    "ourPeople": "Nasz Zespół",
+    "previous": "Poprzedni",
+    "next": "Następny",
+    "close": "Zamknij",
+    "active": "Aktywny",
+    "launching": "W przygotowaniu",
+    "viewPage": "Zobacz stronę",
+    "viewOnMaps": "Zobacz na Google Maps",
+    "notFound": "Nie znaleziono.",
+    "bioComing": "Biogram wkrótce.",
+    "backToHome": "Powrót do strony głównej",
+    "readMore": "Czytaj więcej",
+    "learnMore": "Dowiedz się więcej",
+    "getInTouch": "Skontaktuj się",
+    "viewAll": "Zobacz wszystkich członków"
+  },
+  "board": {
+    "title": "Rada Członków",
+    "subtitle": "Organ zarządzający Yanabiya Group",
+    "desc": "Rada Członków sprawuje najwyższy poziom odpowiedzialności powierniczej w ramach Yanabiya Group, zapewniając niezależny nadzór, długoterminowe ukierunkowanie strategiczne oraz instytucjonalną rozliczalność we wszystkich jurysdykcjach operacyjnych — Omanie, Wielkiej Brytanii, Stanach Zjednoczonych i Bangladeszu."
+  },
+  "departments": {
+    "tier": "Poziom 03 — Wsparcie biznesowe",
+    "title": "Zespół wsparcia biznesowego",
+    "desc": "Wykwalifikowani specjaliści Yanabiya Group napędzają technologię, operacje i doskonałość obsługi klienta w czterech krajach."
+  },
+  "people": {
+    "notFound": "Strona nie znaleziona.",
+    "empowering": "Wzmacnianie globalnych operacji, strategicznego przywództwa i transgranicznej doskonałości biznesowej w ramach Yanabiya Group of Companies",
+    "coFounders": "Współzałożyciele",
+    "managementTeam": "Zespół zarządzający",
+    "accountsFinance": "Księgowość i finanse",
+    "chiefOfAccounts": "Główny księgowy",
+    "bioComing": "Biogram wkrótce."
+  },
+  "globalContact": {
+    "postalAddress": "Adres pocztowy",
+    "headOffice": "Siedziba główna",
+    "branchOffice": "Oddział regionalny",
+    "parentCompany": "Spółka dominująca",
+    "officeHours": "Godziny pracy biura",
+    "viewOnMaps": "Zobacz na Google Maps",
+    "branchesConnected": "Podłączone oddziały",
+    "ourGlobalNetwork": "Nasza globalna sieć"
+  },
+  "countryOps": {
+    "established": "Założona",
+    "legalEntity": "Podmiot Prawny",
+    "licenseName": "Nazwa Licencji",
+    "issuingAuthority": "Organ Wydający"
   }
 }

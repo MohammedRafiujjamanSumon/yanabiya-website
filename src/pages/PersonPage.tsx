@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { ALL_PEOPLE } from '../data/people'
 
 const TIER_THEME = {
@@ -30,6 +31,7 @@ const TIER_THEME = {
 }
 
 export default function PersonPage() {
+  const { t: tr } = useTranslation()
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
 
@@ -41,8 +43,8 @@ export default function PersonPage() {
   if (!person) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <p className="text-brand-deep">Person not found.</p>
-        <Link to="/#leadership" className="text-sm text-brand-accentDark underline">← Our People</Link>
+        <p className="text-brand-deep">{tr('common.notFound')}</p>
+        <Link to="/#leadership" className="text-sm text-brand-accentDark underline">← {tr('common.ourPeople')}</Link>
       </div>
     )
   }
@@ -71,7 +73,7 @@ export default function PersonPage() {
                      text-[11px] font-bold uppercase tracking-widest
                      hover:bg-white/20 transition-all duration-200"
         >
-          <ArrowLeft size={12} /> Our People
+          <ArrowLeft size={12} /> {tr('common.ourPeople')}
         </button>
 
       </div>
@@ -130,7 +132,7 @@ export default function PersonPage() {
               >
                 <ArrowLeft size={14} className="shrink-0 text-slate-300 group-hover:text-brand-deep transition-colors" />
                 <div className="min-w-0">
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">Previous</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">{tr('common.previous')}</p>
                   <p className="text-xs font-semibold text-brand-deep truncate">{prev.name}</p>
                   <p className="text-[10px] text-slate-400 truncate">{prev.role}</p>
                 </div>
@@ -144,7 +146,7 @@ export default function PersonPage() {
                            hover:bg-slate-50 transition-colors duration-200"
               >
                 <div className="min-w-0 text-right">
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">Next</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">{tr('common.next')}</p>
                   <p className="text-xs font-semibold text-brand-deep truncate">{next.name}</p>
                   <p className="text-[10px] text-slate-400 truncate">{next.role}</p>
                 </div>

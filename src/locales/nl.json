@@ -215,7 +215,12 @@
     "tier2Kicker": "Niveau 02 — Uitvoerend Management",
     "tier2Title": "Wereldwijd Uitvoerend Management",
     "tier3Kicker": "Laag 03 — Regionale Operaties",
-    "tier3Title": "Regionaal Operationeel Team"
+    "tier3Title": "Regionaal Operationeel Team",
+    "pyramidTitle": "De Mensen Achter",
+    "founderCEO": "Oprichter & CEO",
+    "becomePartner": "Word Partner",
+    "joinTeam": "Word Lid van Ons Team",
+    "ourCompanies": "Onze Bedrijven"
   },
   "strategy": {
     "eyebrow": "Strategie & Innovatie",
@@ -306,7 +311,7 @@
     "address": "Adres",
     "phone": "Telefoon",
     "email": "E-mail",
-    "hours": "Openingstijden",
+    "hours": "We reageren doorgaans binnen 24 uur",
     "languages": "Talen",
     "send": "Stuur een bericht",
     "name": "Volledige naam",
@@ -350,5 +355,57 @@
       "careers": "Carrières",
       "ecommerce": "Yanabiya E-Commerce ↗"
     }
+  },
+  "common": {
+    "ourPeople": "Ons Team",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "close": "Sluiten",
+    "active": "Actief",
+    "launching": "In lancering",
+    "viewPage": "Pagina bekijken",
+    "viewOnMaps": "Bekijk op Google Maps",
+    "notFound": "Niet gevonden.",
+    "bioComing": "Biografie binnenkort beschikbaar.",
+    "backToHome": "Terug naar home",
+    "readMore": "Meer lezen",
+    "learnMore": "Meer informatie",
+    "getInTouch": "Neem contact op",
+    "viewAll": "Alle leden bekijken"
+  },
+  "board": {
+    "title": "Raad van Leden",
+    "subtitle": "Het bestuursorgaan van Yanabiya Group",
+    "desc": "De Raad van Leden oefent het hoogste niveau van fiduciaire verantwoordelijkheid uit binnen de Yanabiya Group en biedt onafhankelijk toezicht, langetermijnstrategische richting en institutionele verantwoording in alle operationele jurisdicties — Oman, het Verenigd Koninkrijk, de Verenigde Staten en Bangladesh."
+  },
+  "departments": {
+    "tier": "Niveau 03 — Bedrijfsondersteuning",
+    "title": "Bedrijfsondersteuningsteam",
+    "desc": "De gekwalificeerde professionals van Yanabiya Group stimuleren technologie, operaties en klantexcellentie in vier landen."
+  },
+  "people": {
+    "notFound": "Pagina niet gevonden.",
+    "empowering": "Versterking van wereldwijde activiteiten, strategisch leiderschap en grensoverschrijdende zakelijke excellentie binnen Yanabiya Group of Companies",
+    "coFounders": "Mede-oprichters",
+    "managementTeam": "Managementteam",
+    "accountsFinance": "Boekhouding en financiën",
+    "chiefOfAccounts": "Hoofd boekhouding",
+    "bioComing": "Biografie binnenkort beschikbaar."
+  },
+  "globalContact": {
+    "postalAddress": "Postadres",
+    "headOffice": "Hoofdkantoor",
+    "branchOffice": "Regionaal kantoor",
+    "parentCompany": "Moederbedrijf",
+    "officeHours": "Kantooruren",
+    "viewOnMaps": "Bekijk op Google Maps",
+    "branchesConnected": "Verbonden vestigingen",
+    "ourGlobalNetwork": "Ons wereldwijde netwerk"
+  },
+  "countryOps": {
+    "established": "Opgericht",
+    "legalEntity": "Rechtspersoon",
+    "licenseName": "Naam Vergunning",
+    "issuingAuthority": "Vergunningverlenende Autoriteit"
   }
 }

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, Users, Handshake, Briefcase, Building2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { board } from '../data/leadership'
@@ -190,6 +191,7 @@ const GROUP_PHOTO = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1a
 const DEPT_PHOTO  = 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=200&q=80'
 
 export default function LeadershipPyramid() {
+  const { t } = useTranslation()
   return (
     <Section id="leadership" className="bg-brand-50">
       <div className="container-x pt-4 pb-10 md:pb-14">
@@ -197,9 +199,9 @@ export default function LeadershipPyramid() {
         {/* Header */}
         <Reveal>
           <div className="flex flex-col items-center gap-2 mb-12 text-center">
-            <Eyebrow>Our People</Eyebrow>
+            <Eyebrow>{t('common.ourPeople')}</Eyebrow>
             <h2 className="font-serif text-2xl md:text-3xl text-brand-deep leading-snug tracking-tight">
-              The People Behind{' '}
+              {t('leadership.pyramidTitle')}{' '}
               <span className="italic text-brand-accentDark">Yanabiya</span>
             </h2>
           </div>
@@ -225,19 +227,19 @@ export default function LeadershipPyramid() {
               {/* Vice Chairman — left, pushed down */}
               <Reveal delay={100}>
                 <div className="flex justify-center pt-16">
-                  <HierarchyCard colorKey="vice" label="Vice Chairman" to="/people/vice-chairman" photo={board[1]?.photo} delay={0} size="md" />
+                  <HierarchyCard colorKey="vice" label={t('leadership.viceChairman')} to="/people/vice-chairman" photo={board[1]?.photo} delay={0} size="md" />
                 </div>
               </Reveal>
               {/* CEO — elevated at top center */}
               <Reveal delay={80}>
                 <div className="flex justify-center">
-                  <HierarchyCard colorKey="ceo" label="Founder & CEO" to="/people/ceo" photo={board[0]?.photo} delay={0} size="lg" />
+                  <HierarchyCard colorKey="ceo" label={t('leadership.founderCEO')} to="/people/ceo" photo={board[0]?.photo} delay={0} size="lg" />
                 </div>
               </Reveal>
               {/* Board of Members — right, pushed down */}
               <Reveal delay={120}>
                 <div className="flex justify-center pt-16">
-                  <HierarchyCard colorKey="board" label="Board of Members" to="/people/board" photo={BOARD_PHOTO} delay={0} size="md" />
+                  <HierarchyCard colorKey="board" label={t('board.title')} to="/people/board" photo={BOARD_PHOTO} delay={0} size="md" />
                 </div>
               </Reveal>
             </div>
@@ -256,12 +258,12 @@ export default function LeadershipPyramid() {
           <div className="w-full max-w-[700px] grid grid-cols-2 gap-24 px-[10%]">
             <Reveal delay={260}>
               <div className="flex justify-center">
-                <HierarchyCard colorKey="coa" label="Chief of Accounts" to="/people/accounts" photo={DEPT_PHOTO} delay={0} size="md" />
+                <HierarchyCard colorKey="coa" label={t('people.chiefOfAccounts')} to="/people/accounts" photo={DEPT_PHOTO} delay={0} size="md" />
               </div>
             </Reveal>
             <Reveal delay={300}>
               <div className="flex justify-center">
-                <HierarchyCard colorKey="group" label="Global Executive Management" to="/people/executive" photo={GROUP_PHOTO} delay={0} size="md" />
+                <HierarchyCard colorKey="group" label={t('leadership.tier2Title')} to="/people/executive" photo={GROUP_PHOTO} delay={0} size="md" />
               </div>
             </Reveal>
           </div>
@@ -277,8 +279,8 @@ export default function LeadershipPyramid() {
             <div className="absolute top-10 left-1/2 -translate-x-px w-0.5 h-10 bg-brand-deep/30" />
           </div>
 
-          {/* ══ Row 3: Regional Operations Team ══ */}
-          <HierarchyCard colorKey="dept" label="Regional Operations Team" to="/people/departments" photo={DEPT_PHOTO} delay={400} size="md" />
+          {/* ══ Row 3: Business Support Team ══ */}
+          <HierarchyCard colorKey="dept" label={t('departments.title')} to="/people/departments" photo={DEPT_PHOTO} delay={400} size="md" />
 
           {/* CTA buttons */}
           <Reveal delay={520}>
@@ -291,7 +293,7 @@ export default function LeadershipPyramid() {
                            transition-all duration-300"
               >
                 <Handshake size={13} className="text-amber-400" />
-                Become a Partner
+                {t('leadership.becomePartner')}
                 <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
               </Link>
 
@@ -303,7 +305,7 @@ export default function LeadershipPyramid() {
                            transition-all duration-300"
               >
                 <Briefcase size={13} />
-                Join Our Team
+                {t('leadership.joinTeam')}
                 <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
               </Link>
 
@@ -315,7 +317,7 @@ export default function LeadershipPyramid() {
                            transition-all duration-300"
               >
                 <Building2 size={13} className="text-brand-accentDark" />
-                Our Companies
+                {t('leadership.ourCompanies')}
                 <ArrowRight size={11} className="text-brand-accentDark group-hover:translate-x-0.5 transition-transform" />
               </Link>
             </div>

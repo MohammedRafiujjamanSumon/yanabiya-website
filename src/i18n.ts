@@ -14,6 +14,9 @@ import nl from './locales/nl.json'
 import pl from './locales/pl.json'
 import ru from './locales/ru.json'
 import sv from './locales/sv.json'
+import hi from './locales/hi.json'
+import ur from './locales/ur.json'
+import tl from './locales/tl.json'
 
 export type LanguageMeta = {
   code: string
@@ -39,6 +42,10 @@ export const languages: LanguageMeta[] = [
   { code: 'pl', label: 'Polish',     native: 'Polski',       dir: 'ltr', flag: '🇵🇱', region: 'europe' },
   { code: 'ru', label: 'Russian',    native: 'Русский',      dir: 'ltr', flag: '🇷🇺', region: 'europe' },
   { code: 'sv', label: 'Swedish',    native: 'Svenska',      dir: 'ltr', flag: '🇸🇪', region: 'europe' },
+  // Gulf (extra)
+  { code: 'hi', label: 'Hindi',      native: 'हिन्दी',       dir: 'ltr', flag: '🇮🇳', region: 'gulf'   },
+  { code: 'ur', label: 'Urdu',       native: 'اردو',          dir: 'rtl', flag: '🇵🇰', region: 'gulf'   },
+  { code: 'tl', label: 'Tagalog',    native: 'Filipino',      dir: 'ltr', flag: '🇵🇭', region: 'gulf'   },
   // Asia
   { code: 'bn', label: 'Bengali',    native: 'বাংলা',        dir: 'ltr', flag: '🇧🇩', region: 'asia'   },
 ]
@@ -62,6 +69,9 @@ i18n
       pl: { translation: pl },
       ru: { translation: ru },
       sv: { translation: sv },
+      hi: { translation: hi },
+      ur: { translation: ur },
+      tl: { translation: tl },
     },
     fallbackLng: 'en',
     supportedLngs,

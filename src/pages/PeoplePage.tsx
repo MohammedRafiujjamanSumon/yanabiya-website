@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Mail, X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { ALL_PEOPLE, type PersonData } from '../data/people'
 
 type FeaturedPerson = { name: string; role: string; image: string; id: string }
@@ -48,8 +49,8 @@ const PAGES: Record<string, PageConfig> = {
     people: ALL_PEOPLE.filter((p) => p.id === 'chief-of-accounts'),
   },
   departments: {
-    title: 'Regional Operations Team',
-    subtitle: 'Tier 03, Regional Operations Team',
+    title: 'Business Support Team',
+    subtitle: 'Tier 03, Business Support Team',
     tier: 'dept',
     people: ALL_PEOPLE.filter((p) => p.tier === 'dept'),
   },
@@ -80,6 +81,7 @@ const THEME = {
 }
 
 export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
+  const { t: tr } = useTranslation()
   const params = useParams<{ slug: string }>()
   const navigate = useNavigate()
   const slug = propSlug ?? params.slug
@@ -90,8 +92,8 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
   if (!page) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <p className="text-brand-deep">Page not found.</p>
-        <Link to="/#leadership" className="text-brand-accentDark underline text-sm">← Our People</Link>
+        <p className="text-brand-deep">{tr('people.notFound')}</p>
+        <Link to="/#leadership" className="text-brand-accentDark underline text-sm">← {tr('common.ourPeople')}</Link>
       </div>
     )
   }
@@ -107,17 +109,17 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
           <button type="button" onClick={() => navigate(-1)}
             className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest
                        text-slate-400 hover:text-brand-deep transition-colors duration-200">
-            <ArrowLeft size={13} /> Our People
+            <ArrowLeft size={13} /> {tr('common.ourPeople')}
           </button>
         </div>
 
         <div className={`border-b px-6 md:px-16 py-8 md:py-10 ${t.headerBg}`}>
           <div className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 border mb-4
                            text-[10px] font-bold uppercase tracking-widest ${t.badge}`}>
-            Accounts & Finance
+            {tr('people.accountsFinance')}
           </div>
           <h1 className={`font-serif text-2xl md:text-3xl leading-tight ${t.heading}`}>
-            Chief of Accounts
+            {tr('people.chiefOfAccounts')}
           </h1>
         </div>
 
@@ -145,7 +147,7 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
                        bg-white border border-slate-200 hover:border-brand-accent/50
                        hover:-translate-y-0.5 transition-all duration-200 shadow-sm
                        text-xs font-semibold text-brand-deep">
-            <ArrowLeft size={13} /> Our People
+            <ArrowLeft size={13} /> {tr('common.ourPeople')}
           </Link>
         </div>
       </div>
@@ -163,7 +165,7 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
           className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest
                      text-slate-400 hover:text-brand-deep transition-colors duration-200"
         >
-          <ArrowLeft size={13} /> Our People
+          <ArrowLeft size={13} /> {tr('common.ourPeople')}
         </button>
       </div>
 
@@ -176,7 +178,7 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
           {slug === 'executive' && (
             <p className="text-[12px] text-blue-800/60 text-center leading-relaxed"
                style={{ whiteSpace: 'nowrap' }}>
-              Empowering Global Operations, Strategic Leadership & Cross-Border Business Excellence Under Yanabiya Group of Companies
+              {tr('people.empowering')}
             </p>
           )}
         </div>
@@ -188,7 +190,7 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
         {page.featured && page.featured.length > 0 && (
           <div>
             <p className={`text-[10px] font-bold uppercase tracking-[0.28em] mb-3 text-center ${t.accent}`}>
-              Co-Founders
+              {tr('people.coFounders')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               {page.featured.map((f) => (
@@ -216,7 +218,7 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
         {/* Management Team label */}
         {page.featured && (
           <p className={`text-[10px] font-bold uppercase tracking-[0.28em] text-center ${t.accent}`}>
-            Management Team
+            {tr('people.managementTeam')}
           </p>
         )}
 
@@ -278,7 +280,7 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
                        hover:-translate-y-0.5 transition-all duration-200 shadow-sm
                        text-xs font-semibold text-brand-deep"
           >
-            <ArrowLeft size={13} /> Our People
+            <ArrowLeft size={13} /> {tr('common.ourPeople')}
           </Link>
         </div>
       </div>
@@ -325,7 +327,7 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
                 ? drawer.fullBio.map((para, i) => (
                     <p key={i} className="text-sm text-brand-deep/70 leading-relaxed">{para}</p>
                   ))
-                : <p className="text-sm text-brand-deep/40 italic">Bio coming soon.</p>
+                : <p className="text-sm text-brand-deep/40 italic">{tr('common.bioComing')}</p>
               }
 
               {drawer.email && (

@@ -1,0 +1,411 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Tungkol sa Amin",
+    "businesses": "Aming Serbisyo",
+    "solutions": "Mga Solusyon",
+    "partnerships": "Mga Pakikipagtulungan",
+    "global": "Aming Mga Pandaigdigang Sangay",
+    "csr": "Pamamahala",
+    "network": "Network",
+    "leadership": "Aming Pamunuan",
+    "strategy": "Pangmatagalang Pananaw",
+    "insights": "Mga Kaalaman",
+    "careers": "Karera",
+    "contact": "Makipag-ugnayan",
+    "ourNetwork": "Aming Network",
+    "ourCommunity": "Aming Komunidad",
+    "ourPeople": "Aming mga Tao",
+    "boardOfMembers": "Lupon ng mga Miyembro",
+    "chairman": "Tagapangulo at CEO",
+    "viceChairman": "Bise Tagapangulo"
+  },
+  "topbar": {
+    "operating": "Nagpapatakbo sa 4 na bansa",
+    "downloadPdf": "I-download ang PDF",
+    "tagline": "Nagkokonekta ng mga Pagkakataon. Nagtatayo ng Global na Negosyo."
+  },
+  "hero": {
+    "welcome": "Yanabiya Group",
+    "tagline": "Nagkokonekta ng mga Pagkakataon. Nagtatayo ng Global na Negosyo.",
+    "desc1": "Isang magkakaibang pandaigdigang grupo, pinamumunuan ng tiwala sa loob ng mahigit isang dekada.",
+    "desc2": "Anim na dibisyon. Apat na bansa. Isang plataporma.",
+    "desc3": "Inobasyon, pandaigdigang abot, responsableng paglago.",
+    "cta1": "Tuklasin ang mga Negosyo",
+    "cta2": "Makipagtulungan sa Amin",
+    "stats": {
+      "countries": "Mga Bansa",
+      "industries": "Mga Industriya",
+      "experience": "Karanasan",
+      "clients": "Mga Kliyente"
+    },
+    "welcomeTo": "Maligayang pagdating sa",
+    "scroll": "Mag-scroll",
+    "scenes": {
+      "opening": {
+        "eyebrow": "Eksena 01 — Pagbubukas",
+        "headline": "Nagkokonekta ng mga Negosyo sa Buong Mundo",
+        "body": "Isang mundong pinapatakbo ng koneksyon, inobasyon, at pagkakataon.",
+        "cta": "Tuklasin ang Pandaigdigang Presensya"
+      },
+      "about": {
+        "eyebrow": "Eksena 02 — Ang Grupo",
+        "headline": "Isang dinamikong grupo ng mga kumpanya.",
+        "body": "Nagtatayo ng isang integrated na pandaigdigang ekosistema ng negosyo sa iba't ibang industriya.",
+        "cta": "Tuklasin ang Tungkol sa Amin"
+      },
+      "services": {
+        "eyebrow": "Eksena 03 — Mga Serbisyo",
+        "headline": "Kumpletong mga solusyon sa negosyo.",
+        "body": "Internasyonal na kalakalan, Estratehikong pagpapayo, Logistics, Pamumuhunan.",
+        "cta": "Tuklasin ang Aming mga Serbisyo"
+      },
+      "partners": {
+        "eyebrow": "Eksena 04 — Pinagkakatiwalaang Network",
+        "headline": "Pinagkakatiwalaan ng mga kasosyo sa buong mundo.",
+        "body": "Nakikipagtulungan kami sa mga nangungunang organisasyon upang lumikha ng pangmatagalang halaga.",
+        "cta": "Tuklasin ang Pinagkakatiwalaang Network"
+      },
+      "community": {
+        "eyebrow": "Eksena 05 — Komunidad",
+        "headline": "Paglago na higit pa sa negosyo.",
+        "body": "Pagpapalakas ng mga komunidad at paglikha ng napapanatiling epekto.",
+        "cta": "Tuklasin ang Komunidad"
+      },
+      "leadership": {
+        "eyebrow": "Eksena 06 — Pamunuan",
+        "headline": "May-pananaw na pamunuan.",
+        "body": "Ginagawang mga pandaigdigang kwento ng tagumpay ang mga ideya.",
+        "cta": "Makilala ang Aming Pamunuan"
+      },
+      "closing": {
+        "eyebrow": "Eksena 07 — Pagtatapos",
+        "headline": "Yanabiya Group",
+        "body": "Nagtatatayo ng Kinabukasan, Magkasama.",
+        "cta": "Makipag-ugnayan"
+      }
+    }
+  },
+  "about": {
+    "eyebrow": "Tungkol sa Amin",
+    "title": "Isang maraming kakayahang grupo, nakasentro sa Muscat, nagtatrabaho sa apat na kontinente.",
+    "lead": "Ang Yanabiya Gulf International Business & Trade ay nagbibigay ng mga serbisyo sa internet, mga solusyon sa software, IT consulting, kalakalan at awtomatikong negosyo sa buong Gulf, Asya, Europa at Hilagang Amerika.",
+    "missionLabel": "Misyon",
+    "missionTitle": "Bakit kami umiiral",
+    "mission": "Magbigay ng pinakamataas na antas ng mga serbisyo sa internet at pinakamainam na mga solusyon sa software sa makatwirang presyo, kasama ang consulting at business process outsourcing — itinayo sa tatlong haligi: Mga Tao, Proseso, at mga Kliyente.",
+    "visionLabel": "Bisyon",
+    "visionTitle": "Saan kami patungo",
+    "vision": "Maging isang nangungunang pandaigdigang tagapaglaan ng mga de-kalidad na solusyon sa web at software development, sinasamantala ang propesyonal na talento mula sa ahensya, korporasyon, at pribadong sektor upang tulungan ang mga kliyente na mapabilis ang paglago.",
+    "valuesTitle": "Aming mga Pangunahing Pagpapahalaga",
+    "tagline": "Apat na Bansa. Isang Pinagkakatiwalaang Grupo.",
+    "readMore": "Magbasa pa",
+    "goalLabel": "Aming Layunin",
+    "goal": "Palawakin ang aming pandaigdigang presensya habang lumilikha ng napapanatiling halaga para sa mga kasosyo, empleyado, at lipunan."
+  },
+  "businesses": {
+    "eyebrow": "Aming Serbisyo",
+    "title": "Anim na dibisyon na nagpapalakas ng mga negosyo at kalakalan sa buong mundo.",
+    "sub": "Mula sa enterprise software hanggang sa internasyonal na kalakalan — itinayo nang buo mula simula hanggang katapusan."
+  },
+  "solutions": {
+    "eyebrow": "Mga Solusyon",
+    "title": "Dinisenyo upang malutas ng tunay na mga problema sa negosyo.",
+    "sub": "Isang modernong technology stack na inihahatid ng mga may karanasang inhinyero — mula sa custom na software hanggang cloud, seguridad at analytics."
+  },
+  "partnerships": {
+    "eyebrow": "Mga Pakikipagtulungan",
+    "title": "Pinapalakas ng mga nangungunang provider ng teknolohiya sa buong mundo.",
+    "sub": "Nakikipagtulungan kami sa mga pandaigdigang lider sa teknolohiya upang magbigay ng mga solusyong pang-enterprise sa cloud, software, hardware at seguridad.",
+    "valuableClients": "Aming mga Mahalagang Kliyente",
+    "clients": "Aming mga Kliyente",
+    "membership": "Aming Kasapian",
+    "partners": "Aming mga Kasosyo",
+    "affiliations": "Aming mga Ugnayan"
+  },
+  "global": {
+    "eyebrow": "Pandaigdigang Presensya",
+    "title": "Nagpapatakbo sa apat na bansa na may siyam na entidad.",
+    "sub": "Ang aming kumpanya ng Yanabiya Group ay kasalukuyang nagpapatakbo sa apat na bansa, at plano naming unti-unting palawakin sa pamamagitan ng pagpasok sa mas maraming merkado sa hinaharap.",
+    "entities": "Mga Entidad",
+    "headquarters": "Punong Tanggapan",
+    "europe": "Operasyon sa Europa",
+    "southAsia": "Operasyon sa Timog Asya",
+    "northAmerica": "Operasyon sa Hilagang Amerika",
+    "cta": "Tuklasin ang Pandaigdigang Presensya"
+  },
+  "csr": {
+    "eyebrow": "Epekto at CSR",
+    "title": "Nagbabalik sa mga komunidad na aming pinaglilingkuran.",
+    "sub": "Ang Yanabiya Group ay nakatuon sa mga nakaayos na charitable na donasyon at mga programang pangkapakanan — nakatuon sa transparency at pangmatagalang epekto.",
+    "items": {
+      "welfare": {
+        "t": "Kapakanan ng Komunidad",
+        "d": "Mga programang tulong-pantao sa mga rehiyon na aming pinagtatrabahuhan."
+      },
+      "education": {
+        "t": "Edukasyon",
+        "d": "Mga iskolarship at mga inisyatiba sa pagpapaunlad ng kasanayan para sa mga komunidad na kulang-palad."
+      },
+      "health": {
+        "t": "Access sa Pangangalagang Pangkalusugan",
+        "d": "Pagsuporta sa mga klinika, mobile camp, at emergency relief."
+      },
+      "empower": {
+        "t": "Pang-ekonomiyang Pagpapalakas",
+        "d": "Vocational na pagsasanay at suporta sa maliliit na negosyo upang mapagana ang kabuhayan."
+      }
+    },
+    "sustainability": {
+      "title": "Napapanatiling Paglago",
+      "desc": "Pagtatayo ng mga kagawiang pang-negosyo na nagpoprotekta sa kapaligiran at sumusuporta sa pangmatagalang halaga para sa bawat stakeholder na aming pinaglilingkuran.",
+      "items": {
+        "green": {
+          "t": "Mga Green na Operasyon",
+          "d": "Mga opisinang matipid sa enerhiya at responsableng paggamit ng mapagkukunan sa lahat ng sangay."
+        },
+        "circular": {
+          "t": "Mga Circular na Gawi",
+          "d": "Muling paggamit, pag-recycle at pagbabawas ng basura sa procurement, packaging at logistics."
+        },
+        "climate": {
+          "t": "Pangako sa Klima",
+          "d": "Mga kampanya ng pagtatanim ng puno at mga modelong pang-negosyo na may mababang emisyon para sa pangmatagalang epekto."
+        },
+        "inclusive": {
+          "t": "Inklusibong Paglago",
+          "d": "Makatarungang pagtatrabaho, lokal na pag-hire, at mga pakikipagtulungan sa supplier na nagpapalakas ng mga komunidad."
+        }
+      }
+    },
+    "community": {
+      "title": "Pag-aalaga sa Komunidad",
+      "desc": "Mga nakaayos na charitable na donasyon at mga programang pangkapakanan na nakatuon sa transparency, dignidad, at pangmatagalang epekto."
+    },
+    "stats": {
+      "beneficiaries": "Mga Benepisyaryo",
+      "countries": "Mga Bansa",
+      "track": "Track Record"
+    }
+  },
+  "network": {
+    "eyebrow": "Network",
+    "title": "Pinagkakatiwalaang Network",
+    "sub": "Nagkokonekta ng mga Pagkakataon sa Buong Mundo upang Magtayo ng Matibay at Nasusukat na Pandaigdigang Negosyo.",
+    "readMore": "Magbasa pa",
+    "memberships": "Mga Kasapian at Ugnayan",
+    "stats": {
+      "clients": "Mga Aktibong Kliyente",
+      "entities": "Mga Entidad ng Grupo",
+      "countries": "Mga Bansa",
+      "track": "Track Record"
+    }
+  },
+  "leadership": {
+    "eyebrow": "Pamunuan",
+    "title": "Ginagabayan ng karanasan. Pinapatakbo ng integridad.",
+    "sub": "Ang aming koponan ng pamunuan ay nagtataglay ng ilang dekada ng pandaigdigang kaalaman sa negosyo at malalim na kaalaman sa rehiyon sa buong Gulf, Timog Asya, UK, at USA.",
+    "core": "Pangunahing Koponan",
+    "chairman": "Tagapagtatag at Tagapangulo",
+    "viceChairman": "Bise Tagapangulo",
+    "chairmanMsg": "Ang Yanabiya Group ay kumakatawan sa Selyo ng Kalidad at Propesyonalismo. Ang aming tagumpay ay nagmumula sa pananatili ng mga pangunahing pagpapahalaga kaysa sa pagkuha ng mga shortcut.",
+    "viceChairmanMsg": "Ipinapakilala ng aming website ang aming bisyon, misyon, imprastraktura, kaalaman, at mga plano sa hinaharap.",
+    "readMore": "Magbasa pa",
+    "tier1Kicker": "Antas 01 — Lupon at Tagapayo",
+    "tier1Title": "Lupon ng mga Miyembro",
+    "tier2Kicker": "Antas 02 — Executive Management",
+    "tier2Title": "Pandaigdigang Executive Management",
+    "tier3Kicker": "Antas 03 — Suporta",
+    "tier3Title": "Departamento ng Suporta sa Negosyo",
+    "pyramidTitle": "Ang mga Tao sa Likod",
+    "founderCEO": "Tagapagtatag at CEO",
+    "becomePartner": "Maging Kasosyo",
+    "joinTeam": "Sumali sa Aming Koponan",
+    "ourCompanies": "Aming mga Kumpanya"
+  },
+  "strategy": {
+    "eyebrow": "Estratehiya at Inobasyon",
+    "title": "Kung saan nagtatagpo ang estratehiya at pagpapatupad.",
+    "sub": "Ang aming roadmap sa inobasyon ay itinayo sa apat na haligi na iniaangkop ang teknolohiya, talento at proseso sa masusukat na mga resulta para sa kliyente.",
+    "focus": "Mga Pokus na Lugar ng Inobasyon",
+    "pillars": {
+      "digital": {
+        "t": "Digital na Pagbabago",
+        "d": "Pagtulong sa mga negosyo na modernisahin ang mga lumang sistema at yakapin ang mga arkitekturang cloud-first."
+      },
+      "talent": {
+        "t": "Paglago na Pinapatakbo ng Talento",
+        "d": "Paglinang ng mga multidisiplinaryong koponan sa apat na bansa."
+      },
+      "process": {
+        "t": "Kahusayan sa Proseso",
+        "d": "Pag-balanse ng bilis, kalidad at gastos sa bawat pakikipag-ugnayan."
+      },
+      "customer": {
+        "t": "Inobasyon na Nakasentro sa Customer",
+        "d": "Mga solusyong dinisenyo sa paligid ng mga problema ng kliyente, hindi generic na mga template."
+      }
+    },
+    "focus_items": {
+      "erp": {
+        "t": "ERP at Enterprise Software",
+        "d": "End-to-end na disenyo at paglulunsad ng ERP."
+      },
+      "cloud": {
+        "t": "Cloud Infrastructure",
+        "d": "AWS at Azure na arkitektura at mga serbisyong pinamamahalaan."
+      },
+      "cyber": {
+        "t": "Cyber Security",
+        "d": "Penetration testing at etikal na hacking na kasanayan."
+      },
+      "data": {
+        "t": "Data Analytics at BI",
+        "d": "Mga dashboard, ETL pipeline at desisyon na katalinuhan."
+      },
+      "ui": {
+        "t": "Modernong UI/UX",
+        "d": "Inhinyeriya ng produkto at interface na pinamumunuan ng pananaliksik."
+      },
+      "rd": {
+        "t": "Mga Inisyatibang R&D",
+        "d": "Patuloy na eksperimento sa mga umuusbong na teknolohiya."
+      }
+    }
+  },
+  "insights": {
+    "eyebrow": "Mga Kaalaman",
+    "title": "Pag-iisip mula sa koponan ng Yanabiya.",
+    "sub": "Mga artikulo, case study at thought leadership na sumasaklaw sa digital na pagbabago, kalakalan, seguridad at cloud adoption.",
+    "readMore": "Magbasa pa"
+  },
+  "careers": {
+    "eyebrow": "Karera",
+    "title": "Itayo ang iyong karera sa isang pandaigdigang grupo.",
+    "sub": "Sumali sa isang koponan na nagpapahalaga sa craftsmanship, pagmamay-ari, at patuloy na pagkatuto.",
+    "rolesTitle": "Mga Papel na Aming Kinukuha",
+    "open": "Bukas",
+    "sendCv": "Ipadala ang iyong CV at isang maikling tala tungkol sa kung ano ang gusto mong gawin.",
+    "reasons": {
+      "global": {
+        "t": "Pandaigdigang Karanasan",
+        "d": "Magtrabaho sa apat na bansa at dose-dosenang industriya."
+      },
+      "stack": {
+        "t": "Modernong Stack",
+        "d": "Cloud, AI, seguridad at full-stack engineering."
+      },
+      "growth": {
+        "t": "Paglago ng Karera",
+        "d": "Mga flexible at rewarding na landas na may tunay na pagmamay-ari."
+      },
+      "culture": {
+        "t": "Kultura ng Pagganap",
+        "d": "Teamwork-first na may pagkilala sa indibidwal na epekto."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Makipag-ugnayan",
+    "title": "Simulan natin ang pag-uusap.",
+    "sub": "Maabot ang aming punong tanggapan sa Muscat o alinman sa aming mga opisina sa UK, Bangladesh at USA.",
+    "address": "Address",
+    "phone": "Telepono",
+    "email": "Email",
+    "hours": "Karaniwang sumasagot kami sa loob ng 24 na oras",
+    "languages": "Pumili ng opisina",
+    "send": "Magpadala ng mensahe",
+    "name": "Buong pangalan",
+    "emailField": "Email address",
+    "company": "Kumpanya (opsyonal)",
+    "phoneField": "Telepono (opsyonal)",
+    "subject": "Paksa",
+    "message": "Sabihin sa amin ang tungkol sa iyong proyekto o katanungan…",
+    "submit": "Ipadala ang mensahe",
+    "thanks": "Salamat — natanggap na ang iyong mensahe.",
+    "visitOffice": "Bisitahin ang Opisina"
+  },
+  "footer": {
+    "rights": "Lahat ng karapatan ay nakalaan.",
+    "stamp": "Selyo ng Kalidad at Propesyonalismo",
+    "hq": "HQ",
+    "postalAddress": "Postal Address",
+    "headOffice": "Pangunahing Opisina",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Manatiling updated sa mga balita at kaalaman ng Yanabiya Group",
+    "emailPlaceholder": "Ang iyong email address",
+    "subscribe": "Mag-subscribe",
+    "tagline": "Pandaigdigang Enterprise Platform",
+    "desc": "Nagtatayo at nagpapatakbo ng mga high-impact na negosyo sa teknolohiya, kalakalan, talento at consulting — sa buong mundo.",
+    "quickLinks": "Mga Mabilis na Link",
+    "groupProfile": "Profile ng Grupo",
+    "links": {
+      "home": "Home",
+      "about": "Tungkol sa Amin",
+      "global": "Pandaigdigang Presensya",
+      "businesses": "Aming Serbisyo",
+      "network": "Pinagkakatiwalaang Network",
+      "contact": "Makipag-ugnayan",
+      "profile": "Profile ng Grupo",
+      "story": "Ang Aming Kwento",
+      "contactNet": "Contact Network",
+      "management": "Aming Pamamahala",
+      "blog": "Blog",
+      "sustainable": "Napapanatiling Paglago",
+      "community": "Pag-aalaga sa Komunidad",
+      "careers": "Karera",
+      "ecommerce": "Yanabiya E-Commerce ↗"
+    }
+  },
+  "common": {
+    "ourPeople": "Aming mga Tao",
+    "previous": "Nakaraan",
+    "next": "Susunod",
+    "close": "Isara",
+    "active": "Aktibo",
+    "launching": "Paparating na",
+    "viewPage": "Tingnan ang Pahina",
+    "viewOnMaps": "Tingnan sa Google Maps",
+    "notFound": "Hindi nahanap.",
+    "bioComing": "Paparating na ang bio.",
+    "backToHome": "Bumalik sa Home",
+    "readMore": "Magbasa pa",
+    "learnMore": "Matuto pa",
+    "getInTouch": "Makipag-ugnayan",
+    "viewAll": "Tingnan ang Lahat ng Miyembro"
+  },
+  "board": {
+    "title": "Lupon ng mga Miyembro",
+    "subtitle": "Ang Namamahalang Katawan ng Yanabiya Group",
+    "desc": "Ang Lupon ng mga Miyembro ay gumaganap ng pinakamataas na antas ng fiduciary na responsibilidad sa Yanabiya Group, nagbibigay ng independyenteng pangangasiwa, pangmatagalang estratehikong direksyon, at institusyonal na pananagutan sa lahat ng nagpapatakbong hurisdiksyon — Oman, United Kingdom, United States, at Bangladesh."
+  },
+  "departments": {
+    "tier": "Antas 03 — Suporta sa Negosyo",
+    "title": "Koponan ng Suporta sa Negosyo",
+    "desc": "Ang mga dalubhasang propesyonal ng Yanabiya Group na nagtutulak ng teknolohiya, operasyon, at kahusayan ng kliyente sa apat na bansa."
+  },
+  "people": {
+    "notFound": "Hindi nahanap ang pahina.",
+    "empowering": "Pagpapalakas ng Pandaigdigang Operasyon, Estratehikong Pamunuan at Cross-Border na Kahusayan sa Negosyo sa ilalim ng Yanabiya Group of Companies",
+    "coFounders": "Mga Co-Founder",
+    "managementTeam": "Koponan ng Pamamahala",
+    "accountsFinance": "Accounts at Finance",
+    "chiefOfAccounts": "Punong Accountant",
+    "bioComing": "Paparating na ang bio."
+  },
+  "globalContact": {
+    "postalAddress": "Postal Address",
+    "headOffice": "Pangunahing Opisina",
+    "branchOffice": "Sangay na Opisina",
+    "parentCompany": "Magulang na Kumpanya",
+    "officeHours": "Oras ng Opisina",
+    "viewOnMaps": "Tingnan sa Google Maps",
+    "branchesConnected": "Mga Sangay na Nakakonekta",
+    "ourGlobalNetwork": "Aming Pandaigdigang Network"
+  },
+  "countryOps": {
+    "established": "Itinatag",
+    "legalEntity": "Legal na Entidad",
+    "licenseName": "Pangalan ng Lisensya",
+    "issuingAuthority": "Awtoridad na Nag-isyu"
+  }
+}

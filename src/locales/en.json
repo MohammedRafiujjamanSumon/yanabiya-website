@@ -215,7 +215,18 @@
     "tier2Kicker": "Tier 02 — Executive Management",
     "tier2Title": "Global Executive Management",
     "tier3Kicker": "Tier 03 — Support",
-    "tier3Title": "Business Support Department"
+    "tier3Title": "Business Support Department",
+    "pyramidTitle": "The People Behind",
+    "founderCEO": "Founder & CEO",
+    "becomePartner": "Become a Partner",
+    "joinTeam": "Join Our Team",
+    "ourCompanies": "Our Companies"
+  },
+  "countryOps": {
+    "established": "Established",
+    "legalEntity": "Legal Entity",
+    "licenseName": "License Name",
+    "issuingAuthority": "Issuing Authority"
   },
   "strategy": {
     "eyebrow": "Strategy & Innovation",
@@ -306,7 +317,7 @@
     "address": "Address",
     "phone": "Phone",
     "email": "Email",
-    "hours": "Hours",
+    "hours": "We typically respond within 24 hours",
     "languages": "Languages",
     "send": "Send a message",
     "name": "Full name",
@@ -318,6 +329,36 @@
     "submit": "Send message",
     "thanks": "Thanks — your message has been received.",
     "visitOffice": "Visit Office"
+  },
+  "common": {
+    "ourPeople": "Our People", "previous": "Previous", "next": "Next", "close": "Close",
+    "active": "Active", "launching": "Launching", "viewPage": "View Page",
+    "viewOnMaps": "View on Google Maps", "notFound": "Not found.", "bioComing": "Bio coming soon.",
+    "backToHome": "Back to Home", "readMore": "Read More", "learnMore": "Learn more",
+    "getInTouch": "Get in Touch", "viewAll": "View All Members"
+  },
+  "board": {
+    "title": "Board of Members",
+    "subtitle": "The Governing Body of Yanabiya Group",
+    "desc": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh."
+  },
+  "departments": {
+    "tier": "Tier 03 — Business Support",
+    "title": "Business Support Team",
+    "desc": "Yanabiya Group's skilled professionals driving technology, operations, and client excellence across four countries."
+  },
+  "people": {
+    "notFound": "Page not found.",
+    "empowering": "Empowering Global Operations, Strategic Leadership & Cross-Border Business Excellence Under Yanabiya Group of Companies",
+    "coFounders": "Co-Founders", "managementTeam": "Management Team",
+    "accountsFinance": "Accounts & Finance", "chiefOfAccounts": "Chief of Accounts",
+    "bioComing": "Bio coming soon."
+  },
+  "globalContact": {
+    "postalAddress": "Postal Address", "headOffice": "Head Office", "branchOffice": "Branch Office",
+    "parentCompany": "Parent Company", "officeHours": "Office Hours",
+    "viewOnMaps": "View on Google Maps", "branchesConnected": "Branches Connected",
+    "ourGlobalNetwork": "Our Global Network"
   },
   "footer": {
     "rights": "All rights reserved.",

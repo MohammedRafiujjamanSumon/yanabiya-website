@@ -129,7 +129,7 @@ export default function DepartmentCountryPage() {
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
         <p className="text-brand-deep">Department not found.</p>
         <Link to="/people/departments" className="text-brand-accentDark underline text-sm">
-          ← Regional Operations
+          ← Business Support
         </Link>
       </div>
     )
@@ -151,7 +151,7 @@ export default function DepartmentCountryPage() {
           className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest
                      text-slate-400 hover:text-brand-deep transition-colors duration-200"
         >
-          <ArrowLeft size={13} /> Regional Operations Team
+          <ArrowLeft size={13} /> Business Support Team
         </button>
       </div>
 
@@ -163,7 +163,7 @@ export default function DepartmentCountryPage() {
           <span className="text-4xl">{config.flag}</span>
           <div>
             <p className="text-white/70 text-xs font-bold uppercase tracking-[0.2em] mb-1">
-              Regional Operations Team
+              Business Support Team
             </p>
             <h1 className="text-white font-serif text-2xl md:text-4xl leading-tight drop-shadow">
               {config.name}

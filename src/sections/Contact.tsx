@@ -41,8 +41,8 @@ export default function Contact() {
   )
 
   const ipt =
-    'w-full bg-white/8 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/40 ' +
-    'focus:outline-none focus:border-brand-accent focus:ring-4 focus:ring-brand-accent/20 transition-all'
+    'w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 ' +
+    'focus:outline-none focus:border-brand-accentDark focus:ring-4 focus:ring-brand-accent/20 transition-all'
 
   return (
     <Section id="contact" className="bg-brand-50">
@@ -81,18 +81,18 @@ export default function Contact() {
           style={{ animationDelay: '420ms' }}
         >
           {/* Card header bar */}
-          <div className="bg-gradient-to-r from-brand-deep via-[#0d2137] to-brand-accentDark px-8 md:px-10 py-7 text-center">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-accent/20 border border-brand-accent/40 mb-4">
-              <MessageSquare size={22} className="text-brand-accent" />
+          <div className="bg-brand-accent px-8 md:px-10 py-7 text-center">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/30 border border-white/50 mb-4">
+              <MessageSquare size={22} className="text-slate-900" />
             </div>
-            <h3 className="font-serif text-2xl md:text-3xl text-white">{t('contact.send')}</h3>
-            <p className="mt-2 text-white/60 text-sm">
+            <h3 className="font-serif text-2xl md:text-3xl text-slate-900">{t('contact.send')}</h3>
+            <p className="mt-2 text-slate-800 text-sm font-medium">
               {t('contact.hours')}
             </p>
           </div>
 
           {/* Form body */}
-          <div className="bg-brand-deep/95 px-8 md:px-10 py-8">
+          <div className="bg-slate-50 px-8 md:px-10 py-8">
             <form
               className="grid gap-4 max-w-3xl mx-auto"
               onSubmit={(e) => {
@@ -103,11 +103,11 @@ export default function Contact() {
               {/* Row 1: Name + Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <label className="relative">
-                  <User size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
+                  <User size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                   <input required placeholder={t('contact.name')} className={`${ipt} pl-9`} />
                 </label>
                 <label className="relative">
-                  <Mail size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
+                  <Mail size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                   <input required type="email" placeholder={t('contact.emailField')} className={`${ipt} pl-9`} />
                 </label>
               </div>
@@ -115,7 +115,7 @@ export default function Contact() {
               {/* Row 2: Phone + Subject */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <label className="relative">
-                  <Phone size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
+                  <Phone size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                   <input type="tel" placeholder={t('contact.phoneField')} className={`${ipt} pl-9`} />
                 </label>
                 <input required placeholder={t('contact.subject')} className={ipt} />
@@ -128,11 +128,11 @@ export default function Contact() {
                 aria-label="Which office should we route this to?"
                 className={`${ipt} appearance-none`}
               >
-                <option value="" disabled className="bg-brand-deep text-white/60">
+                <option value="" disabled className="bg-white text-slate-400">
                   {t('contact.languages')}
                 </option>
                 {offices.map((o) => (
-                  <option key={o.code} value={o.code} className="bg-brand-deep text-white">
+                  <option key={o.code} value={o.code} className="bg-white text-slate-900">
                     {o.country.name} — {o.country.role}
                   </option>
                 ))}

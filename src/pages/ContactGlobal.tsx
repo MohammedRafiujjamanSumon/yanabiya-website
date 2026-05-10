@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import {
   X as CloseIcon, Mail, Phone, Globe2, Building2, ArrowRight, ExternalLink,
 } from 'lucide-react'
@@ -163,6 +164,7 @@ function CountryCard({
   onClick: () => void
   index: number
 }) {
+  const { t } = useTranslation()
   return (
     <Reveal delay={index * 90}>
       <button
@@ -197,7 +199,7 @@ function CountryCard({
                         }`}
           >
             <span className="block w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-            {data.status === 'active' ? 'Active' : 'Launching'}
+            {data.status === 'active' ? t('common.active') : t('common.launching')}
           </span>
         </div>
 
@@ -208,7 +210,7 @@ function CountryCard({
         <div className="mt-5 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] font-bold">
           <span className="text-slate-500">{data.city}, {data.name}</span>
           <span className="text-brand-accentDark group-hover:text-brand-deep transition-colors inline-flex items-center gap-1">
-            View Page <ArrowRight size={11} />
+            {t('common.viewPage')} <ArrowRight size={11} />
           </span>
         </div>
       </button>
@@ -225,6 +227,7 @@ function CountryPreviewPanel({
   data: CountryContact | null
   onClose: () => void
 }) {
+  const { t } = useTranslation()
   useEffect(() => {
     if (!data) return
     const onKey = (e: KeyboardEvent) => {
@@ -302,7 +305,7 @@ function CountryPreviewPanel({
               {data.postal && (
                 <>
                   <div className="text-[10px] uppercase tracking-[0.28em] text-brand-accentDark font-bold mb-2">
-                    Postal Address
+                    {t('globalContact.postalAddress')}
                   </div>
                   {data.postal.map((line, i) => (
                     <div key={i} className="text-sm text-slate-800 leading-snug">
@@ -314,7 +317,7 @@ function CountryPreviewPanel({
               )}
 
               <div className="text-[10px] uppercase tracking-[0.28em] text-brand-accentDark font-bold mb-2">
-                Head Office
+                {t('globalContact.headOffice')}
               </div>
               {data.headOffice.map((line, i) => (
                 <div key={i} className="text-sm text-slate-800 leading-snug">
@@ -326,7 +329,7 @@ function CountryPreviewPanel({
                 <>
                   <div className="my-5 mx-auto w-8 h-px bg-slate-300" />
                   <div className="text-[10px] uppercase tracking-[0.28em] text-brand-accentDark font-bold mb-2">
-                    Branch Office
+                    {t('globalContact.branchOffice')}
                   </div>
                   {data.branchOffice.map((line, i) => (
                     <div key={i} className="text-sm text-slate-800 leading-snug">
@@ -341,7 +344,7 @@ function CountryPreviewPanel({
           {/* Reach-out facts */}
           <Reveal delay={220}>
             <div className="mt-8 grid grid-cols-1 gap-3 max-w-md mx-auto">
-              <FactRow icon={Building2} label="Parent Company" value={data.parentCompany} />
+              <FactRow icon={Building2} label={t('globalContact.parentCompany')} value={data.parentCompany} />
               {data.phones.length > 0 && (
                 <FactRow icon={Phone} label="Phone" value={data.phones.join(', ')} />
               )}
@@ -361,7 +364,7 @@ function CountryPreviewPanel({
                   </div>
                 </div>
               </div>
-              <FactRow icon={Globe2} label="Office Hours" value={data.hours} />
+              <FactRow icon={Globe2} label={t('globalContact.officeHours')} value={data.hours} />
             </div>
           </Reveal>
 
@@ -378,7 +381,7 @@ function CountryPreviewPanel({
                              px-5 py-3 text-xs font-bold uppercase tracking-[0.22em]
                              hover:bg-brand-accentDark transition-colors"
                 >
-                  View on Google Maps
+                  {t('globalContact.viewOnMaps')}
                   <ExternalLink size={14} />
                 </a>
               </div>
@@ -503,6 +506,7 @@ const MAP_NODES: MapNode[] = [
 ]
 
 function GlobalNetworkMap() {
+  const { t } = useTranslation()
   // Build the full mesh of pair-wise connectors once.
   const pairs: Array<[MapNode, MapNode]> = []
   for (let i = 0; i < MAP_NODES.length; i++) {
@@ -517,12 +521,12 @@ function GlobalNetworkMap() {
         <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
           <Reveal>
             <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-3">
-              Branches Connected
+              {t('globalContact.branchesConnected')}
             </div>
           </Reveal>
           <Reveal delay={120}>
             <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-brand-deep leading-tight">
-              Our Global Network
+              {t('globalContact.ourGlobalNetwork')}
             </h2>
           </Reveal>
         </div>

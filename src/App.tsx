@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import PageWatermark from './components/PageWatermark'
@@ -49,6 +50,14 @@ import CountryPagesEdit from './admin/pages/sections/CountryPagesEdit'
 import MediaLibrary from './admin/pages/MediaLibrary'
 import PageHeroesEdit from './admin/pages/sections/PageHeroesEdit'
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+  }, [pathname])
+  return null
+}
+
 function AdminRoutes() {
   return (
     <AuthProvider>
@@ -86,6 +95,7 @@ export default function App() {
       {/* ── Public site ────────────────────────────────────────────────── */}
       <Route path="*" element={
         <div className="min-h-screen flex flex-col">
+          <ScrollToTop />
           <PageWatermark />
           <Navbar />
           <main className="flex-1 relative">
