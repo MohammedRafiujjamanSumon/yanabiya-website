@@ -4,6 +4,7 @@ import { useTranslation as useI18n } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { ALL_PEOPLE, type PersonData } from '../data/people'
+import { useSection } from '../hooks/useSection'
 
 function Reveal({
   children,
@@ -166,10 +167,12 @@ function PersonCard({ person, theme, delay, viewLabel }: { person: PersonData; t
 export default function Leadership() {
   const { t: tr } = useI18n()
   const t = THEMES
+  const apiPeople = useSection<PersonData[]>('people')
+  const people = apiPeople?.length ? apiPeople : ALL_PEOPLE
 
-  const boardPeople = ALL_PEOPLE.filter((p) => p.tier === 'board')
-  const execPeople  = ALL_PEOPLE.filter((p) => p.tier === 'exec')
-  const deptPeople  = ALL_PEOPLE.filter((p) => p.tier === 'dept')
+  const boardPeople = people.filter((p) => p.tier === 'board')
+  const execPeople  = people.filter((p) => p.tier === 'exec')
+  const deptPeople  = people.filter((p) => p.tier === 'dept')
 
   return (
     <Section id="leadership" className="relative overflow-hidden bg-slate-100">

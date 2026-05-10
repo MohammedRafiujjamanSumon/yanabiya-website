@@ -6,14 +6,24 @@ import {
 } from 'lucide-react'
 import { contact, contactByCountry, type CountryContact } from '../data/contact'
 import { assets } from '../data/assets'
+import { useSection } from '../hooks/useSection'
 
-const socials = [
+const SOCIAL_ICONS: Record<string, typeof Linkedin> = {
+  linkedin: Linkedin, facebook: Facebook, instagram: Instagram,
+  twitter: Twitter, youtube: Youtube,
+}
+
+const staticSocials = [
   { Icon: Linkedin,  href: 'https://www.linkedin.com/company/yanabiya-group',  label: 'LinkedIn'  },
   { Icon: Facebook,  href: 'https://www.facebook.com/yanabiyagroup',           label: 'Facebook'  },
   { Icon: Instagram, href: 'https://www.instagram.com/yanabiyagroup',          label: 'Instagram' },
   { Icon: Twitter,   href: 'https://twitter.com/yanabiyagroup',                label: 'Twitter / X' },
   { Icon: Youtube,   href: 'https://www.youtube.com/@yanabiyagroup',           label: 'YouTube'   },
 ]
+
+type FooterData = {
+  social?: { platform: string; url: string; icon: string }[]
+}
 
 const groupLinks = [
   { id: 'home',         labelKey: 'footer.links.home'       },
@@ -120,6 +130,14 @@ export default function Footer() {
   const { t } = useTranslation()
   const location = useLocation()
   const navigate = useNavigate()
+  const branding = useSection<{ logoUrl: string; siteName: string; tagline: string }>('branding')
+  const logoSrc = branding?.logoUrl || assets.logo
+  const footerData = useSection<FooterData>('footer')
+  const apiContact = useSection<{ countries?: typeof contactByCountry }>('contact')
+  const socials = footerData?.social?.length
+    ? footerData.social.map(s => ({ Icon: SOCIAL_ICONS[s.icon] ?? Linkedin, href: s.url, label: s.platform }))
+    : staticSocials
+  const contactSrc = apiContact?.countries?.length ? apiContact.countries : contactByCountry
 
   const handleHashClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault()
@@ -135,10 +153,10 @@ export default function Footer() {
     }
   }
 
-  const om = contactByCountry.find(c => c.code === 'OM')!
-  const gb = contactByCountry.find(c => c.code === 'GB')!
-  const bd = contactByCountry.find(c => c.code === 'BD')!
-  const us = contactByCountry.find(c => c.code === 'US')!
+  const om = (contactSrc.find(c => c.code === 'OM') ?? contactByCountry.find(c => c.code === 'OM'))!
+  const gb = (contactSrc.find(c => c.code === 'GB') ?? contactByCountry.find(c => c.code === 'GB'))!
+  const bd = (contactSrc.find(c => c.code === 'BD') ?? contactByCountry.find(c => c.code === 'BD'))!
+  const us = (contactSrc.find(c => c.code === 'US') ?? contactByCountry.find(c => c.code === 'US'))!
 
   return (
     <footer className="bg-brand-accentDark text-white mt-4 pt-3">
@@ -146,7 +164,7 @@ export default function Footer() {
 
         {/* Watermark */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center select-none">
-          <img src={assets.logo} alt="" className="w-[55%] max-w-[640px] opacity-[0.05] object-contain" />
+          <img src={logoSrc} alt="" className="w-[55%] max-w-[640px] opacity-[0.05] object-contain" />
         </div>
 
         {/* ── SUBSCRIPTION BAR (top) ── */}
@@ -190,7 +208,7 @@ export default function Footer() {
           <div className="col-span-12 md:col-span-4 flex flex-col items-center text-center px-2">
             <Link to="/" className="flex flex-col items-center gap-2 group">
               <div className="w-14 h-14 rounded-xl bg-white grid place-items-center shadow-xl ring-2 ring-white/20 group-hover:ring-brand-accent/50 transition-all">
-                <img src={assets.logo} alt="Yanabiya Group" className="h-9 w-auto object-contain" />
+                <img src={logoSrc} alt="Yanabiya Group" className="h-9 w-auto object-contain" />
               </div>
               <div>
                 <div className="font-serif text-xl text-white leading-tight group-hover:text-brand-accent transition-colors">
@@ -275,6 +293,13 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <Link to="/about-us" className={linkClass}>{t('footer.groupProfile')}</Link>
             <a href={`mailto:${contact.emails[0]}`} className={linkClass}>{contact.emails[0]}</a>
+            <Link
+              to="/admin"
+              className="text-white/30 hover:text-white/60 transition-colors text-[9px] tracking-wider"
+              title="Admin Panel"
+            >
+              ⚙ Admin
+            </Link>
           </div>
         </div>
       </div>

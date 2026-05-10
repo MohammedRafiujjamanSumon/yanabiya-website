@@ -10,6 +10,7 @@ import Section, { Eyebrow } from '../components/Section'
 import { businesses } from '../data/businesses'
 import { useReveal } from '../hooks/useReveal'
 import { assets } from '../data/assets'
+import { useSection } from '../hooks/useSection'
 
 function Reveal({
   children,
@@ -255,11 +256,10 @@ function SnakeCard({ item, onSelect }: { item: ServiceItem; onSelect: () => void
   )
 }
 
-function ServicesSnakePath({ onSelect }: { onSelect: (slug: string) => void }) {
-  const row1 = SERVICE_ITEMS.slice(0, 4)
-  // Row 2 reversed → displayed L→R as [Apps, E-Com, Manpower, Office]
-  // but ← arrows show flow goes R→L (Office → Manpower → E-Com → Apps)
-  const row2 = [...SERVICE_ITEMS.slice(4, 8)].reverse()
+function ServicesSnakePath({ onSelect, items = SERVICE_ITEMS }: { onSelect: (slug: string) => void; items?: ServiceItem[] }) {
+  const mid = Math.ceil(items.length / 2)
+  const row1 = items.slice(0, mid)
+  const row2 = [...items.slice(mid)].reverse()
 
   const HArrow = ({ dir }: { dir: 'right' | 'left' }) => (
     <div className="flex-none w-7 flex items-center justify-center shrink-0">
@@ -286,7 +286,7 @@ function ServicesSnakePath({ onSelect }: { onSelect: (slug: string) => void }) {
               <div className="flex-1 min-w-0">
                 <SnakeCard item={item} onSelect={() => onSelect(item.slug)} />
               </div>
-              {i < 3 && <HArrow dir="right" />}
+              {i < row1.length - 1 && <HArrow dir="right" />}
             </Fragment>
           ))}
         </div>
@@ -307,7 +307,7 @@ function ServicesSnakePath({ onSelect }: { onSelect: (slug: string) => void }) {
               <div className="flex-1 min-w-0">
                 <SnakeCard item={item} onSelect={() => onSelect(item.slug)} />
               </div>
-              {i < 3 && <HArrow dir="left" />}
+              {i < row2.length - 1 && <HArrow dir="left" />}
             </Fragment>
           ))}
         </div>
@@ -1000,11 +1000,22 @@ function NodeDetailPanel({
   )
 }
 
+type ApiService = { slug: string; title: string; tagline?: string; body?: string; image?: string }
+
 export default function Businesses() {
   const { t } = useTranslation()
   const [selected, setSelected] = useState<string | 'overview' | null>(null)
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
+  const apiServices = useSection<ApiService[]>('services')
+
+  const dynamicItems: ServiceItem[] = (apiServices ?? []).map((s, i) => ({
+    slug: s.slug,
+    num: String(i + 1).padStart(2, '0'),
+    title: s.title,
+    tagline: s.tagline ?? s.body ?? '',
+    image: s.image ?? SERVICE_ITEMS.find(si => si.slug === s.slug)?.image ?? '',
+  }))
   const tickRef = useRef<number | undefined>(undefined)
 
   /* Auto-cycle the active layer every 2.4s while not paused. Hovering
@@ -1044,7 +1055,10 @@ export default function Businesses() {
 
           {/* MIDDLE, S-snake card layout */}
           <Reveal delay={180} className="w-full order-2">
-            <ServicesSnakePath onSelect={(slug) => setSelected(slug)} />
+            <ServicesSnakePath
+              onSelect={(slug) => setSelected(slug)}
+              items={dynamicItems.length ? dynamicItems : SERVICE_ITEMS}
+            />
           </Reveal>
 
           {/* BOTTOM, CTA */}

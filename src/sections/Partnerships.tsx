@@ -2,8 +2,9 @@ import { useRef } from 'react'
 import type React from 'react'
 import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow, H2 } from '../components/Section'
-import { partners, valuableClients, ukValuableClients, memberships, affiliations } from '../data/partners'
+import { partners as staticPartners, valuableClients as staticClients, ukValuableClients as staticUkClients, memberships as staticMemberships, affiliations as staticAffiliations } from '../data/partners'
 import { useReveal } from '../hooks/useReveal'
+import { useSection } from '../hooks/useSection'
 
 type Item = { name: string; logo: string }
 
@@ -107,8 +108,21 @@ function SlideRow({
   )
 }
 
+type PartnersData = {
+  partners?: Item[]; clients?: Item[]; ukClients?: Item[]
+  memberships?: Item[]; affiliations?: Item[]
+}
+
 export default function Partnerships() {
   const { t } = useTranslation()
+  const apiData = useSection<PartnersData>('partners')
+
+  const ukValuableClients = apiData?.ukClients?.length ? apiData.ukClients : staticUkClients
+  const valuableClients   = apiData?.clients?.length   ? apiData.clients   : staticClients
+  const memberships       = apiData?.memberships?.length? apiData.memberships : staticMemberships
+  const partners          = apiData?.partners?.length   ? apiData.partners  : staticPartners
+  const affiliations      = apiData?.affiliations?.length? apiData.affiliations : staticAffiliations
+
   return (
     <Section id="partnerships" className="bg-brand-50">
       <div className="container-x">

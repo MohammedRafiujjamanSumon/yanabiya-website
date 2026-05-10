@@ -7,6 +7,7 @@ import { sections } from '../data/contact'
 import { assets } from '../data/assets'
 import { useScrollHeader } from '../hooks/useScrollHeader'
 import LanguageSwitcher from './LanguageSwitcher'
+import { useSection } from '../hooks/useSection'
 
 type NavItem = { id: string; label: string; desc?: string; icon?: LucideIcon; href?: string }
 type NavSubGroup = {
@@ -29,6 +30,8 @@ export default function Navbar() {
   const navigate = useNavigate()
   const location = useLocation()
   const { scrolled } = useScrollHeader(8, 80)
+  const branding = useSection<{ logoUrl: string; siteName: string; tagline: string }>('branding')
+  const logoSrc = branding?.logoUrl || assets.logo
   const isHome = location.pathname === '/' || location.pathname === ''
   const onHeroTop = isHome && !scrolled
   const [open, setOpen] = useState(false)
@@ -108,7 +111,7 @@ export default function Navbar() {
         {/* LEFT, LOGO */}
         <Link to="/#home" className="flex items-center shrink-0 group py-1">
           <img
-            src={assets.logo}
+            src={logoSrc}
             alt="Yanabiya Group"
             width={1024}
             height={765}

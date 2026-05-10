@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 import GlobalOverviewPanel from '../components/GlobalOverviewPanel'
 import { assets } from '../data/assets'
+import { useSection } from '../hooks/useSection'
 
 /* ──────────────────────────────────────────────────────────────────────
  * Hero, auto-cycling 7-scene cinematic hero
@@ -428,19 +429,47 @@ const SCENE_STATICS: SceneStatic[] = [
 
 /* ─────────── Component ─────────── */
 
+type ApiScene = {
+  id: string; eyebrow?: string; headline?: string; title?: string
+  body?: string; photo?: string; image?: string; photoPos?: string
+  cta?: { label?: string; href?: string }
+}
+
+const STATIC_VISUAL_MAP = Object.fromEntries(SCENE_STATICS.map(s => [s.id, s.Visual]))
+
 export default function Hero() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [scene, setScene] = useState(0)
   const [presenceOpen, setPresenceOpen] = useState(false)
+  const apiScenes = useSection<ApiScene[]>('hero-scenes')
 
-  const SCENES: Scene[] = useMemo(() => SCENE_STATICS.map((s) => ({
-    ...s,
-    eyebrow:  t(`hero.scenes.${s.id}.eyebrow`),
-    headline: t(`hero.scenes.${s.id}.headline`),
-    body:     t(`hero.scenes.${s.id}.body`),
-    cta:      { label: t(`hero.scenes.${s.id}.cta`), href: s.ctaHref },
-  })), [t])
+  const SCENES: Scene[] = useMemo(() => {
+    const base = apiScenes?.length ? apiScenes : null
+    if (!base) {
+      return SCENE_STATICS.map((s) => ({
+        ...s,
+        eyebrow:  t(`hero.scenes.${s.id}.eyebrow`),
+        headline: t(`hero.scenes.${s.id}.headline`),
+        body:     t(`hero.scenes.${s.id}.body`),
+        cta:      { label: t(`hero.scenes.${s.id}.cta`), href: s.ctaHref },
+      }))
+    }
+    return base.map((api, i) => {
+      const staticMatch = SCENE_STATICS.find(s => s.id === api.id) ?? SCENE_STATICS[i % SCENE_STATICS.length]
+      return {
+        id:       api.id ?? staticMatch.id,
+        photo:    api.photo ?? api.image ?? staticMatch.photo,
+        photoPos: api.photoPos ?? staticMatch.photoPos,
+        Visual:   STATIC_VISUAL_MAP[api.id] ?? staticMatch.Visual,
+        ctaHref:  api.cta?.href ?? staticMatch.ctaHref,
+        eyebrow:  api.eyebrow ?? t(`hero.scenes.${staticMatch.id}.eyebrow`),
+        headline: api.headline ?? api.title ?? t(`hero.scenes.${staticMatch.id}.headline`),
+        body:     api.body ?? t(`hero.scenes.${staticMatch.id}.body`),
+        cta:      { label: api.cta?.label ?? t(`hero.scenes.${staticMatch.id}.cta`), href: api.cta?.href ?? staticMatch.ctaHref },
+      }
+    })
+  }, [apiScenes, t])
 
   /* Click handler for the per-scene CTA. The opening scene routes to the
    * global-presence overview panel (in-place), every other scene navigates

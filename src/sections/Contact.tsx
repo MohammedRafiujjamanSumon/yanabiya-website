@@ -5,6 +5,7 @@ import { Send, ArrowRight, Phone, Mail, User, MessageSquare } from 'lucide-react
 import Section, { Eyebrow } from '../components/Section'
 import { contactByCountry } from '../data/contact'
 import { countries } from '../data/countries'
+import { useSection } from '../hooks/useSection'
 
 type Palette = {
   /** Solid header colour. */
@@ -30,14 +31,17 @@ const FLAG_IMG: Record<string, string> = {
 export default function Contact() {
   const { t } = useTranslation()
   const [submitted, setSubmitted] = useState(false)
+  const apiContact = useSection<{ countries?: typeof contactByCountry }>('contact')
 
   const offices = useMemo(
-    () =>
-      contactByCountry.flatMap((cc) => {
+    () => {
+      const src = apiContact?.countries?.length ? apiContact.countries : contactByCountry
+      return src.flatMap((cc) => {
         const country = countries.find((c) => c.code === cc.code)
         return country ? [{ ...cc, country }] : []
-      }),
-    [],
+      })
+    },
+    [apiContact],
   )
 
   const ipt =

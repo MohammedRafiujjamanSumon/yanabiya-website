@@ -172,6 +172,12 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
       {/* Page hero header */}
       <div className={`border-b px-6 md:px-16 py-4 md:py-5 ${t.headerBg}`}>
         <div className="flex flex-col items-center text-center gap-2">
+          {slug === 'departments' && (
+            <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 border
+                              text-[10px] font-bold uppercase tracking-widest ${t.badge}`}>
+              Tier 03 — Business Support
+            </span>
+          )}
           <h1 className={`font-serif text-2xl md:text-3xl leading-tight ${t.heading}`}>
             {page.title}
           </h1>
@@ -179,6 +185,11 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
             <p className="text-[12px] text-blue-800/60 text-center leading-relaxed"
                style={{ whiteSpace: 'nowrap' }}>
               {tr('people.empowering')}
+            </p>
+          )}
+          {slug === 'departments' && (
+            <p className="text-[12px] text-emerald-800/60 text-center leading-relaxed max-w-lg">
+              Yanabiya Group's skilled professionals driving technology, operations, and client excellence across four countries.
             </p>
           )}
         </div>

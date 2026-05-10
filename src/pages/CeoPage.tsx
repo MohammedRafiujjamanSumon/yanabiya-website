@@ -3,9 +3,19 @@ import { ArrowLeft, ArrowRight, Quote } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { assets } from '../data/assets'
 import { chairmanMessage } from '../data/leadership'
+import { useSection } from '../hooks/useSection'
+
+type LeadershipData = {
+  chairman?: { name?: string; role?: string; image?: string; bio?: string }
+}
 
 export default function CeoPage() {
   const { t } = useTranslation()
+  const leadership = useSection<LeadershipData>('leadership')
+  const ch = leadership?.chairman
+  const chairmanName  = ch?.name  ?? 'S M Shamim Ahmed'
+  const chairmanPhoto = ch?.image ?? assets.chairman
+  const chairmanParas = ch?.bio ? [ch.bio] : chairmanMessage
   return (
     <div className="min-h-screen bg-brand-50 relative overflow-hidden">
 
@@ -53,8 +63,8 @@ export default function CeoPage() {
               {/* Glow */}
               <div className="absolute inset-0 rounded-2xl bg-amber-300/30 blur-2xl scale-110" />
               <img
-                src={assets.chairman}
-                alt="S M Shamim Ahmed"
+                src={chairmanPhoto}
+                alt={chairmanName}
                 className="relative w-52 md:w-64 aspect-[3/4] object-cover object-top
                            rounded-2xl shadow-2xl border-2 border-amber-200/60"
               />
@@ -63,7 +73,7 @@ export default function CeoPage() {
             </div>
             <div className="text-center md:text-left mt-2">
               <h1 className="font-serif text-xl md:text-2xl text-brand-deep leading-tight">
-                S M Shamim Ahmed
+                {chairmanName}
               </h1>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-600 mt-1">
                 {t('ceoPage.badgeLong')}
@@ -89,7 +99,7 @@ export default function CeoPage() {
             </h2>
 
             <div className="space-y-3.5 text-brand-deep/65 text-[13px] md:text-sm leading-relaxed">
-              {chairmanMessage.map((para, i) => (
+              {chairmanParas.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
             </div>

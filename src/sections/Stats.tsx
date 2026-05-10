@@ -2,6 +2,7 @@ import { Globe2, Layers, Calendar, Users } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { company } from '../data/company'
 import { useReveal } from '../hooks/useReveal'
+import { useSection } from '../hooks/useSection'
 
 const STAT_ICONS: Record<string, LucideIcon> = {
   Countries: Globe2,
@@ -41,12 +42,15 @@ function Reveal({
  * Panel uses the Yanabiya brand-green palette so the strip reads as
  * a continuation of the logo rather than another generic white card. */
 export default function Stats() {
+  const apiCompany = useSection<{ stats?: { value: string; label: string }[] }>('company')
+  const stats = apiCompany?.stats ?? company.stats
+
   return (
     <section id="stats" className="bg-brand-50 border-y border-brand-deep/10">
       <div className="bg-transparent">
         <div className="container-x px-2 md:px-4 py-2 md:py-2.5">
           <div className="grid grid-cols-4 gap-3 md:gap-4 [perspective:1400px]">
-            {company.stats.map((s, i) => {
+            {stats.map((s, i) => {
               const Icon = STAT_ICONS[s.label] ?? Globe2
               return (
                 <Reveal key={s.label} delay={i * 90}>

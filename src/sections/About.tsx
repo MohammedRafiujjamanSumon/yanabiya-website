@@ -3,6 +3,7 @@ import { ArrowUpRight, Eye, Target, Flag } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
 import { assets } from '../data/assets'
+import { useSection } from '../hooks/useSection'
 
 function Reveal({
   children,
@@ -47,6 +48,7 @@ const VMG = [
 
 export default function About() {
   const { t } = useTranslation()
+  const apiAbout = useSection<{ intro?: string; pillars?: { title: string; body: string }[] }>('about')
   return (
     <Section id="about" className="relative overflow-hidden bg-brand-50 !pt-0 !pb-0">
 
@@ -102,7 +104,7 @@ export default function About() {
             {/* Body */}
             <Reveal delay={160}>
               <p className="mt-4 text-sm md:text-[15px] text-brand-deep/65 leading-relaxed max-w-md text-justify">
-                {t('about.lead')}
+                {apiAbout?.intro || t('about.lead')}
               </p>
             </Reveal>
 
