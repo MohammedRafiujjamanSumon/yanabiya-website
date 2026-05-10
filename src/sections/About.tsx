@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight, Eye, Target, Flag } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
 import { assets } from '../data/assets'
 
@@ -17,8 +18,8 @@ function Reveal({
 const VMG = [
   {
     icon: Eye,
-    label: 'Our Vision',
-    body: 'To be the most trusted multinational group bridging cultures and markets across four continents.',
+    labelKey: 'about.visionLabel',
+    bodyKey: 'about.vision',
     to: '/about-us#vision',
     tone: 'from-cyan-50 to-sky-100',
     iconColor: 'text-sky-600',
@@ -26,8 +27,8 @@ const VMG = [
   },
   {
     icon: Target,
-    label: 'Our Mission',
-    body: 'Delivering excellence through integrity, innovation, and a commitment to people and communities.',
+    labelKey: 'about.missionLabel',
+    bodyKey: 'about.mission',
     to: '/about-us#mission',
     tone: 'from-emerald-50 to-emerald-100',
     iconColor: 'text-emerald-600',
@@ -35,8 +36,8 @@ const VMG = [
   },
   {
     icon: Flag,
-    label: 'Our Goal',
-    body: 'To expand our global footprint while creating sustainable value for partners, employees, and societies.',
+    labelKey: 'about.goalLabel',
+    bodyKey: 'about.goal',
     to: '/about-us#values',
     tone: 'from-amber-50 to-orange-100',
     iconColor: 'text-orange-500',
@@ -45,6 +46,7 @@ const VMG = [
 ]
 
 export default function About() {
+  const { t } = useTranslation()
   return (
     <Section id="about" className="relative overflow-hidden bg-brand-50 !pt-0 !pb-0">
 
@@ -54,7 +56,7 @@ export default function About() {
         <div className="container-x pt-3 pb-6">
           {/* ── About Us eyebrow ── */}
           <Reveal>
-            <Eyebrow>About Us</Eyebrow>
+            <Eyebrow>{t('about.eyebrow')}</Eyebrow>
           </Reveal>
 
           {/* ── Two-column grid: 50 / 50, inside container-x so edges align with navbar ── */}
@@ -85,7 +87,7 @@ export default function About() {
                                tracking-[0.20em] uppercase text-brand-accentDark
                                bg-brand-accentDark/8 border border-brand-accentDark/20
                                rounded-full px-4 py-1.5 mb-5 self-start">
-                Four Nations. One Trusted Group.
+                {t('about.tagline')}
               </span>
             </Reveal>
 
@@ -93,17 +95,14 @@ export default function About() {
             <Reveal delay={80}>
               <h2 className="font-serif text-xl sm:text-2xl md:text-[24px] lg:text-[28px]
                              leading-[1.25] tracking-tight text-brand-deep max-w-lg">
-                Global Ambition.{' '}
-                <span className="text-brand-accentDark">Grounded in Integrity.</span>
+                {t('about.title')}
               </h2>
             </Reveal>
 
             {/* Body */}
             <Reveal delay={160}>
               <p className="mt-4 text-sm md:text-[15px] text-brand-deep/65 leading-relaxed max-w-md text-justify">
-                Headquartered in Muscat and operating across the United Kingdom,
-                Bangladesh, and the United States. Yanabiya unites four cultures
-                under one shared standard of trust, professionalism, and long-term vision.
+                {t('about.lead')}
               </p>
             </Reveal>
 
@@ -119,15 +118,15 @@ export default function About() {
                            hover:-translate-y-0.5
                            hover:shadow-[0_14px_32px_rgba(15,58,35,0.30)]"
               >
-                Read More
+                {t('about.readMore')}
                 <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </Reveal>
 
             {/* Vision / Mission / Goal cards, compact, bottom aligns with image */}
             <div className="mt-6 grid grid-cols-3 gap-2 md:gap-3">
-              {VMG.map(({ icon: Icon, label, body, to, tone, iconColor, border }, i) => (
-                <Reveal key={label} delay={320 + i * 100}>
+              {VMG.map(({ icon: Icon, labelKey, bodyKey, to, tone, iconColor, border }, i) => (
+                <Reveal key={labelKey} delay={320 + i * 100}>
                   <div className={`group relative rounded-xl bg-gradient-to-br ${tone}
                                   border ${border} p-3
                                   shadow-[0_4px_16px_rgba(15,58,35,0.06)]
@@ -142,12 +141,12 @@ export default function About() {
                         <Icon size={12} strokeWidth={2} />
                       </div>
                       <h3 className="font-serif text-[13px] font-semibold text-brand-deep leading-tight">
-                        {label}
+                        {t(labelKey)}
                       </h3>
                     </div>
 
                     <p className="text-[11px] text-brand-deep/60 leading-snug mb-2 flex-1">
-                      {body}
+                      {t(bodyKey)}
                     </p>
 
                     <Link
@@ -155,7 +154,7 @@ export default function About() {
                       className={`inline-flex items-center gap-0.5 text-[10px] font-semibold
                                    ${iconColor} hover:underline underline-offset-2 mt-auto`}
                     >
-                      Read More
+                      {t('about.readMore')}
                       <ArrowUpRight size={9} />
                     </Link>
                   </div>

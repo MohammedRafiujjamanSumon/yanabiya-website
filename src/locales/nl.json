@@ -1,0 +1,354 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Over Ons",
+    "businesses": "Onze Diensten",
+    "solutions": "Oplossingen",
+    "partnerships": "Partnerschappen",
+    "global": "Wereldwijde Aanwezigheid",
+    "csr": "Impact & MVO",
+    "network": "Netwerk",
+    "leadership": "Leiderschap",
+    "strategy": "Strategie",
+    "insights": "Inzichten",
+    "careers": "Carrières",
+    "contact": "Neem Contact Op",
+    "ourNetwork": "Ons Netwerk",
+    "ourCommunity": "Onze Gemeenschap",
+    "ourPeople": "Ons Team",
+    "boardOfMembers": "Raad van Bestuur",
+    "chairman": "Voorzitter & CEO",
+    "viceChairman": "Vice-Voorzitter"
+  },
+  "topbar": {
+    "operating": "Actief in 4 landen",
+    "downloadPdf": "PDF downloaden",
+    "tagline": "Kansen Verbinden. Mondiale Bedrijven Bouwen."
+  },
+  "hero": {
+    "welcome": "Yanabiya Group",
+    "tagline": "Kansen Verbinden. Mondiale Bedrijven Bouwen.",
+    "desc1": "Een gediversifieerde mondiale groep, meer dan tien jaar op vertrouwen geleid.",
+    "desc2": "Zes divisies. Vier landen. Één platform.",
+    "desc3": "Innovatie, mondiale reikwijdte, verantwoorde groei.",
+    "cta1": "Ontdek bedrijven",
+    "cta2": "Word partner",
+    "stats": {
+      "countries": "Landen",
+      "industries": "Sectoren",
+      "experience": "Ervaring",
+      "clients": "Klanten"
+    },
+    "welcomeTo": "Welkom bij",
+    "scroll": "Scrollen",
+    "scenes": {
+      "opening": {
+        "eyebrow": "Scène 01 — Opening",
+        "headline": "Bedrijven wereldwijd verbinden",
+        "body": "Een wereld gedreven door verbinding, innovatie en kansen.",
+        "cta": "Wereldwijde aanwezigheid verkennen"
+      },
+      "about": {
+        "eyebrow": "Scène 02 — De Groep",
+        "headline": "Een dynamische groep bedrijven.",
+        "body": "Een geïntegreerd wereldwijd bedrijfsecosysteem opbouwen in meerdere sectoren.",
+        "cta": "Meer over ons"
+      },
+      "services": {
+        "eyebrow": "Scène 03 — Diensten",
+        "headline": "Volledige zakelijke oplossingen.",
+        "body": "Internationale handel, strategisch advies, logistiek, investeringen.",
+        "cta": "Onze diensten verkennen"
+      },
+      "partners": {
+        "eyebrow": "Scène 04 — Vertrouwensnetwerk",
+        "headline": "Vertrouwd door partners wereldwijd.",
+        "body": "Wij werken samen met toonaangevende organisaties om langetermijnwaarde te creëren.",
+        "cta": "Netwerk verkennen"
+      },
+      "community": {
+        "eyebrow": "Scène 05 — Gemeenschap",
+        "headline": "Groei voorbij zakendoen.",
+        "body": "Gemeenschappen versterken en duurzame impact creëren.",
+        "cta": "Gemeenschap verkennen"
+      },
+      "leadership": {
+        "eyebrow": "Scène 06 — Leiderschap",
+        "headline": "Visionair leiderschap.",
+        "body": "Ideeën omzetten in mondiale succesverhalen.",
+        "cta": "Ons leiderschapsteam ontmoeten"
+      },
+      "closing": {
+        "eyebrow": "Scène 07 — Afsluiting",
+        "headline": "Yanabiya Group",
+        "body": "De Toekomst Samen Bouwen.",
+        "cta": "Contact opnemen"
+      }
+    }
+  },
+  "about": {
+    "eyebrow": "Over Ons",
+    "title": "Een veelzijdige groep, gevestigd in Muscat, actief op vier continenten.",
+    "lead": "Yanabiya Gulf International Business & Trade levert internetdiensten, softwareoplossingen, IT-advies, handel en bedrijfsautomatisering in de Golf, Azië, Europa en Noord-Amerika.",
+    "missionLabel": "Missie",
+    "missionTitle": "Waarom wij bestaan",
+    "mission": "Eersteklas internetdiensten en optimale softwareoplossingen leveren tegen redelijke prijzen — gebouwd op drie pijlers: Mensen, Processen en Klanten.",
+    "visionLabel": "Visie",
+    "visionTitle": "Waar we naartoe gaan",
+    "vision": "Een toonaangevende wereldwijde speler worden in kwalitatieve web- en softwareontwikkelingsoplossingen, om klanten te helpen hun groei te versnellen.",
+    "valuesTitle": "Onze Kernwaarden",
+    "tagline": "Vier Naties. Één Vertrouwde Groep.",
+    "readMore": "Meer Lezen",
+    "goalLabel": "Ons Doel",
+    "goal": "Onze wereldwijde aanwezigheid uitbreiden terwijl we duurzame waarde creëren voor partners, werknemers en samenlevingen."
+  },
+  "businesses": {
+    "eyebrow": "Onze Diensten",
+    "title": "Zes divisies die ondernemingen en handel op alle continenten aandrijven.",
+    "sub": "Van bedrijfssoftware tot internationale handel — volledig end-to-end gebouwd."
+  },
+  "solutions": {
+    "eyebrow": "Oplossingen",
+    "title": "Ontworpen om echte bedrijfsproblemen op te lossen.",
+    "sub": "Een moderne technologiestack geleverd door ervaren ingenieurs — van maatwerksoftware tot cloud, beveiliging en analyses."
+  },
+  "partnerships": {
+    "eyebrow": "Partnerschappen",
+    "title": "Aangedreven door 's werelds toonaangevende technologieleveranciers.",
+    "sub": "We werken samen met mondiale technologieleiders om enterprise-oplossingen te leveren in cloud, software, hardware en beveiliging.",
+    "valuableClients": "Onze Waardevolle Klanten",
+    "clients": "Onze Klanten",
+    "membership": "Onze Lidmaatschappen",
+    "partners": "Onze Partners",
+    "affiliations": "Onze Affiliaties"
+  },
+  "global": {
+    "eyebrow": "Wereldwijde Aanwezigheid",
+    "title": "Actief in vier landen met negen entiteiten.",
+    "sub": "Onze Yanabiya Group is momenteel actief in vier landen en plant geleidelijke uitbreiding naar meer markten. In elk land verbeteren en breiden we dagelijks onze bedrijfscategorieën uit.",
+    "entities": "Entiteiten",
+    "headquarters": "Hoofdkantoor",
+    "europe": "Europese Operaties",
+    "southAsia": "Zuid-Aziatische Operaties",
+    "northAmerica": "Noord-Amerikaanse Operaties",
+    "cta": "Wereldwijde Aanwezigheid Verkennen"
+  },
+  "csr": {
+    "eyebrow": "Impact & MVO",
+    "title": "Iets teruggeven aan de gemeenschappen die we dienen.",
+    "sub": "Yanabiya Group is toegewijd aan gestructureerde donaties en welzijnsprogramma's — gericht op transparantie en blijvende impact.",
+    "items": {
+      "welfare": {
+        "t": "Gemeenschapswelzijn",
+        "d": "Humanitaire hulpprogramma's in de regio's waar we actief zijn."
+      },
+      "education": {
+        "t": "Onderwijs",
+        "d": "Beurzen en vaardigheidsontwikkelingsinitiatieven voor kansarme gemeenschappen."
+      },
+      "health": {
+        "t": "Toegang tot Gezondheidszorg",
+        "d": "Ondersteuning van klinieken, mobiele kampen en noodhulp."
+      },
+      "empower": {
+        "t": "Economische Empowerment",
+        "d": "Beroepsopleiding en ondersteuning van kleine bedrijven."
+      }
+    },
+    "sustainability": {
+      "title": "Duurzame Groei",
+      "desc": "Zakelijke praktijken ontwikkelen die het milieu beschermen en langetermijnwaarde ondersteunen voor alle stakeholders.",
+      "items": {
+        "green": {
+          "t": "Groene Operaties",
+          "d": "Energiezuinige kantoren en verantwoord gebruik van hulpbronnen."
+        },
+        "circular": {
+          "t": "Circulaire Praktijken",
+          "d": "Hergebruiken, recyclen en afval minimaliseren in inkoop en logistiek."
+        },
+        "climate": {
+          "t": "Klimaatverbintenis",
+          "d": "Boomplantprogramma's en bedrijfsmodellen met lage emissies."
+        },
+        "inclusive": {
+          "t": "Inclusieve Groei",
+          "d": "Eerlijke werkgelegenheid en leverancierspartnerschappen die gemeenschappen versterken."
+        }
+      }
+    },
+    "community": {
+      "title": "Gemeenschapszorg",
+      "desc": "Gestructureerde liefdadigheidsdonaties en welzijnsprogramma's gericht op transparantie, waardigheid en blijvende impact."
+    },
+    "stats": {
+      "beneficiaries": "Begunstigden",
+      "countries": "Landen",
+      "track": "Staat van dienst"
+    }
+  },
+  "network": {
+    "eyebrow": "Netwerk",
+    "title": "Vertrouwd Netwerk",
+    "sub": "Kansen wereldwijd verbinden om sterke, schaalbare mondiale bedrijven op te bouwen.",
+    "readMore": "Meer lezen",
+    "memberships": "Lidmaatschappen & Affiliaties",
+    "stats": {
+      "clients": "Actieve Klanten",
+      "entities": "Groepsentiteiten",
+      "countries": "Landen",
+      "track": "Staat van Dienst"
+    }
+  },
+  "leadership": {
+    "eyebrow": "Leiderschap",
+    "title": "Geleid door ervaring. Gedreven door integriteit.",
+    "sub": "Ons leiderschapsteam combineert decennia mondiale bedrijfsexpertise met diep regionaal inzicht in de Golf, Zuid-Azië, het VK en de VS.",
+    "core": "Kernteam",
+    "chairman": "Oprichter & Voorzitter",
+    "viceChairman": "Vice-Voorzitter",
+    "chairmanMsg": "Yanabiya Group staat voor het Keurmerk van Kwaliteit & Professionaliteit. Ons succes komt van het vasthouden aan kernwaarden. We leveren wat we beloven en stellen klanttevredenheid boven alles.",
+    "viceChairmanMsg": "Onze website presenteert onze visie, missie, infrastructuur, expertise en toekomstplannen. We nodigen potentiële klanten en partners uit om onze divisies te verkennen en contact met ons op te nemen.",
+    "readMore": "Lees meer",
+    "tier1Kicker": "Niveau 01 — Bestuur & Advies",
+    "tier1Title": "Raad van Leden",
+    "tier2Kicker": "Niveau 02 — Uitvoerend Management",
+    "tier2Title": "Wereldwijd Uitvoerend Management",
+    "tier3Kicker": "Laag 03 — Regionale Operaties",
+    "tier3Title": "Regionaal Operationeel Team"
+  },
+  "strategy": {
+    "eyebrow": "Strategie & Innovatie",
+    "title": "Waar strategie ontmoet uitvoering.",
+    "sub": "Onze innovatieroadmap is gebouwd op vier pijlers die technologie, talent en processen afstemmen op meetbare klantresultaten.",
+    "focus": "Innovatiefocusgebieden",
+    "pillars": {
+      "digital": {
+        "t": "Digitale Transformatie",
+        "d": "Bedrijven helpen verouderde systemen te moderniseren en cloud-first architecturen te adopteren."
+      },
+      "talent": {
+        "t": "Talengedreven Groei",
+        "d": "Multidisciplinaire teams kweken in vier landen."
+      },
+      "process": {
+        "t": "Procesexcellentie",
+        "d": "Snelheid, kwaliteit en kosten in elke opdracht balanceren."
+      },
+      "customer": {
+        "t": "Klantgerichte Innovatie",
+        "d": "Oplossingen ontworpen rondom klantproblemen, geen generieke sjablonen."
+      }
+    },
+    "focus_items": {
+      "erp": {
+        "t": "ERP & Bedrijfssoftware",
+        "d": "End-to-end ERP-ontwerp en -implementatie."
+      },
+      "cloud": {
+        "t": "Cloudinfrastructuur",
+        "d": "AWS- en Azure-architectuur en beheerde diensten."
+      },
+      "cyber": {
+        "t": "Cyberbeveiliging",
+        "d": "Penetratietests en ethisch hacken."
+      },
+      "data": {
+        "t": "Data-analyse & BI",
+        "d": "Dashboards, ETL-pipelines en beslissingsintelligentie."
+      },
+      "ui": {
+        "t": "Moderne UI/UX",
+        "d": "Onderzoeksgericht product- en interface-engineering."
+      },
+      "rd": {
+        "t": "O&O-initiatieven",
+        "d": "Continue experimenten met opkomende technologieën."
+      }
+    }
+  },
+  "insights": {
+    "eyebrow": "Inzichten",
+    "title": "Gedachten van het Yanabiya-team.",
+    "sub": "Artikelen, casestudies en thought leadership over digitale transformatie, handel, beveiliging en cloud.",
+    "readMore": "Meer lezen"
+  },
+  "careers": {
+    "eyebrow": "Carrières",
+    "title": "Bouw je carrière op met een mondiale groep.",
+    "sub": "Sluit je aan bij een team dat vakmanschap, eigenaarschap en continu leren waardeert.",
+    "rolesTitle": "Rollen waarvoor we aanwerven",
+    "open": "Open",
+    "sendCv": "Stuur je cv en een korte notitie over wat je wil doen.",
+    "reasons": {
+      "global": {
+        "t": "Wereldwijde Ervaring",
+        "d": "Werk in vier landen en tientallen sectoren."
+      },
+      "stack": {
+        "t": "Moderne Stack",
+        "d": "Cloud, AI, beveiliging en full-stack development."
+      },
+      "growth": {
+        "t": "Loopbaanontwikkeling",
+        "d": "Flexibele, lonende paden met echte verantwoordelijkheid."
+      },
+      "culture": {
+        "t": "Prestatiecultuur",
+        "d": "Team eerst met erkenning voor individuele impact."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Laten we het gesprek beginnen.",
+    "sub": "Neem contact op met ons hoofdkantoor in Muscat of een van onze kantoren in het VK, Bangladesh en de VS.",
+    "address": "Adres",
+    "phone": "Telefoon",
+    "email": "E-mail",
+    "hours": "Openingstijden",
+    "languages": "Talen",
+    "send": "Stuur een bericht",
+    "name": "Volledige naam",
+    "emailField": "E-mailadres",
+    "company": "Bedrijf (optioneel)",
+    "phoneField": "Telefoon (optioneel)",
+    "subject": "Onderwerp",
+    "message": "Vertel ons over uw project of vraag…",
+    "submit": "Bericht versturen",
+    "thanks": "Bedankt — uw bericht is ontvangen.",
+    "visitOffice": "Kantoor bezoeken"
+  },
+  "footer": {
+    "rights": "Alle rechten voorbehouden.",
+    "stamp": "Het Keurmerk van Kwaliteit & Professionaliteit",
+    "hq": "HK",
+    "postalAddress": "Postadres",
+    "headOffice": "Hoofdkantoor",
+    "newsletter": "Nieuwsbrief",
+    "newsletterDesc": "Blijf op de hoogte van nieuws en analyses van Yanabiya Group",
+    "emailPlaceholder": "Uw e-mailadres",
+    "subscribe": "Abonneren",
+    "tagline": "Wereldwijd Ondernemingsplatform",
+    "desc": "Hoogimpact ondernemingen bouwen en exploiteren in technologie, handel, talent en consultancy — wereldwijd.",
+    "quickLinks": "Snelle Links",
+    "groupProfile": "Groepsprofiel",
+    "links": {
+      "home": "Home",
+      "about": "Over Ons",
+      "global": "Wereldwijde Aanwezigheid",
+      "businesses": "Onze Diensten",
+      "network": "Vertrouwensnetwerk",
+      "contact": "Contact",
+      "profile": "Groepsprofiel",
+      "story": "Ons Verhaal",
+      "contactNet": "Contactnetwerk",
+      "management": "Ons Management",
+      "blog": "Blog",
+      "sustainable": "Duurzame Groei",
+      "community": "Gemeenschapszorg",
+      "careers": "Carrières",
+      "ecommerce": "Yanabiya E-Commerce ↗"
+    }
+  }
+}

@@ -291,7 +291,7 @@ export default function CountryDetail({ codeOverride }: { codeOverride?: string 
   const parentCompany = (c as { parentCompany?: string }).parentCompany
   const entitiesLabel = (c as { entitiesLabel?: string }).entitiesLabel ?? 'Operating Entities'
   const activities = (c as {
-    activities?: { code: string; name: string; icon?: string; image?: string }[]
+    activities?: { code: string; name: string; icon?: LucideIcon; image?: string }[]
   }).activities
   const hideActivityCodes = !!(c as { hideActivityCodes?: boolean }).hideActivityCodes
 
@@ -623,7 +623,7 @@ function BusinessActivities({
   countryName,
   hideCodes = false,
 }: {
-  activities: { code: string; name: string; icon?: string; image?: string }[]
+  activities: { code: string; name: string; icon?: LucideIcon; image?: string }[]
   countryName: string
   hideCodes?: boolean
 }) {
@@ -672,8 +672,11 @@ function BusinessActivities({
                       {a.code}
                     </div>
                   )}
-                  <span className="absolute bottom-2 left-2 text-2xl leading-none drop-shadow-md">
-                    {a.icon ?? '•'}
+                  <span className="absolute bottom-2 left-2 leading-none drop-shadow-md">
+                    {a.icon
+                      ? <a.icon size={20} className="text-white" />
+                      : <span className="text-white text-xl">•</span>
+                    }
                   </span>
                 </div>
                 {/* Activity name */}

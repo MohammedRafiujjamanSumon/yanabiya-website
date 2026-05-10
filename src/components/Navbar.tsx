@@ -55,10 +55,18 @@ export default function Navbar() {
     { label: t('nav.home'),       id: 'home'         },
     { label: t('nav.about'),      id: 'about'        },
     { label: t('nav.businesses'), id: 'businesses'   },
-    { label: t('nav.global'),     id: 'global'       },
-    { label: 'Our Network',       id: 'partnerships' },
-    { label: 'Our Community',     id: 'community'    },
-    { label: 'Our People',         id: 'leadership'   },
+    { label: t('nav.global'),         id: 'global'       },
+    { label: t('nav.ourNetwork'),     id: 'partnerships' },
+    { label: t('nav.ourCommunity'),   id: 'community'    },
+    {
+      label: t('nav.ourPeople'),
+      parentSection: 'leadership',
+      items: [
+        { id: 'people-board', label: t('nav.boardOfMembers'), href: '/people/board'         },
+        { id: 'people-ceo',   label: t('nav.chairman'),       href: '/people/ceo'           },
+        { id: 'people-vc',    label: t('nav.viceChairman'),   href: '/people/vice-chairman' },
+      ],
+    },
   ]
 
   useEffect(() => {

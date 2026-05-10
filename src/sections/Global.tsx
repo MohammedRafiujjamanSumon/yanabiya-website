@@ -69,8 +69,7 @@ export default function Global() {
           <Reveal delay={120}>
             <h2 className="font-serif text-[16px]
                            leading-snug tracking-tight text-brand-deep lg:whitespace-nowrap">
-              Four countries, four offices,{' '}
-              <span className="text-brand-accentDark">one unified Yanabiya team.</span>
+              {t('global.title')}
             </h2>
           </Reveal>
         </div>
@@ -242,7 +241,7 @@ export default function Global() {
                          shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
                          transition-all duration-300"
             >
-              Explore Global Presence
+              {t('global.cta')}
               <ArrowRight size={14} />
             </button>
           </div>

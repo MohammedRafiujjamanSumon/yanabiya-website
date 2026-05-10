@@ -5,6 +5,7 @@ import {
   Cpu, Globe2, Shirt, Handshake, Building2, Users,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
 import { businesses } from '../data/businesses'
 import { useReveal } from '../hooks/useReveal'
@@ -995,6 +996,7 @@ function NodeDetailPanel({
 }
 
 export default function Businesses() {
+  const { t } = useTranslation()
   const [selected, setSelected] = useState<string | 'overview' | null>(null)
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -1026,12 +1028,11 @@ export default function Businesses() {
           {/* TOP, heading */}
           <div className="w-full max-w-3xl mx-auto text-center order-1">
             <Reveal>
-              <Eyebrow>Our Service</Eyebrow>
+              <Eyebrow>{t('businesses.eyebrow')}</Eyebrow>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-serif text-[16px] leading-snug tracking-tight text-brand-deep">
-                Eight specialised divisions,{' '}
-                <span className="text-brand-accentDark">delivering value across continents.</span>
+                {t('businesses.title')}
               </h2>
             </Reveal>
           </div>

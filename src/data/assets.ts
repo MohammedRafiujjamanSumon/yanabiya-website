@@ -30,6 +30,26 @@ export const assets = {
     elaiyaraja: 'https://yanabiyagroup.com/img/slider/13.png',
   },
 
+  // People / leadership profile photos
+  people: {
+    momiimAhmed:     `${BASE}images/people/momim-ahmed.jpg`,
+    khalidSulaimani: `${BASE}images/people/khalid-sulaimani.jpg`,
+    sumonAhmed:      `${BASE}images/people/sumon-ahmed.jpg`,
+    jhohoraAkter:    `${BASE}images/people/jhohora-akter.jpg`,
+    jasminAkter:     `${BASE}images/people/jasmin-akter.jpg`,
+    alMontasar:      `${BASE}images/people/al-montasar.jpg`,
+    maysaYeasmin:    `${BASE}images/people/maysa-yeasmin.jpg`,
+    mohammedRashid:  `${BASE}images/people/mohammed-rashid.jpg`,
+    maheswaran:      `${BASE}images/people/maheswaran.jpg`,
+    mofijurKhan:     `${BASE}images/people/mofijur-khan.jpg`,
+    ahsanSabbir:     `${BASE}images/people/ahsan-sabbir.jpg`,
+    sufeanAhmed:     `${BASE}images/people/sufean-ahmed.jpg`,
+    badarAlShaqsi:   `${BASE}images/people/badar-al-shaqsi.jpg`,
+    ismailSulaimani: `${BASE}images/people/ismail-sulaimani.jpg`,
+    mohammedAlBakri: `${BASE}images/people/mohammed-al-bakri.jpg`,
+    salimSuleimani:  `${BASE}images/people/salim-suleimani.jpg`,
+  },
+
   // Partner logo URLs (used directly from yanabiyagroup.com)
   partners: {
     aws: 'https://yanabiyagroup.com/img/par/aws.jpg',

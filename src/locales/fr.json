@@ -1,0 +1,354 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "businesses": "Nos Services",
+    "solutions": "Solutions",
+    "partnerships": "Partenariats",
+    "global": "Présence Mondiale",
+    "csr": "Impact & RSE",
+    "network": "Réseau",
+    "leadership": "Direction",
+    "strategy": "Stratégie",
+    "insights": "Analyses",
+    "careers": "Carrières",
+    "contact": "Nous Contacter",
+    "ourNetwork": "Notre Réseau",
+    "ourCommunity": "Notre Communauté",
+    "ourPeople": "Notre Équipe",
+    "boardOfMembers": "Conseil d'Administration",
+    "chairman": "PDG & Président",
+    "viceChairman": "Vice-Président"
+  },
+  "topbar": {
+    "operating": "Présents dans 4 pays",
+    "downloadPdf": "Télécharger PDF",
+    "tagline": "Connecter les Opportunités. Construire des Entreprises Mondiales."
+  },
+  "hero": {
+    "welcome": "Yanabiya Group",
+    "tagline": "Connecter les Opportunités. Construire des Entreprises Mondiales.",
+    "desc1": "Un groupe mondial diversifié, guidé par la confiance depuis plus d'une décennie.",
+    "desc2": "Six divisions. Quatre pays. Une plateforme.",
+    "desc3": "Innovation, portée mondiale, croissance responsable.",
+    "cta1": "Découvrir nos activités",
+    "cta2": "Devenir partenaire",
+    "stats": {
+      "countries": "Pays",
+      "industries": "Secteurs",
+      "experience": "Expérience",
+      "clients": "Clients"
+    },
+    "welcomeTo": "Bienvenue chez",
+    "scroll": "Défiler",
+    "scenes": {
+      "opening": {
+        "eyebrow": "Scène 01 — Ouverture",
+        "headline": "Connecter les Entreprises au-delà des Frontières",
+        "body": "Un monde guidé par la connexion, l'innovation et l'opportunité.",
+        "cta": "Explorer la Présence Mondiale"
+      },
+      "about": {
+        "eyebrow": "Scène 02 — Le Groupe",
+        "headline": "Un groupe d'entreprises dynamiques.",
+        "body": "Construire un écosystème d'affaires mondial intégré dans de multiples industries.",
+        "cta": "En savoir plus sur nous"
+      },
+      "services": {
+        "eyebrow": "Scène 03 — Services",
+        "headline": "Solutions d'affaires complètes.",
+        "body": "Commerce international, conseil stratégique, logistique, investissement.",
+        "cta": "Explorer nos services"
+      },
+      "partners": {
+        "eyebrow": "Scène 04 — Réseau de Confiance",
+        "headline": "Reconnu par les partenaires du monde entier.",
+        "body": "Nous collaborons avec des organisations leaders pour créer de la valeur à long terme.",
+        "cta": "Explorer le Réseau"
+      },
+      "community": {
+        "eyebrow": "Scène 05 — Communauté",
+        "headline": "La croissance au-delà des affaires.",
+        "body": "Autonomiser les communautés et créer un impact durable.",
+        "cta": "Explorer la Communauté"
+      },
+      "leadership": {
+        "eyebrow": "Scène 06 — Direction",
+        "headline": "Leadership visionnaire.",
+        "body": "Transformer les idées en succès mondiaux.",
+        "cta": "Rencontrer notre équipe"
+      },
+      "closing": {
+        "eyebrow": "Scène 07 — Clôture",
+        "headline": "Yanabiya Group",
+        "body": "Construire l'Avenir, Ensemble.",
+        "cta": "Prendre Contact"
+      }
+    }
+  },
+  "about": {
+    "eyebrow": "À propos",
+    "title": "Un groupe polyvalent, basé à Mascate, actif sur quatre continents.",
+    "lead": "Yanabiya Gulf International Business & Trade fournit des services Internet, des solutions logicielles, du conseil IT, du commerce et de l'automatisation des affaires dans le Golfe, l'Asie, l'Europe et l'Amérique du Nord.",
+    "missionLabel": "Mission",
+    "missionTitle": "Pourquoi nous existons",
+    "mission": "Fournir des services Internet de première classe et des solutions logicielles optimales à des prix raisonnables, fondés sur trois piliers : Personnes, Processus et Clients.",
+    "visionLabel": "Vision",
+    "visionTitle": "Où nous allons",
+    "vision": "Devenir un acteur mondial de premier plan dans les solutions de développement web et logiciels de qualité, en aidant les clients à accélérer leur croissance.",
+    "valuesTitle": "Nos Valeurs Fondamentales",
+    "tagline": "Quatre Nations. Un Groupe de Confiance.",
+    "readMore": "En Savoir Plus",
+    "goalLabel": "Notre Objectif",
+    "goal": "Développer notre empreinte mondiale en créant une valeur durable pour nos partenaires, employés et sociétés."
+  },
+  "businesses": {
+    "eyebrow": "Nos Services",
+    "title": "Six divisions propulsant les entreprises et le commerce à travers les continents.",
+    "sub": "Du logiciel d'entreprise au commerce international — construit de bout en bout."
+  },
+  "solutions": {
+    "eyebrow": "Solutions",
+    "title": "Conçues pour résoudre de véritables problèmes d'entreprise.",
+    "sub": "Une pile technologique moderne délivrée par des ingénieurs expérimentés — du logiciel sur mesure au cloud, à la sécurité et aux analyses."
+  },
+  "partnerships": {
+    "eyebrow": "Partenariats",
+    "title": "Propulsées par les meilleurs fournisseurs de technologies mondiaux.",
+    "sub": "Nous nous associons avec des leaders technologiques mondiaux pour fournir des solutions de niveau entreprise dans le cloud, les logiciels, le matériel et la sécurité.",
+    "valuableClients": "Nos Clients Précieux",
+    "clients": "Nos Clients",
+    "membership": "Nos Adhésions",
+    "partners": "Nos Partenaires",
+    "affiliations": "Nos Affiliations"
+  },
+  "global": {
+    "eyebrow": "Présence Mondiale",
+    "title": "Actif dans quatre pays avec neuf entités.",
+    "sub": "Notre groupe Yanabiya opère actuellement dans quatre pays et prévoit de s'étendre progressivement. Dans chaque pays, nous améliorons et élargissons continuellement nos catégories d'activités.",
+    "entities": "Entités",
+    "headquarters": "Siège Social",
+    "europe": "Opérations Européennes",
+    "southAsia": "Opérations Asie du Sud",
+    "northAmerica": "Opérations Amérique du Nord",
+    "cta": "Explorer la Présence Mondiale"
+  },
+  "csr": {
+    "eyebrow": "Impact & RSE",
+    "title": "Donner en retour aux communautés que nous servons.",
+    "sub": "Yanabiya Group est engagé dans des dons structurés et des programmes de bien-être — axés sur la transparence et un impact durable.",
+    "items": {
+      "welfare": {
+        "t": "Bien-être Communautaire",
+        "d": "Programmes d'aide humanitaire dans les régions où nous opérons."
+      },
+      "education": {
+        "t": "Éducation",
+        "d": "Bourses et initiatives de développement des compétences pour les communautés défavorisées."
+      },
+      "health": {
+        "t": "Accès aux Soins",
+        "d": "Soutien aux cliniques, camps mobiles et secours d'urgence."
+      },
+      "empower": {
+        "t": "Autonomisation Économique",
+        "d": "Formation professionnelle et soutien aux petites entreprises."
+      }
+    },
+    "sustainability": {
+      "title": "Croissance Durable",
+      "desc": "Développer des pratiques commerciales qui protègent l'environnement et soutiennent la valeur à long terme pour chaque partie prenante.",
+      "items": {
+        "green": {
+          "t": "Opérations Vertes",
+          "d": "Bureaux économes en énergie et utilisation responsable des ressources."
+        },
+        "circular": {
+          "t": "Pratiques Circulaires",
+          "d": "Réutiliser, recycler et minimiser les déchets dans les achats et la logistique."
+        },
+        "climate": {
+          "t": "Engagement Climatique",
+          "d": "Programmes de plantation d'arbres et modèles d'affaires à faibles émissions."
+        },
+        "inclusive": {
+          "t": "Croissance Inclusive",
+          "d": "Emploi équitable et partenariats fournisseurs qui renforcent les communautés."
+        }
+      }
+    },
+    "community": {
+      "title": "Soin Communautaire",
+      "desc": "Dons caritatifs structurés et programmes de bien-être axés sur la transparence, la dignité et l'impact durable."
+    },
+    "stats": {
+      "beneficiaries": "Bénéficiaires",
+      "countries": "Pays",
+      "track": "Bilan"
+    }
+  },
+  "network": {
+    "eyebrow": "Réseau",
+    "title": "Réseau de Confiance",
+    "sub": "Connecter les Opportunités dans le Monde Entier pour Construire des Entreprises Mondiales Solides et Évolutives.",
+    "readMore": "Lire Plus",
+    "memberships": "Adhésions & Affiliations",
+    "stats": {
+      "clients": "Clients Actifs",
+      "entities": "Entités du Groupe",
+      "countries": "Pays",
+      "track": "Bilan"
+    }
+  },
+  "leadership": {
+    "eyebrow": "Direction",
+    "title": "Guidée par l'expérience. Portée par l'intégrité.",
+    "sub": "Notre équipe de direction unit des décennies d'expertise mondiale avec une connaissance régionale approfondie du Golfe, de l'Asie du Sud, du Royaume-Uni et des États-Unis.",
+    "core": "Équipe Principale",
+    "chairman": "Fondateur & Président",
+    "viceChairman": "Vice-Président",
+    "chairmanMsg": "Yanabiya Group représente le Sceau de Qualité et de Professionnalisme. Notre succès vient du respect de nos valeurs fondamentales. Nous tenons nos promesses et plaçons la satisfaction client au premier plan.",
+    "viceChairmanMsg": "Notre site présente notre vision, mission, infrastructure, expertise et plans futurs. Nous invitons les clients et partenaires potentiels à explorer nos divisions et à nous contacter.",
+    "readMore": "Lire Plus",
+    "tier1Kicker": "Niveau 01 — Conseil & Conseil",
+    "tier1Title": "Conseil des Membres",
+    "tier2Kicker": "Niveau 02 — Direction Exécutive",
+    "tier2Title": "Direction Générale Mondiale",
+    "tier3Kicker": "Niveau 03 — Opérations Régionales",
+    "tier3Title": "Équipe des Opérations Régionales"
+  },
+  "strategy": {
+    "eyebrow": "Stratégie & Innovation",
+    "title": "Là où la stratégie rencontre l'exécution.",
+    "sub": "Notre feuille de route d'innovation est construite sur quatre piliers qui alignent technologie, talent et processus avec des résultats mesurables.",
+    "focus": "Domaines d'Innovation",
+    "pillars": {
+      "digital": {
+        "t": "Transformation Numérique",
+        "d": "Aider les entreprises à moderniser leurs systèmes et adopter des architectures cloud."
+      },
+      "talent": {
+        "t": "Croissance par les Talents",
+        "d": "Cultiver des équipes multidisciplinaires dans quatre pays."
+      },
+      "process": {
+        "t": "Excellence des Processus",
+        "d": "Équilibrer vitesse, qualité et coût dans chaque engagement."
+      },
+      "customer": {
+        "t": "Innovation Centrée Client",
+        "d": "Solutions conçues autour des problèmes clients, pas de modèles génériques."
+      }
+    },
+    "focus_items": {
+      "erp": {
+        "t": "ERP & Logiciels d'Entreprise",
+        "d": "Conception et déploiement ERP de bout en bout."
+      },
+      "cloud": {
+        "t": "Infrastructure Cloud",
+        "d": "Architecture AWS et Azure et services gérés."
+      },
+      "cyber": {
+        "t": "Cybersécurité",
+        "d": "Tests de pénétration et pratiques de piratage éthique."
+      },
+      "data": {
+        "t": "Analytique de Données & BI",
+        "d": "Tableaux de bord, pipelines ETL et intelligence décisionnelle."
+      },
+      "ui": {
+        "t": "UI/UX Moderne",
+        "d": "Ingénierie de produit et d'interface guidée par la recherche."
+      },
+      "rd": {
+        "t": "Initiatives R&D",
+        "d": "Expérimentation continue dans les technologies émergentes."
+      }
+    }
+  },
+  "insights": {
+    "eyebrow": "Analyses",
+    "title": "Réflexions de l'équipe Yanabiya.",
+    "sub": "Articles, études de cas et leadership éclairé couvrant la transformation numérique, le commerce, la sécurité et le cloud.",
+    "readMore": "Lire plus"
+  },
+  "careers": {
+    "eyebrow": "Carrières",
+    "title": "Construisez votre carrière avec un groupe mondial.",
+    "sub": "Rejoignez une équipe qui valorise le savoir-faire, la responsabilité et l'apprentissage continu.",
+    "rolesTitle": "Postes pour lesquels nous recrutons",
+    "open": "Ouvert",
+    "sendCv": "Envoyez votre CV et une courte note sur ce que vous aimeriez faire.",
+    "reasons": {
+      "global": {
+        "t": "Exposition Mondiale",
+        "d": "Travaillez dans quatre pays et des dizaines d'industries."
+      },
+      "stack": {
+        "t": "Stack Moderne",
+        "d": "Cloud, IA, sécurité et développement full-stack."
+      },
+      "growth": {
+        "t": "Évolution de Carrière",
+        "d": "Des parcours flexibles et gratifiants avec une vraie responsabilité."
+      },
+      "culture": {
+        "t": "Culture de Performance",
+        "d": "L'équipe d'abord, avec reconnaissance de l'impact individuel."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Commençons la conversation.",
+    "sub": "Contactez notre siège à Mascate ou nos bureaux au Royaume-Uni, Bangladesh et aux États-Unis.",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "email": "Email",
+    "hours": "Horaires",
+    "languages": "Langues",
+    "send": "Envoyer un message",
+    "name": "Nom complet",
+    "emailField": "Adresse email",
+    "company": "Société (optionnel)",
+    "phoneField": "Téléphone (optionnel)",
+    "subject": "Sujet",
+    "message": "Parlez-nous de votre projet ou demande…",
+    "submit": "Envoyer le message",
+    "thanks": "Merci — votre message a été reçu.",
+    "visitOffice": "Visiter le Bureau"
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "stamp": "Le Sceau de Qualité & Professionnalisme",
+    "hq": "Siège",
+    "postalAddress": "Adresse Postale",
+    "headOffice": "Bureau Principal",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Restez informé des actualités et analyses du Yanabiya Group",
+    "emailPlaceholder": "Votre adresse e-mail",
+    "subscribe": "S'abonner",
+    "tagline": "Plateforme d'Entreprise Mondiale",
+    "desc": "Construire et opérer des projets à fort impact dans la technologie, le commerce, les talents et le conseil — dans le monde entier.",
+    "quickLinks": "Liens Rapides",
+    "groupProfile": "Profil du Groupe",
+    "links": {
+      "home": "Accueil",
+      "about": "À Propos",
+      "global": "Présence Mondiale",
+      "businesses": "Nos Services",
+      "network": "Réseau de Confiance",
+      "contact": "Contact",
+      "profile": "Profil du Groupe",
+      "story": "Notre Histoire",
+      "contactNet": "Réseau de Contact",
+      "management": "Notre Direction",
+      "blog": "Blog",
+      "sustainable": "Croissance Durable",
+      "community": "Action Communautaire",
+      "careers": "Carrières",
+      "ecommerce": "Yanabiya E-Commerce ↗"
+    }
+  }
+}

@@ -4,22 +4,28 @@ import { ALL_PEOPLE } from '../data/people'
 
 const TIER_THEME = {
   board: {
-    badge:   'bg-amber-100 text-amber-800 border-amber-300',
-    accent:  'text-amber-500',
-    line:    'bg-amber-400',
-    glow:    'from-amber-950/70',
+    badge:  'bg-amber-100 text-amber-800 border-amber-300',
+    accent: 'text-amber-500',
+    line:   'bg-amber-400',
+    glow:   'from-amber-950/80',
   },
   exec: {
-    badge:   'bg-blue-100 text-blue-800 border-blue-300',
-    accent:  'text-blue-400',
-    line:    'bg-blue-400',
-    glow:    'from-blue-950/70',
+    badge:  'bg-blue-100 text-blue-800 border-blue-300',
+    accent: 'text-blue-400',
+    line:   'bg-blue-400',
+    glow:   'from-blue-950/80',
   },
   country: {
-    badge:   'bg-emerald-100 text-emerald-800 border-emerald-300',
-    accent:  'text-emerald-400',
-    line:    'bg-emerald-400',
-    glow:    'from-emerald-950/70',
+    badge:  'bg-emerald-100 text-emerald-800 border-emerald-300',
+    accent: 'text-emerald-400',
+    line:   'bg-emerald-400',
+    glow:   'from-emerald-950/80',
+  },
+  dept: {
+    badge:  'bg-teal-100 text-teal-800 border-teal-300',
+    accent: 'text-teal-400',
+    line:   'bg-teal-400',
+    glow:   'from-teal-950/80',
   },
 }
 
@@ -44,23 +50,22 @@ export default function PersonPage() {
   const t = TIER_THEME[person.tier]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="h-screen overflow-hidden bg-white flex flex-col md:flex-row">
 
-      {/* ── Full-bleed hero ── */}
-      <div className="relative w-full h-[60vh] md:h-[72vh] overflow-hidden bg-slate-900">
+      {/* ── Left: Photo panel ── */}
+      <div className="relative md:w-[44%] h-56 md:h-full shrink-0 bg-slate-900">
         <img
           src={person.image}
           alt={person.name}
           className="absolute inset-0 w-full h-full object-cover object-top"
         />
-        {/* gradient overlay */}
-        <div className={`absolute inset-0 bg-gradient-to-t ${t.glow} via-black/20 to-black/10`} />
+        <div className={`absolute inset-0 bg-gradient-to-t ${t.glow} via-black/30 to-transparent`} />
 
-        {/* Back */}
+        {/* Back button */}
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="absolute top-6 left-6 md:top-8 md:left-10 z-10
+          className="absolute top-5 left-5 md:top-8 md:left-8 z-10
                      inline-flex items-center gap-2 rounded-full px-4 py-2
                      bg-white/10 backdrop-blur border border-white/25 text-white
                      text-[11px] font-bold uppercase tracking-widest
@@ -69,71 +74,87 @@ export default function PersonPage() {
           <ArrowLeft size={12} /> Our People
         </button>
 
-        {/* Name block, bottom left */}
-        <div className="absolute bottom-0 left-0 right-0 px-6 md:px-14 pb-10 md:pb-14">
-          <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1
-                            border text-[10px] font-bold uppercase tracking-[0.26em] mb-4
+      </div>
+
+      {/* ── Right: Content panel ── */}
+      <div className="flex-1 flex flex-col md:h-full md:overflow-y-auto">
+
+        {/* Scrollable content — centered vertically */}
+        <div className="flex-1 flex flex-col justify-center px-8 md:px-14 py-10 md:py-16">
+
+          {/* Badge */}
+          <span className={`inline-flex items-center gap-1.5 self-start rounded-full px-3 py-1
+                            border text-[10px] font-bold uppercase tracking-[0.26em] mb-5
                             ${t.badge}`}>
             {person.tierLabel}
             {person.flag && <span className="text-base ml-0.5">{person.flag}</span>}
           </span>
-          <h1 className="font-serif text-4xl md:text-6xl text-white leading-[1.05]">
-            {person.name}
-          </h1>
-          <p className={`mt-2.5 text-sm md:text-base font-semibold uppercase tracking-[0.22em] ${t.accent}`}>
-            {person.role}
+
+          {/* Name + role */}
+          <div className="mb-6">
+            <h1 className="font-serif text-4xl md:text-5xl text-brand-deep leading-[1.05]">
+              {person.name}
+            </h1>
+            <p className={`mt-2 text-sm font-semibold uppercase tracking-[0.22em] ${t.accent}`}>
+              {person.role}
+            </p>
+          </div>
+
+          {/* Accent line */}
+          <div className={`w-10 h-[3px] rounded-full mb-7 ${t.line}`} />
+
+          {/* Short bio */}
+          <p className="text-brand-deep font-medium text-base leading-relaxed mb-6 w-full"
+             style={{ textAlign: 'justify', textJustify: 'inter-word', hyphens: 'auto', wordBreak: 'break-word' }}>
+            {person.shortBio}
           </p>
+
+          {/* Full bio */}
+          {person.fullBio.length > 0 && (
+            <div className="space-y-4 text-brand-deep/60 text-sm leading-relaxed w-full">
+              {person.fullBio.map((para, i) => (
+                <p key={i} style={{ textAlign: 'justify', textJustify: 'inter-word', hyphens: 'auto', wordBreak: 'break-word' }}>{para}</p>
+              ))}
+            </div>
+          )}
         </div>
-      </div>
 
-      {/* ── Bio ── */}
-      <div className="max-w-2xl mx-auto px-6 md:px-8 py-14 md:py-20">
-        <div className={`w-10 h-[3px] rounded-full mb-8 ${t.line}`} />
+        {/* ── Prev / Next ── */}
+        <div className="border-t border-slate-100 shrink-0">
+          <div className="flex items-stretch divide-x divide-slate-100">
+            {prev ? (
+              <Link
+                to={`/people/${prev.id}`}
+                className="group flex-1 flex items-center gap-3 px-6 md:px-8 py-4
+                           hover:bg-slate-50 transition-colors duration-200"
+              >
+                <ArrowLeft size={14} className="shrink-0 text-slate-300 group-hover:text-brand-deep transition-colors" />
+                <div className="min-w-0">
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">Previous</p>
+                  <p className="text-xs font-semibold text-brand-deep truncate">{prev.name}</p>
+                  <p className="text-[10px] text-slate-400 truncate">{prev.role}</p>
+                </div>
+              </Link>
+            ) : <div className="flex-1" />}
 
-        <p className="text-brand-deep font-medium text-base md:text-lg leading-relaxed mb-8">
-          {person.shortBio}
-        </p>
-
-        <div className="space-y-5 text-brand-deep/60 text-sm md:text-base leading-relaxed">
-          {person.fullBio.map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
+            {next ? (
+              <Link
+                to={`/people/${next.id}`}
+                className="group flex-1 flex items-center justify-end gap-3 px-6 md:px-8 py-4
+                           hover:bg-slate-50 transition-colors duration-200"
+              >
+                <div className="min-w-0 text-right">
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">Next</p>
+                  <p className="text-xs font-semibold text-brand-deep truncate">{next.name}</p>
+                  <p className="text-[10px] text-slate-400 truncate">{next.role}</p>
+                </div>
+                <ArrowRight size={14} className="shrink-0 text-slate-300 group-hover:text-brand-deep transition-colors" />
+              </Link>
+            ) : <div className="flex-1" />}
+          </div>
         </div>
+
       </div>
-
-      {/* ── Prev / Next ── */}
-      <div className="border-t border-slate-100">
-        <div className="max-w-4xl mx-auto flex items-stretch divide-x divide-slate-100">
-          {prev ? (
-            <Link
-              to={`/people/${prev.id}`}
-              className="group flex-1 flex items-center gap-4 px-6 md:px-10 py-6 hover:bg-slate-50 transition-colors duration-200"
-            >
-              <ArrowLeft size={16} className="shrink-0 text-slate-300 group-hover:text-brand-deep transition-colors" />
-              <div className="min-w-0">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">Previous</p>
-                <p className="text-sm font-semibold text-brand-deep truncate">{prev.name}</p>
-                <p className="text-[11px] text-slate-400 truncate">{prev.role}</p>
-              </div>
-            </Link>
-          ) : <div className="flex-1" />}
-
-          {next ? (
-            <Link
-              to={`/people/${next.id}`}
-              className="group flex-1 flex items-center justify-end gap-4 px-6 md:px-10 py-6 hover:bg-slate-50 transition-colors duration-200"
-            >
-              <div className="min-w-0 text-right">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">Next</p>
-                <p className="text-sm font-semibold text-brand-deep truncate">{next.name}</p>
-                <p className="text-[11px] text-slate-400 truncate">{next.role}</p>
-              </div>
-              <ArrowRight size={16} className="shrink-0 text-slate-300 group-hover:text-brand-deep transition-colors" />
-            </Link>
-          ) : <div className="flex-1" />}
-        </div>
-      </div>
-
     </div>
   )
 }

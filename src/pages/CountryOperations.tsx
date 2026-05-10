@@ -12,6 +12,7 @@ import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
 import { countries } from '../data/countries'
 import Partnerships from '../sections/Partnerships'
+import { assets } from '../data/assets'
 
 function Reveal({
   children,
@@ -36,6 +37,13 @@ function Reveal({
   )
 }
 
+type LeaderProfile = {
+  name: string
+  role: string
+  image: string
+  bio: string
+}
+
 type CountryOps = {
   intro: string
   branchIntro: string
@@ -56,6 +64,7 @@ type CountryOps = {
   currentProjects: { title: string; body: string; image?: string }[]
   activeSectors: string[]
   futurePlans: { title: string; body: string; icon: LucideIcon; image?: string }[]
+  countryLeadership: { cofounder: LeaderProfile; managingDirector: LeaderProfile }
 }
 
 type PartnerItem = {
@@ -93,31 +102,58 @@ const OPS: Record<string, CountryOps> = {
     ],
     operationalPartners: [],
     categories: [
-      { label: 'Internet Services & Connectivity',          icon: Globe2,       tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Cloud Computing & Technology Services',     icon: Cpu,          tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Aviation & Workforce Mobility',             icon: Plane,        tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Communications & Telecommunications',       icon: Megaphone,    tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Trading & International Logistics',         icon: Boxes,        tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Construction & Civil Infrastructure Works', icon: Building2,    tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Yanabiya e-Commerce',                       icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
-      { label: 'Yanabiya Digital Platform',                 icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
+      { label: 'Management & Corporate Admin',           icon: Building2,    tone: 'from-slate-500/40 to-slate-700/40',    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Building & Civil Construction',          icon: Building2,    tone: 'from-rose-500/40 to-red-700/40',       image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Utilities & Telecom Networks',           icon: Cpu,          tone: 'from-blue-500/40 to-blue-700/40',      image: 'https://images.unsplash.com/photo-1570126618953-d437176e8c79?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Plastering, Painting & Decorating',     icon: Sparkles,     tone: 'from-yellow-500/40 to-yellow-700/40',  image: 'https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Specialised Cleaning',                   icon: Sparkles,     tone: 'from-cyan-500/40 to-cyan-700/40',      image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Construction Equipment Rental',          icon: Building2,    tone: 'from-orange-500/40 to-orange-700/40',  image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Construction Materials Retail',          icon: Boxes,        tone: 'from-amber-500/40 to-amber-700/40',    image: 'https://images.unsplash.com/photo-1504817343863-5092a923803e?auto=format&fit=crop&w=400&q=70' },
+      { label: 'International Maritime Transport',       icon: Ship,         tone: 'from-cyan-500/40 to-sky-700/40',       image: 'https://images.unsplash.com/photo-1494412574745-e1e7c8faa40d?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Cold & Frozen Warehousing',              icon: Boxes,        tone: 'from-sky-400/40 to-blue-700/40',       image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Loading & Unloading Goods',              icon: Boxes,        tone: 'from-violet-500/40 to-indigo-700/40',  image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Packaging & Storage Operations',         icon: Boxes,        tone: 'from-amber-400/40 to-yellow-700/40',   image: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Export & Import Offices',                icon: Plane,        tone: 'from-green-500/40 to-emerald-700/40',  image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Commission Agents & Brokerage',          icon: Handshake,    tone: 'from-purple-500/40 to-purple-700/40',  image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Wholesale Clothing & Accessories',       icon: Briefcase,    tone: 'from-pink-500/40 to-rose-700/40',      image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Textiles & Fabrics Retail',              icon: Briefcase,    tone: 'from-fuchsia-500/40 to-pink-700/40',   image: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Software & Computer Accessories Retail', icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Computer & Phone Repair',                icon: Cpu,          tone: 'from-red-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Software & Network Installation',        icon: Cpu,          tone: 'from-teal-500/40 to-teal-700/40',      image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Cloud Computing & Hosting',              icon: Monitor,      tone: 'from-sky-500/40 to-blue-700/40',       image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Systems Analysis & IT Consulting',       icon: Cpu,          tone: 'from-emerald-500/40 to-green-700/40',  image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Software Maintenance & Web Design',      icon: Monitor,      tone: 'from-indigo-500/40 to-violet-700/40',  image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=400&q=70' },
+      { label: 'IT & Cyber-Security Consulting',         icon: Cpu,          tone: 'from-red-400/40 to-rose-700/40',       image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Data Entry & Digital Operations',        icon: Monitor,      tone: 'from-slate-500/40 to-zinc-700/40',     image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Cafés & Beverage Services',              icon: Megaphone,    tone: 'from-amber-500/40 to-amber-700/40',    image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=70' },
+      { label: 'Catering & Food Services',               icon: Megaphone,    tone: 'from-orange-500/40 to-orange-700/40',  image: 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=400&q=70' },
     ],
     licensedActivities: [
-      'Internet service provision (ISP) & last-mile connectivity',
-      'WiFi network deployment & managed connectivity services',
-      'Cloud computing, hosting & data-centre operations',
-      'IT solutions, software development & systems integration',
-      'Cyber security consultancy & compliance support',
-      'Aviation services, flight coordination & travel ticketing',
-      'Telecommunications & inter-carrier voice / data services',
-      'Information technology consulting & advisory',
-      'Construction, civil works & infrastructure projects',
-      'General trading, import & export operations',
-      'Apparel & ready-made-garment sourcing and supply',
-      'Workforce supply, manpower mobility & overseas placement',
-      'Office administration, PRO & business support services',
-      'Tour, travel & ground-handling services',
-      'Wholesale & retail trade in technology products',
+      'Management offices and corporate administration',
+      'Construction of buildings and civil works',
+      'Construction of water, electricity and telecommunications networks',
+      'Plastering, painting and decorating',
+      'Specialised cleaning and exterior cleaning of buildings',
+      'Renting of construction or demolition equipment with operator',
+      'Retail sale in specialised stores of construction materials',
+      'International maritime goods transport',
+      'Cold and frozen warehousing',
+      'Loading and unloading of goods',
+      'Packaging activities and storage operations',
+      'Activities of export and import offices',
+      'Activities of commission agents and brokerage business',
+      'Wholesale of clothing and clothing accessories',
+      'Retail sale in specialised stores of textiles and fabrics',
+      'Retail sale of software and computer accessories',
+      'Repair of computers, peripherals and mobile phones',
+      'Installation of computer software and network development',
+      'Cloud computing and hosting services',
+      'Systems analysis and IT consultancy',
+      'Maintenance of software and designing of websites',
+      'Information technology and cyber-security consulting',
+      'Data entry services and digital operations',
+      'Cafés that offer meals or beverages',
+      'Catering activities and food service',
     ],
     currentProjects: [
       { title: 'Regional Delivery Centre',    body: '24×7 engineering & QA support for clients across the four-country group.',           image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
@@ -139,6 +175,20 @@ const OPS: Record<string, CountryOps> = {
       { title: 'Innovation-Driven Services',    body: 'Productised AI, security & analytics offerings exported under the Yanabiya brand.',           icon: Lightbulb,  image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80' },
       { title: 'New Country Entry: KSA',        body: 'Saudi Arabia entity in 2027 to extend Gulf-wide trade and manpower coverage.',                icon: Globe2,     image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
     ],
+    countryLeadership: {
+      cofounder: {
+        name: 'Mohammad Abu Jaheed',
+        role: 'Co-founder & Vice Chairman',
+        image: assets.viceChairman,
+        bio: 'As Co-founder and Vice Chairman, Mohammad Abu Jaheed champions Yanabiya\'s South Asia presence, overseeing the Bangladesh operation as the Group\'s technology and trade delivery hub.',
+      },
+      managingDirector: {
+        name: 'S M Momim Ahmed',
+        role: 'Managing Director',
+        image: assets.people.momiimAhmed,
+        bio: 'S M Momim Ahmed leads Yanabiya Bangladesh\'s day-to-day operations, directing a multi-sector team across technology delivery, garment trade, and workforce mobility.',
+      },
+    },
   },
   OM: {
     intro:
@@ -258,6 +308,20 @@ const OPS: Record<string, CountryOps> = {
       { title: 'Sustainable Construction',        body: 'Adopt green building standards and lower-emission construction materials across new projects.', icon: Lightbulb, image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80' },
       { title: 'Vision 2040 Alignment',           body: 'Active participation in Oman Vision 2040 initiatives across IT, trade and infrastructure.',    icon: Globe2,    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
     ],
+    countryLeadership: {
+      cofounder: {
+        name: 'Mohammad Abu Jaheed',
+        role: 'Co-founder & Vice Chairman',
+        image: assets.viceChairman,
+        bio: 'As Co-founder and Vice Chairman, Mohammad Abu Jaheed guides Yanabiya\'s flagship Oman headquarters, steering the Group\'s strategic vision from Muscat across all four operating countries.',
+      },
+      managingDirector: {
+        name: 'Khalid Saif Ahmed Al Sulaimani',
+        role: 'General Manager, Oman',
+        image: assets.people.khalidSulaimani,
+        bio: 'Khalid Saif Ahmed Al Sulaimani oversees daily operations and client relationships across Yanabiya\'s Oman entity, ensuring premium delivery and alignment with the Group\'s quality standards.',
+      },
+    },
   },
   GB: {
     intro:
@@ -332,6 +396,20 @@ const OPS: Record<string, CountryOps> = {
       { title: 'ESG-Aligned Trade',             body: 'Strengthen ethical-sourcing, carbon-reporting and supplier-code commitments across UK trade.',       icon: Lightbulb, image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80' },
       { title: 'Hospitality Brand Investments', body: 'Strategic investment in London restaurant groups bridging South-Asian and Middle-Eastern cuisine.',   icon: Globe2,    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
     ],
+    countryLeadership: {
+      cofounder: {
+        name: 'Mohammad Abu Jaheed',
+        role: 'Co-founder & Vice Chairman',
+        image: assets.viceChairman,
+        bio: 'Mohammad Abu Jaheed oversees Yanabiya\'s European expansion from London, positioning the UK entity as the Group\'s gateway into Western and European markets.',
+      },
+      managingDirector: {
+        name: 'Managing Director — UK Operations',
+        role: 'Managing Director',
+        image: `https://ui-avatars.com/api/?name=MD+UK&background=0e2d4e&color=9ec73a&size=200&bold=true`,
+        bio: 'Yanabiya UK\'s Managing Director steers the London operation across IT consulting, trade, and workforce services — building the Group\'s European footprint from the heart of the city.',
+      },
+    },
   },
   US: {
     intro:
@@ -370,26 +448,12 @@ const OPS: Record<string, CountryOps> = {
       { name: 'Okta',        logo: '/logos/partners-co/okta.svg' },
     ],
     categories: [
-      { label: 'Cloud & AI Advisory',               icon: Cpu,          tone: 'from-emerald-500/40 to-emerald-700/40', image: 'https://images.unsplash.com/photo-1558494950-b8e691424ad9?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Technology Partnership Network',    icon: Handshake,    tone: 'from-cyan-500/40 to-sky-700/40',        image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
-      { label: 'North American Market Entry',       icon: Globe2,       tone: 'from-amber-500/40 to-orange-700/40',    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Strategic & Boardroom Consulting',  icon: Briefcase,    tone: 'from-violet-500/40 to-indigo-700/40',   image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Workforce Mobility (US-bound)',     icon: Plane,        tone: 'from-fuchsia-500/40 to-rose-700/40',    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Cross-Border Trade Representation', icon: Boxes,        tone: 'from-rose-500/40 to-red-700/40',        image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Yanabiya e-Commerce',               icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40',    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
-      { label: 'Yanabiya Digital Platform',         icon: Monitor,      tone: 'from-blue-500/40 to-indigo-700/40',     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-digital-platform' },
+      { label: 'E-Commerce',          icon: ShoppingCart, tone: 'from-orange-500/40 to-amber-700/40', image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80', to: '/business/yanabiya-commerce' },
+      { label: 'Import & Export',     icon: Boxes,        tone: 'from-blue-500/40 to-indigo-700/40',  image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80', to: '/business/export-import' },
     ],
     licensedActivities: [
-      'Cloud computing, AI and frontier-technology consulting',
-      'Custom software development and systems integration',
-      'Cyber-security advisory and compliance support',
-      'Information technology managed services',
-      'Cross-border trade representation and brokerage',
-      'Strategic and management consulting services',
-      'Partnership development and joint-venture facilitation',
-      'Workforce mobility, immigration and US-bound placement',
-      'Office administration, accounting and back-office services',
-      'Market research and US market-entry advisory',
+      'E-Commerce — online retail and digital sales operations',
+      'Import and Export — international goods trade and cross-border logistics',
     ],
     currentProjects: [
       { title: 'Texas Operations Onboarding',  body: 'Standing up the Austin entity, partner contracts, and US banking/compliance setup.',          image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
@@ -411,6 +475,20 @@ const OPS: Record<string, CountryOps> = {
       { title: 'East-Coast Expansion',        body: 'Open New York representation in 2027 to anchor financial-services and corporate clients.',      icon: Globe2,     image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80' },
       { title: 'Investor & Advisory Programme', body: 'Build a US investor-and-advisor circle around Yanabiya Group\'s global growth roadmap.',      icon: Lightbulb,  image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
     ],
+    countryLeadership: {
+      cofounder: {
+        name: 'Mohammad Abu Jaheed',
+        role: 'Co-founder & Vice Chairman',
+        image: assets.viceChairman,
+        bio: 'Mohammad Abu Jaheed leads Yanabiya\'s North America strategy, anchoring the Austin, Texas LLC as the Group\'s bridge between Gulf delivery capability and the US technology market.',
+      },
+      managingDirector: {
+        name: 'Managing Director — North America',
+        role: 'Managing Director',
+        image: `https://ui-avatars.com/api/?name=MD+USA&background=0e2d4e&color=9ec73a&size=200&bold=true`,
+        bio: 'Yanabiya US\'s Managing Director leads Austin-based operations, growing an enterprise partner network and delivering cloud, AI and strategic consulting engagements across the US market.',
+      },
+    },
   },
 }
 
@@ -554,6 +632,8 @@ function GBPage({ country, ops, prevNav, nextNav }: LayoutProps) {
         </Reveal>
       </div>
 
+      <CountryLeaderSection leadership={ops.countryLeadership} />
+
       <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored.">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           <InfoRow label="Established"  value={ops.established} icon={Calendar} />
@@ -686,6 +766,16 @@ function OmanPage({ country, ops, prevNav, nextNav }: LayoutProps) {
           </div>
         </Reveal>
       </div>
+
+      <CountryLeaderSection
+        leadership={ops.countryLeadership}
+        eyebrowClass="text-amber-700"
+        accentBorder="border-amber-300/50"
+        accentBg="bg-amber-50/50"
+        badgeBg="bg-amber-100"
+        badgeText="text-amber-800"
+        badgeBorder="border-amber-300/60"
+      />
 
       <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored." eyebrowClass="text-amber-700">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
@@ -858,6 +948,16 @@ function BDPage({ country, ops, prevNav, nextNav }: LayoutProps) {
         </Reveal>
       </div>
 
+      <CountryLeaderSection
+        leadership={ops.countryLeadership}
+        eyebrowClass="text-teal-700"
+        accentBorder="border-teal-300/50"
+        accentBg="bg-teal-50/50"
+        badgeBg="bg-teal-100"
+        badgeText="text-teal-800"
+        badgeBorder="border-teal-300/60"
+      />
+
       <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored." eyebrowClass="text-teal-700">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           <InfoRow label="Established"  value={ops.established} icon={Calendar} iconClass="bg-teal-100 text-teal-700 ring-teal-300/60" />
@@ -871,10 +971,9 @@ function BDPage({ country, ops, prevNav, nextNav }: LayoutProps) {
         </div>
       </SectionFrame>
 
-      {/* Business Domains: 4-col compact grid */}
-      <SectionFrame eyebrow="Business Domains" title="The verticals we operate in." eyebrowClass="text-teal-700">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-          {ops.categories.map((cat, i) => <DomainCard key={cat.label} cat={cat} index={i} />)}
+      <SectionFrame eyebrow="Licensed Business Activities" title="What Yanabiya Is Authorised to Operate in Bangladesh." eyebrowClass="text-teal-700">
+        <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-2 mt-2">
+          {ops.categories.map((cat, i) => <OmanLicenceCard key={cat.label} cat={cat} index={i} />)}
         </div>
       </SectionFrame>
 
@@ -991,6 +1090,16 @@ function USPage({ country, ops, prevNav, nextNav }: LayoutProps) {
         </Reveal>
       </div>
 
+      <CountryLeaderSection
+        leadership={ops.countryLeadership}
+        eyebrowClass="text-blue-700"
+        accentBorder="border-blue-300/50"
+        accentBg="bg-blue-50/50"
+        badgeBg="bg-blue-100"
+        badgeText="text-blue-800"
+        badgeBorder="border-blue-300/60"
+      />
+
       <SectionFrame eyebrow="Company Information" title="Registered. Compliant. Anchored." eyebrowClass="text-blue-700">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           <InfoRow label="Established"  value={ops.established} icon={Calendar} iconClass="bg-blue-100 text-blue-700 ring-blue-300/60" />
@@ -1004,9 +1113,8 @@ function USPage({ country, ops, prevNav, nextNav }: LayoutProps) {
         </div>
       </SectionFrame>
 
-      {/* Business Domains: 2-col wider for US */}
-      <SectionFrame eyebrow="Business Domains" title="The verticals we operate in." eyebrowClass="text-blue-700">
-        <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      <SectionFrame eyebrow="Licensed Business Activities" title="What Yanabiya Is Authorised to Operate in the United States." eyebrowClass="text-blue-700">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl mx-auto">
           {ops.categories.map((cat, i) => <DomainCard key={cat.label} cat={cat} index={i} />)}
         </div>
       </SectionFrame>
@@ -1184,6 +1292,95 @@ function SectionFrame({
   )
 }
 
+function CountryLeaderCard({
+  person,
+  tier,
+  accentBorder = 'border-amber-300/50',
+  accentBg = 'bg-amber-50/50',
+  badgeBg = 'bg-amber-100',
+  badgeText = 'text-amber-800',
+  badgeBorder = 'border-amber-300/60',
+}: {
+  person: LeaderProfile
+  tier: string
+  accentBorder?: string
+  accentBg?: string
+  badgeBg?: string
+  badgeText?: string
+  badgeBorder?: string
+}) {
+  return (
+    <Reveal>
+      <div className={`flex gap-4 md:gap-6 items-center rounded-xl border ${accentBorder} ${accentBg} p-4 md:p-5`}>
+        <div className="shrink-0">
+          <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-white/80 shadow-md ring-2 ring-white/40">
+            <img
+              src={person.image}
+              alt={person.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                ;(e.currentTarget as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(person.name)}&background=0e2d4e&color=9ec73a&size=200&bold=true`
+              }}
+            />
+          </div>
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ${badgeBg} border ${badgeBorder} ${badgeText} text-[9px] uppercase tracking-[0.28em] font-bold mb-2`}>
+            <Users size={9} />
+            {tier}
+          </div>
+          <h3 className="font-serif text-base md:text-lg text-brand-deep leading-tight mb-0.5">{person.name}</h3>
+          <p className="text-[11px] font-semibold text-brand-deep/50 mb-1.5 uppercase tracking-wider">{person.role}</p>
+          <p className="text-[11px] text-brand-deep/60 leading-relaxed">{person.bio}</p>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
+function CountryLeaderSection({
+  leadership,
+  eyebrowClass = 'text-brand-accentDark',
+  accentBorder = 'border-amber-300/50',
+  accentBg = 'bg-amber-50/50',
+  badgeBg = 'bg-amber-100',
+  badgeText = 'text-amber-800',
+  badgeBorder = 'border-amber-300/60',
+}: {
+  leadership: CountryOps['countryLeadership']
+  eyebrowClass?: string
+  accentBorder?: string
+  accentBg?: string
+  badgeBg?: string
+  badgeText?: string
+  badgeBorder?: string
+}) {
+  return (
+    <SectionFrame eyebrow="Country Leadership" title="The People Leading This Region." eyebrowClass={eyebrowClass}>
+      <div className="max-w-2xl mx-auto space-y-4">
+        <CountryLeaderCard
+          person={leadership.cofounder}
+          tier="Country Co-founder"
+          accentBorder={accentBorder}
+          accentBg={accentBg}
+          badgeBg={badgeBg}
+          badgeText={badgeText}
+          badgeBorder={badgeBorder}
+        />
+        <CountryLeaderCard
+          person={leadership.managingDirector}
+          tier="Managing Director"
+          accentBorder="border-slate-200"
+          accentBg="bg-white/60"
+          badgeBg="bg-slate-100"
+          badgeText="text-slate-700"
+          badgeBorder="border-slate-300/60"
+        />
+      </div>
+    </SectionFrame>
+  )
+}
+
 function Card3D({
   title,
   body,
@@ -1248,19 +1445,18 @@ function InfoRow({
   icon: LucideIcon
   iconClass?: string
 }) {
+  const iconColor = iconClass.split(' ').find(c => c.startsWith('text-')) ?? 'text-brand-accentDark'
   return (
     <Reveal>
-      <div className="flex flex-col items-center text-center gap-2 rounded-lg bg-brand-50 border border-slate-200 p-3 md:p-4 transition-colors duration-300 hover:border-brand-accent h-full">
-        <div className={`shrink-0 w-9 h-9 rounded-lg grid place-items-center ring-1 ${iconClass}`}>
-          <Icon size={16} strokeWidth={2} />
-        </div>
-        <div className="min-w-0">
-          <div className="text-[9px] uppercase tracking-[0.22em] font-semibold text-brand-accentDark/90 mb-1">
+      <div className="flex flex-col items-center justify-center text-center gap-1.5 rounded-lg bg-brand-50 border border-slate-200 p-3 md:p-4 transition-colors duration-300 hover:border-brand-accent h-full">
+        <div className={`flex items-center justify-center gap-1 ${iconColor}`}>
+          <Icon size={12} strokeWidth={2.2} className="shrink-0" />
+          <div className="text-[9px] uppercase tracking-[0.22em] font-semibold">
             {label}
           </div>
-          <div className="text-[12px] text-brand-deep/85 leading-snug break-words whitespace-pre-line">
-            {value}
-          </div>
+        </div>
+        <div className="text-[12px] text-brand-deep/85 leading-snug break-words whitespace-pre-line text-center">
+          {value}
         </div>
       </div>
     </Reveal>

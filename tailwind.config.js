@@ -20,6 +20,15 @@ export default {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
+      keyframes: {
+        'slide-in-right': {
+          from: { transform: 'translateX(100%)' },
+          to:   { transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        'slide-in-right': 'slide-in-right 0.28s cubic-bezier(0.32,0,0.67,0) forwards',
+      },
     },
   },
   plugins: [],

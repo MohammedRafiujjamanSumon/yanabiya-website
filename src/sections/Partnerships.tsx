@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import type React from 'react'
+import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow, H2 } from '../components/Section'
 import { partners, valuableClients, ukValuableClients, memberships, affiliations } from '../data/partners'
 import { useReveal } from '../hooks/useReveal'
@@ -106,22 +107,23 @@ function SlideRow({
 }
 
 export default function Partnerships() {
+  const { t } = useTranslation()
   return (
     <Section id="partnerships" className="bg-brand-50">
       <div className="container-x">
 
         <div className="text-center pt-1 pb-6 mb-2">
-          <Eyebrow>Trusted Network</Eyebrow>
+          <Eyebrow>{t('partnerships.eyebrow')}</Eyebrow>
           <H2 className="!text-[18px] md:!text-[20px] text-center">
-            Connecting opportunities worldwide. Building strong, scalable global businesses.
+            {t('partnerships.sub')}
           </H2>
         </div>
 
-        <SlideRow label="Our Valuable Clients" items={ukValuableClients} direction="left"  durationSec={55} delay={0}   />
-        <SlideRow label="Our Clients"           items={valuableClients}   direction="right" durationSec={65} delay={80}  />
-        <SlideRow label="Our Membership"        items={memberships}       direction="left"  durationSec={60} delay={160} />
-        <SlideRow label="Our Partners"          items={partners}          direction="right" durationSec={70} delay={240} />
-        <SlideRow label="Our Affiliations"      items={affiliations}      direction="left"  durationSec={65} delay={320} />
+        <SlideRow label={t('partnerships.valuableClients')} items={ukValuableClients} direction="left"  durationSec={55} delay={0}   />
+        <SlideRow label={t('partnerships.clients')}        items={valuableClients}   direction="right" durationSec={65} delay={80}  />
+        <SlideRow label={t('partnerships.membership')}     items={memberships}       direction="left"  durationSec={60} delay={160} />
+        <SlideRow label={t('partnerships.partners')}       items={partners}          direction="right" durationSec={70} delay={240} />
+        <SlideRow label={t('partnerships.affiliations')}   items={affiliations}      direction="left"  durationSec={65} delay={320} />
 
       </div>
     </Section>

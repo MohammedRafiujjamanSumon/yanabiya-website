@@ -1,13 +1,10 @@
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Globe2, Sparkles, GraduationCap, Briefcase } from 'lucide-react'
 import Section, { Eyebrow, H2 } from '../components/Section'
 
-const reasons = [
-  { icon: Globe2, t: 'Global Exposure', d: 'Work across four countries and dozens of industries.' },
-  { icon: Sparkles, t: 'Modern Stack', d: 'Cloud, AI, security and full-stack engineering.' },
-  { icon: GraduationCap, t: 'Career Growth', d: 'Flexible, rewarding paths with real ownership.' },
-  { icon: Briefcase, t: 'Performance Culture', d: 'Teamwork-first with recognition for individual impact.' },
-]
+const REASON_ICONS = [Globe2, Sparkles, GraduationCap, Briefcase]
+const REASON_KEYS = ['global', 'stack', 'growth', 'culture'] as const
 
 const openRoles = [
   'Software Engineer', 'Full Stack Developer', 'UI / UX Designer',
@@ -18,6 +15,10 @@ const openRoles = [
 
 export default function Careers() {
   const { t } = useTranslation()
+  const reasons = useMemo(
+    () => REASON_KEYS.map((k, i) => ({ icon: REASON_ICONS[i], t: t(`careers.reasons.${k}.t`), d: t(`careers.reasons.${k}.d`) })),
+    [t],
+  )
   return (
     <Section id="careers">
       <div className="overflow-x-auto">

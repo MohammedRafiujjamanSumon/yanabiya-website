@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
@@ -27,19 +27,17 @@ import { assets } from '../data/assets'
 
 const SCENE_MS = 4500
 
-type Scene = {
+type SceneStatic = {
   id: string
+  photo: string
+  photoPos?: string
+  Visual: () => JSX.Element
+  ctaHref: string
+}
+type Scene = SceneStatic & {
   eyebrow: string
   headline: string
   body: string
-  /** Real-life background photo (Unsplash), full-bleed, dark-overlay-on-top. */
-  photo: string
-  /** Photo focal area (CSS object-position). */
-  photoPos?: string
-  /** SVG / icon "motion overlay" sitting on top of the photo. */
-  Visual: () => JSX.Element
-  /** Per-scene primary CTA, links to the matching landing section
-   *  or detail page so the video scene becomes navigation. */
   cta: { label: string; href: string }
 }
 
@@ -418,77 +416,14 @@ function SceneClosing() {
 
 /* ─────────── Scene script ─────────── */
 
-const SCENES: Scene[] = [
-  {
-    id: 'opening',
-    eyebrow: 'Scene 01, Opening',
-    headline: 'Connecting Businesses Across Borders',
-    body: 'A world driven by connection, innovation, and opportunity.',
-    photo: 'https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?auto=format&fit=crop&w=1600&q=80',
-    photoPos: 'center',
-    Visual: SceneOpening,
-    cta: { label: 'Explore Global Presence', href: '/#global' },
-  },
-  {
-    id: 'about',
-    eyebrow: 'Scene 02, The Group',
-    headline: 'A dynamic group of companies.',
-    body: 'Building an integrated global business ecosystem across multiple industries.',
-    photo: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80',
-    photoPos: 'center',
-    Visual: SceneAbout,
-    cta: { label: 'Explore About Us', href: '/about-us' },
-  },
-  {
-    id: 'services',
-    eyebrow: 'Scene 03, Services',
-    headline: 'Complete business solutions.',
-    body: 'International trade, Strategic consulting, Logistics, Investment.',
-    photo: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80',
-    photoPos: 'center',
-    Visual: SceneServices,
-    cta: { label: 'Explore Our Services', href: '/#businesses' },
-  },
-  {
-    id: 'partners',
-    eyebrow: 'Scene 04, Trusted Network',
-    headline: 'Trusted by partners worldwide.',
-    body: 'We collaborate with leading organisations to create long-term value.',
-    photo: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80',
-    photoPos: 'center',
-    Visual: ScenePartners,
-    cta: { label: 'Explore Trusted Network', href: '/#partnerships' },
-  },
-  {
-    id: 'community',
-    eyebrow: 'Scene 05, Community',
-    headline: 'Growth beyond business.',
-    body: 'Empowering communities and creating sustainable impact.',
-    photo: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80',
-    photoPos: 'center',
-    Visual: SceneCommunity,
-    cta: { label: 'Explore Community', href: '/community' },
-  },
-  {
-    id: 'leadership',
-    eyebrow: 'Scene 06, Leadership',
-    headline: 'Visionary leadership.',
-    body: 'Turning ideas into global success stories.',
-    photo: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80',
-    photoPos: 'center top',
-    Visual: SceneLeadership,
-    cta: { label: 'Meet Our Leadership', href: '/leadership' },
-  },
-  {
-    id: 'closing',
-    eyebrow: 'Scene 07, Closing',
-    headline: 'Yanabiya Group',
-    body: 'Building the Future, Together.',
-    photo: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&q=80',
-    photoPos: 'center',
-    Visual: SceneClosing,
-    cta: { label: 'Get in Touch', href: '/contact' },
-  },
+const SCENE_STATICS: SceneStatic[] = [
+  { id: 'opening',    photo: 'https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneOpening,   ctaHref: '/#global'      },
+  { id: 'about',      photo: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneAbout,     ctaHref: '/about-us'     },
+  { id: 'services',   photo: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneServices,  ctaHref: '/#businesses'  },
+  { id: 'partners',   photo: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: ScenePartners,  ctaHref: '/#partnerships'},
+  { id: 'community',  photo: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneCommunity, ctaHref: '/community'    },
+  { id: 'leadership', photo: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80', photoPos: 'center top',Visual: SceneLeadership,ctaHref: '/leadership'   },
+  { id: 'closing',    photo: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneClosing,   ctaHref: '/contact'      },
 ]
 
 /* ─────────── Component ─────────── */
@@ -498,6 +433,14 @@ export default function Hero() {
   const navigate = useNavigate()
   const [scene, setScene] = useState(0)
   const [presenceOpen, setPresenceOpen] = useState(false)
+
+  const SCENES: Scene[] = useMemo(() => SCENE_STATICS.map((s) => ({
+    ...s,
+    eyebrow:  t(`hero.scenes.${s.id}.eyebrow`),
+    headline: t(`hero.scenes.${s.id}.headline`),
+    body:     t(`hero.scenes.${s.id}.body`),
+    cta:      { label: t(`hero.scenes.${s.id}.cta`), href: s.ctaHref },
+  })), [t])
 
   /* Click handler for the per-scene CTA. The opening scene routes to the
    * global-presence overview panel (in-place), every other scene navigates
@@ -574,7 +517,7 @@ export default function Hero() {
           return (
             <div
               key={s.id}
-              aria-hidden={!isActive ? 'true' : 'false'}
+              aria-hidden={!isActive}
               className={`absolute inset-0 transition-opacity duration-300 ease-in-out
                           ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
             >
@@ -619,7 +562,7 @@ export default function Hero() {
             {/* Line 1 */}
             <p className="text-white/80 text-sm sm:text-lg md:text-2xl font-light
                           tracking-[0.14em] sm:tracking-[0.18em] uppercase drop-shadow mb-2">
-              Welcome to
+              {t('hero.welcomeTo')}
             </p>
 
             {/* Line 2, company name */}
@@ -631,10 +574,10 @@ export default function Hero() {
 
             {/* Line 3 & 4, subtext */}
             <p className="text-white/85 text-xs sm:text-base md:text-lg drop-shadow leading-relaxed px-2">
-              Firstly thank you for visiting our website.
+              {t('hero.desc1')}
             </p>
             <p className="text-white/85 text-xs sm:text-base md:text-lg drop-shadow leading-relaxed px-2">
-              Click the download button for the company profile.
+              {t('hero.desc2')}
             </p>
           </div>
 
@@ -648,7 +591,7 @@ export default function Hero() {
                          shadow-lg hover:bg-brand-accentDark hover:text-white
                          hover:-translate-y-0.5 transition-all duration-300"
             >
-              <Download size={16} /> Download
+              <Download size={16} /> {t('topbar.downloadPdf')}
             </a>
             <Link
               to="/contact"
@@ -658,14 +601,14 @@ export default function Hero() {
                          hover:bg-white hover:text-brand-deep hover:-translate-y-0.5
                          transition-all duration-300"
             >
-              <Handshake size={16} /> Get Free Consultancy from Us
+              <Handshake size={16} /> {t('hero.cta2')}
             </Link>
           </div>
 
           {/* Scroll indicator */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-60">
             <div className="w-[1px] h-8 bg-white/50 animate-bounce" />
-            <span className="text-white/50 text-[10px] tracking-widest uppercase">Scroll</span>
+            <span className="text-white/50 text-[10px] tracking-widest uppercase">{t('hero.scroll')}</span>
           </div>
         </div>
 

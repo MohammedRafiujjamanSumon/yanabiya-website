@@ -30,8 +30,34 @@ export const board = [
   },
 ]
 
+export const managementBoard = [
+  { name: 'S M Momim Ahmed',                       role: 'Managing Director',              photo: assets.people.momiimAhmed     },
+  { name: 'Khalid Saif Ahmed Al Sulaimani',        role: 'Managing Director',              photo: assets.people.khalidSulaimani },
+  { name: 'S M Sumon Ahmed',                       role: 'Deputy Managing Director',       photo: assets.people.sumonAhmed      },
+  { name: 'Jhohora Akter',                         role: 'Asst. Deputy Managing Director', photo: assets.people.jhohoraAkter    },
+  { name: 'Badar Humaid Salim Al-Shaqsi',          role: 'Board Member',                   photo: assets.people.badarAlShaqsi   },
+  { name: 'Ismail Khalfan Gharib Al Sulaimani',    role: 'Board Member',                   photo: assets.people.ismailSulaimani },
+  { name: 'Mohammed Nasser Muhannan Al Bakri',     role: 'Board Member',                   photo: assets.people.mohammedAlBakri },
+  { name: 'Salim Saif Ahmed Al-Suleimani',         role: 'Board Member',                   photo: assets.people.salimSuleimani  },
+  { name: 'Jasmin Akter',                          role: 'Board Member',                   photo: assets.people.jasminAkter     },
+  { name: 'Nargis Akter',                          role: 'Board Member',                   photo: ''                            },
+  { name: 'Shawrin Ahmed Shammi',                  role: 'Board Member',                   photo: ''                            },
+  { name: 'S M Abdullah Ibn Ahmed',                role: 'Board Member',                   photo: ''                            },
+  { name: 'S M Obaidullah Ibn Ahmed',              role: 'Board Member',                   photo: ''                            },
+]
+
+export const executives = [
+  { name: 'Khalid Saif Ahmed Al Sulaimani',        role: 'General Manager',                photo: assets.people.khalidSulaimani },
+  { name: 'Al Montasar Al Masroori',               role: 'Operation Manager',              photo: assets.people.alMontasar      },
+  { name: 'Maysa Yeasmin',                         role: 'Chief Financial Officer',        photo: assets.people.maysaYeasmin    },
+  { name: 'Mohammed Rashid Al Hashimi',            role: 'Public Relations Manager',       photo: assets.people.mohammedRashid  },
+  { name: 'Maheswaran Annadurai',                  role: 'HR, Admin & Collection',         photo: assets.people.maheswaran      },
+  { name: 'MD Mofijur Rahman Khan',                role: 'Marketing Manager',              photo: assets.people.mofijurKhan     },
+  { name: 'Ahsan Sabbir',                          role: 'Auditor',                        photo: assets.people.ahsanSabbir     },
+]
+
 export const team = [
-  { name: 'M M Saleheen Bhuiyan', role: 'Chief Transformation Officer', photo: assets.team.saleheen },
+  { name: 'M M Saleheen Bhuiyan', role: 'Chief Operating Officer', photo: assets.team.saleheen },
   { name: 'Mohammad Zakirul Islam Khan', role: 'Head of BI', photo: assets.team.zakirul },
   { name: 'Rashedul Islam', role: 'Head of Implementation', photo: assets.team.rashedul },
   { name: 'Sahed Abu Sayed', role: 'Oracle Full Stack Developer', photo: assets.team.sahed },
@@ -39,6 +65,8 @@ export const team = [
   { name: 'Saralya Roy', role: 'Software Engineer', photo: assets.team.saralya },
   { name: 'Md Amanullah Sayeem', role: 'Frontend Engineer', photo: assets.team.amanullah },
   { name: 'Syed Towfiqul Islam', role: 'UX / UI Engineer', photo: assets.team.towfiqul },
-  { name: 'Sufean Ahmed', role: 'Senior Legal Advisor', photo: assets.team.sufean },
-  { name: 'Elaiyaraja Annadhurai', role: 'Data Analyst', photo: assets.team.elaiyaraja },
+  { name: 'Sufean Ahmed', role: 'Senior Legal Advisor', photo: assets.people.sufeanAhmed },
+  { name: 'Elaiyaraja Annadhurai', role: 'Data Analyst',       photo: assets.team.elaiyaraja },
+  { name: 'Palash Mallik',         role: 'Head of IT',          photo: '' },
+  { name: 'MD Wobaidul Hossain',   role: 'Deputy Head of IT',   photo: '' },
 ]

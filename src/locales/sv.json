@@ -1,0 +1,354 @@
+{
+  "nav": {
+    "home": "Hem",
+    "about": "Om Oss",
+    "businesses": "Våra Tjänster",
+    "solutions": "Lösningar",
+    "partnerships": "Partnerskap",
+    "global": "Global Närvaro",
+    "csr": "Påverkan & CSR",
+    "network": "Nätverk",
+    "leadership": "Ledarskap",
+    "strategy": "Strategi",
+    "insights": "Insikter",
+    "careers": "Karriär",
+    "contact": "Kontakta Oss",
+    "ourNetwork": "Vårt Nätverk",
+    "ourCommunity": "Vår Gemenskap",
+    "ourPeople": "Vårt Team",
+    "boardOfMembers": "Styrelseledamöter",
+    "chairman": "Ordförande & VD",
+    "viceChairman": "Vice Ordförande"
+  },
+  "topbar": {
+    "operating": "Verksamma i 4 länder",
+    "downloadPdf": "Ladda ner PDF",
+    "tagline": "Förbinder Möjligheter. Bygger Globala Företag."
+  },
+  "hero": {
+    "welcome": "Yanabiya Group",
+    "tagline": "Förbinder Möjligheter. Bygger Globala Företag.",
+    "desc1": "En diversifierad global grupp, förtroendeledd i mer än ett decennium.",
+    "desc2": "Sex divisioner. Fyra länder. En plattform.",
+    "desc3": "Innovation, global räckvidd, ansvarsfullt tillväxt.",
+    "cta1": "Utforska verksamheter",
+    "cta2": "Bli partner",
+    "stats": {
+      "countries": "Länder",
+      "industries": "Branscher",
+      "experience": "Erfarenhet",
+      "clients": "Kunder"
+    },
+    "welcomeTo": "Välkommen till",
+    "scroll": "Bläddra",
+    "scenes": {
+      "opening": {
+        "eyebrow": "Scen 01 — Öppning",
+        "headline": "Kopplar samman företag över gränserna",
+        "body": "En värld driven av koppling, innovation och möjligheter.",
+        "cta": "Utforska Global Närvaro"
+      },
+      "about": {
+        "eyebrow": "Scen 02 — Gruppen",
+        "headline": "En dynamisk grupp av företag.",
+        "body": "Bygger ett integrerat globalt affärsekosystem inom flera branscher.",
+        "cta": "Läs mer om oss"
+      },
+      "services": {
+        "eyebrow": "Scen 03 — Tjänster",
+        "headline": "Kompletta affärslösningar.",
+        "body": "Internationell handel, strategisk rådgivning, logistik, investeringar.",
+        "cta": "Utforska tjänster"
+      },
+      "partners": {
+        "eyebrow": "Scen 04 — Pålitligt Nätverk",
+        "headline": "Betrodd av partner världen över.",
+        "body": "Vi samarbetar med ledande organisationer för att skapa långsiktigt värde.",
+        "cta": "Utforska nätverket"
+      },
+      "community": {
+        "eyebrow": "Scen 05 — Gemenskap",
+        "headline": "Tillväxt bortom affärer.",
+        "body": "Stärka samhällen och skapa hållbar påverkan.",
+        "cta": "Utforska gemenskapen"
+      },
+      "leadership": {
+        "eyebrow": "Scen 06 — Ledarskap",
+        "headline": "Visionärt ledarskap.",
+        "body": "Omvandlar idéer till globala framgångshistorier.",
+        "cta": "Träffa vår ledning"
+      },
+      "closing": {
+        "eyebrow": "Scen 07 — Avslutning",
+        "headline": "Yanabiya Group",
+        "body": "Bygger Framtiden Tillsammans.",
+        "cta": "Kom i kontakt"
+      }
+    }
+  },
+  "about": {
+    "eyebrow": "Om Oss",
+    "title": "En mångsidig grupp med säte i Maskat, verksam på fyra kontinenter.",
+    "lead": "Yanabiya Gulf International Business & Trade levererar internettjänster, programvarulösningar, IT-rådgivning, handel och företagsautomatisering i Gulfen, Asien, Europa och Nordamerika.",
+    "missionLabel": "Mission",
+    "missionTitle": "Varför vi finns",
+    "mission": "Tillhandahålla förstklassiga internettjänster och optimala programvarulösningar till rimliga priser — byggda på tre pelare: Människor, Processer och Kunder.",
+    "visionLabel": "Vision",
+    "visionTitle": "Vart vi är på väg",
+    "vision": "Bli en ledande global aktör inom kvalitativa webb- och programvaruutvecklingslösningar, och hjälpa kunder att accelerera sin tillväxt.",
+    "valuesTitle": "Våra Kärnvärden",
+    "tagline": "Fyra Nationer. En Pålitlig Grupp.",
+    "readMore": "Läs Mer",
+    "goalLabel": "Vårt Mål",
+    "goal": "Utvidga vår globala närvaro och skapa hållbart värde för partner, anställda och samhällen."
+  },
+  "businesses": {
+    "eyebrow": "Våra Tjänster",
+    "title": "Sex divisioner som driver företag och handel på alla kontinenter.",
+    "sub": "Från företagsprogramvara till internationell handel — byggt end-to-end."
+  },
+  "solutions": {
+    "eyebrow": "Lösningar",
+    "title": "Utformade för att lösa verkliga affärsproblem.",
+    "sub": "En modern teknologistack levererad av erfarna ingenjörer — från skräddarsydd programvara till cloud, säkerhet och analys."
+  },
+  "partnerships": {
+    "eyebrow": "Partnerskap",
+    "title": "Drivna av världens ledande teknologileverantörer.",
+    "sub": "Vi samarbetar med globala teknologiledare för att leverera enterprise-lösningar inom cloud, programvara, hårdvara och säkerhet.",
+    "valuableClients": "Våra Värdefulla Kunder",
+    "clients": "Våra Kunder",
+    "membership": "Våra Medlemskap",
+    "partners": "Våra Partners",
+    "affiliations": "Våra Anknytningar"
+  },
+  "global": {
+    "eyebrow": "Global Närvaro",
+    "title": "Verksamma i fyra länder med nio enheter.",
+    "sub": "Vår Yanabiya Group verkar för närvarande i fyra länder och planerar gradvis expansion till fler marknader. I varje land förbättrar och utökar vi kontinuerligt våra affärskategorier.",
+    "entities": "Enheter",
+    "headquarters": "Huvudkontor",
+    "europe": "Europeiska Operationer",
+    "southAsia": "Sydasiatiska Operationer",
+    "northAmerica": "Nordamerikanska Operationer",
+    "cta": "Utforska Global Närvaro"
+  },
+  "csr": {
+    "eyebrow": "Påverkan & CSR",
+    "title": "Ge tillbaka till de samhällen vi tjänar.",
+    "sub": "Yanabiya Group är engagerat i strukturerade donationer och välfärdsprogram — fokuserade på transparens och varaktig påverkan.",
+    "items": {
+      "welfare": {
+        "t": "Samhällsvälfärd",
+        "d": "Humanitära hjälpprogram i de regioner vi verkar i."
+      },
+      "education": {
+        "t": "Utbildning",
+        "d": "Stipendier och kompetensutvecklingsinitiativ för underprivilegierade samhällen."
+      },
+      "health": {
+        "t": "Tillgång till Hälso- och Sjukvård",
+        "d": "Stöd till kliniker, mobila läger och katastrofhjälp."
+      },
+      "empower": {
+        "t": "Ekonomisk Egenmakt",
+        "d": "Yrkesutbildning och stöd till småföretagare."
+      }
+    },
+    "sustainability": {
+      "title": "Hållbar Tillväxt",
+      "desc": "Bygga affärspraxis som skyddar miljön och stöder långsiktigt värde för alla intressenter.",
+      "items": {
+        "green": {
+          "t": "Gröna Operationer",
+          "d": "Energieffektiva kontor och ansvarsfull resursanvändning."
+        },
+        "circular": {
+          "t": "Cirkulära Metoder",
+          "d": "Återanvändning, återvinning och minimering av avfall i inköp och logistik."
+        },
+        "climate": {
+          "t": "Klimatåtagande",
+          "d": "Trädplanteringsprogram och affärsmodeller med låga utsläpp."
+        },
+        "inclusive": {
+          "t": "Inkluderande Tillväxt",
+          "d": "Rättvis anställning och leverantörspartnerskap som stärker samhällen."
+        }
+      }
+    },
+    "community": {
+      "title": "Samhällsansvar",
+      "desc": "Strukturerade välgörenhetsdonationer och välfärdsprogram med fokus på transparens, värdighet och varaktig påverkan."
+    },
+    "stats": {
+      "beneficiaries": "Mottagare",
+      "countries": "Länder",
+      "track": "Meritlista"
+    }
+  },
+  "network": {
+    "eyebrow": "Nätverk",
+    "title": "Betrott Nätverk",
+    "sub": "Förbinder Möjligheter Världen Över för att Bygga Starka, Skalbara Globala Företag.",
+    "readMore": "Läs mer",
+    "memberships": "Medlemskap & Affilieringar",
+    "stats": {
+      "clients": "Aktiva Kunder",
+      "entities": "Gruppenenheter",
+      "countries": "Länder",
+      "track": "Meritförteckning"
+    }
+  },
+  "leadership": {
+    "eyebrow": "Ledarskap",
+    "title": "Väglett av erfarenhet. Drivet av integritet.",
+    "sub": "Vårt ledningsteam förenar decennier av global affärskompetens med djup regional insikt från Gulfen, Sydasien, Storbritannien och USA.",
+    "core": "Kärnteam",
+    "chairman": "Grundare & Ordförande",
+    "viceChairman": "Vice Ordförande",
+    "chairmanMsg": "Yanabiya Group representerar Kvalitets- och Professionalitetsstämpeln. Vår framgång kommer av att hålla fast vid kärnvärden. Vi levererar vad vi lovar och sätter kundnöjdhet i första rummet.",
+    "viceChairmanMsg": "Vår webbplats presenterar vår vision, mission, infrastruktur, expertis och framtidsplaner. Vi inbjuder potentiella kunder och partners att utforska våra divisioner och kontakta oss.",
+    "readMore": "Läs mer",
+    "tier1Kicker": "Nivå 01 — Styrelse & Rådgivning",
+    "tier1Title": "Råd av Medlemmar",
+    "tier2Kicker": "Nivå 02 — Verkställande Ledning",
+    "tier2Title": "Global Verkställande Ledning",
+    "tier3Kicker": "Nivå 03 — Regionala Operationer",
+    "tier3Title": "Regionalt Driftteam"
+  },
+  "strategy": {
+    "eyebrow": "Strategi & Innovation",
+    "title": "Där strategi möter genomförande.",
+    "sub": "Vår innovationsfärdplan bygger på fyra pelare som anpassar teknik, talang och processer till mätbara kundresultat.",
+    "focus": "Innovationsfokusområden",
+    "pillars": {
+      "digital": {
+        "t": "Digital Transformation",
+        "d": "Hjälpa företag att modernisera äldre system och anta molnbaserade arkitekturer."
+      },
+      "talent": {
+        "t": "Talangdriven Tillväxt",
+        "d": "Odla tvärvetenskapliga team i fyra länder."
+      },
+      "process": {
+        "t": "Processexcellens",
+        "d": "Balansera hastighet, kvalitet och kostnad i varje uppdrag."
+      },
+      "customer": {
+        "t": "Kundcentrerad Innovation",
+        "d": "Lösningar utformade kring kundproblem, inte generiska mallar."
+      }
+    },
+    "focus_items": {
+      "erp": {
+        "t": "ERP & Företagsprogramvara",
+        "d": "End-to-end ERP-design och implementering."
+      },
+      "cloud": {
+        "t": "Molninfrastruktur",
+        "d": "AWS- och Azure-arkitektur och hanterade tjänster."
+      },
+      "cyber": {
+        "t": "Cybersäkerhet",
+        "d": "Penetrationstestning och etiska hackningspraktiker."
+      },
+      "data": {
+        "t": "Dataanalys & BI",
+        "d": "Dashboardar, ETL-pipelines och beslutsintelligens."
+      },
+      "ui": {
+        "t": "Modernt UI/UX",
+        "d": "Forksningsbaserad produkt- och gränssnittsengineering."
+      },
+      "rd": {
+        "t": "FoU-initiativ",
+        "d": "Kontinuerliga experiment med framväxande teknologier."
+      }
+    }
+  },
+  "insights": {
+    "eyebrow": "Insikter",
+    "title": "Tankar från Yanabiya-teamet.",
+    "sub": "Artiklar, fallstudier och tankeledarskap som täcker digital transformation, handel, säkerhet och cloud.",
+    "readMore": "Läs mer"
+  },
+  "careers": {
+    "eyebrow": "Karriär",
+    "title": "Bygg din karriär med en global grupp.",
+    "sub": "Gå med i ett team som värdesätter hantverksskicklighet, ägarskap och kontinuerligt lärande.",
+    "rolesTitle": "Roller vi rekryterar för",
+    "open": "Öppen",
+    "sendCv": "Skicka ditt CV och en kort anteckning om vad du vill jobba med.",
+    "reasons": {
+      "global": {
+        "t": "Global Exponering",
+        "d": "Arbeta i fyra länder och dussintals branscher."
+      },
+      "stack": {
+        "t": "Modern Stack",
+        "d": "Moln, AI, säkerhet och full-stack-utveckling."
+      },
+      "growth": {
+        "t": "Karriärutveckling",
+        "d": "Flexibla, givande vägar med verkligt ägarskap."
+      },
+      "culture": {
+        "t": "Prestandakultur",
+        "d": "Team-först med erkännande av individuell påverkan."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Kontakt",
+    "title": "Låt oss börja samtalet.",
+    "sub": "Kontakta vårt huvudkontor i Maskat eller något av våra kontor i Storbritannien, Bangladesh och USA.",
+    "address": "Adress",
+    "phone": "Telefon",
+    "email": "E-post",
+    "hours": "Öppettider",
+    "languages": "Språk",
+    "send": "Skicka ett meddelande",
+    "name": "Fullständigt namn",
+    "emailField": "E-postadress",
+    "company": "Företag (valfritt)",
+    "phoneField": "Telefon (valfritt)",
+    "subject": "Ämne",
+    "message": "Berätta om ditt projekt eller din förfrågan…",
+    "submit": "Skicka meddelande",
+    "thanks": "Tack — ditt meddelande har mottagits.",
+    "visitOffice": "Besök kontor"
+  },
+  "footer": {
+    "rights": "Alla rättigheter förbehållna.",
+    "stamp": "Kvalitets- & Professionalitetsstämpeln",
+    "hq": "HK",
+    "postalAddress": "Postadress",
+    "headOffice": "Huvudkontor",
+    "newsletter": "Nyhetsbrev",
+    "newsletterDesc": "Håll dig uppdaterad med Yanabiya Groups nyheter och insikter",
+    "emailPlaceholder": "Din e-postadress",
+    "subscribe": "Prenumerera",
+    "tagline": "Global Företagsplattform",
+    "desc": "Bygger och driver högeffektiva verksamheter inom teknik, handel, talang och konsultation — världen över.",
+    "quickLinks": "Snabblänkar",
+    "groupProfile": "Gruppprofil",
+    "links": {
+      "home": "Hem",
+      "about": "Om Oss",
+      "global": "Global Närvaro",
+      "businesses": "Våra Tjänster",
+      "network": "Pålitligt Nätverk",
+      "contact": "Kontakt",
+      "profile": "Gruppprofil",
+      "story": "Vår Historia",
+      "contactNet": "Kontaktnätverk",
+      "management": "Vår Ledning",
+      "blog": "Blogg",
+      "sustainable": "Hållbar Tillväxt",
+      "community": "Samhällsansvar",
+      "careers": "Karriär",
+      "ecommerce": "Yanabiya E-Commerce ↗"
+    }
+  }
+}

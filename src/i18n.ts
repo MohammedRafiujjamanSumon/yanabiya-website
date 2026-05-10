@@ -5,14 +5,45 @@ import { initReactI18next } from 'react-i18next'
 import en from './locales/en.json'
 import ar from './locales/ar.json'
 import bn from './locales/bn.json'
-import ur from './locales/ur.json'
+import fr from './locales/fr.json'
+import de from './locales/de.json'
+import es from './locales/es.json'
+import it from './locales/it.json'
+import pt from './locales/pt.json'
+import nl from './locales/nl.json'
+import pl from './locales/pl.json'
+import ru from './locales/ru.json'
+import sv from './locales/sv.json'
 
-export const languages = [
-  { code: 'en', label: 'English', native: 'English', dir: 'ltr', flag: '🇬🇧' },
-  { code: 'ar', label: 'Arabic',  native: 'العربية', dir: 'rtl', flag: '🇴🇲' },
-  { code: 'bn', label: 'Bangla',  native: 'বাংলা',   dir: 'ltr', flag: '🇧🇩' },
-  { code: 'ur', label: 'Urdu',    native: 'اردو',    dir: 'rtl', flag: '🇵🇰' },
-] as const
+export type LanguageMeta = {
+  code: string
+  label: string
+  native: string
+  dir: 'ltr' | 'rtl'
+  flag: string
+  region: 'gulf' | 'europe' | 'asia' | 'global'
+}
+
+export const languages: LanguageMeta[] = [
+  // Global / default
+  { code: 'en', label: 'English',    native: 'English',      dir: 'ltr', flag: '🇬🇧', region: 'global' },
+  // Gulf
+  { code: 'ar', label: 'Arabic',     native: 'العربية',      dir: 'rtl', flag: '🇴🇲', region: 'gulf'   },
+  // Europe
+  { code: 'fr', label: 'French',     native: 'Français',     dir: 'ltr', flag: '🇫🇷', region: 'europe' },
+  { code: 'de', label: 'German',     native: 'Deutsch',      dir: 'ltr', flag: '🇩🇪', region: 'europe' },
+  { code: 'es', label: 'Spanish',    native: 'Español',      dir: 'ltr', flag: '🇪🇸', region: 'europe' },
+  { code: 'it', label: 'Italian',    native: 'Italiano',     dir: 'ltr', flag: '🇮🇹', region: 'europe' },
+  { code: 'pt', label: 'Portuguese', native: 'Português',    dir: 'ltr', flag: '🇵🇹', region: 'europe' },
+  { code: 'nl', label: 'Dutch',      native: 'Nederlands',   dir: 'ltr', flag: '🇳🇱', region: 'europe' },
+  { code: 'pl', label: 'Polish',     native: 'Polski',       dir: 'ltr', flag: '🇵🇱', region: 'europe' },
+  { code: 'ru', label: 'Russian',    native: 'Русский',      dir: 'ltr', flag: '🇷🇺', region: 'europe' },
+  { code: 'sv', label: 'Swedish',    native: 'Svenska',      dir: 'ltr', flag: '🇸🇪', region: 'europe' },
+  // Asia
+  { code: 'bn', label: 'Bengali',    native: 'বাংলা',        dir: 'ltr', flag: '🇧🇩', region: 'asia'   },
+]
+
+const supportedLngs = languages.map(l => l.code)
 
 i18n
   .use(LanguageDetector)
@@ -22,10 +53,18 @@ i18n
       en: { translation: en },
       ar: { translation: ar },
       bn: { translation: bn },
-      ur: { translation: ur },
+      fr: { translation: fr },
+      de: { translation: de },
+      es: { translation: es },
+      it: { translation: it },
+      pt: { translation: pt },
+      nl: { translation: nl },
+      pl: { translation: pl },
+      ru: { translation: ru },
+      sv: { translation: sv },
     },
     fallbackLng: 'en',
-    supportedLngs: ['en', 'ar', 'bn', 'ur'],
+    supportedLngs,
     interpolation: { escapeValue: false },
     detection: { order: ['localStorage', 'navigator'], caches: ['localStorage'] },
   })

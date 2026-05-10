@@ -1,20 +1,18 @@
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Lightbulb, Cloud, Shield, Database, Palette, Cpu } from 'lucide-react'
 import Section, { Eyebrow, H2 } from '../components/Section'
 
-const focus = [
-  { icon: Cpu, t: 'ERP & Enterprise Software', d: 'End-to-end ERP design and roll-out.' },
-  { icon: Cloud, t: 'Cloud Infrastructure', d: 'AWS and Azure architecture and managed services.' },
-  { icon: Shield, t: 'Cyber Security', d: 'Penetration testing and ethical-hacking practice.' },
-  { icon: Database, t: 'Data Analytics & BI', d: 'Dashboards, ETL pipelines and decision intelligence.' },
-  { icon: Palette, t: 'Modern UI/UX', d: 'Research-led product and interface engineering.' },
-  { icon: Lightbulb, t: 'R&D Initiatives', d: 'Continuous experimentation in emerging technologies.' },
-]
-
+const FOCUS_ICONS = [Cpu, Cloud, Shield, Database, Palette, Lightbulb]
+const FOCUS_KEYS = ['erp', 'cloud', 'cyber', 'data', 'ui', 'rd'] as const
 const pillarKeys = ['digital', 'talent', 'process', 'customer'] as const
 
 export default function Strategy() {
   const { t } = useTranslation()
+  const focus = useMemo(
+    () => FOCUS_KEYS.map((k, i) => ({ icon: FOCUS_ICONS[i], t: t(`strategy.focus_items.${k}.t`), d: t(`strategy.focus_items.${k}.d`) })),
+    [t],
+  )
   return (
     <Section id="strategy">
       <div className="container-x">

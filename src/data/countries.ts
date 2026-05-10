@@ -1,3 +1,19 @@
+import {
+  Building2, Sparkles, Package, PackageOpen, HardHat, Zap, Paintbrush,
+  Globe2, Truck, Layers, ShoppingBag, Scissors, Handshake, Ship,
+  UtensilsCrossed, Coffee, Disc3, Monitor, Laptop, Network, Cloud,
+  BarChart2, Code2, ShieldCheck, Keyboard, Smartphone, Snowflake, ChefHat,
+  Cpu, Lightbulb, Briefcase,
+} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+
+export type CountryActivity = {
+  code: string
+  name: string
+  icon?: LucideIcon
+  image?: string
+}
+
 export const countries = [
   {
     code: 'OM',
@@ -20,35 +36,35 @@ export const countries = [
       'Yanabiya Al Rustaq Contracting',
     ],
     activities: [
-      { code: '701001', name: 'Management Offices', icon: '🏢', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80' },
-      { code: '812901', name: 'Specialized Cleaning and Exterior Cleaning of Buildings', icon: '🧹', image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80' },
-      { code: '522401', name: 'Loading and Unloading of Goods', icon: '📦', image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&q=80' },
-      { code: '829201', name: 'Packaging Activities', icon: '📮', image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80' },
-      { code: '410001', name: 'Construction of Buildings', icon: '🏗️', image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80' },
-      { code: '422002', name: 'Construction of Water, Electricity and Telephone Networks and Stations', icon: '⚡', image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80' },
-      { code: '433003', name: 'Plastering, Painting and Decorating', icon: '🎨', image: 'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600&q=80' },
-      { code: '461003', name: 'Activities of Export and Import Offices', icon: '🌐', image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=600&q=80' },
-      { code: '439008', name: 'Renting of Construction or Demolition Equipment with Operator', icon: '🚜', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80' },
-      { code: '475207', name: 'Retail Sale in Specialized Stores of Construction Materials', icon: '🧱', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80' },
-      { code: '464102', name: 'Wholesale of Clothing and Clothing Accessories', icon: '👔', image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80' },
-      { code: '475101', name: 'Retail Sale in Specialized Stores of Textiles and Fabrics', icon: '🧵', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80' },
-      { code: '461001', name: 'Activities of Commission Agents and Brokerage Business', icon: '🤝', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80' },
-      { code: '501201', name: 'International Maritime Goods Transport', icon: '🚢', image: 'https://images.unsplash.com/photo-1494412574745-e1e7c8faa40d?w=600&q=80' },
-      { code: '561007', name: 'Cafes (Cafes that offer meals mainly)', icon: '🍽️', image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80' },
-      { code: '563001', name: 'Cafes (Cafes that offer mainly drinks)', icon: '☕', image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=80' },
-      { code: '474105', name: 'Retail Sale in Specialized Stores of Software and Computer Accessories', icon: '💿', image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80' },
-      { code: '951100', name: 'Repair of Computers and Peripheral Equipment', icon: '🖥️', image: 'https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600&q=80' },
-      { code: '620902', name: 'Installation of Computer Software', icon: '💻', image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80' },
-      { code: '620903', name: 'Development of Computer Network', icon: '🔌', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80' },
-      { code: '631103', name: 'Cloud and Hosting Services', icon: '☁️', image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=600&q=80' },
-      { code: '620101', name: 'Systems Analysis', icon: '📊', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80' },
-      { code: '620103', name: 'Maintenance of Software and Designing of Websites', icon: '🌐', image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80' },
-      { code: '620204', name: 'Information Technology and Cyber Security Consulting', icon: '🔒', image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80' },
-      { code: '631101', name: 'Data Entry Services', icon: '⌨️', image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=600&q=80' },
-      { code: '951201', name: 'Repair of Mobile Phones', icon: '📱', image: 'https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=600&q=80' },
-      { code: '521001', name: 'Cold and Frozen Warehousing', icon: '🧊', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80' },
-      { code: '562901', name: 'Catering Activities', icon: '🍳', image: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=600&q=80' },
-    ],
+      { code: '701001', name: 'Management Offices',                                                          icon: Building2,      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80' },
+      { code: '812901', name: 'Specialized Cleaning and Exterior Cleaning of Buildings',                     icon: Sparkles,       image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80' },
+      { code: '522401', name: 'Loading and Unloading of Goods',                                              icon: Package,        image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&q=80' },
+      { code: '829201', name: 'Packaging Activities',                                                        icon: PackageOpen,    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80' },
+      { code: '410001', name: 'Construction of Buildings',                                                   icon: HardHat,        image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80' },
+      { code: '422002', name: 'Construction of Water, Electricity and Telephone Networks and Stations',      icon: Zap,            image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80' },
+      { code: '433003', name: 'Plastering, Painting and Decorating',                                         icon: Paintbrush,     image: 'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600&q=80' },
+      { code: '461003', name: 'Activities of Export and Import Offices',                                     icon: Globe2,         image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=600&q=80' },
+      { code: '439008', name: 'Renting of Construction or Demolition Equipment with Operator',               icon: Truck,          image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80' },
+      { code: '475207', name: 'Retail Sale in Specialized Stores of Construction Materials',                 icon: Layers,         image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80' },
+      { code: '464102', name: 'Wholesale of Clothing and Clothing Accessories',                              icon: ShoppingBag,    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80' },
+      { code: '475101', name: 'Retail Sale in Specialized Stores of Textiles and Fabrics',                   icon: Scissors,       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80' },
+      { code: '461001', name: 'Activities of Commission Agents and Brokerage Business',                      icon: Handshake,      image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80' },
+      { code: '501201', name: 'International Maritime Goods Transport',                                      icon: Ship,           image: 'https://images.unsplash.com/photo-1494412574745-e1e7c8faa40d?w=600&q=80' },
+      { code: '561007', name: 'Cafes (Cafes that offer meals mainly)',                                       icon: UtensilsCrossed,image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80' },
+      { code: '563001', name: 'Cafes (Cafes that offer mainly drinks)',                                      icon: Coffee,         image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=80' },
+      { code: '474105', name: 'Retail Sale in Specialized Stores of Software and Computer Accessories',      icon: Disc3,          image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80' },
+      { code: '951100', name: 'Repair of Computers and Peripheral Equipment',                                icon: Monitor,        image: 'https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600&q=80' },
+      { code: '620902', name: 'Installation of Computer Software',                                           icon: Laptop,         image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80' },
+      { code: '620903', name: 'Development of Computer Network',                                             icon: Network,        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80' },
+      { code: '631103', name: 'Cloud and Hosting Services',                                                  icon: Cloud,          image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=600&q=80' },
+      { code: '620101', name: 'Systems Analysis',                                                            icon: BarChart2,      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80' },
+      { code: '620103', name: 'Maintenance of Software and Designing of Websites',                           icon: Code2,          image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80' },
+      { code: '620204', name: 'Information Technology and Cyber Security Consulting',                        icon: ShieldCheck,    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80' },
+      { code: '631101', name: 'Data Entry Services',                                                         icon: Keyboard,       image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=600&q=80' },
+      { code: '951201', name: 'Repair of Mobile Phones',                                                     icon: Smartphone,     image: 'https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=600&q=80' },
+      { code: '521001', name: 'Cold and Frozen Warehousing',                                                 icon: Snowflake,      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80' },
+      { code: '562901', name: 'Catering Activities',                                                         icon: ChefHat,        image: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=600&q=80' },
+    ] as CountryActivity[],
   },
   {
     code: 'GB',
@@ -64,10 +80,10 @@ export const countries = [
     entities: ['Yanabiya Gulf International UK Ltd'],
     hideActivityCodes: true,
     activities: [
-      { code: '62020', name: 'Information Technology Consultancy Activities', icon: '💻', image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80' },
-      { code: '74909', name: 'Other Professional, Scientific and Technical Activities not elsewhere classified', icon: '🔬', image: 'https://images.unsplash.com/photo-1532094349884-543559059938?w=600&q=80' },
-      { code: '77390', name: 'Renting and Leasing of Other Machinery, Equipment and Tangible Goods not elsewhere classified', icon: '🏗️', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80' },
-    ],
+      { code: '62020', name: 'Information Technology Consultancy Activities',                                icon: Cpu,       image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80' },
+      { code: '74909', name: 'Other Professional, Scientific and Technical Activities not elsewhere classified', icon: Lightbulb, image: 'https://images.unsplash.com/photo-1532094349884-543559059938?w=600&q=80' },
+      { code: '77390', name: 'Renting and Leasing of Other Machinery, Equipment and Tangible Goods not elsewhere classified', icon: Briefcase, image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80' },
+    ] as CountryActivity[],
   },
   {
     code: 'BD',

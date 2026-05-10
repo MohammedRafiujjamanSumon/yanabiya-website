@@ -68,7 +68,7 @@ const COLORS: Record<string, CardColor> = {
     label:        'text-brand-deep',
     sub:          'text-brand-accentDark',
     readMore:     'bg-brand-accentDark hover:bg-brand-deep',
-    readMoreText: 'Read about the Vice Chairman',
+    readMoreText: 'Read About The Vice Chairman',
     glow:         'shadow-brand-accent/40',
   },
   board: {
@@ -92,10 +92,10 @@ const COLORS: Record<string, CardColor> = {
     label:        'text-violet-900',
     sub:          'text-violet-700/70',
     readMore:     'bg-violet-500 hover:bg-violet-600',
-    readMoreText: 'View Companies',
+    readMoreText: 'View Management',
     glow:         'shadow-violet-200/60',
   },
-  cfo: {
+  coa: {
     bg:           'bg-gradient-to-b from-rose-50 to-pink-50',
     border:       'border-rose-300',
     ring:         'ring-rose-300',
@@ -104,7 +104,7 @@ const COLORS: Record<string, CardColor> = {
     label:        'text-rose-900',
     sub:          'text-rose-700/70',
     readMore:     'bg-rose-500 hover:bg-rose-600',
-    readMoreText: 'Meet the CFO',
+    readMoreText: 'View Accounts',
     glow:         'shadow-rose-200/60',
   },
   dept: {
@@ -140,10 +140,10 @@ function HierarchyCard({
 }) {
   const c = COLORS[colorKey]
 
-  const imgSize  = size === 'lg' ? 'w-16 h-16' : size === 'md' ? 'w-14 h-14' : size === 'sm' ? 'w-12 h-12' : size === 'xs' ? 'w-10 h-10' : 'w-8 h-8'
-  const maxW     = size === 'lg' ? 'max-w-[160px]' : size === 'md' ? 'max-w-[148px]' : size === 'sm' ? 'max-w-[136px]' : size === 'xs' ? 'max-w-[118px]' : 'max-w-[100px]'
-  const pad      = size === 'lg' ? 'px-4 py-3.5' : size === 'md' ? 'px-3.5 py-3' : size === 'sm' ? 'px-3 py-2' : size === 'xs' ? 'px-2.5 py-1.5' : 'px-2 py-1'
-  const labelSz  = size === 'lg' ? 'text-[11px] font-bold' : size === 'md' ? 'text-[11px] font-semibold' : size === 'sm' ? 'text-[10px] font-semibold' : size === 'xs' ? 'text-[9px] font-semibold' : 'text-[8px] font-semibold'
+  const imgSize  = size === 'lg' ? 'w-28 h-28' : size === 'md' ? 'w-14 h-14' : size === 'sm' ? 'w-12 h-12' : size === 'xs' ? 'w-10 h-10' : 'w-8 h-8'
+  const maxW     = size === 'lg' ? 'max-w-[320px]' : size === 'md' ? 'max-w-[220px]' : size === 'sm' ? 'max-w-[136px]' : size === 'xs' ? 'max-w-[118px]' : 'max-w-[100px]'
+  const pad      = size === 'lg' ? 'px-7 py-6' : size === 'md' ? 'px-3.5 py-3' : size === 'sm' ? 'px-3 py-2' : size === 'xs' ? 'px-2.5 py-1.5' : 'px-2 py-1'
+  const labelSz  = size === 'lg' ? 'text-[15px] font-bold' : size === 'md' ? 'text-[11px] font-semibold' : size === 'sm' ? 'text-[10px] font-semibold' : size === 'xs' ? 'text-[9px] font-semibold' : 'text-[8px] font-semibold'
   const subSz    = 'text-[9px]'
   const btnSz    = 'text-[8px] px-2.5 py-0.5'
 
@@ -170,13 +170,13 @@ function HierarchyCard({
 
         {/* Text */}
         <div className="flex flex-col items-center gap-0.5">
-          <p className={`${labelSz} ${c.label} leading-snug`}>{label}</p>
+          <p className={`${labelSz} ${c.label} leading-snug whitespace-nowrap`}>{label}</p>
           {sub && <p className={`${subSz} ${c.sub}`}>{sub}</p>}
         </div>
 
         {/* Read More button */}
         <span className={`inline-flex items-center gap-1 rounded-full font-bold uppercase tracking-wider
-                          text-white ${btnSz} ${c.readMore}
+                          text-white whitespace-nowrap ${btnSz} ${c.readMore}
                           group-hover:gap-2 transition-all duration-200`}>
           {c.readMoreText} <ArrowRight size={9} />
         </span>
@@ -187,7 +187,6 @@ function HierarchyCard({
 
 const BOARD_PHOTO = 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=200&q=80'
 const GROUP_PHOTO = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=200&q=80'
-const CFO_PHOTO   = 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=200&q=80'
 const DEPT_PHOTO  = 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=200&q=80'
 
 export default function LeadershipPyramid() {
@@ -209,49 +208,43 @@ export default function LeadershipPyramid() {
         {/* ── Org Chart ── */}
         <div className="flex flex-col items-center w-full">
 
-          {/* ══ Row 1: CEO elevated · Board (left-lower) · Vice Chairman (right-lower) ══ */}
-          <div className="relative w-full max-w-[520px]">
-            {/* L-shape lines behind the cards */}
+          {/* ══ Row 1: Vice Chairman (left) · CEO elevated (center) · Board of Members (right) ══ */}
+          <div className="relative w-full max-w-[700px]">
+            {/* L-shape connector lines */}
             <div className="absolute inset-0 pointer-events-none z-0">
-              {/* Horizontal left: CEO col (50%) → Board col (16%) at CEO center height */}
               <div className="absolute top-[65px] left-[16%] right-[50%] h-0.5 bg-brand-deep/25" />
-              {/* Horizontal right: CEO col (50%) → Vice col (84%) */}
               <div className="absolute top-[65px] left-[50%] right-[16%] h-0.5 bg-brand-deep/25" />
-              {/* Vertical drop at Board column */}
               <div className="absolute top-[65px] left-[16%] -translate-x-px w-0.5 h-[55px] bg-brand-deep/25" />
-              {/* Vertical drop at Vice column */}
               <div className="absolute top-[65px] right-[16%] w-0.5 h-[55px] bg-brand-deep/25" />
-              {/* Corner dots */}
               <div className="absolute top-[65px] left-[16%] -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-deep/15 border border-brand-deep/25" />
               <div className="absolute top-[65px] right-[16%] translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-deep/15 border border-brand-deep/25" />
-              {/* CEO junction dot */}
               <div className="absolute top-[65px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-brand-deep/10 border-2 border-brand-deep/20" />
             </div>
 
-            <div className="relative grid grid-cols-3 gap-3 z-10">
-              {/* Board — pushed down */}
+            <div className="relative grid grid-cols-3 gap-8 z-10">
+              {/* Vice Chairman — left, pushed down */}
               <Reveal delay={100}>
                 <div className="flex justify-center pt-16">
-                  <HierarchyCard colorKey="board" label="Board of Directors" to="/people/board" photo={BOARD_PHOTO} delay={0} size="sm" />
+                  <HierarchyCard colorKey="vice" label="Vice Chairman" to="/people/vice-chairman" photo={board[1]?.photo} delay={0} size="md" />
                 </div>
               </Reveal>
-              {/* CEO — elevated at top */}
+              {/* CEO — elevated at top center */}
               <Reveal delay={80}>
                 <div className="flex justify-center">
-                  <HierarchyCard colorKey="ceo" label="Founder & CEO" sub="S M Shamim Ahmed" to="/people/ceo" photo={board[0]?.photo} delay={0} size="lg" />
+                  <HierarchyCard colorKey="ceo" label="Founder & CEO" to="/people/ceo" photo={board[0]?.photo} delay={0} size="lg" />
                 </div>
               </Reveal>
-              {/* Vice Chairman — pushed down */}
+              {/* Board of Members — right, pushed down */}
               <Reveal delay={120}>
                 <div className="flex justify-center pt-16">
-                  <HierarchyCard colorKey="vice" label="Vice Chairman" sub="Mohammad Abu Jaheed" to="/people/vice-chairman" photo={board[1]?.photo} delay={0} size="sm" />
+                  <HierarchyCard colorKey="board" label="Board of Members" to="/people/board" photo={BOARD_PHOTO} delay={0} size="md" />
                 </div>
               </Reveal>
             </div>
           </div>
 
-          {/* CEO → fork → CFO + Group */}
-          <div className="relative w-full max-w-[520px] h-12 shrink-0">
+          {/* CEO → fork → Chief of Accounts + Global Executive Management */}
+          <div className="relative w-full max-w-[700px] h-12 shrink-0 -mt-10">
             <div className="absolute top-0 left-1/2 -translate-x-px w-0.5 h-6 bg-brand-deep/30" />
             <div className="absolute top-6 left-[33%] right-[33%] h-0.5 bg-brand-deep/30" />
             <div className="absolute top-6 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-deep/20 border border-brand-deep/25" />
@@ -259,22 +252,22 @@ export default function LeadershipPyramid() {
             <div className="absolute top-6 right-[33%] w-0.5 h-6 bg-brand-deep/30" />
           </div>
 
-          {/* ══ Row 2: CFO · Group of Companies ══ */}
-          <div className="w-full max-w-[520px] grid grid-cols-2 gap-14 px-[12%]">
+          {/* ══ Row 2: Chief of Accounts · Global Executive Management ══ */}
+          <div className="w-full max-w-[700px] grid grid-cols-2 gap-24 px-[10%]">
             <Reveal delay={260}>
               <div className="flex justify-center">
-                <HierarchyCard colorKey="cfo" label="CFO" to="/leadership/management" photo={CFO_PHOTO} delay={0} size="sm" />
+                <HierarchyCard colorKey="coa" label="Chief of Accounts" to="/people/accounts" photo={DEPT_PHOTO} delay={0} size="md" />
               </div>
             </Reveal>
             <Reveal delay={300}>
               <div className="flex justify-center">
-                <HierarchyCard colorKey="group" label="Group of Companies" to="/about-us" photo={GROUP_PHOTO} delay={0} size="sm" />
+                <HierarchyCard colorKey="group" label="Global Executive Management" to="/people/executive" photo={GROUP_PHOTO} delay={0} size="md" />
               </div>
             </Reveal>
           </div>
 
-          {/* CFO + Group → merge → Department Heads (extra space) */}
-          <div className="relative w-full max-w-[520px] h-20 shrink-0">
+          {/* Chief of Accounts + Global Exec → merge → Regional Operations Team */}
+          <div className="relative w-full max-w-[700px] h-20 shrink-0">
             <div className="absolute top-0 left-[33%] -translate-x-px w-0.5 h-10 bg-brand-deep/30" />
             <div className="absolute top-0 right-[33%] w-0.5 h-10 bg-brand-deep/30" />
             <div className="absolute top-10 left-[33%] right-[33%] h-0.5 bg-brand-deep/30" />
@@ -284,8 +277,8 @@ export default function LeadershipPyramid() {
             <div className="absolute top-10 left-1/2 -translate-x-px w-0.5 h-10 bg-brand-deep/30" />
           </div>
 
-          {/* ══ Row 3: Department Heads ══ */}
-          <HierarchyCard colorKey="dept" label="Department Heads" to="/leadership/departments" photo={DEPT_PHOTO} delay={400} size="md" />
+          {/* ══ Row 3: Regional Operations Team ══ */}
+          <HierarchyCard colorKey="dept" label="Regional Operations Team" to="/people/departments" photo={DEPT_PHOTO} delay={400} size="md" />
 
           {/* CTA buttons */}
           <Reveal delay={520}>

@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import {
   MapPin, Phone, AtSign, Send,
   Linkedin, Facebook, Instagram, Twitter, Youtube,
@@ -15,27 +16,32 @@ const socials = [
 ]
 
 const groupLinks = [
-  { id: 'home',         label: 'Home'            },
-  { id: 'about',        label: 'About Us'        },
-  { id: 'global',       label: 'Global Presence' },
-  { id: 'businesses',   label: 'Our Service'     },
-  { id: 'partnerships', label: 'Trusted Network' },
-  { id: 'contact',      label: 'Contact Us'      },
+  { id: 'home',         labelKey: 'footer.links.home'       },
+  { id: 'about',        labelKey: 'footer.links.about'      },
+  { id: 'global',       labelKey: 'footer.links.global'     },
+  { id: 'businesses',   labelKey: 'footer.links.businesses' },
+  { id: 'partnerships', labelKey: 'footer.links.network'    },
+  { id: 'contact',      labelKey: 'footer.links.contact'    },
 ]
 
-const corporateLinks: { to?: string; href?: string; label: string }[] = [
-  { to: '/about-us',                       label: 'Group Profile'          },
-  { to: '/about/our-story',                label: 'Our Story'              },
-  { to: '/contact',                        label: 'Contact Network'        },
-  { to: '/leadership/management',          label: 'Our Management'         },
-  { to: '/community/blog',                 label: 'Blog'                   },
-  { to: '/community/sustainable-growth',   label: 'Sustainable Growth'     },
-  { to: '/community/community-care',       label: 'Community Care'         },
-  { to: '/community/careers',              label: 'Careers'                },
-  { href: 'https://ygiusllc.com/',         label: 'Yanabiya E-Commerce ↗'  },
+const corporateLinks: { to?: string; href?: string; labelKey: string }[] = [
+  { to: '/about-us',                       labelKey: 'footer.links.profile'    },
+  { to: '/about/our-story',                labelKey: 'footer.links.story'      },
+  { to: '/contact',                        labelKey: 'footer.links.contactNet' },
+  { to: '/leadership/management',          labelKey: 'footer.links.management' },
+  { to: '/community/blog',                 labelKey: 'footer.links.blog'       },
+  { to: '/community/sustainable-growth',   labelKey: 'footer.links.sustainable'},
+  { to: '/community/community-care',       labelKey: 'footer.links.community'  },
+  { to: '/community/careers',              labelKey: 'footer.links.careers'    },
+  { href: 'https://ygiusllc.com/',         labelKey: 'footer.links.ecommerce'  },
 ]
 
-const FLAG: Record<string, string> = { OM: '🇴🇲', GB: '🇬🇧', BD: '🇧🇩', US: '🇺🇸' }
+const FLAG_IMG: Record<string, string> = {
+  OM: '/yanabiya-website/maps/flags/om.svg',
+  GB: '/yanabiya-website/maps/flags/gb.svg',
+  BD: '/yanabiya-website/maps/flags/bd.svg',
+  US: '/yanabiya-website/maps/flags/us.svg',
+}
 
 const linkClass =
   'relative inline-block text-white hover:text-white transition-colors ' +
@@ -44,15 +50,16 @@ const linkClass =
   'after:transition-transform after:duration-300 hover:after:scale-x-100'
 
 function AddressCard({ c, isHQ }: { c: CountryContact; isHQ?: boolean }) {
+  const { t } = useTranslation()
   return (
     <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3 hover:border-brand-accent/30 hover:bg-white/[0.07] transition-all duration-300">
       {/* Header */}
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-xl leading-none">{FLAG[c.code]}</span>
+        <img src={FLAG_IMG[c.code]} alt={c.region} className="w-6 h-4 object-cover rounded-sm shadow-sm" />
         <span className="text-sm font-semibold text-white">{c.region}</span>
         {isHQ && (
           <span className="ml-auto text-[8px] uppercase tracking-wider bg-brand-accent/25 text-brand-accent px-2 py-0.5 rounded-full font-bold border border-brand-accent/30">
-            HQ
+            {t('footer.hq')}
           </span>
         )}
       </div>
@@ -71,9 +78,9 @@ function AddressCard({ c, isHQ }: { c: CountryContact; isHQ?: boolean }) {
         <div className="text-[11px] text-white leading-snug space-y-0.5">
           {c.code === 'OM' ? (
             <>
-              <p className="text-[8px] uppercase tracking-wider text-white font-semibold">Postal Address</p>
+              <p className="text-[8px] uppercase tracking-wider text-white font-semibold">{t('footer.postalAddress')}</p>
               {c.postAddress.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
-              <p className="text-[8px] uppercase tracking-wider text-white font-semibold pt-1">Head Office</p>
+              <p className="text-[8px] uppercase tracking-wider text-white font-semibold pt-1">{t('footer.headOffice')}</p>
               {c.officeAddress.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
             </>
           ) : (
@@ -109,7 +116,8 @@ function AddressCard({ c, isHQ }: { c: CountryContact; isHQ?: boolean }) {
 }
 
 export default function Footer() {
-  const year = 2021
+  const year = new Date().getFullYear()
+  const { t } = useTranslation()
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -145,14 +153,14 @@ export default function Footer() {
         <div className="relative border-b border-white/10">
           <div className="container-x py-3 flex flex-col items-center gap-2 text-center">
             <div>
-              <p className="text-[10px] uppercase tracking-[0.22em] text-brand-accent font-semibold">Newsletter</p>
-              <p className="text-xs text-white mt-0.5">Stay updated with Yanabiya Group news &amp; insights</p>
+              <p className="text-[10px] uppercase tracking-[0.22em] text-brand-accent font-semibold">{t('footer.newsletter')}</p>
+              <p className="text-xs text-white mt-0.5">{t('footer.newsletterDesc')}</p>
             </div>
             <form onSubmit={(e) => e.preventDefault()} className="flex items-center w-full max-w-sm">
               <input
                 type="email"
                 required
-                placeholder="Your email address"
+                placeholder={t('footer.emailPlaceholder')}
                 className="flex-1 bg-white/10 border border-white/15 rounded-l-full px-3 py-1.5 text-xs
                            text-white placeholder:text-white/40
                            focus:outline-none focus:border-brand-accent focus:bg-white/15 transition"
@@ -163,7 +171,7 @@ export default function Footer() {
                            px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider
                            hover:brightness-110 transition whitespace-nowrap"
               >
-                Subscribe <Send size={11} />
+                {t('footer.subscribe')} <Send size={11} />
               </button>
             </form>
           </div>
@@ -189,13 +197,13 @@ export default function Footer() {
                   Yanabiya Group
                 </div>
                 <div className="text-[9px] uppercase tracking-[0.25em] text-brand-accent mt-0.5 font-semibold">
-                  Global Enterprise Platform
+                  {t('footer.tagline')}
                 </div>
               </div>
             </Link>
 
             <p className="mt-2 text-[11px] text-white leading-relaxed max-w-[210px]">
-              Building &amp; operating high-impact ventures across technology, trade, talent and consulting — worldwide.
+              {t('footer.desc')}
             </p>
 
             {/* Divider */}
@@ -221,7 +229,7 @@ export default function Footer() {
 
             {/* Divider */}
             <div className="mt-3 w-full border-t border-white/10 pt-3">
-              <p className="text-[9px] uppercase tracking-[0.2em] text-brand-accent font-semibold mb-2">Quick Links</p>
+              <p className="text-[9px] uppercase tracking-[0.2em] text-brand-accent font-semibold mb-2">{t('footer.quickLinks')}</p>
               <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[11px]">
                 {groupLinks.map((l) => (
                   <a
@@ -230,7 +238,7 @@ export default function Footer() {
                     onClick={(e) => handleHashClick(e, l.id)}
                     className={linkClass}
                   >
-                    {l.label}
+                    {t(l.labelKey)}
                   </a>
                 ))}
               </div>
@@ -250,8 +258,8 @@ export default function Footer() {
             {corporateLinks.map((l) => (
               <span key={l.href ?? l.to} className="text-[10px]">
                 {l.href
-                  ? <a href={l.href} target="_blank" rel="noopener noreferrer" className={linkClass}>{l.label}</a>
-                  : <Link to={l.to!} className={linkClass}>{l.label}</Link>
+                  ? <a href={l.href} target="_blank" rel="noopener noreferrer" className={linkClass}>{t(l.labelKey)}</a>
+                  : <Link to={l.to!} className={linkClass}>{t(l.labelKey)}</Link>
                 }
               </span>
             ))}
@@ -263,9 +271,9 @@ export default function Footer() {
       {/* ── BOTTOM STRIP ── */}
       <div className="bg-black/40 w-full">
         <div className="container-x py-2 flex flex-row flex-wrap items-center justify-between gap-2 text-[10px] text-white/70">
-          <span>© {year} Yanabiya Group. All rights reserved.</span>
+          <span>© {year} Yanabiya Group. {t('footer.rights')}</span>
           <div className="flex items-center gap-4">
-            <Link to="/about-us" className={linkClass}>Group Profile</Link>
+            <Link to="/about-us" className={linkClass}>{t('footer.groupProfile')}</Link>
             <a href={`mailto:${contact.emails[0]}`} className={linkClass}>{contact.emails[0]}</a>
           </div>
         </div>

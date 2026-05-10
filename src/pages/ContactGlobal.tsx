@@ -39,6 +39,7 @@ type CountryCode = 'OM' | 'GB' | 'BD' | 'US'
 type CountryContact = {
   code: CountryCode
   flag: string
+  flagImg: string
   name: string
   shortName: string
   region: string
@@ -61,6 +62,7 @@ const COUNTRIES: CountryContact[] = [
   {
     code: 'OM',
     flag: '🇴🇲',
+    flagImg: '/yanabiya-website/maps/flags/om.svg',
     name: 'Sultanate of Oman',
     shortName: 'Oman',
     region: 'Headquarters',
@@ -85,6 +87,7 @@ const COUNTRIES: CountryContact[] = [
   {
     code: 'GB',
     flag: '🇬🇧',
+    flagImg: '/yanabiya-website/maps/flags/gb.svg',
     name: 'United Kingdom',
     shortName: 'UK',
     region: 'European Operations',
@@ -96,7 +99,8 @@ const COUNTRIES: CountryContact[] = [
       '5th Floor, London, W1W 5PF',
       'United Kingdom',
     ],
-    phones: [],
+    phones: ['+44 7988 518877'],
+    mobile: '+44 7988 518877',
     emails: ['info@yanabiyagroup.com'],
     hours: 'Monday  to  Friday, 9:00 AM  to  6:00 PM (GMT)',
     mapEmbed: '167-169 Great Portland Street, London W1W 5PF, UK',
@@ -105,6 +109,7 @@ const COUNTRIES: CountryContact[] = [
   {
     code: 'BD',
     flag: '🇧🇩',
+    flagImg: '/yanabiya-website/maps/flags/bd.svg',
     name: 'Bangladesh',
     shortName: 'Bangladesh',
     region: 'South Asia Operations',
@@ -116,7 +121,8 @@ const COUNTRIES: CountryContact[] = [
       'Block #Kanchkura, Uttarkhan',
       'Dhaka-1230, Bangladesh',
     ],
-    phones: [],
+    phones: ['+880 1711 030489'],
+    mobile: '+880 1971 161677',
     emails: ['info@yanabiyagroup.com'],
     hours: 'Sunday  to  Thursday, 9:00 AM  to  6:00 PM (BST)',
     mapEmbed: 'Uttarkhan, Dhaka 1230, Bangladesh',
@@ -125,6 +131,7 @@ const COUNTRIES: CountryContact[] = [
   {
     code: 'US',
     flag: '🇺🇸',
+    flagImg: '/yanabiya-website/maps/flags/us.svg',
     name: 'United States of America',
     shortName: 'USA',
     region: 'North America Operations',
@@ -136,11 +143,12 @@ const COUNTRIES: CountryContact[] = [
       'Austin, TX 78731',
       'United States of America',
     ],
-    phones: [],
+    phones: ['+1 512 355 5715'],
+    mobile: '+1 512 355 5715',
     emails: ['info@yanabiyagroup.com'],
     hours: 'Monday  to  Friday, 9:00 AM  to  5:00 PM (CT)',
     mapEmbed: '5900 Balcones Drive, Austin, TX 78731, USA',
-    status: 'launching',
+    status: 'active',
   },
 ]
 
@@ -168,10 +176,8 @@ function CountryCard({
                    hover:shadow-[0_24px_60px_-20px_rgba(15,58,35,0.25)]"
       >
         <div className="flex items-start gap-4">
-          <div className="shrink-0 w-14 h-14 rounded-full bg-brand-50 grid place-items-center
-                          text-3xl shadow-sm ring-2 ring-brand-accent/30
-                          group-hover:ring-brand-accent transition-colors duration-300">
-            {data.flag}
+          <div className="shrink-0 w-14 h-14 rounded-full overflow-hidden shadow-sm ring-2 ring-brand-accent/30 group-hover:ring-brand-accent transition-colors duration-300">
+            <img src={data.flagImg} alt={data.name} className="w-full h-full object-cover" />
           </div>
           <div className="min-w-0 flex-1">
             <div className="font-serif text-xl font-bold text-brand-deep leading-tight">
@@ -277,10 +283,9 @@ function CountryPreviewPanel({
           {/* Header */}
           <div className="text-center">
             <div className="inline-flex items-center gap-3 mb-4">
-              <span className="w-14 h-14 rounded-full bg-brand-50 grid place-items-center
-                               text-3xl shadow-sm ring-2 ring-brand-accent/40">
-                {data.flag}
-              </span>
+              <div className="w-14 h-14 rounded-full overflow-hidden shadow-sm ring-2 ring-brand-accent/40">
+                <img src={data.flagImg} alt={data.name} className="w-full h-full object-cover" />
+              </div>
             </div>
             <div className="text-[10px] uppercase tracking-[0.32em] text-brand-accentDark font-bold mb-2">
               {data.region}
@@ -341,7 +346,21 @@ function CountryPreviewPanel({
                 <FactRow icon={Phone} label="Phone" value={data.phones.join(', ')} />
               )}
               {data.mobile && <FactRow icon={Phone} label="Mobile" value={data.mobile} />}
-              <FactRow icon={Mail} label="Email" value={data.emails.join(', ')} />
+              <div className="flex items-start gap-3">
+                <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-accent/10 grid place-items-center text-brand-accentDark">
+                  <Mail size={15} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-[10px] uppercase tracking-[0.25em] text-slate-500 font-bold">Email</div>
+                  <div className="mt-0.5 flex flex-col gap-0.5">
+                    {data.emails.map((email) => (
+                      <a key={email} href={`mailto:${email}`} className="text-sm text-slate-800 hover:text-brand-accentDark transition-colors break-all">
+                        {email}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
               <FactRow icon={Globe2} label="Office Hours" value={data.hours} />
             </div>
           </Reveal>
