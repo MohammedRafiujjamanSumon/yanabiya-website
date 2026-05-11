@@ -293,13 +293,13 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <Link to="/about-us" className={linkClass}>{t('footer.groupProfile')}</Link>
             <a href={`mailto:${contact.emails[0]}`} className={linkClass}>{contact.emails[0]}</a>
-            <Link
-              to="/admin/login"
+            <a
+              href={`${import.meta.env.BASE_URL}admin/login`}
               className="text-white/30 hover:text-white/60 transition-colors text-[9px] tracking-wider"
               title="Admin Login"
             >
               ⚙ Admin Login
-            </Link>
+            </a>
           </div>
         </div>
       </div>
