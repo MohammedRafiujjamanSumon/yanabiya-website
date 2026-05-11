@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Save, Plus, Trash2, ChevronDown, ChevronUp, GripVertical } from 'lucide-react'
 import AdminLayout from '../../components/AdminLayout'
 import { api } from '../../api/adminApi'
+import { ImageField } from '../../components/MediaPicker'
 
 interface Scene {
   id: string; eyebrow: string; headline: string; body: string
@@ -146,10 +147,12 @@ export default function HeroScenesEdit() {
                     <label className="block text-xs text-slate-400 mb-1.5">Body Text</label>
                     <textarea rows={2} value={scene.body} onChange={e => update(scene.id, 'body', e.target.value)} className={`${ipt} resize-none`} />
                   </div>
-                  <div>
-                    <label className="block text-xs text-slate-400 mb-1.5">Background Photo URL</label>
-                    <input value={scene.photo} onChange={e => update(scene.id, 'photo', e.target.value)} className={ipt} placeholder="https://..." />
-                  </div>
+                  <ImageField
+                    label="Background Photo"
+                    value={scene.photo}
+                    onChange={v => update(scene.id, 'photo', v)}
+                    folder="hero"
+                  />
                   <div className="grid md:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs text-slate-400 mb-1.5">CTA Button Label</label>
