@@ -37,6 +37,7 @@ const NAV = [
   { to: '/admin/community-hubs', label: 'Community Hubs',  icon: Layout },
   { to: '/admin/donation',       label: 'Donation & Bank', icon: Banknote },
   { header: 'PAGES' },
+  { to: '/admin/pages',        label: 'Page Builder',    icon: Layout },
   { to: '/admin/page-heroes',  label: 'Page Heroes',     icon: Image },
   { to: '/admin/about-page',   label: 'About Us Page',   icon: Info },
   { to: '/admin/our-story',    label: 'Our Story Page',  icon: FileText },

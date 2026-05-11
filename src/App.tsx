@@ -59,6 +59,9 @@ import NetworkEdit from './admin/pages/sections/NetworkEdit'
 import CommunityHubsEdit from './admin/pages/sections/CommunityHubsEdit'
 import AboutPageEdit from './admin/pages/sections/AboutPageEdit'
 import OurStoryEdit from './admin/pages/sections/OurStoryEdit'
+import PagesManager from './admin/pages/PagesManager'
+import PageEditor from './admin/pages/PageEditor'
+import DynamicPage from './pages/DynamicPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -101,6 +104,8 @@ function AdminRoutes() {
         <Route path="community-hubs"  element={<ProtectedRoute><CommunityHubsEdit /></ProtectedRoute>} />
         <Route path="about-page"      element={<ProtectedRoute><AboutPageEdit /></ProtectedRoute>} />
         <Route path="our-story"       element={<ProtectedRoute><OurStoryEdit /></ProtectedRoute>} />
+        <Route path="pages"           element={<ProtectedRoute><PagesManager /></ProtectedRoute>} />
+        <Route path="pages/:slug"     element={<ProtectedRoute><PageEditor /></ProtectedRoute>} />
       </Routes>
     </AuthProvider>
   )
@@ -158,6 +163,7 @@ export default function App() {
               <Route path="/about-us" element={<AboutUs />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/about/our-story" element={<OurStory />} />
+              <Route path="/p/:slug" element={<DynamicPage />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </main>

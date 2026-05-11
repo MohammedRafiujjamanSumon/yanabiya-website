@@ -57,6 +57,17 @@ export const api = {
       xhr.send(fd)
     })
   },
+
+  // Pages
+  listPages: () => req<PageMeta[]>('GET', '/api/pages'),
+  getPage: (slug: string) => req<CmsPage>('GET', `/api/pages/${slug}`),
+  createPage: (data: CreatePageInput) => req<CmsPage>('POST', '/api/pages', data),
+  updatePage: (slug: string, data: Partial<CreatePageInput>) => req<CmsPage>('PUT', `/api/pages/${slug}`, data),
+  deletePage: (slug: string) => req('DELETE', `/api/pages/${slug}`),
+  updateSections: (slug: string, sections: CmsSection[]) => req<CmsPage>('PUT', `/api/pages/${slug}/sections`, { sections }),
+  addSection: (slug: string, type: string) => req<CmsPage>('POST', `/api/pages/${slug}/sections`, { type }),
+  updateSection_cms: (slug: string, sectionId: string, data: Partial<CmsSection>) => req<CmsPage>('PUT', `/api/pages/${slug}/sections/${sectionId}`, data),
+  deleteSection_cms: (slug: string, sectionId: string) => req<CmsPage>('DELETE', `/api/pages/${slug}/sections/${sectionId}`),
 }
 
 export interface Admin { id: string; email: string; name: string; role: string }
@@ -65,3 +76,8 @@ export interface MediaFile {
   size: number; mtime: string; type: 'image' | 'video' | 'file'
 }
 export interface UploadResult { url: string; filename: string; folder: string; type: string }
+
+export interface PageMeta { id: string; slug: string; title: string; status: 'draft' | 'published'; parentSlug: string | null; template: string; updatedAt: string; sectionCount: number }
+export interface CmsSection { id: string; type: string; order: number; visible: boolean; data: Record<string, unknown> }
+export interface CmsPage extends PageMeta { metaTitle: string; metaDescription: string; heroImage: string; sections: CmsSection[] }
+export interface CreatePageInput { slug: string; title: string; metaTitle?: string; metaDescription?: string; status?: 'draft' | 'published'; parentSlug?: string; template?: string; heroImage?: string }
