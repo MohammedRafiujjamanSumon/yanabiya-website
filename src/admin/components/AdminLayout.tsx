@@ -4,47 +4,71 @@ import {
   LayoutDashboard, Phone, Users, Image, Globe, Settings,
   LogOut, Menu, X, ChevronRight, Building2, FileText,
   Newspaper, Briefcase, Quote, Navigation, Layout, MonitorPlay, Info, FolderOpen,
-  Lightbulb, MapPin, ImageIcon, Heart, Banknote,
+  Lightbulb, MapPin, ImageIcon, Heart, Banknote, BarChart3,
+  BookOpen, Languages, MessageSquare, Globe2,
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { assets } from '../../data/assets'
 
 const NAV = [
-  { to: '/admin',              label: 'Dashboard',       icon: LayoutDashboard },
-  { header: 'BRANDING' },
-  { to: '/admin/logo',         label: 'Logo & Branding', icon: ImageIcon },
-  { header: 'HOMEPAGE' },
-  { to: '/admin/hero-scenes',  label: 'Hero Slides',     icon: MonitorPlay },
-  { to: '/admin/company',      label: 'Company Info',    icon: Info },
-  { to: '/admin/navbar',       label: 'Navbar',          icon: Navigation },
-  { to: '/admin/about',        label: 'About Section',   icon: Building2 },
-  { to: '/admin/services',     label: 'Services',        icon: FileText },
-  { to: '/admin/solutions',    label: 'Solutions',       icon: Lightbulb },
-  { to: '/admin/partners',     label: 'Partners & Logos',icon: Image },
-  { to: '/admin/network',      label: 'Network Section', icon: Globe },
-  { to: '/admin/footer',       label: 'Footer',          icon: Layout },
-  { header: 'PEOPLE & PLACES' },
-  { to: '/admin/leadership',   label: 'Leadership',      icon: Users },
-  { to: '/admin/people',       label: 'People Profiles', icon: Users },
-  { to: '/admin/branches',     label: 'Global Branches', icon: MapPin },
-  { to: '/admin/contact',      label: 'Contact Info',    icon: Phone },
-  { to: '/admin/country-pages',label: 'Country Pages',   icon: Globe },
+  { to: '/admin',                label: 'Dashboard',         icon: LayoutDashboard },
+
+  { header: 'BRANDING & MEDIA' },
+  { to: '/admin/logo',           label: 'Logo & Branding',   icon: ImageIcon },
+  { to: '/admin/media',          label: 'Media Library',     icon: FolderOpen },
+
+  { header: 'NAVBAR' },
+  { to: '/admin/navbar',         label: 'Navbar Editor',     icon: Navigation },
+
+  { header: 'HERO' },
+  { to: '/admin/hero-scenes',    label: 'Hero Slides',       icon: MonitorPlay },
+  { to: '/admin/page-heroes',    label: 'Page Banners',      icon: Image },
+
+  { header: 'STATS' },
+  { to: '/admin/company',        label: 'Company Stats',     icon: BarChart3 },
+
+  { header: 'ABOUT US' },
+  { to: '/admin/about-page',     label: 'About Us Page',     icon: Info },
+  { to: '/admin/about',          label: 'About Section',     icon: Building2 },
+  { to: '/admin/our-story',      label: 'Our Story',         icon: BookOpen },
+  { to: '/admin/pages',          label: 'Custom Subpages',   icon: Layout },
+
+  { header: 'OUR SERVICES' },
+  { to: '/admin/services',       label: 'Services',          icon: FileText },
+  { to: '/admin/solutions',      label: 'Solutions',         icon: Lightbulb },
+
+  { header: 'GLOBAL BRANCHES' },
+  { to: '/admin/branches',       label: 'Global Branches',   icon: MapPin },
+  { to: '/admin/partners',       label: 'Partners & Logos',  icon: Image },
+
+  { header: 'COUNTRY PAGES' },
+  { to: '/admin/country-pages',  label: 'Country Pages',     icon: Globe },
+
   { header: 'COMMUNITY' },
-  { to: '/admin/blog',           label: 'Blog Posts',      icon: Newspaper },
-  { to: '/admin/careers',        label: 'Careers',         icon: Briefcase },
-  { to: '/admin/testimonials',   label: 'Testimonials',    icon: Quote },
-  { to: '/admin/community-pages',label: 'Community Pages', icon: Heart },
-  { to: '/admin/community-hubs', label: 'Community Hubs',  icon: Layout },
-  { to: '/admin/donation',       label: 'Donation & Bank', icon: Banknote },
-  { header: 'PAGES' },
-  { to: '/admin/pages',        label: 'Page Builder',    icon: Layout },
-  { to: '/admin/page-heroes',  label: 'Page Heroes',     icon: Image },
-  { to: '/admin/about-page',   label: 'About Us Page',   icon: Info },
-  { to: '/admin/our-story',    label: 'Our Story Page',  icon: FileText },
-  { header: 'MEDIA' },
-  { to: '/admin/media',        label: 'Media Library',   icon: FolderOpen },
+  { to: '/admin/network',        label: 'Our Network',       icon: Globe2 },
+  { to: '/admin/community-hubs', label: 'Community Hubs',    icon: Heart },
+  { to: '/admin/community-pages',label: 'Community Pages',   icon: Layout },
+  { to: '/admin/blog',           label: 'Blog Posts',        icon: Newspaper },
+  { to: '/admin/testimonials',   label: 'Testimonials',      icon: Quote },
+  { to: '/admin/donation',       label: 'Donation & Bank',   icon: Banknote },
+
+  { header: 'OUR PEOPLE' },
+  { to: '/admin/leadership',     label: 'Leadership',        icon: Users },
+  { to: '/admin/people',         label: 'People Profiles',   icon: Users },
+  { to: '/admin/careers',        label: 'Careers',           icon: Briefcase },
+
+  { header: 'LANGUAGE' },
+  { to: '/admin/language',       label: 'Language Settings', icon: Languages },
+
+  { header: 'CONTACT' },
+  { to: '/admin/contact',        label: 'Contact Info',      icon: Phone },
+  { to: '/admin/messages',       label: 'Messages',          icon: MessageSquare },
+
+  { header: 'FOOTER' },
+  { to: '/admin/footer',         label: 'Footer',            icon: Layout },
+
   { header: 'ACCOUNT' },
-  { to: '/admin/settings',     label: 'Settings',        icon: Settings },
+  { to: '/admin/settings',       label: 'Settings',          icon: Settings },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

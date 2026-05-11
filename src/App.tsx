@@ -61,6 +61,8 @@ import AboutPageEdit from './admin/pages/sections/AboutPageEdit'
 import OurStoryEdit from './admin/pages/sections/OurStoryEdit'
 import PagesManager from './admin/pages/PagesManager'
 import PageEditor from './admin/pages/PageEditor'
+import LanguageEdit from './admin/pages/sections/LanguageEdit'
+import MessagesEdit from './admin/pages/sections/MessagesEdit'
 import DynamicPage from './pages/DynamicPage'
 
 function ScrollToTop() {
@@ -106,6 +108,8 @@ function AdminRoutes() {
         <Route path="our-story"       element={<ProtectedRoute><OurStoryEdit /></ProtectedRoute>} />
         <Route path="pages"           element={<ProtectedRoute><PagesManager /></ProtectedRoute>} />
         <Route path="pages/:slug"     element={<ProtectedRoute><PageEditor /></ProtectedRoute>} />
+        <Route path="language"        element={<ProtectedRoute><LanguageEdit /></ProtectedRoute>} />
+        <Route path="messages"        element={<ProtectedRoute><MessagesEdit /></ProtectedRoute>} />
       </Routes>
     </AuthProvider>
   )

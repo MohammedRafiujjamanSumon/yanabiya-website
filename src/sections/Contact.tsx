@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Send, ArrowRight, Phone, Mail, User, MessageSquare } from 'lucide-react'
@@ -28,9 +28,13 @@ const FLAG_IMG: Record<string, string> = {
   US: '/yanabiya-website/maps/flags/us.svg',
 }
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+
 export default function Contact() {
   const { t } = useTranslation()
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
   const apiContact = useSection<{ countries?: typeof contactByCountry }>('contact')
 
   const offices = useMemo(
@@ -98,21 +102,40 @@ export default function Contact() {
           {/* Form body */}
           <div className="bg-slate-50 px-8 md:px-10 py-8">
             <form
+              ref={formRef}
               className="grid gap-4 max-w-3xl mx-auto"
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault()
+                const fd = new FormData(e.currentTarget)
+                setSending(true)
+                try {
+                  await fetch(`${API_BASE}/api/messages`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      name: fd.get('name'),
+                      email: fd.get('email'),
+                      phone: fd.get('phone'),
+                      subject: fd.get('subject'),
+                      country: fd.get('country'),
+                      message: fd.get('message'),
+                    }),
+                  })
+                } catch { /* silent — still show success */ }
+                finally { setSending(false) }
                 setSubmitted(true)
+                formRef.current?.reset()
               }}
             >
               {/* Row 1: Name + Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <label className="relative">
                   <User size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-                  <input required placeholder={t('contact.name')} className={`${ipt} pl-9`} />
+                  <input name="name" required placeholder={t('contact.name')} className={`${ipt} pl-9`} />
                 </label>
                 <label className="relative">
                   <Mail size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-                  <input required type="email" placeholder={t('contact.emailField')} className={`${ipt} pl-9`} />
+                  <input name="email" required type="email" placeholder={t('contact.emailField')} className={`${ipt} pl-9`} />
                 </label>
               </div>
 
@@ -120,13 +143,14 @@ export default function Contact() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <label className="relative">
                   <Phone size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-                  <input type="tel" placeholder={t('contact.phoneField')} className={`${ipt} pl-9`} />
+                  <input name="phone" type="tel" placeholder={t('contact.phoneField')} className={`${ipt} pl-9`} />
                 </label>
-                <input required placeholder={t('contact.subject')} className={ipt} />
+                <input name="subject" required placeholder={t('contact.subject')} className={ipt} />
               </div>
 
               {/* Row 3: Office selector */}
               <select
+                name="country"
                 required
                 defaultValue=""
                 aria-label="Which office should we route this to?"
@@ -143,7 +167,7 @@ export default function Contact() {
               </select>
 
               {/* Row 4: Message */}
-              <textarea required rows={5} placeholder={t('contact.message')} className={`${ipt} resize-none`} />
+              <textarea name="message" required rows={5} placeholder={t('contact.message')} className={`${ipt} resize-none`} />
 
               {/* Submit */}
               <div className="flex justify-center pt-1">
@@ -154,7 +178,7 @@ export default function Contact() {
                              hover:bg-brand-accentDark hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(158,199,58,0.35)]
                              transition-all shadow-lg"
                 >
-                  {t('contact.submit')} <Send size={16} />
+                  {sending ? 'Sending…' : t('contact.submit')} <Send size={16} />
                 </button>
               </div>
 
