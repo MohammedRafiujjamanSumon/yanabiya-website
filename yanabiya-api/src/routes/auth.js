@@ -3,8 +3,9 @@ const jwt = require('jsonwebtoken')
 const { getAdmin, matchPassword, updatePassword } = require('../models/Admin')
 const protect = require('../middleware/auth')
 
+const JWT_SECRET = process.env.JWT_SECRET || 'yanabiya_super_secret_jwt_key_2024_admin_panel'
 const sign = (id) =>
-  jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN || '7d' })
+  jwt.sign({ id }, JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN || '7d' })
 
 // POST /api/auth/login
 router.post('/login', async (req, res) => {

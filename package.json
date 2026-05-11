@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "api": "node yanabiya-api/server.js",
-    "start": "concurrently --names \"API,WEB\" --prefix-colors \"cyan,green\" \"node yanabiya-api/server.js\" \"vite --host\"",
+    "api": "cd yanabiya-api && node server.js",
+    "start": "concurrently --names \"API,WEB\" --prefix-colors \"cyan,green\" \"cd yanabiya-api && npx nodemon server.js\" \"vite --host\"",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

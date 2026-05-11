@@ -1,13 +1,15 @@
 const jwt = require('jsonwebtoken')
 const { getAdmin } = require('../models/Admin')
 
+const JWT_SECRET = process.env.JWT_SECRET || 'yanabiya_super_secret_jwt_key_2024_admin_panel'
+
 module.exports = (req, res, next) => {
   const auth = req.headers.authorization
   if (!auth || !auth.startsWith('Bearer ')) {
     return res.status(401).json({ message: 'No token, authorisation denied' })
   }
   try {
-    const decoded = jwt.verify(auth.split(' ')[1], process.env.JWT_SECRET)
+    const decoded = jwt.verify(auth.split(' ')[1], JWT_SECRET)
     const admin = getAdmin()
     if (!admin || admin.id !== decoded.id) {
       return res.status(401).json({ message: 'Admin not found' })
