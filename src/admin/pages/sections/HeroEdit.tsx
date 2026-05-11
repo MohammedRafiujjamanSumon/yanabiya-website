@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import { Save, Plus, Trash2 } from 'lucide-react'
 import AdminLayout from '../../components/AdminLayout'
 import { api } from '../../api/adminApi'
+import { VideoField } from '../../components/MediaPicker'
 
 interface HeroStat { label: string; value: string }
-interface HeroData { headline: string; subheadline: string; stats: HeroStat[] }
+interface HeroData { headline: string; subheadline: string; stats: HeroStat[]; video?: string }
 
 const ipt = 'w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white ' +
   'placeholder:text-slate-500 focus:outline-none focus:border-brand-accent transition-all'
@@ -73,6 +74,28 @@ export default function HeroEdit() {
                   className={`${ipt} resize-none`}
                   placeholder="Yanabiya Group is a diversified international enterprise…" />
               </div>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+              <h2 className="text-sm font-semibold text-white mb-4">Background Video</h2>
+              <p className="text-xs text-slate-500 mb-3">
+                This video plays on the hero banner. Paste a direct MP4 URL or upload from Media Library.
+              </p>
+              <VideoField
+                label="Hero Video"
+                value={data.video ?? ''}
+                onChange={v => setData({ ...data, video: v })}
+                folder="hero"
+              />
+              {data.video && (
+                <button
+                  type="button"
+                  onClick={() => setData({ ...data, video: '' })}
+                  className="mt-2 text-xs text-red-400 hover:text-red-300 transition-colors"
+                >
+                  Remove video (use photo background only)
+                </button>
+              )}
             </div>
 
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">

@@ -434,6 +434,7 @@ type ApiScene = {
   body?: string; photo?: string; image?: string; photoPos?: string
   cta?: { label?: string; href?: string }
 }
+type HeroSettings = { video?: string }
 
 const STATIC_VISUAL_MAP = Object.fromEntries(SCENE_STATICS.map(s => [s.id, s.Visual]))
 
@@ -443,6 +444,9 @@ export default function Hero() {
   const [scene, setScene] = useState(0)
   const [presenceOpen, setPresenceOpen] = useState(false)
   const apiScenes = useSection<ApiScene[]>('hero-scenes')
+  const heroSettings = useSection<HeroSettings>('hero')
+  const HARDCODED_VIDEO = 'https://yanabiyagibt.com/wp-content/uploads/2025/06/92c5824627d14617fd0a0fa0c06b7eb2.mp4'
+  const videoSrc = heroSettings?.video || HARDCODED_VIDEO
 
   const SCENES: Scene[] = useMemo(() => {
     const base = apiScenes?.length ? apiScenes : null
@@ -528,16 +532,19 @@ export default function Hero() {
         />
 
         {/* ──────── Video background (autoplay, muted, loop) ──────── */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          aria-hidden="true"
-        >
-          <source src="https://yanabiyagibt.com/wp-content/uploads/2025/06/92c5824627d14617fd0a0fa0c06b7eb2.mp4" type="video/mp4" />
-        </video>
+        {videoSrc && (
+          <video
+            key={videoSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            aria-hidden="true"
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        )}
 
         {/* ──────── Scene layers (stacked, fade in/out) ──────── */}
         {SCENES.map((s, i) => {
