@@ -44,14 +44,6 @@ const amounts = [
   { v: 'Custom', idx: 4 },
 ]
 
-const bankRows = [
-  { k: 'bank',         v: 'Shahjalal Islami Bank Ltd.'              },
-  { k: 'accountName',  v: 'Jamiya Ahmadiya Madrasha & Orphanage'    },
-  { k: 'accountNo',    v: '4057-11100000795'                        },
-  { k: 'routing',      v: '190260871'                               },
-  { k: 'swift',        v: 'SJBLBDDHCPC'                             },
-]
-
 const stats = [
   { v: '100%',   key: 'directToCause' },
   { v: '1,000+', key: 'livesTouched'  },
@@ -59,12 +51,35 @@ const stats = [
   { v: '15Y',    key: 'trackRecord'   },
 ]
 
+/* ── Types ──────────────────────────────────────────────────── */
+type DonationData = {
+  bankName?: string
+  accountName?: string
+  accountNo?: string
+  routing?: string
+  swift?: string
+  bkashNumber?: string
+  nagadNumber?: string
+}
+
 /* ── Component ──────────────────────────────────────────────── */
 export default function Donation() {
   const { t } = useTranslation()
   const amountLabels = t('donation.amountLabels', { returnObjects: true }) as string[]
   const pageHeroes = useSection<Record<string, { eyebrow: string; title: string; subtitle: string }>>('page-heroes')
   const hero = pageHeroes?.['donation']
+  const donationData = useSection<DonationData>('donation')
+
+  const bankRows = [
+    { k: 'bank',        v: donationData?.bankName    || 'Shahjalal Islami Bank Ltd.' },
+    { k: 'accountName', v: donationData?.accountName || 'Jamiya Ahmadiya Madrasha & Orphanage' },
+    { k: 'accountNo',   v: donationData?.accountNo   || '4057-11100000795' },
+    { k: 'routing',     v: donationData?.routing      || '190260871' },
+    { k: 'swift',       v: donationData?.swift         || 'SJBLBDDHCPC' },
+  ]
+
+  const bkash = donationData?.bkashNumber || '01772921788'
+  const nagad  = donationData?.nagadNumber || '01772921788'
 
   const [selectedCause, setSelectedCause] = useState('')
   const [selectedAmt,   setSelectedAmt]   = useState('50')
@@ -122,8 +137,8 @@ export default function Donation() {
     { code: 'ZA', flag: '🇿🇦', name: 'South Africa',    live: false, gateways: [] },
   ]
   const GATEWAY_INFO: Record<string, { number: string; rawNumber: string }> = {
-    'bKash': { number: '+880 1772 921 788', rawNumber: '01772921788' },
-    'Nagad': { number: '+880 1772 921 788', rawNumber: '01772921788' },
+    'bKash': { number: `+880 ${bkash}`, rawNumber: bkash },
+    'Nagad': { number: `+880 ${nagad}`, rawNumber: nagad },
   }
   const COUNTRY_CURRENCY: Record<string, string> = {
     BD: 'BDT', OM: 'OMR', GB: 'GBP', US: 'USD',

@@ -62,10 +62,21 @@ const countryPrograms: Record<string, string[]> = {
 const statKeys = ['beneficiaries', 'countries', 'track', 'programmes']
 const statValues = ['500+', '4', '15Y', '25+']
 
+type CCData = { pillars?: { label: string; description: string; image: string; bg?: string }[] }
+
 export default function CommunityCare() {
   const { t } = useTranslation()
   const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
   const hero = pageHeroes?.['community-care']
+  const ccData = useSection<CCData>('community-care')
+  const activePillars = ccData?.pillars
+    ? ccData.pillars.map((p, i) => ({
+        label: p.label,
+        description: p.description,
+        image: p.image,
+        bg: p.bg ?? pillars[i]?.bg ?? 'bg-emerald-500',
+      }))
+    : pillars
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
@@ -113,7 +124,7 @@ export default function CommunityCare() {
             eyebrow={t('communityCare.eyebrow')}
             titleLine1={t('communityCare.titleLine1')}
             titleLine2={t('communityCare.titleLine2')}
-            items={pillars}
+            items={activePillars}
           />
         </div>
 

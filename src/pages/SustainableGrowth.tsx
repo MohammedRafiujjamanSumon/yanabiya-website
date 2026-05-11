@@ -65,10 +65,21 @@ const commitments = [
   { year: '2030', goal: 'Carbon-neutral operations for all office locations' },
 ]
 
+type SGData = { pillars?: { label: string; description: string; image: string; bg?: string }[] }
+
 export default function SustainableGrowth() {
   const { t } = useTranslation()
   const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
   const hero = pageHeroes?.['sustainable-growth']
+  const sgData = useSection<SGData>('sustainable-growth')
+  const activePillars = sgData?.pillars
+    ? sgData.pillars.map((p, i) => ({
+        label: p.label,
+        description: p.description,
+        image: p.image,
+        bg: p.bg ?? pillars[i]?.bg ?? 'bg-emerald-500',
+      }))
+    : pillars
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
@@ -107,7 +118,7 @@ export default function SustainableGrowth() {
             eyebrow={t('sustainablePage.eyebrow')}
             titleLine1={t('sustainablePage.titleLine1')}
             titleLine2={t('sustainablePage.titleLine2')}
-            items={pillars}
+            items={activePillars}
           />
         </div>
 

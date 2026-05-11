@@ -4,7 +4,7 @@ import {
   LayoutDashboard, Phone, Users, Image, Globe, Settings,
   LogOut, Menu, X, ChevronRight, Building2, FileText,
   Newspaper, Briefcase, Quote, Navigation, Layout, MonitorPlay, Info, FolderOpen,
-  Lightbulb, MapPin, ImageIcon,
+  Lightbulb, MapPin, ImageIcon, Heart, Banknote,
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { assets } from '../../data/assets'
@@ -29,9 +29,11 @@ const NAV = [
   { to: '/admin/contact',      label: 'Contact Info',    icon: Phone },
   { to: '/admin/country-pages',label: 'Country Pages',   icon: Globe },
   { header: 'COMMUNITY' },
-  { to: '/admin/blog',         label: 'Blog Posts',      icon: Newspaper },
-  { to: '/admin/careers',      label: 'Careers',         icon: Briefcase },
-  { to: '/admin/testimonials', label: 'Testimonials',    icon: Quote },
+  { to: '/admin/blog',           label: 'Blog Posts',      icon: Newspaper },
+  { to: '/admin/careers',        label: 'Careers',         icon: Briefcase },
+  { to: '/admin/testimonials',   label: 'Testimonials',    icon: Quote },
+  { to: '/admin/community-pages',label: 'Community Pages', icon: Heart },
+  { to: '/admin/donation',       label: 'Donation & Bank', icon: Banknote },
   { header: 'PAGES' },
   { to: '/admin/page-heroes',  label: 'Page Heroes',     icon: Image },
   { header: 'MEDIA' },
