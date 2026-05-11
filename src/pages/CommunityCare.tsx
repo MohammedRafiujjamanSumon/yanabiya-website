@@ -62,21 +62,27 @@ const countryPrograms: Record<string, string[]> = {
 const statKeys = ['beneficiaries', 'countries', 'track', 'programmes']
 const statValues = ['500+', '4', '15Y', '25+']
 
-type CCData = { pillars?: { label: string; description: string; image: string; bg?: string }[] }
+type CCData = {
+  pillars?: { label: string; description: string; image: string; bg?: string }[]
+  countryPrograms?: Record<string, string[]>
+  stats?: { value: string; label: string }[]
+}
 
 export default function CommunityCare() {
   const { t } = useTranslation()
   const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
   const hero = pageHeroes?.['community-care']
   const ccData = useSection<CCData>('community-care')
-  const activePillars = ccData?.pillars
+  const activePillars = ccData?.pillars?.length
     ? ccData.pillars.map((p, i) => ({
-        label: p.label,
-        description: p.description,
-        image: p.image,
+        label: p.label, description: p.description, image: p.image,
         bg: p.bg ?? pillars[i]?.bg ?? 'bg-emerald-500',
       }))
     : pillars
+  const activePrograms = ccData?.countryPrograms ?? countryPrograms
+  const activeStats = ccData?.stats?.length
+    ? ccData.stats
+    : statValues.map((v, i) => ({ value: v, label: t(`communityCare.stats.${statKeys[i]}`) }))
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
@@ -111,10 +117,10 @@ export default function CommunityCare() {
       <div className="container-x">
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">
-          {statKeys.map((key, idx) => (
-            <div key={key} className="card-panel text-center">
-              <div className="font-serif text-2xl text-brand-accentDark">{statValues[idx]}</div>
-              <div className="text-[10px] tracking-widest text-slate-500 uppercase mt-1">{t(`communityCare.stats.${key}`)}</div>
+          {activeStats.map((s, idx) => (
+            <div key={idx} className="card-panel text-center">
+              <div className="font-serif text-2xl text-brand-accentDark">{s.value}</div>
+              <div className="text-[10px] tracking-widest text-slate-500 uppercase mt-1">{s.label}</div>
             </div>
           ))}
         </div>
@@ -147,7 +153,7 @@ export default function CommunityCare() {
                   </div>
                 </div>
                 <ul className="space-y-2 text-sm text-slate-600">
-                  {(countryPrograms[c.code] ?? []).map((program, i) => (
+                  {(activePrograms[c.code] ?? []).map((program, i) => (
                     <li key={i} className="flex gap-2">
                       <span className="text-brand-accentDark shrink-0">•</span>
                       <span>{program}</span>

@@ -65,21 +65,25 @@ const commitments = [
   { year: '2030', goal: 'Carbon-neutral operations for all office locations' },
 ]
 
-type SGData = { pillars?: { label: string; description: string; image: string; bg?: string }[] }
+type SGData = {
+  pillars?: { label: string; description: string; image: string; bg?: string }[]
+  countryInitiatives?: Record<string, { title: string; body: string }[]>
+  commitments?: { year: string; goal: string }[]
+}
 
 export default function SustainableGrowth() {
   const { t } = useTranslation()
   const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
   const hero = pageHeroes?.['sustainable-growth']
   const sgData = useSection<SGData>('sustainable-growth')
-  const activePillars = sgData?.pillars
+  const activePillars = sgData?.pillars?.length
     ? sgData.pillars.map((p, i) => ({
-        label: p.label,
-        description: p.description,
-        image: p.image,
+        label: p.label, description: p.description, image: p.image,
         bg: p.bg ?? pillars[i]?.bg ?? 'bg-emerald-500',
       }))
     : pillars
+  const activeInitiatives = sgData?.countryInitiatives ?? countryInitiatives
+  const activeCommitments = sgData?.commitments?.length ? sgData.commitments : commitments
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
@@ -138,7 +142,7 @@ export default function SustainableGrowth() {
                   </div>
                 </div>
                 <ul className="space-y-3 text-sm">
-                  {(countryInitiatives[c.code] ?? []).map((it, i) => (
+                  {(activeInitiatives[c.code] ?? []).map((it, i) => (
                     <li key={i}>
                       <div className="font-medium text-slate-800">{it.title}</div>
                       <div className="text-slate-600 mt-0.5">{it.body}</div>
@@ -156,7 +160,7 @@ export default function SustainableGrowth() {
             <h3 className="font-serif text-3xl text-slate-900">{t('sustainablePage.targetsTitle')}</h3>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {commitments.map((c) => (
+            {activeCommitments.map((c) => (
               <div key={c.year} className="card-panel text-center">
                 <div className="font-serif text-3xl text-brand-accentDark">{c.year}</div>
                 <div className="text-sm text-slate-600 mt-2 leading-snug">{c.goal}</div>
