@@ -294,11 +294,11 @@ export default function Footer() {
             <Link to="/about-us" className={linkClass}>{t('footer.groupProfile')}</Link>
             <a href={`mailto:${contact.emails[0]}`} className={linkClass}>{contact.emails[0]}</a>
             <Link
-              to="/admin"
+              to="/admin/login"
               className="text-white/30 hover:text-white/60 transition-colors text-[9px] tracking-wider"
-              title="Admin Panel"
+              title="Admin Login"
             >
-              ⚙ Admin
+              ⚙ Admin Login
             </Link>
           </div>
         </div>

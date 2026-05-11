@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yanabiya Group — Admin Panel User Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #1a1a2e;
+    background: #fff;
+  }
+
+  /* ── Cover Page ── */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a2f4a 50%, #0d1b2a 100%);
+    color: #fff;
+    text-align: center;
+    padding: 60px 40px;
+    page-break-after: always;
+  }
+  .cover .logo-box {
+    width: 90px; height: 90px;
+    background: #fff;
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 40px rgba(158,199,58,0.3);
+  }
+  .cover .logo-box span { font-size: 36px; font-weight: 900; color: #9ec73a; }
+  .cover h1 { font-size: 32px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+  .cover h2 { font-size: 18px; font-weight: 400; color: #9ec73a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 32px; }
+  .cover .divider { width: 60px; height: 3px; background: #9ec73a; margin: 0 auto 32px; border-radius: 2px; }
+  .cover .meta { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 8px; }
+  .cover .meta span { color: #9ec73a; font-weight: 600; }
+  .cover .login-box {
+    margin-top: 36px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px;
+    padding: 20px 40px;
+  }
+  .cover .login-box p { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+  .cover .login-box .cred { font-size: 14px; margin-bottom: 4px; }
+  .cover .login-box .cred span { color: #9ec73a; font-weight: 700; font-family: monospace; font-size: 15px; }
+
+  /* ── TOC ── */
+  .toc-page {
+    padding: 60px 60px;
+    page-break-after: always;
+  }
+  .toc-page h2 { font-size: 22px; color: #0d1b2a; font-weight: 700; margin-bottom: 24px; border-bottom: 3px solid #9ec73a; padding-bottom: 10px; }
+  .toc-group { margin-bottom: 20px; }
+  .toc-group-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #9ec73a; font-weight: 700; margin-bottom: 8px; }
+  .toc-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dotted #e0e0e0; font-size: 13px; color: #333; }
+  .toc-item span { color: #9ec73a; font-weight: 600; }
+
+  /* ── Content Pages ── */
+  .page {
+    padding: 50px 60px;
+    page-break-before: always;
+  }
+  .page:first-of-type { page-break-before: auto; }
+
+  /* ── Section Headers ── */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .section-num {
+    width: 42px; height: 42px;
+    background: #9ec73a;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title h2 { font-size: 22px; font-weight: 700; color: #0d1b2a; }
+  .section-title p { font-size: 12px; color: #888; margin-top: 2px; }
+
+  /* ── Cards ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .card-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  .card {
+    background: #f8f9ff;
+    border: 1px solid #e8eaf0;
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .card h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d1b2a;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h3 .icon {
+    width: 24px; height: 24px;
+    background: #9ec73a;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .card ul { list-style: none; padding: 0; }
+  .card ul li {
+    font-size: 12px;
+    color: #555;
+    padding: 3px 0;
+    padding-left: 14px;
+    position: relative;
+  }
+  .card ul li::before { content: '→'; position: absolute; left: 0; color: #9ec73a; font-size: 10px; top: 4px; }
+
+  /* ── Step List ── */
+  .steps { margin: 16px 0; }
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 26px; height: 26px;
+    background: #0d1b2a;
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-body h4 { font-size: 13px; font-weight: 600; color: #0d1b2a; margin-bottom: 3px; }
+  .step-body p { font-size: 12px; color: #666; }
+
+  /* ── URL Badge ── */
+  .url-badge {
+    display: inline-block;
+    background: #0d1b2a;
+    color: #9ec73a;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+
+  /* ── Note Box ── */
+  .note {
+    background: #fffbea;
+    border-left: 4px solid #9ec73a;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 12px;
+    color: #555;
+  }
+  .note strong { color: #0d1b2a; }
+
+  /* ── Table ── */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; }
+  th { background: #0d1b2a; color: #fff; padding: 10px 14px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  td { padding: 9px 14px; border-bottom: 1px solid #eee; color: #444; }
+  tr:nth-child(even) td { background: #f8f9ff; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .badge.green { background: #e8f5d0; color: #4a7c15; }
+  .badge.blue  { background: #dbeeff; color: #1565c0; }
+  .badge.gray  { background: #eee;    color: #666;    }
+
+  /* ── Sub heading ── */
+  .sub-h { font-size: 15px; font-weight: 700; color: #0d1b2a; margin: 24px 0 12px; border-left: 4px solid #9ec73a; padding-left: 10px; }
+
+  /* ── Print ── */
+  @media print {
+    body { font-size: 12px; }
+    .cover { min-height: 100vh; }
+    .page { padding: 40px 50px; }
+    .card-grid { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ COVER ══════════════════ -->
+<div class="cover">
+  <div class="logo-box"><span>Y</span></div>
+  <h1>Yanabiya Group</h1>
+  <h2>Admin Panel User Guide</h2>
+  <div class="divider"></div>
+  <p style="color:rgba(255,255,255,0.7); font-size:14px; max-width:420px; line-height:1.8;">
+    A complete reference for managing website content, media, pages, and settings through the Admin Control Panel.
+  </p>
+
+  <div class="login-box">
+    <p>Admin Login Credentials</p>
+    <div class="cred">URL &nbsp;&nbsp; <span>http://localhost:5173/admin/login</span></div>
+    <div class="cred">Email &nbsp; <span>admin@yanabiyagroup.com</span></div>
+    <div class="cred">Password &nbsp; <span>YanabiyaAdmin@2024</span></div>
+  </div>
+
+  <p class="meta" style="margin-top:40px;">Version 1.0 &nbsp;·&nbsp; <span>Yanabiya Group Internal Use Only</span> &nbsp;·&nbsp; 2026</p>
+</div>
+
+<!-- ══════════════════ TABLE OF CONTENTS ══════════════════ -->
+<div class="toc-page">
+  <h2>Table of Contents</h2>
+
+  <div class="toc-group">
+    <div class="toc-group-title">Getting Started</div>
+    <div class="toc-item">1. How to Log In <span>3</span></div>
+    <div class="toc-item">2. Dashboard Overview <span>3</span></div>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-title">Home Page Sections</div>
+    <div class="toc-item">3. Logo &amp; Branding <span>4</span></div>
+    <div class="toc-item">4. Hero Slides (Homepage Banner) <span>4</span></div>
+    <div class="toc-item">5. Company Info <span>4</span></div>
+    <div class="toc-item">6. Navbar (Navigation Menu) <span>5</span></div>
+    <div class="toc-item">7. About Section <span>5</span></div>
+    <div class="toc-item">8. Services <span>5</span></div>
+    <div class="toc-item">9. Solutions <span>5</span></div>
+    <div class="toc-item">10. Partners &amp; Logos <span>6</span></div>
+    <div class="toc-item">11. Network Section <span>6</span></div>
+    <div class="toc-item">12. Footer <span>6</span></div>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-title">Global Presence</div>
+    <div class="toc-item">13. Leadership (Board &amp; Management) <span>7</span></div>
+    <div class="toc-item">14. People Profiles <span>7</span></div>
+    <div class="toc-item">15. Global Branches <span>7</span></div>
+    <div class="toc-item">16. Contact Information <span>8</span></div>
+    <div class="toc-item">17. Country Pages <span>8</span></div>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-title">Community &amp; Content</div>
+    <div class="toc-item">18. Blog Posts <span>9</span></div>
+    <div class="toc-item">19. Careers <span>9</span></div>
+    <div class="toc-item">20. Testimonials <span>9</span></div>
+    <div class="toc-item">21. Community Pages <span>10</span></div>
+    <div class="toc-item">22. Community Hubs <span>10</span></div>
+    <div class="toc-item">23. Donation &amp; Bank Details <span>10</span></div>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-title">Page Management</div>
+    <div class="toc-item">24. Page Builder (Create Custom Pages) <span>11</span></div>
+    <div class="toc-item">25. Page Heroes (Section Banners) <span>12</span></div>
+    <div class="toc-item">26. About Us Page <span>12</span></div>
+    <div class="toc-item">27. Our Story Page <span>12</span></div>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-title">System</div>
+    <div class="toc-item">28. Media Library (Upload &amp; Manage Files) <span>13</span></div>
+    <div class="toc-item">29. Settings &amp; Password <span>13</span></div>
+    <div class="toc-item">30. Quick Reference Table <span>14</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 1: LOGIN + DASHBOARD ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">1</div>
+    <div>
+      <h2>How to Log In</h2>
+      <p>Accessing the Admin Panel</p>
+    </div>
+  </div>
+
+  <div class="url-badge">http://localhost:5173/admin/login</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Open the login page</h4>
+        <p>Go to the URL above in your browser, or click the <strong>⚙ Admin Login</strong> link at the bottom-right of the website footer.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Enter your credentials</h4>
+        <p>Email: <strong>admin@yanabiyagroup.com</strong> &nbsp; / &nbsp; Password: <strong>YanabiyaAdmin@2024</strong></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Click "Sign In"</h4>
+        <p>You will be taken to the Admin Dashboard. Your session stays active for 7 days — no need to log in again unless you clear your browser.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note"><strong>Tip:</strong> The website must be running locally (npm run start) before you can log in. The API server runs on port 4000 and the website on port 5173.</div>
+
+  <!-- DASHBOARD -->
+  <div class="section-title" style="margin-top: 36px;">
+    <div class="section-num">2</div>
+    <div>
+      <h2>Dashboard Overview</h2>
+      <p>Admin home screen — /admin</p>
+    </div>
+  </div>
+
+  <div class="url-badge">http://localhost:5173/admin</div>
+
+  <p style="font-size:13px; color:#444; margin-bottom:16px;">The Dashboard is the first screen you see after logging in. It shows a quick summary of the website.</p>
+
+  <div class="card-grid three">
+    <div class="card">
+      <h3><span class="icon">■</span> Left Sidebar</h3>
+      <ul>
+        <li>All admin sections listed</li>
+        <li>Grouped by category</li>
+        <li>Click any item to go there</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">■</span> Quick Stats</h3>
+      <ul>
+        <li>Total content sections</li>
+        <li>Uploaded media count</li>
+        <li>Recently updated items</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">■</span> Top Bar</h3>
+      <ul>
+        <li>Current page name</li>
+        <li>View live website button</li>
+        <li>Logout button</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 2: HOME PAGE SECTIONS ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">3</div>
+    <div><h2>Logo &amp; Branding</h2><p>/admin/logo</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Control the logo that appears in the header, footer, and watermarks across the website.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Upload a new logo image (PNG/SVG recommended)</li>
+        <li>Set the site name text</li>
+        <li>Set the tagline shown under the logo</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Upload image from Media Library or paste URL</li>
+        <li>Edit text fields</li>
+        <li>Click <strong>Save Changes</strong> — updates live instantly</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">4</div>
+    <div><h2>Hero Slides (Homepage Banner)</h2><p>/admin/hero-scenes</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">The large rotating banner at the very top of the homepage with background images/videos and text overlays.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Add / remove slides</li>
+        <li>Upload background image or video per slide</li>
+        <li>Set headline, sub-headline, button text</li>
+        <li>Set button link URL</li>
+        <li>Reorder slides (drag up/down)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Click <strong>+ Add Slide</strong> to add a new one</li>
+        <li>Edit each slide's fields</li>
+        <li>Click <strong>Save All Slides</strong></li>
+        <li>Delete a slide with the trash icon</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">5</div>
+    <div><h2>Company Info</h2><p>/admin/company</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Core company information shown in the "About" and overview sections of the homepage.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Company full name</li>
+        <li>Short description / tagline</li>
+        <li>Founded year, headquarters</li>
+        <li>Key statistics (employees, countries, etc.)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Edit all text fields</li>
+        <li>Click <strong>Save Changes</strong></li>
+        <li>Changes appear on the website homepage</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 3 ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">6</div>
+    <div><h2>Navbar (Navigation Menu)</h2><p>/admin/navbar</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Manage the top navigation bar menu items and dropdown links.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Main menu labels</li>
+        <li>Dropdown sub-menu items</li>
+        <li>Links for each menu item</li>
+        <li>Show / hide menu items</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Edit labels and URLs in text fields</li>
+        <li>Toggle visibility with the eye icon</li>
+        <li>Click <strong>Save Changes</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">7</div>
+    <div><h2>About Section</h2><p>/admin/about</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">The "About Yanabiya" section on the homepage — vision, mission, values block.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Section heading &amp; subtitle</li>
+        <li>Vision statement</li>
+        <li>Mission statement</li>
+        <li>Core values list</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Edit the text areas</li>
+        <li>Add / remove values using +/− buttons</li>
+        <li>Click <strong>Save Changes</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">8</div>
+    <div><h2>Services</h2><p>/admin/services</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">The services / business lines displayed on the homepage and Services page.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Service name, description</li>
+        <li>Icon or image per service</li>
+        <li>Add new services</li>
+        <li>Delete or reorder services</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Click <strong>+ Add Service</strong> for new items</li>
+        <li>Fill name, description, upload icon</li>
+        <li>Click <strong>Save All</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">9</div>
+    <div><h2>Solutions</h2><p>/admin/solutions</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">The solutions/capabilities block on the homepage showing what the company offers.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Solution title and description</li>
+        <li>Supporting image or icon</li>
+        <li>Add / remove solution items</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Edit fields and upload images</li>
+        <li>Click <strong>Save Changes</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 4 ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">10</div>
+    <div><h2>Partners &amp; Logos</h2><p>/admin/partners</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">The partner/client logo carousel shown on the homepage.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Upload partner logo images</li>
+        <li>Set partner name and website URL</li>
+        <li>Add or remove partners</li>
+        <li>Reorder the logos</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Click <strong>+ Add Partner</strong></li>
+        <li>Upload logo from Media Library</li>
+        <li>Enter name and URL</li>
+        <li>Click <strong>Save All</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">11</div>
+    <div><h2>Network Section</h2><p>/admin/network</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">The global network map / presence section showing countries where Yanabiya operates.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Section headline &amp; description</li>
+        <li>Country names and details</li>
+        <li>Statistics (e.g., "4 Countries")</li>
+        <li>Background image</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Edit text fields</li>
+        <li>Click <strong>Save Changes</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">12</div>
+    <div><h2>Footer</h2><p>/admin/footer</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Manage the social media links shown in the footer social icons bar.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Social media URLs (LinkedIn, Facebook, Instagram, Twitter, YouTube)</li>
+        <li>Add / remove social platforms</li>
+        <li>Newsletter bar text</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Edit or paste in new social URLs</li>
+        <li>Click <strong>Save Changes</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note"><strong>Note:</strong> Office addresses and phone numbers in the footer are managed under <strong>Contact Info</strong> (Section 16).</div>
+</div>
+
+<!-- ══════════════════ PAGE 5: GLOBAL PRESENCE ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">13</div>
+    <div><h2>Leadership</h2><p>/admin/leadership</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Manage board members and senior leadership profiles shown on the Leadership page.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Name, title, bio for each leader</li>
+        <li>Profile photo (upload image)</li>
+        <li>Category: Board / Management</li>
+        <li>Add or remove profiles</li>
+        <li>Reorder positions</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Click <strong>+ Add Person</strong></li>
+        <li>Upload photo from Media Library</li>
+        <li>Fill name, role, bio</li>
+        <li>Click <strong>Save All</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">14</div>
+    <div><h2>People Profiles</h2><p>/admin/people</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">A separate set of team/staff profiles displayed on the People or Team pages.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Name, role, department</li>
+        <li>Profile photo</li>
+        <li>Short bio or description</li>
+        <li>Add / remove team members</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Fill in details and upload photo</li>
+        <li>Click <strong>Save All</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">15</div>
+    <div><h2>Global Branches</h2><p>/admin/branches</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Office location details for each country branch of Yanabiya Group.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Country name and flag</li>
+        <li>Office address</li>
+        <li>Phone, email, working hours</li>
+        <li>Google Maps link</li>
+        <li>Add new branch offices</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Edit each branch card</li>
+        <li>Click <strong>Save All Branches</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 6 ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">16</div>
+    <div><h2>Contact Information</h2><p>/admin/contact</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">The contact details shown on the Contact page and in the website footer.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Office addresses per country (Oman, UK, Bangladesh, USA)</li>
+        <li>Phone numbers and mobile</li>
+        <li>Email addresses</li>
+        <li>Office working hours</li>
+        <li>Postal address</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Select the country tab</li>
+        <li>Edit the fields</li>
+        <li>Click <strong>Save Changes</strong></li>
+        <li>Repeat for each country</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">17</div>
+    <div><h2>Country Pages</h2><p>/admin/country-pages</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Each country has its own dedicated page (e.g., Oman, UK, Bangladesh, USA) with a hero banner, mission, vision, and description.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Country hero image / banner</li>
+        <li>Page title and subtitle</li>
+        <li>Mission statement</li>
+        <li>Vision statement</li>
+        <li>Country description paragraph</li>
+        <li>Key facts / statistics</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Select country from the dropdown</li>
+        <li>Edit all text fields</li>
+        <li>Upload hero image from Media Library</li>
+        <li>Click <strong>Save Changes</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note"><strong>How to access country pages on the website:</strong> Navigation → Global → select a country, or go to <em>/country/oman</em>, <em>/country/uk</em>, etc.</div>
+</div>
+
+<!-- ══════════════════ PAGE 7: COMMUNITY ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">18</div>
+    <div><h2>Blog Posts</h2><p>/admin/blog</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Manage all blog articles and news posts shown on the Blog / Insights page.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Post title, category, date</li>
+        <li>Thumbnail / featured image</li>
+        <li>Full article content</li>
+        <li>Author name</li>
+        <li>Add / remove posts</li>
+        <li>Reorder posts</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Click <strong>+ Add Post</strong></li>
+        <li>Fill in title, content, date</li>
+        <li>Upload thumbnail image</li>
+        <li>Click <strong>Save All</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">19</div>
+    <div><h2>Careers</h2><p>/admin/careers</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Manage job listings shown on the Careers page.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Job title and department</li>
+        <li>Location (country/city)</li>
+        <li>Job type (Full-time, Part-time)</li>
+        <li>Job description</li>
+        <li>Requirements list</li>
+        <li>Application email or link</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Click <strong>+ Add Job</strong></li>
+        <li>Fill all fields</li>
+        <li>Click <strong>Save All</strong></li>
+        <li>Remove with trash icon</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">20</div>
+    <div><h2>Testimonials</h2><p>/admin/testimonials</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Client and partner quotes shown on the Testimonials page and homepage.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Quote text</li>
+        <li>Person name and title</li>
+        <li>Company / organization</li>
+        <li>Star rating (1–5)</li>
+        <li>Profile photo</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Click <strong>+ Add Testimonial</strong></li>
+        <li>Fill quote, name, company</li>
+        <li>Upload photo (optional)</li>
+        <li>Click <strong>Save All</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 8 ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">21</div>
+    <div><h2>Community Pages</h2><p>/admin/community-pages</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Content for the Sustainable Growth and Community Care pages.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Page hero image and headline</li>
+        <li>Main description text</li>
+        <li>Initiative / project cards</li>
+        <li>Statistics and impact numbers</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Select the tab (Sustainable Growth or Community Care)</li>
+        <li>Edit text and images</li>
+        <li>Click <strong>Save Changes</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">22</div>
+    <div><h2>Community Hubs</h2><p>/admin/community-hubs</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">The community hub locations shown on the Community Overview page.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Hub name and location</li>
+        <li>Hub photo / image</li>
+        <li>Description of the hub</li>
+        <li>Programs and activities</li>
+        <li>Add or remove hub entries</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Edit hub cards</li>
+        <li>Upload photos via Media Library URL</li>
+        <li>Click <strong>Save All</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">23</div>
+    <div><h2>Donation &amp; Bank Details</h2><p>/admin/donation</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Bank account information and donation instructions shown on the Donation page.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Bank name and account name</li>
+        <li>Account number, IBAN, SWIFT</li>
+        <li>Multiple bank accounts</li>
+        <li>Donation instructions text</li>
+        <li>Page headline and description</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Edit the bank detail fields</li>
+        <li>Add new bank with <strong>+ Add Bank</strong></li>
+        <li>Click <strong>Save Changes</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 9: PAGE BUILDER ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">24</div>
+    <div><h2>Page Builder</h2><p>/admin/pages</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:16px;">
+    The Page Builder lets you create <strong>completely new custom pages</strong> on the website without any coding. Each page is made up of sections that you add, edit, reorder, and delete.
+  </p>
+
+  <div class="sub-h">Creating a New Page</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Go to Page Builder → click "+ New Page"</h4>
+        <p>Enter the page title (e.g., "Investment Opportunities"). The URL slug is auto-generated.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Set page status</h4>
+        <p>Choose <strong>Draft</strong> (only you can see it) or <strong>Published</strong> (live on the website).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Click "Create Page"</h4>
+        <p>You will be taken to the Page Editor where you can add sections.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-h">Adding Sections</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Click "+ Add Section"</h4>
+        <p>A grid of 12 section types appears. Choose the type you want.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Edit the section</h4>
+        <p>Click the expand (▼) arrow on the section card to open its editor and fill in content.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Reorder / hide / delete</h4>
+        <p>Use ▲▼ arrows to reorder. Eye icon to show/hide. Trash icon to delete.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Save Sections</h4>
+        <p>Click <strong>Save Sections</strong> button. Published page is live at <em>yoursite.com/p/slug</em></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-h">12 Available Section Types</div>
+  <div class="card-grid three">
+    <div class="card">
+      <h3><span class="icon">H</span> Hero</h3>
+      <ul><li>Big banner with title, subtitle, button, background image</li></ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">T</span> Text</h3>
+      <ul><li>Heading and paragraph text block</li></ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">C</span> Cards</h3>
+      <ul><li>Grid of feature cards with icon, title, text</li></ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">S</span> Stats</h3>
+      <ul><li>Key numbers / statistics display</li></ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">A</span> CTA</h3>
+      <ul><li>Call-to-action block with button</li></ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">F</span> FAQ</h3>
+      <ul><li>Expandable question &amp; answer list</li></ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">Q</span> Testimonials</h3>
+      <ul><li>Quote / review carousel</li></ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">P</span> Team</h3>
+      <ul><li>People profile cards with photo</li></ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">✉</span> Contact</h3>
+      <ul><li>Contact form or details block</li></ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">G</span> Gallery</h3>
+      <ul><li>Photo / image grid gallery</li></ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">—</span> Spacer</h3>
+      <ul><li>Empty vertical space divider</li></ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">&lt;&gt;</span> HTML</h3>
+      <ul><li>Custom raw HTML code block</li></ul>
+    </div>
+  </div>
+
+  <div class="note"><strong>How to view your page:</strong> Click the <strong>eye icon</strong> (View) next to any page in the list, or go to <em>http://localhost:5173/p/your-page-slug</em></div>
+</div>
+
+<!-- ══════════════════ PAGE 10: MORE PAGES ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">25</div>
+    <div><h2>Page Heroes (Section Banners)</h2><p>/admin/page-heroes</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">The banner/hero images shown at the top of fixed pages like About Us, Careers, Contact, etc.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Hero background image per page</li>
+        <li>Page title shown in the hero</li>
+        <li>Subtitle / breadcrumb text</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Select the page from the dropdown</li>
+        <li>Upload or paste image URL</li>
+        <li>Edit title text</li>
+        <li>Click <strong>Save Changes</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">26</div>
+    <div><h2>About Us Page</h2><p>/admin/about-page</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Full content editor for the dedicated About Us page (<em>/about-us</em>) including principles and values.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Page heading and intro text</li>
+        <li>Company principles (title + description per principle)</li>
+        <li>Vision and mission blocks</li>
+        <li>Supporting images</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Edit text fields and upload images</li>
+        <li>Add principles with <strong>+ Add Principle</strong></li>
+        <li>Click <strong>Save Changes</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">
+    <div class="section-num">27</div>
+    <div><h2>Our Story Page</h2><p>/admin/our-story</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Content for the Our Story page (<em>/about/our-story</em>) including timeline milestones.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can edit</h3>
+      <ul>
+        <li>Intro paragraph(s)</li>
+        <li>Timeline milestones (year + event description)</li>
+        <li>Add, remove, reorder milestones</li>
+        <li>Supporting image</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to save</h3>
+      <ul>
+        <li>Edit intro text</li>
+        <li>Add milestones with <strong>+ Add Milestone</strong></li>
+        <li>Click <strong>Save Changes</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 11: MEDIA + SETTINGS ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">28</div>
+    <div><h2>Media Library</h2><p>/admin/media</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">
+    The central place to upload, organize, and manage all images and videos used on the website. Every image you upload here gets a URL that can be pasted into any editor field.
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">↑</span> How to Upload</h3>
+      <ul>
+        <li>Select a <strong>folder</strong> (logo, hero, partners, services, pages, misc…)</li>
+        <li><strong>Drag &amp; drop</strong> your file onto the upload zone</li>
+        <li>OR click the zone to pick a file from your computer</li>
+        <li>A progress bar shows the upload status</li>
+        <li>The file appears in the grid when done</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">⊡</span> How to Use an Uploaded Image</h3>
+      <ul>
+        <li>Hover over any file card</li>
+        <li>Click the <strong>Copy icon</strong> (clipboard)</li>
+        <li>The full image URL is copied</li>
+        <li>Paste the URL into any image field in the editors</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-grid three" style="margin-top:12px;">
+    <div class="card">
+      <h3><span class="icon">F</span> Folders</h3>
+      <ul>
+        <li>logo — brand assets</li>
+        <li>hero — banner images</li>
+        <li>partners — partner logos</li>
+        <li>services — service icons</li>
+        <li>countries — country photos</li>
+        <li>leadership — profile photos</li>
+        <li>pages — page images</li>
+        <li>misc — everything else</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">⊞</span> Filter &amp; Search</h3>
+      <ul>
+        <li>Search by filename</li>
+        <li>Filter: All / Images / Videos</li>
+        <li>Filter by folder tab</li>
+        <li>Click <strong>Refresh</strong> to reload</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">✗</span> Delete a File</h3>
+      <ul>
+        <li>Hover over the file card</li>
+        <li>Click the <strong>Trash icon</strong></li>
+        <li>Click again to confirm</li>
+        <li>File is permanently deleted</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note"><strong>Supported formats:</strong> JPG, PNG, SVG, WebP, GIF (images) — MP4, WebM, MOV, AVI, MKV (videos up to 200 MB)</div>
+
+  <div class="section-title" style="margin-top:36px;">
+    <div class="section-num">29</div>
+    <div><h2>Settings &amp; Password</h2><p>/admin/settings</p></div>
+  </div>
+  <p style="font-size:13px; color:#444; margin-bottom:12px;">Account settings for the admin user.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="icon">✓</span> What you can do</h3>
+      <ul>
+        <li>Change your admin password</li>
+        <li>Update admin name</li>
+        <li>View current account email</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon">!</span> How to change password</h3>
+      <ul>
+        <li>Enter current password</li>
+        <li>Enter new password twice</li>
+        <li>Click <strong>Update Password</strong></li>
+        <li>You will need to log in again</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 12: QUICK REFERENCE TABLE ══════════════════ -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-num">30</div>
+    <div><h2>Quick Reference — All Admin Sections</h2><p>Complete list of every editor and where it appears on the website</p></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Admin Section</th>
+        <th>URL</th>
+        <th>Affects This Page</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Dashboard</td><td>/admin</td><td>Admin only</td><td><span class="badge gray">System</span></td></tr>
+      <tr><td>2</td><td>Logo &amp; Branding</td><td>/admin/logo</td><td>Header, Footer, all pages</td><td><span class="badge blue">Global</span></td></tr>
+      <tr><td>3</td><td>Hero Slides</td><td>/admin/hero-scenes</td><td>Homepage banner</td><td><span class="badge green">Home</span></td></tr>
+      <tr><td>4</td><td>Company Info</td><td>/admin/company</td><td>Homepage about block</td><td><span class="badge green">Home</span></td></tr>
+      <tr><td>5</td><td>Navbar</td><td>/admin/navbar</td><td>Top menu, all pages</td><td><span class="badge blue">Global</span></td></tr>
+      <tr><td>6</td><td>About Section</td><td>/admin/about</td><td>Homepage About block</td><td><span class="badge green">Home</span></td></tr>
+      <tr><td>7</td><td>Services</td><td>/admin/services</td><td>Homepage + Services page</td><td><span class="badge green">Home</span></td></tr>
+      <tr><td>8</td><td>Solutions</td><td>/admin/solutions</td><td>Homepage Solutions block</td><td><span class="badge green">Home</span></td></tr>
+      <tr><td>9</td><td>Partners &amp; Logos</td><td>/admin/partners</td><td>Homepage partner strip</td><td><span class="badge green">Home</span></td></tr>
+      <tr><td>10</td><td>Network Section</td><td>/admin/network</td><td>Homepage global map</td><td><span class="badge green">Home</span></td></tr>
+      <tr><td>11</td><td>Footer</td><td>/admin/footer</td><td>Social icons, all pages</td><td><span class="badge blue">Global</span></td></tr>
+      <tr><td>12</td><td>Leadership</td><td>/admin/leadership</td><td>Board + Management pages</td><td><span class="badge gray">Presence</span></td></tr>
+      <tr><td>13</td><td>People Profiles</td><td>/admin/people</td><td>Team / People pages</td><td><span class="badge gray">Presence</span></td></tr>
+      <tr><td>14</td><td>Global Branches</td><td>/admin/branches</td><td>Branches / offices page</td><td><span class="badge gray">Presence</span></td></tr>
+      <tr><td>15</td><td>Contact Info</td><td>/admin/contact</td><td>Contact page + Footer</td><td><span class="badge blue">Global</span></td></tr>
+      <tr><td>16</td><td>Country Pages</td><td>/admin/country-pages</td><td>/country/oman, /uk, /bd, /usa</td><td><span class="badge gray">Presence</span></td></tr>
+      <tr><td>17</td><td>Blog Posts</td><td>/admin/blog</td><td>Blog + Insights sections</td><td><span class="badge gray">Content</span></td></tr>
+      <tr><td>18</td><td>Careers</td><td>/admin/careers</td><td>Careers page</td><td><span class="badge gray">Content</span></td></tr>
+      <tr><td>19</td><td>Testimonials</td><td>/admin/testimonials</td><td>Testimonials page + Home</td><td><span class="badge gray">Content</span></td></tr>
+      <tr><td>20</td><td>Community Pages</td><td>/admin/community-pages</td><td>Sustainable Growth, Community Care</td><td><span class="badge gray">Content</span></td></tr>
+      <tr><td>21</td><td>Community Hubs</td><td>/admin/community-hubs</td><td>Community Overview page</td><td><span class="badge gray">Content</span></td></tr>
+      <tr><td>22</td><td>Donation &amp; Bank</td><td>/admin/donation</td><td>Donation page</td><td><span class="badge gray">Content</span></td></tr>
+      <tr><td>23</td><td>Page Builder</td><td>/admin/pages</td><td>Custom pages at /p/slug</td><td><span class="badge blue">Builder</span></td></tr>
+      <tr><td>24</td><td>Page Heroes</td><td>/admin/page-heroes</td><td>Banner on all fixed pages</td><td><span class="badge blue">Global</span></td></tr>
+      <tr><td>25</td><td>About Us Page</td><td>/admin/about-page</td><td>/about-us</td><td><span class="badge gray">Page</span></td></tr>
+      <tr><td>26</td><td>Our Story Page</td><td>/admin/our-story</td><td>/about/our-story</td><td><span class="badge gray">Page</span></td></tr>
+      <tr><td>27</td><td>Media Library</td><td>/admin/media</td><td>Uploads used everywhere</td><td><span class="badge blue">System</span></td></tr>
+      <tr><td>28</td><td>Settings</td><td>/admin/settings</td><td>Admin account</td><td><span class="badge gray">System</span></td></tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 36px; padding: 20px; background: #0d1b2a; border-radius: 12px; color: #fff; text-align:center;">
+    <p style="font-size:12px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:2px; margin-bottom:8px;">General Rule for Every Editor</p>
+    <p style="font-size:15px; font-weight:600; color:#9ec73a;">Make changes → Click "Save Changes" or "Save All" → See it live on the website</p>
+    <p style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:8px;">If you don't see the changes, try refreshing the website page (Ctrl+F5)</p>
+  </div>
+
+  <div style="margin-top:30px; text-align:center; color:#bbb; font-size:11px; border-top:1px solid #eee; padding-top:20px;">
+    Yanabiya Group — Admin Panel User Guide &nbsp;·&nbsp; Internal Use Only &nbsp;·&nbsp; 2026<br/>
+    For technical support contact: <strong>admin@yanabiyagroup.com</strong>
+  </div>
+</div>
+
+</body>
+</html>

@@ -137,7 +137,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="flex-1 text-sm text-slate-400">
             {NAV.find(n => 'to' in n && n.to === location.pathname)?.label ?? 'Admin'}
           </div>
-          <a href="/" target="_blank" rel="noreferrer" className="text-xs text-slate-500 hover:text-brand-accent transition-colors">
+          <a href={import.meta.env.BASE_URL} target="_blank" rel="noreferrer" className="text-xs text-slate-500 hover:text-brand-accent transition-colors">
             View Site ↗
           </a>
         </header>
