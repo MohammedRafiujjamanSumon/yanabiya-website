@@ -8,6 +8,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useReveal } from '../hooks/useReveal'
 import BackButton from '../components/BackButton'
+import { useSection } from '../hooks/useSection'
 
 function Reveal({
   children,
@@ -54,6 +55,15 @@ const triptychIcons = [Target, Eye, Sparkles]
 export default function AboutUs() {
   const { t } = useTranslation()
   const { hash } = useLocation()
+  type AboutPageData = { heroPara?:string; identityP1?:string; identityP2?:string; identityP3?:string; missionTitle?:string; missionBody?:string; visionTitle?:string; visionBody?:string; valuesTitle?:string; valuesBody?:string }
+  const apiAbout = useSection<AboutPageData>('about-page')
+
+  const principleOverride = (key: string, field: 'title' | 'body'): string => {
+    if (key === 'mission') return field === 'title' ? (apiAbout?.missionTitle || t('aboutPage.principles.mission.title')) : (apiAbout?.missionBody || t('aboutPage.principles.mission.body'))
+    if (key === 'vision')  return field === 'title' ? (apiAbout?.visionTitle  || t('aboutPage.principles.vision.title'))  : (apiAbout?.visionBody  || t('aboutPage.principles.vision.body'))
+    if (key === 'values')  return field === 'title' ? (apiAbout?.valuesTitle  || t('aboutPage.principles.values.title'))  : (apiAbout?.valuesBody  || t('aboutPage.principles.values.body'))
+    return t(`aboutPage.principles.${key}.${field}`)
+  }
 
   useEffect(() => {
     if (hash) {
@@ -101,7 +111,7 @@ export default function AboutUs() {
             </Reveal>
             <Reveal delay={300}>
               <p className="mt-8 text-lg md:text-xl text-slate-600 max-w-2xl leading-snug">
-                {t('aboutPage.heroPara')}
+                {apiAbout?.heroPara || t('aboutPage.heroPara')}
               </p>
             </Reveal>
 
@@ -151,13 +161,13 @@ export default function AboutUs() {
 
           <div className="lg:col-span-7 space-y-5 text-slate-600 text-lg leading-snug">
             <Reveal>
-              <p>{t('aboutPage.identity.p1')}</p>
+              <p>{apiAbout?.identityP1 || t('aboutPage.identity.p1')}</p>
             </Reveal>
             <Reveal delay={120}>
-              <p>{t('aboutPage.identity.p2')}</p>
+              <p>{apiAbout?.identityP2 || t('aboutPage.identity.p2')}</p>
             </Reveal>
             <Reveal delay={240}>
-              <p>{t('aboutPage.identity.p3')}</p>
+              <p>{apiAbout?.identityP3 || t('aboutPage.identity.p3')}</p>
             </Reveal>
             <Reveal delay={360}>
               <a
@@ -211,8 +221,8 @@ export default function AboutUs() {
                   <div className="mt-5 text-[11px] font-semibold tracking-[0.25em] uppercase text-brand-accentDark">
                     {t(`aboutPage.principles.${key}.eyebrow`)}
                   </div>
-                  <h3 className="mt-2 font-serif text-2xl leading-tight">{t(`aboutPage.principles.${key}.title`)}</h3>
-                  <p className="mt-3 text-slate-600 leading-snug">{t(`aboutPage.principles.${key}.body`)}</p>
+                  <h3 className="mt-2 font-serif text-2xl leading-tight">{principleOverride(key, 'title')}</h3>
+                  <p className="mt-3 text-slate-600 leading-snug">{principleOverride(key, 'body')}</p>
                 </div>
               </Reveal>
               )

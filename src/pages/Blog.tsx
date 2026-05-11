@@ -51,6 +51,16 @@ type Post = {
   excerpt: string
 }
 
+type ApiPost = {
+  id: string
+  country: string
+  category: string
+  title: string
+  date: string
+  excerpt: string
+  content?: string
+}
+
 const posts: Post[] = [
   { country: 'ALL', category: 'Group Update', title: 'Yanabiya Group expands footprint across four countries',                          date: '2026-04-10', excerpt: 'A year of growth across Oman, the United Kingdom, Bangladesh and the USA.' },
   { country: 'OM',  category: 'Trade',        title: 'Inside our Muscat operations: trade, logistics and technology under one roof',   date: '2026-03-22', excerpt: 'How the Omani headquarters coordinates multi-sector activities for the wider group.' },
@@ -68,7 +78,7 @@ const filters: { code: CountryCode; label: string; flag?: string }[] = [
   { code: 'US',  label: 'USA',            flag: '🇺🇸' },
 ]
 
-function countryLabel(code: CountryCode) {
+function countryLabel(code: string) {
   if (code === 'ALL') return 'All Regions'
   const c = countries.find((x) => x.code === code)
   return c ? `${c.flag} ${c.name}` : code
@@ -79,14 +89,16 @@ export default function Blog() {
   const [filter, setFilter] = useState<CountryCode>('ALL')
   const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
   const hero = pageHeroes?.['blog']
+  const apiBlog = useSection<ApiPost[]>('blog')
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
 
+  const displayPosts = apiBlog ?? posts
   const visible = filter === 'ALL'
-    ? posts
-    : posts.filter((p) => p.country === filter || p.country === 'ALL')
+    ? displayPosts
+    : displayPosts.filter((p) => p.country === filter || p.country === 'ALL')
   const [feature, ...rest] = visible
 
   return (

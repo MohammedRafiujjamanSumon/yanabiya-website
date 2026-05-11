@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { board } from '../data/leadership'
+import { useSection } from '../hooks/useSection'
 
 function Reveal({
   children,
@@ -192,6 +193,9 @@ const DEPT_PHOTO  = 'https://images.unsplash.com/photo-1521737711867-e3b97375f90
 
 export default function LeadershipPyramid() {
   const { t } = useTranslation()
+  const apiLeadership = useSection<{chairman?:{name:string;role:string;photo:string;bio:string}; viceChairman?:{name:string;role:string;photo:string;bio:string}; board?:{name:string;role:string;photo:string;bio:string}[]}>('leadership')
+  const chairmanPhoto = apiLeadership?.chairman?.photo || BOARD_PHOTO
+  const vcPhoto = apiLeadership?.viceChairman?.photo || null
   return (
     <Section id="leadership" className="bg-brand-50">
       <div className="container-x pt-4 pb-10 md:pb-14">
@@ -227,7 +231,7 @@ export default function LeadershipPyramid() {
               {/* Vice Chairman — left, pushed down */}
               <Reveal delay={100}>
                 <div className="flex justify-center pt-16">
-                  <HierarchyCard colorKey="vice" label={t('leadership.viceChairman')} to="/people/vice-chairman" photo={board[1]?.photo} delay={0} size="md" />
+                  <HierarchyCard colorKey="vice" label={t('leadership.viceChairman')} to="/people/vice-chairman" photo={vcPhoto ?? board[1]?.photo} delay={0} size="md" />
                 </div>
               </Reveal>
               {/* CEO — elevated at top center */}
@@ -239,7 +243,7 @@ export default function LeadershipPyramid() {
               {/* Board of Members — right, pushed down */}
               <Reveal delay={120}>
                 <div className="flex justify-center pt-16">
-                  <HierarchyCard colorKey="board" label={t('board.title')} to="/people/board" photo={BOARD_PHOTO} delay={0} size="md" />
+                  <HierarchyCard colorKey="board" label={t('board.title')} to="/people/board" photo={chairmanPhoto} delay={0} size="md" />
                 </div>
               </Reveal>
             </div>

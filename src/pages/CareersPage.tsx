@@ -62,14 +62,25 @@ const countryRoles: Record<string, string[]> = {
   ],
 }
 
+type ApiCareers = {
+  intro?: string
+  applyEmail?: string
+  roles?: Record<string, { id: string; title: string; type: string; location: string }[]>
+}
+
 export default function CareersPage() {
   const { t } = useTranslation()
   const pageHeroes = useSection<Record<string,{eyebrow:string;title:string;subtitle:string}>>('page-heroes')
   const hero = pageHeroes?.['careers']
+  const apiCareers = useSection<ApiCareers>('careers')
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
+
+  const displayRoles: Record<string, string[]> = apiCareers?.roles
+    ? Object.fromEntries(Object.entries(apiCareers.roles).map(([k, jobs]) => [k, jobs.map((j) => j.title)]))
+    : countryRoles
 
   return (
     <>
@@ -115,7 +126,7 @@ export default function CareersPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-5">
             {countries.map((c) => {
-              const roles = countryRoles[c.code] ?? []
+              const roles = displayRoles[c.code] ?? []
               return (
                 <div key={c.code} className="card-panel">
                   <div className="flex items-start gap-4 mb-4">
@@ -155,8 +166,8 @@ export default function CareersPage() {
           <p className="text-slate-600 text-sm mb-5">
             {t('careersPage.noRoleDesc')}
           </p>
-          <a href="mailto:careers@yanabiyagroup.com" className="btn-primary">
-            careers@yanabiyagroup.com
+          <a href={`mailto:${apiCareers?.applyEmail || 'careers@yanabiyagroup.com'}`} className="btn-primary">
+            {apiCareers?.applyEmail || 'careers@yanabiyagroup.com'}
           </a>
         </div>
       </div>

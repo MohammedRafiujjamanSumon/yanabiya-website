@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { board } from '../data/leadership'
+import { useSection } from '../hooks/useSection'
 
 const BOARD_IDS_ORDERED = [
   { id: 'shamim-ahmed',         name: 'S M Shamim Ahmed',       role: 'Founder, Chairman & CEO', image: board[0].photo },
@@ -17,6 +18,25 @@ const PH = (name: string) =>
 
 export default function BoardPage() {
   const { t } = useTranslation()
+  const apiLeadership = useSection<{
+    chairman?: { name: string; role: string; photo: string; bio: string }
+    viceChairman?: { name: string; role: string; photo: string; bio: string }
+    board?: { name: string; role: string; photo: string; bio: string }[]
+    management?: { name: string; role: string; photo: string; bio: string }[]
+  }>('leadership')
+
+  const displayMembers = apiLeadership?.board?.length
+    ? [
+        ...(apiLeadership.chairman
+          ? [{ id: 'chairman', name: apiLeadership.chairman.name, role: apiLeadership.chairman.role, image: apiLeadership.chairman.photo || null }]
+          : []),
+        ...(apiLeadership.viceChairman
+          ? [{ id: 'vice-chairman', name: apiLeadership.viceChairman.name, role: apiLeadership.viceChairman.role, image: apiLeadership.viceChairman.photo || null }]
+          : []),
+        ...apiLeadership.board.map((m, i) => ({ id: `board-${i}`, name: m.name, role: m.role, image: m.photo || null })),
+      ]
+    : BOARD_IDS_ORDERED
+
   return (
     <div className="min-h-screen bg-brand-50 relative overflow-hidden">
 
@@ -51,7 +71,7 @@ export default function BoardPage() {
 
         {/* Board Members grid — photo + name + role */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
-          {BOARD_IDS_ORDERED.map((m) => (
+          {displayMembers.map((m) => (
             <div key={m.id} className="flex flex-col items-center text-center gap-2">
               <div className="w-full aspect-square max-w-[110px] rounded-2xl overflow-hidden
                               ring-2 ring-amber-200 ring-offset-2 shadow-md">

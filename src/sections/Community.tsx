@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
+import { useSection } from '../hooks/useSection'
 
 function Reveal({
   children,
@@ -96,6 +97,13 @@ const HUBS: Hub[] = [
 ]
 
 export default function Community() {
+  const apiHubs = useSection<{ hubs: { key: string; title: string; eyebrow: string; image: string }[] }>('community-hubs')
+  const displayHubs = HUBS.map(hub => {
+    const key = hub.to.split('/').pop()!
+    const apiHub = apiHubs?.hubs?.find(h => h.key === key)
+    return { ...hub, title: apiHub?.title ?? hub.title, eyebrow: apiHub?.eyebrow ?? hub.eyebrow, image: apiHub?.image ?? hub.image }
+  })
+
   return (
     <Section id="community" className="bg-brand-50">
       <div className="container-x relative pt-2 md:pt-3 pb-4 md:pb-6">
@@ -147,7 +155,7 @@ export default function Community() {
            *  Each card has a coloured 3-px top border that picks up its
            *  matching arc strand colour so the connection reads clearly. */}
           <div className="grid grid-cols-6 gap-x-2 gap-y-4 md:gap-x-4 lg:gap-x-5 justify-items-center">
-            {HUBS.map((h, i) => (
+            {displayHubs.map((h, i) => (
               <Reveal
                 key={h.to}
                 delay={i * 90}

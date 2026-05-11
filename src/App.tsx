@@ -55,6 +55,10 @@ import SolutionsEdit from './admin/pages/sections/SolutionsEdit'
 import LogoEdit from './admin/pages/sections/LogoEdit'
 import DonationEdit from './admin/pages/sections/DonationEdit'
 import CommunityPagesEdit from './admin/pages/sections/CommunityPagesEdit'
+import NetworkEdit from './admin/pages/sections/NetworkEdit'
+import CommunityHubsEdit from './admin/pages/sections/CommunityHubsEdit'
+import AboutPageEdit from './admin/pages/sections/AboutPageEdit'
+import OurStoryEdit from './admin/pages/sections/OurStoryEdit'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -93,6 +97,10 @@ function AdminRoutes() {
         <Route path="logo"           element={<ProtectedRoute><LogoEdit /></ProtectedRoute>} />
         <Route path="donation"       element={<ProtectedRoute><DonationEdit /></ProtectedRoute>} />
         <Route path="community-pages" element={<ProtectedRoute><CommunityPagesEdit /></ProtectedRoute>} />
+        <Route path="network"         element={<ProtectedRoute><NetworkEdit /></ProtectedRoute>} />
+        <Route path="community-hubs"  element={<ProtectedRoute><CommunityHubsEdit /></ProtectedRoute>} />
+        <Route path="about-page"      element={<ProtectedRoute><AboutPageEdit /></ProtectedRoute>} />
+        <Route path="our-story"       element={<ProtectedRoute><OurStoryEdit /></ProtectedRoute>} />
       </Routes>
     </AuthProvider>
   )

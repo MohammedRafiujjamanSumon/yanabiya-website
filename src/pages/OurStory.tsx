@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { useReveal } from '../hooks/useReveal'
 import { assets } from '../data/assets'
 import BackButton from '../components/BackButton'
+import { useSection } from '../hooks/useSection'
 
 /* ───────────────────────── Reveal helpers ───────────────────────── */
 
@@ -72,8 +73,12 @@ const stewardStats = [
 
 export default function OurStory() {
   const { t } = useTranslation()
+  type OurStoryData = { heroPara?:string; s01Para?:string; s02Para?:string; s03Para?:string; s04Para?:string; milestones?:{year:string;title:string;body:string}[] }
+  const apiStory = useSection<OurStoryData>('our-story')
+
   const storyLines = t('ourStory.storyLines', { returnObjects: true }) as string[]
-  const milestones = t('ourStory.milestones', { returnObjects: true }) as Array<{ year: string; title: string; body: string }>
+  const i18nMilestones = t('ourStory.milestones', { returnObjects: true }) as Array<{ year: string; title: string; body: string }>
+  const milestones = (apiStory?.milestones?.length) ? apiStory.milestones : i18nMilestones
   const leaders = t('ourStory.leaders', { returnObjects: true }) as Array<{ name: string; role: string; quote: string }>
   const missionInAction = t('ourStory.missionInAction', { returnObjects: true }) as Array<{ quote: string; body: string }>
 
@@ -116,7 +121,7 @@ export default function OurStory() {
             </Reveal>
             <Reveal delay={320}>
               <p className="mt-8 text-lg md:text-xl text-white/75 max-w-2xl leading-snug">
-                {t('ourStory.heroPara')}
+                {apiStory?.heroPara || t('ourStory.heroPara')}
               </p>
             </Reveal>
             <Reveal delay={520}>
@@ -142,7 +147,13 @@ export default function OurStory() {
               </div>
             </Reveal>
             <div className="space-y-8 md:space-y-5 text-center">
-              {storyLines.map((line, i) => (
+              {apiStory?.s01Para ? (
+                <Reveal>
+                  <p className="font-serif text-2xl md:text-3xl leading-snug text-slate-900">
+                    {apiStory.s01Para}
+                  </p>
+                </Reveal>
+              ) : storyLines.map((line, i) => (
                 <Reveal key={i} delay={i * 60}>
                   <p className="font-serif text-2xl md:text-3xl leading-snug text-slate-900">
                     {line}
@@ -237,7 +248,7 @@ export default function OurStory() {
             </Reveal>
             <Reveal delay={350}>
               <p className="mt-8 text-lg text-slate-600 leading-snug max-w-2xl mx-auto">
-                {t('ourStory.s03Para')}
+                {apiStory?.s03Para || t('ourStory.s03Para')}
               </p>
             </Reveal>
           </div>

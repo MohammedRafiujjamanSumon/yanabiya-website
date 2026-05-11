@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Building2, Users, Globe, BadgeCheck } from 'lucide-react'
 import Section, { Eyebrow, H2 } from '../components/Section'
+import { useSection } from '../hooks/useSection'
 
 const stats = [
   { icon: Users, value: '500+', kKey: 'clients' },
@@ -28,6 +29,16 @@ const networkBody = [
 export default function NetworkSection() {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
+
+  type NetworkData = { stats?: { value: string; kKey: string }[]; memberships?: string[]; body?: string[] }
+  const apiNetwork = useSection<NetworkData>('network')
+  const displayStats = stats.map((s, i) => ({
+    ...s,
+    value: apiNetwork?.stats?.[i]?.value ?? s.value,
+    kKey: apiNetwork?.stats?.[i]?.kKey ?? s.kKey,
+  }))
+  const displayMemberships = apiNetwork?.memberships ?? memberships
+  const displayBody = apiNetwork?.body ?? networkBody
 
   useEffect(() => {
     if (!open) return
@@ -69,13 +80,13 @@ export default function NetworkSection() {
 
         <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
         <div className="grid grid-cols-4 gap-6 min-w-[480px]">
-          {stats.map((s) => (
+          {displayStats.map((s) => (
             <div key={s.kKey} className="card-panel text-center relative overflow-hidden">
               <div className="absolute -top-4 -end-4 w-24 h-24 bg-brand-accent/5 rounded-full blur-xl" />
               <s.icon className="text-brand-accent mx-auto mb-3 relative" />
               <div className="font-serif text-4xl text-slate-900 relative">{s.value}</div>
               <div className="text-xs uppercase tracking-widest text-slate-500 mt-1 relative">
-                {t(`network.stats.${s.kKey}`)}
+                {t(`network.stats.${s.kKey}`, s.value || s.kKey)}
               </div>
             </div>
           ))}
@@ -86,7 +97,7 @@ export default function NetworkSection() {
           <h3 className="font-serif text-2xl text-slate-900 mb-5">{t('network.memberships')}</h3>
           <div className="overflow-x-auto -mx-4 px-4 md:overflow-visible md:mx-0 md:px-0">
           <div className="grid grid-cols-3 gap-4 min-w-[480px]">
-            {memberships.map((m) => (
+            {displayMemberships.map((m) => (
               <div key={m} className="card-panel flex items-center gap-3">
                 <BadgeCheck className="text-brand-accent shrink-0" />
                 <span className="text-sm text-slate-800">{m}</span>
@@ -132,7 +143,7 @@ export default function NetworkSection() {
               <div className="mt-2 mx-auto w-16 h-[2px] bg-brand-accent rounded-full" />
             </div>
             <div className="mt-6 space-y-4 text-slate-600 leading-snug text-justify">
-              {networkBody.map((para, i) => (
+              {displayBody.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
             </div>

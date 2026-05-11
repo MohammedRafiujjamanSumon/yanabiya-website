@@ -133,12 +133,20 @@ export default function Testimonials() {
   const [filter, setFilter] = useState<Code>('ALL')
   const pageHeroes = useSection<Record<string, { eyebrow: string; title: string; subtitle: string }>>('page-heroes')
   const hero = pageHeroes?.['testimonials']
+  const apiTestimonials = useSection<{ id: string; country: string; quote: string; author: string; role: string; rating: number }[]>('testimonials')
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
 
-  const visible = filter === 'ALL' ? all : all.filter((t) => t.code === filter)
+  const displayAll: Testimonial[] = apiTestimonials
+    ? apiTestimonials.map((t) => ({
+        quote: t.quote, author: t.author,
+        role: t.role, company: '', rating: t.rating, code: t.country,
+      }))
+    : all
+
+  const visible = filter === 'ALL' ? displayAll : displayAll.filter((t) => t.code === filter)
   const [featured, ...rest] = visible
 
   return (
@@ -201,7 +209,7 @@ export default function Testimonials() {
           {/* ── Filter tabs ───────────────────────────────────── */}
           <div className="flex flex-wrap gap-2 mb-10 justify-center">
             {TABS.map((tab) => {
-              const count = tab.code === 'ALL' ? all.length : all.filter((tm) => tm.code === tab.code).length
+              const count = tab.code === 'ALL' ? displayAll.length : displayAll.filter((tm) => tm.code === tab.code).length
               const active = filter === tab.code
               return (
                 <button

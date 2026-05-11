@@ -8,6 +8,7 @@ import type { LucideIcon } from 'lucide-react'
 import BackButton from '../components/BackButton'
 import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
+import { useSection } from '../hooks/useSection'
 
 /* ───────────────────────── Reveal helper ───────────────────────── */
 function Reveal({
@@ -423,6 +424,21 @@ function FactRow({
 
 export default function ContactGlobal() {
   const [selected, setSelected] = useState<CountryCode | null>(null)
+  type ContactOffice = { code: string; region: string; legalName?: string; officeAddress?: string; postAddress?: string; phones?: string[]; mobile?: string; emails?: string[]; hours?: string }
+  const apiContact = useSection<ContactOffice[]>('contact')
+  const contactMap = Object.fromEntries((apiContact ?? []).map(o => [o.code, o]))
+  const displayCountries = COUNTRIES.map(c => {
+    const api = contactMap[c.code]
+    if (!api) return c
+    return {
+      ...c,
+      phones: api.phones?.length ? api.phones : c.phones,
+      mobile: api.mobile || c.mobile,
+      emails: api.emails?.length ? api.emails : c.emails,
+      hours: api.hours || c.hours,
+      headOffice: api.officeAddress ? [api.officeAddress] : c.headOffice,
+    }
+  })
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
@@ -455,7 +471,7 @@ export default function ContactGlobal() {
       <section className="relative">
         <div className="container-x pb-20 md:pb-28">
           <div className="grid sm:grid-cols-2 gap-5 max-w-5xl mx-auto">
-            {COUNTRIES.map((c, i) => (
+            {displayCountries.map((c, i) => (
               <CountryCard
                 key={c.code}
                 data={c}
@@ -470,7 +486,7 @@ export default function ContactGlobal() {
 
       {/* HALF-VIEW PREVIEW PANEL */}
       <CountryPreviewPanel
-        data={selected ? COUNTRIES.find((c) => c.code === selected) ?? null : null}
+        data={selected ? displayCountries.find((c) => c.code === selected) ?? null : null}
         onClose={() => setSelected(null)}
       />
     </main>

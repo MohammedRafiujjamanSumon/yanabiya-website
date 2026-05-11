@@ -14,6 +14,7 @@ import { useReveal } from '../hooks/useReveal'
 import { countries } from '../data/countries'
 import Partnerships from '../sections/Partnerships'
 import { assets } from '../data/assets'
+import { useSection } from '../hooks/useSection'
 
 function Reveal({
   children,
@@ -502,6 +503,17 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
   const country = countries.find((c) => c.code === upper)
   const ops = OPS[upper]
 
+  type CountryPageData = { heroImage?:string; heroTitle?:string; heroSubtitle?:string; mission?:string; vision?:string; branchIntro?:string; parentCompany?:string; entities?:string[]; activities?:{code:string;name:string;icon:string;image:string}[] }
+  const allCountryPages = useSection<Record<string, CountryPageData>>('country-pages')
+  const apiPage = allCountryPages?.[upper]
+
+  const mergedOps = ops ? {
+    ...ops,
+    intro: ops.intro,
+    branchIntro: apiPage?.branchIntro || ops.branchIntro,
+    mission: apiPage?.mission || ops.mission,
+  } : ops
+
   if (!country || !ops) {
     return (
       <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen grid place-items-center px-6">
@@ -526,7 +538,7 @@ export default function CountryOperations({ codeOverride }: { codeOverride: stri
   const navIdx  = NAV_ORDER.findIndex((n) => n.code === upper)
   const prevNav = navIdx > 0                    ? NAV_ORDER[navIdx - 1] : null
   const nextNav = navIdx < NAV_ORDER.length - 1 ? NAV_ORDER[navIdx + 1] : null
-  const props: LayoutProps = { country, ops, prevNav, nextNav }
+  const props: LayoutProps = { country, ops: mergedOps ?? ops, prevNav, nextNav }
 
   if (upper === 'OM') return <OmanPage {...props} />
   if (upper === 'BD') return <BDPage  {...props} />

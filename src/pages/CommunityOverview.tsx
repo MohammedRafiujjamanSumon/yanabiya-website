@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import BackButton from '../components/BackButton'
 import PageHero from '../components/PageHero'
 import { useReveal } from '../hooks/useReveal'
+import { useSection } from '../hooks/useSection'
 
 function Reveal({
   children,
@@ -76,6 +77,17 @@ const HUBS = [
 
 export default function CommunityOverview() {
   const { t } = useTranslation()
+  const apiHubs = useSection<{ hubs: { key: string; title: string; eyebrow: string; image: string }[] }>('community-hubs')
+  const displayHubs = HUBS.map(hub => {
+    const key = hub.to.split('/').pop()!
+    const apiHub = apiHubs?.hubs?.find(h => h.key === key)
+    return {
+      ...hub,
+      title:   apiHub?.title   ?? hub.title,
+      eyebrow: apiHub?.eyebrow ?? hub.eyebrow,
+    }
+  })
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }, [])
@@ -137,7 +149,7 @@ export default function CommunityOverview() {
 
             {/* Four hub circles, name only, click navigates to the page */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 md:gap-x-6 justify-items-center">
-              {HUBS.map((h, i) => (
+              {displayHubs.map((h, i) => (
                 <Reveal key={h.to} delay={i * 90} className={h.offset}>
                   <Link
                     to={h.to}
