@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -110,6 +110,7 @@ function AdminRoutes() {
         <Route path="pages/:slug"     element={<ProtectedRoute><PageEditor /></ProtectedRoute>} />
         <Route path="language"        element={<ProtectedRoute><LanguageEdit /></ProtectedRoute>} />
         <Route path="messages"        element={<ProtectedRoute><MessagesEdit /></ProtectedRoute>} />
+        <Route path="*"               element={<Navigate to="/admin" replace />} />
       </Routes>
     </AuthProvider>
   )

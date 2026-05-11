@@ -42,7 +42,15 @@ export default function NavbarEdit() {
 
   useEffect(() => {
     api.getSection('navbar')
-      .then(res => setData(res.data as NavData))
+      .then(res => {
+        const raw = ((res.data ?? {}) as Partial<NavData>)
+        setData({
+          ctaLabel:    raw.ctaLabel    ?? DEFAULTS.ctaLabel,
+          ctaHref:     raw.ctaHref     ?? DEFAULTS.ctaHref,
+          topLinks:    Array.isArray(raw.topLinks)    && raw.topLinks.length    ? raw.topLinks    : DEFAULTS.topLinks,
+          socialLinks: Array.isArray(raw.socialLinks) && raw.socialLinks.length ? raw.socialLinks : DEFAULTS.socialLinks,
+        })
+      })
       .catch(() => setData(DEFAULTS))
   }, [])
 
