@@ -15,6 +15,7 @@ interface PageHeroesData {
 
 const PAGES = [
   { key: 'about',            label: 'About Us',              path: '/about-us' },
+  { key: 'donation',         label: 'Donation',              path: '/community/donation' },
   { key: 'our-story',        label: 'Our Story',             path: '/about/our-story' },
   { key: 'contact',          label: 'Contact',               path: '/contact' },
   { key: 'blog',             label: 'Blog',                  path: '/community/blog' },
@@ -34,6 +35,7 @@ const PAGES = [
 
 const DEFAULTS: PageHeroesData = {
   'about':            { eyebrow: 'Who We Are', title: 'About Yanabiya Group', subtitle: 'A diversified global group built on trust, technology and trade.' },
+  'donation':         { eyebrow: 'Yanabiya Charitable Foundation', title: 'Donations Portal for Charitable', subtitle: '100% of every donation goes directly to the cause you choose, no deductions, no hidden fees.' },
   'our-story':        { eyebrow: 'Our Journey', title: 'Our Story', subtitle: 'From Oman to the world — how Yanabiya Group grew into a multi-sector enterprise.' },
   'contact':          { eyebrow: 'Get In Touch', title: 'Contact Us', subtitle: 'Reach our offices across Oman, UK, Bangladesh and the USA.' },
   'blog':             { eyebrow: 'Insights', title: 'Blog & News', subtitle: 'Latest updates, stories and insights from Yanabiya Group.' },

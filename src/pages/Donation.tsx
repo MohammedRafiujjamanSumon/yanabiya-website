@@ -52,14 +52,13 @@ const stats = [
 ]
 
 /* ── Types ──────────────────────────────────────────────────── */
+type ApiCause = { key: string; label: string; desc: string; impact: string; image: string; color: string }
+type ApiStat  = { value: string; label: string }
 type DonationData = {
-  bankName?: string
-  accountName?: string
-  accountNo?: string
-  routing?: string
-  swift?: string
-  bkashNumber?: string
-  nagadNumber?: string
+  bankName?: string; accountName?: string; accountNo?: string; routing?: string
+  swift?: string; bkashNumber?: string; nagadNumber?: string
+  causes?: ApiCause[]; stats?: ApiStat[]
+  quote?: string; hadith?: string; whereGiftGoes?: string; chooseCause?: string
 }
 
 /* ── Component ──────────────────────────────────────────────── */
@@ -80,6 +79,21 @@ export default function Donation() {
 
   const bkash = donationData?.bkashNumber || '01772921788'
   const nagad  = donationData?.nagadNumber || '01772921788'
+
+  // Use API causes when available, fall back to static list
+  const activeCauses = (donationData?.causes && donationData.causes.length > 0)
+    ? donationData.causes
+    : causes.map(c => ({
+        key: c.causeKey,
+        label: t(`donation.causeList.${c.causeKey}.label`),
+        desc:  t(`donation.causeList.${c.causeKey}.desc`),
+        impact: t(`donation.causeList.${c.causeKey}.impact`),
+        image: c.image,
+        color: c.color,
+      }))
+  const activeStats = (donationData?.stats && donationData.stats.length > 0)
+    ? donationData.stats
+    : stats.map(s => ({ value: s.v, label: t(`donation.stats.${s.key}`) }))
 
   const [selectedCause, setSelectedCause] = useState('')
   const [selectedAmt,   setSelectedAmt]   = useState('50')
@@ -193,10 +207,10 @@ export default function Donation() {
 
           {/* Stats */}
           <div className="relative mt-8 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden max-w-2xl mx-auto">
-            {stats.map((s) => (
-              <div key={s.key} className="bg-brand-deep/80 flex flex-col items-center py-5 px-3">
-                <span className="font-serif text-2xl md:text-3xl font-light text-amber-400 leading-none mb-0.5">{s.v}</span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">{t(`donation.stats.${s.key}`)}</span>
+            {activeStats.map((s, i) => (
+              <div key={i} className="bg-brand-deep/80 flex flex-col items-center py-5 px-3">
+                <span className="font-serif text-2xl md:text-3xl font-light text-amber-400 leading-none mb-0.5">{s.value}</span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">{s.label}</span>
               </div>
             ))}
           </div>
@@ -209,11 +223,11 @@ export default function Donation() {
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-3 mb-3">
                 <span className="block w-8 h-px bg-amber-400 rounded-full" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-700">{t('donation.whereGiftGoes')}</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-700">{donationData?.whereGiftGoes || t('donation.whereGiftGoes')}</span>
                 <span className="block w-8 h-px bg-amber-400 rounded-full" />
               </div>
               <h3 className="font-serif text-slate-900 text-2xl md:text-3xl">
-                {t('donation.chooseCause')}
+                {donationData?.chooseCause || t('donation.chooseCause')}
               </h3>
               {selectedCause && (
                 <p className="mt-2 text-sm text-emerald-700 font-medium">
@@ -223,14 +237,13 @@ export default function Donation() {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-              {causes.map((c) => {
-                const causeLabel = t(`donation.causeList.${c.causeKey}.label`)
-                const active = selectedCause === causeLabel
+              {activeCauses.map((c) => {
+                const active = selectedCause === c.label
                 return (
                   <button
-                    key={c.causeKey}
+                    key={c.key}
                     type="button"
-                    onClick={() => setSelectedCause(active ? '' : causeLabel)}
+                    onClick={() => setSelectedCause(active ? '' : c.label)}
                     className={`group relative rounded-2xl overflow-hidden aspect-[4/3] text-left
                                transition-all duration-300
                                ${active
@@ -242,7 +255,7 @@ export default function Donation() {
                     {/* Photo */}
                     <img
                       src={c.image}
-                      alt={causeLabel}
+                      alt={c.label}
                       className="absolute inset-0 w-full h-full object-cover
                                  transition-transform duration-500 group-hover:scale-110"
                     />
@@ -259,20 +272,12 @@ export default function Donation() {
                       </div>
                     )}
 
-                    {/* Icon top-left */}
-                    {!active && (
-                      <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm
-                                     flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                        {c.icon}
-                      </div>
-                    )}
-
                     {/* Content bottom */}
                     <div className="absolute bottom-0 left-0 right-0 p-3">
-                      <p className="text-white font-semibold text-xs leading-snug mb-1">{t(`donation.causeList.${c.causeKey}.label`)}</p>
+                      <p className="text-white font-semibold text-xs leading-snug mb-1">{c.label}</p>
                       <p className="text-white/0 group-hover:text-white/75 text-[10px] leading-snug
                                    transition-all duration-300 max-h-0 group-hover:max-h-12 overflow-hidden">
-                        {t(`donation.causeList.${c.causeKey}.desc`)}
+                        {c.desc}
                       </p>
                       {/* Impact pill */}
                       <span
@@ -281,7 +286,7 @@ export default function Donation() {
                                    transition-opacity duration-300"
                         style={{ backgroundColor: `${c.color}cc` }}
                       >
-                        {t(`donation.causeList.${c.causeKey}.impact`)}
+                        {c.impact}
                       </span>
                     </div>
                   </button>
@@ -321,8 +326,8 @@ export default function Donation() {
                     className={ipt}
                   >
                     <option value="">{t('donation.selectCausePh')}</option>
-                    {causes.map((c) => (
-                      <option key={c.causeKey} value={t(`donation.causeList.${c.causeKey}.label`)}>{t(`donation.causeList.${c.causeKey}.label`)}</option>
+                    {activeCauses.map((c) => (
+                      <option key={c.key} value={c.label}>{c.label}</option>
                     ))}
                   </select>
                 </div>
