@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Save, Plus, Trash2, ChevronDown, ChevronUp } from 'lucide-react'
+import { Save, Plus, Trash2, ChevronDown, ChevronUp, Phone, AtSign } from 'lucide-react'
 import AdminLayout from '../../components/AdminLayout'
 import { api } from '../../api/adminApi'
 
@@ -165,16 +165,73 @@ function OfficeCard({ office, onChange }: { office: OfficeAddress; onChange: (v:
               className={`${ipt} resize-none`} placeholder={'P.O. Box 1432\nCity, Country'} />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs text-slate-400 mb-1.5">Phone</label>
-              <input value={office.phones[0] ?? ''} onChange={e => onChange({ ...office, phones: [e.target.value] })}
-                className={ipt} placeholder="+968 2249 5566" />
+          {/* Phone numbers */}
+          <div>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="text-xs text-slate-400">Phone Numbers</label>
+              <button type="button"
+                onClick={() => onChange({ ...office, phones: [...office.phones, ''] })}
+                className="flex items-center gap-1 text-xs text-brand-accent hover:text-brand-accentDark transition-colors">
+                <Plus size={11} /> Add
+              </button>
             </div>
-            <div>
-              <label className="block text-xs text-slate-400 mb-1.5">Email</label>
-              <input value={office.emails[0] ?? ''} onChange={e => onChange({ ...office, emails: [e.target.value] })}
-                className={ipt} placeholder="info@yanabiyagroup.com" />
+            <div className="space-y-2">
+              {office.phones.map((ph, pi) => (
+                <div key={pi} className="flex items-center gap-2">
+                  <div className="flex items-center justify-center w-8 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 shrink-0">
+                    <Phone size={13} className="text-emerald-400" />
+                  </div>
+                  <input
+                    value={ph}
+                    onChange={e => {
+                      const p = [...office.phones]; p[pi] = e.target.value
+                      onChange({ ...office, phones: p })
+                    }}
+                    className={`${ipt} flex-1`} placeholder="+968 2249 5566"
+                  />
+                  {office.phones.length > 1 && (
+                    <button type="button" title="Remove phone" onClick={() => onChange({ ...office, phones: office.phones.filter((_, j) => j !== pi) })}
+                      className="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors">
+                      <Trash2 size={13} />
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Email addresses */}
+          <div>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="text-xs text-slate-400">Email Addresses</label>
+              <button type="button"
+                onClick={() => onChange({ ...office, emails: [...office.emails, ''] })}
+                className="flex items-center gap-1 text-xs text-brand-accent hover:text-brand-accentDark transition-colors">
+                <Plus size={11} /> Add
+              </button>
+            </div>
+            <div className="space-y-2">
+              {office.emails.map((em, ei) => (
+                <div key={ei} className="flex items-center gap-2">
+                  <div className="flex items-center justify-center w-8 h-9 rounded-lg bg-sky-500/10 border border-sky-500/20 shrink-0">
+                    <AtSign size={13} className="text-sky-400" />
+                  </div>
+                  <input
+                    value={em}
+                    onChange={e => {
+                      const p = [...office.emails]; p[ei] = e.target.value
+                      onChange({ ...office, emails: p })
+                    }}
+                    className={`${ipt} flex-1`} placeholder="info@yanabiyagroup.com"
+                  />
+                  {office.emails.length > 1 && (
+                    <button type="button" title="Remove email" onClick={() => onChange({ ...office, emails: office.emails.filter((_, j) => j !== ei) })}
+                      className="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors">
+                      <Trash2 size={13} />
+                    </button>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
