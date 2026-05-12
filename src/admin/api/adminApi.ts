@@ -58,6 +58,11 @@ export const api = {
     })
   },
 
+  // Messages
+  getMessages: () => req<Message[]>('GET', '/api/messages'),
+  markMessageRead: (id: string) => req<Message>('PATCH', `/api/messages/${id}/read`),
+  deleteMessage: (id: string) => req<{ ok: boolean }>('DELETE', `/api/messages/${id}`),
+
   // Pages
   listPages: () => req<PageMeta[]>('GET', '/api/pages'),
   getPage: (slug: string) => req<CmsPage>('GET', `/api/pages/${slug}`),
@@ -71,6 +76,7 @@ export const api = {
 }
 
 export interface Admin { id: string; email: string; name: string; role: string }
+export interface Message { id: string; name: string; email: string; phone: string; subject: string; message: string; country: string; read: boolean; createdAt: string }
 export interface MediaFile {
   name: string; folder: string; path: string; url: string
   size: number; mtime: string; type: 'image' | 'video' | 'file'

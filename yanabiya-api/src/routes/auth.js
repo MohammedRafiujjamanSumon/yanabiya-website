@@ -14,7 +14,7 @@ router.post('/login', async (req, res) => {
     if (!email || !password)
       return res.status(400).json({ message: 'Email and password required' })
 
-    const admin = getAdmin()
+    const admin = await getAdmin()
     if (!admin || admin.email !== email.toLowerCase())
       return res.status(401).json({ message: 'Invalid credentials' })
 
@@ -22,8 +22,8 @@ router.post('/login', async (req, res) => {
     if (!ok) return res.status(401).json({ message: 'Invalid credentials' })
 
     res.json({
-      token: sign(admin.id),
-      admin: { id: admin.id, email: admin.email, name: admin.name, role: admin.role },
+      token: sign(admin._id || admin.id),
+      admin: { id: admin._id || admin.id, email: admin.email, name: admin.name, role: admin.role },
     })
   } catch (err) {
     res.status(500).json({ message: err.message })
@@ -39,7 +39,7 @@ router.get('/me', protect, (req, res) => {
 router.put('/password', protect, async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body
-    const admin = getAdmin()
+    const admin = await getAdmin()
     const ok = await matchPassword(admin.password, currentPassword)
     if (!ok) return res.status(401).json({ message: 'Current password incorrect' })
     await updatePassword(newPassword)

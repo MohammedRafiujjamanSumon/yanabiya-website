@@ -1,4 +1,5 @@
-require('dotenv').config()
+require('dotenv').config({ path: require('path').join(__dirname, '../.env') })
+const { connect } = require('./db')
 const { getAdmin, createAdmin } = require('./models/Admin')
 const { getSection, setSection } = require('./models/Content')
 
@@ -98,8 +99,9 @@ const defaultContent = [
 ]
 
 async function seed() {
-  // Admin user
-  const existing = getAdmin()
+  await connect()
+
+  const existing = await getAdmin()
   if (!existing) {
     await createAdmin(process.env.ADMIN_EMAIL, process.env.ADMIN_PASSWORD, 'Yanabiya Admin')
     console.log(`✓ Admin created: ${process.env.ADMIN_EMAIL}`)
@@ -107,16 +109,17 @@ async function seed() {
     console.log('✓ Admin already exists')
   }
 
-  // Default content
   for (const item of defaultContent) {
-    if (!getSection(item.key)) {
-      setSection(item.key, item.data)
+    if (!await getSection(item.key)) {
+      await setSection(item.key, item.data)
       console.log(`✓ Seeded: ${item.key}`)
     } else {
       console.log(`  Exists: ${item.key}`)
     }
   }
+
   console.log('\nSeed complete — run: npm start')
+  process.exit(0)
 }
 
 seed().catch(err => { console.error(err); process.exit(1) })

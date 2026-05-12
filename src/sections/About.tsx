@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { ArrowUpRight, Eye, Target, Flag } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
-import { assets } from '../data/assets'
 import { useSection } from '../hooks/useSection'
 
 function Reveal({
@@ -16,39 +15,26 @@ function Reveal({
   return <div className={className}>{children}</div>
 }
 
-const VMG = [
-  {
-    icon: Eye,
-    labelKey: 'about.visionLabel',
-    bodyKey: 'about.vision',
-    to: '/about-us#vision',
-    tone: 'from-cyan-50 to-sky-100',
-    iconColor: 'text-sky-600',
-    border: 'border-sky-200',
-  },
-  {
-    icon: Target,
-    labelKey: 'about.missionLabel',
-    bodyKey: 'about.mission',
-    to: '/about-us#mission',
-    tone: 'from-emerald-50 to-emerald-100',
-    iconColor: 'text-emerald-600',
-    border: 'border-emerald-200',
-  },
-  {
-    icon: Flag,
-    labelKey: 'about.goalLabel',
-    bodyKey: 'about.goal',
-    to: '/about-us#values',
-    tone: 'from-amber-50 to-orange-100',
-    iconColor: 'text-orange-500',
-    border: 'border-orange-200',
-  },
+const VMG_STATIC = [
+  { icon: Eye,    labelKey: 'about.visionLabel',  bodyKey: 'about.vision',  apiKey: 'visionCard',  to: '/about-us#vision',  tone: 'from-cyan-50 to-sky-100',     iconColor: 'text-sky-600',    border: 'border-sky-200'    },
+  { icon: Target, labelKey: 'about.missionLabel', bodyKey: 'about.mission', apiKey: 'missionCard', to: '/about-us#mission', tone: 'from-emerald-50 to-emerald-100', iconColor: 'text-emerald-600', border: 'border-emerald-200' },
+  { icon: Flag,   labelKey: 'about.goalLabel',    bodyKey: 'about.goal',    apiKey: 'goalCard',    to: '/about-us#values',  tone: 'from-amber-50 to-orange-100',   iconColor: 'text-orange-500', border: 'border-orange-200'  },
 ]
+
+interface VMGCard { label: string; body: string }
+interface AboutApiData {
+  intro?: string
+  pillars?: { title: string; body: string }[]
+  officePhoto?: string
+  tagline?: string
+  visionCard?: VMGCard
+  missionCard?: VMGCard
+  goalCard?: VMGCard
+}
 
 export default function About() {
   const { t } = useTranslation()
-  const apiAbout = useSection<{ intro?: string; pillars?: { title: string; body: string }[] }>('about')
+  const apiAbout = useSection<AboutApiData>('about')
   return (
     <Section id="about" className="relative overflow-hidden bg-brand-50 !pt-0 !pb-0">
 
@@ -72,7 +58,7 @@ export default function About() {
                               ring-1 ring-brand-deep/10
                               h-[460px]">
                 <img
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&crop=center&w=1200&h=900&q=90"
+                  src={apiAbout?.officePhoto || 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&crop=center&w=1200&h=900&q=90'}
                   alt="Yanabiya Group office"
                   className="w-full h-full object-cover object-center"
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -89,7 +75,7 @@ export default function About() {
                                tracking-[0.20em] uppercase text-brand-accentDark
                                bg-brand-accentDark/8 border border-brand-accentDark/20
                                rounded-full px-4 py-1.5 mb-5 self-start">
-                {t('about.tagline')}
+                {apiAbout?.tagline || t('about.tagline')}
               </span>
             </Reveal>
 
@@ -127,7 +113,9 @@ export default function About() {
 
             {/* Vision / Mission / Goal cards, compact, bottom aligns with image */}
             <div className="mt-6 grid grid-cols-3 gap-2 md:gap-3">
-              {VMG.map(({ icon: Icon, labelKey, bodyKey, to, tone, iconColor, border }, i) => (
+              {VMG_STATIC.map(({ icon: Icon, labelKey, bodyKey, apiKey, to, tone, iconColor, border }, i) => {
+                const apiCard = apiAbout?.[apiKey as 'visionCard' | 'missionCard' | 'goalCard']
+                return (
                 <Reveal key={labelKey} delay={320 + i * 100}>
                   <div className={`group relative rounded-xl bg-gradient-to-br ${tone}
                                   border ${border} p-3
@@ -143,12 +131,12 @@ export default function About() {
                         <Icon size={12} strokeWidth={2} />
                       </div>
                       <h3 className="font-serif text-[13px] font-semibold text-brand-deep leading-tight">
-                        {t(labelKey)}
+                        {apiCard?.label || t(labelKey)}
                       </h3>
                     </div>
 
                     <p className="text-[11px] text-brand-deep/60 leading-snug mb-2 flex-1">
-                      {t(bodyKey)}
+                      {apiCard?.body || t(bodyKey)}
                     </p>
 
                     <Link
@@ -161,7 +149,8 @@ export default function About() {
                     </Link>
                   </div>
                 </Reveal>
-              ))}
+                )
+              })}
             </div>
 
             </div>

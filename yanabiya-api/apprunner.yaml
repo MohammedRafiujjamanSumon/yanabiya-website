@@ -1,0 +1,33 @@
+version: 1.0
+runtime: nodejs18
+build:
+  commands:
+    build:
+      - npm install --production
+run:
+  command: node server.js
+  network:
+    port: 4000
+  env:
+    - name: PORT
+      value: "4000"
+    - name: NODE_ENV
+      value: production
+    # ─── All vars below must be set in the AWS App Runner console ────────────
+    # They contain secrets so do NOT add values here.
+    #
+    # Required for database:
+    #   MONGO_URI        mongodb+srv://<user>:<pass>@cluster.mongodb.net/yanabiya
+    #
+    # Required for auth:
+    #   JWT_SECRET       (random 64-char string — rotate on each deployment)
+    #   JWT_EXPIRES_IN   7d
+    #   ADMIN_EMAIL      admin@yanabiyagroup.com
+    #   ADMIN_PASSWORD   (strong password — run `npm run seed` once after setting)
+    #
+    # Required for file uploads:
+    #   S3_BUCKET        yanabiya-uploads  (your S3 bucket name)
+    #   AWS_REGION       us-east-1
+    #
+    # Required for CORS (Amplify frontend URL):
+    #   FRONTEND_URL     https://<branch>.amplifyapp.com  or  https://yanabiyagroup.com

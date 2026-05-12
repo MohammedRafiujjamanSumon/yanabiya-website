@@ -55,7 +55,19 @@ const triptychIcons = [Target, Eye, Sparkles]
 export default function AboutUs() {
   const { t } = useTranslation()
   const { hash } = useLocation()
-  type AboutPageData = { heroPara?:string; identityP1?:string; identityP2?:string; identityP3?:string; missionTitle?:string; missionBody?:string; visionTitle?:string; visionBody?:string; valuesTitle?:string; valuesBody?:string }
+  type AboutPageData = {
+    heroEyebrow?: string; heroH1?: string; heroSpan?: string
+    heroPara?: string; heroBg?: string
+    proofSectorsLabel?: string; proofSectorsBody?: string
+    proofCountriesLabel?: string; proofCountriesBody?: string
+    proofTrustLabel?: string; proofTrustBody?: string
+    identityP1?: string; identityP2?: string; identityP3?: string
+    missionTitle?: string; missionBody?: string
+    visionTitle?: string; visionBody?: string
+    valuesTitle?: string; valuesBody?: string
+    ctaH2Part1?: string; ctaH2Part2?: string
+    ctaButtonText?: string; ctaButtonHref?: string
+  }
   const apiAbout = useSection<AboutPageData>('about-page')
 
   const principleOverride = (key: string, field: 'title' | 'body'): string => {
@@ -84,6 +96,10 @@ export default function AboutUs() {
 
       {/* ───────── 1. HERO ───────── */}
       <section id="hero" className="relative min-h-[70vh] flex items-center overflow-hidden scroll-mt-28">
+        {apiAbout?.heroBg && (
+          <img src={apiAbout.heroBg} alt="" aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none" />
+        )}
         <div
           aria-hidden="true"
           className="absolute -top-40 left-1/3 w-[520px] h-[520px] rounded-full
@@ -100,13 +116,13 @@ export default function AboutUs() {
           <div className="max-w-4xl">
             <Reveal>
               <div className="text-[11px] font-semibold tracking-[0.4em] uppercase text-brand-accentDark mb-6">
-                {t('aboutPage.eyebrow')}
+                {apiAbout?.heroEyebrow || t('aboutPage.eyebrow')}
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h1 className="font-serif text-5xl md:text-7xl lg:text-[88px] leading-[1.02] tracking-tight">
-                {t('aboutPage.heroH1')}
-                <span className="block text-brand-accentDark">{t('aboutPage.heroSpan')}</span>
+                {apiAbout?.heroH1 || t('aboutPage.heroH1')}
+                <span className="block text-brand-accentDark">{apiAbout?.heroSpan || t('aboutPage.heroSpan')}</span>
               </h1>
             </Reveal>
             <Reveal delay={300}>
@@ -119,12 +135,12 @@ export default function AboutUs() {
             <Reveal delay={460}>
               <div className="mt-12 grid sm:grid-cols-3 gap-3 max-w-3xl">
                 {[
-                  { icon: Layers,      labelKey: 'sectors',   bodyKey: 'sectors' },
-                  { icon: MapPinned,   labelKey: 'countries', bodyKey: 'countries' },
-                  { icon: ShieldCheck, labelKey: 'trust',     bodyKey: 'trust' },
+                  { icon: Layers,      label: apiAbout?.proofSectorsLabel   || t('aboutPage.proof.sectors.label'),   body: apiAbout?.proofSectorsBody   || t('aboutPage.proof.sectors.body')   },
+                  { icon: MapPinned,   label: apiAbout?.proofCountriesLabel || t('aboutPage.proof.countries.label'), body: apiAbout?.proofCountriesBody || t('aboutPage.proof.countries.body') },
+                  { icon: ShieldCheck, label: apiAbout?.proofTrustLabel     || t('aboutPage.proof.trust.label'),     body: apiAbout?.proofTrustBody     || t('aboutPage.proof.trust.body')     },
                 ].map((s) => (
                   <div
-                    key={s.labelKey}
+                    key={s.label}
                     className="rounded-xl border border-slate-200 bg-white/80 backdrop-blur-sm
                                p-4 transition-all duration-300
                                hover:border-brand-accent/50 hover:-translate-y-0.5
@@ -132,13 +148,9 @@ export default function AboutUs() {
                   >
                     <div className="flex items-center gap-2 text-brand-accentDark">
                       <s.icon size={16} strokeWidth={1.8} />
-                      <span className="text-[10px] font-bold uppercase tracking-[0.22em]">
-                        {t(`aboutPage.proof.${s.labelKey}.label`)}
-                      </span>
+                      <span className="text-[10px] font-bold uppercase tracking-[0.22em]">{s.label}</span>
                     </div>
-                    <p className="mt-2 text-[13px] text-slate-600 leading-snug">
-                      {t(`aboutPage.proof.${s.bodyKey}.body`)}
-                    </p>
+                    <p className="mt-2 text-[13px] text-slate-600 leading-snug">{s.body}</p>
                   </div>
                 ))}
               </div>
@@ -406,20 +418,20 @@ export default function AboutUs() {
           </Reveal>
           <Reveal delay={120}>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight max-w-3xl mx-auto">
-              {t('aboutPage.fullStory.h2Part1')}
-              <span className="block text-brand-accent">{t('aboutPage.fullStory.h2Part2')}</span>
+              {apiAbout?.ctaH2Part1 || t('aboutPage.fullStory.h2Part1')}
+              <span className="block text-brand-accent">{apiAbout?.ctaH2Part2 || t('aboutPage.fullStory.h2Part2')}</span>
             </h2>
           </Reveal>
           <Reveal delay={300}>
             <div className="mt-10">
               <Link
-                to="/about/our-story"
+                to={apiAbout?.ctaButtonHref || '/about/our-story'}
                 className="inline-flex items-center gap-2 rounded-full px-8 py-4
                            bg-brand-accent text-white font-semibold uppercase tracking-wider text-sm
                            shadow-lg hover:bg-brand-accentDark hover:shadow-2xl hover:-translate-y-0.5
                            transition-all"
               >
-                {t('aboutPage.fullStory.cta')}
+                {apiAbout?.ctaButtonText || t('aboutPage.fullStory.cta')}
                 <ArrowRight size={16} />
               </Link>
             </div>

@@ -65,6 +65,26 @@ import LanguageEdit from './admin/pages/sections/LanguageEdit'
 import MessagesEdit from './admin/pages/sections/MessagesEdit'
 import DynamicPage from './pages/DynamicPage'
 
+// ── Management Hub Pages ──────────────────────────────────────────────────────
+import HomeManagement from './admin/pages/HomeManagement'
+import AboutManagement from './admin/pages/AboutManagement'
+import ServiceManagement from './admin/pages/ServiceManagement'
+import BranchesManagement from './admin/pages/BranchesManagement'
+import NetworkManagement from './admin/pages/NetworkManagement'
+import CommunityManagement from './admin/pages/CommunityManagement'
+import PeopleManagement from './admin/pages/PeopleManagement'
+import GlobalManagement from './admin/pages/GlobalManagement'
+
+// ── New Section Editors ───────────────────────────────────────────────────────
+import SEOEdit from './admin/pages/sections/SEOEdit'
+import GalleryEdit from './admin/pages/sections/GalleryEdit'
+import CTASectionEdit from './admin/pages/sections/CTASectionEdit'
+import StatsEdit from './admin/pages/sections/StatsEdit'
+import SocialEdit from './admin/pages/sections/SocialEdit'
+import MissionVisionEdit from './admin/pages/sections/MissionVisionEdit'
+import FAQsEdit from './admin/pages/sections/FAQsEdit'
+import CmsGroupPage from './admin/pages/CmsGroupPage'
+
 function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => {
@@ -110,6 +130,27 @@ function AdminRoutes() {
         <Route path="pages/:slug"     element={<ProtectedRoute><PageEditor /></ProtectedRoute>} />
         <Route path="language"        element={<ProtectedRoute><LanguageEdit /></ProtectedRoute>} />
         <Route path="messages"        element={<ProtectedRoute><MessagesEdit /></ProtectedRoute>} />
+
+        {/* ── Management Hub Pages ─────────────────────────────────────── */}
+        <Route path="home"            element={<ProtectedRoute><HomeManagement /></ProtectedRoute>} />
+        <Route path="about-us"        element={<ProtectedRoute><AboutManagement /></ProtectedRoute>} />
+        <Route path="our-services"    element={<ProtectedRoute><ServiceManagement /></ProtectedRoute>} />
+        <Route path="our-branches"    element={<ProtectedRoute><BranchesManagement /></ProtectedRoute>} />
+        <Route path="our-network"     element={<ProtectedRoute><NetworkManagement /></ProtectedRoute>} />
+        <Route path="our-community"   element={<ProtectedRoute><CommunityManagement /></ProtectedRoute>} />
+        <Route path="our-people"      element={<ProtectedRoute><PeopleManagement /></ProtectedRoute>} />
+        <Route path="global-hub"      element={<ProtectedRoute><GlobalManagement /></ProtectedRoute>} />
+
+        {/* ── New Section Editors ──────────────────────────────────────── */}
+        <Route path="seo/:page"       element={<ProtectedRoute><SEOEdit /></ProtectedRoute>} />
+        <Route path="gallery/:key"    element={<ProtectedRoute><GalleryEdit /></ProtectedRoute>} />
+        <Route path="cta/:section"    element={<ProtectedRoute><CTASectionEdit /></ProtectedRoute>} />
+        <Route path="stats/:key"      element={<ProtectedRoute><StatsEdit /></ProtectedRoute>} />
+        <Route path="social"          element={<ProtectedRoute><SocialEdit /></ProtectedRoute>} />
+        <Route path="mission-vision"  element={<ProtectedRoute><MissionVisionEdit /></ProtectedRoute>} />
+        <Route path="faqs"            element={<ProtectedRoute><FAQsEdit /></ProtectedRoute>} />
+        <Route path="group/:section/:group" element={<ProtectedRoute><CmsGroupPage /></ProtectedRoute>} />
+
         <Route path="*"               element={<Navigate to="/admin" replace />} />
       </Routes>
     </AuthProvider>

@@ -4,10 +4,12 @@ import AdminLayout from '../../components/AdminLayout'
 import { api } from '../../api/adminApi'
 
 interface NavLink { id: string; label: string; href?: string }
+interface OurPeopleItem { label: string; href: string }
 interface NavData {
   ctaLabel: string; ctaHref: string
   topLinks: NavLink[]
   socialLinks: { platform: string; href: string }[]
+  ourPeopleItems: OurPeopleItem[]
 }
 
 const ipt = 'w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white ' +
@@ -17,13 +19,13 @@ const DEFAULTS: NavData = {
   ctaLabel: 'Get in Touch',
   ctaHref: '/contact',
   topLinks: [
-    { id: 'home',         label: 'Home' },
-    { id: 'about',        label: 'About' },
-    { id: 'businesses',   label: 'Our Services' },
-    { id: 'global',       label: 'Global Presence' },
-    { id: 'partnerships', label: 'Our Network' },
-    { id: 'community',    label: 'Our Community' },
-    { id: 'contact',      label: 'Contact Us' },
+    { id: 'home',         label: 'Home',            href: '/' },
+    { id: 'about',        label: 'About',           href: '/about-us' },
+    { id: 'businesses',   label: 'Our Services',    href: '/#businesses' },
+    { id: 'global',       label: 'Global Presence', href: '/#global' },
+    { id: 'partnerships', label: 'Our Network',     href: '/#partnerships' },
+    { id: 'community',    label: 'Our Community',   href: '/community' },
+    { id: 'contact',      label: 'Contact Us',      href: '/contact' },
   ],
   socialLinks: [
     { platform: 'LinkedIn',  href: 'https://www.linkedin.com/company/yanabiya-group' },
@@ -31,6 +33,11 @@ const DEFAULTS: NavData = {
     { platform: 'Instagram', href: 'https://www.instagram.com/yanabiyagroup' },
     { platform: 'Twitter',   href: 'https://twitter.com/yanabiyagroup' },
     { platform: 'YouTube',   href: 'https://www.youtube.com/@yanabiyagroup' },
+  ],
+  ourPeopleItems: [
+    { label: 'Board of Members', href: '/people/board' },
+    { label: 'Chairman & CEO',   href: '/people/ceo' },
+    { label: 'Vice Chairman',    href: '/people/vice-chairman' },
   ],
 }
 
@@ -47,8 +54,9 @@ export default function NavbarEdit() {
         setData({
           ctaLabel:    raw.ctaLabel    ?? DEFAULTS.ctaLabel,
           ctaHref:     raw.ctaHref     ?? DEFAULTS.ctaHref,
-          topLinks:    Array.isArray(raw.topLinks)    && raw.topLinks.length    ? raw.topLinks    : DEFAULTS.topLinks,
-          socialLinks: Array.isArray(raw.socialLinks) && raw.socialLinks.length ? raw.socialLinks : DEFAULTS.socialLinks,
+          topLinks:       Array.isArray(raw.topLinks)       && raw.topLinks.length       ? raw.topLinks       : DEFAULTS.topLinks,
+          socialLinks:    Array.isArray(raw.socialLinks)    && raw.socialLinks.length    ? raw.socialLinks    : DEFAULTS.socialLinks,
+          ourPeopleItems: Array.isArray(raw.ourPeopleItems) && raw.ourPeopleItems.length ? raw.ourPeopleItems : DEFAULTS.ourPeopleItems,
         })
       })
       .catch(() => setData(DEFAULTS))
@@ -72,6 +80,11 @@ export default function NavbarEdit() {
     const c = [...data.socialLinks]; c[i] = { ...c[i], [field]: val }
     setData({ ...data, socialLinks: c })
   }
+  const updateOurPeople = (i: number, field: keyof OurPeopleItem, val: string) => {
+    if (!data) return
+    const c = [...data.ourPeopleItems]; c[i] = { ...c[i], [field]: val }
+    setData({ ...data, ourPeopleItems: c })
+  }
 
   if (!data) return <AdminLayout><div className="h-64 bg-slate-900 rounded-xl animate-pulse" /></AdminLayout>
 
@@ -81,7 +94,7 @@ export default function NavbarEdit() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-xl font-bold text-white">Navbar</h1>
-            <p className="text-slate-400 text-sm mt-0.5">Edit navigation labels, CTA button and social links</p>
+            <p className="text-slate-400 text-sm mt-0.5">Edit navigation labels, dropdowns, CTA and social links</p>
           </div>
           <button onClick={save} disabled={saving}
             className="flex items-center gap-2 bg-brand-accent hover:bg-brand-accentDark text-white
@@ -121,6 +134,34 @@ export default function NavbarEdit() {
                   <input value={link.href || ''} onChange={e => updateLink(i, 'href', e.target.value)}
                     className={`${ipt} flex-1`} placeholder="/#section or /page" />
                   <button onClick={() => setData({ ...data, topLinks: data.topLinks.filter((_, j) => j !== i) })}
+                    className="px-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors">
+                    <Trash2 size={13} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Our People Dropdown */}
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h2 className="text-sm font-semibold text-white">Our People Dropdown</h2>
+                <p className="text-xs text-slate-500 mt-0.5">Sub-items shown in the "Our People" mega-menu</p>
+              </div>
+              <button onClick={() => setData({ ...data, ourPeopleItems: [...data.ourPeopleItems, { label: '', href: '/people/' }] })}
+                className="flex items-center gap-1 text-xs text-brand-accent hover:text-brand-accentDark transition-colors">
+                <Plus size={12} /> Add Item
+              </button>
+            </div>
+            <div className="space-y-2">
+              {data.ourPeopleItems.map((item, i) => (
+                <div key={i} className="flex gap-2">
+                  <input value={item.label} onChange={e => updateOurPeople(i, 'label', e.target.value)}
+                    className={`${ipt} flex-1`} placeholder="Page label" />
+                  <input value={item.href} onChange={e => updateOurPeople(i, 'href', e.target.value)}
+                    className={`${ipt} flex-1`} placeholder="/people/..." />
+                  <button onClick={() => setData({ ...data, ourPeopleItems: data.ourPeopleItems.filter((_, j) => j !== i) })}
                     className="px-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors">
                     <Trash2 size={13} />
                   </button>

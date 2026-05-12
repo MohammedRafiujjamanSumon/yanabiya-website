@@ -1,7 +1,7 @@
 require('dotenv').config({ path: require('path').join(__dirname, '.env') })
 const express = require('express')
 const cors = require('cors')
-const path = require('path')
+const { connect } = require('./src/db')
 
 const authRoutes = require('./src/routes/auth')
 const contentRoutes = require('./src/routes/content')
@@ -12,12 +12,26 @@ const app = express()
 
 const allowedOrigins = [
   'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:5175',
   'http://localhost:4173',
   'https://mohammedrafiujjamansumon.github.io',
+  process.env.FRONTEND_URL,
+].filter(Boolean)
+
+// Trusted production domain patterns
+const trustedPatterns = [
+  '.yanabiyagroup.com',
+  '.amplifyapp.com',
+  '.awsapprunner.com',
 ]
+
 app.use(cors({
   origin: (origin, cb) => {
-    if (!origin || allowedOrigins.some(o => origin.startsWith(o))) return cb(null, true)
+    if (!origin) return cb(null, true)
+    if (origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) return cb(null, true)
+    if (trustedPatterns.some(p => origin.includes(p))) return cb(null, true)
+    if (allowedOrigins.some(o => origin.startsWith(o))) return cb(null, true)
     cb(new Error('CORS blocked'))
   },
   credentials: true,
@@ -25,7 +39,6 @@ app.use(cors({
 
 app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: true }))
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use('/api/auth', authRoutes)
 app.use('/api/content', contentRoutes)
@@ -39,4 +52,7 @@ app.use((err, req, res, _next) => {
 })
 
 const PORT = process.env.PORT || 4000
-app.listen(PORT, () => console.log(`Yanabiya API running on port ${PORT}`))
+
+connect()
+  .then(() => app.listen(PORT, () => console.log(`Yanabiya API running on port ${PORT}`)))
+  .catch(err => { console.error('MongoDB connection failed:', err.message); process.exit(1) })

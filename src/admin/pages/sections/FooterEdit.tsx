@@ -83,7 +83,22 @@ export default function FooterEdit() {
 
   useEffect(() => {
     api.getSection('footer')
-      .then(res => setData(res.data as FooterData))
+      .then(res => {
+        const d = res.data as Record<string, unknown>
+        // Normalize old format → new format
+        setData({
+          tagline:               (d.tagline as string)               || DEFAULTS.tagline,
+          description:           (d.description as string)           || DEFAULTS.description,
+          newsletterPlaceholder: (d.newsletterPlaceholder as string) || DEFAULTS.newsletterPlaceholder,
+          copyrightText:         (d.copyrightText as string) || (d.copyright as string) || DEFAULTS.copyrightText,
+          groupLinks:            (d.groupLinks as FooterLink[])      || DEFAULTS.groupLinks,
+          corporateLinks:        (d.corporateLinks as FooterLink[])  || DEFAULTS.corporateLinks,
+          socialLinks: (d.socialLinks as FooterData['socialLinks'])
+            || ((d.social as { platform: string; url?: string; href?: string; icon: string }[])
+                ?.map(s => ({ platform: s.platform, href: s.url || s.href || '', icon: s.icon })))
+            || DEFAULTS.socialLinks,
+        })
+      })
       .catch(() => setData(DEFAULTS))
   }, [])
 
@@ -111,7 +126,7 @@ export default function FooterEdit() {
             <h1 className="text-xl font-bold text-white">Footer</h1>
             <p className="text-slate-400 text-sm mt-0.5">Edit footer text, links and social media</p>
           </div>
-          <button onClick={save} disabled={saving}
+          <button type="button" onClick={save} disabled={saving}
             className="flex items-center gap-2 bg-brand-accent hover:bg-brand-accentDark text-white
                        text-sm font-semibold px-5 py-2.5 rounded-xl transition-all disabled:opacity-50">
             <Save size={15} /> {saving ? 'Saving…' : saved ? '✓ Saved!' : 'Save Changes'}
@@ -124,20 +139,20 @@ export default function FooterEdit() {
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-3">
             <h2 className="text-sm font-semibold text-white">Brand Section</h2>
             <div><label className="block text-xs text-slate-400 mb-1.5">Tagline (below logo)</label>
-              <input value={data.tagline} onChange={e => setData({...data, tagline: e.target.value})} className={ipt} /></div>
+              <input title="Tagline" placeholder="Global Enterprise Platform" value={data.tagline} onChange={e => setData({...data, tagline: e.target.value})} className={ipt} /></div>
             <div><label className="block text-xs text-slate-400 mb-1.5">Description</label>
-              <textarea rows={3} value={data.description} onChange={e => setData({...data, description: e.target.value})} className={`${ipt} resize-none`} /></div>
+              <textarea title="Description" placeholder="Description text..." rows={3} value={data.description} onChange={e => setData({...data, description: e.target.value})} className={`${ipt} resize-none`} /></div>
             <div><label className="block text-xs text-slate-400 mb-1.5">Newsletter Input Placeholder</label>
-              <input value={data.newsletterPlaceholder} onChange={e => setData({...data, newsletterPlaceholder: e.target.value})} className={ipt} /></div>
+              <input title="Newsletter placeholder" placeholder="Subscribe to group updates" value={data.newsletterPlaceholder} onChange={e => setData({...data, newsletterPlaceholder: e.target.value})} className={ipt} /></div>
             <div><label className="block text-xs text-slate-400 mb-1.5">Copyright Text</label>
-              <input value={data.copyrightText} onChange={e => setData({...data, copyrightText: e.target.value})} className={ipt} /></div>
+              <input title="Copyright text" placeholder="Yanabiya Group · All rights reserved." value={data.copyrightText} onChange={e => setData({...data, copyrightText: e.target.value})} className={ipt} /></div>
           </div>
 
           {/* Social Links */}
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-sm font-semibold text-white">Social Links</h2>
-              <button onClick={() => setData({...data, socialLinks: [...data.socialLinks, {platform:'',icon:'',href:''}]})}
+              <button type="button" onClick={() => setData({...data, socialLinks: [...data.socialLinks, {platform:'',icon:'',href:''}]})}
                 className="flex items-center gap-1 text-xs text-brand-accent hover:text-brand-accentDark transition-colors">
                 <Plus size={12} /> Add
               </button>
@@ -149,7 +164,7 @@ export default function FooterEdit() {
                     className="w-28 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="Platform" />
                   <input value={s.href} onChange={e => updateSocial(i,'href',e.target.value)}
                     className={`${ipt} flex-1`} placeholder="https://..." />
-                  <button onClick={() => setData({...data, socialLinks: data.socialLinks.filter((_,j)=>j!==i)})}
+                  <button type="button" title="Remove" onClick={() => setData({...data, socialLinks: data.socialLinks.filter((_,j)=>j!==i)})}
                     className="px-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors">
                     <Trash2 size={13} />
                   </button>

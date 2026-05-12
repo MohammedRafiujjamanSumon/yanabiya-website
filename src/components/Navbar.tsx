@@ -31,6 +31,7 @@ export default function Navbar() {
   const location = useLocation()
   const { scrolled } = useScrollHeader(8, 80)
   const branding = useSection<{ logoUrl: string; siteName: string; tagline: string }>('branding')
+  const navbarData = useSection<{ ourPeopleItems?: { label: string; href: string }[] }>('navbar')
   const logoSrc = branding?.logoUrl || assets.logo
   const isHome = location.pathname === '/' || location.pathname === ''
   const onHeroTop = isHome && !scrolled
@@ -54,6 +55,15 @@ export default function Navbar() {
     }
   }
 
+  const defaultOurPeopleItems = [
+    { id: 'people-board', label: t('nav.boardOfMembers'), href: '/people/board'         },
+    { id: 'people-ceo',   label: t('nav.chairman'),       href: '/people/ceo'           },
+    { id: 'people-vc',    label: t('nav.viceChairman'),   href: '/people/vice-chairman' },
+  ]
+  const ourPeopleItems = navbarData?.ourPeopleItems?.length
+    ? navbarData.ourPeopleItems.map((item, i) => ({ id: `people-${i}`, label: item.label, href: item.href }))
+    : defaultOurPeopleItems
+
   const navGroups: NavGroup[] = [
     { label: t('nav.home'),       id: 'home'         },
     { label: t('nav.about'),      id: 'about'        },
@@ -64,11 +74,7 @@ export default function Navbar() {
     {
       label: t('nav.ourPeople'),
       parentSection: 'leadership',
-      items: [
-        { id: 'people-board', label: t('nav.boardOfMembers'), href: '/people/board'         },
-        { id: 'people-ceo',   label: t('nav.chairman'),       href: '/people/ceo'           },
-        { id: 'people-vc',    label: t('nav.viceChairman'),   href: '/people/vice-chairman' },
-      ],
+      items: ourPeopleItems,
     },
   ]
 

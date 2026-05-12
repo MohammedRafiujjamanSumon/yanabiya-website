@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
-  MapPin, Phone, AtSign, Send,
+  MapPin, Phone, AtSign, Send, Mail,
   Linkedin, Facebook, Instagram, Twitter, Youtube,
 } from 'lucide-react'
 import { contact, contactByCountry, type CountryContact } from '../data/contact'
@@ -21,11 +21,18 @@ const staticSocials = [
   { Icon: Youtube,   href: 'https://www.youtube.com/@yanabiyagroup',           label: 'YouTube'   },
 ]
 
+type FooterLink = { label: string; href: string }
 type FooterData = {
-  social?: { platform: string; url: string; icon: string }[]
+  tagline?: string
+  description?: string
+  newsletterPlaceholder?: string
+  copyrightText?: string
+  groupLinks?: FooterLink[]
+  corporateLinks?: FooterLink[]
+  socialLinks?: { platform: string; href: string; icon: string }[]
 }
 
-const groupLinks = [
+const defaultGroupLinks = [
   { id: 'home',         labelKey: 'footer.links.home'       },
   { id: 'about',        labelKey: 'footer.links.about'      },
   { id: 'global',       labelKey: 'footer.links.global'     },
@@ -34,23 +41,24 @@ const groupLinks = [
   { id: 'contact',      labelKey: 'footer.links.contact'    },
 ]
 
-const corporateLinks: { to?: string; href?: string; labelKey: string }[] = [
-  { to: '/about-us',                       labelKey: 'footer.links.profile'    },
-  { to: '/about/our-story',                labelKey: 'footer.links.story'      },
-  { to: '/contact',                        labelKey: 'footer.links.contactNet' },
-  { to: '/leadership/management',          labelKey: 'footer.links.management' },
-  { to: '/community/blog',                 labelKey: 'footer.links.blog'       },
-  { to: '/community/sustainable-growth',   labelKey: 'footer.links.sustainable'},
-  { to: '/community/community-care',       labelKey: 'footer.links.community'  },
-  { to: '/community/careers',              labelKey: 'footer.links.careers'    },
-  { href: 'https://ygiusllc.com/',         labelKey: 'footer.links.ecommerce'  },
+const defaultCorporateLinks: { to?: string; href?: string; labelKey: string }[] = [
+  { to: '/about-us',                           labelKey: 'footer.links.profile'    },
+  { to: '/about/our-story',                    labelKey: 'footer.links.story'      },
+  { to: '/contact',                            labelKey: 'footer.links.contactNet' },
+  { to: '/leadership/management',              labelKey: 'footer.links.management' },
+  { to: '/community/blog',                     labelKey: 'footer.links.blog'       },
+  { to: '/community/sustainable-growth',       labelKey: 'footer.links.sustainable'},
+  { to: '/community/community-care',           labelKey: 'footer.links.community'  },
+  { to: '/community/careers',                  labelKey: 'footer.links.careers'    },
+  { href: 'https://ygiusllc.com/',             labelKey: 'footer.links.ecommerce'  },
+  { href: 'https://webmail.yanabiyagroup.com', labelKey: 'footer.links.webmail'    },
 ]
 
 const FLAG_IMG: Record<string, string> = {
-  OM: '/yanabiya-website/maps/flags/om.svg',
-  GB: '/yanabiya-website/maps/flags/gb.svg',
-  BD: '/yanabiya-website/maps/flags/bd.svg',
-  US: '/yanabiya-website/maps/flags/us.svg',
+  OM: '/maps/flags/om.svg',
+  GB: '/maps/flags/gb.svg',
+  BD: '/maps/flags/bd.svg',
+  US: '/maps/flags/us.svg',
 }
 
 const linkClass =
@@ -134,10 +142,12 @@ export default function Footer() {
   const logoSrc = branding?.logoUrl || assets.logo
   const footerData = useSection<FooterData>('footer')
   const apiContact = useSection<{ countries?: typeof contactByCountry }>('contact')
-  const socials = footerData?.social?.length
-    ? footerData.social.map(s => ({ Icon: SOCIAL_ICONS[s.icon] ?? Linkedin, href: s.url, label: s.platform }))
+  const socials = footerData?.socialLinks?.length
+    ? footerData.socialLinks.map(s => ({ Icon: SOCIAL_ICONS[s.icon?.toLowerCase()] ?? Linkedin, href: s.href, label: s.platform }))
     : staticSocials
   const contactSrc = apiContact?.countries?.length ? apiContact.countries : contactByCountry
+  const dynamicGroupLinks = footerData?.groupLinks?.length ? footerData.groupLinks : null
+  const dynamicCorporateLinks = footerData?.corporateLinks?.length ? footerData.corporateLinks : null
 
   const handleHashClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault()
@@ -215,13 +225,13 @@ export default function Footer() {
                   Yanabiya Group
                 </div>
                 <div className="text-[9px] uppercase tracking-[0.25em] text-brand-accent mt-0.5 font-semibold">
-                  {t('footer.tagline')}
+                  {footerData?.tagline || t('footer.tagline')}
                 </div>
               </div>
             </Link>
 
             <p className="mt-2 text-[11px] text-white leading-relaxed max-w-[210px]">
-              {t('footer.desc')}
+              {footerData?.description || t('footer.desc')}
             </p>
 
             {/* Divider */}
@@ -249,16 +259,21 @@ export default function Footer() {
             <div className="mt-3 w-full border-t border-white/10 pt-3">
               <p className="text-[9px] uppercase tracking-[0.2em] text-brand-accent font-semibold mb-2">{t('footer.quickLinks')}</p>
               <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[11px]">
-                {groupLinks.map((l) => (
-                  <a
-                    key={l.id}
-                    href={`/#${l.id}`}
-                    onClick={(e) => handleHashClick(e, l.id)}
-                    className={linkClass}
-                  >
-                    {t(l.labelKey)}
-                  </a>
-                ))}
+                {dynamicGroupLinks
+                  ? dynamicGroupLinks.map((l) => (
+                    <a key={l.href} href={l.href} className={linkClass}>{l.label}</a>
+                  ))
+                  : defaultGroupLinks.map((l) => (
+                    <a
+                      key={l.id}
+                      href={`/#${l.id}`}
+                      onClick={(e) => handleHashClick(e, l.id)}
+                      className={linkClass}
+                    >
+                      {t(l.labelKey)}
+                    </a>
+                  ))
+                }
               </div>
             </div>
           </div>
@@ -273,14 +288,24 @@ export default function Footer() {
         {/* ── CORPORATE NAV ROW ── */}
         <div className="relative border-t border-white/10">
           <div className="container-x py-2.5 flex flex-wrap justify-center gap-x-4 gap-y-1.5">
-            {corporateLinks.map((l) => (
-              <span key={l.href ?? l.to} className="text-[10px]">
-                {l.href
-                  ? <a href={l.href} target="_blank" rel="noopener noreferrer" className={linkClass}>{t(l.labelKey)}</a>
-                  : <Link to={l.to!} className={linkClass}>{t(l.labelKey)}</Link>
-                }
-              </span>
-            ))}
+            {dynamicCorporateLinks
+              ? dynamicCorporateLinks.map((l) => (
+                <span key={l.href} className="text-[10px]">
+                  {l.href.startsWith('http')
+                    ? <a href={l.href} target="_blank" rel="noopener noreferrer" className={linkClass}>{l.label}</a>
+                    : <Link to={l.href} className={linkClass}>{l.label}</Link>
+                  }
+                </span>
+              ))
+              : defaultCorporateLinks.map((l) => (
+                <span key={l.href ?? l.to} className="text-[10px]">
+                  {l.href
+                    ? <a href={l.href} target="_blank" rel="noopener noreferrer" className={linkClass}>{t(l.labelKey)}</a>
+                    : <Link to={l.to!} className={linkClass}>{t(l.labelKey)}</Link>
+                  }
+                </span>
+              ))
+            }
           </div>
         </div>
 
@@ -289,10 +314,22 @@ export default function Footer() {
       {/* ── BOTTOM STRIP ── */}
       <div className="bg-black/40 w-full">
         <div className="container-x py-2 flex flex-row flex-wrap items-center justify-between gap-2 text-[10px] text-white/70">
-          <span>© {year} Yanabiya Group. {t('footer.rights')}</span>
+          <span>© {year} {footerData?.copyrightText || `Yanabiya Group. ${t('footer.rights')}`}</span>
           <div className="flex items-center gap-4">
             <Link to="/about-us" className={linkClass}>{t('footer.groupProfile')}</Link>
             <a href={`mailto:${contact.emails[0]}`} className={linkClass}>{contact.emails[0]}</a>
+            <a
+              href="https://webmail.yanabiyagroup.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-brand-accent
+                         hover:text-white border border-brand-accent/40 hover:border-brand-accent
+                         rounded-full px-2.5 py-0.5 transition-all duration-200
+                         hover:bg-brand-accent/15"
+              title="Webmail Portal"
+            >
+              <Mail size={10} /> Webmail
+            </a>
             <a
               href={`${import.meta.env.BASE_URL}admin/login`}
               className="text-white/30 hover:text-white/60 transition-colors text-[9px] tracking-wider"

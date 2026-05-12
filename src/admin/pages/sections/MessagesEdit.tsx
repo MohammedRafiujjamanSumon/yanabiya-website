@@ -1,25 +1,7 @@
 import { useEffect, useState } from 'react'
 import { RefreshCw, Eye, Trash2, Inbox, ChevronDown, ChevronUp } from 'lucide-react'
 import AdminLayout from '../../components/AdminLayout'
-
-interface Message {
-  id: string
-  name: string
-  email: string
-  phone: string
-  subject: string
-  message: string
-  country: string
-  read: boolean
-  createdAt: string
-}
-
-const BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000'
-
-function authHeaders(): Record<string, string> {
-  const token = localStorage.getItem('yg_token')
-  return { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
-}
+import { api, type Message } from '../../api/adminApi'
 
 function formatDate(iso: string): string {
   try {
@@ -45,10 +27,7 @@ export default function MessagesEdit() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch(`${BASE}/api/messages`, { headers: authHeaders() })
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      const data: Message[] = await res.json()
-      // newest first
+      const data = await api.getMessages()
       data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
       setMessages(data)
     } catch (e: unknown) {
@@ -58,20 +37,15 @@ export default function MessagesEdit() {
     }
   }
 
-  useEffect(() => {
-    fetchMessages()
-  }, [])
+  useEffect(() => { fetchMessages() }, [])
 
   const markRead = async (id: string, e?: React.MouseEvent) => {
     e?.stopPropagation()
     try {
-      await fetch(`${BASE}/api/messages/${id}/read`, {
-        method: 'PATCH',
-        headers: authHeaders(),
-      })
+      await api.markMessageRead(id)
       setMessages(prev => prev.map(m => m.id === id ? { ...m, read: true } : m))
     } catch {
-      // silent
+      // silent — UI already reflects optimistic state
     }
   }
 
@@ -80,10 +54,7 @@ export default function MessagesEdit() {
     if (!confirm('Delete this message? This cannot be undone.')) return
     setDeletingId(id)
     try {
-      await fetch(`${BASE}/api/messages/${id}`, {
-        method: 'DELETE',
-        headers: authHeaders(),
-      })
+      await api.deleteMessage(id)
       setMessages(prev => prev.filter(m => m.id !== id))
       if (expandedId === id) setExpandedId(null)
     } catch {
@@ -96,9 +67,7 @@ export default function MessagesEdit() {
   const toggleExpand = (msg: Message) => {
     const isOpening = expandedId !== msg.id
     setExpandedId(isOpening ? msg.id : null)
-    if (isOpening && !msg.read) {
-      markRead(msg.id)
-    }
+    if (isOpening && !msg.read) markRead(msg.id)
   }
 
   return (
@@ -172,35 +141,29 @@ export default function MessagesEdit() {
                       : 'bg-slate-800 border-slate-600 shadow-md shadow-black/20',
                   ].join(' ')}
                 >
-                  {/* Row header — always visible */}
+                  {/* Row header */}
                   <div
                     onClick={() => toggleExpand(msg)}
                     className="flex items-center gap-3 px-4 py-3.5 cursor-pointer group"
                   >
-                    {/* Unread dot */}
                     <div className={`w-2 h-2 rounded-full shrink-0 ${msg.read ? 'bg-transparent' : 'bg-brand-accent'}`} />
 
-                    {/* Sender info */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-baseline gap-2 flex-wrap">
                         <span className={`text-sm ${msg.read ? 'font-normal text-slate-300' : 'font-bold text-white'}`}>
                           {msg.name}
                         </span>
                         <span className="text-xs text-slate-500 truncate">{msg.email}</span>
-                        {msg.country && (
-                          <span className="text-xs text-slate-600">{msg.country}</span>
-                        )}
+                        {msg.country && <span className="text-xs text-slate-600">{msg.country}</span>}
                       </div>
                       <p className={`text-xs mt-0.5 truncate ${msg.read ? 'text-slate-500' : 'text-slate-400'}`}>
                         {msg.subject}
                       </p>
                     </div>
 
-                    {/* Date + actions */}
                     <div className="flex items-center gap-2 shrink-0">
                       <span className="text-xs text-slate-500 hidden sm:block">{formatDate(msg.createdAt)}</span>
 
-                      {/* Mark read */}
                       {!msg.read && (
                         <button
                           type="button"
@@ -212,7 +175,6 @@ export default function MessagesEdit() {
                         </button>
                       )}
 
-                      {/* Delete */}
                       <button
                         type="button"
                         title="Delete"
@@ -223,7 +185,6 @@ export default function MessagesEdit() {
                         <Trash2 size={14} />
                       </button>
 
-                      {/* Expand chevron */}
                       <span className="text-slate-500 group-hover:text-slate-300 transition-colors">
                         {isExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
                       </span>

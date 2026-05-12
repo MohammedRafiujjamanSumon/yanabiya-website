@@ -1,50 +1,49 @@
 const router = require('express').Router()
-const { readAll, write } = require('../db')
+const { getAllMessages, createMessage, markRead, deleteMessage } = require('../models/Message')
 const protect = require('../middleware/auth')
 
 // POST /api/messages — public (contact form submission)
-router.post('/', (req, res) => {
-  const { name, email, phone, subject, message, country } = req.body
-  if (!name || !email || !message) {
-    return res.status(400).json({ message: 'Name, email and message are required' })
+router.post('/', async (req, res) => {
+  try {
+    const { name, email, phone, subject, message, country } = req.body
+    if (!name || !email || !message) {
+      return res.status(400).json({ message: 'Name, email and message are required' })
+    }
+    await createMessage({ name, email, phone: phone || '', subject: subject || '', message, country: country || '' })
+    res.json({ ok: true })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
   }
-  const msgs = readAll('messages')
-  const doc = {
-    id: `msg_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
-    name, email,
-    phone: phone || '',
-    subject: subject || '',
-    message,
-    country: country || '',
-    read: false,
-    createdAt: new Date().toISOString(),
-  }
-  msgs.push(doc)
-  write('messages', msgs)
-  res.json({ ok: true })
 })
 
 // GET /api/messages — admin only, newest first
-router.get('/', protect, (req, res) => {
-  const msgs = readAll('messages')
-  res.json([...msgs].reverse())
+router.get('/', protect, async (req, res) => {
+  try {
+    res.json(await getAllMessages())
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
 })
 
 // PATCH /api/messages/:id/read — mark read
-router.patch('/:id/read', protect, (req, res) => {
-  const msgs = readAll('messages')
-  const m = msgs.find(x => x.id === req.params.id)
-  if (!m) return res.status(404).json({ message: 'Not found' })
-  m.read = true
-  write('messages', msgs)
-  res.json(m)
+router.patch('/:id/read', protect, async (req, res) => {
+  try {
+    const m = await markRead(req.params.id)
+    if (!m) return res.status(404).json({ message: 'Not found' })
+    res.json(m)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
 })
 
 // DELETE /api/messages/:id
-router.delete('/:id', protect, (req, res) => {
-  const msgs = readAll('messages').filter(x => x.id !== req.params.id)
-  write('messages', msgs)
-  res.json({ ok: true })
+router.delete('/:id', protect, async (req, res) => {
+  try {
+    await deleteMessage(req.params.id)
+    res.json({ ok: true })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
 })
 
 module.exports = router
