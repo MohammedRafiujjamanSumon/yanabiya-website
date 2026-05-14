@@ -27,7 +27,7 @@ export default function TestimonialsEdit() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    api.getSection('testimonials').then(res => setTestimonials(res.data as Testimonial[])).catch(() => setTestimonials(defaults))
+    api.getSection('testimonials').then(res => setTestimonials((res.data as Testimonial[]) || defaults)).catch(() => setTestimonials(defaults))
   }, [])
 
   const save = async () => {

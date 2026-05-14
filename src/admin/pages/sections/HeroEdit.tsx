@@ -18,7 +18,7 @@ export default function HeroEdit() {
 
   useEffect(() => {
     api.getSection('hero')
-      .then(res => setData(res.data as HeroData))
+      .then(res => setData((res.data as HeroData) || { headline: '', subheadline: '', stats: [] }))
       .catch(() => setError('Failed to load hero data'))
   }, [])
 

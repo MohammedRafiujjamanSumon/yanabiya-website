@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, Home, Users, Globe, Settings, LogOut, Menu, X, ChevronDown,
   Building2, FileText, Briefcase, Quote, Navigation, Layout,
-  MonitorPlay, Info, FolderOpen, Lightbulb, MapPin, ImageIcon, Heart,
+  MonitorPlay, Info, FolderOpen, MapPin, ImageIcon, Heart,
   BarChart3, BookOpen, MessageSquare, Globe2, Phone, Flag, Image,
-  Users2, Network, Target, Award, Calendar,
+  Users2, Network, Target, Award, Calendar, Bell,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
@@ -74,7 +74,6 @@ const NAV: NavEntry[] = [
       { to: '/admin/group/our-services/hero',          label: 'Hero Banner',        icon: Image         },
       { to: '/admin/services',                        label: 'Service Categories', icon: FileText      },
       { to: '/admin/group/our-services/service-cards', label: 'Service Cards',     icon: Layout        },
-      { to: '/admin/solutions',                       label: 'Features',           icon: Lightbulb     },
       { to: '/admin/group/our-services/pricing',      label: 'Pricing',            icon: BarChart3     },
       { to: '/admin/group/our-services/faqs',  label: 'FAQs',               icon: MessageSquare },
       { to: '/admin/group/our-services/cta',   label: 'CTA Sections',       icon: Layout        },
@@ -172,9 +171,49 @@ function findActiveGroup(pathname: string): string | null {
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [unreadCount, setUnreadCount] = useState(0)
+  const lastUnreadRef = useRef<number | null>(null)
   const location = useLocation()
   const navigate = useNavigate()
   const { admin, logout } = useAuth()
+
+  // ── Background message polling + browser notifications ───────────────────
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission()
+    }
+
+    const BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+
+    const checkMessages = async () => {
+      try {
+        const token = localStorage.getItem('yg_token')
+        if (!token) return
+        const res = await fetch(`${BASE}/api/messages`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        if (!res.ok) return
+        const msgs: { read: boolean }[] = await res.json()
+        const unread = msgs.filter(m => !m.read).length
+        setUnreadCount(unread)
+
+        if (lastUnreadRef.current !== null && unread > lastUnreadRef.current) {
+          const diff = unread - lastUnreadRef.current
+          if ('Notification' in window && Notification.permission === 'granted') {
+            new Notification('New message — Yanabiya CMS', {
+              body: `${diff} new message${diff > 1 ? 's' : ''} from visitors.`,
+              icon: '/favicon.ico',
+            })
+          }
+        }
+        lastUnreadRef.current = unread
+      } catch { /* silent */ }
+    }
+
+    checkMessages()
+    const interval = setInterval(checkMessages, 60_000)
+    return () => clearInterval(interval)
+  }, [])
 
   const activeGroupId = useMemo(() => findActiveGroup(location.pathname), [location.pathname])
 
@@ -354,6 +393,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             {mobileOpen ? <X size={16} /> : <Menu size={16} />}
           </button>
           <div className="flex-1 text-sm text-slate-400 truncate">{breadcrumb}</div>
+
+          {/* Notification bell */}
+          <Link to="/admin/messages" title="Messages"
+            className="relative p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+            <Bell size={16} />
+            {unreadCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 px-0.5 bg-brand-accent text-white
+                               text-[9px] font-bold rounded-full grid place-items-center leading-none">
+                {unreadCount > 9 ? '9+' : unreadCount}
+              </span>
+            )}
+          </Link>
+
           <a href={import.meta.env.BASE_URL} target="_blank" rel="noreferrer"
             className="text-xs text-slate-500 hover:text-brand-accent transition-colors whitespace-nowrap">
             View Site ↗

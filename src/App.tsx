@@ -51,7 +51,6 @@ import MediaLibrary from './admin/pages/MediaLibrary'
 import PageHeroesEdit from './admin/pages/sections/PageHeroesEdit'
 import PeopleEdit from './admin/pages/sections/PeopleEdit'
 import BranchesEdit from './admin/pages/sections/BranchesEdit'
-import SolutionsEdit from './admin/pages/sections/SolutionsEdit'
 import LogoEdit from './admin/pages/sections/LogoEdit'
 import DonationEdit from './admin/pages/sections/DonationEdit'
 import CommunityPagesEdit from './admin/pages/sections/CommunityPagesEdit'
@@ -118,7 +117,6 @@ function AdminRoutes() {
         <Route path="media"          element={<ProtectedRoute><MediaLibrary /></ProtectedRoute>} />
         <Route path="people"         element={<ProtectedRoute><PeopleEdit /></ProtectedRoute>} />
         <Route path="branches"       element={<ProtectedRoute><BranchesEdit /></ProtectedRoute>} />
-        <Route path="solutions"      element={<ProtectedRoute><SolutionsEdit /></ProtectedRoute>} />
         <Route path="logo"           element={<ProtectedRoute><LogoEdit /></ProtectedRoute>} />
         <Route path="donation"       element={<ProtectedRoute><DonationEdit /></ProtectedRoute>} />
         <Route path="community-pages" element={<ProtectedRoute><CommunityPagesEdit /></ProtectedRoute>} />

@@ -60,7 +60,7 @@ export default function CountryPagesEdit() {
 
   useEffect(() => {
     api.getSection('country-pages')
-      .then(res => setData(res.data as Record<CountryCode, CountryPageData>))
+      .then(res => { if (res.data) setData(res.data as Record<CountryCode, CountryPageData>) })
       .catch(() => {
         const d: Record<string, CountryPageData> = {}
         countries.forEach(c => {

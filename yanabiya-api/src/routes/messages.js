@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const { getAllMessages, createMessage, markRead, deleteMessage } = require('../models/Message')
+const { getAllMessages, createMessage, markRead, addReply, deleteMessage } = require('../models/Message')
+const { sendReply, isConfigured } = require('../email')
 const protect = require('../middleware/auth')
 
 // POST /api/messages — public (contact form submission)
@@ -31,6 +32,35 @@ router.patch('/:id/read', protect, async (req, res) => {
     const m = await markRead(req.params.id)
     if (!m) return res.status(404).json({ message: 'Not found' })
     res.json(m)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+// POST /api/messages/:id/reply — send email reply
+router.post('/:id/reply', protect, async (req, res) => {
+  try {
+    const { text } = req.body
+    if (!text || !text.trim()) return res.status(400).json({ message: 'Reply text is required' })
+
+    // Get message to find recipient details
+    const all = await getAllMessages()
+    const msg = all.find(m => (m._id || m.id) === req.params.id)
+    if (!msg) return res.status(404).json({ message: 'Message not found' })
+
+    if (!isConfigured()) {
+      return res.status(503).json({ message: 'Email (SMTP) not configured on server' })
+    }
+
+    await sendReply({
+      to: msg.email,
+      toName: msg.name,
+      subject: msg.subject,
+      replyText: text.trim(),
+    })
+
+    const updated = await addReply(req.params.id, text.trim())
+    res.json(updated)
   } catch (err) {
     res.status(500).json({ message: err.message })
   }

@@ -64,7 +64,7 @@ export default function BranchesEdit() {
 
   useEffect(() => {
     api.getSection('branches')
-      .then(res => setData(res.data as Branch[]))
+      .then(res => setData((res.data as Branch[]) || DEFAULT_BRANCHES))
       .catch(() => setData(DEFAULT_BRANCHES))
   }, [])
 

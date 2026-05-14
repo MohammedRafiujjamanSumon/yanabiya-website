@@ -28,7 +28,7 @@ export default function LogoEdit() {
 
   useEffect(() => {
     api.getSection('branding')
-      .then(res => setData(res.data as BrandingData))
+      .then(res => setData((res.data as BrandingData) || DEFAULT))
       .catch(() => setData(DEFAULT))
   }, [])
 

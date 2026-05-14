@@ -68,13 +68,16 @@ const linkClass =
   'after:transition-transform after:duration-300 hover:after:scale-x-100'
 
 function AddressCard({ c, isHQ }: { c: CountryContact; isHQ?: boolean }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const isAr = i18n.language === 'ar'
+  const officeAddr = (isAr && c.officeAddress_ar) ? c.officeAddress_ar : c.officeAddress
+  const postAddr   = (isAr && c.postAddress_ar)   ? c.postAddress_ar   : c.postAddress
   return (
     <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3 hover:border-brand-accent/30 hover:bg-white/[0.07] transition-all duration-300">
       {/* Header */}
       <div className="flex items-center gap-2 mb-3">
         <img src={FLAG_IMG[c.code]} alt={c.region} className="w-6 h-4 object-cover rounded-sm shadow-sm" />
-        <span className="text-sm font-semibold text-white">{c.region}</span>
+        <span className="text-sm font-semibold text-white">{t(`global.nodes.${c.code}.name`, c.region)}</span>
         {isHQ && (
           <span className="ml-auto text-[8px] uppercase tracking-wider bg-brand-accent/25 text-brand-accent px-2 py-0.5 rounded-full font-bold border border-brand-accent/30">
             {t('footer.hq')}
@@ -97,14 +100,14 @@ function AddressCard({ c, isHQ }: { c: CountryContact; isHQ?: boolean }) {
           {c.code === 'OM' ? (
             <>
               <p className="text-[8px] uppercase tracking-wider text-white font-semibold">{t('footer.postalAddress')}</p>
-              {c.postAddress.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
+              {postAddr.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
               <p className="text-[8px] uppercase tracking-wider text-white font-semibold pt-1">{t('footer.headOffice')}</p>
-              {c.officeAddress.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
+              {officeAddr.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
             </>
           ) : (
             <>
-              {c.officeAddress.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
-              {c.postAddress && c.postAddress.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
+              {officeAddr.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
+              {postAddr && postAddr.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
             </>
           )}
         </div>

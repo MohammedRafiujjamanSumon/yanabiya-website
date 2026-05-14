@@ -1,9 +1,17 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { X as CloseIcon, ArrowRight } from 'lucide-react'
 import { countries } from '../data/countries'
 import { contactByCountry } from '../data/contact'
 import { assets } from '../data/assets'
+
+const ROLE_KEYS: Record<string, string> = {
+  'Headquarters':          'global.headquarters',
+  'European Operations':   'global.europe',
+  'South Asia Operations': 'global.southAsia',
+  'North America Operations': 'global.northAmerica',
+}
 
 /* Right-side slide-in panel that lists all 4 countries, same look &
  * feel as the HQ-overview panel on /global-presence, but reusable so
@@ -18,6 +26,7 @@ export default function GlobalOverviewPanel({
   open: boolean
   onClose: () => void
 }) {
+  const { t } = useTranslation()
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => {
@@ -101,14 +110,14 @@ export default function GlobalOverviewPanel({
                     <div className="min-w-0 flex-1">
                       <div className="flex items-baseline justify-between gap-2">
                         <div className="text-[12px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
-                          {c.name}
+                          {t(`global.nodes.${c.code}.name`, c.name)}
                         </div>
                         <span className="shrink-0 font-mono text-[10px] text-slate-400">
                           {num}
                         </span>
                       </div>
                       <div className="text-[10px] uppercase tracking-[0.22em] text-brand-accentDark mt-0.5">
-                        {c.role}
+                        {t(ROLE_KEYS[c.role] ?? '', c.role)}
                       </div>
                       {k && (
                         <>
@@ -117,7 +126,7 @@ export default function GlobalOverviewPanel({
                           </div>
                           <div className="text-[10px] text-slate-500 mt-1">
                             <span className="font-bold uppercase tracking-wider text-brand-accentDark">
-                              Est.
+                              {t('global.est', 'Est.')}
                             </span>{' '}
                             {k.established}
                           </div>
@@ -127,7 +136,7 @@ export default function GlobalOverviewPanel({
                   </div>
                   <div className="mt-2.5 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.22em]
                                   text-brand-accentDark group-hover:text-brand-deep group-hover:gap-1.5 transition-all">
-                    Open page <ArrowRight size={11} />
+                    {t('global.openPage', 'Open page')} <ArrowRight size={11} />
                   </div>
                 </Link>
               )

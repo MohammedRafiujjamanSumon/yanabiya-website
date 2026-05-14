@@ -20,9 +20,11 @@ export type CountryContact = {
   established: string
   /** Physical office address, building / floor / street / area. */
   officeAddress: string
+  officeAddress_ar?: string
   /** Postal / P.O. Box address. Empty string if the office address doubles
    *  as the postal address. */
   postAddress: string
+  postAddress_ar?: string
   /** Country or wider region line, shown as the last address row. */
   region: string
   phones: string[]
@@ -43,7 +45,9 @@ export const contactByCountry: CountryContact[] = [
     registration: { label: 'Commercial Registration', value: '1395664' },
     established: '19 September 2021',
     officeAddress: 'Office-41, 4th Floor, Building-846\nWay-4011, Complex-240\nAl Gubrah, Bushar, Muscat',
+    officeAddress_ar: 'مكتب 41، الطابق الرابع، مبنى 846\nطريق 4011، مجمع 240\nالغبرة، بوشر، مسقط',
     postAddress: 'P.O. Box 1432, PC-133\nAl Khuwair, Muscat\nSultanate of Oman',
+    postAddress_ar: 'ص.ب 1432، الرمز البريدي 133\nالخوير، مسقط\nسلطنة عُمان',
     region: 'Sultanate of Oman',
     phones: ['+968 2249 5566'],
     mobile: '+968 9116 1677',
@@ -60,7 +64,9 @@ export const contactByCountry: CountryContact[] = [
     registration: { label: 'Company No', value: '14907791' },
     established: '1 June 2023',
     officeAddress: '167-169 Great Portland Street\n5th Floor, W1W 5PF',
+    officeAddress_ar: '167-169 شارع بورتلاند الكبير\nالطابق الخامس، W1W 5PF',
     postAddress: 'London, United Kingdom',
+    postAddress_ar: 'لندن، المملكة المتحدة',
     region: 'United Kingdom',
     phones: ['+44 7988 518877'],
     mobile: '+44 7988 518877',
@@ -75,7 +81,9 @@ export const contactByCountry: CountryContact[] = [
     registration: { label: 'Trade License', value: 'TRAD/DNCC/100677/1998' },
     established: '17 November 1998',
     officeAddress: 'Office #211, Plot #322/B\nBlock-Kanchkura, Uttarkhan, 1230',
+    officeAddress_ar: 'مكتب رقم 211، قطعة 322/ب\nبلوك كنشكورا، أوتاركان، 1230',
     postAddress: 'Dhaka, Bangladesh',
+    postAddress_ar: 'دكا، بنغلاديش',
     region: 'Bangladesh',
     phones: ['+880 1711 030489'],
     mobile: '+880 1971 161677',
@@ -90,7 +98,9 @@ export const contactByCountry: CountryContact[] = [
     registration: { label: 'File No', value: '806163411' },
     established: '11 August 2025',
     officeAddress: '5900 Balcones Drive\nSuite #18651, TX 78731',
+    officeAddress_ar: '5900 طريق بالكونز\nجناح رقم 18651، TX 78731',
     postAddress: 'Austin, Texas, United States of America',
+    postAddress_ar: 'أوستن، تكساس، الولايات المتحدة الأمريكية',
     region: 'United States of America',
     phones: ['+1 512 355 5715'],
     mobile: '+1 512 355 5715',

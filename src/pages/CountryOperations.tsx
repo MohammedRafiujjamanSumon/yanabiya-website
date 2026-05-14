@@ -66,7 +66,7 @@ type CountryOps = {
   currentProjects: { title: string; body: string; image?: string }[]
   activeSectors: string[]
   futurePlans: { title: string; body: string; icon: LucideIcon; image?: string }[]
-  countryLeadership: { cofounder: LeaderProfile; managingDirector?: LeaderProfile }
+  countryLeadership: { ceo?: LeaderProfile; cofounder: LeaderProfile; managingDirector?: LeaderProfile }
 }
 
 type PartnerItem = {
@@ -97,7 +97,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Clothing & Accessories',               desc: 'Private label, garment sourcing, QA, and retail supply.',    icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border deals, partnerships, and tender support.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and admin.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,     slug: 'manpower',         image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,     slug: 'manpower',         image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' },
     ],
     strategicPartners: [
       { name: 'Plexus Cloud', logo: '/logos/partners-co/plexuscloud.png' },
@@ -160,7 +160,7 @@ const OPS: Record<string, CountryOps> = {
     currentProjects: [
       { title: 'Regional Delivery Centre',    body: '24×7 engineering & QA support for clients across the four-country group.',           image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
       { title: 'Apparel Sourcing Network',    body: 'Active relationships with vetted RMG factories supplying private-label clients.',     image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Workforce Mobility Pipeline', body: 'Skilled & semi-skilled placement into the Gulf, UK and US under group employer.',     image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Workforce Mobility Pipeline', body: 'Skilled & semi-skilled placement into the Gulf, UK and US under group employer.',     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' },
       { title: 'Government IT Engagements',   body: 'Public-sector digitalisation pilots in coordination with local partners.',           image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
     ],
     activeSectors: [
@@ -178,17 +178,23 @@ const OPS: Record<string, CountryOps> = {
       { title: 'New Country Entry: KSA',        body: 'Saudi Arabia entity in 2027 to extend Gulf-wide trade and manpower coverage.',                icon: Globe2,     image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
     ],
     countryLeadership: {
+      ceo: {
+        name: 'S M Shamim Ahmed',
+        role: 'Founder, Chairman & CEO',
+        image: assets.chairman,
+        bio: 'As Founder and CEO, he established Yanabiya Group with a vision to build a globally connected enterprise focused on innovation, technology, and international business growth across four countries.',
+      },
       cofounder: {
         name: 'Mohammad Abu Jaheed',
         role: 'Co-founder & Vice Chairman',
         image: assets.viceChairman,
-        bio: 'As Co-founder and Vice Chairman, he champions Yanabiya\'s South Asia presence, overseeing the Bangladesh operation as the Group\'s technology and trade delivery hub.',
+        bio: 'As Vice Chairman of Yanabiya Group, he plays a key role in guiding the Group\'s strategic direction across all four operating countries, with a strong focus on strengthening Bangladesh as a central technology, operations, and talent hub.',
       },
       managingDirector: {
-        name: 'S M Momim Ahmed',
-        role: 'Managing Director',
-        image: assets.people.momiimAhmed,
-        bio: 'Leads Yanabiya Bangladesh\'s day-to-day operations, directing a multi-sector team across technology delivery, garment trade, and workforce mobility.',
+        name: 'S M Sumon Ahmed',
+        role: 'Co-Founder',
+        image: assets.people.sumonAhmed,
+        bio: 'Co-Founder and Deputy Managing Director of Yanabiya Group, driving cross-divisional governance and the Group\'s South Asia growth agenda from Bangladesh.',
       },
     },
   },
@@ -214,7 +220,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Clothing & Accessories',               desc: 'Private label, garment sourcing, QA, and retail supply.',          icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border deals, partnerships, and tender support.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and admin.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' },
     ],
     strategicPartners: [
       { name: 'Yanabiya Muscat United Trade' },
@@ -311,23 +317,29 @@ const OPS: Record<string, CountryOps> = {
       { title: 'Vision 2040 Alignment',           body: 'Active participation in Oman Vision 2040 initiatives across IT, trade and infrastructure.',    icon: Globe2,    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80' },
     ],
     countryLeadership: {
+      ceo: {
+        name: 'S M Shamim Ahmed',
+        role: 'Founder, Chairman & CEO',
+        image: assets.chairman,
+        bio: 'As Founder and CEO, he established Yanabiya Group with a vision to build a globally connected enterprise focused on innovation, technology, and international business growth across four countries.',
+      },
       cofounder: {
         name: 'Mohammad Abu Jaheed',
         role: 'Co-founder & Vice Chairman',
         image: assets.viceChairman,
-        bio: 'As Co-founder and Vice Chairman, he guides Yanabiya\'s flagship Oman headquarters, steering the Group\'s strategic vision from Muscat across all four operating countries.',
+        bio: 'As Vice Chairman of Yanabiya Group, he plays a key role in guiding the Group\'s strategic direction across all four operating countries, with a strong focus on strengthening Bangladesh as a central technology, operations, and talent hub.',
       },
       managingDirector: {
-        name: 'Khalid Saif Ahmed Al Sulaimani',
-        role: 'General Manager, Oman',
-        image: assets.people.khalidSulaimani,
-        bio: 'Oversees daily operations and client relationships across Yanabiya\'s Oman entity, ensuring premium delivery and alignment with the Group\'s quality standards.',
+        name: 'S M Momim Ahmed',
+        role: 'Co-Founder',
+        image: assets.people.momiimAhmed,
+        bio: 'Co-Founder and Managing Director of Yanabiya Group, overseeing core operations and driving the Group\'s strategic direction across all business divisions.',
       },
     },
   },
   GB: {
     intro:
-      'Yanabiya Gulf International UK Ltd serves as the Group\'s strategic gateway to the UK and European markets, connecting Gulf and Asian expertise with a strong network of 21+ trusted partners across the IT, retail, and hospitality sectors. The company is focused on building long-term international collaborations, delivering innovative solutions, and expanding business opportunities across Europe.',
+      'UK acts as a key international hub for the Group\'s expansion into the UK and Europe, supporting global business development, strategic collaborations, and innovative growth initiatives across multiple industries including IT, retail, and hospitality.',
     branchIntro:
       'Operating from London since 2023, our UK office handles European-market business development, cross-border trade representation, and IT delivery into UK enterprises and SMEs.',
     parentCompany: 'Yanabiya Gulf International Business & Trade SPC, Sultanate of Oman',
@@ -346,7 +358,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Clothing & Accessories',                desc: 'Private label, garment sourcing, QA, and retail supply.',          icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',           desc: 'Cross-border deals, partnerships, and tender support.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',            desc: 'Serviced offices, PRO services, accounting, and admin.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Manpower Supply Services',  desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Manpower Supply Services',  desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' },
     ],
     strategicPartners: [
       { name: 'Tata Consultancy Services', logo: '/logos/partners-co/tcs.svg' },
@@ -399,11 +411,23 @@ const OPS: Record<string, CountryOps> = {
       { title: 'Hospitality Brand Investments', body: 'Strategic investment in London restaurant groups bridging South-Asian and Middle-Eastern cuisine.',   icon: Globe2,    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' },
     ],
     countryLeadership: {
+      ceo: {
+        name: 'S M Shamim Ahmed',
+        role: 'Founder, Chairman & CEO',
+        image: assets.chairman,
+        bio: 'As Founder and CEO, he established Yanabiya Group with a vision to build a globally connected enterprise focused on innovation, technology, and international business growth across four countries.',
+      },
       cofounder: {
         name: 'Mohammad Abu Jaheed',
         role: 'Co-founder & Vice Chairman',
         image: assets.viceChairman,
-        bio: 'Oversees Yanabiya\'s European expansion from London, positioning the UK entity as the Group\'s gateway into Western and European markets.',
+        bio: 'As Vice Chairman of Yanabiya Group, he plays a key role in guiding the Group\'s strategic direction across all four operating countries, with a strong focus on strengthening Bangladesh as a central technology, operations, and talent hub.',
+      },
+      managingDirector: {
+        name: 'Md Rafiujjaman Sumon',
+        role: 'Co-Founder & CTO',
+        image: 'https://ui-avatars.com/api/?name=Md+Rafiujjaman+Sumon&background=0e2d4e&color=9ec73a&size=400&bold=true',
+        bio: 'He is the Co-Founder of the UK operations and Group Chief Technology Officer of Yanabiya Group, overseeing technology leadership, infrastructure, and digital growth across the Group\'s international presence in four countries.',
       },
     },
   },
@@ -427,7 +451,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Export & Import Business',          desc: 'Sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border deals, partnerships, and tender support.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and admin.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' },
     ],
     strategicPartners: [
       { name: 'Amazon Web Services', logo: '/logos/partners-co/aws.svg' },
@@ -472,11 +496,23 @@ const OPS: Record<string, CountryOps> = {
       { title: 'Investor & Advisory Programme', body: 'Build a US investor-and-advisor circle around Yanabiya Group\'s global growth roadmap.',      icon: Lightbulb,  image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
     ],
     countryLeadership: {
+      ceo: {
+        name: 'S M Shamim Ahmed',
+        role: 'Founder, Chairman & CEO',
+        image: assets.chairman,
+        bio: 'As Founder and CEO, he established Yanabiya Group with a vision to build a globally connected enterprise focused on innovation, technology, and international business growth across four countries.',
+      },
       cofounder: {
         name: 'Mohammad Abu Jaheed',
         role: 'Co-founder & Vice Chairman',
         image: assets.viceChairman,
-        bio: 'Leads Yanabiya\'s North America strategy, anchoring the Austin, Texas LLC as the Group\'s bridge between Gulf delivery capability and the US technology market.',
+        bio: 'As Vice Chairman of Yanabiya Group, he plays a key role in guiding the Group\'s strategic direction across all four operating countries, with a strong focus on strengthening Bangladesh as a central technology, operations, and talent hub.',
+      },
+      managingDirector: {
+        name: 'Jhohora Akter',
+        role: 'Co-Founder',
+        image: assets.people.jhohoraAkter,
+        bio: 'Co-Founder and Assistant Deputy Managing Director of Yanabiya Group, supporting senior leadership in governance and strategic coordination across all four countries.',
       },
     },
   },
@@ -1336,8 +1372,7 @@ function CountryLeaderCard({
             <Users size={9} />
             {tier}
           </div>
-          <h3 className="font-serif text-base md:text-lg text-brand-deep leading-tight mb-0.5">{person.name}</h3>
-          <p className="text-[11px] font-semibold text-brand-deep/50 mb-1.5 uppercase tracking-wider">{person.role}</p>
+          <h3 className="font-serif text-base md:text-lg text-brand-deep leading-tight mb-1.5">{person.name}</h3>
           <p className="text-[11px] text-brand-deep/60 leading-relaxed">{person.bio}</p>
         </div>
       </div>
@@ -1365,19 +1400,30 @@ function CountryLeaderSection({
   return (
     <SectionFrame eyebrow="Country Leadership" title="The People Leading This Region." eyebrowClass={eyebrowClass}>
       <div className="max-w-2xl mx-auto space-y-4">
+        {leadership.ceo && (
+          <CountryLeaderCard
+            person={leadership.ceo}
+            tier="Founder, Chairman & CEO"
+            accentBorder={accentBorder}
+            accentBg={accentBg}
+            badgeBg={badgeBg}
+            badgeText={badgeText}
+            badgeBorder={badgeBorder}
+          />
+        )}
         <CountryLeaderCard
           person={leadership.cofounder}
-          tier="Country Co-founder"
-          accentBorder={accentBorder}
-          accentBg={accentBg}
-          badgeBg={badgeBg}
-          badgeText={badgeText}
-          badgeBorder={badgeBorder}
+          tier="Vice Chairman"
+          accentBorder="border-blue-200/60"
+          accentBg="bg-blue-50/40"
+          badgeBg="bg-blue-100"
+          badgeText="text-blue-800"
+          badgeBorder="border-blue-300/60"
         />
         {leadership.managingDirector && (
           <CountryLeaderCard
             person={leadership.managingDirector}
-            tier="Managing Director"
+            tier="Co-Founder & CTO"
             accentBorder="border-slate-200"
             accentBg="bg-white/60"
             badgeBg="bg-slate-100"

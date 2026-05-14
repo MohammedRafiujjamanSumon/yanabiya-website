@@ -201,7 +201,9 @@
         "name": "USA",
         "capital": "Austin"
       }
-    }
+    },
+    "est": "Grundat",
+    "openPage": "Öppna sida"
   },
   "csr": {
     "eyebrow": "Påverkan & CSR",
@@ -281,7 +283,8 @@
     "viceChairmanMsg": "Vår webbplats presenterar vår vision, mission, infrastruktur, expertis och framtidsplaner. Vi inbjuder potentiella kunder och partners att utforska våra divisioner och kontakta oss.",
     "readMore": "Läs mer",
     "tier1Kicker": "Nivå 01 — Styrelse & Rådgivning",
-    "tier1Title": "Råd av Medlemmar",
+    "tier1Title": "Board of Directors",
+    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Nivå 02 — Verkställande Ledning",
     "tier2Title": "Global Verkställande Ledning",
     "tier3Kicker": "Nivå 03 — Regionala Operationer",
@@ -290,7 +293,8 @@
     "founderCEO": "Grundare & VD",
     "becomePartner": "Bli Partner",
     "joinTeam": "Gå med i Vårt Team",
-    "ourCompanies": "Våra Företag"
+    "ourCompanies": "Våra Företag",
+    "tier1Tagline": "The Governing Body of Yanabiya Group"
   },
   "strategy": {
     "eyebrow": "Strategi & Innovation",
@@ -662,37 +666,56 @@
     "teamCount_other": "{{count}} teammedlemmar i Yanabiyas verksamheter i {{country}}."
   },
   "serviceForm": {
-    "heading": "Arbeta med oss",
-    "sub": "Berätta för oss hur Yanabiya kan hjälpa dig — vi återkommer inom 48 timmar.",
-    "namePlaceholder": "Ditt fullständiga namn",
-    "emailPlaceholder": "Din företags-e-postadress",
-    "countryPlaceholder": "Ditt land",
-    "servicePlaceholder": "Välj en tjänst…",
-    "messagePlaceholder": "Beskriv kort ditt projekt eller ditt behov…",
-    "submit": "Skicka förfrågan",
-    "sending": "Skickar…",
-    "successTitle": "Förfrågan mottagen!",
-    "successMsg": "Tack, {{name}}. En medlem av Yanabiya-teamet kommer att kontakta dig inom 48 timmar.",
-    "errorMsg": "Något gick fel. Försök igen eller skriv till contact@yanabiyagroup.com.",
-    "services": {
-      "trade": "Handel och logistik",
-      "consulting": "Affärsrådgivning",
-      "community": "Samhällstjänster",
-      "investment": "Investering och finansiering",
-      "other": "Annat"
-    }
+    "workWithUs": "Arbeta med oss",
+    "getOurService": "Få vår tjänst",
+    "getThisService": "Få denna tjänst",
+    "intro": "Berätta lite om dig själv så hör vi av oss inom en arbetsdag.",
+    "fullName": "Fullständigt namn",
+    "fullNamePh": "Ditt fullständiga namn",
+    "company": "Företag / Organisation",
+    "companyPh": "Företagsnamn (valfritt)",
+    "emailAddress": "E-postadress",
+    "emailPh": "du@företag.com",
+    "phoneNumber": "Telefonnummer",
+    "phonePh": "+46 00 000 00 00",
+    "yourCountry": "Ditt land",
+    "selectCountry": "Välj land",
+    "customerType": "Kundtyp",
+    "selectOne": "Välj en",
+    "individual": "Privatperson",
+    "sme": "SMF / Startup",
+    "enterprise": "Företag / Koncern",
+    "gov": "Regering / Offentlig sektor",
+    "nonprofit": "Ideell / NGO",
+    "serviceRequired": "Önskad tjänst",
+    "selectService": "Välj en tjänst",
+    "descMessage": "Beskrivning / Meddelande",
+    "descPh": "Beskriv kortfattat ditt behov...",
+    "sendRequest": "Skicka förfrågan",
+    "cancel": "Avbryt",
+    "requestReceived": "Förfrågan mottagen!",
+    "thankYou": "Tack, vårt team kontaktar dig inom en arbetsdag."
   },
   "businessDetail": {
-    "contactCta": "Kontakta denna division",
-    "learnMore": "Läs mer",
-    "keyFacts": "Nyckelfakta",
-    "regionsActive": "Aktiva regioner",
-    "teamSize": "Teamstorlek",
-    "established": "Grundat",
-    "headquarters": "Huvudkontor",
-    "servicesOffered": "Erbjudna tjänster",
-    "partners": "Partners",
-    "backToBusinesses": "Tillbaka till verksamheter"
+    "sectorNotFound": "Sektor hittades inte",
+    "serviceNotFound": "Tjänst hittades inte",
+    "backToServiceList": "Tillbaka till tjänstlistan",
+    "ourService": "Vår Tjänst",
+    "previous": "Föregående",
+    "next": "Nästa",
+    "whatWeOffer": "Vad vi erbjuder",
+    "exploreOurServices": "Utforska våra tjänster",
+    "readMore": "Läs mer",
+    "explore": "Utforska",
+    "fromTheGroup": "Från Gruppen",
+    "exploreOtherDivisions": "Utforska andra divisioner",
+    "moreInDivision": "Fler tjänster i denna division",
+    "ecommerceBadge": "Yanabiya E-handel",
+    "ecommerceTitle": "Handla globalt med Yanabiya",
+    "ecommerceDesc": "Vår globala e-handelsplattform kopplar samman köpare och säljare över gränser.",
+    "ukItBadge": "UK IT-konsultation",
+    "ukItTitle": "Letar du efter UK-baserade IT-konsulttjänster?",
+    "ukItDesc": "Vår UK IT-konsultavdelning erbjuder tjänster inom mjukvara, moln, AI och cybersäkerhet."
   },
   "ourStory": {
     "kicker": "Vår historia",
@@ -779,23 +802,17 @@
     }
   },
   "omanPresence": {
-    "welcome": "Välkommen till vår verksamhet i Oman",
-    "intro": "Oman är Yanabiyas hem — vårt globala huvudkontor och hjärtat i vårt handelsnätverk i Gulfen. Från Muscat koordinerar vi vår internationella verksamhet, utvecklar strategiska partnerskap och betjänar våra kunder i hela MENA-regionen.",
-    "highlights": [
-      "Globalt huvudkontor i Muscat",
-      "Handels- och logistiknav för MENA-regionen",
-      "Partnerskap med omanska finansinstitut och statliga myndigheter",
-      "Stöd till det lokala samhället och välgörenhetsinitiativ"
-    ],
-    "licensedTitle": "Licensierade verksamheter i Oman",
-    "licensedActivities": [
-      "Allmän handel och import/export",
-      "Affärsrådgivning och handelsrepresentation",
-      "Logistik och supply chain-hantering",
-      "Fastighetstjänster",
-      "Program för samhällsutveckling"
-    ],
-    "ctaLabel": "Kontakta vårt kontor i Oman"
+    "globalPresence": "Global Närvaro",
+    "tagline": "Kopplar samman möjligheter. Bygger globala företag.",
+    "readMore": "Läs mer",
+    "openPage": "Öppna {{name}}-sida",
+    "colA": "Kolumn A",
+    "colB": "Kolumn B",
+    "getInTouch": "Ta kontakt",
+    "browseOffice": "Bläddra bland alla kontor på ett ställe.",
+    "contactDesc": "Alla kontaktuppgifter för Yanabiya-koncernen på en central sida.",
+    "openContactNetwork": "Öppna kontaktnätverk",
+    "backToGlobal": "Tillbaka till Global"
   },
   "donation": {
     "heroTitle": "Ge för Allah — Ge för Jannah",
@@ -943,6 +960,37 @@
         "label": "Allmän fond",
         "desc": "Din donation kommer att fördelas där behovet är störst bland våra aktiva projekt.",
         "impact": "100% går till stiftelseprojekt"
+      }
+    }
+  },
+  "community": {
+    "eyebrow": "Vår Gemenskap",
+    "heading": "Drivna av syfte, investerar i människor,",
+    "headingItalic": "framsteg och delat välstånd.",
+    "hubs": {
+      "sustainable-growth": {
+        "eyebrow": "Långsiktigt värde",
+        "title": "Hållbar tillväxt"
+      },
+      "blog": {
+        "eyebrow": "Berättelser & insikter",
+        "title": "Blogg"
+      },
+      "community-care": {
+        "eyebrow": "Välfärdsprogram",
+        "title": "Samhällsomsorg"
+      },
+      "donation": {
+        "eyebrow": "Ge & påverka",
+        "title": "Donation"
+      },
+      "testimonials": {
+        "eyebrow": "Röster & berättelser",
+        "title": "Omdömen"
+      },
+      "careers": {
+        "eyebrow": "Gå med i teamet",
+        "title": "Karriär hos oss"
       }
     }
   }

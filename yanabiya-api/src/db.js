@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 const fs = require('fs')
 const path = require('path')
 
+// EB can't store % or # chars in env vars — accept base64-encoded URI as fallback
+if (!process.env.MONGO_URI && process.env.MONGO_URI_B64) {
+  process.env.MONGO_URI = Buffer.from(process.env.MONGO_URI_B64, 'base64').toString('utf8')
+}
+
 const useFile = !process.env.MONGO_URI
 
 // ── File-based helpers (local dev) ──────────────────────────────────────────

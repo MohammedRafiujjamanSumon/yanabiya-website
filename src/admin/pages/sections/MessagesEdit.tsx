@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { RefreshCw, Eye, Trash2, Inbox, ChevronDown, ChevronUp } from 'lucide-react'
+import { RefreshCw, Eye, Trash2, Inbox, ChevronDown, ChevronUp, Send, Mail, Phone, MessageCircle, CheckCircle2 } from 'lucide-react'
 import AdminLayout from '../../components/AdminLayout'
 import { api, type Message } from '../../api/adminApi'
 
@@ -14,27 +14,36 @@ function formatDate(iso: string): string {
   }
 }
 
+function whatsappUrl(phone: string, name: string): string {
+  const digits = phone.replace(/\D/g, '')
+  const text = encodeURIComponent(`Hello ${name}, thank you for reaching out to Yanabiya Group. `)
+  return `https://wa.me/${digits}?text=${text}`
+}
+
+const ipt = 'w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white ' +
+  'placeholder:text-slate-500 focus:outline-none focus:border-brand-accent transition-all resize-none'
+
 export default function MessagesEdit() {
   const [messages, setMessages] = useState<Message[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [replyTexts, setReplyTexts] = useState<Record<string, string>>({})
+  const [sendingId, setSendingId] = useState<string | null>(null)
+  const [replyError, setReplyError] = useState<Record<string, string>>({})
 
   const unreadCount = messages.filter(m => !m.read).length
 
   const fetchMessages = async () => {
-    setLoading(true)
-    setError('')
+    setLoading(true); setError('')
     try {
       const data = await api.getMessages()
       data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
       setMessages(data)
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : 'Failed to load messages')
-    } finally {
-      setLoading(false)
-    }
+    } finally { setLoading(false) }
   }
 
   useEffect(() => { fetchMessages() }, [])
@@ -44,9 +53,7 @@ export default function MessagesEdit() {
     try {
       await api.markMessageRead(id)
       setMessages(prev => prev.map(m => m.id === id ? { ...m, read: true } : m))
-    } catch {
-      // silent — UI already reflects optimistic state
-    }
+    } catch { /* silent */ }
   }
 
   const deleteMsg = async (id: string, e: React.MouseEvent) => {
@@ -57,11 +64,8 @@ export default function MessagesEdit() {
       await api.deleteMessage(id)
       setMessages(prev => prev.filter(m => m.id !== id))
       if (expandedId === id) setExpandedId(null)
-    } catch {
-      // silent
-    } finally {
-      setDeletingId(null)
-    }
+    } catch { /* silent */ }
+    finally { setDeletingId(null) }
   }
 
   const toggleExpand = (msg: Message) => {
@@ -70,43 +74,52 @@ export default function MessagesEdit() {
     if (isOpening && !msg.read) markRead(msg.id)
   }
 
+  const sendReply = async (msg: Message) => {
+    const text = replyTexts[msg.id]?.trim()
+    if (!text) return
+    setSendingId(msg.id)
+    setReplyError(prev => ({ ...prev, [msg.id]: '' }))
+    try {
+      const updated = await api.replyMessage(msg.id, text)
+      setMessages(prev => prev.map(m => m.id === msg.id ? { ...m, replies: updated.replies } : m))
+      setReplyTexts(prev => ({ ...prev, [msg.id]: '' }))
+    } catch (e: unknown) {
+      setReplyError(prev => ({
+        ...prev,
+        [msg.id]: e instanceof Error ? e.message : 'Failed to send reply',
+      }))
+    } finally { setSendingId(null) }
+  }
+
   return (
     <AdminLayout>
       <div className="max-w-3xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold text-white">Messages</h1>
-                {unreadCount > 0 && (
-                  <span className="bg-brand-accent text-white text-xs font-bold px-2 py-0.5 rounded-full">
-                    {unreadCount} new
-                  </span>
-                )}
-              </div>
-              <p className="text-slate-400 text-sm mt-0.5">Contact form submissions from visitors</p>
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-xl font-bold text-white">Messages</h1>
+              {unreadCount > 0 && (
+                <span className="bg-brand-accent text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                  {unreadCount} new
+                </span>
+              )}
             </div>
+            <p className="text-slate-400 text-sm mt-0.5">Contact form submissions from visitors</p>
           </div>
-          <button
-            type="button"
-            onClick={fetchMessages}
-            disabled={loading}
-            className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-all disabled:opacity-50"
-          >
+          <button type="button" onClick={fetchMessages} disabled={loading}
+            className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-all disabled:opacity-50">
             <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
             Refresh
           </button>
         </div>
 
-        {/* Error */}
         {error && (
           <div className="bg-red-500/10 border border-red-500/30 text-red-400 text-sm px-4 py-3 rounded-xl mb-4">
             {error}
           </div>
         )}
 
-        {/* Loading skeleton */}
         {loading && (
           <div className="space-y-2">
             {[1, 2, 3].map(i => (
@@ -115,7 +128,6 @@ export default function MessagesEdit() {
           </div>
         )}
 
-        {/* Empty state */}
         {!loading && !error && messages.length === 0 && (
           <div className="flex flex-col items-center justify-center py-20 text-slate-500">
             <Inbox size={40} className="mb-3 opacity-40" />
@@ -124,16 +136,16 @@ export default function MessagesEdit() {
           </div>
         )}
 
-        {/* Message list */}
         {!loading && messages.length > 0 && (
           <div className="space-y-2">
             {messages.map(msg => {
               const isExpanded = expandedId === msg.id
               const isDeleting = deletingId === msg.id
+              const isSending = sendingId === msg.id
+              const replies = msg.replies || []
 
               return (
-                <div
-                  key={msg.id}
+                <div key={msg.id}
                   className={[
                     'rounded-xl border transition-all overflow-hidden',
                     msg.read
@@ -142,10 +154,8 @@ export default function MessagesEdit() {
                   ].join(' ')}
                 >
                   {/* Row header */}
-                  <div
-                    onClick={() => toggleExpand(msg)}
-                    className="flex items-center gap-3 px-4 py-3.5 cursor-pointer group"
-                  >
+                  <div onClick={() => toggleExpand(msg)}
+                    className="flex items-center gap-3 px-4 py-3.5 cursor-pointer group">
                     <div className={`w-2 h-2 rounded-full shrink-0 ${msg.read ? 'bg-transparent' : 'bg-brand-accent'}`} />
 
                     <div className="flex-1 min-w-0">
@@ -155,6 +165,11 @@ export default function MessagesEdit() {
                         </span>
                         <span className="text-xs text-slate-500 truncate">{msg.email}</span>
                         {msg.country && <span className="text-xs text-slate-600">{msg.country}</span>}
+                        {replies.length > 0 && (
+                          <span className="text-xs text-emerald-500 flex items-center gap-1">
+                            <CheckCircle2 size={11} /> {replies.length} replied
+                          </span>
+                        )}
                       </div>
                       <p className={`text-xs mt-0.5 truncate ${msg.read ? 'text-slate-500' : 'text-slate-400'}`}>
                         {msg.subject}
@@ -165,23 +180,17 @@ export default function MessagesEdit() {
                       <span className="text-xs text-slate-500 hidden sm:block">{formatDate(msg.createdAt)}</span>
 
                       {!msg.read && (
-                        <button
-                          type="button"
-                          title="Mark as read"
+                        <button type="button" title="Mark as read"
                           onClick={e => markRead(msg.id, e)}
-                          className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-all"
-                        >
+                          className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-all">
                           <Eye size={14} />
                         </button>
                       )}
 
-                      <button
-                        type="button"
-                        title="Delete"
+                      <button type="button" title="Delete"
                         onClick={e => deleteMsg(msg.id, e)}
                         disabled={isDeleting}
-                        className="p-1.5 rounded-lg text-slate-500 hover:text-red-400 hover:bg-red-500/10 transition-all disabled:opacity-40"
-                      >
+                        className="p-1.5 rounded-lg text-slate-500 hover:text-red-400 hover:bg-red-500/10 transition-all disabled:opacity-40">
                         <Trash2 size={14} />
                       </button>
 
@@ -193,37 +202,92 @@ export default function MessagesEdit() {
 
                   {/* Expanded body */}
                   {isExpanded && (
-                    <div className="px-5 pb-4 border-t border-slate-700 pt-3">
-                      <div className="grid grid-cols-2 gap-x-6 gap-y-1 mb-3 text-xs">
-                        {msg.phone && (
-                          <>
-                            <span className="text-slate-500">Phone</span>
-                            <span className="text-slate-300">{msg.phone}</span>
-                          </>
+                    <div className="border-t border-slate-700">
+                      <div className="px-5 py-4 space-y-4">
+                        {/* Meta */}
+                        <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs">
+                          {msg.phone && (
+                            <>
+                              <span className="text-slate-500">Phone</span>
+                              <span className="text-slate-300">{msg.phone}</span>
+                            </>
+                          )}
+                          <span className="text-slate-500">Received</span>
+                          <span className="text-slate-300">{formatDate(msg.createdAt)}</span>
+                        </div>
+
+                        {/* Message body */}
+                        <div className="bg-slate-900 rounded-lg p-3 text-sm text-slate-200 whitespace-pre-wrap leading-relaxed">
+                          {msg.message}
+                        </div>
+
+                        {/* Previous replies */}
+                        {replies.length > 0 && (
+                          <div className="space-y-2">
+                            <p className="text-xs font-medium text-slate-400">Sent replies</p>
+                            {replies.map((r, i) => (
+                              <div key={i} className="bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-3">
+                                <p className="text-xs text-slate-200 whitespace-pre-wrap">{r.text}</p>
+                                <p className="text-[10px] text-slate-500 mt-1">{formatDate(r.sentAt)}</p>
+                              </div>
+                            ))}
+                          </div>
                         )}
-                        <span className="text-slate-500">Received</span>
-                        <span className="text-slate-300">{formatDate(msg.createdAt)}</span>
-                      </div>
 
-                      <div className="bg-slate-900 rounded-lg p-3 text-sm text-slate-200 whitespace-pre-wrap leading-relaxed">
-                        {msg.message}
-                      </div>
-
-                      <div className="flex gap-2 mt-3">
-                        <a
-                          href={`mailto:${msg.email}?subject=Re: ${encodeURIComponent(msg.subject)}`}
-                          className="text-xs bg-brand-accent/10 hover:bg-brand-accent/20 text-brand-accent font-medium px-3 py-1.5 rounded-lg transition-all"
-                        >
-                          Reply by Email
-                        </a>
-                        {msg.phone && (
-                          <a
-                            href={`tel:${msg.phone}`}
-                            className="text-xs bg-slate-700 hover:bg-slate-600 text-slate-300 font-medium px-3 py-1.5 rounded-lg transition-all"
+                        {/* Reply box */}
+                        <div className="space-y-2">
+                          <p className="text-xs font-medium text-slate-400">Reply to {msg.name}</p>
+                          <textarea
+                            rows={4}
+                            className={ipt}
+                            placeholder="Type your reply here…"
+                            value={replyTexts[msg.id] || ''}
+                            onChange={e => setReplyTexts(prev => ({ ...prev, [msg.id]: e.target.value }))}
+                          />
+                          {replyError[msg.id] && (
+                            <p className="text-xs text-red-400">{replyError[msg.id]}</p>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => sendReply(msg)}
+                            disabled={isSending || !(replyTexts[msg.id]?.trim())}
+                            className="flex items-center gap-2 bg-brand-accent hover:bg-brand-accentDark text-white text-sm font-semibold px-4 py-2 rounded-xl transition-all disabled:opacity-40"
                           >
-                            Call
+                            {isSending
+                              ? <><RefreshCw size={13} className="animate-spin" /> Sending…</>
+                              : <><Send size={13} /> Send Reply</>}
+                          </button>
+                        </div>
+
+                        {/* Quick contact buttons */}
+                        <div className="flex flex-wrap gap-2 pt-1">
+                          <a
+                            href={`mailto:${msg.email}?subject=Re: ${encodeURIComponent(msg.subject)}&body=${encodeURIComponent(`Dear ${msg.name},\n\n`)}`}
+                            className="flex items-center gap-1.5 text-xs bg-slate-700 hover:bg-slate-600 text-slate-200 font-medium px-3 py-1.5 rounded-lg transition-all"
+                            title="Open in email client"
+                          >
+                            <Mail size={12} /> Open in Email App
                           </a>
-                        )}
+
+                          {msg.phone && (
+                            <>
+                              <a
+                                href={whatsappUrl(msg.phone, msg.name)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-1.5 text-xs bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 font-medium px-3 py-1.5 rounded-lg transition-all"
+                              >
+                                <MessageCircle size={12} /> WhatsApp
+                              </a>
+                              <a
+                                href={`tel:${msg.phone}`}
+                                className="flex items-center gap-1.5 text-xs bg-slate-700 hover:bg-slate-600 text-slate-300 font-medium px-3 py-1.5 rounded-lg transition-all"
+                              >
+                                <Phone size={12} /> Call
+                              </a>
+                            </>
+                          )}
+                        </div>
                       </div>
                     </div>
                   )}

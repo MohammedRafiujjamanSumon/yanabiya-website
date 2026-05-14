@@ -5,7 +5,8 @@ import { api } from '../../api/adminApi'
 
 interface Office {
   code: string; region: string; legalName: string
-  officeAddress: string; postAddress: string
+  officeAddress: string; officeAddress_ar?: string
+  postAddress: string; postAddress_ar?: string
   phones: string[]; mobile: string; emails: string[]; hours: string
 }
 
@@ -78,8 +79,22 @@ function OfficeCard({ office, onChange }: { office: Office; onChange: (o: Office
         </div>
       </div>
       <div>
+        <label className="block text-xs text-slate-400 mb-1.5 font-medium">Office Address (Arabic) <span className="text-slate-600">عربي</span></label>
+        <textarea rows={2} dir="rtl" value={office.officeAddress_ar || ''}
+          onChange={e => set('officeAddress_ar', e.target.value)}
+          placeholder="العنوان بالعربية…"
+          className={`${ipt} resize-none`} />
+      </div>
+      <div>
         <label className="block text-xs text-slate-400 mb-1.5 font-medium">Postal / P.O. Box</label>
         <input value={office.postAddress} onChange={e => set('postAddress', e.target.value)} className={ipt} />
+      </div>
+      <div>
+        <label className="block text-xs text-slate-400 mb-1.5 font-medium">Postal / P.O. Box (Arabic) <span className="text-slate-600">عربي</span></label>
+        <input dir="rtl" value={office.postAddress_ar || ''}
+          onChange={e => set('postAddress_ar', e.target.value)}
+          placeholder="العنوان البريدي بالعربية…"
+          className={ipt} />
       </div>
 
       <ArrayField label="Phone Numbers" values={office.phones} onChange={v => set('phones', v)} icon={Phone} />
@@ -96,7 +111,7 @@ export default function ContactEdit() {
 
   useEffect(() => {
     api.getSection('contact')
-      .then(res => setData(res.data as { offices: Office[] }))
+      .then(res => setData((res.data as { offices: Office[] }) || { offices: [] }))
       .catch(() => setError('Failed to load contact data'))
   }, [])
 

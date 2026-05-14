@@ -201,7 +201,9 @@
         "name": "USA",
         "capital": "Austin"
       }
-    }
+    },
+    "est": "Est.",
+    "openPage": "Open page"
   },
   "csr": {
     "eyebrow": "Impact & CSR",
@@ -281,7 +283,9 @@
     "viceChairmanMsg": "Our website introduces our vision, mission, infrastructure, expertise, and future plans. We invite prospective clients and partners to explore our divisions and connect with us.",
     "readMore": "Read More",
     "tier1Kicker": "Tier 01 — Board & Advisory",
-    "tier1Title": "Board of Members",
+    "tier1Title": "Board of Directors",
+    "tier1Tagline": "The Governing Body of Yanabiya Group",
+    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Tier 02 — Executive Management",
     "tier2Title": "Global Executive Management",
     "tier3Kicker": "Tier 03 — Support",
@@ -1024,6 +1028,37 @@
         "label": "Building & Maintenance",
         "desc": "Upkeep of mosques, madrasas and charitable facilities.",
         "impact": "Preserves a place of worship"
+      }
+    }
+  },
+  "community": {
+    "eyebrow": "Our Community",
+    "heading": "Driven by purpose, investing in people,",
+    "headingItalic": "progress, and shared prosperity.",
+    "hubs": {
+      "sustainable-growth": {
+        "eyebrow": "Long-term Value",
+        "title": "Sustainable Growth"
+      },
+      "blog": {
+        "eyebrow": "Stories & Insights",
+        "title": "Blog"
+      },
+      "community-care": {
+        "eyebrow": "Welfare Programmes",
+        "title": "Community Care"
+      },
+      "donation": {
+        "eyebrow": "Give & Impact",
+        "title": "Donation"
+      },
+      "testimonials": {
+        "eyebrow": "Voices & Stories",
+        "title": "Testimonials"
+      },
+      "careers": {
+        "eyebrow": "Join the Team",
+        "title": "Career With Us"
       }
     }
   }

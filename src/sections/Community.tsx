@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { useSection } from '../hooks/useSection'
@@ -97,11 +98,17 @@ const HUBS: Hub[] = [
 ]
 
 export default function Community() {
+  const { t } = useTranslation()
   const apiHubs = useSection<{ hubs: { key: string; title: string; eyebrow: string; image: string }[] }>('community-hubs')
   const displayHubs = HUBS.map(hub => {
     const key = hub.to.split('/').pop()!
     const apiHub = apiHubs?.hubs?.find(h => h.key === key)
-    return { ...hub, title: apiHub?.title ?? hub.title, eyebrow: apiHub?.eyebrow ?? hub.eyebrow, image: apiHub?.image ?? hub.image }
+    return {
+      ...hub,
+      title: apiHub?.title ?? t(`community.hubs.${key}.title`, hub.title),
+      eyebrow: apiHub?.eyebrow ?? t(`community.hubs.${key}.eyebrow`, hub.eyebrow),
+      image: apiHub?.image ?? hub.image,
+    }
   })
 
   return (
@@ -111,12 +118,12 @@ export default function Community() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto pt-4 md:pt-6 mb-2 md:mb-4">
           <Reveal>
-            <Eyebrow>Our Community</Eyebrow>
+            <Eyebrow>{t('community.eyebrow')}</Eyebrow>
           </Reveal>
           <Reveal delay={120}>
             <h2 className="font-serif text-[16px] leading-snug tracking-tight text-brand-deep mt-1">
-              Driven by purpose, investing in people,{' '}
-              <span className="italic text-brand-accentDark">progress, and shared prosperity.</span>
+              {t('community.heading')}{' '}
+              <span className="italic text-brand-accentDark">{t('community.headingItalic')}</span>
             </h2>
           </Reveal>
         </div>
@@ -192,7 +199,7 @@ export default function Community() {
                       {h.title}
                     </h3>
                     <div className="mt-auto pt-1 md:pt-2 inline-flex items-center gap-1 text-brand-accentDark text-[8px] md:text-xs font-semibold group-hover:gap-2 transition-all duration-200">
-                      Read More <ArrowRight size={8} />
+                      {t('common.readMore')} <ArrowRight size={8} />
                     </div>
                   </div>
                 </Link>
@@ -210,7 +217,7 @@ export default function Community() {
                            shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
                            transition-all duration-300"
               >
-                Get in Touch <ArrowRight size={14} />
+                {t('common.getInTouch')} <ArrowRight size={14} />
               </Link>
             </div>
           </Reveal>

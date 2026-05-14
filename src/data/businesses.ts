@@ -929,7 +929,7 @@ export const businesses: Business[] = [
         icon: Users,
         title: 'Child Protection Plan',
         body: 'Dedicated child protection plans providing financial security and educational guarantees for your children\'s future.',
-        image: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
         features: ['Child Protection Plan'],
         countries: [
           { code: 'OM', note: 'Oman child savings & protection.' }, { code: 'GB', note: 'UK child future plans.' },
@@ -1194,7 +1194,7 @@ export const businesses: Business[] = [
     footer:
       '🚀 End-to-end global mobility solutions for employment, education, and international relocation.',
     image:
-      'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
     videoUrl:
       'https://videos.pexels.com/video-files/32801087/13982978_2560_1440_30fps.mp4',
     subServicesHeading: 'Explore Our Manpower Supply Services',

@@ -101,7 +101,7 @@ export default function PartnersEdit() {
 
   useEffect(() => {
     api.getSection('partners')
-      .then(res => setData(res.data as PartnersData))
+      .then(res => setData((res.data as PartnersData) || { partners: [], memberships: [], affiliations: [] }))
       .catch(() => setError('Failed to load partners data'))
   }, [])
 

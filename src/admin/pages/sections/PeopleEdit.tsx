@@ -52,7 +52,7 @@ export default function PeopleEdit() {
 
   useEffect(() => {
     api.getSection('people')
-      .then(res => setData(res.data as Person[]))
+      .then(res => setData((res.data as Person[]) || []))
       .catch(() => setData([]))
   }, [])
 

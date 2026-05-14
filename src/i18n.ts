@@ -28,10 +28,7 @@ export const languages: LanguageMeta[] = [
   // Global / default
   { code: 'en',    label: 'English',          native: 'English',      dir: 'ltr', flag: '🇬🇧', region: 'global' },
   // Gulf
-  { code: 'ar',    label: 'Arabic (Oman)',    native: 'عُمان',        dir: 'rtl', flag: '🇴🇲', region: 'gulf'   },
-  { code: 'ar-AE', label: 'Arabic (UAE)',     native: 'الإمارات',     dir: 'rtl', flag: '🇦🇪', region: 'gulf'   },
-  { code: 'ar-QA', label: 'Arabic (Qatar)',   native: 'قطر',          dir: 'rtl', flag: '🇶🇦', region: 'gulf'   },
-  { code: 'ar-SA', label: 'Arabic (Saudi)',   native: 'السعودية',     dir: 'rtl', flag: '🇸🇦', region: 'gulf'   },
+  { code: 'ar', label: 'Arabic', native: 'العربية', dir: 'rtl', flag: '🇴🇲', region: 'gulf' },
   // Europe
   { code: 'fr',    label: 'French',           native: 'Français',     dir: 'ltr', flag: '🇫🇷', region: 'europe' },
   { code: 'de',    label: 'German',           native: 'Deutsch',      dir: 'ltr', flag: '🇩🇪', region: 'europe' },
@@ -55,9 +52,6 @@ i18n
     resources: {
       en:    { translation: en },
       ar:    { translation: ar },
-      'ar-AE': { translation: ar },
-      'ar-QA': { translation: ar },
-      'ar-SA': { translation: ar },
       bn:    { translation: bn },
       fr:    { translation: fr },
       de:    { translation: de },

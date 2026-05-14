@@ -31,8 +31,8 @@ export default function CompanyEdit() {
 
   useEffect(() => {
     api.getSection('company')
-      .then(res => setData(res.data as CompanyData))
-      .catch(() => setData({ ...company }))
+      .then(res => setData((res.data as CompanyData) || { ...company } as CompanyData))
+      .catch(() => setData({ ...company } as CompanyData))
   }, [])
 
   const save = async () => {

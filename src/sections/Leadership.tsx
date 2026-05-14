@@ -92,11 +92,15 @@ function TierBadge({
   icon: Icon,
   kicker,
   title,
+  tagline,
+  sub,
   theme,
 }: {
   icon: LucideIcon
   kicker: string
   title: string
+  tagline?: string
+  sub?: string
   theme: TierTheme
 }) {
   return (
@@ -109,6 +113,12 @@ function TierBadge({
         </span>
       </div>
       <h3 className={`font-serif text-xl md:text-2xl leading-tight ${theme.title}`}>{title}</h3>
+      {tagline && (
+        <p className={`mt-1 text-sm font-semibold tracking-wide ${theme.badgeText}`}>{tagline}</p>
+      )}
+      {sub && (
+        <p className="mt-3 text-sm text-slate-500 max-w-2xl mx-auto leading-relaxed">{sub}</p>
+      )}
     </Reveal>
   )
 }
@@ -201,7 +211,7 @@ export default function Leadership() {
 
         {/* ── TIER 01, BOARD ── */}
         <div className={`rounded-2xl border p-6 md:p-10 mb-4 ${t.board.panelBg} ${t.board.panelBorder} shadow-sm`}>
-          <TierBadge icon={Crown} kicker={tr('leadership.tier1Kicker')} title={tr('leadership.tier1Title')} theme={t.board} />
+          <TierBadge icon={Crown} kicker={tr('leadership.tier1Kicker')} title={tr('leadership.tier1Title')} tagline={tr('leadership.tier1Tagline')} sub={tr('leadership.tier1Sub')} theme={t.board} />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 max-w-5xl mx-auto">
             {boardPeople.map((p, i) => (
               <PersonCard key={p.id} person={p} theme={t.board} delay={i * 80} viewLabel="View Board" />
@@ -232,23 +242,10 @@ export default function Leadership() {
         {/* ── TIER 03, BUSINESS SUPPORT DEPARTMENT ── */}
         <div className={`rounded-2xl border p-6 md:p-10 ${t.dept.panelBg} ${t.dept.panelBorder} shadow-sm`}>
           <TierBadge icon={MapPin} kicker={tr('leadership.tier3Kicker')} title={tr('leadership.tier3Title')} theme={t.dept} />
-          <div className="flex justify-center">
-            <Reveal>
-              <Link
-                to="/people/departments"
-                className="group flex items-center gap-4 px-6 py-4 rounded-2xl bg-white
-                           border border-emerald-100 shadow-sm hover:shadow-md
-                           hover:-translate-y-0.5 transition-all duration-200 min-w-[220px]"
-              >
-                <div className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${t.dept.badge} ${t.dept.badgeBorder} border`}>
-                  <MapPin size={16} className={t.dept.badgeIcon} />
-                </div>
-                <div>
-                  <p className="text-[13px] font-semibold text-brand-deep leading-snug">Business Support Department</p>
-                  <p className={`text-[11px] font-medium mt-0.5 ${t.dept.roleText}`}>View All Members →</p>
-                </div>
-              </Link>
-            </Reveal>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 max-w-5xl mx-auto">
+            {deptPeople.map((p, i) => (
+              <PersonCard key={p.id} person={p} theme={t.dept} delay={i * 60} viewLabel="View Profile" />
+            ))}
           </div>
         </div>
 

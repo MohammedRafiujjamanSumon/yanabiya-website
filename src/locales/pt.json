@@ -201,7 +201,9 @@
         "name": "Estados Unidos",
         "capital": "Austin"
       }
-    }
+    },
+    "est": "Fund.",
+    "openPage": "Abrir página"
   },
   "csr": {
     "eyebrow": "Impacto & RSC",
@@ -281,7 +283,8 @@
     "viceChairmanMsg": "O nosso site apresenta a nossa visão, missão, infraestrutura, experiência e planos futuros. Convidamos clientes e parceiros potenciais a explorar as nossas divisões e a contactar-nos.",
     "readMore": "Ler mais",
     "tier1Kicker": "Nível 01 — Conselho & Consultoria",
-    "tier1Title": "Conselho de Membros",
+    "tier1Title": "Board of Directors",
+    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Nível 02 — Direção Executiva",
     "tier2Title": "Gestão Executiva Global",
     "tier3Kicker": "Nível 03 — Operações Regionais",
@@ -290,7 +293,8 @@
     "founderCEO": "Fundador & CEO",
     "becomePartner": "Tornar-se Parceiro",
     "joinTeam": "Junte-se à Nossa Equipa",
-    "ourCompanies": "As Nossas Empresas"
+    "ourCompanies": "As Nossas Empresas",
+    "tier1Tagline": "The Governing Body of Yanabiya Group"
   },
   "strategy": {
     "eyebrow": "Estratégia & Inovação",
@@ -662,37 +666,56 @@
     "teamCount_other": "{{count}} membros da equipe nas operações Yanabiya em {{country}}."
   },
   "serviceForm": {
-    "heading": "Trabalhe conosco",
-    "sub": "Diga-nos como a Yanabiya pode ajudá-lo — responderemos em 48 horas.",
-    "namePlaceholder": "Seu nome completo",
-    "emailPlaceholder": "Seu e-mail profissional",
-    "countryPlaceholder": "Seu país",
-    "servicePlaceholder": "Selecione um serviço…",
-    "messagePlaceholder": "Descreva brevemente o seu projeto ou necessidade…",
-    "submit": "Enviar consulta",
-    "sending": "Enviando…",
-    "successTitle": "Consulta recebida!",
-    "successMsg": "Obrigado, {{name}}. Um membro da equipe Yanabiya entrará em contato em 48 horas.",
-    "errorMsg": "Algo deu errado. Por favor, tente novamente ou escreva para contact@yanabiyagroup.com.",
-    "services": {
-      "trade": "Comércio e Logística",
-      "consulting": "Consultoria Empresarial",
-      "community": "Serviços Comunitários",
-      "investment": "Investimento e Financiamento",
-      "other": "Outro"
-    }
+    "workWithUs": "Trabalhe conosco",
+    "getOurService": "Obter nosso serviço",
+    "getThisService": "Obter este serviço",
+    "intro": "Conte-nos um pouco sobre você e entraremos em contato em um dia útil.",
+    "fullName": "Nome completo",
+    "fullNamePh": "Seu nome completo",
+    "company": "Empresa / Organização",
+    "companyPh": "Nome da empresa (opcional)",
+    "emailAddress": "Endereço de e-mail",
+    "emailPh": "voce@empresa.com",
+    "phoneNumber": "Número de telefone",
+    "phonePh": "+55 00 00000-0000",
+    "yourCountry": "Seu país",
+    "selectCountry": "Selecionar país",
+    "customerType": "Tipo de cliente",
+    "selectOne": "Selecionar um",
+    "individual": "Individual",
+    "sme": "PME / Startup",
+    "enterprise": "Empresa / Corporativo",
+    "gov": "Governo / Setor público",
+    "nonprofit": "Sem fins lucrativos / ONG",
+    "serviceRequired": "Serviço necessário",
+    "selectService": "Selecionar um serviço",
+    "descMessage": "Descrição / Mensagem",
+    "descPh": "Descreva brevemente seu requisito...",
+    "sendRequest": "Enviar solicitação",
+    "cancel": "Cancelar",
+    "requestReceived": "Solicitação recebida!",
+    "thankYou": "Obrigado, nossa equipe entrará em contato em um dia útil."
   },
   "businessDetail": {
-    "contactCta": "Contatar esta divisão",
-    "learnMore": "Saiba mais",
-    "keyFacts": "Factos principais",
-    "regionsActive": "Regiões ativas",
-    "teamSize": "Tamanho da equipe",
-    "established": "Fundado",
-    "headquarters": "Sede",
-    "servicesOffered": "Serviços oferecidos",
-    "partners": "Parceiros",
-    "backToBusinesses": "Voltar aos negócios"
+    "sectorNotFound": "Setor não encontrado",
+    "serviceNotFound": "Serviço não encontrado",
+    "backToServiceList": "Voltar à lista de serviços",
+    "ourService": "Nosso Serviço",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "whatWeOffer": "O que oferecemos",
+    "exploreOurServices": "Explorar nossos serviços",
+    "readMore": "Ler mais",
+    "explore": "Explorar",
+    "fromTheGroup": "Do Grupo",
+    "exploreOtherDivisions": "Explorar outras divisões",
+    "moreInDivision": "Mais serviços nesta divisão",
+    "ecommerceBadge": "Yanabiya E-Commerce",
+    "ecommerceTitle": "Compre globalmente com a Yanabiya",
+    "ecommerceDesc": "Nossa plataforma global de e-commerce conecta compradores e vendedores além das fronteiras.",
+    "ukItBadge": "Consultoria de TI no Reino Unido",
+    "ukItTitle": "Procura serviços de consultoria de TI baseados no Reino Unido?",
+    "ukItDesc": "Nossa divisão de consultoria de TI no Reino Unido oferece serviços de software, nuvem, IA e cibersegurança."
   },
   "ourStory": {
     "kicker": "A nossa história",
@@ -779,23 +802,17 @@
     }
   },
   "omanPresence": {
-    "welcome": "Bem-vindo às nossas operações no Omã",
-    "intro": "O Omã é o lar da Yanabiya — a nossa sede global e o coração da nossa rede comercial no Golfo. A partir de Mascate, coordenamos as nossas operações internacionais, desenvolvemos parcerias estratégicas e servimos os nossos clientes em toda a região MENA.",
-    "highlights": [
-      "Sede global em Mascate",
-      "Hub de comércio e logística para a região MENA",
-      "Parcerias com instituições financeiras e agências governamentais omanienses",
-      "Apoio à comunidade local e iniciativas beneficentes"
-    ],
-    "licensedTitle": "Atividades licenciadas no Omã",
-    "licensedActivities": [
-      "Comércio geral e Importação/Exportação",
-      "Consultoria empresarial e Representação comercial",
-      "Logística e Gestão da cadeia de abastecimento",
-      "Serviços imobiliários",
-      "Programas de desenvolvimento comunitário"
-    ],
-    "ctaLabel": "Contactar o nosso escritório no Omã"
+    "globalPresence": "Presença Global",
+    "tagline": "Conectando Oportunidades. Construindo Negócios Globais.",
+    "readMore": "Ler mais",
+    "openPage": "Abrir página {{name}}",
+    "colA": "Coluna A",
+    "colB": "Coluna B",
+    "getInTouch": "Entre em contato",
+    "browseOffice": "Navegue por todos os escritórios em um só lugar.",
+    "contactDesc": "Todos os dados de contato do Grupo Yanabiya em uma página centralizada.",
+    "openContactNetwork": "Abrir rede de contatos",
+    "backToGlobal": "Voltar ao Global"
   },
   "donation": {
     "heroTitle": "Dê por Allah — Dê por Jannah",
@@ -943,6 +960,37 @@
         "label": "Fundo geral",
         "desc": "O seu donativo será alocado onde houver maior necessidade entre os nossos projetos ativos.",
         "impact": "100% vai para os projetos da fundação"
+      }
+    }
+  },
+  "community": {
+    "eyebrow": "Nossa Comunidade",
+    "heading": "Movidos pelo propósito, investindo em pessoas,",
+    "headingItalic": "progresso e prosperidade compartilhada.",
+    "hubs": {
+      "sustainable-growth": {
+        "eyebrow": "Valor de Longo Prazo",
+        "title": "Crescimento Sustentável"
+      },
+      "blog": {
+        "eyebrow": "Histórias & Perspectivas",
+        "title": "Blog"
+      },
+      "community-care": {
+        "eyebrow": "Programas de Bem-estar",
+        "title": "Cuidado Comunitário"
+      },
+      "donation": {
+        "eyebrow": "Dar & Impactar",
+        "title": "Doação"
+      },
+      "testimonials": {
+        "eyebrow": "Vozes & Histórias",
+        "title": "Depoimentos"
+      },
+      "careers": {
+        "eyebrow": "Junte-se à Equipe",
+        "title": "Carreira Conosco"
       }
     }
   }

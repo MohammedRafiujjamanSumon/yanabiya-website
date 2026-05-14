@@ -52,7 +52,7 @@ export default function CareersEdit() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    api.getSection('careers').then(res => setData(res.data as CareersData)).catch(() => setData(DEFAULTS))
+    api.getSection('careers').then(res => setData((res.data as CareersData) || DEFAULTS)).catch(() => setData(DEFAULTS))
   }, [])
 
   const save = async () => {

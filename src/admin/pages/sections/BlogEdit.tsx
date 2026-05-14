@@ -42,7 +42,7 @@ export default function BlogEdit() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    api.getSection('blog').then(res => setPosts(res.data as Post[])).catch(() => setPosts(defaultPosts))
+    api.getSection('blog').then(res => setPosts((res.data as Post[]) || defaultPosts)).catch(() => setPosts(defaultPosts))
   }, [])
 
   const save = async () => {

@@ -201,7 +201,9 @@
         "name": "Verenigde Staten",
         "capital": "Austin"
       }
-    }
+    },
+    "est": "Opger.",
+    "openPage": "Pagina openen"
   },
   "csr": {
     "eyebrow": "Impact & MVO",
@@ -281,7 +283,8 @@
     "viceChairmanMsg": "Onze website presenteert onze visie, missie, infrastructuur, expertise en toekomstplannen. We nodigen potentiële klanten en partners uit om onze divisies te verkennen en contact met ons op te nemen.",
     "readMore": "Lees meer",
     "tier1Kicker": "Niveau 01 — Bestuur & Advies",
-    "tier1Title": "Raad van Leden",
+    "tier1Title": "Board of Directors",
+    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Niveau 02 — Uitvoerend Management",
     "tier2Title": "Wereldwijd Uitvoerend Management",
     "tier3Kicker": "Laag 03 — Regionale Operaties",
@@ -290,7 +293,8 @@
     "founderCEO": "Oprichter & CEO",
     "becomePartner": "Word Partner",
     "joinTeam": "Word Lid van Ons Team",
-    "ourCompanies": "Onze Bedrijven"
+    "ourCompanies": "Onze Bedrijven",
+    "tier1Tagline": "The Governing Body of Yanabiya Group"
   },
   "strategy": {
     "eyebrow": "Strategie & Innovatie",
@@ -662,37 +666,56 @@
     "teamCount_other": "{{count}} teamleden in Yanabiya's activiteiten in {{country}}."
   },
   "serviceForm": {
-    "heading": "Werk met ons",
-    "sub": "Vertel ons hoe Yanabiya u kan helpen — we nemen binnen 48 uur contact met u op.",
-    "namePlaceholder": "Uw volledige naam",
-    "emailPlaceholder": "Uw zakelijke e-mailadres",
-    "countryPlaceholder": "Uw land",
-    "servicePlaceholder": "Selecteer een dienst…",
-    "messagePlaceholder": "Beschrijf kort uw project of behoefte…",
-    "submit": "Aanvraag indienen",
-    "sending": "Verzenden…",
-    "successTitle": "Aanvraag ontvangen!",
-    "successMsg": "Dank u, {{name}}. Een lid van het Yanabiya-team neemt binnen 48 uur contact met u op.",
-    "errorMsg": "Er is iets misgegaan. Probeer het opnieuw of schrijf naar contact@yanabiyagroup.com.",
-    "services": {
-      "trade": "Handel & Logistiek",
-      "consulting": "Bedrijfsadvies",
-      "community": "Gemeenschapsdiensten",
-      "investment": "Investering & Financiering",
-      "other": "Overige"
-    }
+    "workWithUs": "Werk met ons",
+    "getOurService": "Onze dienst verkrijgen",
+    "getThisService": "Deze dienst verkrijgen",
+    "intro": "Vertel ons iets over uzelf en we nemen binnen één werkdag contact op.",
+    "fullName": "Volledige naam",
+    "fullNamePh": "Uw volledige naam",
+    "company": "Bedrijf / Organisatie",
+    "companyPh": "Bedrijfsnaam (optioneel)",
+    "emailAddress": "E-mailadres",
+    "emailPh": "u@bedrijf.com",
+    "phoneNumber": "Telefoonnummer",
+    "phonePh": "+31 00 000 0000",
+    "yourCountry": "Uw land",
+    "selectCountry": "Land selecteren",
+    "customerType": "Klanttype",
+    "selectOne": "Selecteer één",
+    "individual": "Particulier",
+    "sme": "MKB / Startup",
+    "enterprise": "Onderneming / Bedrijf",
+    "gov": "Overheid / Publieke sector",
+    "nonprofit": "Non-profit / NGO",
+    "serviceRequired": "Gewenste dienst",
+    "selectService": "Selecteer een dienst",
+    "descMessage": "Beschrijving / Bericht",
+    "descPh": "Beschrijf kort uw behoefte...",
+    "sendRequest": "Verzoek verzenden",
+    "cancel": "Annuleren",
+    "requestReceived": "Verzoek ontvangen!",
+    "thankYou": "Dank u, ons team neemt binnen één werkdag contact met u op."
   },
   "businessDetail": {
-    "contactCta": "Contact opnemen met deze divisie",
-    "learnMore": "Meer informatie",
-    "keyFacts": "Belangrijkste feiten",
-    "regionsActive": "Actieve regio's",
-    "teamSize": "Teamgrootte",
-    "established": "Opgericht",
-    "headquarters": "Hoofdkantoor",
-    "servicesOffered": "Aangeboden diensten",
-    "partners": "Partners",
-    "backToBusinesses": "Terug naar bedrijfsactiviteiten"
+    "sectorNotFound": "Sector niet gevonden",
+    "serviceNotFound": "Dienst niet gevonden",
+    "backToServiceList": "Terug naar dienstlijst",
+    "ourService": "Onze Dienst",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "whatWeOffer": "Wat we aanbieden",
+    "exploreOurServices": "Onze diensten verkennen",
+    "readMore": "Meer lezen",
+    "explore": "Verkennen",
+    "fromTheGroup": "Van de Groep",
+    "exploreOtherDivisions": "Andere divisies verkennen",
+    "moreInDivision": "Meer diensten in deze divisie",
+    "ecommerceBadge": "Yanabiya E-Commerce",
+    "ecommerceTitle": "Wereldwijd winkelen met Yanabiya",
+    "ecommerceDesc": "Ons wereldwijde e-commerceplatform verbindt kopers en verkopers over grenzen heen.",
+    "ukItBadge": "UK IT-Advies",
+    "ukItTitle": "Zoekt u in het VK gevestigde IT-adviesdiensten?",
+    "ukItDesc": "Onze UK IT-adviesafdeling biedt software-, cloud-, AI- en cyberbeveiligingsdiensten."
   },
   "ourStory": {
     "kicker": "Ons verhaal",
@@ -779,23 +802,17 @@
     }
   },
   "omanPresence": {
-    "welcome": "Welkom bij onze activiteiten in Oman",
-    "intro": "Oman is het thuis van Yanabiya — ons wereldhoofdkantoor en het hart van ons handelsnetwerk in de Golf. Vanuit Muscat coördineren we onze internationale activiteiten, ontwikkelen we strategische partnerschappen en bedienen we onze klanten in de hele MENA-regio.",
-    "highlights": [
-      "Wereldhoofdkantoor in Muscat",
-      "Handels- en logistikhub voor de MENA-regio",
-      "Partnerschappen met Omaanse financiële instellingen en overheidsinstanties",
-      "Ondersteuning van de lokale gemeenschap en liefdadigheidsinitiatieven"
-    ],
-    "licensedTitle": "Gelicenseerde activiteiten in Oman",
-    "licensedActivities": [
-      "Algemene handel & Import/Export",
-      "Bedrijfsadvies & Handelsvertegenwoordiging",
-      "Logistiek & Supply chain management",
-      "Vastgoeddiensten",
-      "Programma's voor gemeenschapsontwikkeling"
-    ],
-    "ctaLabel": "Contact opnemen met ons kantoor in Oman"
+    "globalPresence": "Mondiale Aanwezigheid",
+    "tagline": "Kansen verbinden. Mondiale bedrijven opbouwen.",
+    "readMore": "Meer lezen",
+    "openPage": "{{name}}-pagina openen",
+    "colA": "Kolom A",
+    "colB": "Kolom B",
+    "getInTouch": "Contact opnemen",
+    "browseOffice": "Alle kantoren op één plek bekijken.",
+    "contactDesc": "Alle contactgegevens van de Yanabiya Groep op één centrale pagina.",
+    "openContactNetwork": "Contactnetwerk openen",
+    "backToGlobal": "Terug naar Globaal"
   },
   "donation": {
     "heroTitle": "Geef voor Allah — Geef voor Jannah",
@@ -943,6 +960,37 @@
         "label": "Algemeen fonds",
         "desc": "Uw donatie wordt ingezet waar de nood het hoogst is onder onze actieve projecten.",
         "impact": "100% gaat naar stichtingsprojecten"
+      }
+    }
+  },
+  "community": {
+    "eyebrow": "Onze Gemeenschap",
+    "heading": "Gedreven door doel, investeren in mensen,",
+    "headingItalic": "vooruitgang en gedeelde welvaart.",
+    "hubs": {
+      "sustainable-growth": {
+        "eyebrow": "Langetermijnwaarde",
+        "title": "Duurzame Groei"
+      },
+      "blog": {
+        "eyebrow": "Verhalen & Inzichten",
+        "title": "Blog"
+      },
+      "community-care": {
+        "eyebrow": "Welzijnsprogramma's",
+        "title": "Gemeenschapszorg"
+      },
+      "donation": {
+        "eyebrow": "Geven & Impact",
+        "title": "Donatie"
+      },
+      "testimonials": {
+        "eyebrow": "Stemmen & Verhalen",
+        "title": "Getuigenissen"
+      },
+      "careers": {
+        "eyebrow": "Word lid van het team",
+        "title": "Carrière bij ons"
       }
     }
   }

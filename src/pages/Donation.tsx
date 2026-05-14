@@ -23,13 +23,13 @@ type Cause = {
 /* ── Data ───────────────────────────────────────────────────── */
 const causes: Cause[] = [
   { causeKey: 'masjidSupport',      color: '#10b981', icon: <Building2 size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&w=600&q=80' },
-  { causeKey: 'orphanCare',         color: '#f43f5e', icon: <Heart size={15} strokeWidth={2} />,     image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'orphanCare',         color: '#f43f5e', icon: <Heart size={15} strokeWidth={2} />,     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'elderlyHome',        color: '#0ea5e9', icon: <UserRound size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'medicalSupport',     color: '#f59e0b', icon: <Stethoscope size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80' },
-  { causeKey: 'endingTorment',      color: '#8b5cf6', icon: <Shield size={15} strokeWidth={2} />,    image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=600&q=80' },
-  { causeKey: 'studentCare',        color: '#0ea5e9', icon: <BookOpen size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'endingTorment',      color: '#8b5cf6', icon: <Shield size={15} strokeWidth={2} />,    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'studentCare',        color: '#0ea5e9', icon: <BookOpen size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'specialCare',        color: '#10b981', icon: <Star size={15} strokeWidth={2} />,      image: 'https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=600&q=80' },
-  { causeKey: 'eidClothes',         color: '#f59e0b', icon: <Gift size={15} strokeWidth={2} />,      image: 'https://images.unsplash.com/photo-1604328702728-d26d2062c20b?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'eidClothes',         color: '#f59e0b', icon: <Gift size={15} strokeWidth={2} />,      image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'zakah',              color: '#f43f5e', icon: <Banknote size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'sadaqah',            color: '#8b5cf6', icon: <Sparkles size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'environmentCare',    color: '#10b981', icon: <Leaf size={15} strokeWidth={2} />,      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80' },

@@ -201,7 +201,9 @@
         "name": "الولايات المتحدة",
         "capital": "أوستن"
       }
-    }
+    },
+    "est": "تأسس",
+    "openPage": "فتح الصفحة"
   },
   "csr": {
     "eyebrow": "الأثر والمسؤولية",
@@ -267,7 +269,8 @@
       "entities": "كيانات",
       "countries": "دول",
       "track": "سجل حافل"
-    }
+    },
+    "readMore": "اقرأ المزيد"
   },
   "leadership": {
     "eyebrow": "القيادة",
@@ -280,7 +283,8 @@
     "viceChairmanMsg": "يقدّم موقعنا رؤيتنا ورسالتنا وبنيتنا التحتية وخبراتنا وخططنا المستقبلية. ندعو العملاء والشركاء لاستكشاف أقسامنا والتواصل معنا.",
     "readMore": "اقرأ المزيد",
     "tier1Kicker": "المستوى 01 — المجلس والاستشارات",
-    "tier1Title": "مجلس الأعضاء",
+    "tier1Title": "Board of Directors",
+    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "المستوى 02 — الإدارة التنفيذية",
     "tier2Title": "الإدارة التنفيذية العالمية",
     "tier3Kicker": "المستوى الثالث — العمليات الإقليمية",
@@ -289,7 +293,8 @@
     "founderCEO": "المؤسس والرئيس التنفيذي",
     "becomePartner": "كن شريكاً",
     "joinTeam": "انضم إلى فريقنا",
-    "ourCompanies": "شركاتنا"
+    "ourCompanies": "شركاتنا",
+    "tier1Tagline": "The Governing Body of Yanabiya Group"
   },
   "strategy": {
     "eyebrow": "الاستراتيجية والابتكار",
@@ -1023,6 +1028,37 @@
         "label": "البناء والصيانة",
         "desc": "صيانة المساجد والمدارس والمرافق الخيرية.",
         "impact": "يحافظ على مكان للعبادة"
+      }
+    }
+  },
+  "community": {
+    "eyebrow": "مجتمعنا",
+    "heading": "مدفوعون بالغاية، نستثمر في الناس،",
+    "headingItalic": "التقدم والازدهار المشترك.",
+    "hubs": {
+      "sustainable-growth": {
+        "eyebrow": "قيمة طويلة الأمد",
+        "title": "النمو المستدام"
+      },
+      "blog": {
+        "eyebrow": "قصص ورؤى",
+        "title": "المدونة"
+      },
+      "community-care": {
+        "eyebrow": "برامج الرعاية",
+        "title": "رعاية المجتمع"
+      },
+      "donation": {
+        "eyebrow": "العطاء والأثر",
+        "title": "التبرع"
+      },
+      "testimonials": {
+        "eyebrow": "أصوات وقصص",
+        "title": "آراء العملاء"
+      },
+      "careers": {
+        "eyebrow": "انضم للفريق",
+        "title": "الوظائف"
       }
     }
   }

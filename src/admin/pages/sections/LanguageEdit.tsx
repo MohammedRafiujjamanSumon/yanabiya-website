@@ -11,7 +11,7 @@ interface LangSettings {
 
 const DEFAULTS: LangSettings = {
   defaultLang: 'en',
-  enabled: ['en', 'ar', 'bn', 'fr', 'de', 'es'],
+  enabled: ['en', 'ar', 'bn', 'fr', 'de'],
 }
 
 const ipt =

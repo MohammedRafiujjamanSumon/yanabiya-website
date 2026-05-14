@@ -44,7 +44,10 @@ app.use('/api/auth', authRoutes)
 app.use('/api/content', contentRoutes)
 app.use('/api/pages', pagesRoutes)
 app.use('/api/messages', messagesRoutes)
-app.get('/api/health', (_, res) => res.json({ status: 'ok', ts: new Date() }))
+app.get('/api/health', (_, res) => {
+  const { useFile } = require('./src/db')
+  res.json({ status: 'ok', ts: new Date(), mode: useFile ? 'file' : 'mongodb' })
+})
 
 app.use((err, req, res, _next) => {
   console.error(err.message)

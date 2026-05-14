@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import {
   Home, Info, Briefcase, Globe, Globe2, Heart, Users, Settings,
   MonitorPlay, Building2, BarChart3, Quote, Layout, Image, BookOpen,
-  Lightbulb, MessageSquare, MapPin, ImageIcon, Flag, Network,
+  MessageSquare, MapPin, ImageIcon, Flag, Network,
   Users2, Navigation, Phone, FolderOpen, ArrowRight, Clock, LayoutDashboard,
   Target, Award, Calendar,
 } from 'lucide-react'
@@ -68,7 +68,6 @@ const GROUPS: DashGroup[] = [
       { key: 'page-heroes',    label: 'Hero Banner',        icon: Image,         to: '/admin/page-heroes',  desc: 'Banner image & text for Services page' },
       { key: 'services',       label: 'Service Categories', icon: Briefcase,     to: '/admin/services',     desc: 'Business area cards & descriptions' },
       {                        label: 'Service Cards',       icon: Layout,                                   desc: 'Individual service detail cards' },
-      { key: 'solutions',      label: 'Features',           icon: Lightbulb,     to: '/admin/solutions',    desc: 'Solution features & highlights' },
       {                        label: 'Pricing',             icon: BarChart3,                                desc: 'Service pricing tables' },
       { key: 'faqs',           label: 'FAQs',               icon: MessageSquare, to: '/admin/faqs',         desc: 'Frequently asked questions' },
       {                        label: 'CTA Sections',        icon: Layout,        to: '/admin/cta/services', desc: 'Call-to-action banners on Services page' },

@@ -1,5 +1,6 @@
 import { Globe2, Layers, Calendar, Users } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { company } from '../data/company'
 import { useReveal } from '../hooks/useReveal'
 import { useSection } from '../hooks/useSection'
@@ -9,6 +10,13 @@ const STAT_ICONS: Record<string, LucideIcon> = {
   Industries: Layers,
   Experience: Calendar,
   Clients: Users,
+}
+
+const STAT_KEYS: Record<string, string> = {
+  Countries: 'hero.stats.countries',
+  Industries: 'hero.stats.industries',
+  Experience: 'hero.stats.experience',
+  Clients: 'hero.stats.clients',
 }
 
 function Reveal({
@@ -42,6 +50,7 @@ function Reveal({
  * Panel uses the Yanabiya brand-green palette so the strip reads as
  * a continuation of the logo rather than another generic white card. */
 export default function Stats() {
+  const { t } = useTranslation()
   const apiCompany = useSection<{ stats?: { value: string; label: string }[] }>('company')
   const stats = apiCompany?.stats ?? company.stats
 
@@ -78,7 +87,7 @@ export default function Stats() {
                         </span>
                         <span className="mt-0.5 text-[8px] md:text-[9px] uppercase tracking-[0.22em]
                                          font-semibold text-brand-accentDark leading-tight">
-                          {s.label}
+                          {t(STAT_KEYS[s.label] ?? '', s.label)}
                         </span>
                       </div>
                     </div>

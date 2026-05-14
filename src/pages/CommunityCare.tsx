@@ -14,13 +14,13 @@ const pillars: CircleItem[] = [
     label: 'Welfare',
     description: 'Structured charitable drives supporting families in need with dignity and transparency.',
     bg: 'bg-emerald-500',
-    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=400&q=80',
   },
   {
     label: 'Education',
     description: 'Scholarships, school programmes and learning resources for underserved communities.',
     bg: 'bg-sky-500',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=400&q=80',
   },
   {
     label: 'Health',
