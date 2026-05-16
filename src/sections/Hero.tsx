@@ -461,16 +461,18 @@ export default function Hero() {
     }
     return base.map((api, i) => {
       const staticMatch = SCENE_STATICS.find(s => s.id === api.id) ?? SCENE_STATICS[i % SCENE_STATICS.length]
+      const sid = api.id ?? staticMatch.id
       return {
-        id:       api.id ?? staticMatch.id,
+        id:       sid,
         photo:    api.photo ?? api.image ?? staticMatch.photo,
         photoPos: api.photoPos ?? staticMatch.photoPos,
         Visual:   STATIC_VISUAL_MAP[api.id] ?? staticMatch.Visual,
         ctaHref:  api.cta?.href ?? staticMatch.ctaHref,
-        eyebrow:  api.eyebrow ?? t(`hero.scenes.${staticMatch.id}.eyebrow`),
-        headline: api.headline ?? api.title ?? t(`hero.scenes.${staticMatch.id}.headline`),
-        body:     api.body ?? t(`hero.scenes.${staticMatch.id}.body`),
-        cta:      { label: api.cta?.label ?? t(`hero.scenes.${staticMatch.id}.cta`), href: api.cta?.href ?? staticMatch.ctaHref },
+        // Always use t() for text so language switching works
+        eyebrow:  t(`hero.scenes.${sid}.eyebrow`),
+        headline: t(`hero.scenes.${sid}.headline`),
+        body:     t(`hero.scenes.${sid}.body`),
+        cta:      { label: t(`hero.scenes.${sid}.cta`), href: api.cta?.href ?? staticMatch.ctaHref },
       }
     })
   }, [apiScenes, t])

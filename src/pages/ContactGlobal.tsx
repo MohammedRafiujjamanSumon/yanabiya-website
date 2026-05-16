@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   X as CloseIcon, Mail, Phone, Globe2, Building2, ArrowRight, ExternalLink,
@@ -64,7 +64,7 @@ const COUNTRIES: CountryContact[] = [
   {
     code: 'OM',
     flag: '🇴🇲',
-    flagImg: '/yanabiya-website/maps/flags/om.svg',
+    flagImg: '/maps/flags/om.svg',
     name: 'Sultanate of Oman',
     shortName: 'Oman',
     region: 'Headquarters',
@@ -89,7 +89,7 @@ const COUNTRIES: CountryContact[] = [
   {
     code: 'GB',
     flag: '🇬🇧',
-    flagImg: '/yanabiya-website/maps/flags/gb.svg',
+    flagImg: '/maps/flags/gb.svg',
     name: 'United Kingdom',
     shortName: 'UK',
     region: 'European Operations',
@@ -111,7 +111,7 @@ const COUNTRIES: CountryContact[] = [
   {
     code: 'BD',
     flag: '🇧🇩',
-    flagImg: '/yanabiya-website/maps/flags/bd.svg',
+    flagImg: '/maps/flags/bd.svg',
     name: 'Bangladesh',
     shortName: 'Bangladesh',
     region: 'South Asia Operations',
@@ -133,7 +133,7 @@ const COUNTRIES: CountryContact[] = [
   {
     code: 'US',
     flag: '🇺🇸',
-    flagImg: '/yanabiya-website/maps/flags/us.svg',
+    flagImg: '/maps/flags/us.svg',
     name: 'United States of America',
     shortName: 'USA',
     region: 'North America Operations',
@@ -158,19 +158,17 @@ const COUNTRIES: CountryContact[] = [
 
 function CountryCard({
   data,
-  onClick,
   index,
 }: {
   data: CountryContact
-  onClick: () => void
   index: number
 }) {
   const { t } = useTranslation()
   return (
     <Reveal delay={index * 90}>
-      <button
-        type="button"
-        onClick={onClick}
+      <Link
+        id={`country-card-${data.code}`}
+        to={`/contact/${data.code.toLowerCase()}`}
         className="group block w-full h-full text-left rounded-2xl
                    bg-brand-50 border border-brand-deep/15
                    p-6 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
@@ -214,7 +212,7 @@ function CountryCard({
             {t('common.viewPage')} <ArrowRight size={11} />
           </span>
         </div>
-      </button>
+      </Link>
     </Reveal>
   )
 }
@@ -347,15 +345,15 @@ function CountryPreviewPanel({
             <div className="mt-8 grid grid-cols-1 gap-3 max-w-md mx-auto">
               <FactRow icon={Building2} label={t('globalContact.parentCompany')} value={data.parentCompany} />
               {data.phones.length > 0 && (
-                <FactRow icon={Phone} label="Phone" value={data.phones.join(', ')} />
+                <FactRow icon={Phone} label={t('globalContact.phone')} value={data.phones.join(', ')} />
               )}
-              {data.mobile && <FactRow icon={Phone} label="Mobile" value={data.mobile} />}
+              {data.mobile && <FactRow icon={Phone} label={t('globalContact.mobile')} value={data.mobile} />}
               <div className="flex items-start gap-3">
                 <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-accent/10 grid place-items-center text-brand-accentDark">
                   <Mail size={15} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className="text-[10px] uppercase tracking-[0.25em] text-slate-500 font-bold">Email</div>
+                  <div className="text-[10px] uppercase tracking-[0.25em] text-slate-500 font-bold">{t('globalContact.email')}</div>
                   <div className="mt-0.5 flex flex-col gap-0.5">
                     {data.emails.map((email) => (
                       <a key={email} href={`mailto:${email}`} className="text-sm text-slate-800 hover:text-brand-accentDark transition-colors break-all">
@@ -423,10 +421,11 @@ function FactRow({
 /* ───────────────────────── Page (top-level) ───────────────────────── */
 
 export default function ContactGlobal() {
-  const [selected, setSelected] = useState<CountryCode | null>(null)
+  const { t } = useTranslation()
+  const { hash } = useLocation()
   type ContactOffice = { code: string; region: string; legalName?: string; officeAddress?: string; postAddress?: string; phones?: string[]; mobile?: string; emails?: string[]; hours?: string }
-  const apiContact = useSection<ContactOffice[]>('contact')
-  const contactMap = Object.fromEntries((apiContact ?? []).map(o => [o.code, o]))
+  const apiContact = useSection<{ countries?: ContactOffice[] }>('contact')
+  const contactMap = Object.fromEntries((apiContact?.countries ?? []).map(o => [o.code, o]))
   const displayCountries = COUNTRIES.map(c => {
     const api = contactMap[c.code]
     if (!api) return c
@@ -441,12 +440,21 @@ export default function ContactGlobal() {
   })
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+    const code = hash.replace('#', '').toUpperCase()
+    const hasCountry = (['OM', 'GB', 'BD', 'US'] as CountryCode[]).includes(code as CountryCode)
+    if (!hasCountry) return
+    const tryScroll = (attempts = 0) => {
+      const el = document.getElementById(`country-card-${code}`)
+      if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); return }
+      if (attempts < 20) requestAnimationFrame(() => tryScroll(attempts + 1))
+    }
+    const t = setTimeout(() => tryScroll(), 150)
+    return () => clearTimeout(t)
   }, [])
 
   return (
     <main className="relative bg-brand-50 text-brand-deep overflow-hidden min-h-screen">
-      <BackButton to="/" label="Back to Home" />
+      <BackButton to="/" label={t('common.backToHome')} />
 
       {/* Ambient mint glow on the white surface */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
@@ -456,9 +464,9 @@ export default function ContactGlobal() {
 
       {/* HERO, shared brand strip */}
       <PageHero
-        eyebrow="Global Contact Network"
-        title="Contact Yanabiya Group"
-        subtitle="Choose any country office below to preview its address, phone, email, and office hours. Open the page for full details."
+        eyebrow={t('globalContact.eyebrow')}
+        title={t('globalContact.title')}
+        subtitle={t('globalContact.subtitle')}
         centered
         ghostText=""
       />
@@ -476,19 +484,12 @@ export default function ContactGlobal() {
                 key={c.code}
                 data={c}
                 index={i}
-                onClick={() => setSelected(c.code)}
               />
             ))}
           </div>
 
         </div>
       </section>
-
-      {/* HALF-VIEW PREVIEW PANEL */}
-      <CountryPreviewPanel
-        data={selected ? displayCountries.find((c) => c.code === selected) ?? null : null}
-        onClose={() => setSelected(null)}
-      />
     </main>
   )
 }

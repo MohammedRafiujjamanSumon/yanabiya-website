@@ -4,6 +4,7 @@ import Hero from '../sections/Hero'
 import Stats from '../sections/Stats'
 import About from '../sections/About'
 import Businesses from '../sections/Businesses'
+import PlatformLinks from '../sections/PlatformLinks'
 import Global from '../sections/Global'
 import Partnerships from '../sections/Partnerships'
 import LeadershipPyramid from '../sections/LeadershipPyramid'
@@ -57,6 +58,7 @@ export default function Home() {
       <Stats />
       <About />
       <Businesses />
+      <PlatformLinks />
       <Global />
       <Partnerships />
       <LeadershipPyramid />

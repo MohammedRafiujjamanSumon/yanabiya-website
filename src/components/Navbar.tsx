@@ -19,6 +19,7 @@ type NavSubGroup = {
 type NavGroup = {
   label: string
   id?: string
+  href?: string
   parentSection?: string
   parentRoute?: string
   items?: NavItem[]
@@ -71,11 +72,8 @@ export default function Navbar() {
     { label: t('nav.global'),         id: 'global'       },
     { label: t('nav.ourNetwork'),     id: 'partnerships' },
     { label: t('nav.ourCommunity'),   id: 'community'    },
-    {
-      label: t('nav.ourPeople'),
-      parentSection: 'leadership',
-      items: ourPeopleItems,
-    },
+    { label: t('nav.ourPeople'),      id: 'leadership'   },
+    { label: t('nav.contact'),        id: 'contact'      },
   ]
 
   useEffect(() => {
@@ -157,6 +155,13 @@ export default function Navbar() {
                     }}
                     className={baseLinkCls(isActive)}
                   >
+                    {g.label}
+                  </Link>
+                )
+              }
+              if (g.href) {
+                return (
+                  <Link key={g.label} to={g.href} className={baseLinkCls(isActive)}>
                     {g.label}
                   </Link>
                 )
@@ -410,6 +415,20 @@ export default function Navbar() {
                           window.scrollTo({ top: 0, behavior: 'smooth' })
                         }
                       }}
+                      className={`py-3 px-2 text-[15px] font-medium transition ${
+                        isActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
+                      }`}
+                    >
+                      {g.label}
+                    </Link>
+                  )
+                }
+                if (g.href) {
+                  return (
+                    <Link
+                      key={g.label}
+                      to={g.href}
+                      onClick={() => setOpen(false)}
                       className={`py-3 px-2 text-[15px] font-medium transition ${
                         isActive ? 'text-brand-accentDark' : 'text-slate-700 hover:text-brand-accentDark'
                       }`}

@@ -156,15 +156,30 @@
         "tagline": "Aplicações, operações de campo & serviços digitais",
         "body": "Aplicações, operações de campo, RH & CRM."
       }
+    },
+    "panel": {
+      "groupHQ": "Sede do Grupo",
+      "allDivisions": "Todas as Divisões",
+      "overviewDesc": "O Yanabiya Group opera seis divisões comerciais diversificadas, cada uma independente, mas alinhadas sob uma visão estratégica de grupo.",
+      "division": "Divisão",
+      "servicesLabel": "Serviços",
+      "servicesTotal": "total",
+      "viewAll": "Ver todas as divisões"
     }
   },
   "solutions": {
     "eyebrow": "Soluções",
     "title": "Concebidas para resolver problemas empresariais reais.",
-    "sub": "Uma stack tecnológica moderna entregue por engenheiros experientes — de software personalizado a cloud, segurança e análise."
+    "sub": "Uma stack tecnológica moderna entregue por engenheiros experientes — de software personalizado a cloud, segurança e análise.",
+    "readMore": "Leia mais",
+    "deliveryTitle": "Como entregamos",
+    "partnershipTitle": "Parceria & Colaboração",
+    "sponsorshipTitle": "Envolvimento de patrocínio",
+    "communityTitle": "Apoio & desenvolvimento comunitário",
+    "qualityTitle": "Garantia de qualidade & serviço"
   },
   "partnerships": {
-    "eyebrow": "Parcerias",
+    "eyebrow": "Nossa Rede",
     "title": "Potenciadas pelos principais fornecedores de tecnologia do mundo.",
     "sub": "Parceiramos com líderes tecnológicos globais para fornecer soluções empresariais em cloud, software, hardware e segurança.",
     "valuableClients": "Os Nossos Clientes Valiosos",
@@ -174,7 +189,7 @@
     "affiliations": "As Nossas Afiliações"
   },
   "global": {
-    "eyebrow": "Presença Global",
+    "eyebrow": "Nossas Filiais Globais",
     "title": "A operar em quatro países com nove entidades.",
     "sub": "O nosso grupo Yanabiya opera atualmente em quatro países e planeia expandir-se gradualmente para mais mercados. Em cada país, melhoramos e expandimos continuamente as nossas categorias de negócio.",
     "entities": "Entidades",
@@ -379,7 +394,7 @@
     }
   },
   "contact": {
-    "eyebrow": "Contacto",
+    "eyebrow": "Fale Conosco",
     "title": "Vamos começar a conversa.",
     "sub": "Contacte a nossa sede em Mascate ou qualquer um dos nossos escritórios no Reino Unido, Bangladesh e EUA.",
     "address": "Endereço",
@@ -396,7 +411,26 @@
     "message": "Fale-nos sobre o seu projeto ou consulta…",
     "submit": "Enviar mensagem",
     "thanks": "Obrigado — a sua mensagem foi recebida.",
-    "visitOffice": "Visitar escritório"
+    "visitOffice": "Visitar escritório",
+    "getInTouch": "Entre em contato",
+    "bannerHeadline": "Vamos começar a conversa.",
+    "bannerSub": "Seja explorando uma parceria, precisando de uma solução tecnológica ou simplesmente querendo saber mais, nossa equipe responde em um dia útil.",
+    "headquarters": "Sede Principal",
+    "formTitle": "Envie-nos uma mensagem",
+    "formSubtitle": "Encaminharemos sua mensagem para a equipe certa.",
+    "messageReceivedTitle": "Mensagem recebida!",
+    "messageReceivedSub": "Obrigado, um membro da nossa equipe entrará em contato em breve.",
+    "sendAnother": "Enviar outra mensagem",
+    "selectSector": "Selecionar setor",
+    "sendMessage": "Enviar mensagem",
+    "yourName": "Seu nome",
+    "emailAddress": "Endereço de e-mail",
+    "selectCountry": "Selecione seu país",
+    "countryOM": "🇴🇲 Omã (Escritório Principal)",
+    "countryGB": "🇬🇧 Reino Unido",
+    "countryBD": "🇧🇩 Bangladesh",
+    "countryUS": "🇺🇸 Estados Unidos",
+    "chooseBranch": "Escolha nossa filial"
   },
   "footer": {
     "rights": "Todos os direitos reservados.",
@@ -486,7 +520,13 @@
     "officeHours": "Horário de expediente",
     "viewOnMaps": "Ver no Google Maps",
     "branchesConnected": "Sucursais conectadas",
-    "ourGlobalNetwork": "A nossa rede global"
+    "ourGlobalNetwork": "A nossa rede global",
+    "eyebrow": "Rede de Contacto Global",
+    "title": "Contactar o Yanabiya Group",
+    "subtitle": "Escolha um escritório abaixo para ver o endereço, telefone, e-mail e horário de funcionamento",
+    "phone": "Telefone",
+    "mobile": "Telemóvel",
+    "email": "E-mail"
   },
   "countryOps": {
     "established": "Fundada",
@@ -992,6 +1032,31 @@
         "eyebrow": "Junte-se à Equipe",
         "title": "Carreira Conosco"
       }
+    }
+  },
+  "distributedLeadership": {
+    "eyebrow": "Liderança distribuída",
+    "subtitle": "Seis formas como a liderança é distribuída no grupo — formal, pragmática, estratégica, incremental, oportunista, cultural.",
+    "centreLabel": "O Centro",
+    "centreName": "LIDERANÇA DISTRIBUÍDA",
+    "centreTagline": "Um grupo. Seis distribuições. Ancorado em integridade e execução.",
+    "exploreCta": "Explorar liderança"
+  },
+  "platforms": {
+    "eyebrow": "Nossas Plataformas",
+    "sub": "Explore nossos serviços digitais dedicados",
+    "visit": "Visitar",
+    "ecommerce": {
+      "title": "Yanabiya e-Commerce",
+      "desc": "Compre moda, eletrônicos e itens essenciais — entregues globalmente."
+    },
+    "itconsultancy": {
+      "title": "Consultoria de TI UK",
+      "desc": "Tecnologia empresarial, transformação digital e consultoria de TI em Londres."
+    },
+    "servicehub": {
+      "title": "Hub de Serviços Yanabiya",
+      "desc": "Plataforma completa para todos os serviços do Grupo Yanabiya — todas as divisões em um lugar."
     }
   }
 }

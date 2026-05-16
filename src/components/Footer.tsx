@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
-  MapPin, Phone, AtSign, Send, Mail,
+  MapPin, Phone, AtSign, Send, Mail, Building2,
   Linkedin, Facebook, Instagram, Twitter, Youtube,
 } from 'lucide-react'
 import { contact, contactByCountry, type CountryContact } from '../data/contact'
@@ -99,9 +99,15 @@ function AddressCard({ c, isHQ }: { c: CountryContact; isHQ?: boolean }) {
         <div className="text-[11px] text-white leading-snug space-y-0.5">
           {c.code === 'OM' ? (
             <>
-              <p className="text-[8px] uppercase tracking-wider text-white font-semibold">{t('footer.postalAddress')}</p>
+              <div className="flex items-center gap-1 mb-0.5">
+                <Building2 size={9} className="text-brand-accent shrink-0" />
+                <p className="text-[8px] uppercase tracking-wider text-brand-accent font-semibold">{t('footer.postalAddress')}</p>
+              </div>
               {postAddr.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
-              <p className="text-[8px] uppercase tracking-wider text-white font-semibold pt-1">{t('footer.headOffice')}</p>
+              <div className="flex items-center gap-1 pt-1 mb-0.5">
+                <Building2 size={9} className="text-brand-accent shrink-0" />
+                <p className="text-[8px] uppercase tracking-wider text-brand-accent font-semibold">{t('footer.headOffice')}</p>
+              </div>
               {officeAddr.split('\n').map((line, i) => <p key={i} className="text-white">{line}</p>)}
             </>
           ) : (
@@ -113,12 +119,20 @@ function AddressCard({ c, isHQ }: { c: CountryContact; isHQ?: boolean }) {
         </div>
       </div>
 
-      {/* Phone */}
+      {/* Phone — show both numbers for Oman */}
       {c.phones[0] && (
-        <div className="flex items-center gap-2 mb-1.5">
+        <div className="flex items-center gap-2 mb-1">
           <Phone size={10} className="text-emerald-400 shrink-0" />
-          <a href={`tel:${c.phones[0].replace(/\s/g, '')}`} className="text-[11px] text-white hover:text-white transition-colors">
+          <a href={`tel:${c.phones[0].replace(/\s/g, '')}`} className="text-[11px] text-white hover:text-brand-accent transition-colors">
             {c.phones[0]}
+          </a>
+        </div>
+      )}
+      {c.code === 'OM' && c.mobile && (
+        <div className="flex items-center gap-2 mb-1.5">
+          <Phone size={10} className="text-emerald-400/70 shrink-0" />
+          <a href={`tel:${c.mobile.replace(/\s/g, '')}`} className="text-[11px] text-white/80 hover:text-brand-accent transition-colors">
+            {c.mobile}
           </a>
         </div>
       )}
@@ -137,7 +151,7 @@ function AddressCard({ c, isHQ }: { c: CountryContact; isHQ?: boolean }) {
 }
 
 export default function Footer() {
-  const year = new Date().getFullYear()
+  const year = 2021
   const { t } = useTranslation()
   const location = useLocation()
   const navigate = useNavigate()

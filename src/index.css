@@ -261,6 +261,20 @@
 }
 .animate-pyramid-spin-reverse { animation: pyramidSpinReverse 12s linear infinite; }
 
+/* Slot-machine roll-up — digits spin up from below then snap to final value */
+@keyframes slotRoll {
+  0%   { transform: translateY(120%); opacity: 0; }
+  30%  { transform: translateY(-12%); opacity: 1; }
+  55%  { transform: translateY(6%);   opacity: 1; }
+  75%  { transform: translateY(-3%);  opacity: 1; }
+  90%  { transform: translateY(1%);   opacity: 1; }
+  100% { transform: translateY(0%);   opacity: 1; }
+}
+.animate-slot-roll {
+  animation: slotRoll 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  display: inline-block;
+}
+
 /* Orbit indicator dot — small pulse travelling along a circular path. */
 @keyframes orbitDot {
   from { transform: rotate(0deg)   translateX(var(--orbit-r, 140px)) rotate(0deg);   }

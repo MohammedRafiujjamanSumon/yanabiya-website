@@ -64,6 +64,27 @@ export const api = {
   replyMessage: (id: string, text: string) => req<Message>('POST', `/api/messages/${id}/reply`, { text }),
   deleteMessage: (id: string) => req<{ ok: boolean }>('DELETE', `/api/messages/${id}`),
 
+  // AI Video Studio
+  generateVideo: (payload: {
+    prompt: string; referenceUrl?: string; aspectRatio?: string
+    style?: string; durationSec?: number
+  }) => req<{ jobId: string; totalClips: number; status: string; demo?: boolean; message?: string }>('POST', '/api/ai-video/generate', payload),
+
+  pollVideoStatus: (jobId: string) => req<{
+    jobId: string; status: string; totalClips: number
+    clips: { index: number; status: string; progress: number; outputUrl: string | null; error: string | null }[]
+    finalUrls: string[]; createdAt: string; completedAt: string | null
+  }>('GET', `/api/ai-video/status/${jobId}`),
+
+  saveVideoToLibrary: (jobId: string) => req<{ saved: string[] }>('POST', '/api/ai-video/save', { jobId }),
+
+  getVideoHistory: () => req<{
+    jobId: string; prompt: string; status: string; totalClips: number
+    finalUrls: string[]; createdAt: string; aspectRatio: string
+  }[]>('GET', '/api/ai-video/history'),
+
+  getVideoProvider: () => req<{ configured: boolean; provider: string | null }>('GET', '/api/ai-video/provider'),
+
   // Pages
   listPages: () => req<PageMeta[]>('GET', '/api/pages'),
   getPage: (slug: string) => req<CmsPage>('GET', `/api/pages/${slug}`),

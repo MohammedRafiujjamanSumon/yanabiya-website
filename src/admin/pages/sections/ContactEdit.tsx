@@ -104,14 +104,18 @@ function OfficeCard({ office, onChange }: { office: Office; onChange: (o: Office
 }
 
 export default function ContactEdit() {
-  const [data, setData] = useState<{ offices: Office[] } | null>(null)
+  const [data, setData] = useState<{ countries: Office[] } | null>(null)
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [error, setError] = useState('')
 
   useEffect(() => {
     api.getSection('contact')
-      .then(res => setData((res.data as { offices: Office[] }) || { offices: [] }))
+      .then(res => {
+        const raw = res.data as { countries?: Office[]; offices?: Office[] } | null
+        const list = raw?.countries ?? raw?.offices ?? []
+        setData({ countries: list })
+      })
       .catch(() => setError('Failed to load contact data'))
   }, [])
 
@@ -130,8 +134,8 @@ export default function ContactEdit() {
 
   const updateOffice = (i: number, updated: Office) => {
     if (!data) return
-    const copy = [...data.offices]; copy[i] = updated
-    setData({ ...data, offices: copy })
+    const copy = [...data.countries]; copy[i] = updated
+    setData({ ...data, countries: copy })
   }
 
   return (
@@ -157,7 +161,7 @@ export default function ContactEdit() {
 
         {data && (
           <div className="space-y-5">
-            {data.offices.map((office, i) => (
+            {data.countries.map((office, i) => (
               <OfficeCard key={office.code} office={office} onChange={updated => updateOffice(i, updated)} />
             ))}
           </div>

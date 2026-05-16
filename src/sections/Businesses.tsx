@@ -47,8 +47,6 @@ const BUSINESS_DISPLAY: Record<
   'agents-brokerage':         { title: 'Agents & Brokerage Business',   tag: 'Insurance, loans & partnerships.',     sample: ['Insurance', 'Home Loans', 'Brokerage'] },
   'office-management':        { title: 'Office Management Services',     tag: 'Facility, security & operations.',     sample: ['Facility', 'Security', 'CCTV'] },
   'manpower':                 { title: 'Manpower Supply Services',       tag: 'Workforce, students, aviation.',       sample: ['Recruitment', 'Student Visa', 'Aviation'] },
-  'yanabiya-commerce':        { title: 'Yanabiya e-Commerce',              tag: 'Online retail, marketplace, fulfilment.', sample: ['Online Store', 'Marketplace', 'Fulfilment'] },
-  'yanabiya-digital-platform':{ title: 'Yanabiya Digital Platform',      tag: 'Apps, field ops, HR & CRM.',          sample: ['Business App', 'Field Ops', 'HR System'] },
 }
 
 /* Bottom-up gradient palette per pyramid layer. Bottom is the broad
@@ -135,9 +133,8 @@ function ServicesFlowchart({ onSelect }: { onSelect: (slug: string) => void }) {
 
 /* ─────────────────────────────────────────────────────────────────────────
  * S-SHAPE SNAKE SERVICE CARDS
- * 8 service cards (6 existing + 2 new) laid out in two connected rows that
- * form an S / serpentine path. Row 1 flows L→R, row 2 flows R→L so a reader
- * naturally tracks the flow like reading a book: left, right, down, left.
+ * 6 core service cards laid out in two connected rows that form an S / serpentine
+ * path. Row 1 flows L→R, row 2 flows R→L so a reader naturally tracks the flow.
  * ───────────────────────────────────────────────────────────────────────── */
 
 type ServiceItem = {
@@ -185,20 +182,6 @@ const SERVICE_ITEMS: ServiceItem[] = [
     title: 'Manpower Supply Services',
     tagline: 'IT, security & construction staff',
     image: 'https://images.unsplash.com/photo-1524069290683-0457abfe42c3?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    slug: 'yanabiya-commerce', num: '07',
-    title: 'Yanabiya e-Commerce',
-    tagline: 'Online retail, marketplace & fulfilment',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
-    badge: 'new',
-  },
-  {
-    slug: 'yanabiya-digital-platform', num: '08',
-    title: 'Yanabiya Digital Platform',
-    tagline: 'Apps, field ops & digital services',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
-    badge: 'soon',
   },
 ]
 
@@ -766,6 +749,7 @@ function NodeDetailPanel({
   slug: string | 'overview' | null
   onClose: () => void
 }) {
+  const { t } = useTranslation()
   useEffect(() => {
     if (!slug) return
     const onKey = (e: KeyboardEvent) => {
@@ -821,16 +805,15 @@ function NodeDetailPanel({
               </div>
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark">
-                  Group HQ
+                  {t('businesses.panel.groupHQ')}
                 </div>
                 <h3 className="font-serif text-2xl text-brand-deep leading-tight mt-0.5">
-                  All Divisions
+                  {t('businesses.panel.allDivisions')}
                 </h3>
               </div>
             </div>
             <p className="mt-3 text-sm text-slate-600 leading-snug">
-              Yanabiya Group operates six diversified business divisions, each
-              independent yet aligned under one strategic group vision.
+              {t('businesses.panel.overviewDesc')}
             </p>
 
             <div className="mt-7 space-y-2.5">
@@ -855,10 +838,10 @@ function NodeDetailPanel({
                     </span>
                     <div className="min-w-0 flex-1">
                       <div className="text-[12px] font-bold uppercase tracking-[0.18em] text-brand-deep leading-tight">
-                        {display.title}
+                        {t(`businesses.items.${b.slug}.title`, display.title)}
                       </div>
                       <div className="text-[11px] text-slate-600 mt-0.5 truncate">
-                        {display.tag}
+                        {t(`businesses.items.${b.slug}.tagline`, display.tag)}
                       </div>
                     </div>
                     <span className="shrink-0 font-mono text-[10px] text-slate-400">
@@ -886,7 +869,7 @@ function NodeDetailPanel({
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={`${display.title} division detail`}
+      aria-label={`${t(`businesses.items.${slug}.title`, display.title)} ${t('businesses.panel.division')}`}
       className="fixed inset-0 z-[100]"
       onClick={onClose}
     >
@@ -921,23 +904,23 @@ function NodeDetailPanel({
             </div>
             <div>
               <div className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-accentDark">
-                Division
+                {t('businesses.panel.division')}
               </div>
               <h3 className="font-serif text-xl text-brand-deep leading-tight mt-0.5">
-                {display.title}
+                {t(`businesses.items.${slug}.title`, display.title)}
               </h3>
             </div>
           </div>
 
           <p className="text-sm text-brand-deep/60 leading-snug mb-6">
-            {b.body}
+            {t(`businesses.items.${slug}.body`, b.body)}
           </p>
 
           {/* Sub-service image cards grid */}
           {previewSubs.length > 0 && (
             <>
               <div className="text-[10px] font-bold uppercase tracking-[0.28em] text-brand-accentDark mb-3">
-                Services, {b.subServices?.length} total
+                {t('businesses.panel.servicesLabel')}, {b.subServices?.length} {t('businesses.panel.servicesTotal')}
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {previewSubs.map((s) => (
@@ -968,7 +951,7 @@ function NodeDetailPanel({
                       </p>
                       <span className="mt-1 inline-flex items-center gap-0.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-accentDark
                                        group-hover:gap-1 transition-all">
-                        View <ArrowRight size={9} />
+                        {t('businesses.explore')} <ArrowRight size={9} />
                       </span>
                     </div>
                   </Link>
@@ -1009,13 +992,16 @@ export default function Businesses() {
   const [paused, setPaused] = useState(false)
   const apiServices = useSection<ApiService[]>('services')
 
-  const dynamicItems: ServiceItem[] = (apiServices ?? []).map((s, i) => ({
-    slug: s.slug,
-    num: String(i + 1).padStart(2, '0'),
-    title: s.title,
-    tagline: s.tagline ?? s.body ?? '',
-    image: s.image ?? SERVICE_ITEMS.find(si => si.slug === s.slug)?.image ?? '',
-  }))
+  const EXCLUDED = ['yanabiya-commerce','yanabiya-digital-platform','ecommerce','digital-platform']
+  const dynamicItems: ServiceItem[] = (apiServices ?? [])
+    .filter(s => !EXCLUDED.includes(s.slug))
+    .map((s, i) => ({
+      slug: s.slug,
+      num: String(i + 1).padStart(2, '0'),
+      title: s.title,
+      tagline: s.tagline ?? s.body ?? '',
+      image: s.image ?? SERVICE_ITEMS.find(si => si.slug === s.slug)?.image ?? '',
+    }))
   const tickRef = useRef<number | undefined>(undefined)
 
   /* Auto-cycle the active layer every 2.4s while not paused. Hovering
@@ -1083,31 +1069,6 @@ export default function Businesses() {
 
       </div>
 
-      {/* Yanabiya E-Commerce promo strip */}
-      <div className="container-x pb-8">
-        <a
-          href="https://ygiusllc.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex flex-col sm:flex-row items-center justify-between gap-4
-                     rounded-2xl border border-brand-accent/25 bg-gradient-to-r from-brand-50 to-brand-100
-                     px-6 py-4 hover:border-brand-accent/60 hover:shadow-md transition-all duration-300"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-accent/15 grid place-items-center shrink-0">
-              <ShoppingCart size={18} className="text-brand-accentDark" />
-            </div>
-            <div>
-              <p className="text-[9px] uppercase tracking-[0.28em] font-semibold text-brand-accentDark">Yanabiya E-Commerce</p>
-              <p className="text-sm font-semibold text-brand-deep">Shop globally — trade, clothing &amp; more</p>
-            </div>
-          </div>
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-accentDark
-                           group-hover:gap-2.5 transition-all duration-200">
-            Visit ygiusllc.com <ArrowUpRight size={14} />
-          </span>
-        </a>
-      </div>
 
       {/* Slide-in detail panel for the workflow node click */}
       <NodeDetailPanel slug={selected} onClose={() => setSelected(null)} />

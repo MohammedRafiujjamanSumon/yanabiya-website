@@ -26,7 +26,8 @@ export type LanguageMeta = {
 
 export const languages: LanguageMeta[] = [
   // Global / default
-  { code: 'en',    label: 'English',          native: 'English',      dir: 'ltr', flag: '🇬🇧', region: 'global' },
+  { code: 'en',    label: 'English (UK)',     native: 'English (UK)',  dir: 'ltr', flag: '🇬🇧', region: 'global' },
+  { code: 'en-US', label: 'English (US)',     native: 'English (US)',  dir: 'ltr', flag: '🇺🇸', region: 'global' },
   // Gulf
   { code: 'ar', label: 'Arabic', native: 'العربية', dir: 'rtl', flag: '🇴🇲', region: 'gulf' },
   // Europe
@@ -50,7 +51,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en:    { translation: en },
+      en:      { translation: en },
+      'en-US': { translation: en },
       ar:    { translation: ar },
       bn:    { translation: bn },
       fr:    { translation: fr },

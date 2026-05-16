@@ -6,6 +6,7 @@ import {
   Users,
   ShieldCheck,
 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
 
 type SolutionKey =
@@ -96,6 +97,7 @@ const solutions: {
 ]
 
 export default function Solutions() {
+  const { t } = useTranslation()
   const [openKey, setOpenKey] = useState<SolutionKey | null>(null)
 
   useEffect(() => {
@@ -112,16 +114,19 @@ export default function Solutions() {
     }
   }, [openKey])
 
-  const active = solutions.find((s) => s.key === openKey) ?? null
+  const localizedSolutions = solutions.map((s) => ({
+    ...s,
+    title: t(`solutions.${s.key}Title`, s.title),
+  }))
+  const active = localizedSolutions.find((s) => s.key === openKey) ?? null
 
   return (
     <Section id="solutions">
       <div className="container-x">
-        <Eyebrow>Our Solutions</Eyebrow>
+        <Eyebrow>{t('solutions.eyebrow', 'Our Solutions')}</Eyebrow>
 
         <p className="mt-2 max-w-3xl mx-auto text-slate-600 leading-snug text-sm text-justify [text-align-last:center]">
-          We deliver end-to-end digital and enterprise solutions designed to help organisations,
-          partners, and communities grow together in a connected global ecosystem.
+          {t('solutions.sub')}
         </p>
       </div>
 
@@ -131,7 +136,7 @@ export default function Solutions() {
           className="flex animate-marquee marquee-pause gap-6 w-max py-3 px-6"
           style={{ animationDuration: '45s' }}
         >
-          {[...solutions, ...solutions].map((s, i) => (
+          {[...localizedSolutions, ...localizedSolutions].map((s, i) => (
             <button
               key={`${s.key}-${i}`}
               type="button"
@@ -154,7 +159,7 @@ export default function Solutions() {
                   </div>
                   <div className="flip-round-face flip-round-back bg-brand-accent text-white grid place-items-center px-2">
                     <span className="text-[11px] font-bold uppercase tracking-wider">
-                      Read More →
+                      {t('solutions.readMore')} →
                     </span>
                   </div>
                 </div>

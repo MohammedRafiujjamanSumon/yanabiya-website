@@ -156,15 +156,30 @@
         "tagline": "Apps, field ops & digital services",
         "body": "Apps, field ops, HR & CRM."
       }
+    },
+    "panel": {
+      "groupHQ": "Group HQ",
+      "allDivisions": "All Divisions",
+      "overviewDesc": "Yanabiya Group operates six diversified business divisions, each independent yet aligned under one strategic group vision.",
+      "division": "Division",
+      "servicesLabel": "Services",
+      "servicesTotal": "total",
+      "viewAll": "View all divisions"
     }
   },
   "solutions": {
     "eyebrow": "Solutions",
     "title": "Engineered to solve real business problems.",
-    "sub": "A modern technology stack delivered by experienced engineers — from custom software to cloud, security and analytics."
+    "sub": "A modern technology stack delivered by experienced engineers — from custom software to cloud, security and analytics.",
+    "readMore": "Read More",
+    "deliveryTitle": "How We Deliver",
+    "partnershipTitle": "Partnership & Collaboration",
+    "sponsorshipTitle": "Sponsorship Engagement",
+    "communityTitle": "Community Support & Development",
+    "qualityTitle": "Quality & Service Assurance"
   },
   "partnerships": {
-    "eyebrow": "Partnerships",
+    "eyebrow": "Our Network",
     "title": "Powered by the world's leading technology providers.",
     "sub": "We partner with global technology leaders to deliver enterprise-grade solutions across cloud, software, hardware and security.",
     "valuableClients": "Our Valuable Clients",
@@ -174,7 +189,7 @@
     "affiliations": "Our Affiliations"
   },
   "global": {
-    "eyebrow": "Global Presence",
+    "eyebrow": "Our Global Branches",
     "title": "Operating across four countries with nine entities.",
     "sub": "Our Yanabiya Group company currently operates in four countries, and we plan to gradually expand by entering more markets in the future. In each country, we are continuously upgrading and expanding our business categories day by day.",
     "entities": "Entities",
@@ -385,7 +400,7 @@
     }
   },
   "contact": {
-    "eyebrow": "Contact",
+    "eyebrow": "Contact Us",
     "title": "Let's start the conversation.",
     "sub": "Reach our headquarters in Muscat or any of our offices across the UK, Bangladesh and the USA.",
     "address": "Address",
@@ -402,7 +417,26 @@
     "message": "Tell us about your project or enquiry…",
     "submit": "Send message",
     "thanks": "Thanks — your message has been received.",
-    "visitOffice": "Visit Office"
+    "visitOffice": "Visit Office",
+    "getInTouch": "Get In Touch",
+    "bannerHeadline": "Let's Start the Conversation.",
+    "bannerSub": "Whether you're exploring a partnership, need a technology solution, or simply want to learn more, our team is ready to respond within one business day.",
+    "headquarters": "Headquarters",
+    "formTitle": "Send Us a Message",
+    "formSubtitle": "We'll route your message to the right team.",
+    "messageReceivedTitle": "Message Received!",
+    "messageReceivedSub": "Thank you, a member of our team will be in touch shortly.",
+    "sendAnother": "Send another message",
+    "selectSector": "Select a Sector",
+    "sendMessage": "Send Message",
+    "yourName": "Your Name",
+    "emailAddress": "Email Address",
+    "selectCountry": "Select your country",
+    "countryOM": "🇴🇲 Oman (Head Office)",
+    "countryGB": "🇬🇧 United Kingdom",
+    "countryBD": "🇧🇩 Bangladesh",
+    "countryUS": "🇺🇸 United States",
+    "chooseBranch": "Choose our branch"
   },
   "common": {
     "ourPeople": "Our People",
@@ -459,7 +493,13 @@
     "officeHours": "Office Hours",
     "viewOnMaps": "View on Google Maps",
     "branchesConnected": "Branches Connected",
-    "ourGlobalNetwork": "Our Global Network"
+    "ourGlobalNetwork": "Our Global Network",
+    "eyebrow": "Global Contact Network",
+    "title": "Contact Yanabiya Group",
+    "subtitle": "Choose any country office below to preview its address, phone, email, and office hours.",
+    "phone": "Phone",
+    "mobile": "Mobile",
+    "email": "Email"
   },
   "ceoPage": {
     "badge": "Founder · Chairman · CEO",
@@ -1060,6 +1100,31 @@
         "eyebrow": "Join the Team",
         "title": "Career With Us"
       }
+    }
+  },
+  "distributedLeadership": {
+    "eyebrow": "Distributed Leadership",
+    "subtitle": "Six ways leadership is distributed across the group — formal, pragmatic, strategic, incremental, opportunistic, cultural.",
+    "centreLabel": "The Centre",
+    "centreName": "DISTRIBUTED LEADERSHIP",
+    "centreTagline": "One group. Six distributions. Anchored by integrity & execution.",
+    "exploreCta": "Explore Leadership"
+  },
+  "platforms": {
+    "eyebrow": "Our Platforms",
+    "sub": "Explore our dedicated digital services",
+    "visit": "Visit",
+    "ecommerce": {
+      "title": "Yanabiya e-Commerce",
+      "desc": "Shop fashion, electronics & everyday essentials — delivered globally."
+    },
+    "itconsultancy": {
+      "title": "UK IT Consultancy",
+      "desc": "Enterprise technology, digital transformation & IT consulting from London."
+    },
+    "servicehub": {
+      "title": "Yanabiya Service Hub",
+      "desc": "One-stop platform for all Yanabiya Group services — every division, one place."
     }
   }
 }

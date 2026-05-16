@@ -156,15 +156,30 @@
         "tagline": "Appar, fältverksamhet & digitala tjänster",
         "body": "Appar, fältverksamhet, HR & CRM."
       }
+    },
+    "panel": {
+      "groupHQ": "Koncernens Huvudkontor",
+      "allDivisions": "Alla Divisioner",
+      "overviewDesc": "Yanabiya Group driver sex diversifierade affärsdivisioner, var och en oberoende men anpassade under en strategisk koncernvision.",
+      "division": "Division",
+      "servicesLabel": "Tjänster",
+      "servicesTotal": "totalt",
+      "viewAll": "Se alla divisioner"
     }
   },
   "solutions": {
     "eyebrow": "Lösningar",
     "title": "Utformade för att lösa verkliga affärsproblem.",
-    "sub": "En modern teknologistack levererad av erfarna ingenjörer — från skräddarsydd programvara till cloud, säkerhet och analys."
+    "sub": "En modern teknologistack levererad av erfarna ingenjörer — från skräddarsydd programvara till cloud, säkerhet och analys.",
+    "readMore": "Läs mer",
+    "deliveryTitle": "Hur vi levererar",
+    "partnershipTitle": "Partnerskap & Samarbete",
+    "sponsorshipTitle": "Sponsringsengagemang",
+    "communityTitle": "Gemenskapsstöd & utveckling",
+    "qualityTitle": "Kvalitets- & servicegaranti"
   },
   "partnerships": {
-    "eyebrow": "Partnerskap",
+    "eyebrow": "Vårt Nätverk",
     "title": "Drivna av världens ledande teknologileverantörer.",
     "sub": "Vi samarbetar med globala teknologiledare för att leverera enterprise-lösningar inom cloud, programvara, hårdvara och säkerhet.",
     "valuableClients": "Våra Värdefulla Kunder",
@@ -174,7 +189,7 @@
     "affiliations": "Våra Anknytningar"
   },
   "global": {
-    "eyebrow": "Global Närvaro",
+    "eyebrow": "Våra Globala Filialer",
     "title": "Verksamma i fyra länder med nio enheter.",
     "sub": "Vår Yanabiya Group verkar för närvarande i fyra länder och planerar gradvis expansion till fler marknader. I varje land förbättrar och utökar vi kontinuerligt våra affärskategorier.",
     "entities": "Enheter",
@@ -379,7 +394,7 @@
     }
   },
   "contact": {
-    "eyebrow": "Kontakt",
+    "eyebrow": "Kontakta Oss",
     "title": "Låt oss börja samtalet.",
     "sub": "Kontakta vårt huvudkontor i Maskat eller något av våra kontor i Storbritannien, Bangladesh och USA.",
     "address": "Adress",
@@ -396,7 +411,26 @@
     "message": "Berätta om ditt projekt eller din förfrågan…",
     "submit": "Skicka meddelande",
     "thanks": "Tack — ditt meddelande har mottagits.",
-    "visitOffice": "Besök kontor"
+    "visitOffice": "Besök kontor",
+    "getInTouch": "Kontakta oss",
+    "bannerHeadline": "Låt oss börja konversationen.",
+    "bannerSub": "Oavsett om du utforskar ett partnerskap, behöver en tekniklösning eller bara vill veta mer — vårt team svarar inom en arbetsdag.",
+    "headquarters": "Huvudkontor",
+    "formTitle": "Skicka ett meddelande",
+    "formSubtitle": "Vi vidarebefordrar ditt meddelande till rätt team.",
+    "messageReceivedTitle": "Meddelande mottaget!",
+    "messageReceivedSub": "Tack, en medlem i vårt team kommer att höra av sig inom kort.",
+    "sendAnother": "Skicka ett nytt meddelande",
+    "selectSector": "Välj sektor",
+    "sendMessage": "Skicka meddelande",
+    "yourName": "Ditt namn",
+    "emailAddress": "E-postadress",
+    "selectCountry": "Välj ditt land",
+    "countryOM": "🇴🇲 Oman (Huvudkontor)",
+    "countryGB": "🇬🇧 Storbritannien",
+    "countryBD": "🇧🇩 Bangladesh",
+    "countryUS": "🇺🇸 Förenta Staterna",
+    "chooseBranch": "Välj vår filial"
   },
   "footer": {
     "rights": "Alla rättigheter förbehållna.",
@@ -486,7 +520,13 @@
     "officeHours": "Kontorstider",
     "viewOnMaps": "Visa på Google Maps",
     "branchesConnected": "Anslutna filialer",
-    "ourGlobalNetwork": "Vårt globala nätverk"
+    "ourGlobalNetwork": "Vårt globala nätverk",
+    "eyebrow": "Globalt Kontaktnätverk",
+    "title": "Kontakta Yanabiya Group",
+    "subtitle": "Välj ett landskontor nedan för att se adress, telefon, e-post och kontorstider",
+    "phone": "Telefon",
+    "mobile": "Mobil",
+    "email": "E-post"
   },
   "countryOps": {
     "established": "Grundat",
@@ -992,6 +1032,31 @@
         "eyebrow": "Gå med i teamet",
         "title": "Karriär hos oss"
       }
+    }
+  },
+  "distributedLeadership": {
+    "eyebrow": "Distribuerat ledarskap",
+    "subtitle": "Sex sätt att distribuera ledarskap i koncernen — formellt, pragmatiskt, strategiskt, inkrementellt, opportunistiskt, kulturellt.",
+    "centreLabel": "Centrum",
+    "centreName": "DISTRIBUERAT LEDARSKAP",
+    "centreTagline": "En koncern. Sex distributioner. Förankrad i integritet & genomförande.",
+    "exploreCta": "Utforska ledarskap"
+  },
+  "platforms": {
+    "eyebrow": "Våra Plattformar",
+    "sub": "Utforska våra dedikerade digitala tjänster",
+    "visit": "Besök",
+    "ecommerce": {
+      "title": "Yanabiya e-Commerce",
+      "desc": "Handla mode, elektronik och vardagsvaror — levereras globalt."
+    },
+    "itconsultancy": {
+      "title": "UK IT-konsultation",
+      "desc": "Företagsteknik, digital transformation och IT-rådgivning från London."
+    },
+    "servicehub": {
+      "title": "Yanabiya Service Hub",
+      "desc": "En heltäckande plattform för alla Yanabiya Groups tjänster — alla divisioner på ett ställe."
     }
   }
 }

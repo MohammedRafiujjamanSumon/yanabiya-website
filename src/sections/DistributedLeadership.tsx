@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { DISTRIBUTIONS } from '../data/distribution'
@@ -40,6 +41,7 @@ function Reveal({
  */
 
 export default function DistributedLeadership() {
+  const { t } = useTranslation()
   return (
     <Section id="distributed-leadership" className="relative overflow-hidden bg-brand-50">
 
@@ -54,12 +56,11 @@ export default function DistributedLeadership() {
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
           <Reveal>
-            <Eyebrow>Distributed Leadership</Eyebrow>
+            <Eyebrow>{t('distributedLeadership.eyebrow')}</Eyebrow>
           </Reveal>
           <Reveal delay={120}>
             <h2 className="font-serif text-[16px] leading-snug tracking-tight text-brand-deep mt-1">
-              Six ways leadership is distributed across the group,{' '}
-              <span className="italic text-brand-accentDark">formal, pragmatic, strategic, incremental, opportunistic, cultural.</span>
+              {t('distributedLeadership.subtitle')}
             </h2>
           </Reveal>
         </div>
@@ -77,13 +78,13 @@ export default function DistributedLeadership() {
                             ring-1 ring-white/10
                             px-6 py-5 md:px-8 md:py-7 text-center">
               <div className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.32em] text-brand-accent mb-1.5">
-                The Centre
+                {t('distributedLeadership.centreLabel')}
               </div>
               <div className="font-serif font-bold text-white text-xl md:text-2xl leading-tight">
-                DISTRIBUTED LEADERSHIP
+                {t('distributedLeadership.centreName')}
               </div>
               <div className="mt-2 text-[11px] md:text-[12px] text-white/60 leading-snug">
-                One group. Six distributions. Anchored by integrity & execution.
+                {t('distributedLeadership.centreTagline')}
               </div>
             </div>
           </Reveal>
@@ -146,7 +147,7 @@ export default function DistributedLeadership() {
                          shadow-md hover:bg-brand-accentDark hover:shadow-lg hover:-translate-y-0.5
                          transition-all duration-300"
             >
-              Explore Leadership <ArrowRight size={14} />
+              {t('distributedLeadership.exploreCta')} <ArrowRight size={14} />
             </Link>
           </Reveal>
         </div>

@@ -22,10 +22,10 @@ const PALETTES: Record<string, Palette> = {
 }
 
 const FLAG_IMG: Record<string, string> = {
-  OM: '/yanabiya-website/maps/flags/om.svg',
-  GB: '/yanabiya-website/maps/flags/gb.svg',
-  BD: '/yanabiya-website/maps/flags/bd.svg',
-  US: '/yanabiya-website/maps/flags/us.svg',
+  OM: '/maps/flags/om.svg',
+  GB: '/maps/flags/gb.svg',
+  BD: '/maps/flags/bd.svg',
+  US: '/maps/flags/us.svg',
 }
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000'
@@ -157,7 +157,7 @@ export default function Contact() {
                 className={`${ipt} appearance-none`}
               >
                 <option value="" disabled className="bg-white text-slate-400">
-                  {t('contact.languages')}
+                  {t('contact.chooseBranch', 'Choose our branch')}
                 </option>
                 {offices.map((o) => (
                   <option key={o.code} value={o.code} className="bg-white text-slate-900">
@@ -238,7 +238,7 @@ function OfficeBanner({
           {countryName}
         </div>
         <Link
-          to={`/contact#${code}`}
+          to={`/contact/${code.toLowerCase()}`}
           className="inline-flex items-center gap-1.5 rounded-full px-5 py-2
                      text-[11px] font-bold uppercase tracking-[0.16em] text-white
                      transition-all duration-300 hover:-translate-y-0.5 hover:gap-2.5 hover:brightness-110"

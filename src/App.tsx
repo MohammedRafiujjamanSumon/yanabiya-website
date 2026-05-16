@@ -17,6 +17,7 @@ import CareersPage from './pages/CareersPage'
 import AboutUs from './pages/AboutUs'
 import OurStory from './pages/OurStory'
 import ContactGlobal from './pages/ContactGlobal'
+import ContactCountry from './pages/ContactCountry'
 import PersonPage from './pages/PersonPage'
 import PeoplePage from './pages/PeoplePage'
 import CeoPage from './pages/CeoPage'
@@ -83,12 +84,14 @@ import SocialEdit from './admin/pages/sections/SocialEdit'
 import MissionVisionEdit from './admin/pages/sections/MissionVisionEdit'
 import FAQsEdit from './admin/pages/sections/FAQsEdit'
 import CmsGroupPage from './admin/pages/CmsGroupPage'
+import AIVideoStudio from './admin/pages/AIVideoStudio'
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   useEffect(() => {
+    if (hash) return
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
-  }, [pathname])
+  }, [pathname, hash])
   return null
 }
 
@@ -148,6 +151,7 @@ function AdminRoutes() {
         <Route path="mission-vision"  element={<ProtectedRoute><MissionVisionEdit /></ProtectedRoute>} />
         <Route path="faqs"            element={<ProtectedRoute><FAQsEdit /></ProtectedRoute>} />
         <Route path="group/:section/:group" element={<ProtectedRoute><CmsGroupPage /></ProtectedRoute>} />
+        <Route path="ai-video"             element={<ProtectedRoute><AIVideoStudio /></ProtectedRoute>} />
 
         <Route path="*"               element={<Navigate to="/admin" replace />} />
       </Routes>
@@ -190,6 +194,7 @@ export default function App() {
               <Route path="/bangladesh" element={<CountryOperations codeOverride="BD" />} />
               <Route path="/usa"        element={<CountryOperations codeOverride="US" />} />
               <Route path="/contact" element={<ContactGlobal />} />
+              <Route path="/contact/:code" element={<ContactCountry />} />
               <Route path="/people/ceo" element={<CeoPage />} />
               <Route path="/people/vice-chairman" element={<ViceChairmanPage />} />
               <Route path="/people/board" element={<BoardPage />} />

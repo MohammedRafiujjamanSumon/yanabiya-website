@@ -156,15 +156,30 @@
         "tagline": "Apps, buitendienst & digitale diensten",
         "body": "Apps, buitendienst, HR & CRM."
       }
+    },
+    "panel": {
+      "groupHQ": "Hoofdkantoor",
+      "allDivisions": "Alle Divisies",
+      "overviewDesc": "Yanabiya Group heeft zes gediversifieerde bedrijfsdivisies, elk onafhankelijk maar afgestemd op één strategische groepsvisie.",
+      "division": "Divisie",
+      "servicesLabel": "Diensten",
+      "servicesTotal": "totaal",
+      "viewAll": "Alle divisies bekijken"
     }
   },
   "solutions": {
     "eyebrow": "Oplossingen",
     "title": "Ontworpen om echte bedrijfsproblemen op te lossen.",
-    "sub": "Een moderne technologiestack geleverd door ervaren ingenieurs — van maatwerksoftware tot cloud, beveiliging en analyses."
+    "sub": "Een moderne technologiestack geleverd door ervaren ingenieurs — van maatwerksoftware tot cloud, beveiliging en analyses.",
+    "readMore": "Meer lezen",
+    "deliveryTitle": "Hoe wij leveren",
+    "partnershipTitle": "Partnerschap & Samenwerking",
+    "sponsorshipTitle": "Sponsoring betrokkenheid",
+    "communityTitle": "Gemeenschapsondersteuning & ontwikkeling",
+    "qualityTitle": "Kwaliteits- & servicegarantie"
   },
   "partnerships": {
-    "eyebrow": "Partnerschappen",
+    "eyebrow": "Ons Netwerk",
     "title": "Aangedreven door 's werelds toonaangevende technologieleveranciers.",
     "sub": "We werken samen met mondiale technologieleiders om enterprise-oplossingen te leveren in cloud, software, hardware en beveiliging.",
     "valuableClients": "Onze Waardevolle Klanten",
@@ -174,7 +189,7 @@
     "affiliations": "Onze Affiliaties"
   },
   "global": {
-    "eyebrow": "Wereldwijde Aanwezigheid",
+    "eyebrow": "Onze Wereldwijde Filialen",
     "title": "Actief in vier landen met negen entiteiten.",
     "sub": "Onze Yanabiya Group is momenteel actief in vier landen en plant geleidelijke uitbreiding naar meer markten. In elk land verbeteren en breiden we dagelijks onze bedrijfscategorieën uit.",
     "entities": "Entiteiten",
@@ -396,7 +411,26 @@
     "message": "Vertel ons over uw project of vraag…",
     "submit": "Bericht versturen",
     "thanks": "Bedankt — uw bericht is ontvangen.",
-    "visitOffice": "Kantoor bezoeken"
+    "visitOffice": "Kantoor bezoeken",
+    "getInTouch": "Neem contact op",
+    "bannerHeadline": "Laten we het gesprek beginnen.",
+    "bannerSub": "Of u nu een partnerschap verkent, een technologische oplossing nodig heeft of gewoon meer wilt weten, ons team reageert binnen één werkdag.",
+    "headquarters": "Hoofdkantoor",
+    "formTitle": "Stuur ons een bericht",
+    "formSubtitle": "We sturen uw bericht door naar het juiste team.",
+    "messageReceivedTitle": "Bericht ontvangen!",
+    "messageReceivedSub": "Bedankt, een lid van ons team neemt binnenkort contact met u op.",
+    "sendAnother": "Nog een bericht sturen",
+    "selectSector": "Selecteer een sector",
+    "sendMessage": "Bericht sturen",
+    "yourName": "Uw naam",
+    "emailAddress": "E-mailadres",
+    "selectCountry": "Selecteer uw land",
+    "countryOM": "🇴🇲 Oman (Hoofdkantoor)",
+    "countryGB": "🇬🇧 Verenigd Koninkrijk",
+    "countryBD": "🇧🇩 Bangladesh",
+    "countryUS": "🇺🇸 Verenigde Staten",
+    "chooseBranch": "Kies onze vestiging"
   },
   "footer": {
     "rights": "Alle rechten voorbehouden.",
@@ -486,7 +520,13 @@
     "officeHours": "Kantooruren",
     "viewOnMaps": "Bekijk op Google Maps",
     "branchesConnected": "Verbonden vestigingen",
-    "ourGlobalNetwork": "Ons wereldwijde netwerk"
+    "ourGlobalNetwork": "Ons wereldwijde netwerk",
+    "eyebrow": "Globaal Contactnetwerk",
+    "title": "Contact met Yanabiya Group",
+    "subtitle": "Kies een kantoor hieronder om adres, telefoon, e-mail en kantooruren te bekijken",
+    "phone": "Telefoon",
+    "mobile": "Mobiel",
+    "email": "E-mail"
   },
   "countryOps": {
     "established": "Opgericht",
@@ -992,6 +1032,31 @@
         "eyebrow": "Word lid van het team",
         "title": "Carrière bij ons"
       }
+    }
+  },
+  "distributedLeadership": {
+    "eyebrow": "Gedistribueerd leiderschap",
+    "subtitle": "Zes manieren waarop leiderschap wordt verdeeld in de groep — formeel, pragmatisch, strategisch, incrementeel, opportunistisch, cultureel.",
+    "centreLabel": "Het Centrum",
+    "centreName": "GEDISTRIBUEERD LEIDERSCHAP",
+    "centreTagline": "Één groep. Zes distributies. Verankerd in integriteit & uitvoering.",
+    "exploreCta": "Leiderschap verkennen"
+  },
+  "platforms": {
+    "eyebrow": "Onze Platforms",
+    "sub": "Verken onze speciale digitale diensten",
+    "visit": "Bezoeken",
+    "ecommerce": {
+      "title": "Yanabiya e-Commerce",
+      "desc": "Winkel mode, elektronica en dagelijkse benodigdheden — wereldwijd bezorgd."
+    },
+    "itconsultancy": {
+      "title": "VK IT-consultancy",
+      "desc": "Ondernemingstechnologie, digitale transformatie en IT-advies vanuit Londen."
+    },
+    "servicehub": {
+      "title": "Yanabiya Service Hub",
+      "desc": "Alles-in-één platform voor alle Yanabiya-services — elke divisie op één plek."
     }
   }
 }

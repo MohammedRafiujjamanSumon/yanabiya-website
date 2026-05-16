@@ -156,15 +156,30 @@
         "tagline": "Aplikacje, operacje terenowe & usługi cyfrowe",
         "body": "Aplikacje, operacje terenowe, HR & CRM."
       }
+    },
+    "panel": {
+      "groupHQ": "Siedziba Grupy",
+      "allDivisions": "Wszystkie Dywizje",
+      "overviewDesc": "Yanabiya Group prowadzi sześć zdywersyfikowanych dywizji biznesowych, każda niezależna, ale zgodna z jedną strategiczną wizją grupy.",
+      "division": "Dywizja",
+      "servicesLabel": "Usługi",
+      "servicesTotal": "łącznie",
+      "viewAll": "Zobacz wszystkie dywizje"
     }
   },
   "solutions": {
     "eyebrow": "Rozwiązania",
     "title": "Zaprojektowane do rozwiązywania rzeczywistych problemów biznesowych.",
-    "sub": "Nowoczesny stos technologiczny dostarczany przez doświadczonych inżynierów — od oprogramowania na zamówienie po cloud, bezpieczeństwo i analitykę."
+    "sub": "Nowoczesny stos technologiczny dostarczany przez doświadczonych inżynierów — od oprogramowania na zamówienie po cloud, bezpieczeństwo i analitykę.",
+    "readMore": "Czytaj więcej",
+    "deliveryTitle": "Jak dostarczamy usługi",
+    "partnershipTitle": "Partnerstwo i współpraca",
+    "sponsorshipTitle": "Zaangażowanie sponsorskie",
+    "communityTitle": "Wsparcie i rozwój społeczności",
+    "qualityTitle": "Zapewnienie jakości i obsługi"
   },
   "partnerships": {
-    "eyebrow": "Partnerstwa",
+    "eyebrow": "Nasza Sieć",
     "title": "Napędzane przez wiodących światowych dostawców technologii.",
     "sub": "Współpracujemy z globalnymi liderami technologicznymi, aby dostarczać rozwiązania klasy enterprise w zakresie cloud, oprogramowania, sprzętu i bezpieczeństwa.",
     "valuableClients": "Nasi Cenni Klienci",
@@ -174,7 +189,7 @@
     "affiliations": "Nasze Powiązania"
   },
   "global": {
-    "eyebrow": "Globalna Obecność",
+    "eyebrow": "Nasze Globalne Oddziały",
     "title": "Działamy w czterech krajach z dziewięcioma podmiotami.",
     "sub": "Nasza Yanabiya Group działa obecnie w czterech krajach i planuje stopniową ekspansję na kolejne rynki. W każdym kraju stale ulepszamy i rozszerzamy nasze kategorie biznesowe.",
     "entities": "Podmioty",
@@ -379,7 +394,7 @@
     }
   },
   "contact": {
-    "eyebrow": "Kontakt",
+    "eyebrow": "Skontaktuj się",
     "title": "Zacznijmy rozmowę.",
     "sub": "Skontaktuj się z naszą siedzibą w Maskacie lub jednym z naszych biur w Wielkiej Brytanii, Bangladeszu i USA.",
     "address": "Adres",
@@ -396,7 +411,26 @@
     "message": "Opowiedz nam o swoim projekcie lub zapytaniu…",
     "submit": "Wyślij wiadomość",
     "thanks": "Dziękujemy — Twoja wiadomość została otrzymana.",
-    "visitOffice": "Odwiedź biuro"
+    "visitOffice": "Odwiedź biuro",
+    "getInTouch": "Skontaktuj się",
+    "bannerHeadline": "Zacznijmy rozmowę.",
+    "bannerSub": "Niezależnie od tego, czy szukasz partnerstwa, potrzebujesz rozwiązania technologicznego, czy po prostu chcesz dowiedzieć się więcej — nasz zespół odpowie w ciągu jednego dnia roboczego.",
+    "headquarters": "Siedziba Główna",
+    "formTitle": "Wyślij nam wiadomość",
+    "formSubtitle": "Przekażemy Twoją wiadomość właściwemu zespołowi.",
+    "messageReceivedTitle": "Wiadomość otrzymana!",
+    "messageReceivedSub": "Dziękujemy, członek naszego zespołu wkrótce się z Tobą skontaktuje.",
+    "sendAnother": "Wyślij kolejną wiadomość",
+    "selectSector": "Wybierz sektor",
+    "sendMessage": "Wyślij wiadomość",
+    "yourName": "Twoje imię i nazwisko",
+    "emailAddress": "Adres e-mail",
+    "selectCountry": "Wybierz swój kraj",
+    "countryOM": "🇴🇲 Oman (Biuro Główne)",
+    "countryGB": "🇬🇧 Wielka Brytania",
+    "countryBD": "🇧🇩 Bangladesz",
+    "countryUS": "🇺🇸 Stany Zjednoczone",
+    "chooseBranch": "Wybierz nasz oddział"
   },
   "footer": {
     "rights": "Wszelkie prawa zastrzeżone.",
@@ -486,7 +520,13 @@
     "officeHours": "Godziny pracy biura",
     "viewOnMaps": "Zobacz na Google Maps",
     "branchesConnected": "Podłączone oddziały",
-    "ourGlobalNetwork": "Nasza globalna sieć"
+    "ourGlobalNetwork": "Nasza globalna sieć",
+    "eyebrow": "Globalna Sieć Kontaktów",
+    "title": "Skontaktuj się z Yanabiya Group",
+    "subtitle": "Wybierz biuro krajowe poniżej, aby zobaczyć adres, telefon, e-mail i godziny pracy",
+    "phone": "Telefon",
+    "mobile": "Komórkowy",
+    "email": "E-mail"
   },
   "countryOps": {
     "established": "Założona",
@@ -992,6 +1032,31 @@
         "eyebrow": "Dołącz do zespołu",
         "title": "Kariera z nami"
       }
+    }
+  },
+  "distributedLeadership": {
+    "eyebrow": "Rozproszone przywództwo",
+    "subtitle": "Sześć sposobów dystrybucji przywództwa w grupie — formalne, pragmatyczne, strategiczne, stopniowe, oportunistyczne, kulturowe.",
+    "centreLabel": "Centrum",
+    "centreName": "ROZPROSZONE PRZYWÓDZTWO",
+    "centreTagline": "Jedna grupa. Sześć dystrybucji. Zakorzenione w integralności i realizacji.",
+    "exploreCta": "Odkryj przywództwo"
+  },
+  "platforms": {
+    "eyebrow": "Nasze Platformy",
+    "sub": "Poznaj nasze dedykowane usługi cyfrowe",
+    "visit": "Odwiedź",
+    "ecommerce": {
+      "title": "Yanabiya e-Commerce",
+      "desc": "Kupuj modę, elektronikę i artykuły codziennego użytku — dostawa na cały świat."
+    },
+    "itconsultancy": {
+      "title": "Doradztwo IT UK",
+      "desc": "Technologia dla przedsiębiorstw, transformacja cyfrowa i doradztwo IT z Londynu."
+    },
+    "servicehub": {
+      "title": "Centrum Usług Yanabiya",
+      "desc": "Kompleksowa platforma dla wszystkich usług Yanabiya Group — wszystkie działy w jednym miejscu."
     }
   }
 }
