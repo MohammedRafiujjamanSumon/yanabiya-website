@@ -84,6 +84,8 @@ import MissionVisionEdit from './admin/pages/sections/MissionVisionEdit'
 import FAQsEdit from './admin/pages/sections/FAQsEdit'
 import CmsGroupPage from './admin/pages/CmsGroupPage'
 import AIVideoStudio from './admin/pages/AIVideoStudio'
+import ChatPanel from './admin/pages/ChatPanel'
+import ChatWidget from './components/ChatWidget'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -151,6 +153,7 @@ function AdminRoutes() {
         <Route path="faqs"            element={<ProtectedRoute><FAQsEdit /></ProtectedRoute>} />
         <Route path="group/:section/:group" element={<ProtectedRoute><CmsGroupPage /></ProtectedRoute>} />
         <Route path="ai-video"             element={<ProtectedRoute><AIVideoStudio /></ProtectedRoute>} />
+        <Route path="chat"                 element={<ProtectedRoute><ChatPanel /></ProtectedRoute>} />
 
         <Route path="*"               element={<Navigate to="/admin" replace />} />
       </Routes>
@@ -217,6 +220,7 @@ export default function App() {
           </main>
           <Footer />
           <SocialFloat />
+          <ChatWidget />
         </div>
       } />
     </Routes>

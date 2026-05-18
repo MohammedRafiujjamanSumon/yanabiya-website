@@ -5,7 +5,7 @@ import {
   Building2, FileText, Briefcase, Quote, Navigation, Layout,
   MonitorPlay, Info, FolderOpen, MapPin, ImageIcon, Heart,
   BarChart3, BookOpen, MessageSquare, Globe2, Phone, Flag, Image,
-  Users2, Network, Target, Award, Calendar, Bell, Clapperboard,
+  Users2, Network, Target, Award, Calendar, Bell, Clapperboard, MessageCircle,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
@@ -35,6 +35,7 @@ type NavEntry  = NavSingle | NavGroup
 
 const NAV: NavEntry[] = [
   { single: true, to: '/admin',          label: 'Dashboard',      icon: LayoutDashboard },
+  { single: true, to: '/admin/chat',     label: 'Live Chat',       icon: MessageCircle  },
   { single: true, to: '/admin/ai-video', label: 'AI Video Studio', icon: Clapperboard   },
 
   {
