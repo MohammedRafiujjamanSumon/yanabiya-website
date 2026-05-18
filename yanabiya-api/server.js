@@ -62,11 +62,20 @@ const PORT = process.env.PORT || 4000
 
 async function autoSeedAdmin() {
   try {
-    const { getAdmin, createAdmin } = require('./src/models/Admin')
+    const { getAdmin, createAdmin, matchPassword } = require('./src/models/Admin')
+    if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) return
     const existing = await getAdmin()
-    if (!existing && process.env.ADMIN_EMAIL && process.env.ADMIN_PASSWORD) {
+    // First-time setup OR force-sync when env vars don't match the DB record.
+    // The env vars are the source of truth for credentials.
+    let needsSync = !existing
+    if (existing) {
+      const emailDiff = existing.email !== process.env.ADMIN_EMAIL.toLowerCase()
+      const passOk = await matchPassword(existing.password, process.env.ADMIN_PASSWORD).catch(() => false)
+      needsSync = emailDiff || !passOk
+    }
+    if (needsSync) {
       await createAdmin(process.env.ADMIN_EMAIL, process.env.ADMIN_PASSWORD)
-      console.log(`Auto-seeded admin user: ${process.env.ADMIN_EMAIL}`)
+      console.log(`Admin user synced from env vars: ${process.env.ADMIN_EMAIL}`)
     }
   } catch (err) {
     console.error('Auto-seed failed:', err.message)
