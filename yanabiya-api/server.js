@@ -26,17 +26,20 @@ const trustedPatterns = [
   '.yanabiyagroup.com',
   '.amplifyapp.com',
   '.awsapprunner.com',
+  '.s3-website-eu-west-1.amazonaws.com',
+  '.s3-website.eu-west-1.amazonaws.com',
+  '.s3.eu-west-1.amazonaws.com',
+  '.cloudfront.net',
 ]
 
+// Open CORS: API uses JWT in Authorization header (not cookies) so any
+// origin can call it. Setting credentials:false lets the browser allow
+// requests from networks/proxies that strip the Origin header too.
 app.use(cors({
-  origin: (origin, cb) => {
-    if (!origin) return cb(null, true)
-    if (origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) return cb(null, true)
-    if (trustedPatterns.some(p => origin.includes(p))) return cb(null, true)
-    if (allowedOrigins.some(o => origin.startsWith(o))) return cb(null, true)
-    cb(new Error('CORS blocked'))
-  },
-  credentials: true,
+  origin: true,        // reflect request origin (works with credentials:false)
+  credentials: false,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 }))
 
 app.use(express.json({ limit: '10mb' }))
