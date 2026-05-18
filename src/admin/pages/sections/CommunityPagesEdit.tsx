@@ -73,7 +73,7 @@ const SG_DEFAULTS: SGData = {
 
 const CC_DEFAULTS: CCData = {
   pillars: [
-    { label: 'Welfare',       description: 'Structured charitable drives supporting families in need with dignity and transparency.',             image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=400&q=80', bg: 'bg-emerald-500' },
+    { label: 'Welfare',       description: 'Structured charitable drives supporting families in need with dignity and transparency.',             image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80', bg: 'bg-emerald-500' },
     { label: 'Education',     description: 'Scholarships, school programmes and learning resources for underserved communities.',                 image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=400&q=80', bg: 'bg-sky-500' },
     { label: 'Health',        description: 'Free health camps, medical support and awareness programmes across regions.',                         image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=400&q=80', bg: 'bg-amber-500' },
     { label: 'Empowerment',   description: 'Skills training and livelihood programmes that build long-term independence.',                        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=80', bg: 'bg-rose-500' },

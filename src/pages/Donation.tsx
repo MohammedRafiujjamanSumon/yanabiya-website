@@ -23,7 +23,7 @@ type Cause = {
 /* ── Data ───────────────────────────────────────────────────── */
 const causes: Cause[] = [
   { causeKey: 'masjidSupport',      color: '#10b981', icon: <Building2 size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&w=600&q=80' },
-  { causeKey: 'orphanCare',         color: '#f43f5e', icon: <Heart size={15} strokeWidth={2} />,     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'orphanCare',         color: '#f43f5e', icon: <Heart size={15} strokeWidth={2} />,     image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'elderlyHome',        color: '#0ea5e9', icon: <UserRound size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'medicalSupport',     color: '#f59e0b', icon: <Stethoscope size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'endingTorment',      color: '#8b5cf6', icon: <Shield size={15} strokeWidth={2} />,    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80' },

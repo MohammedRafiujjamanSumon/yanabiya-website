@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const en = require\\('/home/sumon-rafi/Desktop/yanabiya-website/src/locales/en.json'\\); console.log\\(JSON.stringify\\(en.contact, null, 2\\)\\)\")"
+    ]
+  }
+}

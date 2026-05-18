@@ -11,7 +11,7 @@ const DEFAULT_HUBS: Hub[] = [
   { key: 'blog',               title: 'Blog',               eyebrow: 'Stories & Insights', image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80' },
   { key: 'community-care',     title: 'Community Care',     eyebrow: 'Welfare Programmes', image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=600&q=80' },
   { key: 'donation',           title: 'Donation',           eyebrow: 'Give & Impact',      image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=600&q=80' },
-  { key: 'testimonials',       title: 'Testimonials',       eyebrow: 'Voices & Stories',   image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80' },
+  { key: 'testimonials',       title: 'Testimonials',       eyebrow: 'Voices & Stories',   image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80' },
   { key: 'careers',            title: 'Careers',            eyebrow: 'Join the Team',      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80' },
 ]
 

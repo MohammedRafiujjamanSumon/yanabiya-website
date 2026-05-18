@@ -89,7 +89,7 @@ const SERVICE_IMAGE: Record<string, string> = {
   Shipping: 'https://images.unsplash.com/photo-1494412574745-e1e7c8faa40d?auto=format&fit=crop&w=600&q=80',
   Deals: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
   Office: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80',
-  Mobility: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80',
+  Mobility: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
 }
 type Presence = { name: string; city: string; type: 'HQ' | 'Branch' | 'Network' | 'Partner' }
 type Achievement = { title: string; body: string; icon: LucideIcon }

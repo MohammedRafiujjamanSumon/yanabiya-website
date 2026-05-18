@@ -43,7 +43,7 @@ const solutions: {
     title: 'Partnership & Collaboration',
     icon: Handshake,
     image:
-      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
     teaser:
       'Long-term partnerships built on trust, shared vision, and mutual growth, combining expertise, resources, and innovation.',
     body: [

@@ -422,8 +422,8 @@ const SCENE_STATICS: SceneStatic[] = [
   { id: 'about',      photo: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneAbout,     ctaHref: '/about-us'     },
   { id: 'services',   photo: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneServices,  ctaHref: '/#businesses'  },
   { id: 'partners',   photo: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: ScenePartners,  ctaHref: '/#partnerships'},
-  { id: 'community',  photo: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneCommunity, ctaHref: '/community'    },
-  { id: 'leadership', photo: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80', photoPos: 'center top',Visual: SceneLeadership,ctaHref: '/leadership'   },
+  { id: 'community',  photo: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneCommunity, ctaHref: '/community'    },
+  { id: 'leadership', photo: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80', photoPos: 'center top',Visual: SceneLeadership,ctaHref: '/leadership'   },
   { id: 'closing',    photo: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneClosing,   ctaHref: '/contact'      },
 ]
 

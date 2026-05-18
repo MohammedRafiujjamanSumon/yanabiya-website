@@ -48,7 +48,7 @@ const categories: Category[] = [
     key: 'mission',
     label: 'Mission',
     preview: 'How we operate every day to turn vision into measurable, sustainable outcomes.',
-    cardImage: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80',
+    cardImage: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
     cardIcon: Target,
     items: [
       { id: 'm1', icon: Layers,      title: 'Multi-Industry Integration',                body: 'Integrate diverse industries into a single, scalable global platform that operates efficiently under one unified structure.', insight: 'Different business sectors come together to create a powerful ecosystem.' },

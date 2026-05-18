@@ -97,7 +97,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Clothing & Accessories',               desc: 'Private label, garment sourcing, QA, and retail supply.',    icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border deals, partnerships, and tender support.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and admin.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,     slug: 'manpower',         image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,     slug: 'manpower',         image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80' },
     ],
     strategicPartners: [
       { name: 'Plexus Cloud', logo: '/logos/partners-co/plexuscloud.png' },
@@ -160,7 +160,7 @@ const OPS: Record<string, CountryOps> = {
     currentProjects: [
       { title: 'Regional Delivery Centre',    body: '24×7 engineering & QA support for clients across the four-country group.',           image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
       { title: 'Apparel Sourcing Network',    body: 'Active relationships with vetted RMG factories supplying private-label clients.',     image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
-      { title: 'Workforce Mobility Pipeline', body: 'Skilled & semi-skilled placement into the Gulf, UK and US under group employer.',     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Workforce Mobility Pipeline', body: 'Skilled & semi-skilled placement into the Gulf, UK and US under group employer.',     image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80' },
       { title: 'Government IT Engagements',   body: 'Public-sector digitalisation pilots in coordination with local partners.',           image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
     ],
     activeSectors: [
@@ -220,7 +220,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Clothing & Accessories',               desc: 'Private label, garment sourcing, QA, and retail supply.',          icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border deals, partnerships, and tender support.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and admin.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80' },
     ],
     strategicPartners: [
       { name: 'Yanabiya Muscat United Trade' },
@@ -358,7 +358,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Clothing & Accessories',                desc: 'Private label, garment sourcing, QA, and retail supply.',          icon: Briefcase, slug: 'clothing',         image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',           desc: 'Cross-border deals, partnerships, and tender support.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',            desc: 'Serviced offices, PRO services, accounting, and admin.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Manpower Supply Services',  desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Manpower Supply Services',  desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80' },
     ],
     strategicPartners: [
       { name: 'Tata Consultancy Services', logo: '/logos/partners-co/tcs.svg' },
@@ -451,7 +451,7 @@ const OPS: Record<string, CountryOps> = {
       { label: 'Export & Import Business',          desc: 'Sourcing, freight, customs, and end-to-end fulfilment.', icon: Boxes,     slug: 'export-import',    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80' },
       { label: 'Agents & Brokerage Business',          desc: 'Cross-border deals, partnerships, and tender support.',  icon: Handshake, slug: 'agents-brokerage', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80' },
       { label: 'Office Management Services',           desc: 'Serviced offices, PRO services, accounting, and admin.',      icon: Building2, slug: 'office-management', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' },
+      { label: 'Manpower Supply Services', desc: 'Workforce, student placement, visa, and aviation.', icon: Plane,    slug: 'manpower',         image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80' },
     ],
     strategicPartners: [
       { name: 'Amazon Web Services', logo: '/logos/partners-co/aws.svg' },
