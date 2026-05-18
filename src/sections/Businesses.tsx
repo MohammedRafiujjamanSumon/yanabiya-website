@@ -181,7 +181,7 @@ const SERVICE_ITEMS: ServiceItem[] = [
     slug: 'manpower', num: '06',
     title: 'Manpower Supply Services',
     tagline: 'IT, security & construction staff',
-    image: 'https://images.unsplash.com/photo-1524069290683-0457abfe42c3?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80',
   },
 ]
 
