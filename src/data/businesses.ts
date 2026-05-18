@@ -523,7 +523,7 @@ export const businesses: Business[] = [
         icon: Search,
         title: 'Vendor Sourcing & Procurement',
         body: 'Trusted vendor identification, qualification, and procurement support to build reliable supply partnerships globally.',
-        image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80',
         features: [
           'Global supplier identification & shortlisting',
           'Supplier audits & qualification',
@@ -1151,7 +1151,7 @@ export const businesses: Business[] = [
         icon: Users,
         title: 'Manpower Services',
         body: 'Reliable manpower supply of IT executives, facility staff, medical professionals, drivers, and semi-skilled workers for operational needs.',
-        image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80',
         features: [
           'IT Executives',
           'Facility Executives',
@@ -1194,7 +1194,7 @@ export const businesses: Business[] = [
     footer:
       '🚀 End-to-end global mobility solutions for employment, education, and international relocation.',
     image:
-      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80',
     videoUrl:
       'https://videos.pexels.com/video-files/32801087/13982978_2560_1440_30fps.mp4',
     subServicesHeading: 'Explore Our Manpower Supply Services',
@@ -1210,7 +1210,7 @@ export const businesses: Business[] = [
         icon: Code2,
         title: 'IT Service',
         body: 'Qualified IT professionals and technical executives supplied to meet the technology and digital operations requirements of businesses.',
-        image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80',
         features: [
           'IT Executives & technical staff supply',
           'Software developers & engineers',
