@@ -16,7 +16,7 @@
     "ourNetwork": "আমাদের নেটওয়ার্ক",
     "ourCommunity": "আমাদের সম্প্রদায়",
     "ourPeople": "আমাদের দল",
-    "boardOfMembers": "পরিচালনা বোর্ড",
+    "boardOfMembers": "পরিচালনা পর্ষদ",
     "chairman": "চেয়ারম্যান ও সিইও",
     "viceChairman": "ভাইস চেয়ারম্যান"
   },
@@ -299,13 +299,14 @@
     "readMore": "আরও পড়ুন",
     "tier1Kicker": "স্তর ০১ — বোর্ড ও উপদেষ্টা",
     "tier1Title": "Board of Directors",
-    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
+    "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "স্তর ০২ — নির্বাহী ব্যবস্থাপনা",
     "tier2Title": "গ্লোবাল এক্সিকিউটিভ ম্যানেজমেন্ট",
     "tier3Kicker": "টায়ার ০৩ — আঞ্চলিক অপারেশন",
     "tier3Title": "আঞ্চলিক অপারেশন টিম",
     "pyramidTitle": "পেছনের মানুষেরা",
     "founderCEO": "প্রতিষ্ঠাতা ও সিইও",
+    "founderChairmanCEO": "প্রতিষ্ঠাতা, চেয়ারম্যান ও সিইও",
     "becomePartner": "অংশীদার হন",
     "joinTeam": "আমাদের টিমে যোগ দিন",
     "ourCompanies": "আমাদের কোম্পানিগুলো",
@@ -494,7 +495,7 @@
     "teamMembersListed": "দলের সদস্যরা এখানে তালিকাভুক্ত"
   },
   "board": {
-    "title": "সদস্য পর্ষদ",
+    "title": "পরিচালনা পর্ষদ",
     "subtitle": "ইয়ানাবিয়া গ্রুপের পরিচালনা পর্ষদ",
     "desc": "সদস্য পর্ষদ ইয়ানাবিয়া গ্রুপের সর্বোচ্চ আর্থিক দায়িত্ব পালন করে, স্বাধীন তদারকি, দীর্ঘমেয়াদী কৌশলগত দিকনির্দেশনা এবং প্রাতিষ্ঠানিক জবাবদিহিতা প্রদান করে — ওমান, যুক্তরাজ্য, যুক্তরাষ্ট্র এবং বাংলাদেশ জুড়ে।"
   },

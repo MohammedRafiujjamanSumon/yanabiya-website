@@ -182,7 +182,7 @@ const OPS: Record<string, CountryOps> = {
         name: 'S M Shamim Ahmed',
         role: 'Founder, Chairman & CEO',
         image: assets.chairman,
-        bio: 'As Founder and CEO, he established Yanabiya Group with a vision to build a globally connected enterprise focused on innovation, technology, and international business growth across four countries.',
+        bio: 'As Founder, Chairman, and CEO, he established Yanabiya Group with a long-term vision to build a globally connected enterprise focused on innovation, technology, and sustainable international business growth across four countries. He continues to lead the organization by driving strategic direction, fostering global partnerships, and expanding the group\'s presence in key markets.',
       },
       cofounder: {
         name: 'Mohammad Abu Jaheed',
@@ -321,7 +321,7 @@ const OPS: Record<string, CountryOps> = {
         name: 'S M Shamim Ahmed',
         role: 'Founder, Chairman & CEO',
         image: assets.chairman,
-        bio: 'As Founder and CEO, he established Yanabiya Group with a vision to build a globally connected enterprise focused on innovation, technology, and international business growth across four countries.',
+        bio: 'As Founder, Chairman, and CEO, he established Yanabiya Group with a long-term vision to build a globally connected enterprise focused on innovation, technology, and sustainable international business growth across four countries. He continues to lead the organization by driving strategic direction, fostering global partnerships, and expanding the group\'s presence in key markets.',
       },
       cofounder: {
         name: 'Mohammad Abu Jaheed',
@@ -333,7 +333,7 @@ const OPS: Record<string, CountryOps> = {
         name: 'S M Momim Ahmed',
         role: 'Co-Founder',
         image: assets.people.momiimAhmed,
-        bio: 'Co-Founder and Managing Director of Yanabiya Group, overseeing core operations and driving the Group\'s strategic direction across all business divisions.',
+        bio: 'Co-Founder of Yanabiya Group, supporting the Group\'s strategic direction and contributing to its long-term growth across all business divisions.',
       },
     },
   },
@@ -415,7 +415,7 @@ const OPS: Record<string, CountryOps> = {
         name: 'S M Shamim Ahmed',
         role: 'Founder, Chairman & CEO',
         image: assets.chairman,
-        bio: 'As Founder and CEO, he established Yanabiya Group with a vision to build a globally connected enterprise focused on innovation, technology, and international business growth across four countries.',
+        bio: 'As Founder, Chairman, and CEO, he established Yanabiya Group with a long-term vision to build a globally connected enterprise focused on innovation, technology, and sustainable international business growth across four countries. He continues to lead the organization by driving strategic direction, fostering global partnerships, and expanding the group\'s presence in key markets.',
       },
       cofounder: {
         name: 'Mohammad Abu Jaheed',
@@ -500,7 +500,7 @@ const OPS: Record<string, CountryOps> = {
         name: 'S M Shamim Ahmed',
         role: 'Founder, Chairman & CEO',
         image: assets.chairman,
-        bio: 'As Founder and CEO, he established Yanabiya Group with a vision to build a globally connected enterprise focused on innovation, technology, and international business growth across four countries.',
+        bio: 'As Founder, Chairman, and CEO, he established Yanabiya Group with a long-term vision to build a globally connected enterprise focused on innovation, technology, and sustainable international business growth across four countries. He continues to lead the organization by driving strategic direction, fostering global partnerships, and expanding the group\'s presence in key markets.',
       },
       cofounder: {
         name: 'Mohammad Abu Jaheed',

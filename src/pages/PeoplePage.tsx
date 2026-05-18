@@ -14,12 +14,33 @@ type PageConfig = {
   people: PersonData[]
 }
 
-const sumonAhmed = ALL_PEOPLE.find((p) => p.id === 'sumon-ahmed')!
+const COFOUNDER_ROLES: Record<string, string> = {
+  'momim-ahmed': 'Co-Founder, Oman',
+  'sumon-ahmed': 'Co-Founder, Bangladesh',
+  'jhohora-akter': 'Co-Founder, USA',
+  'rafiujjaman-sumon': 'Co-Founder, UK & CTO',
+}
+
+const COFOUNDER_IDS = ['momim-ahmed', 'sumon-ahmed', 'jhohora-akter', 'rafiujjaman-sumon']
+
+const coFounderFeatured = COFOUNDER_IDS
+  .map(id => ALL_PEOPLE.find(p => p.id === id))
+  .filter((p): p is NonNullable<typeof p> => !!p)
+  .map(p => ({ id: p.id, name: p.name, role: COFOUNDER_ROLES[p.id] ?? p.role, image: p.image }))
+
+const executivePeople = ALL_PEOPLE
+  .filter(
+    (p) => p.tier === 'exec'
+      && p.id !== 'chief-of-accounts'
+      && p.id !== 'maysa-yeasmin'
+      && !COFOUNDER_IDS.includes(p.id)
+      && !p.id.startsWith('account-')
+  )
 
 const PAGES: Record<string, PageConfig> = {
   board: {
-    title: 'Board of Members',
-    subtitle: 'Tier 01, Board of Members',
+    title: 'Board of Directors',
+    subtitle: 'Tier 01, Board of Directors',
     tier: 'board',
     people: ALL_PEOPLE.filter((p) => p.tier === 'board'),
   },
@@ -27,26 +48,16 @@ const PAGES: Record<string, PageConfig> = {
     title: 'Global Executive Management',
     subtitle: 'Tier 02, Global Executive Management',
     tier: 'exec',
-    featured: [
-      {
-        id: sumonAhmed.id,
-        name: sumonAhmed.name,
-        role: 'Co-Founder, Bangladesh',
-        image: sumonAhmed.image,
-      },
-    ],
-    people: ALL_PEOPLE.filter(
-      (p) => p.tier === 'exec'
-        && p.id !== 'chief-of-accounts'
-        && p.id !== 'maysa-yeasmin'
-        && !p.id.startsWith('account-')
-    ),
+    featured: coFounderFeatured,
+    people: executivePeople,
   },
   accounts: {
     title: 'Chief of Accounts',
     subtitle: 'Accounts & Finance',
     tier: 'exec',
-    people: ALL_PEOPLE.filter((p) => p.id === 'chief-of-accounts'),
+    people: ALL_PEOPLE.filter((p) =>
+      p.id === 'chief-of-accounts' || p.id === 'jannatul-global-accountancy'
+    ),
   },
   departments: {
     title: 'Business Support Team',
@@ -102,7 +113,8 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
 
   // ── Accounts page: full profile layout ──────────────────────────────
   if (slug === 'accounts') {
-    const cfo = page.people[0]
+    const cfo = page.people.find(p => p.id === 'chief-of-accounts') ?? page.people[0]
+    const team = page.people.filter(p => p.id !== 'chief-of-accounts')
     return (
       <div className="min-h-screen bg-white">
         <div className="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-100 px-6 md:px-16 py-3">
@@ -139,6 +151,26 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
               </div>
             </div>
           </div>
+
+          {team.map(person => (
+            <div key={person.id} className="mt-14 pt-10 border-t border-slate-200">
+              <div className="flex flex-col sm:flex-row gap-8 items-start">
+                <div className="shrink-0 w-32 h-32 rounded-2xl overflow-hidden ring-2 ring-blue-100 shadow-md">
+                  <img src={person.image} alt={person.name} className="w-full h-full object-cover object-top" />
+                </div>
+                <div>
+                  <div className={`w-8 h-0.5 rounded-full mb-3 ${t.line}`} />
+                  <h2 className="font-serif text-2xl text-brand-deep leading-tight">{person.name}</h2>
+                  <p className={`text-xs font-bold uppercase tracking-[0.18em] mt-1 mb-6 ${t.accent}`}>{person.role}</p>
+                  <div className="space-y-4">
+                    {person.fullBio.map((para, i) => (
+                      <p key={i} className="text-sm text-brand-deep/70 leading-relaxed">{para}</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="border-t border-slate-100 bg-slate-50/60 px-6 md:px-16 py-10">
@@ -150,6 +182,44 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
             <ArrowLeft size={13} /> {tr('common.ourPeople')}
           </Link>
         </div>
+
+        {/* Drawer for accounts team */}
+        {drawer && (
+          <>
+            <div className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm" onClick={() => setDrawer(null)} />
+            <div className="fixed top-0 right-0 z-50 h-full w-full max-w-sm bg-white shadow-2xl flex flex-col overflow-hidden animate-slide-in-right">
+              <div className={`px-6 pt-8 pb-6 border-b ${t.headerBg}`}>
+                <button type="button" onClick={() => setDrawer(null)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-sm transition-colors">
+                  <X size={14} className="text-brand-deep" />
+                </button>
+                <div className="flex items-center gap-4 mt-2">
+                  <div className="w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-white/60 shadow-md shrink-0">
+                    <img src={drawer.image} alt={drawer.name} className="w-full h-full object-cover object-top" />
+                  </div>
+                  <div>
+                    <div className={`w-6 h-0.5 rounded-full mb-2 ${t.line}`} />
+                    <p className={`font-serif text-lg leading-snug ${t.heading}`}>{drawer.name}</p>
+                    <p className={`text-[10px] font-bold uppercase tracking-[0.18em] mt-1 ${t.accent}`}>{drawer.role}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
+                {drawer.fullBio.length > 0
+                  ? drawer.fullBio.map((para, i) => (
+                      <p key={i} className="text-sm text-brand-deep/70 leading-relaxed">{para}</p>
+                    ))
+                  : <p className="text-sm text-brand-deep/40 italic">{tr('common.bioComing')}</p>
+                }
+                {drawer.email && (
+                  <a href={`mailto:${drawer.email}`} className="inline-flex items-center gap-2 mt-4 text-xs text-slate-500 hover:text-brand-deep transition-colors">
+                    <Mail size={12} /> {drawer.email}
+                  </a>
+                )}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     )
   }
@@ -204,23 +274,27 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
               {tr('people.coFounders')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              {page.featured.map((f) => (
-                <Link
-                  key={f.id}
-                  to={`/people/${f.id}`}
-                  className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white w-64
-                             border border-slate-100 shadow-sm hover:shadow-md
-                             hover:-translate-y-0.5 transition-all duration-200"
-                >
-                  <div className="w-9 h-9 rounded-lg overflow-hidden shrink-0 ring-2 ring-blue-100">
-                    <img src={f.image} alt={f.name} className="w-full h-full object-cover object-top" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[13px] font-semibold text-brand-deep leading-snug">{f.name}</p>
-                    <p className={`text-[11px] font-medium mt-0.5 ${t.accent}`}>{f.role}</p>
-                  </div>
-                </Link>
-              ))}
+              {page.featured.map((f) => {
+                const fullPerson = ALL_PEOPLE.find(p => p.id === f.id)
+                return (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => fullPerson && setDrawer({ ...fullPerson, role: f.role })}
+                    className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white w-64
+                               border border-slate-100 shadow-sm hover:shadow-md
+                               hover:-translate-y-0.5 transition-all duration-200 text-left"
+                  >
+                    <div className="w-9 h-9 rounded-lg overflow-hidden shrink-0 ring-2 ring-blue-100">
+                      <img src={f.image} alt={f.name} className="w-full h-full object-cover object-top" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[13px] font-semibold text-brand-deep leading-snug">{f.name}</p>
+                      <p className={`text-[11px] font-medium mt-0.5 ${t.accent}`}>{f.role}</p>
+                    </div>
+                  </button>
+                )
+              })}
             </div>
             <div className="mt-3 h-px bg-slate-100" />
           </div>
@@ -268,11 +342,12 @@ export default function PeoplePage({ slug: propSlug }: { slug?: string }) {
                 )}
               </div>
 
-              {/* Open drawer */}
+              {/* Open right-side drawer */}
               <button
                 type="button"
                 onClick={() => setDrawer(person)}
                 className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center border ${t.badge} hover:opacity-80 transition-opacity`}
+                aria-label={`View ${person.name}`}
               >
                 <ArrowRight size={11} />
               </button>

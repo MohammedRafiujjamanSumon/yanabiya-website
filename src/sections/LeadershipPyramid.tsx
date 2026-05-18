@@ -214,7 +214,7 @@ export default function LeadershipPyramid() {
         {/* ── Org Chart ── */}
         <div className="flex flex-col items-center w-full">
 
-          {/* ══ Row 1: Vice Chairman (left) · CEO elevated (center) · Board of Members (right) ══ */}
+          {/* ══ Row 1: Vice Chairman (left) · CEO elevated (center) · Board of Directors (right) ══ */}
           <div className="relative w-full max-w-[700px]">
             {/* L-shape connector lines */}
             <div className="absolute inset-0 pointer-events-none z-0">
@@ -237,10 +237,10 @@ export default function LeadershipPyramid() {
               {/* CEO — elevated at top center */}
               <Reveal delay={80}>
                 <div className="flex justify-center">
-                  <HierarchyCard colorKey="ceo" label={t('leadership.founderCEO')} to="/people/ceo" photo={board[0]?.photo} delay={0} size="lg" />
+                  <HierarchyCard colorKey="ceo" label={t('leadership.founderChairmanCEO', 'Founder, Chairman & CEO')} to="/people/ceo" photo={board[0]?.photo} delay={0} size="lg" />
                 </div>
               </Reveal>
-              {/* Board of Members — right, pushed down */}
+              {/* Board of Directors — right, pushed down */}
               <Reveal delay={120}>
                 <div className="flex justify-center pt-16">
                   <HierarchyCard colorKey="board" label={t('board.title')} to="/people/board" photo={chairmanPhoto} delay={0} size="md" />

@@ -8,6 +8,7 @@ const contentRoutes = require('./src/routes/content')
 const pagesRoutes = require('./src/routes/pages')
 const messagesRoutes = require('./src/routes/messages')
 const aiVideoRoutes = require('./src/routes/aiVideo')
+const aiVideoConfigRoutes = require('./src/routes/aiVideoConfig')
 
 const app = express()
 
@@ -46,6 +47,7 @@ app.use('/api/content', contentRoutes)
 app.use('/api/pages', pagesRoutes)
 app.use('/api/messages', messagesRoutes)
 app.use('/api/ai-video', aiVideoRoutes)
+app.use('/api/ai-video-config', aiVideoConfigRoutes)
 app.get('/api/health', (_, res) => {
   const { useFile } = require('./src/db')
   res.json({ status: 'ok', ts: new Date(), mode: useFile ? 'file' : 'mongodb' })

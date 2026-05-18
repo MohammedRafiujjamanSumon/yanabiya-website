@@ -16,7 +16,7 @@
     "ourNetwork": "Our Network",
     "ourCommunity": "Our Community",
     "ourPeople": "Our People",
-    "boardOfMembers": "Board of Members",
+    "boardOfMembers": "Board of Directors",
     "chairman": "Chairman & CEO",
     "viceChairman": "Vice Chairman"
   },
@@ -300,13 +300,14 @@
     "tier1Kicker": "Tier 01 — Board & Advisory",
     "tier1Title": "Board of Directors",
     "tier1Tagline": "The Governing Body of Yanabiya Group",
-    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
+    "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Tier 02 — Executive Management",
     "tier2Title": "Global Executive Management",
     "tier3Kicker": "Tier 03 — Support",
     "tier3Title": "Business Support Department",
     "pyramidTitle": "The People Behind",
     "founderCEO": "Founder & CEO",
+    "founderChairmanCEO": "Founder, Chairman & CEO",
     "becomePartner": "Become a Partner",
     "joinTeam": "Join Our Team",
     "ourCompanies": "Our Companies"
@@ -467,9 +468,9 @@
     "teamMembersListed": "Team members will be listed here."
   },
   "board": {
-    "title": "Board of Members",
+    "title": "Board of Directors",
     "subtitle": "The Governing Body of Yanabiya Group",
-    "desc": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh."
+    "desc": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh."
   },
   "departments": {
     "tier": "Tier 03 — Business Support",

@@ -299,13 +299,14 @@
     "readMore": "Czytaj więcej",
     "tier1Kicker": "Poziom 01 — Zarząd & Doradztwo",
     "tier1Title": "Board of Directors",
-    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
+    "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Poziom 02 — Zarząd Wykonawczy",
     "tier2Title": "Globalne Kierownictwo Wykonawcze",
     "tier3Kicker": "Poziom 03 — Operacje Regionalne",
     "tier3Title": "Regionalny Zespół Operacyjny",
     "pyramidTitle": "Ludzie Za Kulisami",
     "founderCEO": "Założyciel & CEO",
+    "founderChairmanCEO": "Założyciel, Prezes & CEO",
     "becomePartner": "Zostań Partnerem",
     "joinTeam": "Dołącz do Naszego Zespołu",
     "ourCompanies": "Nasze Firmy",
@@ -494,7 +495,7 @@
     "teamMembersListed": "Wymienieni członkowie zespołu"
   },
   "board": {
-    "title": "Rada Członków",
+    "title": "Rada Dyrektorów",
     "subtitle": "Organ zarządzający Yanabiya Group",
     "desc": "Rada Członków sprawuje najwyższy poziom odpowiedzialności powierniczej w ramach Yanabiya Group, zapewniając niezależny nadzór, długoterminowe ukierunkowanie strategiczne oraz instytucjonalną rozliczalność we wszystkich jurysdykcjach operacyjnych — Omanie, Wielkiej Brytanii, Stanach Zjednoczonych i Bangladeszu."
   },

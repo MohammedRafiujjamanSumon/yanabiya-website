@@ -16,7 +16,7 @@
     "ourNetwork": "شبكتنا",
     "ourCommunity": "مجتمعنا",
     "ourPeople": "فريقنا",
-    "boardOfMembers": "مجلس الأعضاء",
+    "boardOfMembers": "مجلس الإدارة",
     "chairman": "الرئيس التنفيذي",
     "viceChairman": "نائب الرئيس"
   },
@@ -299,13 +299,14 @@
     "readMore": "اقرأ المزيد",
     "tier1Kicker": "المستوى 01 — المجلس والاستشارات",
     "tier1Title": "Board of Directors",
-    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
+    "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "المستوى 02 — الإدارة التنفيذية",
     "tier2Title": "الإدارة التنفيذية العالمية",
     "tier3Kicker": "المستوى الثالث — العمليات الإقليمية",
     "tier3Title": "فريق العمليات الإقليمية",
     "pyramidTitle": "الأشخاص وراء النجاح",
     "founderCEO": "المؤسس والرئيس التنفيذي",
+    "founderChairmanCEO": "المؤسس والرئيس ورئيس مجلس الإدارة",
     "becomePartner": "كن شريكاً",
     "joinTeam": "انضم إلى فريقنا",
     "ourCompanies": "شركاتنا",
@@ -494,7 +495,7 @@
     "teamMembersListed": "سيتم إدراج أعضاء الفريق هنا."
   },
   "board": {
-    "title": "مجلس الأعضاء",
+    "title": "مجلس الإدارة",
     "subtitle": "الهيئة الحاكمة لمجموعة ينابيع",
     "desc": "يمارس مجلس الأعضاء أعلى مستوى من المسؤولية الائتمانية على مجموعة ينابيع، مع توفير الإشراف المستقل والتوجيه الاستراتيجي طويل الأمد والمساءلة المؤسسية عبر جميع الولايات القضائية."
   },

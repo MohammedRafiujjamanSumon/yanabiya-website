@@ -16,7 +16,7 @@
     "ourNetwork": "Vårt Nätverk",
     "ourCommunity": "Vår Gemenskap",
     "ourPeople": "Vårt Team",
-    "boardOfMembers": "Styrelseledamöter",
+    "boardOfMembers": "Styrelse",
     "chairman": "Ordförande & VD",
     "viceChairman": "Vice Ordförande"
   },
@@ -299,13 +299,14 @@
     "readMore": "Läs mer",
     "tier1Kicker": "Nivå 01 — Styrelse & Rådgivning",
     "tier1Title": "Board of Directors",
-    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
+    "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Nivå 02 — Verkställande Ledning",
     "tier2Title": "Global Verkställande Ledning",
     "tier3Kicker": "Nivå 03 — Regionala Operationer",
     "tier3Title": "Regionalt Driftteam",
     "pyramidTitle": "Personerna Bakom",
     "founderCEO": "Grundare & VD",
+    "founderChairmanCEO": "Grundare, Ordförande & VD",
     "becomePartner": "Bli Partner",
     "joinTeam": "Gå med i Vårt Team",
     "ourCompanies": "Våra Företag",
@@ -494,7 +495,7 @@
     "teamMembersListed": "Teammedlemmar listade"
   },
   "board": {
-    "title": "Medlemsråd",
+    "title": "Styrelse",
     "subtitle": "Yanabiya Groups styrande organ",
     "desc": "Medlemsrådet utövar det högsta fiduciära ansvaret inom Yanabiya Group och tillhandahåller oberoende tillsyn, långsiktig strategisk inriktning och institutionell ansvarsskyldighet i alla operativa jurisdiktioner — Oman, Storbritannien, USA och Bangladesh."
   },

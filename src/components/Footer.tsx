@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
-  MapPin, Phone, AtSign, Send, Mail, Building2,
+  MapPin, Phone, AtSign, Send, Mail, Building2, Globe2,
   Linkedin, Facebook, Instagram, Twitter, Youtube,
 } from 'lucide-react'
 import { contact, contactByCountry, type CountryContact } from '../data/contact'
@@ -144,6 +144,25 @@ function AddressCard({ c, isHQ }: { c: CountryContact; isHQ?: boolean }) {
           <a href={`mailto:${c.emails[0]}`} className="text-[11px] text-white hover:text-white transition-colors break-all">
             {c.emails[0]}
           </a>
+        </div>
+      )}
+
+      {/* Website */}
+      {c.websites && c.websites.length > 0 && (
+        <div className="mt-1.5 space-y-0.5">
+          {c.websites.map((site) => (
+            <div key={site} className="flex items-start gap-2">
+              <Globe2 size={10} className="text-brand-accent shrink-0 mt-0.5" />
+              <a
+                href={site.startsWith('http') ? site : `https://${site}`}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[11px] text-white/80 hover:text-brand-accent transition-colors break-all"
+              >
+                {site}
+              </a>
+            </div>
+          ))}
         </div>
       )}
     </div>

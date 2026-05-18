@@ -18,7 +18,7 @@ router.post('/generate', protect, async (req, res) => {
   if (!provider) {
     return res.json({
       demo: true,
-      message: 'No AI video provider configured. Add RUNWAY_API_KEY or LUMA_API_KEY to your .env file.',
+      message: 'No video provider available. Install Python + run: pip install -r yanabiya-api/python/requirements.txt',
       jobId: null,
     })
   }
@@ -132,13 +132,51 @@ router.get('/history', protect, (req, res) => {
 // ─── GET /api/ai-video/provider ───────────────────────────────────────────────
 router.get('/provider', protect, (req, res) => {
   const provider = getProvider()
-  const name = (process.env.AI_VIDEO_PROVIDER || '').toLowerCase()
   const configured = !!provider
-  const activeName = !configured ? null
-    : process.env.RUNWAY_API_KEY && (name === 'runway' || !name) ? 'Runway ML'
-    : process.env.LUMA_API_KEY ? 'Luma AI'
-    : null
-  res.json({ configured, provider: activeName })
+  let activeName = null
+  let realMotion = false
+  if (configured) {
+    if (provider.name === 'fal-ai-svd') { activeName = 'fal.ai (Stable Video Diffusion)'; realMotion = true }
+    else if (process.env.RUNWAY_API_KEY) { activeName = 'Runway ML'; realMotion = true }
+    else if (process.env.LUMA_API_KEY)   { activeName = 'Luma AI';  realMotion = true }
+    else if (provider.name === 'python-pollinations') activeName = 'Local Slideshow (Pollinations + TTS)'
+  }
+  res.json({ configured, provider: activeName, realMotion })
+})
+
+// ─── GET /api/ai-video/file/:name — serve locally generated MP4 ───────────────
+// Public (no auth) so the <video> tag can fetch directly. Constrained to the
+// known OUTPUT_DIR — path traversal is blocked via path.basename.
+router.get('/file/:name', (req, res) => {
+  const provider = getProvider()
+  if (!provider || provider.name !== 'python-pollinations') {
+    return res.status(404).json({ message: 'Not found' })
+  }
+  const fs = require('fs')
+  const path = require('path')
+  const safeName = path.basename(req.params.name)
+  const fullPath = path.join(provider.OUTPUT_DIR, safeName)
+  if (!fs.existsSync(fullPath)) return res.status(404).json({ message: 'File not found' })
+
+  const stat = fs.statSync(fullPath)
+  const range = req.headers.range
+  res.setHeader('Content-Type', 'video/mp4')
+  res.setHeader('Accept-Ranges', 'bytes')
+  res.setHeader('Cache-Control', 'public, max-age=31536000')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+
+  if (range) {
+    const [startStr, endStr] = range.replace(/bytes=/, '').split('-')
+    const start = parseInt(startStr, 10)
+    const end = endStr ? parseInt(endStr, 10) : stat.size - 1
+    res.status(206)
+    res.setHeader('Content-Range', `bytes ${start}-${end}/${stat.size}`)
+    res.setHeader('Content-Length', end - start + 1)
+    fs.createReadStream(fullPath, { start, end }).pipe(res)
+  } else {
+    res.setHeader('Content-Length', stat.size)
+    fs.createReadStream(fullPath).pipe(res)
+  }
 })
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -199,9 +237,20 @@ async function saveToS3(videoUrl, jobId) {
   const region = process.env.AWS_REGION || 'us-east-1'
   if (!bucket) throw new Error('S3_BUCKET not configured')
 
-  const fetchFn = (...args) => import('node-fetch').then(m => m.default(...args)).catch(() => globalThis.fetch(...args))
-  const response = await fetchFn(videoUrl)
-  const buffer = Buffer.from(await response.arrayBuffer())
+  let buffer
+  // Local file from our Python provider — read from disk instead of fetching
+  if (videoUrl && videoUrl.startsWith('/api/ai-video/file/')) {
+    const provider = getProvider()
+    const fs = require('fs')
+    const path = require('path')
+    const name = path.basename(videoUrl)
+    const fullPath = path.join(provider.OUTPUT_DIR, name)
+    buffer = fs.readFileSync(fullPath)
+  } else {
+    const fetchFn = (...args) => import('node-fetch').then(m => m.default(...args)).catch(() => globalThis.fetch(...args))
+    const response = await fetchFn(videoUrl)
+    buffer = Buffer.from(await response.arrayBuffer())
+  }
 
   const key = `uploads/ai-video/${jobId}-${Date.now()}.mp4`
   const s3 = new S3Client({ region })

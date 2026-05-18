@@ -299,13 +299,14 @@
     "readMore": "Mehr lesen",
     "tier1Kicker": "Ebene 01 — Vorstand & Beratung",
     "tier1Title": "Board of Directors",
-    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
+    "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Ebene 02 — Geschäftsführung",
     "tier2Title": "Globales Exekutivmanagement",
     "tier3Kicker": "Ebene 03 — Regionale Operationen",
     "tier3Title": "Regionales Betriebsteam",
     "pyramidTitle": "Die Menschen Dahinter",
     "founderCEO": "Gründer & CEO",
+    "founderChairmanCEO": "Gründer, Vorstandsvorsitzender & CEO",
     "becomePartner": "Partner werden",
     "joinTeam": "Unserem Team beitreten",
     "ourCompanies": "Unsere Unternehmen",
@@ -494,7 +495,7 @@
     "teamMembersListed": "Teammitglieder aufgeführt"
   },
   "board": {
-    "title": "Mitgliederrat",
+    "title": "Vorstand",
     "subtitle": "Das Leitungsgremium der Yanabiya Group",
     "desc": "Der Mitgliederrat trägt die höchste treuhänderische Verantwortung innerhalb der Yanabiya Group und gewährleistet unabhängige Aufsicht, langfristige strategische Ausrichtung sowie institutionelle Rechenschaftspflicht in allen Betriebsgerichtsbarkeiten — Oman, Vereinigtes Königreich, Vereinigte Staaten und Bangladesch."
   },

@@ -54,6 +54,7 @@ type CountryContact = {
   phones: string[]
   mobile?: string
   emails: string[]
+  websites?: string[]
   hours: string
   mapEmbed?: string
   mapUrl?: string
@@ -81,6 +82,7 @@ const COUNTRIES: CountryContact[] = [
     phones: ['+968 2249 5566'],
     mobile: '+968 9116 1677',
     emails: ['info@yanabiyagroup.com', 'admin@yanabiyagroup.com'],
+    websites: ['www.yanabiyagroup.com'],
     hours: 'Sunday  to  Thursday, 8:00 AM  to  6:00 PM (GST)',
     mapEmbed: 'Building 846, Way 4011, Al Gubrah, Bushar, Muscat, Oman',
     mapUrl: 'https://maps.app.goo.gl/8kfKBHGkBEZ7ExsT9',
@@ -102,8 +104,8 @@ const COUNTRIES: CountryContact[] = [
       'United Kingdom',
     ],
     phones: ['+44 7988 518877'],
-    mobile: '+44 7988 518877',
     emails: ['info@yanabiyagroup.com'],
+    websites: ['www.yanabiyagibt.com', 'www.yanabiya.com'],
     hours: 'Monday  to  Friday, 9:00 AM  to  6:00 PM (GMT)',
     mapEmbed: '167-169 Great Portland Street, London W1W 5PF, UK',
     status: 'active',
@@ -126,6 +128,7 @@ const COUNTRIES: CountryContact[] = [
     phones: ['+880 1711 030489'],
     mobile: '+880 1971 161677',
     emails: ['info@yanabiyagroup.com'],
+    websites: ['www.yanabiyagroup.com'],
     hours: 'Sunday  to  Thursday, 9:00 AM  to  6:00 PM (BST)',
     mapEmbed: 'Uttarkhan, Dhaka 1230, Bangladesh',
     status: 'active',
@@ -147,7 +150,8 @@ const COUNTRIES: CountryContact[] = [
     ],
     phones: ['+1 512 355 5715'],
     mobile: '+1 512 355 5715',
-    emails: ['info@yanabiyagroup.com'],
+    emails: ['info@ygiusllc.com'],
+    websites: ['https://ygiusllc.com/'],
     hours: 'Monday  to  Friday, 9:00 AM  to  5:00 PM (CT)',
     mapEmbed: '5900 Balcones Drive, Austin, TX 78731, USA',
     status: 'active',
@@ -158,17 +162,20 @@ const COUNTRIES: CountryContact[] = [
 
 function CountryCard({
   data,
+  onClick,
   index,
 }: {
   data: CountryContact
+  onClick: () => void
   index: number
 }) {
   const { t } = useTranslation()
   return (
     <Reveal delay={index * 90}>
-      <Link
+      <button
         id={`country-card-${data.code}`}
-        to={`/contact/${data.code.toLowerCase()}`}
+        type="button"
+        onClick={onClick}
         className="group block w-full h-full text-left rounded-2xl
                    bg-brand-50 border border-brand-deep/15
                    p-6 shadow-[0_4px_16px_rgba(15,58,35,0.06)]
@@ -212,7 +219,7 @@ function CountryCard({
             {t('common.viewPage')} <ArrowRight size={11} />
           </span>
         </div>
-      </Link>
+      </button>
     </Reveal>
   )
 }
@@ -347,7 +354,9 @@ function CountryPreviewPanel({
               {data.phones.length > 0 && (
                 <FactRow icon={Phone} label={t('globalContact.phone')} value={data.phones.join(', ')} />
               )}
-              {data.mobile && <FactRow icon={Phone} label={t('globalContact.mobile')} value={data.mobile} />}
+              {data.mobile && !data.phones.some(p => p.replace(/\s/g, '') === data.mobile?.replace(/\s/g, '')) && (
+                <FactRow icon={Phone} label={t('globalContact.mobile')} value={data.mobile} />
+              )}
               <div className="flex items-start gap-3">
                 <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-accent/10 grid place-items-center text-brand-accentDark">
                   <Mail size={15} />
@@ -363,6 +372,29 @@ function CountryPreviewPanel({
                   </div>
                 </div>
               </div>
+              {data.websites && data.websites.length > 0 && (
+                <div className="flex items-start gap-3">
+                  <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-accent/10 grid place-items-center text-brand-accentDark">
+                    <Globe2 size={15} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[10px] uppercase tracking-[0.25em] text-slate-500 font-bold">{t('globalContact.website', 'Website')}</div>
+                    <div className="mt-0.5 flex flex-col gap-0.5">
+                      {data.websites.map((site) => (
+                        <a
+                          key={site}
+                          href={site.startsWith('http') ? site : `https://${site}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-sm text-slate-800 hover:text-brand-accentDark transition-colors break-all"
+                        >
+                          {site}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
               <FactRow icon={Globe2} label={t('globalContact.officeHours')} value={data.hours} />
             </div>
           </Reveal>
@@ -423,7 +455,8 @@ function FactRow({
 export default function ContactGlobal() {
   const { t } = useTranslation()
   const { hash } = useLocation()
-  type ContactOffice = { code: string; region: string; legalName?: string; officeAddress?: string; postAddress?: string; phones?: string[]; mobile?: string; emails?: string[]; hours?: string }
+  const [selected, setSelected] = useState<CountryCode | null>(null)
+  type ContactOffice = { code: string; region: string; legalName?: string; officeAddress?: string; postAddress?: string; phones?: string[]; mobile?: string; emails?: string[]; websites?: string[]; hours?: string }
   const apiContact = useSection<{ countries?: ContactOffice[] }>('contact')
   const contactMap = Object.fromEntries((apiContact?.countries ?? []).map(o => [o.code, o]))
   const displayCountries = COUNTRIES.map(c => {
@@ -434,6 +467,7 @@ export default function ContactGlobal() {
       phones: api.phones?.length ? api.phones : c.phones,
       mobile: api.mobile || c.mobile,
       emails: api.emails?.length ? api.emails : c.emails,
+      websites: api.websites?.length ? api.websites : c.websites,
       hours: api.hours || c.hours,
       headOffice: api.officeAddress ? [api.officeAddress] : c.headOffice,
     }
@@ -484,12 +518,19 @@ export default function ContactGlobal() {
                 key={c.code}
                 data={c}
                 index={i}
+                onClick={() => setSelected(c.code)}
               />
             ))}
           </div>
 
         </div>
       </section>
+
+      {/* RIGHT-SIDE SLIDE-IN PANEL */}
+      <CountryPreviewPanel
+        data={selected ? displayCountries.find((c) => c.code === selected) ?? null : null}
+        onClose={() => setSelected(null)}
+      />
     </main>
   )
 }

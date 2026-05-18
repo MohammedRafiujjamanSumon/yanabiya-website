@@ -83,7 +83,18 @@ export const api = {
     finalUrls: string[]; createdAt: string; aspectRatio: string
   }[]>('GET', '/api/ai-video/history'),
 
-  getVideoProvider: () => req<{ configured: boolean; provider: string | null }>('GET', '/api/ai-video/provider'),
+  getVideoProvider: () => req<{ configured: boolean; provider: string | null; realMotion?: boolean }>('GET', '/api/ai-video/provider'),
+
+  // AI Video config (API keys saved server-side)
+  getVideoConfig: () => req<{
+    provider: string
+    falKey: string; hfToken: string; replicateToken: string
+    hasFalKey: boolean; hasHfToken: boolean; hasReplicate: boolean
+  }>('GET', '/api/ai-video-config'),
+  saveVideoConfig: (cfg: { provider?: string; falKey?: string; hfToken?: string; replicateToken?: string }) =>
+    req<{ ok: boolean }>('PUT', '/api/ai-video-config', cfg),
+  clearVideoConfigKey: (key: 'falKey' | 'hfToken' | 'replicateToken') =>
+    req<{ ok: boolean }>('DELETE', `/api/ai-video-config/${key}`),
 
   // Pages
   listPages: () => req<PageMeta[]>('GET', '/api/pages'),

@@ -299,13 +299,14 @@
     "readMore": "Lees meer",
     "tier1Kicker": "Niveau 01 — Bestuur & Advies",
     "tier1Title": "Board of Directors",
-    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
+    "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Niveau 02 — Uitvoerend Management",
     "tier2Title": "Wereldwijd Uitvoerend Management",
     "tier3Kicker": "Laag 03 — Regionale Operaties",
     "tier3Title": "Regionaal Operationeel Team",
     "pyramidTitle": "De Mensen Achter",
     "founderCEO": "Oprichter & CEO",
+    "founderChairmanCEO": "Oprichter, Voorzitter & CEO",
     "becomePartner": "Word Partner",
     "joinTeam": "Word Lid van Ons Team",
     "ourCompanies": "Onze Bedrijven",
@@ -494,7 +495,7 @@
     "teamMembersListed": "Teamleden vermeld"
   },
   "board": {
-    "title": "Raad van Leden",
+    "title": "Raad van Bestuur",
     "subtitle": "Het bestuursorgaan van Yanabiya Group",
     "desc": "De Raad van Leden oefent het hoogste niveau van fiduciaire verantwoordelijkheid uit binnen de Yanabiya Group en biedt onafhankelijk toezicht, langetermijnstrategische richting en institutionele verantwoording in alle operationele jurisdicties — Oman, het Verenigd Koninkrijk, de Verenigde Staten en Bangladesh."
   },

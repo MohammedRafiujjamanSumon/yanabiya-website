@@ -299,13 +299,14 @@
     "readMore": "Читать далее",
     "tier1Kicker": "Уровень 01 — Совет & Консультации",
     "tier1Title": "Board of Directors",
-    "tier1Sub": "The Board of Members exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
+    "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Уровень 02 — Исполнительное Руководство",
     "tier2Title": "Глобальный Исполнительный Менеджмент",
     "tier3Kicker": "Уровень 03 — Региональные Операции",
     "tier3Title": "Региональная Операционная Команда",
     "pyramidTitle": "Люди За Кулисами",
     "founderCEO": "Основатель & CEO",
+    "founderChairmanCEO": "Основатель, Председатель и CEO",
     "becomePartner": "Стать Партнёром",
     "joinTeam": "Присоединиться к Команде",
     "ourCompanies": "Наши Компании",
@@ -494,7 +495,7 @@
     "teamMembersListed": "Члены команды в списке"
   },
   "board": {
-    "title": "Совет участников",
+    "title": "Совет Директоров",
     "subtitle": "Управляющий орган Yanabiya Group",
     "desc": "Совет участников осуществляет высший уровень фидуциарной ответственности в рамках Yanabiya Group, обеспечивая независимый надзор, долгосрочное стратегическое руководство и институциональную подотчётность во всех операционных юрисдикциях — Омане, Великобритании, Соединённых Штатах и Бангладеше."
   },

@@ -2,15 +2,20 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { board } from '../data/leadership'
+import { assets } from '../data/assets'
 import { useSection } from '../hooks/useSection'
 
 const BOARD_IDS_ORDERED = [
-  { id: 'shamim-ahmed',         name: 'S M Shamim Ahmed',       role: 'Founder, Chairman & CEO', image: board[0].photo },
-  { id: 'abu-jaheed',           name: 'Mohammad Abu Jaheed',    role: 'Vice Chairman',           image: board[1].photo },
-  { id: 'shawrin-ahmed-shammi', name: 'Shawrin Ahmed Shammi',   role: 'Board of Member',         image: null },
-  { id: 'abdullah-ibn-ahmed',   name: 'S M Abdullah Ibn Ahmed', role: 'Board of Member',         image: null },
-  { id: 'obaidullah-ibn-ahmed', name: 'S M Obaidullah Ibn Ahmed', role: 'Board of Member',       image: null },
-  { id: 'nargis-akter',         name: 'Nargis Akter',           role: 'Board of Member',         image: null },
+  { id: 'shamim-ahmed',         name: 'S M Shamim Ahmed',         role: 'Founder, Chairman & CEO',    image: board[0].photo },
+  { id: 'abu-jaheed',           name: 'Mohammad Abu Jaheed',      role: 'Co-Founder & Vice Chairman', image: board[1].photo },
+  { id: 'momim-ahmed',          name: 'S M Momim Ahmed',          role: 'Co-Founder, Oman',           image: assets.people.momiimAhmed },
+  { id: 'sumon-ahmed',          name: 'S M Sumon Ahmed',          role: 'Co-Founder, Bangladesh',     image: assets.people.sumonAhmed },
+  { id: 'rafiujjaman-sumon',    name: 'Md Rafiujjaman Sumon',     role: 'Co-Founder, UK',             image: null },
+  { id: 'jhohora-akter',        name: 'Jhohora Akter',            role: 'Co-Founder, USA',            image: assets.people.jhohoraAkter },
+  { id: 'shawrin-ahmed-shammi', name: 'Shawrin Ahmed Shammi',     role: 'Board of Director',          image: null },
+  { id: 'abdullah-ibn-ahmed',   name: 'S M Abdullah Ibn Ahmed',   role: 'Board of Director',          image: null },
+  { id: 'obaidullah-ibn-ahmed', name: 'S M Obaidullah Ibn Ahmed', role: 'Board of Director',          image: null },
+  { id: 'nargis-akter',         name: 'Nargis Akter',             role: 'Board of Director',          image: null },
 ]
 
 const PH = (name: string) =>

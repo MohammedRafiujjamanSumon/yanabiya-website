@@ -35,7 +35,7 @@ const DEFAULTS: NavData = {
     { platform: 'YouTube',   href: 'https://www.youtube.com/@yanabiyagroup' },
   ],
   ourPeopleItems: [
-    { label: 'Board of Members', href: '/people/board' },
+    { label: 'Board of Directors', href: '/people/board' },
     { label: 'Chairman & CEO',   href: '/people/ceo' },
     { label: 'Vice Chairman',    href: '/people/vice-chairman' },
   ],

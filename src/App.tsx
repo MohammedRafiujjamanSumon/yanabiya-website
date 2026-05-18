@@ -23,7 +23,6 @@ import PeoplePage from './pages/PeoplePage'
 import CeoPage from './pages/CeoPage'
 import ViceChairmanPage from './pages/ViceChairmanPage'
 import BoardPage from './pages/BoardPage'
-import DepartmentsPage from './pages/DepartmentsPage'
 import DepartmentCountryPage from './pages/DepartmentCountryPage'
 import Testimonials from './pages/Testimonials'
 import Donation from './pages/Donation'
@@ -200,7 +199,7 @@ export default function App() {
               <Route path="/people/board" element={<BoardPage />} />
               <Route path="/people/executive" element={<PeoplePage slug="executive" />} />
               <Route path="/people/accounts" element={<PeoplePage slug="accounts" />} />
-              <Route path="/people/departments" element={<DepartmentsPage />} />
+              <Route path="/people/departments" element={<PeoplePage slug="departments" />} />
               <Route path="/people/departments/:country" element={<DepartmentCountryPage />} />
               <Route path="/people/:id" element={<PersonPage />} />
               <Route path="/community/blog" element={<Blog />} />

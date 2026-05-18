@@ -238,7 +238,7 @@ function OfficeBanner({
           {countryName}
         </div>
         <Link
-          to={`/contact/${code.toLowerCase()}`}
+          to="/contact"
           className="inline-flex items-center gap-1.5 rounded-full px-5 py-2
                      text-[11px] font-bold uppercase tracking-[0.16em] text-white
                      transition-all duration-300 hover:-translate-y-0.5 hover:gap-2.5 hover:brightness-110"

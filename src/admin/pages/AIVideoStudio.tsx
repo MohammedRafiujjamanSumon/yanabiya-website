@@ -5,6 +5,7 @@ import {
   Mic, MicOff, Sparkles, Play, Pause, Download, Save,
   Upload, X, ChevronDown, Loader2, CheckCircle2, AlertCircle,
   Film, Clock, Layers, Wand2, RefreshCw, Settings2, Image as ImageIcon,
+  ExternalLink, Copy as CopyIcon, Cloud,
 } from 'lucide-react'
 
 // ─── Browser Speech API types ─────────────────────────────────────────────────
@@ -116,6 +117,7 @@ export default function AIVideoStudio() {
   const [demoMode, setDemoMode] = useState(false)
   const [providerName, setProviderName] = useState<string | null>(null)
   const [providerConfigured, setProviderConfigured] = useState(false)
+  const [realMotion, setRealMotion] = useState(false)
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   // Preview
@@ -130,6 +132,127 @@ export default function AIVideoStudio() {
   const [saving, setSaving] = useState(false)
   const [savedUrls, setSavedUrls] = useState<string[]>([])
 
+  // Manual upload (for videos generated via Google Colab etc.)
+  const [uploadFile, setUploadFile] = useState<File | null>(null)
+  const [uploading, setUploading] = useState(false)
+  const [uploadedUrl, setUploadedUrl] = useState<string | null>(null)
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [showColabGuide, setShowColabGuide] = useState(false)
+  const uploadInputRef = useRef<HTMLInputElement>(null)
+
+  // API key config (managed from admin, no .env editing needed)
+  const [showApiConfig, setShowApiConfig] = useState(false)
+  const [falKeyInput, setFalKeyInput] = useState('')
+  const [hfTokenInput, setHfTokenInput] = useState('')
+  const [savingConfig, setSavingConfig] = useState(false)
+  const [configMasked, setConfigMasked] = useState<{ falKey: string; hfToken: string; hasFalKey: boolean; hasHfToken: boolean }>({ falKey: '', hfToken: '', hasFalKey: false, hasHfToken: false })
+
+  async function loadConfig() {
+    try {
+      const cfg = await api.getVideoConfig()
+      setConfigMasked({ falKey: cfg.falKey, hfToken: cfg.hfToken, hasFalKey: cfg.hasFalKey, hasHfToken: cfg.hasHfToken })
+    } catch (e) { console.error(e) }
+  }
+
+  async function saveApiConfig() {
+    setSavingConfig(true)
+    try {
+      const payload: { falKey?: string; hfToken?: string } = {}
+      if (falKeyInput && !falKeyInput.includes('…')) payload.falKey = falKeyInput
+      if (hfTokenInput && !hfTokenInput.includes('…')) payload.hfToken = hfTokenInput
+      await api.saveVideoConfig(payload)
+      setFalKeyInput(''); setHfTokenInput('')
+      await loadConfig()
+      // Refresh provider status banner
+      const prov = await api.getVideoProvider()
+      setProviderConfigured(prov.configured)
+      setProviderName(prov.provider)
+      setRealMotion(!!prov.realMotion)
+      alert('✓ API key saved! Real motion video is now active.')
+    } catch (err) {
+      alert('Save failed: ' + (err as Error).message)
+    } finally {
+      setSavingConfig(false)
+    }
+  }
+
+  async function clearKey(key: 'falKey' | 'hfToken') {
+    if (!confirm('Remove this API key?')) return
+    try {
+      await api.clearVideoConfigKey(key)
+      await loadConfig()
+      const prov = await api.getVideoProvider()
+      setProviderConfigured(prov.configured)
+      setProviderName(prov.provider)
+      setRealMotion(!!prov.realMotion)
+    } catch (err) {
+      alert('Failed: ' + (err as Error).message)
+    }
+  }
+
+  const COLAB_PROMPT = `# Stable Video Diffusion - FREE on Google Colab
+# Runtime > Change runtime type > T4 GPU > Save
+!pip install -q diffusers transformers accelerate
+from diffusers import StableVideoDiffusionPipeline
+from diffusers.utils import load_image, export_to_video
+import torch
+
+pipe = StableVideoDiffusionPipeline.from_pretrained(
+    "stabilityai/stable-video-diffusion-img2vid-xt",
+    torch_dtype=torch.float16, variant="fp16"
+).to("cuda")
+
+# Replace this URL with your starting image:
+image = load_image("https://image.pollinations.ai/prompt/yanabiya%20corporate%20office?width=1024&height=576")
+image = image.resize((1024, 576))
+
+frames = pipe(image, decode_chunk_size=8, num_frames=25).frames[0]
+export_to_video(frames, "output.mp4", fps=7)
+
+from google.colab import files
+files.download("output.mp4")
+print("Done! Video downloaded.")`
+
+  async function handleUpload() {
+    if (!uploadFile) return
+    setUploading(true); setUploadProgress(0); setUploadedUrl(null)
+    try {
+      const result = await api.uploadFile('hero', uploadFile, p => setUploadProgress(p))
+      setUploadedUrl(result.url)
+    } catch (err) {
+      console.error('Upload failed', err)
+      alert('Upload failed: ' + (err as Error).message)
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  async function copyUrlToClipboard(url: string) {
+    try { await navigator.clipboard.writeText(url); alert('URL copied!') }
+    catch { alert('Copy failed') }
+  }
+
+  async function setAsHeroVideo() {
+    if (!uploadedUrl) return
+    try {
+      const current = await api.getSection('hero')
+      const heroData = (current?.data as { headline?: string; subheadline?: string; stats?: unknown[]; video?: string }) || {}
+      await api.updateSection('hero', { ...heroData, video: uploadedUrl })
+      alert('✓ Set as Hero background video! Refresh the homepage to see it.')
+    } catch (err) {
+      alert('Failed to set as Hero video: ' + (err as Error).message)
+    }
+  }
+
+  async function copyColabCode() {
+    try {
+      await navigator.clipboard.writeText(COLAB_PROMPT)
+      alert('Colab code copied to clipboard! Paste it into a Google Colab cell.')
+    } catch {
+      alert('Copy failed - please select and copy manually.')
+    }
+  }
+
   // ── Init ───────────────────────────────────────────────────────────────────
 
   useEffect(() => {
@@ -140,8 +263,10 @@ export default function AIVideoStudio() {
     api.getVideoProvider().then(d => {
       setProviderConfigured(d.configured)
       setProviderName(d.provider)
+      setRealMotion(!!d.realMotion)
     }).catch(() => {})
 
+    loadConfig()
     api.getVideoHistory().then(setHistory).catch(() => {})
 
     return () => { if (pollRef.current) clearInterval(pollRef.current) }
@@ -253,12 +378,14 @@ export default function AIVideoStudio() {
         try {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const raw = await api.pollVideoStatus(result.jobId) as any
+          const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:4000').replace(/\/$/, '')
+          const absolutise = (u: string) => u && u.startsWith('/') ? `${API_BASE}${u}` : u
           const status: JobStatus = {
             jobId: raw.jobId,
             status: raw.status as JobStatus['status'],
             totalClips: raw.totalClips,
-            clips: (raw.clips ?? []).map((c: ClipStatus) => c),
-            finalUrls: raw.finalUrls ?? [],
+            clips: (raw.clips ?? []).map((c: ClipStatus) => ({ ...c, outputUrl: c.outputUrl ? absolutise(c.outputUrl) : null })),
+            finalUrls: (raw.finalUrls ?? []).map(absolutise),
             createdAt: raw.createdAt,
             completedAt: raw.completedAt ?? null,
           }
@@ -347,36 +474,293 @@ export default function AIVideoStudio() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              {providerConfigured ? (
+              {providerConfigured && realMotion ? (
                 <span className="flex items-center gap-1.5 text-xs bg-lime-500/10 border border-lime-500/30 text-lime-400 px-3 py-1.5 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse" />
-                  {providerName} connected
+                  {providerName} · Real motion
+                </span>
+              ) : providerConfigured ? (
+                <span className="flex items-center gap-1.5 text-xs bg-sky-500/10 border border-sky-500/30 text-sky-300 px-3 py-1.5 rounded-full">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+                  {providerName}
                 </span>
               ) : (
                 <span className="flex items-center gap-1.5 text-xs bg-amber-500/10 border border-amber-500/30 text-amber-400 px-3 py-1.5 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                  Demo mode — no API key
+                  Not configured
                 </span>
               )}
             </div>
           </div>
         </div>
 
-        {/* ── Provider banner ─────────────────────────────────────────────── */}
-        {!providerConfigured && (
-          <div className="mx-6 mt-4 p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
-            <div className="text-sm">
-              <p className="text-amber-300 font-medium">No AI provider configured</p>
-              <p className="text-slate-400 mt-1">
-                Add <code className="text-amber-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">RUNWAY_API_KEY</code> or{' '}
-                <code className="text-amber-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">LUMA_API_KEY</code> to your{' '}
-                <code className="text-amber-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">yanabiya-api/.env</code> file to enable video generation.
-                The UI is fully ready — just plug in your key.
+        {/* ── API Key Configuration (in-admin) ────────────────────────────── */}
+        <div className="mx-6 mt-4 rounded-xl bg-slate-900 border border-slate-800 overflow-hidden">
+          <button
+            onClick={() => setShowApiConfig(!showApiConfig)}
+            className="w-full px-5 py-4 flex items-center gap-3 hover:bg-slate-800/50 transition text-left"
+          >
+            <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${realMotion ? 'bg-lime-500/20' : 'bg-sky-500/10'}`}>
+              {realMotion ? <CheckCircle2 className="w-5 h-5 text-lime-400" /> : <Settings2 className="w-5 h-5 text-sky-400" />}
+            </div>
+            <div className="flex-1">
+              <h3 className="text-sm font-bold text-white">API Key Configuration</h3>
+              <p className="text-xs text-slate-400 mt-0.5">
+                {realMotion ? `Real motion enabled — ${providerName}` : 'Add a key here for real motion video (no .env editing)'}
               </p>
             </div>
+            <ChevronDown className={`w-4 h-4 text-slate-500 transition ${showApiConfig ? 'rotate-180' : ''}`} />
+          </button>
+
+          {showApiConfig && (
+            <div className="px-5 pb-5 pt-2 border-t border-slate-800 space-y-5">
+
+              {/* fal.ai */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <div>
+                    <p className="text-sm font-semibold text-white">fal.ai (Recommended)</p>
+                    <p className="text-xs text-slate-500">Real motion · $1 free credits (~10–20 videos) · then $0.05/video</p>
+                  </div>
+                  <a href="https://fal.ai/dashboard/keys" target="_blank" rel="noreferrer"
+                    className="text-xs text-sky-400 hover:text-sky-300 inline-flex items-center gap-1">
+                    Get key <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    type="password"
+                    value={falKeyInput || configMasked.falKey}
+                    onChange={e => setFalKeyInput(e.target.value)}
+                    placeholder={configMasked.hasFalKey ? configMasked.falKey : 'fal_xxxxxxxxxxxxxxxxxxxxxxxxxxxx'}
+                    className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition font-mono"
+                  />
+                  {configMasked.hasFalKey && (
+                    <button
+                      onClick={() => clearKey('falKey')}
+                      className="px-3 py-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold transition"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Hugging Face */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <div>
+                    <p className="text-sm font-semibold text-white">Hugging Face (Alternative)</p>
+                    <p className="text-xs text-slate-500">Free tier with rate limits · requires HF Pro for most video models</p>
+                  </div>
+                  <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noreferrer"
+                    className="text-xs text-sky-400 hover:text-sky-300 inline-flex items-center gap-1">
+                    Get token <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    type="password"
+                    value={hfTokenInput || configMasked.hfToken}
+                    onChange={e => setHfTokenInput(e.target.value)}
+                    placeholder={configMasked.hasHfToken ? configMasked.hfToken : 'hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxx'}
+                    className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition font-mono"
+                  />
+                  {configMasked.hasHfToken && (
+                    <button
+                      onClick={() => clearKey('hfToken')}
+                      className="px-3 py-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold transition"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              <button
+                onClick={saveApiConfig}
+                disabled={savingConfig || (!falKeyInput && !hfTokenInput)}
+                className="w-full py-2.5 rounded-lg bg-gradient-to-r from-violet-600 to-violet-700 hover:from-violet-500 hover:to-violet-600 disabled:opacity-40 disabled:cursor-not-allowed text-white text-sm font-bold transition flex items-center justify-center gap-2"
+              >
+                {savingConfig ? <><Loader2 className="w-4 h-4 animate-spin" /> Saving…</> : <><Save className="w-4 h-4" /> Save & Activate</>}
+              </button>
+
+              <div className="text-[11px] text-slate-500 bg-slate-800/50 border border-slate-700/50 rounded-lg p-3">
+                <strong className="text-slate-400">How to get a fal.ai key (2 minutes):</strong>
+                <ol className="mt-1.5 list-decimal list-inside space-y-0.5">
+                  <li>Click "Get key" above → opens fal.ai</li>
+                  <li>Sign in with Google (no credit card needed for free tier)</li>
+                  <li>Click "Create new key" → copy the <code className="bg-slate-700 px-1 rounded">fal_xxxx</code> string</li>
+                  <li>Paste here → click "Save & Activate"</li>
+                </ol>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* ── FREE Google Colab + Upload Tool ───────────────────────────────── */}
+        <div className="mx-6 mt-4 p-5 rounded-xl bg-gradient-to-br from-lime-500/10 via-emerald-500/5 to-transparent border border-lime-500/20">
+          <div className="flex items-start gap-3 mb-3">
+            <div className="w-10 h-10 rounded-lg bg-lime-500/20 flex items-center justify-center flex-shrink-0">
+              <Cloud className="w-5 h-5 text-lime-400" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-base font-bold text-lime-300">FREE Real Motion Video via Google Colab</h3>
+              <p className="text-xs text-slate-400 mt-1">
+                Google gives you 12 hours/day of FREE GPU in your browser — enough for ~50 videos/day.
+                Generate AI motion video there → upload to your media library here.
+              </p>
+            </div>
+            <button
+              onClick={() => setShowColabGuide(!showColabGuide)}
+              className="text-xs text-lime-400 hover:text-lime-300 transition flex items-center gap-1"
+            >
+              {showColabGuide ? 'Hide' : 'Show'} guide <ChevronDown className={`w-3 h-3 transition ${showColabGuide ? 'rotate-180' : ''}`} />
+            </button>
           </div>
-        )}
+
+          {showColabGuide && (
+            <div className="mt-4 grid md:grid-cols-2 gap-4">
+              {/* LEFT — Step-by-step guide */}
+              <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-lime-400 mb-3">📋 Step-by-step</p>
+                <ol className="text-xs text-slate-300 space-y-2.5 leading-relaxed">
+                  <li className="flex gap-2">
+                    <span className="text-lime-400 font-bold">1.</span>
+                    <span>Open <a href="https://colab.research.google.com/" target="_blank" rel="noreferrer" className="text-lime-300 hover:underline inline-flex items-center gap-0.5">Google Colab <ExternalLink className="w-3 h-3" /></a> → sign in with Gmail (FREE)</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-lime-400 font-bold">2.</span>
+                    <span>Click <strong className="text-white">File → New notebook</strong></span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-lime-400 font-bold">3.</span>
+                    <span>Click <strong className="text-white">Runtime → Change runtime type → T4 GPU → Save</strong> (this enables FREE GPU)</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-lime-400 font-bold">4.</span>
+                    <span>Click "Copy code" → paste into a cell in Colab</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-lime-400 font-bold">5.</span>
+                    <span>Replace the image URL with what you want (any image — Pollinations URL, your S3 URL, etc.)</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-lime-400 font-bold">6.</span>
+                    <span>Click <strong className="text-white">▶ Run</strong>. Wait 2–5 min. <code className="bg-slate-800 px-1 rounded">output.mp4</code> downloads to your computer.</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-lime-400 font-bold">7.</span>
+                    <span>Upload that <code className="bg-slate-800 px-1 rounded">output.mp4</code> using the panel on the right →</span>
+                  </li>
+                </ol>
+                <div className="mt-4 pt-3 border-t border-slate-800 flex gap-2">
+                  <a
+                    href="https://colab.research.google.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-lime-600 hover:bg-lime-500 text-white text-xs font-semibold transition"
+                  >
+                    Open Colab <ExternalLink className="w-3 h-3" />
+                  </a>
+                  <button
+                    onClick={copyColabCode}
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition"
+                  >
+                    <CopyIcon className="w-3 h-3" /> Copy code
+                  </button>
+                </div>
+              </div>
+
+              {/* RIGHT — Upload generated video */}
+              <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-3">⬆ Upload your video</p>
+                {uploadedUrl ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-xs text-emerald-300">
+                      <CheckCircle2 className="w-4 h-4" />
+                      Uploaded successfully!
+                    </div>
+                    <video src={uploadedUrl} controls className="w-full rounded-lg" />
+
+                    {/* Quick actions */}
+                    <div className="grid grid-cols-1 gap-2">
+                      <button
+                        onClick={setAsHeroVideo}
+                        className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gradient-to-r from-lime-600 to-emerald-600 hover:from-lime-500 hover:to-emerald-500 text-white text-xs font-bold uppercase tracking-wider transition shadow-lg shadow-lime-500/20"
+                      >
+                        <Sparkles className="w-3.5 h-3.5" /> Set as Hero Background
+                      </button>
+                      <div className="grid grid-cols-2 gap-2">
+                        <button
+                          onClick={() => copyUrlToClipboard(uploadedUrl)}
+                          className="flex items-center justify-center gap-1.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition"
+                        >
+                          <CopyIcon className="w-3 h-3" /> Copy URL
+                        </button>
+                        <a
+                          href={uploadedUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          download
+                          className="flex items-center justify-center gap-1.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition"
+                        >
+                          <Download className="w-3 h-3" /> Download
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-800/50 rounded-lg p-2.5 break-all border border-slate-700">
+                      <p className="text-[10px] text-slate-500 mb-1 font-semibold">Permanent URL:</p>
+                      <code className="text-[10px] text-emerald-300">{uploadedUrl}</code>
+                    </div>
+
+                    <button
+                      onClick={() => { setUploadedUrl(null); setUploadFile(null); if (uploadInputRef.current) uploadInputRef.current.value = '' }}
+                      className="w-full py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-600 text-slate-400 text-xs font-semibold transition"
+                    >
+                      Upload another video
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div
+                      onClick={() => uploadInputRef.current?.click()}
+                      onDrop={e => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) setUploadFile(f) }}
+                      onDragOver={e => e.preventDefault()}
+                      className="border-2 border-dashed border-slate-700 rounded-xl p-6 text-center cursor-pointer hover:border-lime-500 hover:bg-lime-500/5 transition"
+                    >
+                      <Upload className="w-8 h-8 text-slate-500 mx-auto mb-2" />
+                      <p className="text-xs text-slate-400">
+                        {uploadFile ? <span className="text-lime-300">{uploadFile.name}</span> : 'Drop your output.mp4 here, or click to browse'}
+                      </p>
+                      <input
+                        ref={uploadInputRef}
+                        type="file"
+                        accept="video/*"
+                        className="hidden"
+                        onChange={e => e.target.files?.[0] && setUploadFile(e.target.files[0])}
+                      />
+                    </div>
+                    {uploadFile && (
+                      <button
+                        onClick={handleUpload}
+                        disabled={uploading}
+                        className="mt-3 w-full py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-semibold transition flex items-center justify-center gap-2"
+                      >
+                        {uploading ? (
+                          <><Loader2 className="w-4 h-4 animate-spin" /> Uploading {uploadProgress}%</>
+                        ) : (
+                          <><Cloud className="w-4 h-4" /> Upload to Media Library</>
+                        )}
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
 
         <div className="px-6 py-6 grid grid-cols-1 xl:grid-cols-[280px_1fr_300px] gap-6">
 
@@ -480,18 +864,24 @@ export default function AIVideoStudio() {
                     <video
                       ref={videoRef}
                       src={activeVideoUrl}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain bg-black"
+                      controls
+                      autoPlay
+                      playsInline
+                      preload="auto"
+                      crossOrigin="anonymous"
                       onEnded={() => setPlaying(false)}
+                      onPlay={() => setPlaying(true)}
+                      onPause={() => setPlaying(false)}
+                      onLoadedMetadata={(e) => {
+                        const v = e.currentTarget
+                        v.play().catch(() => {})
+                      }}
+                      onError={(e) => {
+                        console.error('[AIVideoStudio] video error', e, activeVideoUrl)
+                      }}
                       loop={false}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black/40">
-                      <button
-                        onClick={togglePlay}
-                        className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center hover:bg-white/30 transition"
-                      >
-                        {playing ? <Pause className="w-6 h-6 text-white" /> : <Play className="w-6 h-6 text-white ml-1" />}
-                      </button>
-                    </div>
                     {/* Clip selector when multiple clips */}
                     {(job?.finalUrls.length ?? 0) > 1 && (
                       <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 px-4">

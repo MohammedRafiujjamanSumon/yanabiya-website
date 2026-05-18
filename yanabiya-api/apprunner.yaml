@@ -31,3 +31,14 @@ run:
     #
     # Required for CORS (Amplify frontend URL):
     #   FRONTEND_URL     https://<branch>.amplifyapp.com  or  https://yanabiyagroup.com
+    #
+    # ─── AI Video Studio (optional) ──────────────────────────────────────────
+    # The Python slideshow generator only runs locally (no Python on App Runner).
+    # For AWS deployment, admins MUST configure a paid provider via the in-admin
+    # UI (Admin → AI Video Studio → API Key Configuration), which persists keys
+    # to MongoDB. No env var needed.
+    #
+    # Optional pre-seed env vars:
+    #   FAL_KEY          fal_xxxxx  (real motion video — $0.05/clip)
+    #   RUNWAY_API_KEY   key_xxxxx  (real motion — $0.05/sec)
+    #   LUMA_API_KEY     luma-xxxx  (real motion)
