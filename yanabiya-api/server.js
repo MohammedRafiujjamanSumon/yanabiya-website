@@ -60,6 +60,20 @@ app.use((err, req, res, _next) => {
 
 const PORT = process.env.PORT || 4000
 
+async function autoSeedAdmin() {
+  try {
+    const { getAdmin, createAdmin } = require('./src/models/Admin')
+    const existing = await getAdmin()
+    if (!existing && process.env.ADMIN_EMAIL && process.env.ADMIN_PASSWORD) {
+      await createAdmin(process.env.ADMIN_EMAIL, process.env.ADMIN_PASSWORD)
+      console.log(`Auto-seeded admin user: ${process.env.ADMIN_EMAIL}`)
+    }
+  } catch (err) {
+    console.error('Auto-seed failed:', err.message)
+  }
+}
+
 connect()
+  .then(autoSeedAdmin)
   .then(() => app.listen(PORT, () => console.log(`Yanabiya API running on port ${PORT}`)))
   .catch(err => { console.error('MongoDB connection failed:', err.message); process.exit(1) })
