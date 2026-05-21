@@ -631,8 +631,7 @@ export const businesses: Business[] = [
     ],
     footer:
       '🚀 We deliver scalable apparel sourcing and supply chain solutions focused on quality, reliability, and market responsiveness.',
-    image:
-      'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80',
+    image: '/images/clothing/banner.png',
     videoUrl:
       'https://videos.pexels.com/video-files/35469631/15027063_2560_1440_30fps.mp4',
     subServicesHeading: 'Explore Our Clothing & Accessories Services',
@@ -648,7 +647,8 @@ export const businesses: Business[] = [
         icon: Tag,
         title: 'Private Label & Brand Development',
         body: 'End-to-end private-label manufacturing and brand development, from concept and design through production and market launch.',
-        image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80',
+        image: '/images/clothing/product-0.jpg',
+        gallery: ['/images/clothing/product-0.jpg','/images/clothing/product-00.jpg','/images/clothing/product-000.jpg','/images/clothing/product-1.jpg'],
         features: [
           'Brand identity & label design support',
           'Private-label production coordination',
@@ -1292,6 +1292,48 @@ export const businesses: Business[] = [
           { code: 'GB', note: 'UK skilled trades & construction staff.' },
           { code: 'BD', note: 'Construction workforce sourcing hub.' },
           { code: 'US', note: 'US construction & infrastructure workers.' },
+        ],
+      },
+      {
+        slug: 'loading-unloading-manpower',
+        icon: Truck,
+        title: 'Loading & Unloading',
+        body: 'Trained loading and unloading crews for warehouses, ports, factories, and distribution centres — handling cargo of all sizes with safety and efficiency.',
+        image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80',
+        features: [
+          'Container & truck loading/unloading',
+          'Warehouse & distribution centre crews',
+          'Port & dockyard handling teams',
+          'Heavy-lift & material handling operators',
+          'Forklift & pallet-jack certified staff',
+          'Shift-based & emergency mobilisation',
+        ],
+        countries: [
+          { code: 'OM', note: 'Port & warehouse handling crews in Oman.' },
+          { code: 'GB', note: 'UK warehouse & logistics manpower.' },
+          { code: 'BD', note: 'Source pool for skilled handling staff.' },
+          { code: 'US', note: 'US warehouse & distribution centre workers.' },
+        ],
+      },
+      {
+        slug: 'packaging-manpower',
+        icon: Package,
+        title: 'Packaging Service',
+        body: 'Skilled packaging staff for product wrapping, labeling, kitting, and bulk packaging across retail, e-commerce, manufacturing, and export operations.',
+        image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80',
+        features: [
+          'Retail & consumer-goods packaging staff',
+          'Industrial & bulk packaging crews',
+          'Labelling, kitting & assembly operators',
+          'Export packaging & crating specialists',
+          'Quality-check & inspection personnel',
+          'Seasonal scaling for peak demand',
+        ],
+        countries: [
+          { code: 'OM', note: 'Packaging teams for Oman trade & retail.' },
+          { code: 'GB', note: 'UK e-commerce fulfilment packers.' },
+          { code: 'BD', note: 'Garment & export packaging hub.' },
+          { code: 'US', note: 'US warehouse packing & fulfilment staff.' },
         ],
       },
     ],
