@@ -22,6 +22,8 @@ export interface SubService {
   title: string
   body: string
   image: string
+  /** Optional gallery — multiple images shown as a grid on the sub-service page. */
+  gallery?: string[]
   features: string[]
   countries?: CountryPresence[]
 }
@@ -1193,8 +1195,7 @@ export const businesses: Business[] = [
     ],
     footer:
       '🚀 End-to-end global mobility solutions for employment, education, and international relocation.',
-    image:
-      'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80',
+    image: '/images/manpower/banner.png',
     videoUrl:
       'https://videos.pexels.com/video-files/32801087/13982978_2560_1440_30fps.mp4',
     subServicesHeading: 'Explore Our Manpower Supply Services',
@@ -1210,7 +1211,8 @@ export const businesses: Business[] = [
         icon: Code2,
         title: 'IT Service',
         body: 'Qualified IT professionals and technical executives supplied to meet the technology and digital operations requirements of businesses.',
-        image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80',
+        image: '/images/manpower/it-1.jpg',
+        gallery: ['/images/manpower/it-1.jpg','/images/manpower/it-2.jpg','/images/manpower/it-3.jpg','/images/manpower/it-4.jpg','/images/manpower/it-5.jpg','/images/manpower/it-6.jpg','/images/manpower/it-7.jpg','/images/manpower/it-8.jpg','/images/manpower/it-9.jpg','/images/manpower/it-10.jpg','/images/manpower/it-11.jpg','/images/manpower/it-12.jpg'],
         features: [
           'IT Executives & technical staff supply',
           'Software developers & engineers',
@@ -1231,7 +1233,8 @@ export const businesses: Business[] = [
         icon: Activity,
         title: 'Cleaner Service',
         body: 'Professional cleaning staff supply for offices, facilities, hospitals, and commercial spaces ensuring high hygiene and presentation standards.',
-        image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=800&q=80',
+        image: '/images/manpower/cleaner-1.png',
+        gallery: ['/images/manpower/cleaner-1.png','/images/manpower/cleaner-2.png','/images/manpower/cleaner-3.png','/images/manpower/cleaner-4.png','/images/manpower/cleaner-5.png','/images/manpower/cleaner-6.png'],
         features: [
           'Commercial & office cleaning staff',
           'Industrial cleaning personnel',
@@ -1252,7 +1255,8 @@ export const businesses: Business[] = [
         icon: ShieldCheck,
         title: 'Security Guard Service',
         body: 'Trained and vetted security guards deployed for commercial, industrial, and residential premises ensuring safety and access control.',
-        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
+        image: '/images/manpower/security-1.jpg',
+        gallery: ['/images/manpower/security-1.jpg','/images/manpower/security-2.jpg','/images/manpower/security-3.jpg','/images/manpower/security-4.jpg','/images/manpower/security-5.jpg','/images/manpower/security-6.jpg'],
         features: [
           'Static & mobile security guards',
           'Event security personnel',
@@ -1273,7 +1277,8 @@ export const businesses: Business[] = [
         icon: Factory,
         title: 'Construction Worker',
         body: 'Skilled and semi-skilled construction workers supplied for building, civil, and infrastructure projects across residential and commercial sectors.',
-        image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
+        image: '/images/manpower/construction-1.jpg',
+        gallery: ['/images/manpower/construction-1.jpg','/images/manpower/construction-2.jpg','/images/manpower/construction-3.jpg','/images/manpower/construction-4.jpg','/images/manpower/construction-5.jpg','/images/manpower/construction-6.jpg'],
         features: [
           'Civil & structural construction workers',
           'Masons, carpenters & steel fixers',

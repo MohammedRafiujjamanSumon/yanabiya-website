@@ -187,6 +187,22 @@ export default function SubServiceDetail() {
             <p className="text-brand-deep/70 leading-relaxed max-w-3xl mx-auto">{sub.body}</p>
           </div>
 
+          {/* ── Gallery (real workforce photos) ── */}
+          {sub.gallery && sub.gallery.length > 0 && (
+            <div className="mt-2 mb-12">
+              <h3 className="text-brand-accentDark uppercase tracking-[0.22em] text-xs font-bold mb-5 text-center">
+                Our Workforce
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-w-4xl mx-auto">
+                {sub.gallery.map((src, i) => (
+                  <div key={i} className="aspect-square overflow-hidden rounded-xl shadow-md ring-1 ring-brand-deep/10 hover:scale-[1.02] transition-transform duration-300">
+                    <img src={src} alt={`${sub.title} ${i + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* ── What We Offer, horizontal scroll green cards ── */}
           <div className="mt-10">
             <h3 className="text-brand-accentDark uppercase tracking-[0.22em] text-xs font-bold mb-5 text-center">
