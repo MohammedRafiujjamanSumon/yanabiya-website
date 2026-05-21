@@ -151,7 +151,7 @@ const COUNTRIES: CountryContact[] = [
     phones: ['+1 512 355 5715'],
     mobile: '+1 512 355 5715',
     emails: ['info@ygiusllc.com'],
-    websites: ['https://ygiusllc.com/'],
+    websites: ['www.ygiusllc.com'],
     hours: 'Monday  to  Friday, 9:00 AM  to  5:00 PM (CT)',
     mapEmbed: '5900 Balcones Drive, Austin, TX 78731, USA',
     status: 'active',
