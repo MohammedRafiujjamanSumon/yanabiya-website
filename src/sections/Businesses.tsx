@@ -157,13 +157,13 @@ const SERVICE_ITEMS: ServiceItem[] = [
     slug: 'export-import', num: '02',
     title: 'Export & Import Business',
     tagline: 'Freight, customs & global trade',
-    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80',
+    image: '/images/export-import-card.png',
   },
   {
     slug: 'clothing', num: '03',
     title: 'Clothing & Accessories',
     tagline: 'Private label & garment sourcing',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
+    image: '/images/clothing/landing-card.png',
   },
   {
     slug: 'agents-brokerage', num: '04',
@@ -181,7 +181,7 @@ const SERVICE_ITEMS: ServiceItem[] = [
     slug: 'manpower', num: '06',
     title: 'Manpower Supply Services',
     tagline: 'IT, security & construction staff',
-    image: '/images/manpower/banner.png',
+    image: '/images/manpower/landing-card.png',
   },
 ]
 

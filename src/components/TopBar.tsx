@@ -31,7 +31,8 @@ export default function TopBar() {
         </div>
         <div className="flex items-center justify-center md:justify-end gap-2 whitespace-nowrap">
           <a
-            href="#"
+            href="/yanabiya-profile.pdf"
+            download="Yanabiya-Profile.pdf"
             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full
                        hover:bg-brand-deep hover:text-white transition"
           >

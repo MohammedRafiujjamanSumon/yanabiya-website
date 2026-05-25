@@ -5,6 +5,7 @@ import {
   Activity, Search, ShoppingCart, Thermometer, ClipboardList,
   Tag, Gem, Box, TrendingUp, Award, Building2, Calculator,
   CreditCard, UserCheck, Monitor, GraduationCap, Plane, Heart, Truck, Phone,
+  Zap,
 } from 'lucide-react'
 
 export type CountryCode = 'OM' | 'GB' | 'BD' | 'US'
@@ -201,7 +202,7 @@ export const businesses: Business[] = [
         title: 'UI/UX Designing',
         body: 'Research-driven interface design that blends clarity, accessibility, and brand identity into delightful digital experiences.',
         image:
-          'https://images.unsplash.com/photo-1561070791-2526d30994b8?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80',
         features: [
           'Wireframe design',
           'Prototype design',
@@ -609,7 +610,7 @@ export const businesses: Business[] = [
   {
     slug: 'clothing',
     icon: Shirt,
-    title: 'Clothing & Accessories',
+    title: 'Garments, Apparel & Accessories',
     body: 'Garment and fashion-accessory trading with trusted manufacturers and retail partners.',
     details:
       'Our apparel division connects Bangladesh\u2019s world-class garment manufacturing capabilities with retailers, distributors, and brand partners across key international markets. We manage private-label production, quality assurance, sourcing, and brand collaboration, delivering end-to-end apparel supply chain solutions from factory floor to retail shelf.',
@@ -634,7 +635,7 @@ export const businesses: Business[] = [
     image: '/images/clothing/banner.png',
     videoUrl:
       'https://videos.pexels.com/video-files/35469631/15027063_2560_1440_30fps.mp4',
-    subServicesHeading: 'Explore Our Clothing & Accessories Services',
+    subServicesHeading: 'Explore Our Garments, Apparel & Accessories Services',
     countries: [
       { code: 'OM', note: 'Regional distribution & GCC retail partnerships.' },
       { code: 'GB', note: 'Brand partnerships & UK/EU retail buyers.' },
@@ -645,8 +646,8 @@ export const businesses: Business[] = [
       {
         slug: 'private-label-branding',
         icon: Tag,
-        title: 'Private Label & Brand Development',
-        body: 'End-to-end private-label manufacturing and brand development, from concept and design through production and market launch.',
+        title: 'Private Label & Branding',
+        body: 'End-to-end private-label manufacturing and brand building, from concept and design through production and launch.',
         image: '/images/clothing/product-0.jpg',
         gallery: ['/images/clothing/product-0.jpg','/images/clothing/product-00.jpg','/images/clothing/product-000.jpg','/images/clothing/product-1.jpg'],
         features: [
@@ -667,9 +668,10 @@ export const businesses: Business[] = [
       {
         slug: 'bulk-garment-sourcing',
         icon: Package,
-        title: 'Bulk Garment Sourcing & Production',
-        body: 'Reliable bulk garment sourcing and production management connecting buyers to Bangladesh\'s leading manufacturers.',
-        image: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80',
+        title: 'Bulk Sourcing & Production',
+        body: 'Reliable bulk garment sourcing and production management, connecting buyers to leading Bangladesh manufacturers.',
+        image: '/images/clothing/product-1.jpg',
+        gallery: ['/images/clothing/product-1.jpg','/images/clothing/product-0.jpg','/images/clothing/product-00.jpg','/images/clothing/product-000.jpg'],
         features: [
           'Factory identification & vetting',
           'Production order management & follow-up',
@@ -688,9 +690,10 @@ export const businesses: Business[] = [
       {
         slug: 'fashion-accessories',
         icon: Gem,
-        title: 'Fashion Accessories Trading',
-        body: 'Sourcing and supply of fashion accessories, from bags and belts to jewelry and lifestyle items, across international markets.',
-        image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
+        title: 'Fashion Accessories',
+        body: 'Sourcing and supply of fashion accessories, from bags and belts to jewellery and lifestyle items, across global markets.',
+        image: '/images/clothing/product-00.jpg',
+        gallery: ['/images/clothing/product-00.jpg','/images/clothing/product-000.jpg','/images/clothing/product-0.jpg','/images/clothing/product-1.jpg'],
         features: [
           'Accessory sourcing & supplier coordination',
           'Bags, belts, jewelry & lifestyle product supply',
@@ -709,9 +712,10 @@ export const businesses: Business[] = [
       {
         slug: 'quality-assurance',
         icon: Award,
-        title: 'Quality Assurance & Inspection',
-        body: 'Rigorous quality assurance and third-party inspection programs to ensure every shipment meets your brand standards.',
-        image: 'https://images.unsplash.com/photo-1594938298603-c8148c4bfdd0?auto=format&fit=crop&w=800&q=80',
+        title: 'Quality Assurance',
+        body: 'Rigorous QA and third-party inspection programmes to ensure every shipment meets your brand standards.',
+        image: '/images/clothing/product-000.jpg',
+        gallery: ['/images/clothing/product-000.jpg','/images/clothing/product-0.jpg','/images/clothing/product-1.jpg','/images/clothing/product-00.jpg'],
         features: [
           'In-line & final quality inspection',
           'Third-party inspection coordination (SGS, Bureau Veritas)',
@@ -730,9 +734,10 @@ export const businesses: Business[] = [
       {
         slug: 'oem-odm-manufacturing',
         icon: Factory,
-        title: 'OEM & ODM Manufacturing',
-        body: 'Custom OEM and ODM manufacturing solutions enabling brands to bring unique designs to market with full production support.',
-        image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+        title: 'OEM & ODM Solutions',
+        body: 'Custom OEM and ODM manufacturing, enabling brands to bring unique designs to market with full production support.',
+        image: '/images/clothing/product-0.jpg',
+        gallery: ['/images/clothing/product-0.jpg','/images/clothing/product-1.jpg','/images/clothing/product-00.jpg','/images/clothing/product-000.jpg'],
         features: [
           'Original Equipment Manufacturer (OEM) sourcing',
           'Original Design Manufacturer (ODM) development',
@@ -751,9 +756,10 @@ export const businesses: Business[] = [
       {
         slug: 'packaging-export',
         icon: Box,
-        title: 'Packaging, Labeling & Export',
-        body: 'Comprehensive packaging, labeling, and export documentation to get your garments shelf-ready worldwide.',
-        image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+        title: 'Packaging & Export',
+        body: 'End-to-end packaging, labelling, and export documentation to get your garments shelf-ready worldwide.',
+        image: '/images/clothing/product-1.jpg',
+        gallery: ['/images/clothing/product-1.jpg','/images/clothing/product-00.jpg','/images/clothing/product-000.jpg','/images/clothing/product-0.jpg'],
         features: [
           'Custom retail packaging & polybag solutions',
           'Barcode, label & hang-tag production',
@@ -772,9 +778,10 @@ export const businesses: Business[] = [
       {
         slug: 'seasonal-inventory',
         icon: TrendingUp,
-        title: 'Seasonal Sourcing & Inventory Planning',
-        body: 'Trend-driven seasonal collection sourcing and inventory planning to keep your product range fresh and market-responsive.',
-        image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=800&q=80',
+        title: 'Seasonal Collections',
+        body: 'Trend-driven seasonal sourcing and inventory planning to keep your product range fresh and market-responsive.',
+        image: '/images/clothing/product-00.jpg',
+        gallery: ['/images/clothing/product-00.jpg','/images/clothing/product-0.jpg','/images/clothing/product-000.jpg','/images/clothing/product-1.jpg'],
         features: [
           'Seasonal trend research & product selection',
           'Open-to-buy planning & budget management',
@@ -835,7 +842,7 @@ export const businesses: Business[] = [
         icon: ShieldCheck,
         title: 'Fire Insurance',
         body: 'Comprehensive fire insurance coverage protecting your property and assets from fire-related damage and losses.',
-        image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog1.png',
         features: ['Fire Insurance'],
         countries: [
           { code: 'OM', note: 'Gulf property fire coverage.' }, { code: 'GB', note: 'UK fire insurance advisory.' },
@@ -847,7 +854,7 @@ export const businesses: Business[] = [
         icon: Ship,
         title: 'Marine Insurance',
         body: 'Reliable marine insurance covering cargo, vessels, and freight during international and domestic transit.',
-        image: 'https://images.unsplash.com/photo-1516939884455-1445c8652f83?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog2.png',
         features: ['Marine Insurance'],
         countries: [
           { code: 'OM', note: 'Port of Muscat cargo insurance.' }, { code: 'GB', note: 'UK Lloyds marine coverage.' },
@@ -859,7 +866,7 @@ export const businesses: Business[] = [
         icon: Truck,
         title: 'Motor Insurance',
         body: 'Full motor insurance solutions for personal and commercial vehicles, covering accidents, theft, and third-party liability.',
-        image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog3.png',
         features: ['Motor Insurance'],
         countries: [
           { code: 'OM', note: 'Oman vehicle insurance.' }, { code: 'GB', note: 'UK motor & fleet insurance.' },
@@ -871,7 +878,7 @@ export const businesses: Business[] = [
         icon: Globe,
         title: 'Travel Safe Insurance',
         body: 'Comprehensive travel insurance keeping you protected against medical emergencies, cancellations, and travel disruptions worldwide.',
-        image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog4.png',
         features: ['Travel Safe Insurance'],
         countries: [
           { code: 'OM', note: 'Outbound travel cover from Oman.' }, { code: 'GB', note: 'UK multi-trip travel plans.' },
@@ -883,7 +890,7 @@ export const businesses: Business[] = [
         icon: GraduationCap,
         title: 'Education Insurance',
         body: 'Education insurance plans securing your children\'s academic future regardless of unforeseen circumstances.',
-        image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog5.png',
         features: ['Education Insurance'],
         countries: [
           { code: 'OM', note: 'Oman student education plans.' }, { code: 'GB', note: 'UK education savings insurance.' },
@@ -895,7 +902,7 @@ export const businesses: Business[] = [
         icon: Heart,
         title: 'Health Insurance',
         body: 'Flexible health insurance plans providing access to quality medical care for individuals, families, and corporate groups.',
-        image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog6.png',
         features: ['Health Insurance'],
         countries: [
           { code: 'OM', note: 'Oman corporate & individual health plans.' }, { code: 'GB', note: 'UK private health insurance.' },
@@ -907,7 +914,7 @@ export const businesses: Business[] = [
         icon: ShieldCheck,
         title: 'Personal Accident Insurance',
         body: 'Personal accident coverage providing financial protection for you and your family in the event of injury or disability.',
-        image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog7.png',
         features: ['Personal Accident Insurance'],
         countries: [
           { code: 'OM', note: 'Oman personal accident plans.' }, { code: 'GB', note: 'UK PA insurance.' },
@@ -919,7 +926,7 @@ export const businesses: Business[] = [
         icon: Building2,
         title: 'Property Insurance',
         body: 'Complete property insurance protecting commercial and residential assets against damage, loss, and liability.',
-        image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog8.png',
         features: ['Property Insurance'],
         countries: [
           { code: 'OM', note: 'Oman commercial property cover.' }, { code: 'GB', note: 'UK property insurance.' },
@@ -931,7 +938,7 @@ export const businesses: Business[] = [
         icon: Users,
         title: 'Child Protection Plan',
         body: 'Dedicated child protection plans providing financial security and educational guarantees for your children\'s future.',
-        image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog9.png',
         features: ['Child Protection Plan'],
         countries: [
           { code: 'OM', note: 'Oman child savings & protection.' }, { code: 'GB', note: 'UK child future plans.' },
@@ -943,7 +950,7 @@ export const businesses: Business[] = [
         icon: Building2,
         title: 'Home Loans',
         body: 'Accessible home loan advisory and facilitation services to help individuals and families secure property financing.',
-        image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog10.png',
         features: ['Home Loans'],
         countries: [
           { code: 'OM', note: 'Oman mortgage facilitation.' }, { code: 'GB', note: 'UK home loan advisory.' },
@@ -955,7 +962,7 @@ export const businesses: Business[] = [
         icon: Truck,
         title: 'Car Loans',
         body: 'Car loan facilitation services connecting customers with competitive vehicle financing options.',
-        image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog11.png',
         features: ['Car Loans'],
         countries: [
           { code: 'OM', note: 'Oman vehicle financing.' }, { code: 'GB', note: 'UK car finance advisory.' },
@@ -967,7 +974,7 @@ export const businesses: Business[] = [
         icon: CreditCard,
         title: 'Personal Loans',
         body: 'Personal loan advisory helping individuals access flexible financing for personal needs and financial goals.',
-        image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+        image: '/images/agents-brokerage/blog12.png',
         features: ['Personal Loans'],
         countries: [
           { code: 'OM', note: 'Oman personal finance advisory.' }, { code: 'GB', note: 'UK personal loan guidance.' },
@@ -1019,7 +1026,7 @@ export const businesses: Business[] = [
         icon: Factory,
         title: 'Facility Management Services',
         body: 'Comprehensive facility management solutions maintaining optimal efficiency of electrical, mechanical, HVAC, and building systems.',
-        image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
+        image: '/images/office-management/png-settings48.png',
         features: [
           'Electrical & Mechanical Services',
           'HVAC & Plumbing Services',
@@ -1038,7 +1045,7 @@ export const businesses: Business[] = [
         icon: ShieldCheck,
         title: 'Security Services',
         body: 'Professional security solutions protecting life, business assets, and events through trained personnel and systematic security audits.',
-        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
+        image: '/images/office-management/png-shield20.png',
         features: [
           'Security for life & business',
           'Security for Events',
@@ -1057,7 +1064,7 @@ export const businesses: Business[] = [
         icon: Thermometer,
         title: 'Fire Safety',
         body: 'End-to-end fire safety services including installation, staff training, and systematic audits to ensure compliance and emergency preparedness.',
-        image: 'https://images.unsplash.com/photo-1580737490945-c1c5d34d8cf2?auto=format&fit=crop&w=800&q=80',
+        image: '/images/office-management/png-flame11.png',
         features: [
           'Fire Safety Services',
           'Fire Safety Training',
@@ -1075,7 +1082,7 @@ export const businesses: Business[] = [
         icon: Settings,
         title: 'Toll Operations',
         body: 'Systematic toll operations management ensuring booth efficiency, staff rotation, and rigorous compliance through surprise audits and security protocols.',
-        image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=800&q=80',
+        image: '/images/office-management/png-toll.png',
         features: [
           'Surprise Audits / Checking of Booths',
           'Rotation of Toll Staff',
@@ -1093,7 +1100,7 @@ export const businesses: Business[] = [
         icon: Briefcase,
         title: 'Housekeeping, Catering & Horticulture',
         body: 'Integrated housekeeping, catering, horticulture, and sanitization services maintaining clean, healthy, and well-presented environments.',
-        image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=800&q=80',
+        image: '/images/office-management/png-buffet.png',
         features: [
           'Pantry Services',
           'Housekeeping & Cleaning Services',
@@ -1113,7 +1120,7 @@ export const businesses: Business[] = [
         icon: Monitor,
         title: 'CCTV & Network Management Services',
         body: 'Advanced CCTV surveillance and network management services providing connectivity, security monitoring, and access control across facilities.',
-        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80',
+        image: '/images/office-management/png-camera113.png',
         features: [
           'Network Connectivity',
           'Network Security',
@@ -1133,7 +1140,7 @@ export const businesses: Business[] = [
         icon: Building2,
         title: 'Office Support Services',
         body: 'Comprehensive office support services including mail management, receptionist, training coordination, and employee credential verification.',
-        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+        image: '/images/office-management/png-shopping160.png',
         features: [
           'Mail Management',
           'Office Support',
@@ -1153,7 +1160,7 @@ export const businesses: Business[] = [
         icon: Users,
         title: 'Manpower Services',
         body: 'Reliable manpower supply of IT executives, facility staff, medical professionals, drivers, and semi-skilled workers for operational needs.',
-        image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80',
+        image: '/images/office-management/png-manpower.png',
         features: [
           'IT Executives',
           'Facility Executives',
@@ -1166,6 +1173,27 @@ export const businesses: Business[] = [
           { code: 'GB', note: 'UK skilled & semi-skilled staff supply.' },
           { code: 'BD', note: 'Source market for facility & medical staff.' },
           { code: 'US', note: 'US contract staff & driver services.' },
+        ],
+      },
+      {
+        slug: 'energy-sustainability',
+        icon: Zap,
+        title: 'Energy Management & Sustainability',
+        body: 'Smart energy management, sustainability audits, and green-building initiatives that lower operating costs and meet ESG compliance targets.',
+        image: '/images/office-management/png-settings48.png',
+        features: [
+          'Energy consumption monitoring & audits',
+          'Smart building & IoT integration',
+          'Renewable energy advisory (solar / hybrid)',
+          'ESG & sustainability reporting',
+          'Waste reduction & recycling programmes',
+          'LEED / Green Building certification support',
+        ],
+        countries: [
+          { code: 'OM', note: 'Energy audits & solar advisory across Oman sites.' },
+          { code: 'GB', note: 'UK ESG reporting & green building compliance.' },
+          { code: 'BD', note: 'Sustainability programmes & energy monitoring.' },
+          { code: 'US', note: 'US LEED certification & smart-building integration.' },
         ],
       },
     ],
@@ -1299,7 +1327,8 @@ export const businesses: Business[] = [
         icon: Truck,
         title: 'Loading & Unloading',
         body: 'Trained loading and unloading crews for warehouses, ports, factories, and distribution centres — handling cargo of all sizes with safety and efficiency.',
-        image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80',
+        image: '/images/manpower/loading-pdf.png',
+        gallery: ['/images/manpower/loading-pdf.png','/images/manpower/packaging-pdf-3.png','/images/manpower/blacksmith-4.png'],
         features: [
           'Container & truck loading/unloading',
           'Warehouse & distribution centre crews',
@@ -1320,7 +1349,8 @@ export const businesses: Business[] = [
         icon: Package,
         title: 'Packaging Service',
         body: 'Skilled packaging staff for product wrapping, labeling, kitting, and bulk packaging across retail, e-commerce, manufacturing, and export operations.',
-        image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80',
+        image: '/images/manpower/packaging-pdf-1.png',
+        gallery: ['/images/manpower/packaging-pdf-1.png','/images/manpower/packaging-pdf-2.png','/images/manpower/packaging-pdf-3.png'],
         features: [
           'Retail & consumer-goods packaging staff',
           'Industrial & bulk packaging crews',
@@ -1334,6 +1364,50 @@ export const businesses: Business[] = [
           { code: 'GB', note: 'UK e-commerce fulfilment packers.' },
           { code: 'BD', note: 'Garment & export packaging hub.' },
           { code: 'US', note: 'US warehouse packing & fulfilment staff.' },
+        ],
+      },
+      {
+        slug: 'decor-woodwork-wallpaper-manpower',
+        icon: Palette,
+        title: 'Décor, Woodwork & Wallpaper',
+        body: 'Skilled decorators, carpenters, and wallpaper installers for residential, commercial, and hospitality fit-out projects.',
+        image: '/images/manpower/decor-4.png',
+        gallery: ['/images/manpower/decor-1.png','/images/manpower/decor-2.png','/images/manpower/decor-3.png','/images/manpower/decor-4.png','/images/manpower/decor-5.png'],
+        features: [
+          'Wallpaper installation & wall covering specialists',
+          'Painters & interior finishing crews',
+          'Carpenters & custom furniture makers',
+          'Joinery & cabinetry teams',
+          'Marble & stone finishing workers',
+          'Hospitality & retail fit-out manpower',
+        ],
+        countries: [
+          { code: 'OM', note: 'Décor & fit-out crews across Oman projects.' },
+          { code: 'GB', note: 'UK interior finishing & joinery staff.' },
+          { code: 'BD', note: 'Source pool for skilled decorators & carpenters.' },
+          { code: 'US', note: 'US residential & commercial finishing crews.' },
+        ],
+      },
+      {
+        slug: 'metal-blacksmith-manpower',
+        icon: Factory,
+        title: 'Metal Structures & Blacksmith',
+        body: 'Certified welders, blacksmiths, steel fixers, and metal-structure fabricators for industrial, construction, and infrastructure projects.',
+        image: '/images/manpower/blacksmith-1.png',
+        gallery: ['/images/manpower/blacksmith-1.png','/images/manpower/blacksmith-2.png','/images/manpower/blacksmith-3.png','/images/manpower/blacksmith-4.png','/images/manpower/blacksmith-5.png'],
+        features: [
+          'Certified welders (MIG, TIG, arc)',
+          'Blacksmiths & traditional metalwork artisans',
+          'Steel fixers & rebar specialists',
+          'Structural-steel fabricators & erectors',
+          'Robotic & precision welding operators',
+          'Workshop & on-site mobilisation teams',
+        ],
+        countries: [
+          { code: 'OM', note: 'Metalwork & welding crews for Oman sites.' },
+          { code: 'GB', note: 'UK structural-steel & welding staff.' },
+          { code: 'BD', note: 'Source hub for certified welders & fabricators.' },
+          { code: 'US', note: 'US fabrication & metal-structure teams.' },
         ],
       },
     ],
@@ -1415,7 +1489,7 @@ export const businesses: Business[] = [
         icon: Package,
         title: 'Order & Fulfilment Management',
         body: 'End-to-end order processing, warehouse picking, packing, and last-mile delivery coordination for all e-commerce orders.',
-        image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+        image: '/images/ecommerce/order-fulfilment.png',
         features: [
           'Automated order processing & routing',
           'Warehouse picking & packing operations',
@@ -1474,7 +1548,7 @@ export const businesses: Business[] = [
       'Multi-country multi-language platform support',
     ],
     footer: '📱 One unified digital platform powering all Yanabiya Group operations.',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
+    image: '/images/digital-platform/web-app.png',
     videoUrl: 'https://videos.pexels.com/video-files/3130284/3130284-uhd_2560_1440_30fps.mp4',
     subServicesHeading: 'Explore Yanabiya Digital Platform Services',
     countries: [
@@ -1489,7 +1563,7 @@ export const businesses: Business[] = [
         icon: Briefcase,
         title: 'Yanabiya Business App',
         body: 'Core business management app for Yanabiya Group, tracking operations, finance, and performance across all verticals and countries.',
-        image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80',
+        image: '/images/digital-platform/mobile-app.png',
         features: [
           'Multi-vertical business dashboard',
           'Real-time KPI & performance tracking',
@@ -1510,7 +1584,7 @@ export const businesses: Business[] = [
         icon: Phone,
         title: 'Customer Service Portal',
         body: 'Client-facing digital portal for service requests, ticket management, and real-time support across all Yanabiya business services.',
-        image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=800&q=80',
+        image: '/images/digital-platform/customer-service.png',
         features: [
           'Online service request & ticket submission',
           'Live chat & support ticket management',

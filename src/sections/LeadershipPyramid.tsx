@@ -163,7 +163,11 @@ function HierarchyCard({
                          ring-2 ${c.ring} ring-offset-2
                          transition-all duration-300`}>
           {photo
-            ? <img src={photo} alt={label} className="w-full h-full object-cover object-top" />
+            ? <img
+                src={photo}
+                alt={label}
+                className={`w-full h-full ${photo.endsWith('/logo.png') ? 'object-contain p-1 bg-white' : 'object-cover object-top'}`}
+              />
             : <div className="w-full h-full bg-white/60 grid place-items-center">
                 <Users size={size === 'sm' ? 16 : 20} className="text-brand-deep/30" />
               </div>
@@ -187,9 +191,11 @@ function HierarchyCard({
   )
 }
 
-const BOARD_PHOTO = 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=200&q=80'
-const GROUP_PHOTO = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=200&q=80'
-const DEPT_PHOTO  = 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=200&q=80'
+const COMPANY_LOGO = '/images/logo.png'
+const MAYSA_PHOTO  = '/images/people/maysa-yeasmin.jpg'
+const BOARD_PHOTO = COMPANY_LOGO
+const GROUP_PHOTO = COMPANY_LOGO
+const DEPT_PHOTO  = COMPANY_LOGO
 
 export default function LeadershipPyramid() {
   const { t } = useTranslation()
@@ -243,7 +249,7 @@ export default function LeadershipPyramid() {
               {/* Board of Directors — right, pushed down */}
               <Reveal delay={120}>
                 <div className="flex justify-center pt-16">
-                  <HierarchyCard colorKey="board" label={t('board.title')} to="/people/board" photo={chairmanPhoto} delay={0} size="md" />
+                  <HierarchyCard colorKey="board" label={t('board.title')} to="/people/board" photo={COMPANY_LOGO} delay={0} size="md" />
                 </div>
               </Reveal>
             </div>
@@ -262,7 +268,7 @@ export default function LeadershipPyramid() {
           <div className="w-full max-w-[700px] grid grid-cols-2 gap-24 px-[10%]">
             <Reveal delay={260}>
               <div className="flex justify-center">
-                <HierarchyCard colorKey="coa" label={t('people.chiefOfAccounts')} to="/people/accounts" photo={DEPT_PHOTO} delay={0} size="md" />
+                <HierarchyCard colorKey="coa" label={t('people.chiefOfAccounts')} to="/people/accounts" photo={MAYSA_PHOTO} delay={0} size="md" />
               </div>
             </Reveal>
             <Reveal delay={300}>

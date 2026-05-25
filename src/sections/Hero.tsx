@@ -623,7 +623,7 @@ export default function Hero() {
           <div className="mt-7 flex flex-row flex-wrap gap-3 items-center justify-center">
             <a
               href="/yanabiya-profile.pdf"
-              download
+              download="Yanabiya-Profile.pdf"
               className="inline-flex items-center justify-center gap-2 rounded-full
                          px-8 py-3.5 bg-brand-accent text-brand-deep font-bold text-sm
                          shadow-lg hover:bg-brand-accentDark hover:text-white

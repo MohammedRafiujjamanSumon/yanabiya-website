@@ -49,7 +49,7 @@ export const countries = [
       { code: '464102', name: 'Wholesale of Clothing and Clothing Accessories',                              icon: ShoppingBag,    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80' },
       { code: '475101', name: 'Retail Sale in Specialized Stores of Textiles and Fabrics',                   icon: Scissors,       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80' },
       { code: '461001', name: 'Activities of Commission Agents and Brokerage Business',                      icon: Handshake,      image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80' },
-      { code: '501201', name: 'International Maritime Goods Transport',                                      icon: Ship,           image: 'https://images.unsplash.com/photo-1494412574745-e1e7c8faa40d?w=600&q=80' },
+      { code: '501201', name: 'International Maritime Goods Transport',                                      icon: Ship,           image: 'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=600&q=80' },
       { code: '561007', name: 'Cafes (Cafes that offer meals mainly)',                                       icon: UtensilsCrossed,image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80' },
       { code: '563001', name: 'Cafes (Cafes that offer mainly drinks)',                                      icon: Coffee,         image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=80' },
       { code: '474105', name: 'Retail Sale in Specialized Stores of Software and Computer Accessories',      icon: Disc3,          image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80' },
@@ -81,7 +81,7 @@ export const countries = [
     hideActivityCodes: true,
     activities: [
       { code: '62020', name: 'Information Technology Consultancy Activities',                                icon: Cpu,       image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80' },
-      { code: '74909', name: 'Other Professional, Scientific and Technical Activities not elsewhere classified', icon: Lightbulb, image: 'https://images.unsplash.com/photo-1532094349884-543559059938?w=600&q=80' },
+      { code: '74909', name: 'Other Professional, Scientific and Technical Activities not elsewhere classified', icon: Lightbulb, image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=600&q=80' },
       { code: '77390', name: 'Renting and Leasing of Other Machinery, Equipment and Tangible Goods not elsewhere classified', icon: Briefcase, image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80' },
     ] as CountryActivity[],
   },
