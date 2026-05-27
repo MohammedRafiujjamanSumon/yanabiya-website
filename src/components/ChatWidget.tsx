@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { MessageCircle, X, Send, CheckCircle2 } from 'lucide-react'
+import { X, Send, CheckCircle2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { assets } from '../data/assets'
 
 /**
  * Floating contact widget + WhatsApp shortcut.
@@ -96,45 +97,57 @@ export default function ChatWidget() {
       {/* Floating buttons: WhatsApp + contact form */}
       {!open && (
         <div className="fixed bottom-5 right-5 z-[80] flex flex-col items-end gap-3 print:hidden">
+          {/* WhatsApp */}
           <a
             href={WHATSAPP_HREF}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center justify-center
-                       w-14 h-14 rounded-full
-                       bg-gradient-to-br from-[#25d366] to-[#128c7e] text-white
-                       shadow-2xl shadow-[#25d366]/40 hover:-translate-y-0.5
-                       ring-2 ring-white/70 transition-all duration-300"
+            className="group relative inline-flex items-center gap-2"
             aria-label={t('chatWidget.whatsappLabel', 'Chat on WhatsApp')}
-            title={t('chatWidget.whatsappLabel', 'Chat on WhatsApp')}
           >
-            <WhatsAppLogo size={26} />
-            <span className="absolute right-16 hidden md:inline-flex items-center rounded-full bg-brand-deep
+            <span className="inline-flex items-center rounded-full bg-brand-deep
                              text-white text-[10px] font-bold uppercase tracking-[0.22em]
-                             px-2.5 py-1 shadow-md
-                             opacity-0 -translate-x-1
-                             group-hover:opacity-100 group-hover:translate-x-0
-                             transition-all duration-200 whitespace-nowrap">
+                             px-3 py-1.5 shadow-md whitespace-nowrap
+                             transition-all duration-200
+                             md:opacity-0 md:translate-x-1
+                             md:group-hover:opacity-100 md:group-hover:translate-x-0
+                             md:group-focus-visible:opacity-100 md:group-focus-visible:translate-x-0">
               {t('chatWidget.whatsappLabel', 'Chat on WhatsApp')}
             </span>
+            <span className="grid place-items-center w-14 h-14 rounded-full
+                             bg-gradient-to-br from-[#25d366] to-[#128c7e] text-white
+                             shadow-2xl shadow-[#25d366]/40
+                             ring-2 ring-white/70
+                             group-hover:-translate-y-0.5 transition-all duration-300">
+              <WhatsAppLogo size={28} />
+            </span>
           </a>
+
+          {/* Contact form trigger — real Yanabiya logo */}
           <button
             onClick={() => { setOpen(true); setDone(false); setError('') }}
-            className="group flex items-center justify-center
-                       w-14 h-14 rounded-full bg-brand-accent hover:bg-brand-accentDark
-                       text-white shadow-2xl shadow-brand-accent/40
-                       hover:-translate-y-0.5 transition-all duration-300"
-            aria-label={t('chatWidget.openLabel', 'Open contact form')}
-            title={t('chatWidget.openLabel', 'Open contact form')}
+            className="group relative inline-flex items-center gap-2"
+            aria-label={t('chatWidget.openLabel', 'Send a message')}
           >
-            <MessageCircle size={26} />
-            <span className="absolute right-16 hidden md:inline-flex items-center rounded-full bg-brand-deep
+            <span className="inline-flex items-center rounded-full bg-brand-deep
                              text-white text-[10px] font-bold uppercase tracking-[0.22em]
-                             px-2.5 py-1 shadow-md
-                             opacity-0 -translate-x-1
-                             group-hover:opacity-100 group-hover:translate-x-0
-                             transition-all duration-200 whitespace-nowrap">
+                             px-3 py-1.5 shadow-md whitespace-nowrap
+                             transition-all duration-200
+                             md:opacity-0 md:translate-x-1
+                             md:group-hover:opacity-100 md:group-hover:translate-x-0
+                             md:group-focus-visible:opacity-100 md:group-focus-visible:translate-x-0">
               {t('chatWidget.openLabel', 'Send a message')}
+            </span>
+            <span className="grid place-items-center w-14 h-14 rounded-full
+                             bg-white text-brand-deep overflow-hidden
+                             shadow-2xl shadow-brand-accent/30
+                             ring-2 ring-brand-accent
+                             group-hover:-translate-y-0.5 transition-all duration-300">
+              <img
+                src={assets.logo}
+                alt="Yanabiya"
+                className="w-10 h-10 object-contain"
+              />
             </span>
           </button>
         </div>
@@ -149,16 +162,21 @@ export default function ChatWidget() {
                      flex flex-col overflow-hidden animate-[fadeUp_0.25s_ease-out_both]"
         >
           {/* Header */}
-          <div className="bg-brand-deep text-white px-4 py-3 flex items-center justify-between">
-            <div>
-              <p className="font-serif text-sm font-bold">
-                {t('chatWidget.title', 'Talk to Yanabiya')}
-              </p>
-              <p className="text-[11px] text-white/70">
-                {t('chatWidget.subtitle', 'Tell us a bit and we’ll get back fast.')}
-              </p>
+          <div className="bg-brand-deep text-white px-4 py-3 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <span className="grid place-items-center w-9 h-9 rounded-full bg-white shrink-0 overflow-hidden ring-1 ring-white/30">
+                <img src={assets.logo} alt="Yanabiya" className="w-7 h-7 object-contain" />
+              </span>
+              <div className="min-w-0">
+                <p className="font-serif text-sm font-bold truncate">
+                  {t('chatWidget.title', 'Talk to Yanabiya')}
+                </p>
+                <p className="text-[11px] text-white/70 truncate">
+                  {t('chatWidget.subtitle', 'Tell us a bit and we’ll get back fast.')}
+                </p>
+              </div>
             </div>
-            <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white p-1" aria-label="Close">
+            <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white p-1 shrink-0" aria-label="Close">
               <X size={18} />
             </button>
           </div>
