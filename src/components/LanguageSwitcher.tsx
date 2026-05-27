@@ -49,7 +49,15 @@ export default function LanguageSwitcher() {
                   {group.map((l) => (
                     <button
                       key={l.code}
-                      onClick={() => { i18n.changeLanguage(l.code); setOpen(false) }}
+                      onClick={async () => {
+                        await i18n.changeLanguage(l.code)
+                        setOpen(false)
+                        // Force a full reload so every component (including any
+                        // hardcoded strings or cached translations) picks up the
+                        // new language immediately. Language is persisted in
+                        // localStorage so the reload reads it back.
+                        window.location.reload()
+                      }}
                       className={`flex items-center justify-between w-full px-3 py-2
                                   hover:bg-slate-50 transition-colors
                                   ${l.code === current.code ? 'bg-brand-accent/10' : ''}`}
