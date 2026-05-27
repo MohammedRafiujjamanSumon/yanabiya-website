@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
-  MapPin, Phone, AtSign, Send, Mail, Building2, Globe2,
+  MapPin, Phone, AtSign, Send, Mail, Building2, Globe2, Heart,
   Linkedin, Facebook, Instagram, Twitter, Youtube,
 } from 'lucide-react'
 import { contact, contactByCountry, type CountryContact } from '../data/contact'
@@ -371,6 +371,16 @@ export default function Footer() {
             >
               <Mail size={10} /> Webmail
             </a>
+            <Link
+              to="/community/donation"
+              className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-white
+                         bg-rose-500/90 hover:bg-rose-500 border border-rose-400/60 hover:border-rose-300
+                         rounded-full px-2.5 py-0.5 transition-all duration-200
+                         shadow-sm hover:shadow-rose-500/40"
+              title="Support our community work"
+            >
+              <Heart size={10} fill="currentColor" /> Donate
+            </Link>
             <a
               href={`${import.meta.env.BASE_URL}admin/login`}
               className="text-white/30 hover:text-white/60 transition-colors text-[9px] tracking-wider"
