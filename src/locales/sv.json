@@ -15,7 +15,7 @@
     "contact": "Kontakta Oss",
     "ourNetwork": "Vårt Nätverk",
     "ourCommunity": "Vår Gemenskap",
-    "ourPeople": "Vårt Team",
+    "ourPeople": "Vårt Ledarskap",
     "boardOfMembers": "Styrelse",
     "chairman": "Ordförande & VD",
     "viceChairman": "Vice Ordförande"
@@ -299,6 +299,7 @@
     "readMore": "Läs mer",
     "tier1Kicker": "Nivå 01 — Styrelse & Rådgivning",
     "tier1Title": "Board of Directors",
+    "tier1Tagline": "The Governing Body of Yanabiya Group",
     "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Nivå 02 — Verkställande Ledning",
     "tier2Title": "Global Verkställande Ledning",
@@ -309,8 +310,13 @@
     "founderChairmanCEO": "Grundare, Ordförande & VD",
     "becomePartner": "Bli Partner",
     "joinTeam": "Gå med i Vårt Team",
-    "ourCompanies": "Våra Företag",
-    "tier1Tagline": "The Governing Body of Yanabiya Group"
+    "ourCompanies": "Våra Företag"
+  },
+  "countryOps": {
+    "established": "Grundat",
+    "legalEntity": "Juridisk Enhet",
+    "licenseName": "Licensnamn",
+    "issuingAuthority": "Utfärdande Myndighet"
   },
   "strategy": {
     "eyebrow": "Strategi & Innovation",
@@ -433,41 +439,26 @@
     "countryUS": "🇺🇸 Förenta Staterna",
     "chooseBranch": "Välj vår filial"
   },
-  "footer": {
-    "rights": "Alla rättigheter förbehållna.",
-    "stamp": "Kvalitets- & Professionalitetsstämpeln",
-    "hq": "HK",
-    "postalAddress": "Postadress",
-    "headOffice": "Huvudkontor",
-    "newsletter": "Nyhetsbrev",
-    "newsletterDesc": "Håll dig uppdaterad med Yanabiya Groups nyheter och insikter",
-    "emailPlaceholder": "Din e-postadress",
-    "subscribe": "Prenumerera",
-    "tagline": "Global Företagsplattform",
-    "desc": "Bygger och driver högeffektiva verksamheter inom teknik, handel, talang och konsultation — världen över.",
-    "quickLinks": "Snabblänkar",
-    "groupProfile": "Gruppprofil",
-    "links": {
-      "home": "Hem",
-      "about": "Om Oss",
-      "global": "Global Närvaro",
-      "businesses": "Våra Tjänster",
-      "network": "Pålitligt Nätverk",
-      "contact": "Kontakt",
-      "profile": "Gruppprofil",
-      "story": "Vår Historia",
-      "contactNet": "Kontaktnätverk",
-      "management": "Vår Ledning",
-      "blog": "Blogg",
-      "sustainable": "Hållbar Tillväxt",
-      "community": "Samhällsansvar",
-      "careers": "Karriär",
-      "ecommerce": "Yanabiya E-Commerce ↗",
-      "webmail": "Webmail Portal ↗"
-    }
+  "chatWidget": {
+    "openLabel": "Skicka meddelande",
+    "whatsappLabel": "Chatta på WhatsApp",
+    "title": "Prata med Yanabiya",
+    "subtitle": "Berätta lite, så återkommer vi snabbt.",
+    "name": "Ditt namn *",
+    "email": "E-post *",
+    "subject": "Ämne *",
+    "chooseBusiness": "Välj en verksamhet *",
+    "chooseOffice": "Välj ett kontor (valfritt)",
+    "message": "Hur kan vi hjälpa? *",
+    "send": "Skicka meddelande",
+    "sending": "Skickar…",
+    "privacy": "Vi använder dina uppgifter endast för att svara på din förfrågan.",
+    "thanksTitle": "Tack — meddelandet är mottaget.",
+    "thanksBody": "Vårt team är meddelat och svarar inom en arbetsdag.",
+    "sendAnother": "Skicka ett till meddelande"
   },
   "common": {
-    "ourPeople": "Vårt Team",
+    "ourPeople": "Vårt Ledarskap",
     "previous": "Föregående",
     "next": "Nästa",
     "close": "Stäng",
@@ -528,12 +519,6 @@
     "phone": "Telefon",
     "mobile": "Mobil",
     "email": "E-post"
-  },
-  "countryOps": {
-    "established": "Grundat",
-    "legalEntity": "Juridisk Enhet",
-    "licenseName": "Licensnamn",
-    "issuingAuthority": "Utfärdande Myndighet"
   },
   "ceoPage": {
     "badge": "Grundare · Ordförande · VD",
@@ -706,6 +691,41 @@
     "teamCount_one": "{{count}} teammedlem i Yanabiyas verksamheter i {{country}}.",
     "teamCount_other": "{{count}} teammedlemmar i Yanabiyas verksamheter i {{country}}."
   },
+  "footer": {
+    "rights": "Alla rättigheter förbehållna.",
+    "stamp": "Kvalitets- & Professionalitetsstämpeln",
+    "hq": "HK",
+    "postalAddress": "Postadress",
+    "headOffice": "Huvudkontor",
+    "newsletter": "Nyhetsbrev",
+    "newsletterDesc": "Håll dig uppdaterad med Yanabiya Groups nyheter och insikter",
+    "emailPlaceholder": "Din e-postadress",
+    "subscribe": "Prenumerera",
+    "tagline": "Global Företagsplattform",
+    "desc": "Bygger och driver högeffektiva verksamheter inom teknik, handel, talang och konsultation — världen över.",
+    "quickLinks": "Snabblänkar",
+    "groupProfile": "Gruppprofil",
+    "links": {
+      "home": "Hem",
+      "about": "Om Oss",
+      "global": "Global Närvaro",
+      "businesses": "Våra Tjänster",
+      "network": "Pålitligt Nätverk",
+      "people": "Vår Ledning",
+      "contact": "Kontakt",
+      "profile": "Gruppprofil",
+      "story": "Vår Historia",
+      "contactNet": "Kontaktnätverk",
+      "management": "Vår Ledning",
+      "blog": "Blogg",
+      "sustainable": "Hållbar Tillväxt",
+      "community": "Samhällsansvar",
+      "careers": "Karriär",
+      "ecommerce": "Yanabiya E-Commerce ↗",
+      "donation": "Donera",
+      "webmail": "Webmail Portal ↗"
+    }
+  },
   "serviceForm": {
     "workWithUs": "Arbeta med oss",
     "getOurService": "Få vår tjänst",
@@ -759,9 +779,61 @@
     "ukItDesc": "Vår UK IT-konsultavdelning erbjuder tjänster inom mjukvara, moln, AI och cybersäkerhet."
   },
   "ourStory": {
-    "kicker": "Vår historia",
-    "title": "Från ambition till global påverkan",
-    "intro": "Yanabiya Group skapades utifrån en enkel övertygelse: etisk handel, gemenskap och hållbar framsteg kan samexistera. Det som började som ett handelsföretag fokuserat på Gulfmarknaderna har utvecklats till en företagsfamilj med verksamhet på fyra kontinenter.",
+    "eyebrow": "Yanabiya Group, Our Story",
+    "heroTitle": "From Muscat.",
+    "heroAccent": "For the World.",
+    "heroPara": "A decade of building enterprises across four countries, written one relationship, one delivery, one chapter at a time.",
+    "scrollToBegin": "Scroll to begin",
+    "s01kicker": "01, The Story",
+    "s02kicker": "02, Mission in Action",
+    "s02Title": "Three principles. One discipline.",
+    "s03kicker": "03, Vision Forward",
+    "s03Title": "The next decade isn't about more.",
+    "s03Accent": "It's about deeper.",
+    "s03Para": "Deeper expertise across our six sectors. Deeper trust with the communities we serve. Deeper connections across the four countries we already call home.",
+    "s04kicker": "04, The Journey",
+    "s04Title": "A decade in milestones.",
+    "s05kicker": "05, Global Strategy",
+    "s05Title": "One platform. Four homes.",
+    "chapterPrefix": "Chapter 0",
+    "visitCountry": "Visit",
+    "s06kicker": "06, Leadership",
+    "s06Title": "Stewards of the long view.",
+    "meetFullTeam": "Meet the full team",
+    "s07kicker": "07, Stewardship",
+    "s07Title": "Growth that gives back.",
+    "s07Para": "Profit isn't the only thing we measure. Across every country we operate in, we commit to community welfare programmes, education access, and environmental responsibility, because long-term value isn't built any other way.",
+    "exploreImpact": "Explore our impact",
+    "stewardStats": {
+      "sustainabilityProgrammes": "Sustainability programmes",
+      "communitiesServed": "Communities served",
+      "welfarePartnerships": "Welfare partnerships",
+      "opsEthics": "Operational ethics review"
+    },
+    "s08kicker": "08, Network",
+    "s08Title": "Trusted by enterprises across four continents.",
+    "seeNetwork": "See our trusted network",
+    "s09kicker": "09, The Next Chapter",
+    "s09Title": "Build the next chapter",
+    "s09Accent": "with us.",
+    "s09Para": "Whether you're scaling a venture, sourcing a partner, or entering a new market, let's talk about what's possible.",
+    "startConversation": "Start a Conversation",
+    "exploreSectors": "Explore our sectors",
+    "backToAbout": "Back to About Us",
+    "storyLines": [
+      "Yanabiya grundades inte för att jaga vinst, utan för att tjäna ett syfte: att koppla samman samhällen, skapa värde och göra handel till ett verktyg för mänsklig värdighet.",
+      "Vår grundare trodde att företag kan vara goda — för sina ägare, sina anställda, de samhällen de tjänar och den planet de verkar på.",
+      "Under åren har vi navigerat svåra marknader, geopolitisk osäkerhet och globala utmaningar. Varje gång har våra värderingar styrt våra beslut.",
+      "Vi har aldrig sökt tillväxt för tillväxtens skull. Varje expansion vi genomfört har drivits av en verklig möjlighet att tjäna.",
+      "I Oman började vi med att underlätta handel mellan Gulf- och Asienmarknaderna — bygga handelsbroar där de inte existerade.",
+      "I Storbritannien etablerade vi ett nav för diasporan — hjälpa samhällen att få tillgång till professionell rådgivning, finansiella tjänster och affärsmöjligheter.",
+      "I Bangladesh kopplade vi lokala producenter till globala marknader och hjälpte familjer att få tillgång till livsförändrande inkomster.",
+      "I USA utvecklar vi strategiska partnerskap som för tillbaka möjligheter till våra ursprungssamhällen.",
+      "Vår välgörenhetsstiftelse — finansierad av vinsterna från vår kommersiella verksamhet — har stött skolor, Masjid, katastrofhjälp och program för kvinnors egenmakt.",
+      "Vi tror att affärsmässig framgång och socialt ansvar inte utesluter varandra. Faktum är att det ena förstärker det andra.",
+      "Varje partner vi arbetar med, varje kund vi betjänar, varje samhälle vi berör — de är alla en del av Yanabiyas historia.",
+      "Denna resa är långt ifrån avslutad. Vi fortsätter att bygga, lära oss och tjäna — vägledda av tro, drivna av syfte och rotade i integritet."
+    ],
     "milestones": [
       {
         "year": "2008",
@@ -794,20 +866,24 @@
         "body": "Idag verkar Yanabiya på fyra kontinenter med team i Oman, Storbritannien, Bangladesh och USA, och betjänar kunder i mer än 20 länder."
       }
     ],
-    "storyLines": [
-      "Yanabiya grundades inte för att jaga vinst, utan för att tjäna ett syfte: att koppla samman samhällen, skapa värde och göra handel till ett verktyg för mänsklig värdighet.",
-      "Vår grundare trodde att företag kan vara goda — för sina ägare, sina anställda, de samhällen de tjänar och den planet de verkar på.",
-      "Under åren har vi navigerat svåra marknader, geopolitisk osäkerhet och globala utmaningar. Varje gång har våra värderingar styrt våra beslut.",
-      "Vi har aldrig sökt tillväxt för tillväxtens skull. Varje expansion vi genomfört har drivits av en verklig möjlighet att tjäna.",
-      "I Oman började vi med att underlätta handel mellan Gulf- och Asienmarknaderna — bygga handelsbroar där de inte existerade.",
-      "I Storbritannien etablerade vi ett nav för diasporan — hjälpa samhällen att få tillgång till professionell rådgivning, finansiella tjänster och affärsmöjligheter.",
-      "I Bangladesh kopplade vi lokala producenter till globala marknader och hjälpte familjer att få tillgång till livsförändrande inkomster.",
-      "I USA utvecklar vi strategiska partnerskap som för tillbaka möjligheter till våra ursprungssamhällen.",
-      "Vår välgörenhetsstiftelse — finansierad av vinsterna från vår kommersiella verksamhet — har stött skolor, Masjid, katastrofhjälp och program för kvinnors egenmakt.",
-      "Vi tror att affärsmässig framgång och socialt ansvar inte utesluter varandra. Faktum är att det ena förstärker det andra.",
-      "Varje partner vi arbetar med, varje kund vi betjänar, varje samhälle vi berör — de är alla en del av Yanabiyas historia.",
-      "Denna resa är långt ifrån avslutad. Vi fortsätter att bygga, lära oss och tjäna — vägledda av tro, drivna av syfte och rotade i integritet."
-    ],
+    "regions": {
+      "OM": {
+        "tag": "Headquarters",
+        "body": "Where the story began. Our Muscat office anchors group strategy, regulatory intelligence, and Gulf trade operations."
+      },
+      "GB": {
+        "tag": "European Operations",
+        "body": "A London base for client engagements, partnerships, and regulated advisory work across EMEA."
+      },
+      "BD": {
+        "tag": "South Asia Operations",
+        "body": "Our engineering and apparel hub. Where craft meets capacity, at scale, with discipline."
+      },
+      "US": {
+        "tag": "North America Operations",
+        "body": "Frontier-tech advisory and partner network for the Americas, from Austin into the wider continent."
+      }
+    },
     "leaders": [
       {
         "name": "Grundare och VD",
@@ -834,13 +910,7 @@
         "title": "Samhällspåverkan",
         "body": "Andelar av varje affärsverksamhet flödar till Yanabiya Foundation, som direkt finansierar utbildning, katastrofhjälp och samhällsprogram."
       }
-    ],
-    "regions": {
-      "OM": "Globalt huvudkontor och Gulf-handelsnav",
-      "GB": "Europa- och diasporanav",
-      "BD": "Sydasien- och samhällsstödsnav",
-      "US": "Amerika- och strategisk rådgivningsnav"
-    }
+    ]
   },
   "omanPresence": {
     "globalPresence": "Global Närvaro",
@@ -856,64 +926,75 @@
     "backToGlobal": "Tillbaka till Global"
   },
   "donation": {
-    "heroTitle": "Ge för Allah — Ge för Jannah",
-    "heroSub": "En chans att bygga ditt palats i Jannah genom att hjälpa dem som behöver det här. Varje riyal, varje pund, varje donation räknas.",
-    "tabOnline": "Donera online",
-    "tabBank": "Banköverföring",
-    "tabContact": "Kontakta oss",
-    "amountLabel": "Välj ett belopp",
-    "customAmountPlaceholder": "Eget belopp",
-    "currencyLabel": "Valuta",
-    "causeLabel": "Välj ett ändamål",
-    "allCauses": "Alla ändamål",
-    "nameLabel": "Ditt namn",
-    "emailLabel": "E-postadress",
-    "messageLabel": "Meddelande (valfritt)",
-    "messagePlaceholder": "Berätta för oss varför du donerar eller lämna en duaa…",
-    "submitBtn": "Donera nu",
-    "submitting": "Bearbetar…",
-    "successTitle": "JazakAllah Khayran!",
-    "successMsg": "Din donation har mottagits. Måtte Allah acceptera den från dig och välsigna din familj.",
-    "bankTitle": "Gör en banköverföring",
-    "bankSub": "Använd uppgifterna nedan för en banköverföring. Ange ditt namn och ändamålet i referensen.",
-    "contactTitle": "Föredrar du att prata med oss?",
-    "contactSub": "Kontakta vårt donationsteam direkt för stora donationer, återkommande bidrag eller institutionella partnerskap.",
-    "contactEmail": "donate@yanabiyagroup.com",
-    "impactTitle": "Din påverkan i siffror",
-    "impactSub": "Sedan lanseringen av Yanabiya Charitable Foundation har donationer från vår gemenskap haft en verklig, mätbar effekt.",
+    "communityCareNav": "Community Care",
+    "testimonialsNav": "Testimonials",
+    "foundationBadge": "Yanabiya Charitable Foundation",
+    "jannahQuote": "A Chance to Build Your Palace in Jannah",
+    "prophetHadith": "The Prophet said: Charity does not decrease wealth. (Sahih Muslim)",
     "stats": {
-      "raised": "Insamlat hittills",
-      "projects": "Finansierade projekt",
+      "directToCause": "Direct to Cause",
+      "livesTouched": "Lives Touched",
       "countries": "Berörda länder",
-      "families": "Hjälpta familjer"
+      "trackRecord": "Track Record"
     },
+    "whereGiftGoes": "Where Your Gift Goes",
+    "chooseCause": "Choose a Cause to Support",
+    "selected": "Selected:",
+    "paymentMethod": "Payment Method",
+    "paymentSubtitle": "Choose your amount, pick country, follow steps",
+    "chooseProgramme": "Choose Programme",
+    "selectCausePh": "Select a cause to support",
+    "yourContribution": "Your Contribution",
+    "fromWherePayment": "From where will you make payment?",
+    "selectCountryPh": "Select your country",
+    "contactUsToDonate": "Contact Us to Donate",
+    "paymentGateway": "Payment Gateway",
+    "comingSoonTitle": "Coming Soon",
+    "comingSoonDesc": "Payment gateway for your chosen location is on its way. Stay with us, we are working to bring it live soon.",
+    "contactInMeantime": "Contact us in the meantime",
+    "scanToPay": "Scan to pay",
+    "amountToSend": "Amount to send",
+    "bankDetails": "Bank Details",
     "bankLabels": {
+      "bank": "Bank",
       "accountName": "Kontoinnehavare",
-      "bankName": "Banknamn",
-      "accountNumber": "Kontonummer",
-      "sortCode": "Sorteringskod",
-      "iban": "IBAN",
-      "swift": "SWIFT/BIC",
-      "reference": "Referens"
+      "accountNo": "Account No",
+      "routing": "Routing",
+      "swift": "SWIFT/BIC"
     },
+    "amountToTransfer": "Amount to transfer",
+    "getInvoice": "Get Invoice",
+    "optional": "(optional)",
+    "yourName": "Your Name",
+    "noInvoice": "I don't need an invoice",
+    "confirmDonation": "Confirm My Donation",
+    "jazakAllah": "JazakAllah Khayran!",
+    "donationThankYou": "Your generous contribution will make a real difference. May Allah reward you with His best.",
+    "donateAgain": "Donate again",
+    "whyDonateTitle": "Why Donate With Us",
+    "whyDonateSubtitle": "Trusted, Transparent, Halal verified",
     "trust": {
-      "secure": {
-        "title": "Säkra betalningar",
-        "body": "Alla onlinedonationer behandlas via krypterade, säkra gateways. Din finansiella information lagras aldrig på våra servrar."
+      "registered": {
+        "title": "Registered Organisation",
+        "desc": "Yanabiya Charitable Foundation, officially registered and audited across four countries."
+      },
+      "directToCause": {
+        "title": "100% Reaches the Cause",
+        "desc": "Administrative costs are covered separately, every penny of your gift goes directly to the cause."
       },
       "shariah": {
         "title": "Shariah-konform",
-        "body": "All insamling och distribution av medel följer islamiska principer. Vår Shariah-kommitté övervakar fördelningen av medel."
+        "desc": "All programmes are reviewed and approved under Islamic guidelines."
       },
-      "transparent": {
-        "title": "100% transparent",
-        "body": "Stiftelsens årsrapporter publiceras offentligt. Du kan se exakt hur varje donation används."
-      },
-      "receipt": {
-        "title": "Donationskvitto",
-        "body": "Varje givare får en e-postbekräftelse. På begäran tillhandahåller vi formella skattekvitton där lagen tillåter det."
+      "personal": {
+        "title": "Personal Acknowledgement",
+        "desc": "Every donor receives a personalised thank-you message and impact update."
       }
     },
+    "fundAllocation": "Fund Allocation",
+    "directToCauseLabel": "Direct to cause",
+    "simpleTransparent": "Simple, Transparent, Impactful",
+    "howItWorksTitle": "How Your Donation Works",
     "steps": [
       {
         "title": "Välj ditt ändamål",
@@ -928,79 +1009,87 @@
         "body": "Ange dina uppgifter och slutför din donation säkert. Du får en e-postbekräftelse omedelbart."
       }
     ],
+    "aboutFoundationBadge": "About the Foundation",
+    "foundationDesc": "Established to serve communities across Oman, Bangladesh, the United Kingdom and the USA, we direct charitable funds to those who need them most with full transparency and Islamic integrity. Every programme is managed by a dedicated team and reviewed by a Shariah board.",
     "foundationTags": [
       "Yanabiya Foundations allmänna fond",
       "Katastrofhjälp och humanitärt bistånd",
       "Stipendier och utbildning",
       "Masjid-konstruktion och -renovering"
     ],
-    "amountLabels": {
-      "feeds": "försörjer en familj i en vecka",
-      "educates": "finansierar ett barns utbildning i en månad",
-      "builds": "bidrar till att bygga en brunn",
-      "sponsors": "sponsrar en student under ett kvartal",
-      "custom": "Eget belopp"
-    },
+    "getInTouchBadge": "Get in Touch",
+    "getInTouchDesc": "Questions about our programmes, how we serve each cause, or need help with your donation? Our team responds within one business day.",
+    "donationEnquiries": "Donation enquiries",
+    "generalEnquiries": "General enquiries",
+    "forDonationsFrom": "For donations from {{country}}, reach out and we will arrange the best payment method.",
+    "amountLabels": [
+      "Provides a meal for a family",
+      "Sponsors a student for a week",
+      "Covers medical care for a child",
+      "Supports an orphan for a month",
+      "Choose your own impact"
+    ],
+    "enterAmount": "Enter amount",
     "causeList": {
-      "education": {
-        "label": "Utbildning",
-        "desc": "Finansiering av stipendier, skolmaterial och utbildningsprogram för behövande samhällen.",
-        "impact": "300 £ = stipendium för ett år"
+      "masjidSupport": {
+        "label": "Masjid Support",
+        "desc": "Construction and maintenance of mosques.",
+        "impact": "Builds a house of prayer"
       },
-      "emergency": {
-        "label": "Katastrofhjälp",
-        "desc": "Omedelbar hjälp till offer för naturkatastrofer, konflikter och humanitära kriser.",
-        "impact": "50 £ = akut matpaket i 5 dagar"
+      "orphanCare": {
+        "label": "Orphan Care",
+        "desc": "Education and welfare for orphaned children.",
+        "impact": "Gives a child a future"
       },
-      "masjid": {
-        "label": "Masjid-konstruktion",
-        "desc": "Bidra till konstruktion och renovering av Masjid i underförsörjda samhällen.",
-        "impact": "500 £ = renovering av ett böneutrymme"
+      "elderlyHome": {
+        "label": "Elderly Home",
+        "desc": "Care and dignity for the elderly in need.",
+        "impact": "Restores dignity to elders"
       },
-      "water": {
-        "label": "Rent vatten",
-        "desc": "Finansiering av brunnar, filtersystem och dricksvatteninfrastruktur i landsbygdsområden.",
-        "impact": "200 £ = en brunn som betjänar 50 familjer"
+      "medicalSupport": {
+        "label": "Medical Support",
+        "desc": "Free health camps and medicine for those who cannot afford care.",
+        "impact": "Heals a family in need"
       },
-      "orphan": {
-        "label": "Föräldralöst fadderskap",
-        "desc": "Tillhandahålla månatligt stöd till föräldralösa barn, inklusive mat, kläder, medicinsk vård och utbildning.",
-        "impact": "30 £/månad = fullt fadderskap för ett föräldralöst barn"
+      "endingTorment": {
+        "label": "Ending the Torment",
+        "desc": "Emergency relief for families in extreme hardship.",
+        "impact": "Brings relief in crisis"
       },
-      "widow": {
-        "label": "Stöd till änkor",
-        "desc": "Stärka änkor genom ekonomiskt stöd, yrkesutbildning och samhällsstöd.",
-        "impact": "100 £ = en månads stöd till en änka och hennes barn"
+      "studentCare": {
+        "label": "Student Care",
+        "desc": "Scholarships and learning resources for underprivileged students.",
+        "impact": "Opens doors to knowledge"
       },
-      "zakat": {
-        "label": "Zakah-distribution",
-        "desc": "Din Zakah kommer att distribueras till verifierade behövande i enlighet med islamiska principer.",
-        "impact": "100% av Zakah går till mottagarna"
+      "specialCare": {
+        "label": "Special Care",
+        "desc": "Support and resources for individuals with special needs.",
+        "impact": "Empowers every person"
+      },
+      "eidClothes": {
+        "label": "Eid Clothes",
+        "desc": "New clothing for those who cannot afford to celebrate.",
+        "impact": "Spreads joy on Eid"
+      },
+      "zakah": {
+        "label": "Pay Your Zakah",
+        "desc": "Fulfil your annual Zakah obligation through us.",
+        "impact": "Purifies your wealth"
       },
       "sadaqah": {
         "label": "Sadaqah Jariyah",
         "desc": "Löpande donationer till varaktiga projekt — brunnar, bibliotek, utbildningscentra — vars belöningar fortsätter efter din bortgång.",
         "impact": "Varaktiga belöningar i detta liv och i efterlivet"
       },
-      "food": {
-        "label": "Matdistribution",
-        "desc": "Tillhandahålla näringsrika måltider till fattiga familjer, föräldralösa barn och behövande under Ramadan och hela året.",
-        "impact": "20 £ = försörjer en familj i en vecka"
+      "environmentCare": {
+        "label": "Environment Care",
+        "desc": "Tree plantation and eco initiatives for future generations.",
+        "impact": "Sadaqah Jariyah for generations"
       },
-      "medical": {
-        "label": "Medicinsk hjälp",
-        "desc": "Finansiering av medicinsk behandling, läkemedel och hälsovård för dem som inte har råd med det.",
-        "impact": "75 £ = medicinsk behandling för en patient"
-      },
-      "women": {
-        "label": "Kvinnors egenmakt",
-        "desc": "Yrkesutbildningsprogram, mikrofinansiering och alfabetiseringsprogram för kvinnor i marginaliserade samhällen.",
-        "impact": "150 £ = yrkesutbildning för en kvinna"
-      },
-      "general": {
-        "label": "Allmän fond",
-        "desc": "Din donation kommer att fördelas där behovet är störst bland våra aktiva projekt.",
-        "impact": "100% går till stiftelseprojekt"
+      "buildingMaintenance": {
+        "label": "Building & Maintenance",
+        "desc": "Upkeep of mosques, madrasas and charitable facilities.",
+        "impact": "Preserves a place of worship"
       }
     }
   },
@@ -1058,6 +1147,10 @@
     "servicehub": {
       "title": "Yanabiya Service Hub",
       "desc": "En heltäckande plattform för alla Yanabiya Groups tjänster — alla divisioner på ett ställe."
+    },
+    "erp": {
+      "title": "Yanabiya ERP",
+      "desc": "Enhetligt ERP för ekonomi, HR, inköp och drift i alla fyra länderna."
     }
   }
 }

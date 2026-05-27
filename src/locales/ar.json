@@ -15,7 +15,7 @@
     "contact": "اتصل بنا",
     "ourNetwork": "شبكتنا",
     "ourCommunity": "مجتمعنا",
-    "ourPeople": "فريقنا",
+    "ourPeople": "قيادتنا",
     "boardOfMembers": "مجلس الإدارة",
     "chairman": "الرئيس التنفيذي",
     "viceChairman": "نائب الرئيس"
@@ -278,14 +278,14 @@
     "eyebrow": "الشبكة",
     "title": "شبكة موثوقة عبر أربع دول وعشرات الصناعات.",
     "sub": "عضويات نشطة في غرف التجارة والهيئات الصناعية في عُمان والمملكة المتحدة وبنغلاديش والولايات المتحدة.",
+    "readMore": "اقرأ المزيد",
     "memberships": "العضويات والانتسابات",
     "stats": {
       "clients": "عملاء نشطون",
       "entities": "كيانات",
       "countries": "دول",
       "track": "سجل حافل"
-    },
-    "readMore": "اقرأ المزيد"
+    }
   },
   "leadership": {
     "eyebrow": "القيادة",
@@ -299,6 +299,7 @@
     "readMore": "اقرأ المزيد",
     "tier1Kicker": "المستوى 01 — المجلس والاستشارات",
     "tier1Title": "Board of Directors",
+    "tier1Tagline": "The Governing Body of Yanabiya Group",
     "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "المستوى 02 — الإدارة التنفيذية",
     "tier2Title": "الإدارة التنفيذية العالمية",
@@ -309,8 +310,13 @@
     "founderChairmanCEO": "المؤسس والرئيس ورئيس مجلس الإدارة",
     "becomePartner": "كن شريكاً",
     "joinTeam": "انضم إلى فريقنا",
-    "ourCompanies": "شركاتنا",
-    "tier1Tagline": "The Governing Body of Yanabiya Group"
+    "ourCompanies": "شركاتنا"
+  },
+  "countryOps": {
+    "established": "تأسست",
+    "legalEntity": "الكيان القانوني",
+    "licenseName": "اسم الرخصة",
+    "issuingAuthority": "جهة الإصدار"
   },
   "strategy": {
     "eyebrow": "الاستراتيجية والابتكار",
@@ -433,41 +439,26 @@
     "countryUS": "🇺🇸 الولايات المتحدة",
     "chooseBranch": "اختر فرعنا"
   },
-  "footer": {
-    "rights": "جميع الحقوق محفوظة.",
-    "stamp": "ختم الجودة والاحترافية",
-    "hq": "المقر",
-    "postalAddress": "العنوان البريدي",
-    "headOffice": "المكتب الرئيسي",
-    "newsletter": "النشرة البريدية",
-    "newsletterDesc": "ابق على اطلاع بأخبار وتحليلات مجموعة ينابيع",
-    "emailPlaceholder": "بريدك الإلكتروني",
-    "subscribe": "اشترك",
-    "tagline": "منصة المؤسسات العالمية",
-    "desc": "بناء وتشغيل مشاريع عالية التأثير في التكنولوجيا والتجارة والمواهب والاستشارات — حول العالم.",
-    "quickLinks": "روابط سريعة",
-    "groupProfile": "ملف المجموعة",
-    "links": {
-      "home": "الرئيسية",
-      "about": "من نحن",
-      "global": "الحضور العالمي",
-      "businesses": "خدماتنا",
-      "network": "شبكة الثقة",
-      "contact": "اتصل بنا",
-      "profile": "ملف المجموعة",
-      "story": "قصتنا",
-      "contactNet": "شبكة التواصل",
-      "management": "إدارتنا",
-      "blog": "المدونة",
-      "sustainable": "النمو المستدام",
-      "community": "رعاية المجتمع",
-      "careers": "الوظائف",
-      "ecommerce": "ينابيع للتجارة الإلكترونية ↗",
-      "webmail": "بريد الويب ↗"
-    }
+  "chatWidget": {
+    "openLabel": "أرسل رسالة",
+    "whatsappLabel": "تواصل عبر واتساب",
+    "title": "تحدث إلى ينابيع",
+    "subtitle": "أخبرنا قليلاً وسنعود إليك بسرعة.",
+    "name": "اسمك *",
+    "email": "البريد الإلكتروني *",
+    "subject": "الموضوع *",
+    "chooseBusiness": "اختر النشاط *",
+    "chooseOffice": "اختر المكتب (اختياري)",
+    "message": "كيف يمكننا المساعدة؟ *",
+    "send": "إرسال الرسالة",
+    "sending": "جارٍ الإرسال…",
+    "privacy": "نستخدم بياناتك فقط للرد على استفسارك.",
+    "thanksTitle": "شكرًا — تم استلام الرسالة.",
+    "thanksBody": "تم إخطار فريقنا وسيرد خلال يوم عمل واحد.",
+    "sendAnother": "إرسال رسالة أخرى"
   },
   "common": {
-    "ourPeople": "فريقنا",
+    "ourPeople": "قيادتنا",
     "previous": "السابق",
     "next": "التالي",
     "close": "إغلاق",
@@ -528,12 +519,6 @@
     "phone": "هاتف",
     "mobile": "محمول",
     "email": "البريد الإلكتروني"
-  },
-  "countryOps": {
-    "established": "تأسست",
-    "legalEntity": "الكيان القانوني",
-    "licenseName": "اسم الرخصة",
-    "issuingAuthority": "جهة الإصدار"
   },
   "ceoPage": {
     "badge": "المؤسس · رئيس مجلس الإدارة · الرئيس التنفيذي",
@@ -705,6 +690,41 @@
     "otherTeams": "فرق إقليمية أخرى",
     "teamCount_one": "عضو فريق واحد في عمليات ينابيع {{country}}.",
     "teamCount_other": "{{count}} أعضاء فريق في عمليات ينابيع {{country}}."
+  },
+  "footer": {
+    "rights": "جميع الحقوق محفوظة.",
+    "stamp": "ختم الجودة والاحترافية",
+    "hq": "المقر",
+    "postalAddress": "العنوان البريدي",
+    "headOffice": "المكتب الرئيسي",
+    "newsletter": "النشرة البريدية",
+    "newsletterDesc": "ابق على اطلاع بأخبار وتحليلات مجموعة ينابيع",
+    "emailPlaceholder": "بريدك الإلكتروني",
+    "subscribe": "اشترك",
+    "tagline": "منصة المؤسسات العالمية",
+    "desc": "بناء وتشغيل مشاريع عالية التأثير في التكنولوجيا والتجارة والمواهب والاستشارات — حول العالم.",
+    "quickLinks": "روابط سريعة",
+    "groupProfile": "ملف المجموعة",
+    "links": {
+      "home": "الرئيسية",
+      "about": "من نحن",
+      "global": "الحضور العالمي",
+      "businesses": "خدماتنا",
+      "network": "شبكة الثقة",
+      "people": "قيادتنا",
+      "contact": "اتصل بنا",
+      "profile": "ملف المجموعة",
+      "story": "قصتنا",
+      "contactNet": "شبكة التواصل",
+      "management": "إدارتنا",
+      "blog": "المدونة",
+      "sustainable": "النمو المستدام",
+      "community": "رعاية المجتمع",
+      "careers": "الوظائف",
+      "ecommerce": "ينابيع للتجارة الإلكترونية ↗",
+      "donation": "تبرع",
+      "webmail": "بريد الويب ↗"
+    }
   },
   "serviceForm": {
     "workWithUs": "تعاون معنا",
@@ -1126,6 +1146,10 @@
     "servicehub": {
       "title": "مركز خدمات يانابية",
       "desc": "منصة شاملة لجميع خدمات مجموعة يانابية — كل الأقسام في مكان واحد."
+    },
+    "erp": {
+      "title": "ينابيع ERP",
+      "desc": "نظام ERP موحّد للمالية والموارد البشرية والمشتريات والعمليات عبر البلدان الأربعة."
     }
   }
 }

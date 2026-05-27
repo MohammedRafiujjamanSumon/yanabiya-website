@@ -278,14 +278,14 @@
     "eyebrow": "নেটওয়ার্ক",
     "title": "চারটি দেশ ও ডজনখানেক শিল্পজুড়ে একটি বিশ্বস্ত নেটওয়ার্ক।",
     "sub": "ওমান, যুক্তরাজ্য, বাংলাদেশ ও যুক্তরাষ্ট্রের চেম্বার অব কমার্স ও ইন্ডাস্ট্রি অ্যাসোসিয়েশনে সক্রিয় সদস্যপদ।",
+    "readMore": "আরো পড়ুন",
     "memberships": "সদস্যপদ ও অ্যাফিলিয়েশন",
     "stats": {
       "clients": "সক্রিয় ক্লায়েন্ট",
       "entities": "প্রতিষ্ঠান",
       "countries": "দেশ",
       "track": "ট্র্যাক রেকর্ড"
-    },
-    "readMore": "আরো পড়ুন"
+    }
   },
   "leadership": {
     "eyebrow": "নেতৃত্ব",
@@ -299,6 +299,7 @@
     "readMore": "আরও পড়ুন",
     "tier1Kicker": "স্তর ০১ — বোর্ড ও উপদেষ্টা",
     "tier1Title": "Board of Directors",
+    "tier1Tagline": "The Governing Body of Yanabiya Group",
     "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "স্তর ০২ — নির্বাহী ব্যবস্থাপনা",
     "tier2Title": "গ্লোবাল এক্সিকিউটিভ ম্যানেজমেন্ট",
@@ -309,8 +310,13 @@
     "founderChairmanCEO": "প্রতিষ্ঠাতা, চেয়ারম্যান ও সিইও",
     "becomePartner": "অংশীদার হন",
     "joinTeam": "আমাদের টিমে যোগ দিন",
-    "ourCompanies": "আমাদের কোম্পানিগুলো",
-    "tier1Tagline": "The Governing Body of Yanabiya Group"
+    "ourCompanies": "আমাদের কোম্পানিগুলো"
+  },
+  "countryOps": {
+    "established": "প্রতিষ্ঠিত",
+    "legalEntity": "আইনি সত্তা",
+    "licenseName": "লাইসেন্সের নাম",
+    "issuingAuthority": "ইস্যুকারী কর্তৃপক্ষ"
   },
   "strategy": {
     "eyebrow": "কৌশল ও উদ্ভাবন",
@@ -451,40 +457,6 @@
     "thanksBody": "আমাদের দল জানানো হয়েছে এবং এক কর্মদিবসের মধ্যে উত্তর দেবে।",
     "sendAnother": "আরেকটি বার্তা পাঠান"
   },
-  "footer": {
-    "rights": "সর্বস্বত্ব সংরক্ষিত।",
-    "stamp": "মান ও পেশাদারিত্বের ছাপ",
-    "hq": "সদর",
-    "postalAddress": "ডাক ঠিকানা",
-    "headOffice": "প্রধান কার্যালয়",
-    "newsletter": "নিউজলেটার",
-    "newsletterDesc": "ইয়ানাবিয়া গ্রুপের সংবাদ ও ইনসাইট সম্পর্কে আপডেট থাকুন",
-    "emailPlaceholder": "আপনার ইমেইল ঠিকানা",
-    "subscribe": "সাবস্ক্রাইব",
-    "tagline": "গ্লোবাল এন্টারপ্রাইজ প্ল্যাটফর্ম",
-    "desc": "প্রযুক্তি, বাণিজ্য, প্রতিভা ও পরামর্শে উচ্চ-প্রভাব উদ্যোগ গড়ে তোলা ও পরিচালনা করা — বিশ্বজুড়ে।",
-    "quickLinks": "দ্রুত লিঙ্ক",
-    "groupProfile": "গ্রুপ প্রোফাইল",
-    "links": {
-      "home": "হোম",
-      "about": "আমাদের সম্পর্কে",
-      "global": "বৈশ্বিক উপস্থিতি",
-      "businesses": "আমাদের সেবা",
-      "network": "বিশ্বস্ত নেটওয়ার্ক",
-      "contact": "যোগাযোগ",
-      "profile": "গ্রুপ প্রোফাইল",
-      "story": "আমাদের গল্প",
-      "contactNet": "যোগাযোগ নেটওয়ার্ক",
-      "management": "আমাদের নেতৃত্ব",
-      "blog": "ব্লগ",
-      "sustainable": "টেকসই প্রবৃদ্ধি",
-      "community": "সম্প্রদায় সেবা",
-      "careers": "ক্যারিয়ার",
-      "ecommerce": "ইয়ানাবিয়া ই-কমার্স ↗",
-      "donation": "দান করুন",
-      "webmail": "ওয়েবমেইল পোর্টাল ↗"
-    }
-  },
   "common": {
     "ourPeople": "আমাদের নেতৃত্ব",
     "previous": "আগের",
@@ -547,12 +519,6 @@
     "phone": "ফোন",
     "mobile": "মোবাইল",
     "email": "ইমেইল"
-  },
-  "countryOps": {
-    "established": "প্রতিষ্ঠিত",
-    "legalEntity": "আইনি সত্তা",
-    "licenseName": "লাইসেন্সের নাম",
-    "issuingAuthority": "ইস্যুকারী কর্তৃপক্ষ"
   },
   "ceoPage": {
     "badge": "প্রতিষ্ঠাতা · চেয়ারম্যান · সিইও",
@@ -724,6 +690,41 @@
     "otherTeams": "অন্যান্য আঞ্চলিক দল",
     "teamCount_one": "ইয়ানাবিয়ার {{country}} কার্যক্রমে {{count}} জন দলের সদস্য।",
     "teamCount_other": "ইয়ানাবিয়ার {{country}} কার্যক্রমে {{count}} জন দলের সদস্য।"
+  },
+  "footer": {
+    "rights": "সর্বস্বত্ব সংরক্ষিত।",
+    "stamp": "মান ও পেশাদারিত্বের ছাপ",
+    "hq": "সদর",
+    "postalAddress": "ডাক ঠিকানা",
+    "headOffice": "প্রধান কার্যালয়",
+    "newsletter": "নিউজলেটার",
+    "newsletterDesc": "ইয়ানাবিয়া গ্রুপের সংবাদ ও ইনসাইট সম্পর্কে আপডেট থাকুন",
+    "emailPlaceholder": "আপনার ইমেইল ঠিকানা",
+    "subscribe": "সাবস্ক্রাইব",
+    "tagline": "গ্লোবাল এন্টারপ্রাইজ প্ল্যাটফর্ম",
+    "desc": "প্রযুক্তি, বাণিজ্য, প্রতিভা ও পরামর্শে উচ্চ-প্রভাব উদ্যোগ গড়ে তোলা ও পরিচালনা করা — বিশ্বজুড়ে।",
+    "quickLinks": "দ্রুত লিঙ্ক",
+    "groupProfile": "গ্রুপ প্রোফাইল",
+    "links": {
+      "home": "হোম",
+      "about": "আমাদের সম্পর্কে",
+      "global": "বৈশ্বিক উপস্থিতি",
+      "businesses": "আমাদের সেবা",
+      "network": "বিশ্বস্ত নেটওয়ার্ক",
+      "people": "আমাদের নেতৃত্ব",
+      "contact": "যোগাযোগ",
+      "profile": "গ্রুপ প্রোফাইল",
+      "story": "আমাদের গল্প",
+      "contactNet": "যোগাযোগ নেটওয়ার্ক",
+      "management": "আমাদের নেতৃত্ব",
+      "blog": "ব্লগ",
+      "sustainable": "টেকসই প্রবৃদ্ধি",
+      "community": "সম্প্রদায় সেবা",
+      "careers": "ক্যারিয়ার",
+      "ecommerce": "ইয়ানাবিয়া ই-কমার্স ↗",
+      "donation": "দান করুন",
+      "webmail": "ওয়েবমেইল পোর্টাল ↗"
+    }
   },
   "serviceForm": {
     "workWithUs": "আমাদের সাথে কাজ করুন",
@@ -1145,6 +1146,10 @@
     "servicehub": {
       "title": "ইয়ানাবিয়া সার্ভিস হাব",
       "desc": "সকল ইয়ানাবিয়া গ্রুপ সেবার জন্য ওয়ান-স্টপ প্ল্যাটফর্ম — সব বিভাগ এক জায়গায়।"
+    },
+    "erp": {
+      "title": "ইয়ানাবিয়া ERP",
+      "desc": "চারটি দেশজুড়ে অর্থ, এইচআর, ক্রয় ও পরিচালনার জন্য একীভূত ERP।"
     }
   }
 }

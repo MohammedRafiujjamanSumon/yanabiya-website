@@ -15,7 +15,7 @@
     "contact": "Nous Contacter",
     "ourNetwork": "Notre Réseau",
     "ourCommunity": "Notre Communauté",
-    "ourPeople": "Notre Équipe",
+    "ourPeople": "Notre Leadership",
     "boardOfMembers": "Conseil d'Administration",
     "chairman": "PDG & Président",
     "viceChairman": "Vice-Président"
@@ -299,6 +299,7 @@
     "readMore": "Lire Plus",
     "tier1Kicker": "Niveau 01 — Conseil & Conseil",
     "tier1Title": "Board of Directors",
+    "tier1Tagline": "The Governing Body of Yanabiya Group",
     "tier1Sub": "The Board of Directors exercises the highest level of fiduciary responsibility over Yanabiya Group, providing independent oversight, long-term strategic direction, and institutional accountability across all operating jurisdictions — Oman, the United Kingdom, the United States, and Bangladesh.",
     "tier2Kicker": "Niveau 02 — Direction Exécutive",
     "tier2Title": "Direction Générale Mondiale",
@@ -309,8 +310,13 @@
     "founderChairmanCEO": "Fondateur, Président & PDG",
     "becomePartner": "Devenir Partenaire",
     "joinTeam": "Rejoindre Notre Équipe",
-    "ourCompanies": "Nos Entreprises",
-    "tier1Tagline": "The Governing Body of Yanabiya Group"
+    "ourCompanies": "Nos Entreprises"
+  },
+  "countryOps": {
+    "established": "Fondée",
+    "legalEntity": "Entité Juridique",
+    "licenseName": "Nom de la Licence",
+    "issuingAuthority": "Autorité d'Émission"
   },
   "strategy": {
     "eyebrow": "Stratégie & Innovation",
@@ -433,41 +439,26 @@
     "countryUS": "🇺🇸 États-Unis",
     "chooseBranch": "Choisissez notre agence"
   },
-  "footer": {
-    "rights": "Tous droits réservés.",
-    "stamp": "Le Sceau de Qualité & Professionnalisme",
-    "hq": "Siège",
-    "postalAddress": "Adresse Postale",
-    "headOffice": "Bureau Principal",
-    "newsletter": "Newsletter",
-    "newsletterDesc": "Restez informé des actualités et analyses du Yanabiya Group",
-    "emailPlaceholder": "Votre adresse e-mail",
-    "subscribe": "S'abonner",
-    "tagline": "Plateforme d'Entreprise Mondiale",
-    "desc": "Construire et opérer des projets à fort impact dans la technologie, le commerce, les talents et le conseil — dans le monde entier.",
-    "quickLinks": "Liens Rapides",
-    "groupProfile": "Profil du Groupe",
-    "links": {
-      "home": "Accueil",
-      "about": "À Propos",
-      "global": "Présence Mondiale",
-      "businesses": "Nos Services",
-      "network": "Réseau de Confiance",
-      "contact": "Contact",
-      "profile": "Profil du Groupe",
-      "story": "Notre Histoire",
-      "contactNet": "Réseau de Contact",
-      "management": "Notre Direction",
-      "blog": "Blog",
-      "sustainable": "Croissance Durable",
-      "community": "Action Communautaire",
-      "careers": "Carrières",
-      "ecommerce": "Yanabiya E-Commerce ↗",
-      "webmail": "Webmail Portal ↗"
-    }
+  "chatWidget": {
+    "openLabel": "Envoyer un message",
+    "whatsappLabel": "Discuter sur WhatsApp",
+    "title": "Parler à Yanabiya",
+    "subtitle": "Dites-nous-en un peu et nous répondrons rapidement.",
+    "name": "Votre nom *",
+    "email": "E-mail *",
+    "subject": "Objet *",
+    "chooseBusiness": "Choisir une activité *",
+    "chooseOffice": "Choisir un bureau (facultatif)",
+    "message": "Comment pouvons-nous vous aider ? *",
+    "send": "Envoyer le message",
+    "sending": "Envoi…",
+    "privacy": "Nous utilisons vos coordonnées uniquement pour répondre à votre demande.",
+    "thanksTitle": "Merci — message bien reçu.",
+    "thanksBody": "Notre équipe a été notifiée et répondra sous un jour ouvré.",
+    "sendAnother": "Envoyer un autre message"
   },
   "common": {
-    "ourPeople": "Notre Équipe",
+    "ourPeople": "Notre Leadership",
     "previous": "Précédent",
     "next": "Suivant",
     "close": "Fermer",
@@ -528,12 +519,6 @@
     "phone": "Téléphone",
     "mobile": "Mobile",
     "email": "Email"
-  },
-  "countryOps": {
-    "established": "Fondée",
-    "legalEntity": "Entité Juridique",
-    "licenseName": "Nom de la Licence",
-    "issuingAuthority": "Autorité d'Émission"
   },
   "ceoPage": {
     "badge": "Fondateur · Président · PDG",
@@ -706,6 +691,41 @@
     "teamCount_one": "{{count}} membre d'équipe dans les opérations Yanabiya au {{country}}.",
     "teamCount_other": "{{count}} membres d'équipe dans les opérations Yanabiya au {{country}}."
   },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "stamp": "Le Sceau de Qualité & Professionnalisme",
+    "hq": "Siège",
+    "postalAddress": "Adresse Postale",
+    "headOffice": "Bureau Principal",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Restez informé des actualités et analyses du Yanabiya Group",
+    "emailPlaceholder": "Votre adresse e-mail",
+    "subscribe": "S'abonner",
+    "tagline": "Plateforme d'Entreprise Mondiale",
+    "desc": "Construire et opérer des projets à fort impact dans la technologie, le commerce, les talents et le conseil — dans le monde entier.",
+    "quickLinks": "Liens Rapides",
+    "groupProfile": "Profil du Groupe",
+    "links": {
+      "home": "Accueil",
+      "about": "À Propos",
+      "global": "Présence Mondiale",
+      "businesses": "Nos Services",
+      "network": "Réseau de Confiance",
+      "people": "Notre Direction",
+      "contact": "Contact",
+      "profile": "Profil du Groupe",
+      "story": "Notre Histoire",
+      "contactNet": "Réseau de Contact",
+      "management": "Notre Direction",
+      "blog": "Blog",
+      "sustainable": "Croissance Durable",
+      "community": "Action Communautaire",
+      "careers": "Carrières",
+      "ecommerce": "Yanabiya E-Commerce ↗",
+      "donation": "Faire un don",
+      "webmail": "Webmail Portal ↗"
+    }
+  },
   "serviceForm": {
     "workWithUs": "Travailler avec nous",
     "getOurService": "Obtenir notre service",
@@ -759,9 +779,61 @@
     "ukItDesc": "Notre branche de conseil IT au Royaume-Uni propose des services de logiciels, cloud, IA et cybersécurité."
   },
   "ourStory": {
-    "kicker": "Notre histoire",
-    "title": "De l'ambition à l'impact mondial",
-    "intro": "Yanabiya Group est né d'une conviction simple : le commerce éthique, la communauté et le progrès durable peuvent coexister. Ce qui a commencé comme une entreprise commerciale axée sur les marchés du Golfe s'est transformé en une famille d'entreprises présente sur quatre continents.",
+    "eyebrow": "Yanabiya Group, Our Story",
+    "heroTitle": "From Muscat.",
+    "heroAccent": "For the World.",
+    "heroPara": "A decade of building enterprises across four countries, written one relationship, one delivery, one chapter at a time.",
+    "scrollToBegin": "Scroll to begin",
+    "s01kicker": "01, The Story",
+    "s02kicker": "02, Mission in Action",
+    "s02Title": "Three principles. One discipline.",
+    "s03kicker": "03, Vision Forward",
+    "s03Title": "The next decade isn't about more.",
+    "s03Accent": "It's about deeper.",
+    "s03Para": "Deeper expertise across our six sectors. Deeper trust with the communities we serve. Deeper connections across the four countries we already call home.",
+    "s04kicker": "04, The Journey",
+    "s04Title": "A decade in milestones.",
+    "s05kicker": "05, Global Strategy",
+    "s05Title": "One platform. Four homes.",
+    "chapterPrefix": "Chapter 0",
+    "visitCountry": "Visit",
+    "s06kicker": "06, Leadership",
+    "s06Title": "Stewards of the long view.",
+    "meetFullTeam": "Meet the full team",
+    "s07kicker": "07, Stewardship",
+    "s07Title": "Growth that gives back.",
+    "s07Para": "Profit isn't the only thing we measure. Across every country we operate in, we commit to community welfare programmes, education access, and environmental responsibility, because long-term value isn't built any other way.",
+    "exploreImpact": "Explore our impact",
+    "stewardStats": {
+      "sustainabilityProgrammes": "Sustainability programmes",
+      "communitiesServed": "Communities served",
+      "welfarePartnerships": "Welfare partnerships",
+      "opsEthics": "Operational ethics review"
+    },
+    "s08kicker": "08, Network",
+    "s08Title": "Trusted by enterprises across four continents.",
+    "seeNetwork": "See our trusted network",
+    "s09kicker": "09, The Next Chapter",
+    "s09Title": "Build the next chapter",
+    "s09Accent": "with us.",
+    "s09Para": "Whether you're scaling a venture, sourcing a partner, or entering a new market, let's talk about what's possible.",
+    "startConversation": "Start a Conversation",
+    "exploreSectors": "Explore our sectors",
+    "backToAbout": "Back to About Us",
+    "storyLines": [
+      "Yanabiya a été fondée non pas pour poursuivre le profit, mais pour servir un objectif : connecter les communautés, créer de la valeur et faire du commerce un outil de dignité humaine.",
+      "Notre fondateur croyait que les entreprises peuvent être bonnes — pour leurs propriétaires, leurs employés, les communautés qu'elles servent et la planète sur laquelle elles opèrent.",
+      "Au fil des années, nous avons traversé des marchés difficiles, des incertitudes géopolitiques et des défis mondiaux. À chaque fois, nos valeurs ont guidé nos décisions.",
+      "Nous n'avons jamais cherché à croître pour croître. Chaque expansion que nous avons entreprise était motivée par une véritable opportunité de service.",
+      "En Oman, nous avons commencé par faciliter le commerce entre les marchés du Golfe et d'Asie — en construisant des ponts commerciaux là où il n'en existait pas.",
+      "Au Royaume-Uni, nous avons établi un hub pour la diaspora — aidant les communautés à accéder à des conseils professionnels, des services financiers et des opportunités commerciales.",
+      "Au Bangladesh, nous avons lié les producteurs locaux aux marchés mondiaux, aidant les familles à accéder à des revenus qui changent leur vie.",
+      "Aux États-Unis, nous développons des partenariats stratégiques qui ramènent des opportunités vers nos communautés d'origine.",
+      "Notre fondation caritative — financée par les bénéfices de nos activités commerciales — a soutenu des écoles, des Masjid, des secours lors de catastrophes et des programmes d'autonomisation des femmes.",
+      "Nous croyons que la réussite commerciale et la responsabilité sociale ne s'excluent pas mutuellement. En fait, l'une renforce l'autre.",
+      "Chaque partenaire avec lequel nous travaillons, chaque client que nous servons, chaque communauté que nous touchons — ils font tous partie de l'histoire de Yanabiya.",
+      "Ce voyage est loin d'être terminé. Nous continuons à construire, à apprendre et à servir — guidés par la foi, animés par l'objectif et enracinés dans l'intégrité."
+    ],
     "milestones": [
       {
         "year": "2008",
@@ -794,20 +866,24 @@
         "body": "Aujourd'hui, Yanabiya opère sur quatre continents avec des équipes en Oman, au Royaume-Uni, au Bangladesh et aux États-Unis, servant des clients dans plus de 20 pays."
       }
     ],
-    "storyLines": [
-      "Yanabiya a été fondée non pas pour poursuivre le profit, mais pour servir un objectif : connecter les communautés, créer de la valeur et faire du commerce un outil de dignité humaine.",
-      "Notre fondateur croyait que les entreprises peuvent être bonnes — pour leurs propriétaires, leurs employés, les communautés qu'elles servent et la planète sur laquelle elles opèrent.",
-      "Au fil des années, nous avons traversé des marchés difficiles, des incertitudes géopolitiques et des défis mondiaux. À chaque fois, nos valeurs ont guidé nos décisions.",
-      "Nous n'avons jamais cherché à croître pour croître. Chaque expansion que nous avons entreprise était motivée par une véritable opportunité de service.",
-      "En Oman, nous avons commencé par faciliter le commerce entre les marchés du Golfe et d'Asie — en construisant des ponts commerciaux là où il n'en existait pas.",
-      "Au Royaume-Uni, nous avons établi un hub pour la diaspora — aidant les communautés à accéder à des conseils professionnels, des services financiers et des opportunités commerciales.",
-      "Au Bangladesh, nous avons lié les producteurs locaux aux marchés mondiaux, aidant les familles à accéder à des revenus qui changent leur vie.",
-      "Aux États-Unis, nous développons des partenariats stratégiques qui ramènent des opportunités vers nos communautés d'origine.",
-      "Notre fondation caritative — financée par les bénéfices de nos activités commerciales — a soutenu des écoles, des Masjid, des secours lors de catastrophes et des programmes d'autonomisation des femmes.",
-      "Nous croyons que la réussite commerciale et la responsabilité sociale ne s'excluent pas mutuellement. En fait, l'une renforce l'autre.",
-      "Chaque partenaire avec lequel nous travaillons, chaque client que nous servons, chaque communauté que nous touchons — ils font tous partie de l'histoire de Yanabiya.",
-      "Ce voyage est loin d'être terminé. Nous continuons à construire, à apprendre et à servir — guidés par la foi, animés par l'objectif et enracinés dans l'intégrité."
-    ],
+    "regions": {
+      "OM": {
+        "tag": "Headquarters",
+        "body": "Where the story began. Our Muscat office anchors group strategy, regulatory intelligence, and Gulf trade operations."
+      },
+      "GB": {
+        "tag": "European Operations",
+        "body": "A London base for client engagements, partnerships, and regulated advisory work across EMEA."
+      },
+      "BD": {
+        "tag": "South Asia Operations",
+        "body": "Our engineering and apparel hub. Where craft meets capacity, at scale, with discipline."
+      },
+      "US": {
+        "tag": "North America Operations",
+        "body": "Frontier-tech advisory and partner network for the Americas, from Austin into the wider continent."
+      }
+    },
     "leaders": [
       {
         "name": "Fondateur & PDG",
@@ -834,13 +910,7 @@
         "title": "Impact communautaire",
         "body": "Des pourcentages de chaque activité commerciale alimentent la Yanabiya Foundation, qui finance directement l'éducation, les secours et les programmes communautaires."
       }
-    ],
-    "regions": {
-      "OM": "Siège mondial & Hub commercial du Golfe",
-      "GB": "Hub Europe & Diaspora",
-      "BD": "Hub Asie du Sud & Soutien communautaire",
-      "US": "Hub Amériques & Conseil stratégique"
-    }
+    ]
   },
   "omanPresence": {
     "globalPresence": "Présence Mondiale",
@@ -856,64 +926,75 @@
     "backToGlobal": "Retour à Global"
   },
   "donation": {
-    "heroTitle": "Donnez li-Llah — Donnez pour Jannah",
-    "heroSub": "Une chance de bâtir votre palais dans Jannah en aidant ceux dans le besoin ici-bas. Chaque riyal, chaque livre, chaque don compte.",
-    "tabOnline": "Don en ligne",
-    "tabBank": "Virement bancaire",
-    "tabContact": "Nous contacter",
-    "amountLabel": "Choisissez un montant",
-    "customAmountPlaceholder": "Montant personnalisé",
-    "currencyLabel": "Devise",
-    "causeLabel": "Choisissez une cause",
-    "allCauses": "Toutes les causes",
-    "nameLabel": "Votre nom",
-    "emailLabel": "Adresse e-mail",
-    "messageLabel": "Message (facultatif)",
-    "messagePlaceholder": "Dites-nous pourquoi vous donnez ou laissez une duaa…",
-    "submitBtn": "Donner maintenant",
-    "submitting": "Traitement en cours…",
-    "successTitle": "JazakAllah Khayran !",
-    "successMsg": "Votre don a été reçu. Que Allah l'accepte de vous et bénisse votre famille.",
-    "bankTitle": "Effectuer un virement bancaire",
-    "bankSub": "Utilisez les informations ci-dessous pour effectuer un virement. Veuillez indiquer votre nom et la cause dans la référence.",
-    "contactTitle": "Nous préférons vous parler ?",
-    "contactSub": "Contactez directement notre équipe des donations pour les grands dons, les dons récurrents ou les partenariats institutionnels.",
-    "contactEmail": "donate@yanabiyagroup.com",
-    "impactTitle": "Votre impact en chiffres",
-    "impactSub": "Depuis le lancement de la Yanabiya Charitable Foundation, les dons de notre communauté ont eu un impact réel et mesurable.",
+    "communityCareNav": "Community Care",
+    "testimonialsNav": "Testimonials",
+    "foundationBadge": "Yanabiya Charitable Foundation",
+    "jannahQuote": "A Chance to Build Your Palace in Jannah",
+    "prophetHadith": "The Prophet said: Charity does not decrease wealth. (Sahih Muslim)",
     "stats": {
-      "raised": "Collectés jusqu'à présent",
-      "projects": "Projets financés",
+      "directToCause": "Direct to Cause",
+      "livesTouched": "Lives Touched",
       "countries": "Pays touchés",
-      "families": "Familles aidées"
+      "trackRecord": "Track Record"
     },
+    "whereGiftGoes": "Where Your Gift Goes",
+    "chooseCause": "Choose a Cause to Support",
+    "selected": "Selected:",
+    "paymentMethod": "Payment Method",
+    "paymentSubtitle": "Choose your amount, pick country, follow steps",
+    "chooseProgramme": "Choose Programme",
+    "selectCausePh": "Select a cause to support",
+    "yourContribution": "Your Contribution",
+    "fromWherePayment": "From where will you make payment?",
+    "selectCountryPh": "Select your country",
+    "contactUsToDonate": "Contact Us to Donate",
+    "paymentGateway": "Payment Gateway",
+    "comingSoonTitle": "Coming Soon",
+    "comingSoonDesc": "Payment gateway for your chosen location is on its way. Stay with us, we are working to bring it live soon.",
+    "contactInMeantime": "Contact us in the meantime",
+    "scanToPay": "Scan to pay",
+    "amountToSend": "Amount to send",
+    "bankDetails": "Bank Details",
     "bankLabels": {
+      "bank": "Bank",
       "accountName": "Nom du compte",
-      "bankName": "Nom de la banque",
-      "accountNumber": "Numéro de compte",
-      "sortCode": "Code de tri",
-      "iban": "IBAN",
-      "swift": "SWIFT/BIC",
-      "reference": "Référence"
+      "accountNo": "Account No",
+      "routing": "Routing",
+      "swift": "SWIFT/BIC"
     },
+    "amountToTransfer": "Amount to transfer",
+    "getInvoice": "Get Invoice",
+    "optional": "(optional)",
+    "yourName": "Your Name",
+    "noInvoice": "I don't need an invoice",
+    "confirmDonation": "Confirm My Donation",
+    "jazakAllah": "JazakAllah Khayran!",
+    "donationThankYou": "Your generous contribution will make a real difference. May Allah reward you with His best.",
+    "donateAgain": "Donate again",
+    "whyDonateTitle": "Why Donate With Us",
+    "whyDonateSubtitle": "Trusted, Transparent, Halal verified",
     "trust": {
-      "secure": {
-        "title": "Paiements sécurisés",
-        "body": "Tous les dons en ligne sont traités via des passerelles cryptées sécurisées. Vos données financières ne sont jamais stockées sur nos serveurs."
+      "registered": {
+        "title": "Registered Organisation",
+        "desc": "Yanabiya Charitable Foundation, officially registered and audited across four countries."
+      },
+      "directToCause": {
+        "title": "100% Reaches the Cause",
+        "desc": "Administrative costs are covered separately, every penny of your gift goes directly to the cause."
       },
       "shariah": {
         "title": "Conforme à la Shariah",
-        "body": "Toutes les collectes de fonds et distributions respectent les principes islamiques. Notre comité Shariah supervise l'attribution des fonds."
+        "desc": "All programmes are reviewed and approved under Islamic guidelines."
       },
-      "transparent": {
-        "title": "100 % transparent",
-        "body": "Des rapports annuels de la fondation sont publiés publiquement. Vous pouvez voir exactement comment chaque don est utilisé."
-      },
-      "receipt": {
-        "title": "Reçu de don",
-        "body": "Chaque donateur reçoit une confirmation par e-mail. Sur demande, nous fournissons des reçus fiscaux formels là où la loi le permet."
+      "personal": {
+        "title": "Personal Acknowledgement",
+        "desc": "Every donor receives a personalised thank-you message and impact update."
       }
     },
+    "fundAllocation": "Fund Allocation",
+    "directToCauseLabel": "Direct to cause",
+    "simpleTransparent": "Simple, Transparent, Impactful",
+    "howItWorksTitle": "How Your Donation Works",
     "steps": [
       {
         "title": "Choisissez votre cause",
@@ -928,79 +1009,87 @@
         "body": "Entrez vos coordonnées et finalisez votre don en toute sécurité. Vous recevrez une confirmation par e-mail immédiatement."
       }
     ],
+    "aboutFoundationBadge": "About the Foundation",
+    "foundationDesc": "Established to serve communities across Oman, Bangladesh, the United Kingdom and the USA, we direct charitable funds to those who need them most with full transparency and Islamic integrity. Every programme is managed by a dedicated team and reviewed by a Shariah board.",
     "foundationTags": [
       "Fonds général de la Fondation Yanabiya",
       "Secours d'urgence & Aide humanitaire",
       "Bourses d'études & Éducation",
       "Construction & Rénovation de Masjid"
     ],
-    "amountLabels": {
-      "feeds": "nourrit une famille pendant une semaine",
-      "educates": "finance l'éducation d'un enfant pendant un mois",
-      "builds": "contribue à la construction d'un puits",
-      "sponsors": "parraine un étudiant pendant un trimestre",
-      "custom": "Montant personnalisé"
-    },
+    "getInTouchBadge": "Get in Touch",
+    "getInTouchDesc": "Questions about our programmes, how we serve each cause, or need help with your donation? Our team responds within one business day.",
+    "donationEnquiries": "Donation enquiries",
+    "generalEnquiries": "General enquiries",
+    "forDonationsFrom": "For donations from {{country}}, reach out and we will arrange the best payment method.",
+    "amountLabels": [
+      "Provides a meal for a family",
+      "Sponsors a student for a week",
+      "Covers medical care for a child",
+      "Supports an orphan for a month",
+      "Choose your own impact"
+    ],
+    "enterAmount": "Enter amount",
     "causeList": {
-      "education": {
-        "label": "Éducation",
-        "desc": "Financer des bourses, des fournitures scolaires et des programmes de formation pour les communautés dans le besoin.",
-        "impact": "300 £ = bourses d'études pour un an"
+      "masjidSupport": {
+        "label": "Masjid Support",
+        "desc": "Construction and maintenance of mosques.",
+        "impact": "Builds a house of prayer"
       },
-      "emergency": {
-        "label": "Secours d'urgence",
-        "desc": "Aide immédiate aux victimes de catastrophes naturelles, de conflits et de crises humanitaires.",
-        "impact": "50 £ = kit alimentaire d'urgence pour 5 jours"
+      "orphanCare": {
+        "label": "Orphan Care",
+        "desc": "Education and welfare for orphaned children.",
+        "impact": "Gives a child a future"
       },
-      "masjid": {
-        "label": "Construction de Masjid",
-        "desc": "Contribuer à la construction et à la rénovation des Masjid dans les communautés sous-desservies.",
-        "impact": "500 £ = rénovation d'un espace de prière"
+      "elderlyHome": {
+        "label": "Elderly Home",
+        "desc": "Care and dignity for the elderly in need.",
+        "impact": "Restores dignity to elders"
       },
-      "water": {
-        "label": "Eau propre",
-        "desc": "Financer des puits, des systèmes de filtration et des infrastructures d'eau potable dans les zones rurales.",
-        "impact": "200 £ = un puits servant 50 familles"
+      "medicalSupport": {
+        "label": "Medical Support",
+        "desc": "Free health camps and medicine for those who cannot afford care.",
+        "impact": "Heals a family in need"
       },
-      "orphan": {
-        "label": "Parrainage d'orphelins",
-        "desc": "Fournir un soutien mensuel aux orphelins, couvrant la nourriture, les vêtements, les soins médicaux et l'éducation.",
-        "impact": "30 £/mois = parrainage complet d'un orphelin"
+      "endingTorment": {
+        "label": "Ending the Torment",
+        "desc": "Emergency relief for families in extreme hardship.",
+        "impact": "Brings relief in crisis"
       },
-      "widow": {
-        "label": "Soutien aux veuves",
-        "desc": "Autonomisation des veuves grâce à des aides financières, une formation professionnelle et un soutien communautaire.",
-        "impact": "100 £ = un mois de soutien à une veuve et ses enfants"
+      "studentCare": {
+        "label": "Student Care",
+        "desc": "Scholarships and learning resources for underprivileged students.",
+        "impact": "Opens doors to knowledge"
       },
-      "zakat": {
-        "label": "Distribution de Zakah",
-        "desc": "Votre Zakah sera distribuée à des bénéficiaires vérifiés dans le besoin, conformément aux principes islamiques.",
-        "impact": "100 % de la Zakah va aux bénéficiaires"
+      "specialCare": {
+        "label": "Special Care",
+        "desc": "Support and resources for individuals with special needs.",
+        "impact": "Empowers every person"
+      },
+      "eidClothes": {
+        "label": "Eid Clothes",
+        "desc": "New clothing for those who cannot afford to celebrate.",
+        "impact": "Spreads joy on Eid"
+      },
+      "zakah": {
+        "label": "Pay Your Zakah",
+        "desc": "Fulfil your annual Zakah obligation through us.",
+        "impact": "Purifies your wealth"
       },
       "sadaqah": {
         "label": "Sadaqah Jariyah",
         "desc": "Dons récurrents pour des projets durables — puits, bibliothèques, centres éducatifs — dont les récompenses continuent après votre décès.",
         "impact": "Récompenses durables dans cette vie et dans l'au-delà"
       },
-      "food": {
-        "label": "Distribution de nourriture",
-        "desc": "Fournir des repas nutritifs aux familles pauvres, aux orphelins et aux nécessiteux lors du Ramadan et tout au long de l'année.",
-        "impact": "20 £ = nourrit une famille pendant une semaine"
+      "environmentCare": {
+        "label": "Environment Care",
+        "desc": "Tree plantation and eco initiatives for future generations.",
+        "impact": "Sadaqah Jariyah for generations"
       },
-      "medical": {
-        "label": "Aide médicale",
-        "desc": "Financer des traitements médicaux, des médicaments et des soins de santé pour ceux qui n'ont pas les moyens de se soigner.",
-        "impact": "75 £ = traitement médical pour un patient"
-      },
-      "women": {
-        "label": "Autonomisation des femmes",
-        "desc": "Programmes de formation professionnelle, de micro-financement et d'alphabétisation pour les femmes dans les communautés marginalisées.",
-        "impact": "150 £ = formation professionnelle pour une femme"
-      },
-      "general": {
-        "label": "Fonds général",
-        "desc": "Votre don sera alloué là où le besoin est le plus pressant parmi nos projets actifs.",
-        "impact": "100 % va aux projets de la fondation"
+      "buildingMaintenance": {
+        "label": "Building & Maintenance",
+        "desc": "Upkeep of mosques, madrasas and charitable facilities.",
+        "impact": "Preserves a place of worship"
       }
     }
   },
@@ -1058,6 +1147,10 @@
     "servicehub": {
       "title": "Hub de Services Yanabiya",
       "desc": "Plateforme tout-en-un pour tous les services du Groupe Yanabiya — toutes les divisions en un seul endroit."
+    },
+    "erp": {
+      "title": "Yanabiya ERP",
+      "desc": "ERP unifié pour la finance, les RH, les achats et les opérations dans les quatre pays."
     }
   }
 }
