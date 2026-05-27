@@ -121,11 +121,11 @@ export default function SubServiceDetail() {
               className="font-semibold uppercase tracking-[0.18em]
                          hover:text-brand-accentDark transition-colors"
             >
-              {business.title.replace('🤝 ', '')}
+              {t(`businesses.items.${business.slug}.title`, business.title).replace('🤝 ', '')}
             </Link>
             <span className="text-brand-deep/30">›</span>
             <span className="font-semibold text-brand-deep normal-case tracking-normal">
-              {sub.title}
+              {t(`businesses.items.${business.slug}.sub.${sub.slug}.title`, sub.title)}
             </span>
           </div>
 
@@ -175,16 +175,18 @@ export default function SubServiceDetail() {
                 <img src={assets.logo} alt="Yanabiya" className="w-14 h-14 object-contain" />
               </div>
               <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-white/70">
-                {business.title.replace('🤝 ', '')}
+                {t(`businesses.items.${business.slug}.title`, business.title).replace('🤝 ', '')}
               </p>
               <h1 className="font-serif text-2xl md:text-4xl text-white drop-shadow-lg text-center">
-                {sub.title}
+                {t(`businesses.items.${business.slug}.sub.${sub.slug}.title`, sub.title)}
               </h1>
             </div>
           </div>
           <div className="flex flex-col items-center text-center gap-4 mb-10">
             <div className="w-16 h-0.5 bg-brand-accent rounded-full" />
-            <p className="text-brand-deep/70 leading-relaxed max-w-3xl mx-auto">{sub.body}</p>
+            <p className="text-brand-deep/70 leading-relaxed max-w-3xl mx-auto">
+              {t(`businesses.items.${business.slug}.sub.${sub.slug}.body`, sub.body)}
+            </p>
           </div>
 
           {/* ── Gallery (real workforce photos) ── */}

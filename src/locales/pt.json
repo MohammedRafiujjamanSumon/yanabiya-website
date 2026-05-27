@@ -119,42 +119,326 @@
       "it-software": {
         "title": "Tecnologia & Soluções Digitais",
         "tagline": "Software à medida, cloud & soluções IA",
-        "body": "Software à medida, plataformas web, ERP e soluções IA."
+        "body": "Software à medida, plataformas web, ERP e soluções IA.",
+        "details": "We design and develop custom software, scalable web platforms, enterprise ERP systems, and robust infrastructure solutions for businesses of all sizes. We also build custom AI solutions, including AI agents and prompt-based services, to automate processes, enhance decision-making, and improve operational efficiency.",
+        "sub": {
+          "custom-software-development": {
+            "title": "Custom Software Development",
+            "body": "Bespoke software engineered around your exact workflows, from internal tools and ERPs to customer-facing SaaS products."
+          },
+          "cyber-security": {
+            "title": "Cyber Security & Ethical Hacking",
+            "body": "End-to-end security assessments, penetration testing, and system hardening to protect your business from evolving threats."
+          },
+          "industries-services": {
+            "title": "Industries Services",
+            "body": "Industry-specific digital solutions for manufacturing, retail, logistics, healthcare, finance, and the public sector."
+          },
+          "data-analytics": {
+            "title": "Data Analytics",
+            "body": "Turn raw data into business intelligence with modern data platforms, dashboards, and predictive analytics."
+          },
+          "ui-ux-designing": {
+            "title": "UI/UX Designing",
+            "body": "Research-driven interface design that blends clarity, accessibility, and brand identity into delightful digital experiences."
+          },
+          "aws-services": {
+            "title": "AWS Services",
+            "body": "Certified AWS architecture, migration, and managed cloud operations built for scale, resilience, and cost efficiency."
+          },
+          "web-design-development": {
+            "title": "Web Design & Development",
+            "body": "High-performance corporate websites, e-commerce platforms, and web applications built with modern frameworks."
+          },
+          "ai-agent-service": {
+            "title": "AI Agent Service",
+            "body": "Custom AI agents, prompt-based assistants, and intelligent automation built on modern LLMs and MCP integrations."
+          }
+        }
       },
       "export-import": {
         "title": "Negócio de Exportação e Importação",
         "tagline": "Frete, alfândega & comércio global",
-        "body": "Aprovisionamento, frete, alfândega e cumprimento integral."
+        "body": "Aprovisionamento, frete, alfândega e cumprimento integral.",
+        "details": "Yanabiya Gulf facilitates seamless international trade across multiple regions through a trusted network of logistics partners and deep expertise in local compliance. We manage the entire end-to-end value chain, from sourcing and consolidation to shipping, customs clearance, and final delivery, enabling our clients to focus on expanding their markets while we handle operational complexity.",
+        "sub": {
+          "trade-route-planning": {
+            "title": "Trade Route Planning & Sourcing",
+            "body": "Strategic planning of trade corridors and supplier networks to ensure the most efficient, cost-effective routes for your cargo."
+          },
+          "freight-forwarding": {
+            "title": "International Freight Forwarding",
+            "body": "End-to-end freight forwarding across sea, air, and land, connecting your shipments to global destinations reliably and on time."
+          },
+          "customs-clearance": {
+            "title": "Customs Clearance & Compliance",
+            "body": "Expert customs clearance, import/export compliance, and documentation handling to ensure smooth cross-border movement of goods."
+          },
+          "warehousing-delivery": {
+            "title": "Warehousing & Last-Mile Delivery",
+            "body": "Secure warehousing, efficient inventory management, and reliable last-mile delivery solutions tailored to your business needs."
+          },
+          "trade-finance": {
+            "title": "Trade Finance & Payment Structuring",
+            "body": "Advisory services on trade finance instruments and payment structures that reduce risk and improve cash flow across borders."
+          },
+          "regulatory-compliance": {
+            "title": "Regulatory Compliance & Documentation",
+            "body": "Comprehensive handling of cross-border regulatory requirements and trade documentation to keep your shipments compliant."
+          },
+          "supply-chain-optimization": {
+            "title": "Supply Chain Optimization",
+            "body": "End-to-end supply chain analysis and redesign to reduce costs, shorten lead times, and build resilience into your logistics network."
+          },
+          "cargo-consolidation": {
+            "title": "Cargo Consolidation & Coordination",
+            "body": "Groupage and consolidation services that combine smaller shipments into cost-efficient full loads for international movement."
+          },
+          "risk-management-tracking": {
+            "title": "Risk Management & Shipment Tracking",
+            "body": "Real-time shipment visibility and proactive risk management to protect your cargo and ensure on-time delivery."
+          },
+          "vendor-sourcing": {
+            "title": "Vendor Sourcing & Procurement",
+            "body": "Trusted vendor identification, qualification, and procurement support to build reliable supply partnerships globally."
+          },
+          "dropshipping-ecommerce": {
+            "title": "Dropshipping & E-Commerce Fulfillment",
+            "body": "Seamless dropshipping and e-commerce fulfillment solutions connecting your online store to global customers efficiently."
+          },
+          "cold-chain-cargo": {
+            "title": "Cold Chain & Specialized Cargo",
+            "body": "Temperature-controlled and specialized cargo handling for perishables, pharmaceuticals, and sensitive goods requiring precise conditions."
+          },
+          "order-fulfillment": {
+            "title": "End-to-End Order Fulfillment",
+            "body": "Complete order fulfillment management from purchase order issuance through final delivery, one point of contact for the entire journey."
+          }
+        }
       },
       "clothing": {
         "title": "Vestuário & Acessórios",
         "tagline": "Marca própria & sourcing de vestuário",
-        "body": "Marca própria, sourcing de vestuário, controlo de qualidade e fornecimento retail."
+        "body": "Marca própria, sourcing de vestuário, controlo de qualidade e fornecimento retail.",
+        "details": "Our apparel division connects Bangladesh\\u2019s world-class garment manufacturing capabilities with retailers, distributors, and brand partners across key international markets. We manage private-label production, quality assurance, sourcing, and brand collaboration, delivering end-to-end apparel supply chain solutions from factory floor to retail shelf.",
+        "sub": {
+          "private-label-branding": {
+            "title": "Private Label & Branding",
+            "body": "End-to-end private-label manufacturing and brand building, from concept and design through production and launch."
+          },
+          "bulk-garment-sourcing": {
+            "title": "Bulk Sourcing & Production",
+            "body": "Reliable bulk garment sourcing and production management, connecting buyers to leading Bangladesh manufacturers."
+          },
+          "fashion-accessories": {
+            "title": "Fashion Accessories",
+            "body": "Sourcing and supply of fashion accessories, from bags and belts to jewellery and lifestyle items, across global markets."
+          },
+          "quality-assurance": {
+            "title": "Quality Assurance",
+            "body": "Rigorous QA and third-party inspection programmes to ensure every shipment meets your brand standards."
+          },
+          "oem-odm-manufacturing": {
+            "title": "OEM & ODM Solutions",
+            "body": "Custom OEM and ODM manufacturing, enabling brands to bring unique designs to market with full production support."
+          },
+          "packaging-export": {
+            "title": "Packaging & Export",
+            "body": "End-to-end packaging, labelling, and export documentation to get your garments shelf-ready worldwide."
+          },
+          "seasonal-inventory": {
+            "title": "Seasonal Collections",
+            "body": "Trend-driven seasonal sourcing and inventory planning to keep your product range fresh and market-responsive."
+          }
+        }
       },
       "agents-brokerage": {
         "title": "Agentes & Corretagem",
         "tagline": "Seguros, empréstimos & parcerias",
-        "body": "Negócios transfronteiriços, parcerias e apoio a concursos."
+        "body": "Negócios transfronteiriços, parcerias e apoio a concursos.",
+        "details": "Through our professional brokerage network, we represent suppliers, manufacturers, and institutions across key markets, connecting buyers with the right partners, structuring deals, and supporting transactions from initial engagement to successful closure.",
+        "sub": {
+          "fire-insurance": {
+            "title": "Fire Insurance",
+            "body": "Comprehensive fire insurance coverage protecting your property and assets from fire-related damage and losses."
+          },
+          "marine-insurance": {
+            "title": "Marine Insurance",
+            "body": "Reliable marine insurance covering cargo, vessels, and freight during international and domestic transit."
+          },
+          "motor-insurance": {
+            "title": "Motor Insurance",
+            "body": "Full motor insurance solutions for personal and commercial vehicles, covering accidents, theft, and third-party liability."
+          },
+          "travel-safe-insurance": {
+            "title": "Travel Safe Insurance",
+            "body": "Comprehensive travel insurance keeping you protected against medical emergencies, cancellations, and travel disruptions worldwide."
+          },
+          "education-insurance": {
+            "title": "Education Insurance",
+            "body": "Education insurance plans securing your children's academic future regardless of unforeseen circumstances."
+          },
+          "health-insurance": {
+            "title": "Health Insurance",
+            "body": "Flexible health insurance plans providing access to quality medical care for individuals, families, and corporate groups."
+          },
+          "personal-accident-insurance": {
+            "title": "Personal Accident Insurance",
+            "body": "Personal accident coverage providing financial protection for you and your family in the event of injury or disability."
+          },
+          "property-insurance": {
+            "title": "Property Insurance",
+            "body": "Complete property insurance protecting commercial and residential assets against damage, loss, and liability."
+          },
+          "child-protection-plan": {
+            "title": "Child Protection Plan",
+            "body": "Dedicated child protection plans providing financial security and educational guarantees for your children's future."
+          },
+          "home-loans": {
+            "title": "Home Loans",
+            "body": "Accessible home loan advisory and facilitation services to help individuals and families secure property financing."
+          },
+          "car-loans": {
+            "title": "Car Loans",
+            "body": "Car loan facilitation services connecting customers with competitive vehicle financing options."
+          },
+          "personal-loans": {
+            "title": "Personal Loans",
+            "body": "Personal loan advisory helping individuals access flexible financing for personal needs and financial goals."
+          }
+        }
       },
       "office-management": {
         "title": "Serviços de Gestão de Escritórios",
         "tagline": "Instalações, segurança & operações",
-        "body": "Escritórios com serviços, serviços PRO, contabilidade e administração."
+        "body": "Escritórios com serviços, serviços PRO, contabilidade e administração.",
+        "details": "We manage end-to-end back-office and administrative operations so our clients can focus on core business activities. From serviced offices and reception management to accounting support and compliance coordination, Yanabiya Group ensures smooth, professional, and efficient day-to-day administration.",
+        "sub": {
+          "facility-management": {
+            "title": "Facility Management Services",
+            "body": "Comprehensive facility management solutions maintaining optimal efficiency of electrical, mechanical, HVAC, and building systems."
+          },
+          "security-services": {
+            "title": "Security Services",
+            "body": "Professional security solutions protecting life, business assets, and events through trained personnel and systematic security audits."
+          },
+          "fire-safety": {
+            "title": "Fire Safety",
+            "body": "End-to-end fire safety services including installation, staff training, and systematic audits to ensure compliance and emergency preparedness."
+          },
+          "toll-operations": {
+            "title": "Toll Operations",
+            "body": "Systematic toll operations management ensuring booth efficiency, staff rotation, and rigorous compliance through surprise audits and security protocols."
+          },
+          "housekeeping-catering-horticulture": {
+            "title": "Housekeeping, Catering & Horticulture",
+            "body": "Integrated housekeeping, catering, horticulture, and sanitization services maintaining clean, healthy, and well-presented environments."
+          },
+          "cctv-network-management": {
+            "title": "CCTV & Network Management Services",
+            "body": "Advanced CCTV surveillance and network management services providing connectivity, security monitoring, and access control across facilities."
+          },
+          "office-support-services": {
+            "title": "Office Support Services",
+            "body": "Comprehensive office support services including mail management, receptionist, training coordination, and employee credential verification."
+          },
+          "oms-manpower-services": {
+            "title": "Manpower Services",
+            "body": "Reliable manpower supply of IT executives, facility staff, medical professionals, drivers, and semi-skilled workers for operational needs."
+          },
+          "energy-sustainability": {
+            "title": "Energy Management & Sustainability",
+            "body": "Smart energy management, sustainability audits, and green-building initiatives that lower operating costs and meet ESG compliance targets."
+          }
+        }
       },
       "manpower": {
         "title": "Serviços de Fornecimento de Mão de Obra",
         "tagline": "Pessoal de IT, segurança & construção",
-        "body": "Mão de obra, colocação de estudantes, vistos e aviação."
+        "body": "Mão de obra, colocação de estudantes, vistos e aviação.",
+        "details": "We provide comprehensive overseas employment, recruitment, and mobility solutions for individuals and organizations. From workforce sourcing and employer hiring to immigration guidance, student placements, and travel coordination, we manage the entire journey for working, studying, and relocating abroad. Our services cover compliance, mobilisation, settlement support, and aviation coordination aligned with destination-country regulations.",
+        "sub": {
+          "it-service-manpower": {
+            "title": "IT Service",
+            "body": "Qualified IT professionals and technical executives supplied to meet the technology and digital operations requirements of businesses."
+          },
+          "cleaner-service-manpower": {
+            "title": "Cleaner Service",
+            "body": "Professional cleaning staff supply for offices, facilities, hospitals, and commercial spaces ensuring high hygiene and presentation standards."
+          },
+          "security-guard-manpower": {
+            "title": "Security Guard Service",
+            "body": "Trained and vetted security guards deployed for commercial, industrial, and residential premises ensuring safety and access control."
+          },
+          "construction-worker-manpower": {
+            "title": "Construction Worker",
+            "body": "Skilled and semi-skilled construction workers supplied for building, civil, and infrastructure projects across residential and commercial sectors."
+          },
+          "loading-unloading-manpower": {
+            "title": "Loading & Unloading",
+            "body": "Trained loading and unloading crews for warehouses, ports, factories, and distribution centres — handling cargo of all sizes with safety and efficiency."
+          },
+          "packaging-manpower": {
+            "title": "Packaging Service",
+            "body": "Skilled packaging staff for product wrapping, labeling, kitting, and bulk packaging across retail, e-commerce, manufacturing, and export operations."
+          },
+          "decor-woodwork-wallpaper-manpower": {
+            "title": "Décor, Woodwork & Wallpaper",
+            "body": "Skilled decorators, carpenters, and wallpaper installers for residential, commercial, and hospitality fit-out projects."
+          },
+          "metal-blacksmith-manpower": {
+            "title": "Metal Structures & Blacksmith",
+            "body": "Certified welders, blacksmiths, steel fixers, and metal-structure fabricators for industrial, construction, and infrastructure projects."
+          }
+        }
       },
       "yanabiya-commerce": {
         "title": "Yanabiya e-Commerce",
         "tagline": "Retalho online, marketplace & cumprimento",
-        "body": "Retalho online, marketplace, cumprimento de encomendas."
+        "body": "Retalho online, marketplace, cumprimento de encomendas.",
+        "details": "Yanabiya e-Commerce is our proprietary e-commerce vertical delivering end-to-end online retail, multi-platform marketplace management, and digital trade solutions. We operate our own online stores across multiple countries, offering products ranging from garments and accessories to IT hardware and everyday essentials. Our platform handles everything from product listing and payment processing to order fulfilment and after-sales support.",
+        "sub": {
+          "online-retail-store": {
+            "title": "Online Retail Store",
+            "body": "Yanabiya-owned storefronts selling garments, accessories, IT hardware, and everyday essentials directly to consumers."
+          },
+          "marketplace-management": {
+            "title": "Multi-Platform Marketplace",
+            "body": "Selling and managing Yanabiya products across major global marketplaces including Amazon, eBay, and regional platforms."
+          },
+          "order-fulfilment": {
+            "title": "Order & Fulfilment Management",
+            "body": "End-to-end order processing, warehouse picking, packing, and last-mile delivery coordination for all e-commerce orders."
+          },
+          "digital-payment-solutions": {
+            "title": "Digital Payment Solutions",
+            "body": "Secure multi-currency payment gateways, digital wallets, and cross-border payment processing for all Yanabiya e-Commerce transactions."
+          }
+        }
       },
       "yanabiya-digital-platform": {
         "title": "Yanabiya Plataforma Digital",
         "tagline": "Aplicações, operações de campo & serviços digitais",
-        "body": "Aplicações, operações de campo, RH & CRM."
+        "body": "Aplicações, operações de campo, RH & CRM.",
+        "details": "Yanabiya Digital Platform is our in-house ecosystem of web and mobile applications designed to power internal operations, client services, and field management across all Yanabiya Group verticals. From employee management and field operations to customer-facing service portals and business dashboards, our digital platform unifies data, workflows, and communications in one place.",
+        "sub": {
+          "yanabiya-business-app": {
+            "title": "Yanabiya Business App",
+            "body": "Core business management app for Yanabiya Group, tracking operations, finance, and performance across all verticals and countries."
+          },
+          "customer-service-portal": {
+            "title": "Customer Service Portal",
+            "body": "Client-facing digital portal for service requests, ticket management, and real-time support across all Yanabiya business services."
+          },
+          "field-operations-app": {
+            "title": "Field Operations App",
+            "body": "Mobile app for field staff, supervisors, and site managers to log tasks, track locations, and manage on-ground operations in real time."
+          },
+          "hr-payroll-system": {
+            "title": "HR & Payroll Management",
+            "body": "Centralised HR and payroll platform managing employee records, leave, contracts, and salary processing across all Yanabiya Group countries."
+          }
+        }
       }
     },
     "panel": {

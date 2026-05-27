@@ -123,44 +123,328 @@
     "learnMore": "Learn",
     "items": {
       "it-software": {
-        "title": "Technology & Digital Solutions",
+        "title": "प्रौद्योगिकी और डिजिटल समाधान",
         "tagline": "Custom software, cloud & AI solutions",
-        "body": "Custom software, web platforms, ERP, and AI solutions."
+        "body": "Custom software, web platforms, ERP, and AI solutions.",
+        "details": "हम सभी आकार के व्यवसायों के लिए कस्टम सॉफ्टवेयर, स्केलेबल वेब प्लेटफॉर्म, एंटरप्राइज़ ERP सिस्टम और मज़बूत इन्फ्रास्ट्रक्चर समाधान डिज़ाइन और विकसित करते हैं। हम AI एजेंट और प्रॉम्प्ट-आधारित सेवाओं सहित कस्टम AI समाधान भी बनाते हैं जो प्रक्रियाओं को स्वचालित करते हैं, निर्णय लेने में सुधार करते हैं और परिचालन दक्षता बढ़ाते हैं।",
+        "sub": {
+          "custom-software-development": {
+            "title": "कस्टम सॉफ्टवेयर डेवलपमेंट",
+            "body": "Bespoke software engineered around your exact workflows, from internal tools and ERPs to customer-facing SaaS products."
+          },
+          "cyber-security": {
+            "title": "साइबर सुरक्षा और एथिकल हैकिंग",
+            "body": "End-to-end security assessments, penetration testing, and system hardening to protect your business from evolving threats."
+          },
+          "industries-services": {
+            "title": "उद्योग सेवाएँ",
+            "body": "Industry-specific digital solutions for manufacturing, retail, logistics, healthcare, finance, and the public sector."
+          },
+          "data-analytics": {
+            "title": "डेटा एनालिटिक्स",
+            "body": "Turn raw data into business intelligence with modern data platforms, dashboards, and predictive analytics."
+          },
+          "ui-ux-designing": {
+            "title": "UI/UX डिज़ाइनिंग",
+            "body": "Research-driven interface design that blends clarity, accessibility, and brand identity into delightful digital experiences."
+          },
+          "aws-services": {
+            "title": "AWS सेवाएँ",
+            "body": "Certified AWS architecture, migration, and managed cloud operations built for scale, resilience, and cost efficiency."
+          },
+          "web-design-development": {
+            "title": "वेब डिज़ाइन और डेवलपमेंट",
+            "body": "High-performance corporate websites, e-commerce platforms, and web applications built with modern frameworks."
+          },
+          "ai-agent-service": {
+            "title": "AI एजेंट सेवा",
+            "body": "Custom AI agents, prompt-based assistants, and intelligent automation built on modern LLMs and MCP integrations."
+          }
+        }
       },
       "export-import": {
-        "title": "Export & Import Business",
+        "title": "निर्यात और आयात व्यवसाय",
         "tagline": "Freight, customs & global trade",
-        "body": "Sourcing, freight, customs, and end-to-end fulfilment."
+        "body": "Sourcing, freight, customs, and end-to-end fulfilment.",
+        "details": "यानाबिया गल्फ़ हमारे विश्वसनीय लॉजिस्टिक्स नेटवर्क और स्थानीय अनुपालन विशेषज्ञता के माध्यम से कई क्षेत्रों में निर्बाध अंतर्राष्ट्रीय व्यापार की सुविधा प्रदान करता है। हम सोर्सिंग, कंसोलिडेशन, शिपिंग, सीमा शुल्क निकासी और अंतिम डिलीवरी तक संपूर्ण मूल्य श्रृंखला का प्रबंधन करते हैं।",
+        "sub": {
+          "trade-route-planning": {
+            "title": "व्यापार मार्ग योजना और सोर्सिंग",
+            "body": "Strategic planning of trade corridors and supplier networks to ensure the most efficient, cost-effective routes for your cargo."
+          },
+          "freight-forwarding": {
+            "title": "अंतर्राष्ट्रीय फ़्रेट फ़ॉरवर्डिंग",
+            "body": "End-to-end freight forwarding across sea, air, and land, connecting your shipments to global destinations reliably and on time."
+          },
+          "customs-clearance": {
+            "title": "सीमा शुल्क निकासी और अनुपालन",
+            "body": "Expert customs clearance, import/export compliance, and documentation handling to ensure smooth cross-border movement of goods."
+          },
+          "warehousing-delivery": {
+            "title": "वेयरहाउसिंग और अंतिम-मील डिलीवरी",
+            "body": "Secure warehousing, efficient inventory management, and reliable last-mile delivery solutions tailored to your business needs."
+          },
+          "trade-finance": {
+            "title": "व्यापार वित्त सलाहकार",
+            "body": "Advisory services on trade finance instruments and payment structures that reduce risk and improve cash flow across borders."
+          },
+          "regulatory-compliance": {
+            "title": "नियामक अनुपालन",
+            "body": "Comprehensive handling of cross-border regulatory requirements and trade documentation to keep your shipments compliant."
+          },
+          "supply-chain-optimization": {
+            "title": "आपूर्ति श्रृंखला अनुकूलन",
+            "body": "End-to-end supply chain analysis and redesign to reduce costs, shorten lead times, and build resilience into your logistics network."
+          },
+          "cargo-consolidation": {
+            "title": "कार्गो कंसोलिडेशन और समन्वय",
+            "body": "Groupage and consolidation services that combine smaller shipments into cost-efficient full loads for international movement."
+          },
+          "risk-management-tracking": {
+            "title": "जोखिम प्रबंधन और शिपमेंट ट्रैकिंग",
+            "body": "Real-time shipment visibility and proactive risk management to protect your cargo and ensure on-time delivery."
+          },
+          "vendor-sourcing": {
+            "title": "विक्रेता सोर्सिंग और खरीद",
+            "body": "Trusted vendor identification, qualification, and procurement support to build reliable supply partnerships globally."
+          },
+          "dropshipping-ecommerce": {
+            "title": "ड्रॉपशिपिंग और ई-कॉमर्स फुलफिलमेंट",
+            "body": "Seamless dropshipping and e-commerce fulfillment solutions connecting your online store to global customers efficiently."
+          },
+          "cold-chain-cargo": {
+            "title": "कोल्ड चेन और विशेष कार्गो",
+            "body": "Temperature-controlled and specialized cargo handling for perishables, pharmaceuticals, and sensitive goods requiring precise conditions."
+          },
+          "order-fulfillment": {
+            "title": "ऑर्डर फुलफिलमेंट समाधान",
+            "body": "Complete order fulfillment management from purchase order issuance through final delivery, one point of contact for the entire journey."
+          }
+        }
       },
       "clothing": {
-        "title": "Clothing & Accessories",
+        "title": "वस्त्र, परिधान और सहायक उपकरण",
         "tagline": "Private label & garment sourcing",
-        "body": "Private label, garment sourcing, QA, and retail supply."
+        "body": "Private label, garment sourcing, QA, and retail supply.",
+        "details": "हम वैश्विक ब्रांडों और खुदरा विक्रेताओं के लिए तैयार-वस्त्र निर्यात, फैशन सहायक उपकरण और निजी-लेबल विनिर्माण प्रदान करते हैं।",
+        "sub": {
+          "private-label-branding": {
+            "title": "निजी लेबल और ब्रांडिंग",
+            "body": "End-to-end private-label manufacturing and brand building, from concept and design through production and launch."
+          },
+          "bulk-garment-sourcing": {
+            "title": "थोक वस्त्र सोर्सिंग",
+            "body": "Reliable bulk garment sourcing and production management, connecting buyers to leading Bangladesh manufacturers."
+          },
+          "fashion-accessories": {
+            "title": "फैशन सहायक उपकरण",
+            "body": "Sourcing and supply of fashion accessories, from bags and belts to jewellery and lifestyle items, across global markets."
+          },
+          "quality-assurance": {
+            "title": "गुणवत्ता आश्वासन",
+            "body": "Rigorous QA and third-party inspection programmes to ensure every shipment meets your brand standards."
+          },
+          "oem-odm-manufacturing": {
+            "title": "OEM & ODM Solutions",
+            "body": "Custom OEM and ODM manufacturing, enabling brands to bring unique designs to market with full production support."
+          },
+          "packaging-export": {
+            "title": "Packaging & Export",
+            "body": "End-to-end packaging, labelling, and export documentation to get your garments shelf-ready worldwide."
+          },
+          "seasonal-inventory": {
+            "title": "Seasonal Collections",
+            "body": "Trend-driven seasonal sourcing and inventory planning to keep your product range fresh and market-responsive."
+          }
+        }
       },
       "agents-brokerage": {
-        "title": "Agents & Brokerage Business",
+        "title": "एजेंट और दलाली व्यवसाय",
         "tagline": "Insurance, loans & partnerships",
-        "body": "Cross-border deals, partnerships, and tender support."
+        "body": "Cross-border deals, partnerships, and tender support.",
+        "details": "हम वैश्विक भागीदारों के साथ खाड़ी और दक्षिण एशिया के बाज़ारों को जोड़ते हैं, बाज़ार प्रवेश, स्थानीय प्रतिनिधित्व और लाइसेंसिंग का प्रबंधन करते हैं।",
+        "sub": {
+          "fire-insurance": {
+            "title": "Fire Insurance",
+            "body": "Comprehensive fire insurance coverage protecting your property and assets from fire-related damage and losses."
+          },
+          "marine-insurance": {
+            "title": "Marine Insurance",
+            "body": "Reliable marine insurance covering cargo, vessels, and freight during international and domestic transit."
+          },
+          "motor-insurance": {
+            "title": "Motor Insurance",
+            "body": "Full motor insurance solutions for personal and commercial vehicles, covering accidents, theft, and third-party liability."
+          },
+          "travel-safe-insurance": {
+            "title": "Travel Safe Insurance",
+            "body": "Comprehensive travel insurance keeping you protected against medical emergencies, cancellations, and travel disruptions worldwide."
+          },
+          "education-insurance": {
+            "title": "Education Insurance",
+            "body": "Education insurance plans securing your children's academic future regardless of unforeseen circumstances."
+          },
+          "health-insurance": {
+            "title": "Health Insurance",
+            "body": "Flexible health insurance plans providing access to quality medical care for individuals, families, and corporate groups."
+          },
+          "personal-accident-insurance": {
+            "title": "Personal Accident Insurance",
+            "body": "Personal accident coverage providing financial protection for you and your family in the event of injury or disability."
+          },
+          "property-insurance": {
+            "title": "Property Insurance",
+            "body": "Complete property insurance protecting commercial and residential assets against damage, loss, and liability."
+          },
+          "child-protection-plan": {
+            "title": "Child Protection Plan",
+            "body": "Dedicated child protection plans providing financial security and educational guarantees for your children's future."
+          },
+          "home-loans": {
+            "title": "Home Loans",
+            "body": "Accessible home loan advisory and facilitation services to help individuals and families secure property financing."
+          },
+          "car-loans": {
+            "title": "Car Loans",
+            "body": "Car loan facilitation services connecting customers with competitive vehicle financing options."
+          },
+          "personal-loans": {
+            "title": "Personal Loans",
+            "body": "Personal loan advisory helping individuals access flexible financing for personal needs and financial goals."
+          }
+        }
       },
       "office-management": {
-        "title": "Office Management Services",
+        "title": "कार्यालय प्रबंधन सेवाएँ",
         "tagline": "Facility, security & operations",
-        "body": "Serviced offices, PRO services, accounting, and admin."
+        "body": "Serviced offices, PRO services, accounting, and admin.",
+        "details": "अंत-से-अंत कार्यालय संचालन: सुविधाएँ, स्वच्छता, सुरक्षा, खरीद और प्रशासन।",
+        "sub": {
+          "facility-management": {
+            "title": "Facility Management Services",
+            "body": "Comprehensive facility management solutions maintaining optimal efficiency of electrical, mechanical, HVAC, and building systems."
+          },
+          "security-services": {
+            "title": "Security Services",
+            "body": "Professional security solutions protecting life, business assets, and events through trained personnel and systematic security audits."
+          },
+          "fire-safety": {
+            "title": "Fire Safety",
+            "body": "End-to-end fire safety services including installation, staff training, and systematic audits to ensure compliance and emergency preparedness."
+          },
+          "toll-operations": {
+            "title": "Toll Operations",
+            "body": "Systematic toll operations management ensuring booth efficiency, staff rotation, and rigorous compliance through surprise audits and security protocols."
+          },
+          "housekeeping-catering-horticulture": {
+            "title": "Housekeeping, Catering & Horticulture",
+            "body": "Integrated housekeeping, catering, horticulture, and sanitization services maintaining clean, healthy, and well-presented environments."
+          },
+          "cctv-network-management": {
+            "title": "CCTV & Network Management Services",
+            "body": "Advanced CCTV surveillance and network management services providing connectivity, security monitoring, and access control across facilities."
+          },
+          "office-support-services": {
+            "title": "Office Support Services",
+            "body": "Comprehensive office support services including mail management, receptionist, training coordination, and employee credential verification."
+          },
+          "oms-manpower-services": {
+            "title": "Manpower Services",
+            "body": "Reliable manpower supply of IT executives, facility staff, medical professionals, drivers, and semi-skilled workers for operational needs."
+          },
+          "energy-sustainability": {
+            "title": "Energy Management & Sustainability",
+            "body": "Smart energy management, sustainability audits, and green-building initiatives that lower operating costs and meet ESG compliance targets."
+          }
+        }
       },
       "manpower": {
-        "title": "Manpower Supply Services",
+        "title": "मैनपावर आपूर्ति सेवाएँ",
         "tagline": "IT, security & construction staff",
-        "body": "Workforce, student placement, visa, and aviation."
+        "body": "Workforce, student placement, visa, and aviation.",
+        "details": "हम निर्माण, IT, हॉस्पिटैलिटी, सजावट और औद्योगिक संचालन के लिए कुशल और अर्ध-कुशल कर्मचारी आपूर्ति करते हैं।",
+        "sub": {
+          "it-service-manpower": {
+            "title": "IT Service",
+            "body": "Qualified IT professionals and technical executives supplied to meet the technology and digital operations requirements of businesses."
+          },
+          "cleaner-service-manpower": {
+            "title": "Cleaner Service",
+            "body": "Professional cleaning staff supply for offices, facilities, hospitals, and commercial spaces ensuring high hygiene and presentation standards."
+          },
+          "security-guard-manpower": {
+            "title": "Security Guard Service",
+            "body": "Trained and vetted security guards deployed for commercial, industrial, and residential premises ensuring safety and access control."
+          },
+          "construction-worker-manpower": {
+            "title": "Construction Worker",
+            "body": "Skilled and semi-skilled construction workers supplied for building, civil, and infrastructure projects across residential and commercial sectors."
+          },
+          "loading-unloading-manpower": {
+            "title": "Loading & Unloading",
+            "body": "Trained loading and unloading crews for warehouses, ports, factories, and distribution centres — handling cargo of all sizes with safety and efficiency."
+          },
+          "packaging-manpower": {
+            "title": "Packaging Service",
+            "body": "Skilled packaging staff for product wrapping, labeling, kitting, and bulk packaging across retail, e-commerce, manufacturing, and export operations."
+          },
+          "decor-woodwork-wallpaper-manpower": {
+            "title": "Décor, Woodwork & Wallpaper",
+            "body": "Skilled decorators, carpenters, and wallpaper installers for residential, commercial, and hospitality fit-out projects."
+          },
+          "metal-blacksmith-manpower": {
+            "title": "Metal Structures & Blacksmith",
+            "body": "Certified welders, blacksmiths, steel fixers, and metal-structure fabricators for industrial, construction, and infrastructure projects."
+          }
+        }
       },
       "yanabiya-commerce": {
-        "title": "Yanabiya e-Commerce",
+        "title": "यानाबिया ई-कॉमर्स",
         "tagline": "Online retail, marketplace & fulfilment",
-        "body": "Online retail, marketplace, fulfilment."
+        "body": "Online retail, marketplace, fulfilment.",
+        "details": "खाड़ी और अंतर्राष्ट्रीय ग्राहकों के लिए हमारा अपना ई-कॉमर्स प्लेटफ़ॉर्म।",
+        "sub": {
+          "online-retail-store": {
+            "title": "Online Retail Store",
+            "body": "Yanabiya-owned storefronts selling garments, accessories, IT hardware, and everyday essentials directly to consumers."
+          },
+          "marketplace-management": {
+            "title": "Multi-Platform Marketplace",
+            "body": "Selling and managing Yanabiya products across major global marketplaces including Amazon, eBay, and regional platforms."
+          },
+          "order-fulfilment": {
+            "title": "Order & Fulfilment Management",
+            "body": "End-to-end order processing, warehouse picking, packing, and last-mile delivery coordination for all e-commerce orders."
+          },
+          "digital-payment-solutions": {
+            "title": "Digital Payment Solutions",
+            "body": "Secure multi-currency payment gateways, digital wallets, and cross-border payment processing for all Yanabiya e-Commerce transactions."
+          }
+        }
       },
       "yanabiya-digital-platform": {
-        "title": "Yanabiya Digital Platform",
+        "title": "यानाबिया डिजिटल प्लेटफ़ॉर्म",
         "tagline": "Apps, field ops & digital services",
-        "body": "Apps, field ops, HR & CRM."
+        "body": "Apps, field ops, HR & CRM.",
+        "details": "ग्राहक सेवा, मोबाइल ऐप्स और भुगतान सहित डिजिटल उत्पाद।",
+        "sub": {
+          "yanabiya-business-app": {
+            "title": "Yanabiya Business App",
+            "body": "Core business management app for Yanabiya Group, tracking operations, finance, and performance across all verticals and countries."
+          },
+          "customer-service-portal": {
+            "title": "Customer Service Portal",
+            "body": "Client-facing digital portal for service requests, ticket management, and real-time support across all Yanabiya business services."
+          },
+          "field-operations-app": {
+            "title": "Field Operations App",
+            "body": "Mobile app for field staff, supervisors, and site managers to log tasks, track locations, and manage on-ground operations in real time."
+          },
+          "hr-payroll-system": {
+            "title": "HR & Payroll Management",
+            "body": "Centralised HR and payroll platform managing employee records, leave, contracts, and salary processing across all Yanabiya Group countries."
+          }
+        }
       }
     },
     "panel": {

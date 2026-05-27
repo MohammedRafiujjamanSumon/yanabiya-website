@@ -201,11 +201,11 @@ export default function BusinessDetail() {
                   <img src={assets.logo} alt="Yanabiya" className="w-14 h-14 object-contain" />
                 </div>
                 <h2 className="font-serif text-3xl md:text-4xl text-brand-deep leading-tight">
-                  {business.title}
+                  {t(`businesses.items.${business.slug}.title`, business.title)}
                 </h2>
                 <div className="w-16 h-0.5 bg-brand-accent rounded-full" />
                 <p className="text-brand-deep/70 leading-snug text-center max-w-2xl mx-auto">
-                  {business.details}
+                  {t(`businesses.items.${business.slug}.details`, business.details)}
                 </p>
               </div>
             )}
@@ -251,11 +251,11 @@ export default function BusinessDetail() {
                       <img src={assets.logo} alt="Yanabiya" className="w-14 h-14 object-contain" />
                     </div>
                     <h2 className="font-serif text-2xl md:text-4xl text-white drop-shadow-lg text-center">
-                      {business.title}
+                      {t(`businesses.items.${business.slug}.title`, business.title)}
                     </h2>
                     {business.details && (
                       <p className="text-white/80 text-sm max-w-xl text-center drop-shadow">
-                        {business.details}
+                        {t(`businesses.items.${business.slug}.details`, business.details)}
                       </p>
                     )}
                   </div>
@@ -328,7 +328,7 @@ function RelatedDivisions({
             {/* Text */}
             <div className="p-2">
               <div className="text-[11px] font-semibold text-brand-deep leading-tight line-clamp-2">
-                {b.title.replace('🤝 ', '')}
+                {t(`businesses.items.${b.slug}.title`, b.title).replace('🤝 ', '')}
               </div>
               <div className="mt-1 text-[9px] uppercase tracking-widest text-brand-accentDark
                               inline-flex items-center gap-0.5 transition-all duration-300
@@ -393,7 +393,7 @@ function SubServicesSection({
             {/* Content */}
             <div className="flex flex-col gap-2.5 p-4 flex-1">
               <h3 className="text-brand-deep font-semibold text-sm leading-snug">
-                {s.title}
+                {t(`businesses.items.${businessSlug}.sub.${s.slug}.title`, s.title)}
               </h3>
 
               {s.countries && s.countries.length > 0 && (
