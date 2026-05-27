@@ -71,8 +71,7 @@ export const businesses: Business[] = [
     ],
     footer:
       '🚀 We deliver end-to-end digital and AI-powered solutions built for scalability, security, and business growth.',
-    image:
-      'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
+    image: '/images/it-software/it-consulting.jpg',
     videoUrl:
       'https://videos.pexels.com/video-files/8084618/8084618-uhd_2560_1440_25fps.mp4',
     countries: [
@@ -88,8 +87,7 @@ export const businesses: Business[] = [
         icon: Code2,
         title: 'Custom Software Development',
         body: 'Bespoke software engineered around your exact workflows, from internal tools and ERPs to customer-facing SaaS products.',
-        image:
-          'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80',
+        image: '/images/it-software/custom-software.jpg',
         features: [
           'Web app development',
           'Mobile app development',
@@ -116,8 +114,7 @@ export const businesses: Business[] = [
         icon: ShieldCheck,
         title: 'Cyber Security & Ethical Hacking',
         body: 'End-to-end security assessments, penetration testing, and system hardening to protect your business from evolving threats.',
-        image:
-          'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
+        image: '/images/it-software/cyber-security.jpg',
         features: [
           'Ethical Hacking Consultation',
           'Ethical Hacking Vulnerability Assessment',
@@ -147,8 +144,7 @@ export const businesses: Business[] = [
         icon: Factory,
         title: 'Industries Services',
         body: 'Industry-specific digital solutions for manufacturing, retail, logistics, healthcare, finance, and the public sector.',
-        image:
-          'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+        image: '/images/it-software/it-consulting.jpg',
         features: [
           'Health care applications',
           'Tours and Travels portal applications',
@@ -171,8 +167,7 @@ export const businesses: Business[] = [
         icon: BarChart3,
         title: 'Data Analytics',
         body: 'Turn raw data into business intelligence with modern data platforms, dashboards, and predictive analytics.',
-        image:
-          'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+        image: '/images/it-software/data-analytics.jpg',
         features: [
           'Enterprise Data management',
           'Data integration',
@@ -201,8 +196,7 @@ export const businesses: Business[] = [
         icon: Palette,
         title: 'UI/UX Designing',
         body: 'Research-driven interface design that blends clarity, accessibility, and brand identity into delightful digital experiences.',
-        image:
-          'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80',
+        image: '/images/it-software/ui-ux.jpg',
         features: [
           'Wireframe design',
           'Prototype design',
@@ -225,8 +219,7 @@ export const businesses: Business[] = [
         icon: Cloud,
         title: 'AWS Services',
         body: 'Certified AWS architecture, migration, and managed cloud operations built for scale, resilience, and cost efficiency.',
-        image:
-          'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+        image: '/images/it-software/cloud-aws.jpg',
         features: [
           'AWS consultation services',
           'AWS app development',
@@ -248,8 +241,7 @@ export const businesses: Business[] = [
         icon: Globe,
         title: 'Web Design & Development',
         body: 'High-performance corporate websites, e-commerce platforms, and web applications built with modern frameworks.',
-        image:
-          'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80',
+        image: '/images/it-software/web-development.jpg',
         features: [
           'Concept Of Static & Dynamic Website',
           'Object Oriented Programming (OOP) PHP',
@@ -275,8 +267,7 @@ export const businesses: Business[] = [
         icon: Bot,
         title: 'AI Agent Service',
         body: 'Custom AI agents, prompt-based assistants, and intelligent automation built on modern LLMs and MCP integrations.',
-        image:
-          'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
+        image: '/images/it-software/ai-automation.jpg',
         features: [
           'Custom AI agents for business workflows',
           'Prompt engineering & RAG pipelines',
