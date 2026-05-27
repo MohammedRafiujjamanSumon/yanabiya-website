@@ -52,8 +52,8 @@ const regionImages: Record<string, { name: string; image: string }> = {
 }
 
 const leaderImages = [
-  'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
-  'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80',
+  assets.chairman,
+  assets.viceChairman,
 ]
 
 const missionImages = [
