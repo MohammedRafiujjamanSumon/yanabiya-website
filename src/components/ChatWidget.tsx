@@ -106,12 +106,8 @@ export default function ChatWidget() {
             aria-label={t('chatWidget.whatsappLabel', 'Chat on WhatsApp')}
           >
             <span className="inline-flex items-center rounded-full bg-brand-deep
-                             text-white text-[10px] font-bold uppercase tracking-[0.22em]
-                             px-3 py-1.5 shadow-md whitespace-nowrap
-                             transition-all duration-200
-                             md:opacity-0 md:translate-x-1
-                             md:group-hover:opacity-100 md:group-hover:translate-x-0
-                             md:group-focus-visible:opacity-100 md:group-focus-visible:translate-x-0">
+                             text-white text-[11px] font-bold uppercase tracking-[0.2em]
+                             px-3 py-1.5 shadow-lg ring-1 ring-white/20 whitespace-nowrap">
               {t('chatWidget.whatsappLabel', 'Chat on WhatsApp')}
             </span>
             <span className="grid place-items-center w-14 h-14 rounded-full
@@ -130,12 +126,8 @@ export default function ChatWidget() {
             aria-label={t('chatWidget.openLabel', 'Send a message')}
           >
             <span className="inline-flex items-center rounded-full bg-brand-deep
-                             text-white text-[10px] font-bold uppercase tracking-[0.22em]
-                             px-3 py-1.5 shadow-md whitespace-nowrap
-                             transition-all duration-200
-                             md:opacity-0 md:translate-x-1
-                             md:group-hover:opacity-100 md:group-hover:translate-x-0
-                             md:group-focus-visible:opacity-100 md:group-focus-visible:translate-x-0">
+                             text-white text-[11px] font-bold uppercase tracking-[0.2em]
+                             px-3 py-1.5 shadow-lg ring-1 ring-white/20 whitespace-nowrap">
               {t('chatWidget.openLabel', 'Send a message')}
             </span>
             <span className="grid place-items-center w-14 h-14 rounded-full
