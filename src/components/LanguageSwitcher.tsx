@@ -4,10 +4,10 @@ import { Check, Globe } from 'lucide-react'
 import { languages, type LanguageMeta } from '../i18n'
 
 const GROUPS: { key: LanguageMeta['region']; label: string }[] = [
-  { key: 'global',  label: 'Global'  },
   { key: 'gulf',    label: 'Gulf'    },
-  { key: 'europe',  label: 'Europe'  },
   { key: 'asia',    label: 'Asia'    },
+  { key: 'europe',  label: 'Europe'  },
+  { key: 'global',  label: 'Global'  },
 ]
 
 export default function LanguageSwitcher() {

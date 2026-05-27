@@ -5,6 +5,7 @@ import { initReactI18next } from 'react-i18next'
 import en from './locales/en.json'
 import ar from './locales/ar.json'
 import bn from './locales/bn.json'
+import hi from './locales/hi.json'
 import fr from './locales/fr.json'
 import de from './locales/de.json'
 import es from './locales/es.json'
@@ -41,6 +42,7 @@ export const languages: LanguageMeta[] = [
   { code: 'ru',    label: 'Russian',          native: 'Русский',      dir: 'ltr', flag: '🇷🇺', region: 'europe' },
   { code: 'sv',    label: 'Swedish',          native: 'Svenska',      dir: 'ltr', flag: '🇸🇪', region: 'europe' },
   // Asia
+  { code: 'hi',    label: 'Hindi',            native: 'हिन्दी',        dir: 'ltr', flag: '🇮🇳', region: 'asia'   },
   { code: 'bn',    label: 'Bengali',          native: 'বাংলা',        dir: 'ltr', flag: '🇧🇩', region: 'asia'   },
 ]
 
@@ -55,6 +57,7 @@ i18n
       'en-US': { translation: en },
       ar:    { translation: ar },
       bn:    { translation: bn },
+      hi:    { translation: hi },
       fr:    { translation: fr },
       de:    { translation: de },
       es:    { translation: es },
