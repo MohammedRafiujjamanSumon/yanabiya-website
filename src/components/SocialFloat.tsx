@@ -158,12 +158,10 @@ export default function SocialFloat() {
                        hover:-translate-y-0.5"
             style={{ transitionDelay: open ? `${i * 30}ms` : '0ms' }}
           >
-            <span className="hidden md:inline-flex items-center rounded-full bg-brand-deep
-                             text-brand-deep text-[10px] font-bold uppercase tracking-[0.22em]
-                             px-2.5 py-1 shadow-md
-                             opacity-0 -translate-x-1
-                             group-hover:opacity-100 group-hover:translate-x-0
-                             transition-all duration-200 whitespace-nowrap">
+            <span className="inline-flex items-center rounded-full bg-brand-deep
+                             text-white text-[10px] font-bold uppercase tracking-[0.22em]
+                             px-2.5 py-1 shadow-lg ring-1 ring-white/20
+                             whitespace-nowrap">
               {c.label}
             </span>
             <span className="relative grid place-items-center w-10 h-10 rounded-full text-brand-deep
@@ -202,12 +200,10 @@ export default function SocialFloat() {
                 transitionDelay: open ? `${(countryWhatsApps.length + i) * 30}ms` : '0ms',
               }}
             >
-              <span className="hidden md:inline-flex items-center rounded-full bg-brand-deep
-                               text-brand-deep text-[10px] font-bold uppercase tracking-[0.22em]
-                               px-2.5 py-1 shadow-md
-                               opacity-0 -translate-x-1
-                               group-hover:opacity-100 group-hover:translate-x-0
-                               transition-all duration-200 whitespace-nowrap">
+              <span className="inline-flex items-center rounded-full bg-brand-deep
+                               text-white text-[10px] font-bold uppercase tracking-[0.22em]
+                               px-2.5 py-1 shadow-lg ring-1 ring-white/20
+                               whitespace-nowrap">
                 {c.label}
               </span>
               <span
