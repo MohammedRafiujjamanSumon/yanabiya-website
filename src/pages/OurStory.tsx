@@ -395,12 +395,12 @@ export default function OurStory() {
               <Reveal key={i} delay={i * 120}>
                 <div className="group relative rounded-2xl overflow-hidden bg-brand-50 border border-slate-200
                                 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                  <div className="aspect-[4/3] overflow-hidden">
+                  <div className="aspect-[4/3] overflow-hidden bg-brand-50 flex items-center justify-center">
                     <img
                       src={leaderImages[i]}
                       alt={l.name}
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                   <div className="p-6">
