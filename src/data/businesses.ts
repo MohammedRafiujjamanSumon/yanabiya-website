@@ -559,7 +559,7 @@ export const businesses: Business[] = [
         icon: Thermometer,
         title: 'Cold Chain & Specialized Cargo',
         body: 'Temperature-controlled and specialized cargo handling for perishables, pharmaceuticals, and sensitive goods requiring precise conditions.',
-        image: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=800&q=80',
+        image: '/images/export-import/cold-chain.jpg',
         features: [
           'Refrigerated container (reefer) booking & monitoring',
           'Temperature-controlled warehousing',
