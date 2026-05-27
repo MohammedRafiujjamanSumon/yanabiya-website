@@ -475,7 +475,7 @@ export const businesses: Business[] = [
         icon: Layers,
         title: 'Cargo Consolidation & Coordination',
         body: 'Groupage and consolidation services that combine smaller shipments into cost-efficient full loads for international movement.',
-        image: 'https://images.unsplash.com/photo-1569913486515-b74bf7751574?auto=format&fit=crop&w=800&q=80',
+        image: '/images/export-import/cargo-consolidation.jpg',
         features: [
           'LCL consolidation & groupage services',
           'Multi-origin cargo consolidation',
