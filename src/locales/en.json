@@ -440,7 +440,8 @@
     "chooseBranch": "Choose our branch"
   },
   "chatWidget": {
-    "openLabel": "Open contact form",
+    "openLabel": "Send a message",
+    "whatsappLabel": "Chat on WhatsApp",
     "title": "Talk to Yanabiya",
     "subtitle": "Tell us a bit and we'll get back fast.",
     "name": "Your name *",

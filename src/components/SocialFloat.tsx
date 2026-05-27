@@ -139,7 +139,7 @@ export default function SocialFloat() {
   if (channels.length === 0 && countryWhatsApps.length === 0) return null
 
   return (
-    <div className="fixed bottom-5 right-5 md:bottom-6 md:right-6 z-40 flex flex-col items-end gap-2 print:hidden">
+    <div className="fixed bottom-40 right-5 md:bottom-44 md:right-6 z-40 flex flex-col items-end gap-2 print:hidden">
       <div
         className={`flex flex-col items-end gap-1.5 transition-all duration-300 origin-bottom-right
                     ${open ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto'
