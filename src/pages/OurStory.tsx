@@ -45,7 +45,7 @@ function countryFlag(code: string) {
 }
 
 const regionImages: Record<string, { name: string; image: string }> = {
-  OM: { name: 'Oman',           image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1400&q=80' },
+  OM: { name: 'Oman',           image: '/images/oman-muscat.jpg' },
   GB: { name: 'United Kingdom', image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1400&q=80' },
   BD: { name: 'Bangladesh',     image: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1400&q=80' },
   US: { name: 'United States',  image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1400&q=80' },
