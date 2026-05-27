@@ -30,6 +30,18 @@ const FLAG_IMG: Record<string, string> = {
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000'
 
+const BUSINESSES: { slug: string; label: string }[] = [
+  { slug: 'it-software',                label: 'Technology & Digital Solutions' },
+  { slug: 'export-import',              label: 'Export & Import Business' },
+  { slug: 'clothing',                   label: 'Garments, Apparel & Accessories' },
+  { slug: 'agents-brokerage',           label: 'Agents & Brokerage Business' },
+  { slug: 'office-management',          label: 'Office Management Services' },
+  { slug: 'manpower',                   label: 'Manpower Supply Services' },
+  { slug: 'yanabiya-commerce',          label: 'Yanabiya e-Commerce' },
+  { slug: 'yanabiya-digital-platform',  label: 'Yanabiya Digital Platform' },
+  { slug: 'other',                      label: 'Other / General enquiry' },
+]
+
 export default function Contact() {
   const { t } = useTranslation()
   const [submitted, setSubmitted] = useState(false)
@@ -118,6 +130,7 @@ export default function Contact() {
                       phone: fd.get('phone'),
                       subject: fd.get('subject'),
                       country: fd.get('country'),
+                      business: fd.get('business'),
                       message: fd.get('message'),
                     }),
                   })
@@ -148,23 +161,41 @@ export default function Contact() {
                 <input name="subject" required placeholder={t('contact.subject')} className={ipt} />
               </div>
 
-              {/* Row 3: Office selector */}
-              <select
-                name="country"
-                required
-                defaultValue=""
-                aria-label="Which office should we route this to?"
-                className={`${ipt} appearance-none`}
-              >
-                <option value="" disabled className="bg-white text-slate-400">
-                  {t('contact.chooseBranch', 'Choose our branch')}
-                </option>
-                {offices.map((o) => (
-                  <option key={o.code} value={o.code} className="bg-white text-slate-900">
-                    {o.country.name} — {o.country.role}
+              {/* Row 3: Business + Office */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <select
+                  name="business"
+                  required
+                  defaultValue=""
+                  aria-label="Which business is your enquiry about?"
+                  className={`${ipt} appearance-none`}
+                >
+                  <option value="" disabled className="bg-white text-slate-400">
+                    {t('chatWidget.chooseBusiness', 'Choose a business')}
                   </option>
-                ))}
-              </select>
+                  {BUSINESSES.map((b) => (
+                    <option key={b.slug} value={b.slug} className="bg-white text-slate-900">
+                      {b.label}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  name="country"
+                  required
+                  defaultValue=""
+                  aria-label="Which office should we route this to?"
+                  className={`${ipt} appearance-none`}
+                >
+                  <option value="" disabled className="bg-white text-slate-400">
+                    {t('contact.chooseBranch', 'Choose our branch')}
+                  </option>
+                  {offices.map((o) => (
+                    <option key={o.code} value={o.code} className="bg-white text-slate-900">
+                      {o.country.name} — {o.country.role}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
               {/* Row 4: Message */}
               <textarea name="message" required rows={5} placeholder={t('contact.message')} className={`${ipt} resize-none`} />
