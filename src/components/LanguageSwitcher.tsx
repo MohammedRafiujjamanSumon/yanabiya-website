@@ -10,6 +10,24 @@ const GROUPS: { key: LanguageMeta['region']; label: string }[] = [
   { key: 'europe',  label: 'Europe'  },
 ]
 
+/**
+ * Bulletproof language switch:
+ * 1. Persist the new code to localStorage synchronously (the key i18next's
+ *    detector reads on next load)
+ * 2. Hard-reload the page with location.replace — re-renders everything,
+ *    bypasses any cached translations and any hardcoded strings rendered
+ *    before mount
+ *
+ * The reload guarantees the user sees an immediate change every time.
+ */
+function selectLanguage(code: string) {
+  try {
+    localStorage.setItem('i18nextLng', code)
+  } catch {/* private mode / disabled storage */}
+  // Use replace so the language switch isn't an extra entry in browser history
+  window.location.replace(window.location.pathname + window.location.search + window.location.hash)
+}
+
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation()
   const [open, setOpen] = useState(false)
@@ -20,6 +38,7 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Change language"
+        aria-expanded={open}
         className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full
                    hover:bg-slate-100 transition text-brand-deep"
       >
@@ -35,46 +54,43 @@ export default function LanguageSwitcher() {
           <div className="fixed inset-0 z-30" onClick={() => setOpen(false)} />
           <div
             className="absolute right-0 rtl:left-0 rtl:right-auto mt-2 z-40
-                       bg-white border border-brand-deep/10 rounded-xl shadow-2xl
-                       w-56 overflow-hidden"
+                       bg-white border border-brand-deep/10 rounded-2xl shadow-2xl
+                       w-[min(92vw,440px)] p-3 overflow-hidden"
           >
             {GROUPS.map(({ key, label }) => {
               const group = languages.filter(l => l.region === key)
               if (!group.length) return null
               return (
-                <div key={key}>
-                  <p className="px-3 pt-2.5 pb-1 text-[9px] uppercase tracking-[0.25em] font-bold text-brand-deep/35">
+                <div key={key} className="mb-2 last:mb-0">
+                  <p className="px-1 pt-1 pb-1.5 text-[9px] uppercase tracking-[0.25em] font-bold text-brand-deep/40">
                     {label}
                   </p>
-                  {group.map((l) => (
-                    <button
-                      key={l.code}
-                      onClick={async () => {
-                        await i18n.changeLanguage(l.code)
-                        setOpen(false)
-                        // Force a full reload so every component (including any
-                        // hardcoded strings or cached translations) picks up the
-                        // new language immediately. Language is persisted in
-                        // localStorage so the reload reads it back.
-                        window.location.reload()
-                      }}
-                      className={`flex items-center justify-between w-full px-3 py-2
-                                  hover:bg-slate-50 transition-colors
-                                  ${l.code === current.code ? 'bg-brand-accent/10' : ''}`}
-                    >
-                      <span className="flex items-center gap-2.5">
-                        <span className="text-base leading-none">{l.flag}</span>
-                        <span className="text-[12px] font-medium text-brand-deep">{l.native}</span>
-                      </span>
-                      {l.code === current.code && (
-                        <Check size={13} className="text-brand-accent shrink-0" />
-                      )}
-                    </button>
-                  ))}
+                  {/* Horizontal scrollable strip of flag chips */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {group.map((l) => {
+                      const isActive = l.code === current.code
+                      return (
+                        <button
+                          key={l.code}
+                          onClick={() => { setOpen(false); selectLanguage(l.code) }}
+                          className={`inline-flex items-center gap-1.5 rounded-full
+                                      px-3 py-1.5 text-[12px] font-semibold whitespace-nowrap
+                                      border transition-colors
+                                      ${isActive
+                                        ? 'bg-brand-accent text-white border-brand-accent'
+                                        : 'bg-brand-50 text-brand-deep border-brand-deep/10 hover:border-brand-accent hover:bg-brand-accent/10'}`}
+                          title={l.label}
+                        >
+                          <span className="text-[14px] leading-none">{l.flag}</span>
+                          <span>{l.native}</span>
+                          {isActive && <Check size={11} className="shrink-0" />}
+                        </button>
+                      )
+                    })}
+                  </div>
                 </div>
               )
             })}
-            <div className="h-2" />
           </div>
         </>
       )}
