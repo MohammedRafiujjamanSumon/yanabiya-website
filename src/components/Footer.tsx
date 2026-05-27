@@ -53,6 +53,7 @@ const defaultCorporateLinks: { to?: string; href?: string; labelKey: string }[] 
   { to: '/community/community-care',           labelKey: 'footer.links.community'  },
   { to: '/community/careers',                  labelKey: 'footer.links.careers'    },
   { href: 'https://ygiusllc.com/',             labelKey: 'footer.links.ecommerce'  },
+  { to: '/community/donation',                  labelKey: 'footer.links.donation'   },
 ]
 
 const FLAG_IMG: Record<string, string> = {
