@@ -35,9 +35,11 @@ type FooterData = {
 const defaultGroupLinks = [
   { id: 'home',         labelKey: 'footer.links.home'       },
   { id: 'about',        labelKey: 'footer.links.about'      },
-  { id: 'global',       labelKey: 'footer.links.global'     },
   { id: 'businesses',   labelKey: 'footer.links.businesses' },
+  { id: 'global',       labelKey: 'footer.links.global'     },
   { id: 'partnerships', labelKey: 'footer.links.network'    },
+  { id: 'community',    labelKey: 'footer.links.community'  },
+  { id: 'leadership',   labelKey: 'footer.links.people'     },
   { id: 'contact',      labelKey: 'footer.links.contact'    },
 ]
 
@@ -51,7 +53,6 @@ const defaultCorporateLinks: { to?: string; href?: string; labelKey: string }[] 
   { to: '/community/community-care',           labelKey: 'footer.links.community'  },
   { to: '/community/careers',                  labelKey: 'footer.links.careers'    },
   { href: 'https://ygiusllc.com/',             labelKey: 'footer.links.ecommerce'  },
-  { href: 'https://webmail.yanabiyagroup.com', labelKey: 'footer.links.webmail'    },
 ]
 
 const FLAG_IMG: Record<string, string> = {
@@ -137,13 +138,17 @@ function AddressCard({ c, isHQ }: { c: CountryContact; isHQ?: boolean }) {
         </div>
       )}
 
-      {/* Email */}
-      {c.emails[0] && (
-        <div className="flex items-start gap-2">
-          <AtSign size={10} className="text-sky-400 shrink-0 mt-0.5" />
-          <a href={`mailto:${c.emails[0]}`} className="text-[11px] text-white hover:text-white transition-colors break-all">
-            {c.emails[0]}
-          </a>
+      {/* Emails */}
+      {c.emails.length > 0 && (
+        <div className="space-y-0.5">
+          {c.emails.map((email) => (
+            <div key={email} className="flex items-start gap-2">
+              <AtSign size={10} className="text-sky-400 shrink-0 mt-0.5" />
+              <a href={`mailto:${email}`} className="text-[11px] text-white hover:text-white transition-colors break-all">
+                {email}
+              </a>
+            </div>
+          ))}
         </div>
       )}
 
