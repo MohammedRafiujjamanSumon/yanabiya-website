@@ -15,7 +15,7 @@
     "contact": "Contact Us",
     "ourNetwork": "Our Network",
     "ourCommunity": "Our Community",
-    "ourPeople": "Our People",
+    "ourPeople": "Our Leadership",
     "boardOfMembers": "Board of Directors",
     "chairman": "Chairman & CEO",
     "viceChairman": "Vice Chairman"
@@ -439,8 +439,25 @@
     "countryUS": "🇺🇸 United States",
     "chooseBranch": "Choose our branch"
   },
+  "chatWidget": {
+    "openLabel": "Open contact form",
+    "title": "Talk to Yanabiya",
+    "subtitle": "Tell us a bit and we'll get back fast.",
+    "name": "Your name *",
+    "email": "Email *",
+    "subject": "Subject *",
+    "chooseBusiness": "Choose a business *",
+    "chooseOffice": "Choose an office (optional)",
+    "message": "How can we help? *",
+    "send": "Send message",
+    "sending": "Sending…",
+    "privacy": "We use your details only to reply to your enquiry.",
+    "thanksTitle": "Thanks — message received.",
+    "thanksBody": "Our team has been notified and will reply within one business day.",
+    "sendAnother": "Send another message"
+  },
   "common": {
-    "ourPeople": "Our People",
+    "ourPeople": "Our Leadership",
     "previous": "Previous",
     "next": "Next",
     "close": "Close",
@@ -690,9 +707,10 @@
     "links": {
       "home": "Home",
       "about": "About Us",
-      "global": "Global Presence",
+      "global": "Our Global Branches",
       "businesses": "Our Service",
-      "network": "Trusted Network",
+      "network": "Our Network",
+      "people": "Our Leadership",
       "contact": "Contact Us",
       "profile": "Group Profile",
       "story": "Our Story",
@@ -700,7 +718,7 @@
       "management": "Our Management",
       "blog": "Blog",
       "sustainable": "Sustainable Growth",
-      "community": "Community Care",
+      "community": "Our Community",
       "careers": "Careers",
       "ecommerce": "Yanabiya E-Commerce ↗",
       "webmail": "Webmail Portal ↗"
@@ -1126,6 +1144,10 @@
     "servicehub": {
       "title": "Yanabiya Service Hub",
       "desc": "One-stop platform for all Yanabiya Group services — every division, one place."
+    },
+    "erp": {
+      "title": "Yanabiya ERP",
+      "desc": "Unified ERP for finance, HR, procurement & operations across all Yanabiya entities."
     }
   }
 }

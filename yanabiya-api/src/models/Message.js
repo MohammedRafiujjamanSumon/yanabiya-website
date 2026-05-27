@@ -16,6 +16,7 @@ if (!useFile) {
     subject: { type: String, default: '' },
     message: String,
     country: { type: String, default: '' },
+    business: { type: String, default: '' },
     read: { type: Boolean, default: false },
     replies: { type: [replySchema], default: [] },
     createdAt: { type: Date, default: Date.now },

@@ -110,7 +110,7 @@ export const api = {
 
 export interface Admin { id: string; email: string; name: string; role: string }
 export interface MessageReply { text: string; sentAt: string }
-export interface Message { id: string; name: string; email: string; phone: string; subject: string; message: string; country: string; read: boolean; replies: MessageReply[]; createdAt: string }
+export interface Message { id: string; name: string; email: string; phone: string; subject: string; message: string; country: string; business?: string; read: boolean; replies: MessageReply[]; createdAt: string }
 export interface MediaFile {
   name: string; folder: string; path: string; url: string
   size: number; mtime: string; type: 'image' | 'video' | 'file'

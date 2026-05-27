@@ -1,16 +1,31 @@
 const router = require('express').Router()
 const { getAllMessages, createMessage, markRead, addReply, deleteMessage } = require('../models/Message')
-const { sendReply, isConfigured } = require('../email')
+const { sendReply, sendNewSubmissionNotification, isConfigured } = require('../email')
 const protect = require('../middleware/auth')
 
 // POST /api/messages — public (contact form submission)
 router.post('/', async (req, res) => {
   try {
-    const { name, email, phone, subject, message, country } = req.body
+    const { name, email, phone, subject, message, country, business } = req.body
     if (!name || !email || !message) {
       return res.status(400).json({ message: 'Name, email and message are required' })
     }
-    await createMessage({ name, email, phone: phone || '', subject: subject || '', message, country: country || '' })
+    const payload = {
+      name,
+      email,
+      phone: phone || '',
+      subject: subject || '',
+      message,
+      country: country || '',
+      business: business || '',
+    }
+    await createMessage(payload)
+
+    // Fire-and-forget email notification — never block the response
+    sendNewSubmissionNotification(payload).catch((e) => {
+      console.warn('[messages] notify email failed:', e.message)
+    })
+
     res.json({ ok: true })
   } catch (err) {
     res.status(500).json({ message: err.message })

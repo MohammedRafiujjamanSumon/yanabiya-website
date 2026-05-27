@@ -20,6 +20,19 @@ function whatsappUrl(phone: string, name: string): string {
   return `https://wa.me/${digits}?text=${text}`
 }
 
+const BUSINESS_LABELS: Record<string, string> = {
+  'it-software':                'Technology & Digital Solutions',
+  'export-import':              'Export & Import',
+  'clothing':                   'Garments & Apparel',
+  'agents-brokerage':           'Agents & Brokerage',
+  'office-management':          'Office Management',
+  'manpower':                   'Manpower Supply',
+  'yanabiya-commerce':          'Yanabiya e-Commerce',
+  'yanabiya-digital-platform':  'Yanabiya Digital Platform',
+  'other':                      'Other / General',
+}
+const businessLabel = (slug?: string) => (slug ? BUSINESS_LABELS[slug] || slug : '')
+
 const ipt = 'w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white ' +
   'placeholder:text-slate-500 focus:outline-none focus:border-brand-accent transition-all resize-none'
 
@@ -164,6 +177,11 @@ export default function MessagesEdit() {
                           {msg.name}
                         </span>
                         <span className="text-xs text-slate-500 truncate">{msg.email}</span>
+                        {msg.business && (
+                          <span className="text-[10px] uppercase tracking-wide bg-brand-accent/15 text-brand-accent rounded-full px-2 py-0.5 font-semibold">
+                            {businessLabel(msg.business)}
+                          </span>
+                        )}
                         {msg.country && <span className="text-xs text-slate-600">{msg.country}</span>}
                         {replies.length > 0 && (
                           <span className="text-xs text-emerald-500 flex items-center gap-1">
@@ -210,6 +228,18 @@ export default function MessagesEdit() {
                             <>
                               <span className="text-slate-500">Phone</span>
                               <span className="text-slate-300">{msg.phone}</span>
+                            </>
+                          )}
+                          {msg.business && (
+                            <>
+                              <span className="text-slate-500">Business</span>
+                              <span className="text-slate-300">{businessLabel(msg.business)}</span>
+                            </>
+                          )}
+                          {msg.country && (
+                            <>
+                              <span className="text-slate-500">Office</span>
+                              <span className="text-slate-300">{msg.country}</span>
                             </>
                           )}
                           <span className="text-slate-500">Received</span>

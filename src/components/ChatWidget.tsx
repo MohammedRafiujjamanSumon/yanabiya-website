@@ -1,220 +1,204 @@
 import { useEffect, useRef, useState } from 'react'
-import { MessageCircle, X, Send, User } from 'lucide-react'
+import { MessageCircle, X, Send, CheckCircle2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 /**
- * Floating live-chat widget for site visitors.
- * - Bottom-right floating button
- * - Click → opens chat window
- * - First-time: asks for name + email
- * - Connects to Python WebSocket server (VITE_CHAT_URL)
- * - Persists sessionId in localStorage so returning visitors resume their thread
+ * Floating contact widget.
+ * - Bottom-right floating button on every page
+ * - Click → opens form: name, email, subject, business, country (office), message
+ * - Submits to /api/messages → appears in admin inbox AND emails info@yanabiyagroup.com
  */
 
-type Message = {
-  text: string
-  sender: 'customer' | 'admin'
-  senderName?: string
-  createdAt: string
-}
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000'
 
-const CHAT_HTTP = import.meta.env.VITE_CHAT_URL || 'http://localhost:5001'
-const CHAT_WS   = CHAT_HTTP.replace(/^http/, 'ws')
+const BUSINESSES: { slug: string; label: string }[] = [
+  { slug: 'it-software',                label: 'Technology & Digital Solutions' },
+  { slug: 'export-import',              label: 'Export & Import Business' },
+  { slug: 'clothing',                   label: 'Garments, Apparel & Accessories' },
+  { slug: 'agents-brokerage',           label: 'Agents & Brokerage Business' },
+  { slug: 'office-management',          label: 'Office Management Services' },
+  { slug: 'manpower',                   label: 'Manpower Supply Services' },
+  { slug: 'yanabiya-commerce',          label: 'Yanabiya e-Commerce' },
+  { slug: 'yanabiya-digital-platform',  label: 'Yanabiya Digital Platform' },
+  { slug: 'other',                      label: 'Other / General enquiry' },
+]
 
-const LS_SESSION = 'yg_chat_session_v1'
-const LS_NAME    = 'yg_chat_name_v1'
-const LS_EMAIL   = 'yg_chat_email_v1'
+const OFFICES: { code: string; label: string }[] = [
+  { code: 'OM', label: 'Oman (Headquarters)' },
+  { code: 'GB', label: 'United Kingdom' },
+  { code: 'BD', label: 'Bangladesh' },
+  { code: 'US', label: 'United States' },
+]
 
 export default function ChatWidget() {
-  const [open, setOpen]         = useState(false)
-  const [needsId, setNeedsId]   = useState(false)
-  const [name, setName]         = useState(() => localStorage.getItem(LS_NAME) || '')
-  const [email, setEmail]       = useState(() => localStorage.getItem(LS_EMAIL) || '')
-  const [sessionId, setSession] = useState<string | null>(() => localStorage.getItem(LS_SESSION))
-  const [messages, setMessages] = useState<Message[]>([])
-  const [draft, setDraft]       = useState('')
-  const [connected, setConnected] = useState(false)
-  const [unread, setUnread]     = useState(0)
+  const { t } = useTranslation()
+  const [open, setOpen] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [done, setDone] = useState(false)
+  const [error, setError] = useState('')
+  const panelRef = useRef<HTMLDivElement>(null)
 
-  const wsRef     = useRef<WebSocket | null>(null)
-  const scrollRef = useRef<HTMLDivElement>(null)
-
-  // Auto-scroll to bottom on new messages
   useEffect(() => {
-    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' })
-  }, [messages])
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
 
-  async function startSession(n: string, e: string) {
-    const res = await fetch(`${CHAT_HTTP}/api/chat/start`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: n, email: e, sessionId: sessionId || undefined }),
-    })
-    if (!res.ok) throw new Error('Failed to start chat session')
-    const data = await res.json()
-    localStorage.setItem(LS_SESSION, data.sessionId)
-    localStorage.setItem(LS_NAME, n)
-    localStorage.setItem(LS_EMAIL, e)
-    setSession(data.sessionId)
-    setNeedsId(false)
-    connectWS(data.sessionId)
-    fetchHistory(data.sessionId)
-  }
-
-  async function fetchHistory(sid: string) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setError('')
+    const fd = new FormData(e.currentTarget)
+    const payload = {
+      name:     String(fd.get('name')    || '').trim(),
+      email:    String(fd.get('email')   || '').trim(),
+      subject:  String(fd.get('subject') || '').trim(),
+      business: String(fd.get('business')|| '').trim(),
+      country:  String(fd.get('country') || '').trim(),
+      message:  String(fd.get('message') || '').trim(),
+    }
+    setSending(true)
     try {
-      const res = await fetch(`${CHAT_HTTP}/api/chat/messages/${sid}`)
-      const data = await res.json()
-      setMessages(data.messages || [])
-    } catch { /* empty history */ }
-  }
-
-  function connectWS(sid: string) {
-    if (wsRef.current?.readyState === WebSocket.OPEN) return
-    const ws = new WebSocket(`${CHAT_WS}/ws/customer/${sid}`)
-    wsRef.current = ws
-    ws.onopen    = () => setConnected(true)
-    ws.onclose   = () => setConnected(false)
-    ws.onerror   = () => setConnected(false)
-    ws.onmessage = (ev) => {
-      try {
-        const data = JSON.parse(ev.data)
-        if (data.type === 'message') {
-          setMessages(m => [...m, {
-            text: data.text, sender: data.sender,
-            senderName: data.senderName, createdAt: data.createdAt,
-          }])
-          if (data.sender === 'admin' && !open) setUnread(u => u + 1)
-        }
-      } catch { /* ignore */ }
-    }
-  }
-
-  function handleOpen() {
-    setOpen(true)
-    setUnread(0)
-    if (!sessionId) {
-      setNeedsId(true)
-    } else {
-      if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) {
-        connectWS(sessionId)
-        fetchHistory(sessionId)
+      const res = await fetch(`${API_BASE}/api/messages`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.message || 'Failed to send')
       }
+      setDone(true)
+      ;(e.currentTarget as HTMLFormElement).reset()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send')
+    } finally {
+      setSending(false)
     }
   }
 
-  function handleSend() {
-    const text = draft.trim()
-    if (!text || !wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) return
-    wsRef.current.send(JSON.stringify({ text }))
-    setDraft('')
-  }
+  const ipt = 'w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 ' +
+    'placeholder:text-slate-400 focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 transition'
 
   return (
     <>
       {/* Floating button */}
       {!open && (
         <button
-          onClick={handleOpen}
+          onClick={() => { setOpen(true); setDone(false); setError('') }}
           className="fixed bottom-5 right-5 z-[80] flex items-center justify-center
                      w-14 h-14 rounded-full bg-brand-accent hover:bg-brand-accentDark
                      text-white shadow-2xl shadow-brand-accent/40
                      hover:-translate-y-0.5 transition-all duration-300"
-          aria-label="Open chat"
+          aria-label={t('chatWidget.openLabel', 'Open contact form')}
         >
           <MessageCircle size={26} />
-          {unread > 0 && (
-            <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-red-500 text-white text-[11px] font-bold flex items-center justify-center border-2 border-white">
-              {unread > 9 ? '9+' : unread}
-            </span>
-          )}
         </button>
       )}
 
-      {/* Chat window */}
+      {/* Panel */}
       {open && (
-        <div className="fixed bottom-5 right-5 z-[80] w-[92vw] max-w-[380px] h-[560px]
-                        bg-white rounded-2xl shadow-2xl ring-1 ring-brand-deep/10
-                        flex flex-col overflow-hidden animate-[fadeUp_0.25s_ease-out_both]">
+        <div
+          ref={panelRef}
+          className="fixed bottom-5 right-5 z-[80] w-[94vw] max-w-[400px] max-h-[88vh]
+                     bg-white rounded-2xl shadow-2xl ring-1 ring-brand-deep/10
+                     flex flex-col overflow-hidden animate-[fadeUp_0.25s_ease-out_both]"
+        >
           {/* Header */}
           <div className="bg-brand-deep text-white px-4 py-3 flex items-center justify-between">
             <div>
-              <p className="font-serif text-sm font-bold">Yanabiya Live Chat</p>
-              <p className="text-[10px] text-white/70 flex items-center gap-1">
-                <span className={`w-1.5 h-1.5 rounded-full ${connected ? 'bg-emerald-400' : 'bg-amber-400'}`} />
-                {connected ? 'Online' : 'Connecting…'}
+              <p className="font-serif text-sm font-bold">
+                {t('chatWidget.title', 'Talk to Yanabiya')}
+              </p>
+              <p className="text-[11px] text-white/70">
+                {t('chatWidget.subtitle', 'Tell us a bit and we’ll get back fast.')}
               </p>
             </div>
-            <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white p-1">
+            <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white p-1" aria-label="Close">
               <X size={18} />
             </button>
           </div>
 
-          {/* Identity gate */}
-          {needsId && (
-            <div className="flex-1 px-5 py-6 flex flex-col gap-3">
-              <p className="text-xs text-slate-500 mb-2">
-                Hi 👋 Tell us a bit about yourself so we can help you better.
+          {/* Body */}
+          {done ? (
+            <div className="flex-1 flex flex-col items-center justify-center text-center px-6 py-10 gap-3">
+              <div className="w-14 h-14 rounded-full bg-brand-accent/15 text-brand-accentDark flex items-center justify-center">
+                <CheckCircle2 size={28} />
+              </div>
+              <h3 className="font-serif text-lg text-slate-900">
+                {t('chatWidget.thanksTitle', 'Thanks — message received.')}
+              </h3>
+              <p className="text-sm text-slate-600 leading-snug">
+                {t('chatWidget.thanksBody', 'Our team has been notified and will reply within one business day.')}
               </p>
-              <input
-                value={name} onChange={e => setName(e.target.value)} placeholder="Your name"
-                className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-accent"
-              />
-              <input
-                value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email (optional)"
-                className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-brand-accent"
-              />
               <button
-                onClick={() => name.trim() && startSession(name.trim(), email.trim())}
-                disabled={!name.trim()}
-                className="mt-2 w-full py-2.5 rounded-lg bg-brand-accent hover:bg-brand-accentDark text-white text-sm font-semibold transition disabled:opacity-50"
+                onClick={() => { setDone(false) }}
+                className="mt-3 text-xs font-semibold text-brand-accentDark hover:underline"
               >
-                Start Chat
+                {t('chatWidget.sendAnother', 'Send another message')}
               </button>
             </div>
-          )}
-
-          {/* Message thread */}
-          {!needsId && (
-            <>
-              <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-slate-50">
-                {messages.length === 0 && (
-                  <div className="text-center text-xs text-slate-400 mt-6">
-                    No messages yet — say hello! 👋
-                  </div>
-                )}
-                {messages.map((m, i) => (
-                  <div key={i} className={`flex ${m.sender === 'customer' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-[80%] px-3 py-2 rounded-2xl text-sm shadow-sm
-                      ${m.sender === 'customer'
-                        ? 'bg-brand-accent text-white rounded-br-sm'
-                        : 'bg-white text-slate-800 rounded-bl-sm border border-slate-100'}`}>
-                      {m.sender === 'admin' && m.senderName && (
-                        <p className="text-[10px] text-brand-accentDark font-bold mb-0.5">{m.senderName}</p>
-                      )}
-                      <p className="whitespace-pre-wrap leading-snug">{m.text}</p>
-                    </div>
-                  </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto px-4 py-4 grid gap-2.5">
+              <input
+                name="name" required maxLength={120}
+                placeholder={t('chatWidget.name', 'Your name *')}
+                className={ipt}
+                autoComplete="name"
+              />
+              <input
+                name="email" required type="email" maxLength={160}
+                placeholder={t('chatWidget.email', 'Email *')}
+                className={ipt}
+                autoComplete="email"
+              />
+              <input
+                name="subject" required maxLength={160}
+                placeholder={t('chatWidget.subject', 'Subject *')}
+                className={ipt}
+              />
+              <select name="business" required defaultValue="" className={`${ipt} appearance-none`}>
+                <option value="" disabled>{t('chatWidget.chooseBusiness', 'Choose a business *')}</option>
+                {BUSINESSES.map(b => (
+                  <option key={b.slug} value={b.slug}>{b.label}</option>
                 ))}
-              </div>
+              </select>
+              <select name="country" defaultValue="" className={`${ipt} appearance-none`}>
+                <option value="">{t('chatWidget.chooseOffice', 'Choose an office (optional)')}</option>
+                {OFFICES.map(o => (
+                  <option key={o.code} value={o.code}>{o.label}</option>
+                ))}
+              </select>
+              <textarea
+                name="message" required rows={4} maxLength={2000}
+                placeholder={t('chatWidget.message', 'How can we help? *')}
+                className={`${ipt} resize-none`}
+              />
 
-              {/* Composer */}
-              <div className="border-t border-slate-100 px-3 py-2 flex items-center gap-2">
-                <input
-                  value={draft}
-                  onChange={e => setDraft(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && handleSend()}
-                  placeholder="Type a message…"
-                  className="flex-1 px-3 py-2 rounded-full bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:border-brand-accent"
-                />
-                <button
-                  onClick={handleSend}
-                  disabled={!draft.trim() || !connected}
-                  className="w-9 h-9 rounded-full bg-brand-accent hover:bg-brand-accentDark text-white flex items-center justify-center disabled:opacity-40 transition"
-                >
-                  <Send size={14} />
-                </button>
-              </div>
-            </>
+              {error && (
+                <div className="text-xs text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+                  {error}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={sending}
+                className="mt-1 inline-flex items-center justify-center gap-2 rounded-full
+                           bg-brand-accent hover:bg-brand-accentDark text-white font-semibold
+                           text-sm px-5 py-2.5 transition disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {sending ? t('chatWidget.sending', 'Sending…') : (
+                  <>
+                    {t('chatWidget.send', 'Send message')} <Send size={14} />
+                  </>
+                )}
+              </button>
+
+              <p className="text-[10px] text-slate-400 text-center mt-1">
+                {t('chatWidget.privacy', 'We use your details only to reply to your enquiry.')}
+              </p>
+            </form>
           )}
         </div>
       )}
