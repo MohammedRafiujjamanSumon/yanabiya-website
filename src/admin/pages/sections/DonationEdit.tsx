@@ -38,7 +38,7 @@ const DEFAULTS: DonationData = {
     { value: '100%', label: 'Direct to Cause' },
     { value: '1,000+', label: 'Lives Touched' },
     { value: '4', label: 'Countries' },
-    { value: '15Y', label: 'Track Record' },
+    { value: '18Y', label: 'Track Record' },
   ],
   quote: 'A Chance to Build Your Palace in Jannah',
   hadith: 'The Prophet said: Charity does not decrease wealth. (Sahih Muslim)',

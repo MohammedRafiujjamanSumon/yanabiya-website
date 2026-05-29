@@ -15,7 +15,7 @@ const DEFAULTS: NetworkData = {
     { value: '500+', kKey: 'clients' },
     { value: '9',    kKey: 'entities' },
     { value: '4',    kKey: 'countries' },
-    { value: '15Y+', kKey: 'track' },
+    { value: '18Y+', kKey: 'track' },
   ],
   memberships: [
     'Oman Chamber of Commerce & Industry',

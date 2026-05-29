@@ -10,7 +10,7 @@ export const company = {
   stats: [
     { value: '4+', label: 'Countries' },
     { value: '6+', label: 'Industries' },
-    { value: '15Y', label: 'Experience' },
+    { value: '18Y', label: 'Experience' },
     { value: '500+', label: 'Clients' },
   ],
   mission:

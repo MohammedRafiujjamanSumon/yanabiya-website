@@ -22,7 +22,7 @@ export default function CSR() {
   const stats = useMemo(() => [
     { v: '500+', l: t('csr.stats.beneficiaries') },
     { v: '4',    l: t('csr.stats.countries') },
-    { v: '15Y',  l: t('csr.stats.track') },
+    { v: '18Y',  l: t('csr.stats.track') },
   ], [t])
   return (
     <Section id="csr" className="bg-stone-50">

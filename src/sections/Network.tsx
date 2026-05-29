@@ -8,7 +8,7 @@ const stats = [
   { icon: Users, value: '500+', kKey: 'clients' },
   { icon: Building2, value: '9', kKey: 'entities' },
   { icon: Globe, value: '4', kKey: 'countries' },
-  { icon: BadgeCheck, value: '15Y+', kKey: 'track' },
+  { icon: BadgeCheck, value: '18Y+', kKey: 'track' },
 ]
 
 const memberships = [

@@ -89,7 +89,7 @@ const CC_DEFAULTS: CCData = {
   stats: [
     { value: '500+', label: 'Beneficiaries' },
     { value: '4',    label: 'Countries' },
-    { value: '15Y',  label: 'Track Record' },
+    { value: '18Y',  label: 'Track Record' },
     { value: '25+',  label: 'Programmes' },
   ],
 }

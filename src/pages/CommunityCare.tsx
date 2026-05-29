@@ -60,7 +60,7 @@ const countryPrograms: Record<string, string[]> = {
 }
 
 const statKeys = ['beneficiaries', 'countries', 'track', 'programmes']
-const statValues = ['500+', '4', '15Y', '25+']
+const statValues = ['500+', '4', '18Y', '25+']
 
 type CCData = {
   pillars?: { label: string; description: string; image: string; bg?: string }[]

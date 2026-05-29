@@ -110,7 +110,7 @@ const statsData = [
   { Icon: Star,  v: '4.9/5', key: 'avgRating'    },
   { Icon: Users, v: '120+',  key: 'clientsServed' },
   { Icon: Globe, v: '4',     key: 'countries'     },
-  { Icon: Award, v: '15Y',   key: 'track'         },
+  { Icon: Award, v: '18Y',   key: 'track'         },
 ]
 
 /* ── Filter tabs ────────────────────────────────────────────── */

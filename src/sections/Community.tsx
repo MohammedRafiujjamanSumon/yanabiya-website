@@ -90,7 +90,7 @@ const HUBS: Hub[] = [
     to: '/community/careers',
     eyebrow: 'Join the Team',
     title: 'Career With Us',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/career-card.jpg',
     offset: '',
     accent: 'border-t-rose-500',
     hex: '#f43f5e',

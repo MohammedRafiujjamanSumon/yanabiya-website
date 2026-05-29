@@ -49,7 +49,7 @@ const stats = [
   { v: '100%',   key: 'directToCause' },
   { v: '1,000+', key: 'livesTouched'  },
   { v: '4',      key: 'countries'     },
-  { v: '15Y',    key: 'trackRecord'   },
+  { v: '18Y',    key: 'trackRecord'   },
 ]
 
 /* ── Types ──────────────────────────────────────────────────── */

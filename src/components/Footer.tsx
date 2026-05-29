@@ -358,7 +358,7 @@ export default function Footer() {
       {/* ── BOTTOM STRIP ── */}
       <div className="bg-black/40 w-full">
         <div className="container-x py-2 flex flex-row flex-wrap items-center justify-between gap-2 text-[10px] text-white/70">
-          <span>© {year} {footerData?.copyrightText || `Yanabiya Group. ${t('footer.rights')}`}</span>
+          <span>© {year} {footerData?.copyrightText || `Yanabiya Group. ${t('footer.rights')}`} · Since 2008</span>
           <div className="flex items-center gap-4">
             <a href={`mailto:${contact.emails[0]}`} className={linkClass}>{contact.emails[0]}</a>
             <a
