@@ -6,7 +6,7 @@ import {
   ArrowLeft, ArrowRight, Heart, Send, CheckCircle, Copy, Mail,
   Building2, UserRound, Stethoscope, Shield, BookOpen,
   Star, Gift, Banknote, Leaf, Hammer, Sparkles, HandHeart,
-  Check,
+  Check, Globe2,
 } from 'lucide-react'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
@@ -510,6 +510,14 @@ export default function Donation() {
                         BDT&nbsp;{selectedAmt === 'Custom' ? (customAmt || '—') : selectedAmt}
                       </p>
                     </div>
+                    <a
+                      href="https://www.jamiyaahmadiya.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-brand-accentDark hover:underline"
+                    >
+                      <Globe2 size={11} /> Visit beneficiary site — jamiyaahmadiya.com
+                    </a>
                   </div>
                 )}
 
