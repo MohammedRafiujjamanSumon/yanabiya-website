@@ -39,28 +39,28 @@ export default function YanabiyaCommerce() {
       <BackButton to="/" label={t('common.back', 'Back')} />
 
       {/* ───────── HERO ───────── */}
-      <section className="relative overflow-hidden bg-brand-deep text-white">
+      <section className="relative overflow-hidden bg-white text-brand-deep">
         <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-32 -left-24 w-[520px] h-[520px] rounded-full bg-brand-accent/20 blur-[130px]" />
-          <div className="absolute -bottom-40 -right-24 w-[560px] h-[560px] rounded-full bg-emerald-400/10 blur-[150px]" />
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full bg-brand-accent/10 blur-[130px]" />
+          <div className="absolute -bottom-40 right-1/4 w-[460px] h-[460px] rounded-full bg-emerald-400/5 blur-[150px]" />
         </div>
 
         <div className="relative z-10 container-x py-16 md:py-24">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-brand-accent bg-brand-accent/10 border border-brand-accent/20 rounded-full px-4 py-1.5 mb-6">
+          <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
+            <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-brand-accentDark bg-brand-accent/10 border border-brand-accent/20 rounded-full px-4 py-1.5 mb-6">
               <ShoppingBag size={13} /> Yanabiya e-Commerce
             </div>
             <h1 className="font-serif text-4xl md:text-6xl leading-[1.05]">
               Selling everywhere your
               <span className="block text-brand-accent">customers shop.</span>
             </h1>
-            <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-2xl">
-              Yanabiya e-Commerce runs our own online store <strong className="text-white">and</strong> active
+            <p className="mt-6 text-lg text-brand-deep/70 leading-relaxed max-w-2xl mx-auto">
+              Yanabiya e-Commerce runs our own online store <strong className="text-brand-deep">and</strong> active
               storefronts across the world's largest marketplaces — Amazon, Walmart, Shopify and eBay.
               From product listing and payments to fulfilment and after-sales, we manage the full
               online-retail value chain across four countries.
             </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
               <a
                 href="https://ygiusllc.com"
                 target="_blank"
@@ -74,15 +74,14 @@ export default function YanabiyaCommerce() {
               <Link
                 to="/#contact"
                 className="inline-flex items-center gap-2 rounded-full px-7 py-3.5
-                           border border-white/30 text-white font-semibold uppercase tracking-wider text-sm
-                           hover:bg-white/10 hover:border-white transition-all"
+                           border border-brand-deep/25 text-brand-deep font-semibold uppercase tracking-wider text-sm
+                           hover:border-brand-accent hover:text-brand-accentDark transition-all"
               >
                 Sell With Us <ArrowRight size={16} />
               </Link>
             </div>
           </div>
         </div>
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-brand-50" />
       </section>
 
       {/* ───────── MARKETPLACES ───────── */}
