@@ -22,6 +22,8 @@ import PersonPage from './pages/PersonPage'
 import PeoplePage from './pages/PeoplePage'
 import CeoPage from './pages/CeoPage'
 import ViceChairmanPage from './pages/ViceChairmanPage'
+import ManagingDirectorPage from './pages/ManagingDirectorPage'
+import CoFoundersPage from './pages/CoFoundersPage'
 import BoardPage from './pages/BoardPage'
 import DepartmentCountryPage from './pages/DepartmentCountryPage'
 import Testimonials from './pages/Testimonials'
@@ -203,6 +205,8 @@ export default function App() {
               <Route path="/contact/:code" element={<ContactCountry />} />
               <Route path="/people/ceo" element={<CeoPage />} />
               <Route path="/people/vice-chairman" element={<ViceChairmanPage />} />
+              <Route path="/people/managing-director" element={<ManagingDirectorPage />} />
+              <Route path="/people/co-founders" element={<CoFoundersPage />} />
               <Route path="/people/board" element={<BoardPage />} />
               <Route path="/people/executive" element={<PeoplePage slug="executive" />} />
               <Route path="/people/accounts" element={<PeoplePage slug="accounts" />} />

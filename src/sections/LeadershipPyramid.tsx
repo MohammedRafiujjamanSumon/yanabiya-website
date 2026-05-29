@@ -59,7 +59,7 @@ const COLORS: Record<string, CardColor> = {
     label:        'text-brand-deep',
     sub:          'text-brand-accentDark',
     readMore:     'bg-brand-deep hover:bg-brand-ink',
-    readMoreText: 'Read about the CEO',
+    readMoreText: 'Read More',
     glow:         'shadow-brand-200/60',
   },
   vice: {
@@ -71,7 +71,7 @@ const COLORS: Record<string, CardColor> = {
     label:        'text-brand-deep',
     sub:          'text-brand-accentDark',
     readMore:     'bg-brand-accentDark hover:bg-brand-deep',
-    readMoreText: 'Read About The Vice Chairman',
+    readMoreText: 'Read More',
     glow:         'shadow-brand-accent/40',
   },
   board: {
@@ -271,8 +271,8 @@ export default function LeadershipPyramid() {
                 <HierarchyCard
                   colorKey="board"
                   label={t('leadership.coFounder', 'Co-Founder')}
-                  to="/people/momim-ahmed"
-                  photo={assets.people.momiimAhmed}
+                  to="/people/co-founders"
+                  photo={COMPANY_LOGO}
                   delay={0}
                   size="sm"
                 />
@@ -283,7 +283,7 @@ export default function LeadershipPyramid() {
                 <HierarchyCard
                   colorKey="vice"
                   label={t('leadership.managingDirector', 'Managing Director')}
-                  to="/people/khalid-al-sulaimani-exec"
+                  to="/people/managing-director"
                   photo={assets.people.khalidSulaimani}
                   delay={0}
                   size="sm"
