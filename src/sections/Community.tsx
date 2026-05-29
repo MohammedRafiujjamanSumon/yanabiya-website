@@ -72,7 +72,7 @@ const HUBS: Hub[] = [
     to: '/community/donation',
     eyebrow: 'Give & Impact',
     title: 'Donation',
-    image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=600&q=80',
+    image: '/images/donation-card.jpg',
     offset: 'mt-16',
     accent: 'border-t-violet-600',
     hex: '#7c3aed',

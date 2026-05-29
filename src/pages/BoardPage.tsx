@@ -12,6 +12,7 @@ const BOARD_IDS_ORDERED = [
   { id: 'sumon-ahmed',          name: 'S M Sumon Ahmed',          role: 'Co-Founder, Bangladesh',     image: assets.people.sumonAhmed },
   { id: 'rafiujjaman-sumon',    name: 'Md Rafiujjaman Sumon',     role: 'Co-Founder, UK',             image: null },
   { id: 'jhohora-akter',        name: 'Jhohora Akter',            role: 'Co-Founder, USA',            image: assets.people.jhohoraAkter },
+  { id: 'khalid-al-sulaimani-exec', name: 'Khalid Saif Ahmed Al Sulaimani', role: 'Managing Director',  image: assets.people.khalidSulaimani },
   { id: 'maysa-yeasmin',        name: 'Maysa Yeasmin',            role: 'Board Member & CFO',         image: assets.people.maysaYeasmin },
   { id: 'shawrin-ahmed-shammi', name: 'Shawrin Ahmed Shammi',     role: 'Board of Director',          image: null },
   { id: 'abdullah-ibn-ahmed',   name: 'S M Abdullah Ibn Ahmed',   role: 'Board of Director',          image: null },

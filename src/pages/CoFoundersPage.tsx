@@ -8,12 +8,12 @@ import { board } from '../data/leadership'
  * mirrors the Board page entries that carry a 'Co-Founder' role. Members
  * without a photo render the Yanabiya logo placeholder. */
 const COFOUNDERS = [
-  { id: 'shamim-ahmed',      name: 'S M Shamim Ahmed',     role: 'Founder, Chairman & CEO',    image: board[0]?.photo },
-  { id: 'abu-jaheed',        name: 'Mohammad Abu Jaheed',  role: 'Co-Founder & Vice Chairman', image: board[1]?.photo },
-  { id: 'momim-ahmed',       name: 'S M Momim Ahmed',      role: 'Co-Founder, Oman',           image: assets.people.momiimAhmed },
-  { id: 'sumon-ahmed',       name: 'S M Sumon Ahmed',      role: 'Co-Founder, Bangladesh',     image: assets.people.sumonAhmed },
-  { id: 'rafiujjaman-sumon', name: 'Md Rafiujjaman Sumon', role: 'Co-Founder, UK',             image: null },
-  { id: 'jhohora-akter',     name: 'Jhohora Akter',        role: 'Co-Founder, USA',            image: assets.people.jhohoraAkter },
+  { id: 'shamim-ahmed',      name: 'S M Shamim Ahmed',     role: 'Founder, Chairman & CEO', image: board[0]?.photo },
+  { id: 'abu-jaheed',        name: 'Mohammad Abu Jaheed',  role: 'Vice Chairman',           image: board[1]?.photo },
+  { id: 'momim-ahmed',       name: 'S M Momim Ahmed',      role: 'Co-Founder, Oman',        image: assets.people.momiimAhmed },
+  { id: 'sumon-ahmed',       name: 'S M Sumon Ahmed',      role: 'Co-Founder, Bangladesh',  image: assets.people.sumonAhmed },
+  { id: 'rafiujjaman-sumon', name: 'Md Rafiujjaman Sumon', role: 'Co-Founder, UK',          image: null },
+  { id: 'jhohora-akter',     name: 'Jhohora Akter',        role: 'Co-Founder, USA',         image: assets.people.jhohoraAkter },
 ]
 
 export default function CoFoundersPage() {
