@@ -11,6 +11,7 @@ import {
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
 import { useSection } from '../hooks/useSection'
+import { allCountries } from '../data/allCountries'
 
 /* ── Types ──────────────────────────────────────────────────── */
 type Cause = {
@@ -24,7 +25,7 @@ type Cause = {
 const causes: Cause[] = [
   { causeKey: 'masjidSupport',      color: '#10b981', icon: <Building2 size={15} strokeWidth={2} />, image: '/images/donation/masjid-support.jpg' },
   { causeKey: 'orphanCare',         color: '#f43f5e', icon: <Heart size={15} strokeWidth={2} />,     image: '/images/donation/orphan-care.jpg' },
-  { causeKey: 'elderlyHome',        color: '#0ea5e9', icon: <UserRound size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'elderlyHome',        color: '#0ea5e9', icon: <UserRound size={15} strokeWidth={2} />, image: '/images/donation/elderly-home.jpg' },
   { causeKey: 'medicalSupport',     color: '#f59e0b', icon: <Stethoscope size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'endingTorment',      color: '#8b5cf6', icon: <Shield size={15} strokeWidth={2} />,    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'studentCare',        color: '#0ea5e9', icon: <BookOpen size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80' },
@@ -123,33 +124,17 @@ export default function Donation() {
     'placeholder:text-slate-400 focus:outline-none focus:border-brand-accent ' +
     'focus:ring-2 focus:ring-brand-accent/20 transition-all'
 
-  const PAY_COUNTRIES = [
-    { code: 'BD', flag: '🇧🇩', name: 'Bangladesh',     live: true,  gateways: ['bKash', 'Nagad', 'Bank Transfer'] },
-    { code: 'OM', flag: '🇴🇲', name: 'Oman',            live: false, gateways: [] },
-    { code: 'GB', flag: '🇬🇧', name: 'United Kingdom',  live: false, gateways: [] },
-    { code: 'US', flag: '🇺🇸', name: 'USA',             live: false, gateways: [] },
-    { code: 'SA', flag: '🇸🇦', name: 'Saudi Arabia',    live: false, gateways: [] },
-    { code: 'AE', flag: '🇦🇪', name: 'UAE',             live: false, gateways: [] },
-    { code: 'QA', flag: '🇶🇦', name: 'Qatar',           live: false, gateways: [] },
-    { code: 'KW', flag: '🇰🇼', name: 'Kuwait',          live: false, gateways: [] },
-    { code: 'BH', flag: '🇧🇭', name: 'Bahrain',         live: false, gateways: [] },
-    { code: 'MY', flag: '🇲🇾', name: 'Malaysia',        live: false, gateways: [] },
-    { code: 'IN', flag: '🇮🇳', name: 'India',           live: false, gateways: [] },
-    { code: 'PK', flag: '🇵🇰', name: 'Pakistan',        live: false, gateways: [] },
-    { code: 'TR', flag: '🇹🇷', name: 'Turkey',          live: false, gateways: [] },
-    { code: 'EG', flag: '🇪🇬', name: 'Egypt',           live: false, gateways: [] },
-    { code: 'SG', flag: '🇸🇬', name: 'Singapore',       live: false, gateways: [] },
-    { code: 'ID', flag: '🇮🇩', name: 'Indonesia',       live: false, gateways: [] },
-    { code: 'JP', flag: '🇯🇵', name: 'Japan',           live: false, gateways: [] },
-    { code: 'KR', flag: '🇰🇷', name: 'South Korea',     live: false, gateways: [] },
-    { code: 'CA', flag: '🇨🇦', name: 'Canada',          live: false, gateways: [] },
-    { code: 'AU', flag: '🇦🇺', name: 'Australia',       live: false, gateways: [] },
-    { code: 'DE', flag: '🇩🇪', name: 'Germany',         live: false, gateways: [] },
-    { code: 'FR', flag: '🇫🇷', name: 'France',          live: false, gateways: [] },
-    { code: 'NL', flag: '🇳🇱', name: 'Netherlands',     live: false, gateways: [] },
-    { code: 'NG', flag: '🇳🇬', name: 'Nigeria',         live: false, gateways: [] },
-    { code: 'ZA', flag: '🇿🇦', name: 'South Africa',    live: false, gateways: [] },
-  ]
+  /**
+   * Full ISO 3166-1 country list. Only Bangladesh has live gateways for now;
+   * every other country routes to "Contact Us" so no donor is turned away.
+   */
+  const PAY_COUNTRIES = allCountries.map(c => ({
+    code: c.code,
+    flag: c.flag,
+    name: c.name,
+    live: c.code === 'BD',
+    gateways: c.code === 'BD' ? ['bKash', 'Nagad', 'Bank Transfer'] : [],
+  }))
   const GATEWAY_INFO: Record<string, { number: string; rawNumber: string }> = {
     'bKash': { number: `+880 ${bkash}`, rawNumber: bkash },
     'Nagad': { number: `+880 ${nagad}`, rawNumber: nagad },

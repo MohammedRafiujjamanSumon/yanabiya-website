@@ -10,21 +10,9 @@ import { countries as countryList } from '../data/countries'
 const DEFAULT_VIDEO =
   'https://videos.pexels.com/video-files/8084618/8084618-uhd_2560_1440_25fps.mp4'
 
-const COUNTRY_OPTIONS = [
-  { value: 'OM', label: 'Oman' },
-  { value: 'GB', label: 'United Kingdom' },
-  { value: 'BD', label: 'Bangladesh' },
-  { value: 'US', label: 'United States' },
-  { value: 'AE', label: 'UAE' },
-  { value: 'SA', label: 'Saudi Arabia' },
-  { value: 'QA', label: 'Qatar' },
-  { value: 'KW', label: 'Kuwait' },
-  { value: 'BH', label: 'Bahrain' },
-  { value: 'IN', label: 'India' },
-  { value: 'PK', label: 'Pakistan' },
-  { value: 'PH', label: 'Philippines' },
-  { value: 'OTHER', label: 'Other' },
-]
+import { allCountries } from '../data/allCountries'
+
+const COUNTRY_OPTIONS = allCountries.map(c => ({ value: c.code, label: `${c.flag} ${c.name}` }))
 
 export default function BusinessDetail() {
   const { t } = useTranslation()

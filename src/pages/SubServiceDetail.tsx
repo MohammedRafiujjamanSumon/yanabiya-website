@@ -6,21 +6,9 @@ import Section from '../components/Section'
 import { businesses, type SubService } from '../data/businesses'
 import { assets } from '../data/assets'
 
-const COUNTRY_OPTIONS = [
-  { value: 'OM', label: 'Oman' },
-  { value: 'GB', label: 'United Kingdom' },
-  { value: 'BD', label: 'Bangladesh' },
-  { value: 'US', label: 'United States' },
-  { value: 'AE', label: 'UAE' },
-  { value: 'SA', label: 'Saudi Arabia' },
-  { value: 'QA', label: 'Qatar' },
-  { value: 'KW', label: 'Kuwait' },
-  { value: 'BH', label: 'Bahrain' },
-  { value: 'IN', label: 'India' },
-  { value: 'PK', label: 'Pakistan' },
-  { value: 'PH', label: 'Philippines' },
-  { value: 'OTHER', label: 'Other' },
-]
+import { allCountries } from '../data/allCountries'
+
+const COUNTRY_OPTIONS = allCountries.map(c => ({ value: c.code, label: `${c.flag} ${c.name}` }))
 
 const HOVER_COLORS = [
   { from: '#065f46', to: '#064e3b' },  // green
