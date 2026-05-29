@@ -281,24 +281,24 @@ export default function Donation() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 items-stretch">
               {/* Left column: 2 stacked photos */}
               <figure className="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-md transition-all aspect-[4/3]">
-                <img src="/images/donation/gallery/madrasa-students.jpg" alt="Madrasha Students" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/images/donation/gallery/jamiya-students-group.jpg" alt="Madrasha Students" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
                 <figcaption className="absolute bottom-1.5 left-2 right-2 text-[10px] font-semibold text-white drop-shadow">Madrasha Students</figcaption>
               </figure>
               <figure className="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-md transition-all aspect-[4/3]">
-                <img src="/images/donation/gallery/hifz-certificates.jpg" alt="Hifz Certificate Ceremony" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/images/donation/gallery/jamiya-meals.jpg" alt="Daily Meals" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
-                <figcaption className="absolute bottom-1.5 left-2 right-2 text-[10px] font-semibold text-white drop-shadow">Hifz Certificate</figcaption>
+                <figcaption className="absolute bottom-1.5 left-2 right-2 text-[10px] font-semibold text-white drop-shadow">Daily Meals</figcaption>
               </figure>
 
               {/* Center: video card, spans 2 cols on md+, full height of 2 photo rows */}
               <div className="col-span-2 md:col-span-2 md:row-span-2 relative rounded-xl overflow-hidden shadow-md bg-slate-900 aspect-[4/3] md:aspect-auto">
                 <img
-                  src="/images/donation/gallery/food-distribution.jpg"
+                  src="/images/donation/gallery/jamiya-donate-poster.jpg"
                   alt="Watch our story"
-                  className="absolute inset-0 w-full h-full object-cover opacity-60"
+                  className="absolute inset-0 w-full h-full object-cover opacity-70"
                 />
-                <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-slate-950/70 via-slate-900/40 to-slate-950/70" />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-slate-950/60 via-slate-900/30 to-slate-950/70" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
                   <button
                     type="button"
@@ -308,21 +308,21 @@ export default function Donation() {
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden><path d="M8 5v14l11-7z"/></svg>
                   </button>
                   <span className="mt-3 text-[9px] font-bold uppercase tracking-[0.28em] text-amber-300/90">Watch</span>
-                  <span className="mt-1 font-serif text-base md:text-lg leading-tight">Our work in motion</span>
+                  <span className="mt-1 font-serif text-base md:text-lg leading-tight">A chance to build your palace in Jannah</span>
                   <span className="mt-1 text-[10px] text-white/60">Video coming soon</span>
                 </div>
               </div>
 
               {/* Right column: 2 stacked photos */}
               <figure className="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-md transition-all aspect-[4/3]">
-                <img src="/images/donation/gallery/ramadan-charity.jpg" alt="Ramadan Charity" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/images/donation/gallery/jamiya-quran-lesson.jpg" alt="Quran Lessons" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
-                <figcaption className="absolute bottom-1.5 left-2 right-2 text-[10px] font-semibold text-white drop-shadow">Ramadan Charity</figcaption>
+                <figcaption className="absolute bottom-1.5 left-2 right-2 text-[10px] font-semibold text-white drop-shadow">Quran Lessons</figcaption>
               </figure>
               <figure className="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-md transition-all aspect-[4/3]">
-                <img src="/images/donation/gallery/eid-prayer.jpg" alt="Eid Prayer" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/images/donation/gallery/jamiya-students-older.jpg" alt="Senior Students" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
-                <figcaption className="absolute bottom-1.5 left-2 right-2 text-[10px] font-semibold text-white drop-shadow">Eid Prayer</figcaption>
+                <figcaption className="absolute bottom-1.5 left-2 right-2 text-[10px] font-semibold text-white drop-shadow">Senior Students</figcaption>
               </figure>
             </div>
 
