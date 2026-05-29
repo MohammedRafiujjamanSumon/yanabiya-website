@@ -1,12 +1,14 @@
-import { ExternalLink, ShoppingBag, Cpu, Globe } from 'lucide-react'
+import { ExternalLink, ShoppingBag, Cpu, Globe, Layers, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 const PLATFORMS = [
   {
     key: 'ecommerce',
-    href: 'https://ygiusllc.com',
+    href: '/yanabiya-ecommerce',
+    internal: true,
     icon: ShoppingBag,
-    domain: 'ygiusllc.com',
+    domain: 'Amazon · Walmart · Shopify · eBay',
     from: '#064e3b',
     to: '#065f46',
     accent: '#34d399',
@@ -31,6 +33,16 @@ const PLATFORMS = [
     to: '#2e0d52',
     accent: '#c084fc',
     badge: '🌐',
+  },
+  {
+    key: 'erp',
+    href: 'https://yanabiya.erp',
+    icon: Layers,
+    domain: 'yanabiya.erp',
+    from: '#4c1d0e',
+    to: '#7c2d12',
+    accent: '#fb923c',
+    badge: '⚙️',
   },
 ]
 
@@ -58,23 +70,21 @@ export default function PlatformLinks() {
           </p>
         </div>
 
-        {/* 3 platform cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        {/* Platform cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
           {PLATFORMS.map((p) => {
             const Icon = p.icon
-            return (
-              <a
-                key={p.key}
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative flex flex-col rounded-2xl overflow-hidden
-                           border border-white/8 hover:border-white/20
-                           shadow-lg hover:shadow-2xl
-                           transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]
-                           hover:-translate-y-1.5"
-                style={{ background: `linear-gradient(145deg, ${p.from} 0%, ${p.to} 100%)` }}
-              >
+            const isInternal = 'internal' in p && p.internal
+            const cardClass =
+              `group relative flex flex-col rounded-2xl overflow-hidden
+               border border-white/8 hover:border-white/20
+               shadow-lg hover:shadow-2xl
+               transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]
+               hover:-translate-y-1.5`
+            const cardStyle = { background: `linear-gradient(145deg, ${p.from} 0%, ${p.to} 100%)` }
+
+            const inner = (
+              <>
                 {/* Hover sheen */}
                 <span aria-hidden className="absolute inset-0 bg-white/0 group-hover:bg-white/4 transition-colors duration-400" />
 
@@ -113,10 +123,22 @@ export default function PlatformLinks() {
                                  transition-all duration-300 group-hover:gap-1.5"
                       style={{ color: p.accent }}
                     >
-                      {t('platforms.visit', 'Visit')} <ExternalLink size={10} />
+                      {isInternal
+                        ? <>{t('platforms.explore', 'Explore')} <ArrowRight size={10} /></>
+                        : <>{t('platforms.visit', 'Visit')} <ExternalLink size={10} /></>}
                     </span>
                   </div>
                 </div>
+              </>
+            )
+
+            return isInternal ? (
+              <Link key={p.key} to={p.href} className={cardClass} style={cardStyle}>
+                {inner}
+              </Link>
+            ) : (
+              <a key={p.key} href={p.href} target="_blank" rel="noopener noreferrer" className={cardClass} style={cardStyle}>
+                {inner}
               </a>
             )
           })}

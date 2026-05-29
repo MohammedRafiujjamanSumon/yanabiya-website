@@ -26,6 +26,7 @@ import BoardPage from './pages/BoardPage'
 import DepartmentCountryPage from './pages/DepartmentCountryPage'
 import Testimonials from './pages/Testimonials'
 import Donation from './pages/Donation'
+import YanabiyaCommerce from './pages/YanabiyaCommerce'
 
 // ── Admin Panel ──────────────────────────────────────────────────────────────
 import { AuthProvider } from './admin/context/AuthContext'
@@ -211,6 +212,8 @@ export default function App() {
               <Route path="/community/careers" element={<CareersPage />} />
               <Route path="/community/testimonials" element={<Testimonials />} />
               <Route path="/community/donation" element={<Donation />} />
+              <Route path="/yanabiya-ecommerce" element={<YanabiyaCommerce />} />
+              <Route path="/e-commerce" element={<YanabiyaCommerce />} />
               <Route path="/about-us" element={<AboutUs />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/about/our-story" element={<OurStory />} />
