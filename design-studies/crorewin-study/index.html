@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CroreWin — UI Design Study (non-functional)</title>
+  <meta name="description" content="A non-functional front-end design study of an online casino / sports-betting landing page layout. For learning purposes only." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink:    '#0b0f1a',
+            panel:  '#121829',
+            panel2: '#1a2236',
+            gold:   '#f5b301',
+            gold2:  '#ffd35c',
+            neon:   '#16c784',
+            accent: '#7b5cff',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          boxShadow: {
+            glow: '0 0 0 1px rgba(245,179,1,.25), 0 10px 40px -10px rgba(245,179,1,.35)',
+            card: '0 12px 40px -16px rgba(0,0,0,.7)',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    body { background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(123,92,255,.18), transparent 60%),
+      radial-gradient(900px 500px at 10% 10%, rgba(245,179,1,.10), transparent 55%),
+      #0b0f1a; }
+    .ticker { animation: ticker 28s linear infinite; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .card-tilt { transition: transform .25s ease, box-shadow .25s ease; }
+    .card-tilt:hover { transform: translateY(-6px); }
+    .chip:hover { background:#1a2236; }
+    .grad-gold { background: linear-gradient(135deg,#ffd35c,#f5b301); }
+    .grad-text { background: linear-gradient(90deg,#ffd35c,#f5b301); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .glassdark { background: rgba(18,24,41,.7); backdrop-filter: blur(10px); }
+  </style>
+</head>
+<body class="font-sans text-slate-200 antialiased">
+
+  <!-- ░░ DESIGN-STUDY DISCLAIMER (always visible) ░░ -->
+  <div class="bg-amber-500/15 border-b border-amber-400/30 text-amber-200 text-[11px] sm:text-xs">
+    <div class="max-w-7xl mx-auto px-4 py-1.5 text-center">
+      ⚠️ <strong>UI design study only.</strong> Not a real gambling site — no real money, no accounts, no betting. Buttons are non-functional. Built for learning layout/UX. 18+
+    </div>
+  </div>
+
+  <!-- ░░ TOP BAR ░░ -->
+  <div class="border-b border-white/5 bg-ink/60">
+    <div class="max-w-7xl mx-auto px-4 h-9 flex items-center justify-between text-xs text-slate-400">
+      <div class="flex items-center gap-4">
+        <span class="hidden sm:inline">🔒 Licensed study layout</span>
+        <span class="hidden md:inline">24/7 support</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="chip rounded px-2 py-1 hover:text-white">🌐 EN</button>
+        <button class="chip rounded px-2 py-1 hover:text-white">৳ BDT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ░░ NAVBAR ░░ -->
+  <header class="sticky top-0 z-40 glassdark border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+      <a href="#" class="flex items-center gap-2 shrink-0">
+        <div class="grad-gold h-9 w-9 rounded-lg grid place-items-center font-black text-ink text-lg">C</div>
+        <span class="text-xl font-extrabold tracking-tight">Crore<span class="grad-text">Win</span></span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1 text-sm font-medium">
+        <a href="#sports" class="px-3 py-2 rounded-lg hover:bg-white/5">Sports</a>
+        <a href="#live" class="px-3 py-2 rounded-lg hover:bg-white/5">Live Casino</a>
+        <a href="#slots" class="px-3 py-2 rounded-lg hover:bg-white/5">Slots</a>
+        <a href="#crash" class="px-3 py-2 rounded-lg hover:bg-white/5">Crash</a>
+        <a href="#promos" class="px-3 py-2 rounded-lg hover:bg-white/5">Promotions</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button class="px-3 sm:px-4 py-2 rounded-lg text-sm font-semibold border border-white/15 hover:bg-white/5">Log in</button>
+        <button class="px-3 sm:px-4 py-2 rounded-lg text-sm font-bold text-ink grad-gold shadow-glow hover:brightness-105">Register</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ░░ HERO ░░ -->
+  <section class="relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 pt-12 pb-10 grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="inline-flex items-center gap-2 text-xs font-semibold bg-neon/15 text-neon border border-neon/30 rounded-full px-3 py-1">
+          ● Live now · 12,480 players
+        </span>
+        <h1 class="mt-5 text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] tracking-tight text-white">
+          Play big.<br><span class="grad-text">Win bigger.</span>
+        </h1>
+        <p class="mt-5 text-slate-300 max-w-md text-lg">
+          Slots, live tables, crash games and cricket betting — all in one premium dark-themed lobby. (Design study mock-up.)
+        </p>
+
+        <div class="mt-7 flex flex-wrap gap-3">
+          <button class="px-6 py-3 rounded-xl text-ink font-bold grad-gold shadow-glow hover:brightness-105">Claim welcome bonus</button>
+          <button class="px-6 py-3 rounded-xl font-semibold border border-white/15 hover:bg-white/5">Explore games</button>
+        </div>
+
+        <div class="mt-8 flex flex-wrap items-center gap-6 text-sm text-slate-400">
+          <div><span class="block text-2xl font-extrabold text-white">2,000+</span>games</div>
+          <div><span class="block text-2xl font-extrabold text-white">&lt; 1 hr</span>payouts*</div>
+          <div><span class="block text-2xl font-extrabold text-white">24/7</span>live support</div>
+        </div>
+      </div>
+
+      <!-- Bonus card -->
+      <div class="relative">
+        <div class="card-tilt rounded-3xl bg-gradient-to-br from-accent/30 via-panel2 to-panel border border-white/10 shadow-card p-7">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-widest text-gold2">Welcome offer</span>
+            <span class="text-xs bg-white/10 rounded-full px-3 py-1">New players</span>
+          </div>
+          <div class="mt-4 text-5xl font-black text-white">125% <span class="text-2xl align-top grad-text">match</span></div>
+          <p class="mt-2 text-slate-300">+ 250 free spins on your first deposit within 1 hour.</p>
+
+          <ul class="mt-5 space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2">✅ Up to <strong class="text-white">৳25,000</strong> bonus</li>
+            <li class="flex gap-2">✅ Min. deposit just <strong class="text-white">৳800</strong></li>
+            <li class="flex gap-2">✅ Mobile wallet friendly</li>
+          </ul>
+
+          <button class="mt-6 w-full py-3 rounded-xl text-ink font-bold grad-gold hover:brightness-105">Get the bonus</button>
+          <p class="mt-3 text-[11px] text-slate-500 leading-relaxed">*Illustrative numbers for the design study. Wagering terms would apply on a real platform. 18+ only. Please gamble responsibly.</p>
+        </div>
+        <div class="absolute -z-10 -inset-6 blur-3xl bg-gold/10 rounded-full"></div>
+      </div>
+    </div>
+
+    <!-- Winners ticker -->
+    <div class="border-y border-white/5 bg-ink/40 overflow-hidden">
+      <div class="flex whitespace-nowrap ticker py-2 text-sm text-slate-400">
+        <div class="flex gap-8 px-4" id="tickerA"></div>
+        <div class="flex gap-8 px-4" id="tickerB"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ CATEGORY CHIPS ░░ -->
+  <section class="max-w-7xl mx-auto px-4 py-8">
+    <div class="flex gap-3 overflow-x-auto pb-2" id="catChips"></div>
+  </section>
+
+  <!-- ░░ GAME GRIDS ░░ -->
+  <main class="max-w-7xl mx-auto px-4 pb-4 space-y-12">
+    <section id="slots">
+      <div class="flex items-end justify-between mb-4">
+        <h2 class="text-2xl font-extrabold text-white">🎰 Popular Slots</h2>
+        <a href="#" class="text-sm text-gold2 hover:underline">See all</a>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4" id="gridSlots"></div>
+    </section>
+
+    <section id="live">
+      <div class="flex items-end justify-between mb-4">
+        <h2 class="text-2xl font-extrabold text-white">🃏 Live Casino</h2>
+        <a href="#" class="text-sm text-gold2 hover:underline">See all</a>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="gridLive"></div>
+    </section>
+
+    <section id="sports">
+      <div class="flex items-end justify-between mb-4">
+        <h2 class="text-2xl font-extrabold text-white">🏏 Sports & Cricket</h2>
+        <a href="#" class="text-sm text-gold2 hover:underline">All markets</a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="gridSports"></div>
+    </section>
+  </main>
+
+  <!-- ░░ PROMOS ░░ -->
+  <section id="promos" class="max-w-7xl mx-auto px-4 py-12">
+    <h2 class="text-2xl font-extrabold text-white mb-6">🎁 Promotions</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="gridPromos"></div>
+  </section>
+
+  <!-- ░░ PAYMENTS ░░ -->
+  <section id="crash" class="border-y border-white/5 bg-panel/40">
+    <div class="max-w-7xl mx-auto px-4 py-10">
+      <h2 class="text-2xl font-extrabold text-white">Fast, mobile-first cashier</h2>
+      <p class="text-slate-400 mt-1">Mock payment row — illustrative only.</p>
+      <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3" id="payRow"></div>
+    </div>
+  </section>
+
+  <!-- ░░ TRUST ROW ░░ -->
+  <section class="max-w-7xl mx-auto px-4 py-12 grid sm:grid-cols-3 gap-5">
+    <div class="rounded-2xl bg-panel border border-white/10 p-6">
+      <div class="text-3xl">🛡️</div>
+      <h3 class="mt-3 font-bold text-white">Secure by design</h3>
+      <p class="text-sm text-slate-400 mt-1">SSL & encrypted sessions pattern shown for the study.</p>
+    </div>
+    <div class="rounded-2xl bg-panel border border-white/10 p-6">
+      <div class="text-3xl">⚡</div>
+      <h3 class="mt-3 font-bold text-white">Instant wallet payouts</h3>
+      <p class="text-sm text-slate-400 mt-1">Sub-hour withdrawal UX (illustrative).</p>
+    </div>
+    <div class="rounded-2xl bg-panel border border-white/10 p-6">
+      <div class="text-3xl">🎧</div>
+      <h3 class="mt-3 font-bold text-white">24/7 live chat</h3>
+      <p class="text-sm text-slate-400 mt-1">Always-on support layout.</p>
+    </div>
+  </section>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="border-t border-white/10 bg-ink">
+    <div class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8 text-sm">
+      <div>
+        <div class="flex items-center gap-2">
+          <div class="grad-gold h-8 w-8 rounded-lg grid place-items-center font-black text-ink">C</div>
+          <span class="text-lg font-extrabold">Crore<span class="grad-text">Win</span></span>
+        </div>
+        <p class="mt-3 text-slate-400">A front-end design study reproducing the layout patterns of a modern online casino lobby. Not affiliated with any real operator.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white mb-3">Casino</h4>
+        <ul class="space-y-2 text-slate-400">
+          <li><a href="#slots" class="hover:text-white">Slots</a></li>
+          <li><a href="#live" class="hover:text-white">Live Casino</a></li>
+          <li><a href="#crash" class="hover:text-white">Crash games</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white mb-3">Help</h4>
+        <ul class="space-y-2 text-slate-400">
+          <li><a href="#" class="hover:text-white">FAQ</a></li>
+          <li><a href="#" class="hover:text-white">Terms (mock)</a></li>
+          <li><a href="#" class="hover:text-white">Responsible gaming</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white mb-3">Be in control</h4>
+        <div class="flex items-center gap-3 text-2xl">
+          <span class="rounded-lg border border-white/15 px-3 py-1 text-base font-bold">18+</span>
+          <span>🚫</span><span>🧠</span>
+        </div>
+        <p class="mt-3 text-slate-400">Gambling can be addictive. In a real product, link to local help lines here.</p>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 py-5 text-xs text-slate-500 text-center">
+        © <span id="year"></span> CroreWin UI Study — educational layout reproduction. <strong>No real-money gambling.</strong> All names, numbers and logos are placeholders.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---- Mock data ----
+    const slots = [
+      ['Sweet Bonanza','Pragmatic','#7b5cff'],['Gates of Olympus','Pragmatic','#f5b301'],
+      ['Aviator','Spribe','#16c784'],['Sugar Rush','Pragmatic','#ff5c8a'],
+      ['Big Bass','Reel Kingdom','#34a8ff'],['Wolf Gold','Pragmatic','#ffae42'],
+      ['Wild West','Pragmatic','#e0533d'],['Fruit Party','Pragmatic','#3ddc97'],
+      ['Mahjong Ways','PG Soft','#c084fc'],['Fortune Tiger','PG Soft','#fb7185'],
+    ];
+    const live = [
+      ['Lightning Roulette','Evolution','#f5b301'],['Crazy Time','Evolution','#7b5cff'],
+      ['Blackjack VIP','Evolution','#16c784'],['Baccarat','Pragmatic','#34a8ff'],
+      ['Dragon Tiger','Ezugi','#ff5c8a'],['Andar Bahar','Ezugi','#ffae42'],
+      ['Teen Patti','Ezugi','#c084fc'],['Mega Wheel','Pragmatic','#3ddc97'],
+    ];
+    const sports = [
+      ['India vs Australia','Cricket · T20','1.85 / 2.05'],
+      ['Real Madrid vs Barça','Football · La Liga','2.40 / 2.90'],
+      ['Djokovic vs Alcaraz','Tennis · ATP','1.65 / 2.25'],
+    ];
+    const promos = [
+      ['125% Welcome match','First deposit within 1 hour','#7b5cff'],
+      ['Daily 10% cashback','On net losses, every day','#16c784'],
+      ['Refer a friend ৳500','Per qualified referral','#f5b301'],
+      ['Weekend reload 50%','Top up Sat & Sun','#ff5c8a'],
+      ['Cricket acca boost','+70% on 5-leg parlays','#34a8ff'],
+      ['VIP club rewards','Tiered points & gifts','#ffae42'],
+    ];
+    const pays = ['bKash','Nagad','Rocket','Upay','USDT','Visa'];
+    const names = ['Rahim','Karim','Anika','Sourav','Priya','Tahmid','Nadia','Imran','Sadia','Arjun'];
+
+    const card = (title, sub, color) => `
+      <div class="card-tilt rounded-2xl overflow-hidden bg-panel border border-white/10 shadow-card">
+        <div class="aspect-[4/3] grid place-items-center text-ink font-black text-3xl"
+             style="background:linear-gradient(135deg,${color},#0b0f1a)">${title[0]}</div>
+        <div class="p-3">
+          <div class="font-semibold text-white text-sm truncate">${title}</div>
+          <div class="text-xs text-slate-400">${sub}</div>
+          <button class="mt-2 w-full py-1.5 rounded-lg text-xs font-bold text-ink grad-gold">Play</button>
+        </div>
+      </div>`;
+
+    document.getElementById('gridSlots').innerHTML = slots.map(s => card(...s)).join('');
+    document.getElementById('gridLive').innerHTML  = live.map(s => card(...s)).join('');
+
+    document.getElementById('gridSports').innerHTML = sports.map(([m, l, o]) => `
+      <div class="card-tilt rounded-2xl bg-panel border border-white/10 p-5 shadow-card">
+        <div class="text-xs text-slate-400">${l}</div>
+        <div class="mt-1 font-bold text-white">${m}</div>
+        <div class="mt-4 grid grid-cols-3 gap-2 text-center text-sm">
+          ${o.split(' / ').map(v => `<button class="rounded-lg bg-panel2 border border-white/10 py-2 hover:border-gold/50"><span class="block text-[10px] text-slate-400">Odds</span><span class="font-bold text-gold2">${v}</span></button>`).join('')}
+          <button class="rounded-lg bg-panel2 border border-white/10 py-2 hover:border-gold/50"><span class="block text-[10px] text-slate-400">Draw</span><span class="font-bold text-gold2">3.10</span></button>
+        </div>
+      </div>`).join('');
+
+    document.getElementById('gridPromos').innerHTML = promos.map(([t, s, c]) => `
+      <div class="card-tilt rounded-2xl border border-white/10 p-6 shadow-card relative overflow-hidden"
+           style="background:linear-gradient(135deg,${c}22,#121829)">
+        <div class="absolute -right-6 -top-6 h-24 w-24 rounded-full blur-2xl" style="background:${c}55"></div>
+        <h3 class="text-lg font-extrabold text-white">${t}</h3>
+        <p class="text-sm text-slate-400 mt-1">${s}</p>
+        <button class="mt-4 text-sm font-bold text-gold2 hover:underline">Learn more →</button>
+      </div>`).join('');
+
+    document.getElementById('payRow').innerHTML = pays.map(p => `
+      <div class="h-14 rounded-xl bg-panel border border-white/10 grid place-items-center font-semibold text-slate-300">${p}</div>`).join('');
+
+    const cats = ['🔥 Hot','🎰 Slots','🃏 Live','🏏 Cricket','🚀 Crash','🎲 Table','🆕 New','💎 VIP'];
+    document.getElementById('catChips').innerHTML = cats.map((c, i) => `
+      <button class="chip shrink-0 rounded-xl border border-white/10 px-4 py-2 text-sm font-medium ${i === 0 ? 'grad-gold text-ink font-bold' : 'bg-panel'}">${c}</button>`).join('');
+
+    const tick = Array.from({length: 8}, () => {
+      const n = names[Math.floor(Math.random() * names.length)];
+      const amt = (Math.random() * 90000 + 1000).toFixed(0);
+      const g = slots[Math.floor(Math.random() * slots.length)][0];
+      return `<span>🏆 <strong class="text-white">${n}***</strong> won <span class="text-neon font-bold">৳${Number(amt).toLocaleString()}</span> on ${g}</span>`;
+    }).join('');
+    document.getElementById('tickerA').innerHTML = tick;
+    document.getElementById('tickerB').innerHTML = tick;
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
