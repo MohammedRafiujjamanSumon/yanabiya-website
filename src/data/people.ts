@@ -345,14 +345,14 @@ export const ALL_PEOPLE: PersonData[] = [
 
   {
     id: 'jannatul-global-accountancy',
-    name: 'Jannatul Ferdawos',
+    name: 'Jannatul Ferdows',
     role: 'Accountancy',
     image: assets.people.jannatul,
     tier: 'exec',
     tierLabel: 'Accounts & Finance',
     shortBio: 'Accountancy lead supporting cross-border financial operations and reporting across all four markets.',
     fullBio: [
-      'Jannatul Ferdawos leads Global Accountancy at Yanabiya Group, supporting cross-border financial operations, consolidated reporting, and day-to-day accounting governance across the Group\'s operating entities in Oman, the United Kingdom, the United States, and Bangladesh.',
+      'Jannatul Ferdows leads Global Accountancy at Yanabiya Group, supporting cross-border financial operations, consolidated reporting, and day-to-day accounting governance across the Group\'s operating entities in Oman, the United Kingdom, the United States, and Bangladesh.',
       'Working closely with the Chief Financial Officer, she ensures accuracy in financial records, compliance with local jurisdictional requirements, and the timely delivery of management accounts that inform strategic decision-making at every level of the organisation.',
     ],
   },

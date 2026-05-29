@@ -19,7 +19,7 @@ const BOARD_IDS_ORDERED = [
   { id: 'obaidullah-ibn-ahmed', name: 'S M Obaidullah Ibn Ahmed', role: 'Board of Director',          image: null },
   { id: 'nargis-akter',         name: 'Nargis Akter',             role: 'Board of Director',          image: null },
   { id: 'md-tanveer-ahmed',     name: 'Md Tanveer Ahmed',         role: 'AI Automation Engineer',     image: assets.people.mdTanveerAhmed },
-  { id: 'jannatul-global-accountancy', name: 'Jannatul Ferdawos',  role: 'Accountancy',                image: assets.people.jannatul },
+  { id: 'jannatul-global-accountancy', name: 'Jannatul Ferdows',  role: 'Accountancy',                image: assets.people.jannatul },
 ]
 
 /* For board members without a photo we show the Yanabiya logo on a
