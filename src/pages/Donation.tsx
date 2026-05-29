@@ -6,7 +6,7 @@ import {
   ArrowLeft, ArrowRight, Heart, Send, CheckCircle, Copy, Mail,
   Building2, UserRound, Stethoscope, Shield, BookOpen,
   Star, Gift, Banknote, Leaf, Hammer, Sparkles, HandHeart,
-  Check, Globe2,
+  Check, Globe2, ExternalLink,
 } from 'lucide-react'
 import Section from '../components/Section'
 import PageHero from '../components/PageHero'
@@ -217,6 +217,53 @@ export default function Donation() {
         </div>
 
         <div className="container-x py-12">
+
+          {/* ── Beneficiary Partner — prominent platform-style card ──── */}
+          <a
+            href="https://www.jamiyaahmadiya.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block max-w-5xl mx-auto mb-12 rounded-2xl overflow-hidden
+                       border border-white/8 hover:border-white/20
+                       shadow-lg hover:shadow-2xl
+                       transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]
+                       hover:-translate-y-1.5"
+            style={{ background: 'linear-gradient(145deg, #78350f 0%, #b45309 100%)' }}
+          >
+            <span aria-hidden className="absolute inset-0 bg-white/0 group-hover:bg-white/4 transition-colors duration-400" />
+            <div className="relative p-6 md:p-7 flex flex-col md:flex-row md:items-center gap-5">
+              <div className="flex items-start gap-4 flex-1">
+                <div
+                  className="w-12 h-12 rounded-xl grid place-items-center flex-shrink-0"
+                  style={{ background: 'rgba(251,191,36,0.18)', color: '#fbbf24' }}
+                >
+                  <HandHeart size={22} strokeWidth={1.6} />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[10px] font-bold uppercase tracking-[0.28em] mb-1.5" style={{ color: '#fbbf24' }}>
+                    Beneficiary Partner
+                  </div>
+                  <h3 className="font-serif text-white text-xl md:text-2xl leading-tight">
+                    Jamiya Ahmadiya Madrasha & Orphanage
+                  </h3>
+                  <p className="mt-2 text-white/65 text-sm leading-relaxed">
+                    100% of cause-tagged donations are passed through to the orphanage.
+                    Visit their official site to learn more about their work.
+                  </p>
+                </div>
+              </div>
+              <div className="md:border-l md:border-white/10 md:pl-6 flex md:flex-col items-center md:items-end justify-between md:justify-center gap-2 shrink-0">
+                <span className="font-mono text-[10px] text-white/35 truncate">jamiyaahmadiya.com</span>
+                <span
+                  className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.2em]
+                             transition-all duration-300 group-hover:gap-2"
+                  style={{ color: '#fbbf24' }}
+                >
+                  Visit Site <ExternalLink size={11} />
+                </span>
+              </div>
+            </div>
+          </a>
 
           {/* ── Cause cards ──────────────────────────────────────── */}
           <div className="mb-16">
@@ -682,20 +729,6 @@ export default function Donation() {
                   </a>
                 </div>
 
-                {/* Beneficiary partner */}
-                <div className="rounded-xl bg-amber-50 border border-amber-300/60 px-4 py-3 space-y-1.5">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-amber-700">Beneficiary partner</p>
-                  <p className="text-xs font-bold text-slate-900">Jamiya Ahmadiya Madrasha & Orphanage</p>
-                  <p className="text-[11px] text-slate-500">100% of cause-tagged donations are passed through to the orphanage.</p>
-                  <a
-                    href="https://www.jamiyaahmadiya.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[11px] text-amber-700 font-semibold hover:underline"
-                  >
-                    <Globe2 size={11} /> Visit jamiyaahmadiya.com
-                  </a>
-                </div>
 
                 {/* Donor quote */}
                 <div className="border-l-4 border-brand-accent/40 pl-4">
