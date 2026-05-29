@@ -1352,9 +1352,9 @@
         "impact": "Empowers every person"
       },
       "eidClothes": {
-        "label": "Eid Clothes",
-        "desc": "New clothing for those who cannot afford to celebrate.",
-        "impact": "Spreads joy on Eid"
+        "label": "Soutien festif",
+        "desc": "Soutien lors de l’Aïd, du Ramadan et des occasions spéciales — vêtements, repas et cadeaux.",
+        "impact": "Apporte de la joie à chaque occasion"
       },
       "zakah": {
         "label": "Pay Your Zakah",
