@@ -55,7 +55,7 @@ const DEFAULTS: DonationData = {
     { key: 'eidClothes',          label: 'Festival Care',         desc: 'Festive support across Eid, Ramadan and special occasions — clothing, meals and gifts.', impact: 'Brings joy on every occasion', image: '/images/donation/festival-care.jpg', color: '#f59e0b' },
     { key: 'zakah',               label: 'Zakah',                 desc: 'Distribute your annual Zakah with confidence.',       impact: 'Fulfils your obligation',      image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=600&q=80', color: '#f43f5e' },
     { key: 'sadaqah',             label: 'Sadaqah',               desc: 'Voluntary charity for any worthy cause.',             impact: 'Multiplied by Allah',          image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80', color: '#8b5cf6' },
-    { key: 'environmentCare',     label: 'Environment Care',      desc: 'Tree planting and environmental conservation.',       impact: 'Heals the planet',             image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80', color: '#10b981' },
+    { key: 'environmentCare',     label: 'Environment Care',      desc: 'Tree planting and environmental conservation.',       impact: 'Heals the planet',             image: '/images/donation/environment-care.jpg', color: '#10b981' },
     { key: 'buildingMaintenance', label: 'Building Maintenance',  desc: 'Upkeep of charitable and community buildings.',       impact: 'Preserves community assets',   image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80', color: '#f59e0b' },
   ],
   howItWorksTitle: 'How Your Donation Works',

@@ -33,7 +33,7 @@ const causes: Cause[] = [
   { causeKey: 'eidClothes',         color: '#f59e0b', icon: <Gift size={15} strokeWidth={2} />,      image: '/images/donation/festival-care.jpg' },
   { causeKey: 'zakah',              color: '#f43f5e', icon: <Banknote size={15} strokeWidth={2} />,  image: '/images/donation/zakah.jpg' },
   { causeKey: 'sadaqah',            color: '#8b5cf6', icon: <Sparkles size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80' },
-  { causeKey: 'environmentCare',    color: '#10b981', icon: <Leaf size={15} strokeWidth={2} />,      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'environmentCare',    color: '#10b981', icon: <Leaf size={15} strokeWidth={2} />,      image: '/images/donation/environment-care.jpg' },
   { causeKey: 'buildingMaintenance',color: '#f59e0b', icon: <Hammer size={15} strokeWidth={2} />,   image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80' },
 ]
 
