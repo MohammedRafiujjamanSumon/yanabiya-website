@@ -265,6 +265,69 @@ export default function Donation() {
             </div>
           </a>
 
+          {/* ── Activity Gallery — witness our work ──────────────── */}
+          <section className="max-w-5xl mx-auto mb-16">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-3 mb-3">
+                <span className="block w-8 h-px bg-amber-400 rounded-full" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-amber-700">From the ground</span>
+                <span className="block w-8 h-px bg-amber-400 rounded-full" />
+              </div>
+              <h3 className="font-serif text-slate-900 text-2xl md:text-3xl">
+                See where your donations go.
+              </h3>
+              <p className="mt-2 text-sm text-slate-500 max-w-xl mx-auto">
+                Real moments from the orphanage, madrasha, distribution drives and
+                community programmes your support makes possible.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+              {[
+                { src: '/images/donation/gallery/madrasa-students.jpg',  caption: 'Madrasha Students',         span: 'col-span-1' },
+                { src: '/images/donation/gallery/eid-prayer.jpg',         caption: 'Eid Prayer Congregation',    span: 'col-span-1 md:col-span-2 row-span-1' },
+                { src: '/images/donation/gallery/food-distribution.jpg',  caption: 'Food & Clothing Distribution', span: 'col-span-2 md:col-span-2' },
+                { src: '/images/donation/gallery/hifz-certificates.jpg',  caption: 'Hifz Certificate Ceremony',  span: 'col-span-1' },
+                { src: '/images/donation/gallery/ramadan-charity.jpg',    caption: 'Ramadan Food Charity',       span: 'col-span-1' },
+                { src: '/images/donation/gallery/food-charity.jpg',       caption: 'Daily Meal Support',         span: 'col-span-1 md:col-span-2' },
+              ].map((g) => (
+                <figure
+                  key={g.src}
+                  className={`group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl
+                              transition-all duration-300 ${g.span} aspect-[4/3]`}
+                >
+                  <img
+                    src={g.src}
+                    alt={g.caption}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover
+                               transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/20 to-transparent" />
+                  <figcaption className="absolute bottom-0 inset-x-0 px-4 py-3 text-white">
+                    <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-amber-300/90 mb-0.5">
+                      Yanabiya × Jamiya Ahmadiya
+                    </span>
+                    <span className="block text-sm md:text-base font-semibold drop-shadow-md">
+                      {g.caption}
+                    </span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <div className="mt-6 text-center">
+              <a
+                href="https://www.jamiyaahmadiya.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-amber-700 hover:text-amber-900 hover:gap-3 transition-all"
+              >
+                See more on jamiyaahmadiya.com <ExternalLink size={11} />
+              </a>
+            </div>
+          </section>
+
           {/* ── Cause cards ──────────────────────────────────────── */}
           <div className="mb-16">
             <div className="text-center mb-8">
