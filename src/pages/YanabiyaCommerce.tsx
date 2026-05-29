@@ -12,10 +12,10 @@ import { assets } from '../data/assets'
  * storefront URL when available; until then they point to our own store so
  * there are never dead links. */
 const MARKETPLACES = [
-  { name: 'Amazon',  logo: '/images/ecommerce/marketplaces/amazon.png',  href: 'https://ygiusllc.com', tint: '#FF9900' },
-  { name: 'Walmart', logo: '/images/ecommerce/marketplaces/walmart.png', href: 'https://ygiusllc.com', tint: '#0071DC' },
-  { name: 'Shopify', logo: '/images/ecommerce/marketplaces/shopify.png', href: 'https://ygiusllc.com', tint: '#95BF47' },
-  { name: 'eBay',    logo: '/images/ecommerce/marketplaces/ebay.png',    href: 'https://ygiusllc.com', tint: '#E53238' },
+  { name: 'Amazon',  logo: '/images/ecommerce/marketplaces/amazon.png',  href: 'https://www.amazon.com',  tint: '#FF9900' },
+  { name: 'Walmart', logo: '/images/ecommerce/marketplaces/walmart.png', href: 'https://www.walmart.com', tint: '#0071DC' },
+  { name: 'Shopify', logo: '/images/ecommerce/marketplaces/shopify.png', href: 'https://www.shopify.com', tint: '#95BF47' },
+  { name: 'eBay',    logo: '/images/ecommerce/marketplaces/ebay.png',    href: 'https://www.ebay.com',    tint: '#E53238' },
 ]
 
 const CAPABILITIES = [
