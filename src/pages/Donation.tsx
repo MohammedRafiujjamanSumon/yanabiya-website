@@ -27,11 +27,11 @@ const causes: Cause[] = [
   { causeKey: 'orphanCare',         color: '#f43f5e', icon: <Heart size={15} strokeWidth={2} />,     image: '/images/donation/orphan-care.jpg' },
   { causeKey: 'elderlyHome',        color: '#0ea5e9', icon: <UserRound size={15} strokeWidth={2} />, image: '/images/donation/elderly-home.jpg' },
   { causeKey: 'medicalSupport',     color: '#f59e0b', icon: <Stethoscope size={15} strokeWidth={2} />, image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80' },
-  { causeKey: 'endingTorment',      color: '#8b5cf6', icon: <Shield size={15} strokeWidth={2} />,    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'endingTorment',      color: '#8b5cf6', icon: <Shield size={15} strokeWidth={2} />,    image: '/images/donation/ending-torment.jpg' },
   { causeKey: 'studentCare',        color: '#0ea5e9', icon: <BookOpen size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80' },
-  { causeKey: 'specialCare',        color: '#10b981', icon: <Star size={15} strokeWidth={2} />,      image: 'https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=600&q=80' },
-  { causeKey: 'eidClothes',         color: '#f59e0b', icon: <Gift size={15} strokeWidth={2} />,      image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=600&q=80' },
-  { causeKey: 'zakah',              color: '#f43f5e', icon: <Banknote size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=600&q=80' },
+  { causeKey: 'specialCare',        color: '#10b981', icon: <Star size={15} strokeWidth={2} />,      image: '/images/donation/special-care.jpg' },
+  { causeKey: 'eidClothes',         color: '#f59e0b', icon: <Gift size={15} strokeWidth={2} />,      image: '/images/donation/festival-care.jpg' },
+  { causeKey: 'zakah',              color: '#f43f5e', icon: <Banknote size={15} strokeWidth={2} />,  image: '/images/donation/zakah.jpg' },
   { causeKey: 'sadaqah',            color: '#8b5cf6', icon: <Sparkles size={15} strokeWidth={2} />,  image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'environmentCare',    color: '#10b981', icon: <Leaf size={15} strokeWidth={2} />,      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80' },
   { causeKey: 'buildingMaintenance',color: '#f59e0b', icon: <Hammer size={15} strokeWidth={2} />,   image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80' },
@@ -238,7 +238,7 @@ export default function Donation() {
                 </div>
               </div>
               <div className="md:border-l md:border-white/10 md:pl-6 flex md:flex-col items-center md:items-end justify-between md:justify-center gap-2 shrink-0">
-                <span className="font-mono text-[10px] text-white/35 truncate">jamiyaahmadiya.com</span>
+                <span className="font-mono text-[10px] text-white/35 truncate">www.jamiyaahmadiya.com</span>
                 <span
                   className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.2em]
                              transition-all duration-300 group-hover:gap-2"
@@ -322,7 +322,7 @@ export default function Donation() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700 hover:text-amber-900 hover:gap-2 transition-all"
               >
-                See more on jamiyaahmadiya.com <ExternalLink size={10} />
+                See more on www.jamiyaahmadiya.com <ExternalLink size={10} />
               </a>
             </div>
           </section>
@@ -625,7 +625,7 @@ export default function Donation() {
                       rel="noopener noreferrer"
                       className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-brand-accentDark hover:underline"
                     >
-                      <Globe2 size={11} /> Visit beneficiary site — jamiyaahmadiya.com
+                      <Globe2 size={11} /> Visit beneficiary site — www.jamiyaahmadiya.com
                     </a>
                   </div>
                 )}

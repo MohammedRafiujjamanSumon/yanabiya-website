@@ -5,6 +5,7 @@ import Section, { Eyebrow } from '../components/Section'
 import { useReveal } from '../hooks/useReveal'
 import { board } from '../data/leadership'
 import { useSection } from '../hooks/useSection'
+import { assets } from '../data/assets'
 
 function Reveal({
   children,
@@ -255,8 +256,27 @@ export default function LeadershipPyramid() {
             </div>
           </div>
 
-          {/* CEO → fork → Chief of Accounts + Global Executive Management */}
-          <div className="relative w-full max-w-[700px] h-12 shrink-0 -mt-10">
+          {/* CEO → Managing Director (vertical connector) */}
+          <div className="relative w-full max-w-[700px] h-8 shrink-0 -mt-8">
+            <div className="absolute top-0 left-1/2 -translate-x-px w-0.5 h-8 bg-brand-deep/30" />
+          </div>
+
+          {/* ══ Managing Director — single centered card under CEO ══ */}
+          <Reveal delay={200}>
+            <div className="flex justify-center">
+              <HierarchyCard
+                colorKey="vice"
+                label={t('leadership.managingDirector', 'Managing Director')}
+                to="/people/khalid-al-sulaimani-exec"
+                photo={assets.people.khalidSulaimani}
+                delay={0}
+                size="md"
+              />
+            </div>
+          </Reveal>
+
+          {/* MD → fork → Chief of Accounts + Global Executive Management */}
+          <div className="relative w-full max-w-[700px] h-12 shrink-0">
             <div className="absolute top-0 left-1/2 -translate-x-px w-0.5 h-6 bg-brand-deep/30" />
             <div className="absolute top-6 left-[33%] right-[33%] h-0.5 bg-brand-deep/30" />
             <div className="absolute top-6 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-deep/20 border border-brand-deep/25" />

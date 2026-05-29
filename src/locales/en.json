@@ -594,7 +594,8 @@
     "founderChairmanCEO": "Founder, Chairman & CEO",
     "becomePartner": "Become a Partner",
     "joinTeam": "Join Our Team",
-    "ourCompanies": "Our Companies"
+    "ourCompanies": "Our Companies",
+    "managingDirector": "Managing Director"
   },
   "countryOps": {
     "established": "Established",
@@ -1351,7 +1352,7 @@
         "impact": "Empowers every person"
       },
       "eidClothes": {
-        "label": "Festive Care",
+        "label": "Festival Care",
         "desc": "Festive support across Eid, Ramadan and special occasions — clothing, meals and gifts.",
         "impact": "Brings joy on every occasion"
       },
