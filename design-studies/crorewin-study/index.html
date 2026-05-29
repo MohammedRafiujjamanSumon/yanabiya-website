@@ -5,45 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CroreWin — UI Design Study (non-functional)</title>
   <meta name="description" content="A non-functional front-end design study of an online casino / sports-betting landing page layout. For learning purposes only." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ink:    '#0b0f1a',
-            panel:  '#121829',
-            panel2: '#1a2236',
-            gold:   '#f5b301',
-            gold2:  '#ffd35c',
-            neon:   '#16c784',
-            accent: '#7b5cff',
-          },
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-          boxShadow: {
-            glow: '0 0 0 1px rgba(245,179,1,.25), 0 10px 40px -10px rgba(245,179,1,.35)',
-            card: '0 12px 40px -16px rgba(0,0,0,.7)',
-          },
-        },
-      },
-    };
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <style>
-    body { background:
-      radial-gradient(1200px 600px at 80% -10%, rgba(123,92,255,.18), transparent 60%),
-      radial-gradient(900px 500px at 10% 10%, rgba(245,179,1,.10), transparent 55%),
-      #0b0f1a; }
-    .ticker { animation: ticker 28s linear infinite; }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .card-tilt { transition: transform .25s ease, box-shadow .25s ease; }
-    .card-tilt:hover { transform: translateY(-6px); }
-    .chip:hover { background:#1a2236; }
-    .grad-gold { background: linear-gradient(135deg,#ffd35c,#f5b301); }
-    .grad-text { background: linear-gradient(90deg,#ffd35c,#f5b301); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .glassdark { background: rgba(18,24,41,.7); backdrop-filter: blur(10px); }
-  </style>
+  <meta name="robots" content="noindex, nofollow" />
+  <!-- Self-hosted, locally-compiled Tailwind build (no CDN). Run `npm run build` to regenerate. -->
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body class="font-sans text-slate-200 antialiased">
 
@@ -62,8 +26,8 @@
         <span class="hidden md:inline">24/7 support</span>
       </div>
       <div class="flex items-center gap-3">
-        <button class="chip rounded px-2 py-1 hover:text-white">🌐 EN</button>
-        <button class="chip rounded px-2 py-1 hover:text-white">৳ BDT</button>
+        <button class="chip rounded px-2 py-1 hover:text-white transition">🌐 EN</button>
+        <button class="chip rounded px-2 py-1 hover:text-white transition">৳ BDT</button>
       </div>
     </div>
   </div>
@@ -77,26 +41,38 @@
       </a>
 
       <nav class="hidden lg:flex items-center gap-1 text-sm font-medium">
-        <a href="#sports" class="px-3 py-2 rounded-lg hover:bg-white/5">Sports</a>
-        <a href="#live" class="px-3 py-2 rounded-lg hover:bg-white/5">Live Casino</a>
-        <a href="#slots" class="px-3 py-2 rounded-lg hover:bg-white/5">Slots</a>
-        <a href="#crash" class="px-3 py-2 rounded-lg hover:bg-white/5">Crash</a>
-        <a href="#promos" class="px-3 py-2 rounded-lg hover:bg-white/5">Promotions</a>
+        <a href="#sports" class="px-3 py-2 rounded-lg hover:bg-white/5 transition">Sports</a>
+        <a href="#live" class="px-3 py-2 rounded-lg hover:bg-white/5 transition">Live Casino</a>
+        <a href="#slots" class="px-3 py-2 rounded-lg hover:bg-white/5 transition">Slots</a>
+        <a href="#crash" class="px-3 py-2 rounded-lg hover:bg-white/5 transition">Crash</a>
+        <a href="#promos" class="px-3 py-2 rounded-lg hover:bg-white/5 transition">Promotions</a>
       </nav>
 
       <div class="flex items-center gap-2">
-        <button class="px-3 sm:px-4 py-2 rounded-lg text-sm font-semibold border border-white/15 hover:bg-white/5">Log in</button>
-        <button class="px-3 sm:px-4 py-2 rounded-lg text-sm font-bold text-ink grad-gold shadow-glow hover:brightness-105">Register</button>
+        <button class="px-3 sm:px-4 py-2 rounded-lg text-sm font-semibold border border-white/15 hover:bg-white/5 transition">Log in</button>
+        <button class="px-3 sm:px-4 py-2 rounded-lg text-sm font-bold text-ink grad-gold shadow-glow hover:brightness-105 transition">Register</button>
+        <!-- Mobile menu toggle -->
+        <button id="menuBtn" class="lg:hidden h-9 w-9 grid place-items-center rounded-lg border border-white/15 hover:bg-white/5" aria-label="Menu">
+          <span class="text-lg leading-none">☰</span>
+        </button>
       </div>
     </div>
+    <!-- Mobile drawer -->
+    <nav id="mobileNav" class="lg:hidden hidden border-t border-white/10 bg-ink/95 px-4 py-3 space-y-1 text-sm font-medium">
+      <a href="#sports" class="block px-3 py-2 rounded-lg hover:bg-white/5">Sports</a>
+      <a href="#live" class="block px-3 py-2 rounded-lg hover:bg-white/5">Live Casino</a>
+      <a href="#slots" class="block px-3 py-2 rounded-lg hover:bg-white/5">Slots</a>
+      <a href="#crash" class="block px-3 py-2 rounded-lg hover:bg-white/5">Crash</a>
+      <a href="#promos" class="block px-3 py-2 rounded-lg hover:bg-white/5">Promotions</a>
+    </nav>
   </header>
 
   <!-- ░░ HERO ░░ -->
   <section class="relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 pt-12 pb-10 grid lg:grid-cols-2 gap-10 items-center">
-      <div>
+      <div class="animate-fadeup">
         <span class="inline-flex items-center gap-2 text-xs font-semibold bg-neon/15 text-neon border border-neon/30 rounded-full px-3 py-1">
-          ● Live now · 12,480 players
+          <span class="h-2 w-2 rounded-full bg-neon animate-floaty"></span> Live now · <span data-count="12480">12,480</span> players
         </span>
         <h1 class="mt-5 text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] tracking-tight text-white">
           Play big.<br><span class="grad-text">Win bigger.</span>
@@ -106,19 +82,19 @@
         </p>
 
         <div class="mt-7 flex flex-wrap gap-3">
-          <button class="px-6 py-3 rounded-xl text-ink font-bold grad-gold shadow-glow hover:brightness-105">Claim welcome bonus</button>
-          <button class="px-6 py-3 rounded-xl font-semibold border border-white/15 hover:bg-white/5">Explore games</button>
+          <button class="px-6 py-3 rounded-xl text-ink font-bold grad-gold shadow-glow hover:brightness-105 transition">Claim welcome bonus</button>
+          <a href="#slots" class="px-6 py-3 rounded-xl font-semibold border border-white/15 hover:bg-white/5 transition">Explore games</a>
         </div>
 
         <div class="mt-8 flex flex-wrap items-center gap-6 text-sm text-slate-400">
-          <div><span class="block text-2xl font-extrabold text-white">2,000+</span>games</div>
+          <div><span class="block text-2xl font-extrabold text-white" data-count="2000" data-suffix="+">2,000+</span>games</div>
           <div><span class="block text-2xl font-extrabold text-white">&lt; 1 hr</span>payouts*</div>
           <div><span class="block text-2xl font-extrabold text-white">24/7</span>live support</div>
         </div>
       </div>
 
       <!-- Bonus card -->
-      <div class="relative">
+      <div class="relative animate-fadeup">
         <div class="card-tilt rounded-3xl bg-gradient-to-br from-accent/30 via-panel2 to-panel border border-white/10 shadow-card p-7">
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold uppercase tracking-widest text-gold2">Welcome offer</span>
@@ -133,16 +109,16 @@
             <li class="flex gap-2">✅ Mobile wallet friendly</li>
           </ul>
 
-          <button class="mt-6 w-full py-3 rounded-xl text-ink font-bold grad-gold hover:brightness-105">Get the bonus</button>
+          <button class="mt-6 w-full py-3 rounded-xl text-ink font-bold grad-gold hover:brightness-105 transition">Get the bonus</button>
           <p class="mt-3 text-[11px] text-slate-500 leading-relaxed">*Illustrative numbers for the design study. Wagering terms would apply on a real platform. 18+ only. Please gamble responsibly.</p>
         </div>
-        <div class="absolute -z-10 -inset-6 blur-3xl bg-gold/10 rounded-full"></div>
+        <div class="absolute -z-10 -inset-6 blur-3xl bg-gold/10 rounded-full animate-floaty"></div>
       </div>
     </div>
 
     <!-- Winners ticker -->
     <div class="border-y border-white/5 bg-ink/40 overflow-hidden">
-      <div class="flex whitespace-nowrap ticker py-2 text-sm text-slate-400">
+      <div class="flex whitespace-nowrap animate-ticker py-2 text-sm text-slate-400">
         <div class="flex gap-8 px-4" id="tickerA"></div>
         <div class="flex gap-8 px-4" id="tickerB"></div>
       </div>
@@ -154,8 +130,19 @@
     <div class="flex gap-3 overflow-x-auto pb-2" id="catChips"></div>
   </section>
 
+  <!-- ░░ JACKPOT STRIP ░░ -->
+  <section class="max-w-7xl mx-auto px-4">
+    <div class="rounded-2xl border border-gold/30 bg-gradient-to-r from-gold/10 via-panel to-accent/10 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-gold2 font-bold">Mega jackpot (mock)</div>
+        <div class="text-3xl sm:text-4xl font-black text-white mt-1">৳<span id="jackpot">3,84,21,650</span></div>
+      </div>
+      <button class="px-6 py-3 rounded-xl text-ink font-bold grad-gold hover:brightness-105 transition">Try the jackpot games</button>
+    </div>
+  </section>
+
   <!-- ░░ GAME GRIDS ░░ -->
-  <main class="max-w-7xl mx-auto px-4 pb-4 space-y-12">
+  <main class="max-w-7xl mx-auto px-4 pt-12 pb-4 space-y-12">
     <section id="slots">
       <div class="flex items-end justify-between mb-4">
         <h2 class="text-2xl font-extrabold text-white">🎰 Popular Slots</h2>
@@ -187,8 +174,16 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="gridPromos"></div>
   </section>
 
+  <!-- ░░ STEPS ░░ -->
+  <section class="border-y border-white/5 bg-panel/30">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <h2 class="text-2xl font-extrabold text-white mb-8 text-center">Get started in 3 steps</h2>
+      <div class="grid sm:grid-cols-3 gap-6" id="steps"></div>
+    </div>
+  </section>
+
   <!-- ░░ PAYMENTS ░░ -->
-  <section id="crash" class="border-y border-white/5 bg-panel/40">
+  <section id="crash" class="border-b border-white/5 bg-panel/40">
     <div class="max-w-7xl mx-auto px-4 py-10">
       <h2 class="text-2xl font-extrabold text-white">Fast, mobile-first cashier</h2>
       <p class="text-slate-400 mt-1">Mock payment row — illustrative only.</p>
@@ -213,6 +208,12 @@
       <h3 class="mt-3 font-bold text-white">24/7 live chat</h3>
       <p class="text-sm text-slate-400 mt-1">Always-on support layout.</p>
     </div>
+  </section>
+
+  <!-- ░░ FAQ ░░ -->
+  <section class="max-w-3xl mx-auto px-4 pb-12">
+    <h2 class="text-2xl font-extrabold text-white mb-6 text-center">FAQ</h2>
+    <div class="space-y-3" id="faq"></div>
   </section>
 
   <!-- ░░ FOOTER ░░ -->
@@ -287,6 +288,17 @@
     ];
     const pays = ['bKash','Nagad','Rocket','Upay','USDT','Visa'];
     const names = ['Rahim','Karim','Anika','Sourav','Priya','Tahmid','Nadia','Imran','Sadia','Arjun'];
+    const steps = [
+      ['1','Register','Create a mock account in seconds.'],
+      ['2','Deposit','Pick a wallet — illustrative cashier.'],
+      ['3','Play','Browse the lobby and explore the UI.'],
+    ];
+    const faqs = [
+      ['Is this a real casino?','No. It is a non-functional front-end design study for learning layout and UX. No real money, accounts, or betting.'],
+      ['Can I deposit or withdraw?','No. The cashier and buttons are inert mock-ups only.'],
+      ['Who is this affiliated with?','No one. It is not affiliated with crorewin.com or any operator. All branding is placeholder.'],
+      ['What is it built with?','Plain HTML and a locally-compiled Tailwind CSS build (no CDN), so it runs fully offline.'],
+    ];
 
     const card = (title, sub, color) => `
       <div class="card-tilt rounded-2xl overflow-hidden bg-panel border border-white/10 shadow-card">
@@ -307,8 +319,8 @@
         <div class="text-xs text-slate-400">${l}</div>
         <div class="mt-1 font-bold text-white">${m}</div>
         <div class="mt-4 grid grid-cols-3 gap-2 text-center text-sm">
-          ${o.split(' / ').map(v => `<button class="rounded-lg bg-panel2 border border-white/10 py-2 hover:border-gold/50"><span class="block text-[10px] text-slate-400">Odds</span><span class="font-bold text-gold2">${v}</span></button>`).join('')}
-          <button class="rounded-lg bg-panel2 border border-white/10 py-2 hover:border-gold/50"><span class="block text-[10px] text-slate-400">Draw</span><span class="font-bold text-gold2">3.10</span></button>
+          ${o.split(' / ').map(v => `<button class="rounded-lg bg-panel2 border border-white/10 py-2 hover:border-gold/50 transition"><span class="block text-[10px] text-slate-400">Odds</span><span class="font-bold text-gold2">${v}</span></button>`).join('')}
+          <button class="rounded-lg bg-panel2 border border-white/10 py-2 hover:border-gold/50 transition"><span class="block text-[10px] text-slate-400">Draw</span><span class="font-bold text-gold2">3.10</span></button>
         </div>
       </div>`).join('');
 
@@ -324,9 +336,24 @@
     document.getElementById('payRow').innerHTML = pays.map(p => `
       <div class="h-14 rounded-xl bg-panel border border-white/10 grid place-items-center font-semibold text-slate-300">${p}</div>`).join('');
 
+    document.getElementById('steps').innerHTML = steps.map(([n, t, d]) => `
+      <div class="text-center">
+        <div class="mx-auto h-12 w-12 rounded-full grad-gold text-ink font-black grid place-items-center text-lg">${n}</div>
+        <h3 class="mt-3 font-bold text-white">${t}</h3>
+        <p class="text-sm text-slate-400 mt-1">${d}</p>
+      </div>`).join('');
+
+    document.getElementById('faq').innerHTML = faqs.map(([q, a]) => `
+      <details class="group rounded-xl bg-panel border border-white/10 p-4">
+        <summary class="cursor-pointer font-semibold text-white flex items-center justify-between list-none">
+          ${q}<span class="text-gold2 group-open:rotate-45 transition">+</span>
+        </summary>
+        <p class="text-sm text-slate-400 mt-2">${a}</p>
+      </details>`).join('');
+
     const cats = ['🔥 Hot','🎰 Slots','🃏 Live','🏏 Cricket','🚀 Crash','🎲 Table','🆕 New','💎 VIP'];
     document.getElementById('catChips').innerHTML = cats.map((c, i) => `
-      <button class="chip shrink-0 rounded-xl border border-white/10 px-4 py-2 text-sm font-medium ${i === 0 ? 'grad-gold text-ink font-bold' : 'bg-panel'}">${c}</button>`).join('');
+      <button class="chip shrink-0 rounded-xl border border-white/10 px-4 py-2 text-sm font-medium transition ${i === 0 ? 'grad-gold text-ink font-bold' : 'bg-panel'}">${c}</button>`).join('');
 
     const tick = Array.from({length: 8}, () => {
       const n = names[Math.floor(Math.random() * names.length)];
@@ -338,6 +365,19 @@
     document.getElementById('tickerB').innerHTML = tick;
 
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Jackpot counter ticks upward (cosmetic only)
+    const jp = document.getElementById('jackpot');
+    let jpVal = 38421650;
+    setInterval(() => {
+      jpVal += Math.floor(Math.random() * 350);
+      jp.textContent = jpVal.toLocaleString('en-IN');
+    }, 1500);
+
+    // Mobile nav toggle
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('mobileNav').classList.toggle('hidden');
+    });
   </script>
 </body>
 </html>

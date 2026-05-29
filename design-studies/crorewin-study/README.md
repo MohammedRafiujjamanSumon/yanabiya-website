@@ -19,21 +19,35 @@ footer).
 
 ## Run it
 
-It's a single self-contained file — just open it in a browser:
+The CSS is **self-hosted** (a locally-compiled Tailwind build — no CDN), so it
+runs fully offline. The compiled `styles.css` is committed, so you can open it
+straight away:
 
 ```bash
 # from this folder
-open index.html          # macOS
 xdg-open index.html      # Linux
+open index.html          # macOS
 # or serve it:
-python3 -m http.server 8080   # then visit http://localhost:8080
+npm run serve            # python3 -m http.server 8080 → http://localhost:8080
 ```
 
-Styling uses the Tailwind CDN, so an internet connection is needed for the CSS to load.
+### Rebuilding the CSS
+
+Only needed if you edit the markup or `src/input.css`:
+
+```bash
+npm install        # one-time: installs tailwindcss locally
+npm run build      # regenerates ./styles.css (minified)
+npm run watch      # rebuild on change while editing
+```
 
 ## Files
 
-- `index.html` — the entire study (markup + Tailwind config + mock data in one file).
+- `index.html` — markup + mock data + interactions.
+- `src/input.css` — Tailwind entry + custom component classes.
+- `tailwind.config.js` — theme (colors, fonts, animations).
+- `styles.css` — **compiled** output linked by `index.html` (committed).
+- `package.json` — build/watch/serve scripts.
 
 ## Why it lives here
 
