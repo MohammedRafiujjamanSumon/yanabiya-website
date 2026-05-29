@@ -84,6 +84,31 @@ export default function CareersPage() {
 
   return (
     <>
+      {/* Branded banner — the underlying poster text says "Career with AIBPLC",
+       * so we lay an opaque-ish gradient + brand-correct "Career with Yanabiya
+       * Group" headline directly on top to mask it. */}
+      <section
+        className="relative w-full overflow-hidden bg-slate-900"
+        style={{
+          backgroundImage: "url('/images/career-with-yanabiya.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/60 to-slate-950/85" />
+        <div className="relative container-x py-14 md:py-20 text-center">
+          <p className="text-[11px] md:text-[13px] font-bold uppercase tracking-[0.32em] text-amber-300 mb-3">
+            Join Our Team
+          </p>
+          <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white leading-tight drop-shadow-2xl">
+            Career with <span className="text-amber-400">Yanabiya Group</span>
+          </h1>
+          <p className="mt-4 text-sm md:text-base text-white/80 max-w-2xl mx-auto">
+            Build your career across Oman, the United Kingdom, Bangladesh and the USA.
+          </p>
+        </div>
+      </section>
+
       <div className="relative">
         <PageHero
           title={hero?.title || 'Career With Us'}

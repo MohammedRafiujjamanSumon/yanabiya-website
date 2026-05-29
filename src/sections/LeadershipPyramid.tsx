@@ -256,27 +256,44 @@ export default function LeadershipPyramid() {
             </div>
           </div>
 
-          {/* CEO → Managing Director (vertical connector) */}
-          <div className="relative w-full max-w-[700px] h-8 shrink-0 -mt-8">
-            <div className="absolute top-0 left-1/2 -translate-x-px w-0.5 h-8 bg-brand-deep/30" />
+          {/* CEO → Co-Founder + Managing Director (vertical connector + fork) */}
+          <div className="relative w-full max-w-[700px] h-10 shrink-0 -mt-8">
+            <div className="absolute top-0 left-1/2 -translate-x-px w-0.5 h-5 bg-brand-deep/30" />
+            <div className="absolute top-5 left-[40%] right-[40%] h-0.5 bg-brand-deep/30" />
+            <div className="absolute top-5 left-[40%] -translate-x-px w-0.5 h-5 bg-brand-deep/30" />
+            <div className="absolute top-5 right-[40%] w-0.5 h-5 bg-brand-deep/30" />
           </div>
 
-          {/* ══ Managing Director — single centered card under CEO ══ */}
-          <Reveal delay={200}>
-            <div className="flex justify-center">
-              <HierarchyCard
-                colorKey="vice"
-                label={t('leadership.managingDirector', 'Managing Director')}
-                to="/people/khalid-al-sulaimani-exec"
-                photo={assets.people.khalidSulaimani}
-                delay={0}
-                size="md"
-              />
-            </div>
-          </Reveal>
+          {/* ══ Row: Co-Founder (left) · Managing Director (right) ══ */}
+          <div className="w-full max-w-[700px] flex justify-center gap-6 md:gap-10">
+            <Reveal delay={180}>
+              <div className="flex justify-center">
+                <HierarchyCard
+                  colorKey="board"
+                  label={t('leadership.coFounder', 'Co-Founder')}
+                  to="/people/momim-ahmed"
+                  photo={assets.people.momiimAhmed}
+                  delay={0}
+                  size="sm"
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={200}>
+              <div className="flex justify-center">
+                <HierarchyCard
+                  colorKey="vice"
+                  label={t('leadership.managingDirector', 'Managing Director')}
+                  to="/people/khalid-al-sulaimani-exec"
+                  photo={assets.people.khalidSulaimani}
+                  delay={0}
+                  size="sm"
+                />
+              </div>
+            </Reveal>
+          </div>
 
-          {/* MD → fork → Chief of Accounts + Global Executive Management */}
-          <div className="relative w-full max-w-[700px] h-12 shrink-0">
+          {/* fork → Chief of Accounts + Global Executive Management */}
+          <div className="relative w-full max-w-[700px] h-12 shrink-0 mt-4">
             <div className="absolute top-0 left-1/2 -translate-x-px w-0.5 h-6 bg-brand-deep/30" />
             <div className="absolute top-6 left-[33%] right-[33%] h-0.5 bg-brand-deep/30" />
             <div className="absolute top-6 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-deep/20 border border-brand-deep/25" />

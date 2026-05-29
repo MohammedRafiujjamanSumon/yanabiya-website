@@ -49,6 +49,7 @@ export const assets = {
     mohammedAlBakri: `${BASE}images/people/mohammed-al-bakri.jpg`,
     salimSuleimani:  `${BASE}images/people/salim-suleimani.jpg`,
     jannatul:        `${BASE}images/people/jannatul.jpg`,
+    mdTanveerAhmed:  `${BASE}images/people/md-tanveer-ahmed.jpg`,
   },
 
   // Partner logo URLs (used directly from yanabiyagroup.com)

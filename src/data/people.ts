@@ -95,6 +95,19 @@ export const ALL_PEOPLE: PersonData[] = [
       'Her engagement reflects the Group\'s values-driven approach to building a board that is both diverse and deeply committed to long-term organisational success.',
     ],
   },
+  {
+    id: 'maysa-yeasmin-board',
+    name: 'Maysa Yeasmin',
+    role: 'Board Member & Chief Financial Officer',
+    image: assets.people.maysaYeasmin,
+    tier: 'board',
+    tierLabel: 'Tier 01, Board & Advisory',
+    shortBio: 'Board Member and CFO overseeing financial governance and capital strategy across the Group.',
+    fullBio: [
+      'Maysa Yeasmin serves on the Yanabiya Group Board and leads the Group\'s financial function as Chief Financial Officer, anchoring fiscal discipline, audit oversight and capital allocation across all four operating countries.',
+      'Her dual role unites boardroom governance with day-to-day financial leadership, ensuring strategic decisions are grounded in rigorous financial planning, compliance and long-term sustainability.',
+    ],
+  },
 
   // ── Tier 02, Global Executive Management ────────────────────────────
   {
@@ -159,6 +172,19 @@ export const ALL_PEOPLE: PersonData[] = [
       'M M Saleheen Bhuiyan leads Yanabiya Group\'s operational functions, ensuring seamless execution across all business units and geographies.',
       'His extensive background in enterprise transformation and technology delivery has made him a cornerstone of the Group\'s operational strategy since its growth phase.',
       'Under his oversight, the Group has implemented scalable processes that have improved delivery timelines and elevated client satisfaction to record levels.',
+    ],
+  },
+  {
+    id: 'md-tanveer-ahmed',
+    name: 'Md Tanveer Ahmed',
+    role: 'AI Automation Engineer',
+    image: assets.people.mdTanveerAhmed,
+    tier: 'exec',
+    tierLabel: 'Tier 02, Global Executive Management',
+    shortBio: 'Designs and deploys AI agents and automation workflows across Yanabiya Group.',
+    fullBio: [
+      'Md Tanveer Ahmed leads AI Automation at Yanabiya Group, designing and deploying intelligent agents, prompt-based assistants and automated workflows across the Group\'s divisions.',
+      'His work spans LLM integration, retrieval-augmented systems, and MCP-based tooling — turning everyday business processes into measurable, self-driving automation.',
     ],
   },
   {
