@@ -90,14 +90,14 @@ export default function BoardPage() {
                   />
                 ) : (
                   <div
-                    className="w-full h-full grid place-items-center bg-brand-deep"
+                    className="w-full h-full grid place-items-center bg-white"
                     aria-label={m.name}
                     title={m.name}
                   >
                     <img
                       src={assets.logo}
                       alt="Yanabiya"
-                      className="w-3/5 h-3/5 object-contain opacity-95"
+                      className="w-3/5 h-3/5 object-contain"
                     />
                   </div>
                 )}
