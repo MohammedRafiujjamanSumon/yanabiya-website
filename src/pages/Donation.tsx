@@ -682,6 +682,21 @@ export default function Donation() {
                   </a>
                 </div>
 
+                {/* Beneficiary partner */}
+                <div className="rounded-xl bg-amber-50 border border-amber-300/60 px-4 py-3 space-y-1.5">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-amber-700">Beneficiary partner</p>
+                  <p className="text-xs font-bold text-slate-900">Jamiya Ahmadiya Madrasha & Orphanage</p>
+                  <p className="text-[11px] text-slate-500">100% of cause-tagged donations are passed through to the orphanage.</p>
+                  <a
+                    href="https://www.jamiyaahmadiya.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-[11px] text-amber-700 font-semibold hover:underline"
+                  >
+                    <Globe2 size={11} /> Visit jamiyaahmadiya.com
+                  </a>
+                </div>
+
                 {/* Donor quote */}
                 <div className="border-l-4 border-brand-accent/40 pl-4">
                   <p className="text-sm italic text-slate-600 leading-relaxed">
