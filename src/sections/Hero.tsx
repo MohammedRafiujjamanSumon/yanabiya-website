@@ -419,7 +419,7 @@ function SceneClosing() {
 
 const SCENE_STATICS: SceneStatic[] = [
   { id: 'opening',    photo: 'https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneOpening,   ctaHref: '/#global'      },
-  { id: 'about',      photo: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneAbout,     ctaHref: '/about-us'     },
+  { id: 'about',      photo: '/images/about-office.jpg',                                                                  photoPos: 'center',    Visual: SceneAbout,     ctaHref: '/about-us'     },
   { id: 'services',   photo: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneServices,  ctaHref: '/#businesses'  },
   { id: 'partners',   photo: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: ScenePartners,  ctaHref: '/#partnerships'},
   { id: 'community',  photo: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80', photoPos: 'center',    Visual: SceneCommunity, ctaHref: '/community'    },
