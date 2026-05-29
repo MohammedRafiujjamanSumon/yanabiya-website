@@ -12,14 +12,16 @@ const BOARD_IDS_ORDERED = [
   { id: 'sumon-ahmed',          name: 'S M Sumon Ahmed',          role: 'Co-Founder, Bangladesh',     image: assets.people.sumonAhmed },
   { id: 'rafiujjaman-sumon',    name: 'Md Rafiujjaman Sumon',     role: 'Co-Founder, UK',             image: null },
   { id: 'jhohora-akter',        name: 'Jhohora Akter',            role: 'Co-Founder, USA',            image: assets.people.jhohoraAkter },
+  { id: 'maysa-yeasmin',        name: 'Maysa Yeasmin',            role: 'Board Member & CFO',         image: assets.people.maysaYeasmin },
   { id: 'shawrin-ahmed-shammi', name: 'Shawrin Ahmed Shammi',     role: 'Board of Director',          image: null },
   { id: 'abdullah-ibn-ahmed',   name: 'S M Abdullah Ibn Ahmed',   role: 'Board of Director',          image: null },
   { id: 'obaidullah-ibn-ahmed', name: 'S M Obaidullah Ibn Ahmed', role: 'Board of Director',          image: null },
   { id: 'nargis-akter',         name: 'Nargis Akter',             role: 'Board of Director',          image: null },
 ]
 
-const PH = (name: string) =>
-  `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0e2d4e&color=9ec73a&size=400&bold=true`
+/* For board members without a photo we show the Yanabiya logo on a
+ * brand-deep background instead of generated initials — cleaner and more
+ * on-brand. */
 
 export default function BoardPage() {
   const { t } = useTranslation()
@@ -80,11 +82,25 @@ export default function BoardPage() {
             <div key={m.id} className="flex flex-col items-center text-center gap-2">
               <div className="w-full aspect-square max-w-[110px] rounded-2xl overflow-hidden
                               ring-2 ring-amber-200 ring-offset-2 shadow-md">
-                <img
-                  src={m.image ?? PH(m.name)}
-                  alt={m.name}
-                  className="w-full h-full object-cover object-top"
-                />
+                {m.image ? (
+                  <img
+                    src={m.image}
+                    alt={m.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : (
+                  <div
+                    className="w-full h-full grid place-items-center bg-brand-deep"
+                    aria-label={m.name}
+                    title={m.name}
+                  >
+                    <img
+                      src={assets.logo}
+                      alt="Yanabiya"
+                      className="w-3/5 h-3/5 object-contain opacity-95"
+                    />
+                  </div>
+                )}
               </div>
               <p className="text-[12px] font-semibold text-brand-deep leading-snug">{m.name}</p>
               <p className="text-[10px] text-amber-600 font-medium uppercase tracking-wide leading-snug">{m.role}</p>
