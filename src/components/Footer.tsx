@@ -43,11 +43,11 @@ const defaultGroupLinks = [
   { id: 'contact',      labelKey: 'footer.links.contact'    },
 ]
 
-const defaultCorporateLinks: { to?: string; href?: string; labelKey: string }[] = [
+const defaultCorporateLinks: { to?: string; href?: string; download?: string; labelKey: string }[] = [
   { to: '/about-us',                           labelKey: 'footer.links.profile'    },
   { to: '/about/our-story',                    labelKey: 'footer.links.story'      },
   { to: '/contact',                            labelKey: 'footer.links.contactNet' },
-  { to: '/leadership/management',              labelKey: 'footer.links.management' },
+  { download: '/yanabiya-profile.pdf',         labelKey: 'footer.links.downloadProfile' },
   { to: '/community/blog',                     labelKey: 'footer.links.blog'       },
   { to: '/community/sustainable-growth',       labelKey: 'footer.links.sustainable'},
   { to: '/community/community-care',           labelKey: 'footer.links.community'  },
@@ -340,8 +340,10 @@ export default function Footer() {
                 </span>
               ))
               : defaultCorporateLinks.map((l) => (
-                <span key={l.href ?? l.to} className="text-[10px]">
-                  {l.href
+                <span key={l.href ?? l.to ?? l.download} className="text-[10px]">
+                  {l.download
+                    ? <a href={l.download} download className={linkClass}>{t(l.labelKey)}</a>
+                    : l.href
                     ? <a href={l.href} target="_blank" rel="noopener noreferrer" className={linkClass}>{t(l.labelKey)}</a>
                     : <Link to={l.to!} className={linkClass}>{t(l.labelKey)}</Link>
                   }
