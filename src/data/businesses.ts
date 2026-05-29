@@ -1000,8 +1000,7 @@ export const businesses: Business[] = [
     ],
     footer:
       '🚀 Structured administrative and operational support designed to enhance business efficiency and compliance.',
-    image:
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+    image: '/images/about-office.jpg',
     videoUrl:
       'https://videos.pexels.com/video-files/35454651/15020850_1080_1920_60fps.mp4',
     subServicesHeading: 'Explore Our Total Facility Management Solutions',

@@ -58,7 +58,7 @@ export default function About() {
                               ring-1 ring-brand-deep/10
                               h-[460px]">
                 <img
-                  src={apiAbout?.officePhoto || 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&crop=center&w=1200&h=900&q=90'}
+                  src={apiAbout?.officePhoto || '/images/about-office.jpg'}
                   alt="Yanabiya Group office"
                   className="w-full h-full object-cover object-center"
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
