@@ -44,16 +44,16 @@ const defaultGroupLinks = [
 ]
 
 const defaultCorporateLinks: { to?: string; href?: string; download?: string; labelKey: string }[] = [
+  { to: '/yanabiya-ecommerce',                 labelKey: 'footer.links.ecommerce'  },
   { to: '/about-us',                           labelKey: 'footer.links.profile'    },
-  { to: '/about/our-story',                    labelKey: 'footer.links.story'      },
-  { to: '/contact',                            labelKey: 'footer.links.contactNet' },
   { download: '/yanabiya-profile.pdf',         labelKey: 'footer.links.downloadProfile' },
-  { to: '/community/blog',                     labelKey: 'footer.links.blog'       },
+  { to: '/contact',                            labelKey: 'footer.links.contactNet' },
   { to: '/community/sustainable-growth',       labelKey: 'footer.links.sustainable'},
+  { to: '/about/our-story',                    labelKey: 'footer.links.story'      },
+  { to: '/community/blog',                     labelKey: 'footer.links.blog'       },
   { to: '/community/community-care',           labelKey: 'footer.links.community'  },
   { to: '/community/careers',                  labelKey: 'footer.links.careers'    },
-  { href: 'https://ygiusllc.com/',             labelKey: 'footer.links.ecommerce'  },
-  { to: '/community/donation',                  labelKey: 'footer.links.donation'   },
+  { to: '/community/donation',                 labelKey: 'footer.links.donation'   },
 ]
 
 const FLAG_IMG: Record<string, string> = {
