@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(123, 92, 255, .18), transparent 60%),
+      radial-gradient(900px 500px at 10% 10%, rgba(245, 179, 1, .10), transparent 55%),
+      #0b0f1a;
+  }
+}
+
+@layer components {
+  .grad-gold { background: linear-gradient(135deg, #ffd35c, #f5b301); }
+  .grad-text {
+    background: linear-gradient(90deg, #ffd35c, #f5b301);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .glassdark {
+    background: rgba(18, 24, 41, .7);
+    backdrop-filter: blur(10px);
+  }
+  .card-tilt { transition: transform .25s ease, box-shadow .25s ease; }
+  .card-tilt:hover { transform: translateY(-6px); }
+  .chip:hover { background: #1a2236; }
+
+  /* Shimmer placeholder used for the "loading" tiles */
+  .shimmer {
+    background: linear-gradient(100deg, #121829 30%, #1f2942 50%, #121829 70%);
+    background-size: 200% 100%;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker,
+  .animate-floaty,
+  .animate-shimmer,
+  .animate-fadeup { animation: none !important; }
+  html { scroll-behavior: auto; }
+}

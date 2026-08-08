@@ -1,0 +1,15 @@
+{
+  "name": "crorewin-ui-study",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Non-functional front-end design study of a casino/betting lobby layout. Learning only.",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./styles.css --watch",
+    "serve": "python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
